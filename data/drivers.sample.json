@@ -1,0 +1,40 @@
+[
+  {
+    "id": "kyocera-taskalfa-1801",
+    "brand": "kyocera",
+    "brand_kr": "교세라",
+    "model": "TASKalfa 1801",
+    "category": "mfp_bw_laser",
+    "category_kr": "흑백레이저복합기",
+    "image": "/img/models/kyocera-taskalfa-1801.png",
+    "description": "A4 흑백 레이저 복합기. 한별 임대 주력 모델.",
+    "drivers": [
+      {
+        "os": "windows",
+        "os_label": "Windows 10/11",
+        "arch": "x64",
+        "version": "8.1.1109",
+        "size_mb": 18.4,
+        "released": "2025-11-20",
+        "url": "https://hanbyeolsystem.github.io/customer/files/kyocera/taskalfa-1801-win64-v8.1.1109.zip",
+        "source": "hanbyeol",
+        "notes": "권장 버전"
+      },
+      {
+        "os": "windows",
+        "os_label": "Windows 10/11",
+        "arch": "x86",
+        "version": "8.1.1109",
+        "size_mb": 16.2,
+        "released": "2025-11-20",
+        "url": "https://www.kyoceradocumentsolutions.com/",
+        "source": "manufacturer"
+      }
+    ],
+    "guides": [
+      { "title": "Windows 10 설치 가이드", "url": "/guides/kyocera-1801-win.pdf" }
+    ],
+    "common_errors": ["E-0001", "C7001"],
+    "related_errorcode_url": "https://hanbyeolsystem.github.io/hanbyeol-errorcode/?brand=kyocera&model=TASKalfa+1801"
+  }
+]
