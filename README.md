@@ -18,7 +18,7 @@
 | `/` | ✅ v0.1 | 메인 4카드 + 검색바 + 연락처 |
 | `/drivers/` | 🔶 placeholder | v0.5 에서 데이터 채움 |
 | `/rental/` | ✅ v0.1 | hbsys.kr 안내 + 임대 FAQ |
-| `/shop/` | 🔶 Coming Soon | 사전 알림 신청만 |
+| `/blog/` | ✅ v0.1 | 네이버 블로그 iframe (blog.naver.com/hanbyeolsystem) |
 | `/error/` | ✅ v0.1 | 0.6초 후 errorcode 사이트로 redirect |
 | `/faq/` | ✅ v0.1 | 10개 질문 |
 | `/about/` | ✅ v0.1 | 회사 정보 |
@@ -69,6 +69,7 @@ py -3.14 -m http.server 5500
 | 드라이버 다운로드 | https://882.kr/ | 메인 카드 → /drivers/ iframe |
 | 에러코드 | https://hanbyeolsystem.github.io/hanbyeol-errorcode/ | 메인 카드, FAQ → /error/ iframe |
 | 임대·판매 | https://hbsys.kr/ | 메인 카드, 푸터, 회사 소개 → /rental/ iframe |
+| 한별블로그 | https://blog.naver.com/hanbyeolsystem | 메인 카드 → /blog/ iframe |
 
 URL이 바뀌면 전 페이지 grep 으로 찾아 일괄 교체 (v0.5에서 `js/config.js` 로 추상화 예정).
 

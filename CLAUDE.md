@@ -28,8 +28,10 @@
 | 드라이버 | https://882.kr/ | `/drivers/` iframe |
 | 에러코드 | https://hanbyeolsystem.github.io/hanbyeol-errorcode/ | `/error/` iframe |
 | 임대·판매 | https://hbsys.kr/ | `/rental/` iframe |
+| 한별블로그 | https://blog.naver.com/hanbyeolsystem | `/blog/` iframe |
 
-세 URL 모두 X-Frame-Options/CSP 없어 iframe 임베드 OK (2026-06-13 검증).
+네 URL 모두 X-Frame-Options/CSP/frame-buster 없어 iframe 임베드 OK (2026-06-13 검증).
+사용자가 "홈페이지" 라고 부른 자리는 **쇼핑몰** (placeholder) → **한별블로그**로 교체됨 (2026-06-13).
 사용자 요구: **새 탭으로 안 열림**. 모든 외부 사이트는 한별 헤더 안 iframe.
 변경 시 grep 으로 일괄 교체.
 
