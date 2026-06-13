@@ -23,12 +23,15 @@
 - 영업PPT 디자인 ref: `../../영업자료/v2_2026-06/01_영업PPT.html`
 
 ## 외부 연결 (URL 주의)
-| 연결처 | URL |
-|---|---|
-| 임대·판매 | https://hbsys.kr/ |
-| 에러코드 | https://hanbyeolsystem.github.io/hanbyeol-errorcode/ |
+| 연결처 | URL | 임베드 위치 |
+|---|---|---|
+| 드라이버 | https://882.kr/ | `/drivers/` iframe |
+| 에러코드 | https://hanbyeolsystem.github.io/hanbyeol-errorcode/ | `/error/` iframe |
+| 임대·판매 | https://hbsys.kr/ | `/rental/` iframe |
 
-이 두 URL은 여러 페이지에 분산되어 있음. 변경 시 grep 으로 일괄 교체.
+세 URL 모두 X-Frame-Options/CSP 없어 iframe 임베드 OK (2026-06-13 검증).
+사용자 요구: **새 탭으로 안 열림**. 모든 외부 사이트는 한별 헤더 안 iframe.
+변경 시 grep 으로 일괄 교체.
 
 ## 자주 막혔던 점 (반복 안 하기)
 - 882 시안의 네이비+오렌지 컬러는 **폐기**. 한별 블루로 통일.

@@ -66,8 +66,9 @@ py -3.14 -m http.server 5500
 
 | 연결처 | URL | 어디서 |
 |---|---|---|
-| 임대·판매 | https://hbsys.kr/ | 메인 카드, 푸터, 회사 소개 |
-| 에러코드 | https://hanbyeolsystem.github.io/hanbyeol-errorcode/ | 메인 카드, FAQ, /error/ |
+| 드라이버 다운로드 | https://882.kr/ | 메인 카드 → /drivers/ iframe |
+| 에러코드 | https://hanbyeolsystem.github.io/hanbyeol-errorcode/ | 메인 카드, FAQ → /error/ iframe |
+| 임대·판매 | https://hbsys.kr/ | 메인 카드, 푸터, 회사 소개 → /rental/ iframe |
 
 URL이 바뀌면 전 페이지 grep 으로 찾아 일괄 교체 (v0.5에서 `js/config.js` 로 추상화 예정).
 
