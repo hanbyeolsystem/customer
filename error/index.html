@@ -2,21 +2,15 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#1d4ed8">
 <title>에러코드 검색 — 한별고객센터</title>
-<meta http-equiv="refresh" content="0;url=https://hanbyeolsystem.github.io/hanbyeol-errorcode/">
-<link rel="canonical" href="https://hanbyeolsystem.github.io/hanbyeol-errorcode/">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <link rel="stylesheet" href="../css/tokens.css">
 <link rel="stylesheet" href="../css/components.css">
-<script>
-  setTimeout(function(){
-    location.replace("https://hanbyeolsystem.github.io/hanbyeol-errorcode/");
-  }, 600);
-</script>
+<style>body{overflow:hidden}</style>
 </head>
-<body>
+<body class="hc-embed">
 
 <header class="hc-header">
   <div class="hc-header-inner">
@@ -25,19 +19,41 @@
   </div>
 </header>
 
-<main class="hc-main">
-  <div class="hc-coming">
-    <div class="big">⚠</div>
-    <h2>에러코드 검색 사이트로 이동합니다</h2>
-    <p>자동으로 이동되지 않으면 아래 버튼을 눌러주세요.</p>
-    <a href="https://hanbyeolsystem.github.io/hanbyeol-errorcode/" class="hc-btn">에러코드 검색 ↗</a>
-    <div style="margin-top:18px"><a href="../" class="hc-btn hc-btn-ghost">메인으로 돌아가기</a></div>
-  </div>
-</main>
+<div class="hc-embed-bar">
+  <a href="../" class="back">← 메인</a>
+  <span class="url">hanbyeolsystem.github.io/hanbyeol-errorcode</span>
+</div>
 
-<footer class="hc-footer">
-  <div class="biz">한별시스템 · © 2026 Hanbyeol System</div>
-</footer>
+<iframe
+  class="hc-embed-frame"
+  id="ec-frame"
+  src="https://hanbyeolsystem.github.io/hanbyeol-errorcode/"
+  title="한별 에러코드 검색"
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade"
+></iframe>
+
+<div class="hc-embed-fallback" id="ec-fallback">
+  <div class="big">⚠</div>
+  <h2>외부 사이트를 불러올 수 없습니다</h2>
+  <p>네트워크 상태를 확인하시거나, 잠시 후 다시 시도해주세요.</p>
+  <a href="../" class="hc-btn">메인으로 돌아가기</a>
+</div>
+
+<script>
+  (function(){
+    var f = document.getElementById('ec-frame');
+    var fb = document.getElementById('ec-fallback');
+    var loaded = false;
+    f.addEventListener('load', function(){ loaded = true; });
+    setTimeout(function(){
+      if(!loaded){
+        f.style.display = 'none';
+        fb.classList.add('is-shown');
+      }
+    }, 12000);
+  })();
+</script>
 
 </body>
 </html>

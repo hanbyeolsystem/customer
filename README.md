@@ -4,8 +4,9 @@
 > 드라이버 다운로드 · 에러코드 검색 · 임대 안내 · 쇼핑몰(예정).
 
 - **버전**: v0.1 (골격 + 외부 링크)
-- **호스팅 예정**: https://hanbyeolsystem.github.io/customer/
-- **로컬**: `C:\Users\UserK\Desktop\클로드코드공부\고객용사이트\customer\`
+- **라이브**: https://hanbyeolsystem.github.io/customer/ (2026-06-13 배포)
+- **GitHub**: https://github.com/hanbyeolsystem/customer
+- **로컬**: `C:\Users\UserK\Desktop\클로드코드공부\고객용사이트\customer\` (.git 동기)
 - **기획서**: `../planning/00_기획서.md`
 
 ---

@@ -7,9 +7,10 @@
 - "고객센터", "고객용 사이트", "한별고객센터", "customer center"
 
 ## 핵심 정체
-- GitHub Pages 신규 리포 `hanbyeolsystem/customer` 로 배포 예정
-- 라이브: https://hanbyeolsystem.github.io/customer/ (배포 후)
+- GitHub: https://github.com/hanbyeolsystem/customer (2026-06-13 생성, PUBLIC)
+- 라이브: https://hanbyeolsystem.github.io/customer/
 - 정적 HTML + CSS. JS 빌드 없음.
+- 로컬 `.git` 동기 — 수정 후 `git add -A && git commit && git push` 으로 즉시 배포 반영 (1~2분).
 
 ## 디자인 톤
 - **영업PPT v2 와 통일**: `#1d4ed8` 한별 블루, `#f59e0b` 앰버
