@@ -50,12 +50,26 @@ export default function NasPage() {
                 </li>
               ))}
             </ul>
-            <Link
-              href="/support/quote"
-              className="inline-flex items-center gap-2 bg-hb-blue hover:bg-hb-blue-light text-white font-extrabold px-6 py-3.5 rounded-xl shadow-lg shadow-hb-blue/30 transition"
-            >
-              NAS 도입 상담 →
-            </Link>
+
+            {/* 시놀로지 공식 파트너 배지 */}
+            <div className="inline-flex items-center gap-3 bg-white dark:bg-white/95 border border-[var(--line)] rounded-2xl px-5 py-3 mb-7 shadow-sm">
+              <Image
+                src="/brand/synology-partner.png"
+                alt="Synology 시놀로지 공식파트너"
+                width={180}
+                height={72}
+                className="h-12 w-auto object-contain"
+              />
+            </div>
+
+            <div>
+              <Link
+                href="/support/quote"
+                className="inline-flex items-center gap-2 bg-hb-blue hover:bg-hb-blue-light text-white font-extrabold px-6 py-3.5 rounded-xl shadow-lg shadow-hb-blue/30 transition"
+              >
+                NAS 도입 상담 →
+              </Link>
+            </div>
           </div>
           <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-[var(--line)] shadow-xl">
             <Image
