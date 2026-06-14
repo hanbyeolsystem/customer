@@ -1,0 +1,51 @@
+export const quickServices = [
+  { icon: "🚨", label: "원격지원", href: "/support/remote", accent: "red" },
+  { icon: "⬇", label: "드라이버 다운로드", href: "/support/drivers", accent: "blue" },
+  { icon: "🛠", label: "AS 접수", href: "/support/as", accent: "amber" },
+  { icon: "🗄", label: "NAS 기술지원", href: "/nas#support", accent: "indigo" },
+  { icon: "📦", label: "소모품 주문", href: "/support/supplies", accent: "emerald" },
+  { icon: "📋", label: "견적 요청", href: "/support/quote", accent: "violet" },
+] as const;
+
+export const coreServices = [
+  {
+    icon: "🗄",
+    badge: "MAIN",
+    title: "NAS 구축 및 관리",
+    summary: "기업 데이터를 안전하게 — Synology 공식 대리점",
+    items: ["Synology NAS 구축·세팅", "RAID 1/5/6/10 구성", "VPN·원격근무 환경", "사후 유지관리 지원"],
+    href: "/nas",
+    cta: "NAS 솔루션 보기",
+    color: "blue",
+  },
+  {
+    icon: "🛡",
+    badge: "ESSENTIAL",
+    title: "데이터 백업 솔루션",
+    summary: "랜섬웨어 시대, 백업이 곧 보험입니다",
+    items: ["자동 백업 스케줄링", "랜섬웨어 사전 방어", "장애 복구 시나리오", "클라우드 이중 백업"],
+    href: "/nas#backup",
+    cta: "백업 방식 알아보기",
+    color: "indigo",
+  },
+  {
+    icon: "🔧",
+    badge: "365",
+    title: "기업 IT 유지관리",
+    summary: "PC·서버·네트워크·NAS 한 번에",
+    items: ["사내 PC 통합 관리", "서버·라우터 운영", "네트워크 설계·증설", "NAS 상시 모니터링"],
+    href: "/support",
+    cta: "유지관리 상담",
+    color: "slate",
+  },
+  {
+    icon: "🖨",
+    badge: "RENTAL",
+    title: "복사기 · 프린터 임대",
+    summary: "유지보수·토너 포함, 월 정액으로",
+    items: ["유지보수 풀패키지", "토너·드럼 무료 공급", "분기별 정기 점검", "전국 당일 출동"],
+    href: "/rental",
+    cta: "임대 견적 받기",
+    color: "amber",
+  },
+] as const;

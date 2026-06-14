@@ -1,86 +1,56 @@
-# 한별고객센터 (Hanbyeol Customer Center)
+# 한별시스템 홈페이지 (v0.3 — Next.js 16)
 
-> 한별시스템 고객을 위한 셀프 서비스 허브.
-> 드라이버 다운로드 · 에러코드 검색 · 임대 안내 · 쇼핑몰(예정).
+기업 데이터·업무환경 IT 파트너 한별시스템의 공식 사이트.
+이전 v0.2 정적 HTML 버전은 `v0.2-static-archive` 브랜치에 보존되어 있다.
 
-- **버전**: v0.1 (골격 + 외부 링크)
-- **라이브**: https://hanbyeolsystem.github.io/customer/ (2026-06-13 배포)
-- **GitHub**: https://github.com/hanbyeolsystem/customer
-- **로컬**: `C:\Users\UserK\Desktop\클로드코드공부\고객용사이트\customer\` (.git 동기)
-- **기획서**: `../planning/00_기획서.md`
+## 스택
+- Next.js 16 (App Router, Turbopack)
+- React 19, TypeScript 5
+- Tailwind CSS 4 (`@theme` 토큰)
+- next-themes (다크모드 class 전환)
+- Swiper 11 (구축사례 슬라이더)
 
----
-
-## 페이지
-
-| 경로 | 상태 | 비고 |
-|---|---|---|
-| `/` | ✅ v0.1 | 메인 4카드 + 검색바 + 연락처 |
-| `/drivers/` | 🔶 placeholder | v0.5 에서 데이터 채움 |
-| `/rental/` | ✅ v0.1 | hbsys.kr 안내 + 임대 FAQ |
-| `/blog/` | ✅ v0.1 | 네이버 블로그 iframe (blog.naver.com/hanbyeolsystem) |
-| `/error/` | ✅ v0.1 | 0.6초 후 errorcode 사이트로 redirect |
-| `/faq/` | ✅ v0.1 | 10개 질문 |
-| `/about/` | ✅ v0.1 | 회사 정보 |
-| `/contact/` | ✅ v0.1 | 전화·이메일·지도 |
-| `/404.html` | ✅ v0.1 | |
-
----
-
-## 로컬 미리보기
-
-가장 간단하게 — `index.html` 파일을 더블클릭해 브라우저에서 열기.
-
-검색 폼은 `drivers/`로 GET 으로 가는 정적 동작이라 로컬 파일 시스템에서는 일부 링크가 안 잡힐 수 있음. 정확한 동작 확인은 간단한 로컬 서버:
-
-```powershell
-# PowerShell — 폴더에서 Python 미리보기
-cd "C:\Users\UserK\Desktop\클로드코드공부\고객용사이트\customer"
-py -3.14 -m http.server 5500
-# 그 다음 http://localhost:5500 접속
+## 개발
+```bash
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # 프로덕션 빌드
+npm run lint     # ESLint
 ```
 
----
+## 디자인 토큰 (브랜드 컬러)
+`src/app/globals.css` 의 `@theme` 블록에서 일괄 수정:
+- `--color-hb-primary` `#0F172A`
+- `--color-hb-blue` `#2563EB`
+- `--color-hb-blue-light` `#60A5FA`
+- `--color-hb-bg` `#F8FAFC`
 
-## GitHub Pages 배포 (예정)
+## 콘텐츠 수정 (관리자 페이지 없이)
+- `src/data/site.ts` — 회사명·연락처·주소·SNS·통계 수치
+- `src/data/services.ts` — 퀵서비스 6개·핵심서비스 4개
+- `src/data/cases.ts` — 구축사례 카드 (실제 사례로 교체)
+- `src/data/products.ts` — 임대 쇼핑몰 상품 6개
+- `src/data/posts.ts` — 블로그 글 4개 (수동 등록 → 차후 RSS 자동화)
 
-1. GitHub에 `hanbyeolsystem/customer` 리포 생성
-2. 이 폴더 내용을 푸시
-3. Settings → Pages → main 브랜치 / root
-4. 약 1분 후 `https://hanbyeolsystem.github.io/customer/` 공개
+## 페이지 (16개 정적 prerender)
+- `/` 메인
+- `/nas` `/rental` `/shop` `/cases` `/blog` `/about`
+- `/support` 허브 + `/support/remote` `/support/drivers` `/support/as` `/support/quote` `/support/supplies`
+- `/privacy` `/terms` (준비 중)
 
----
+## 배포
 
-## 디자인 토큰 (영업PPT v2 와 통일)
+### Vercel (권장)
+1. [vercel.com/new](https://vercel.com/new) → GitHub 로 로그인
+2. `hanbyeolsystem/customer` 임포트
+3. 자동 빌드/배포 (`main` 푸시 시마다 갱신)
+4. 도메인: 한국어 도메인 `한별고객센터.kr`(`xn--bm3bm1i1e348cgwe.kr`) 연결
 
-- 브랜드 컬러: `#1d4ed8` (브랜드 블루)
-- 강조: `#f59e0b` (앰버)
-- 폰트: Pretendard CDN
-- 모바일 퍼스트 (360~414px 기준)
+### GitHub Pages (대안, 정적 export 필요)
+`next.config.ts` 에 `output: "export"` 추가 → `npm run build` → `out/` 폴더 push.
 
-자세한 토큰은 `css/tokens.css` 참조.
-
----
-
-## 외부 사이트 연결
-
-| 연결처 | URL | 어디서 |
-|---|---|---|
-| 드라이버 다운로드 | https://882.kr/ | 메인 카드 → /drivers/ iframe |
-| 에러코드 | https://hanbyeolsystem.github.io/hanbyeol-errorcode/ | 메인 카드, FAQ → /error/ iframe |
-| 임대·판매 | https://hbsys.kr/ | 메인 카드, 푸터, 회사 소개 → /rental/ iframe |
-| 한별블로그 | https://blog.naver.com/hanbyeolsystem | 메인 카드 → /blog/ iframe |
-
-URL이 바뀌면 전 페이지 grep 으로 찾아 일괄 교체 (v0.5에서 `js/config.js` 로 추상화 예정).
-
----
-
-## 다음 단계 (v0.5)
-
-[기획서 8번 섹션 참조](../planning/00_기획서.md#8-단계적-로드맵)
-
-1. 한별 임대 주력 5~10대 모델 추출 (임대관리 rental_items 에서)
-2. `data/drivers.json` 작성 (기획서 4-5 스키마)
-3. `drivers/` 검색·필터 UI
-4. 모델 상세 페이지 5건 시범 작성
-5. 드라이버 파일 하이브리드 호스팅 (한별 git-lfs + 제조사 링크)
+## TODO
+- AS접수·상담 폼: Formspree 또는 Supabase Edge Function 으로 자동 전송 (현재 mailto)
+- 블로그 RSS 자동 fetch (네이버 블로그)
+- 실제 구축사례·인증서·파트너 로고 교체
+- sitemap.xml, robots.txt
