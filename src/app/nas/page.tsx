@@ -73,8 +73,8 @@ export default function NasPage() {
           </div>
           <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-[var(--line)] shadow-xl">
             <Image
-              src="https://images.unsplash.com/photo-1601132359864-c974e79890ac?w=1200&q=70&auto=format"
-              alt="기업 NAS 환경"
+              src="/hero/server-rack.png"
+              alt="기업 NAS 서버실"
               fill
               sizes="(min-width:1024px) 50vw, 100vw"
               className="object-cover"
