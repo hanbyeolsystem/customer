@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { site } from "@/data/site";
 
 export function Footer() {
@@ -9,9 +10,13 @@ export function Footer() {
           {/* 브랜드 */}
           <div className="col-span-2 lg:col-span-1">
             <div className="flex items-center gap-2.5 mb-4">
-              <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-hb-blue to-hb-blue-light text-white flex items-center justify-center font-black text-xs">
-                HB
-              </span>
+              <Image
+                src="/brand/logo.jpg"
+                alt="한별시스템 로고"
+                width={40}
+                height={40}
+                className="w-10 h-10 rounded-lg object-contain bg-white p-0.5"
+              />
               <span className="font-extrabold text-white text-lg">{site.name}</span>
             </div>
             <p className="text-sm leading-relaxed text-slate-400 mb-4">

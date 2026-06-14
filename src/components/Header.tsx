@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { site, nav } from "@/data/site";
 import { ThemeToggle } from "./ThemeToggle";
@@ -27,9 +28,14 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 lg:px-6 h-16 lg:h-[68px] flex items-center justify-between gap-4">
         {/* 로고 */}
         <Link href="/" className="flex items-center gap-2.5 shrink-0">
-          <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-hb-primary to-hb-blue text-white flex items-center justify-center font-black text-xs tracking-tight">
-            HB
-          </span>
+          <Image
+            src="/brand/logo.jpg"
+            alt="한별시스템 로고"
+            width={40}
+            height={40}
+            className="w-10 h-10 rounded-lg object-contain bg-white"
+            priority
+          />
           <span className="flex flex-col leading-tight">
             <span className="font-extrabold text-[var(--ink)] text-[15px] lg:text-base tracking-tight">
               한별시스템
