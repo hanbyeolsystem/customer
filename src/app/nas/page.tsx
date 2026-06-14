@@ -51,15 +51,19 @@ export default function NasPage() {
               ))}
             </ul>
 
-            {/* 시놀로지 공식 파트너 배지 */}
-            <div className="inline-flex items-center gap-3 bg-white dark:bg-white/95 border border-[var(--line)] rounded-2xl px-5 py-3 mb-7 shadow-sm">
-              <Image
-                src="/brand/synology-partner.png"
-                alt="Synology 시놀로지 공식파트너"
-                width={180}
-                height={72}
-                className="h-12 w-auto object-contain"
-              />
+            {/* Synology 공식 대리점 강조 배지 */}
+            <div className="inline-flex items-center gap-3 bg-hb-blue-soft dark:bg-hb-blue/15 border-2 border-hb-blue/40 rounded-2xl pl-3 pr-5 py-3 mb-7 shadow-md">
+              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-hb-blue to-hb-primary text-white flex items-center justify-center flex-shrink-0 text-xl font-black shadow">
+                ✓
+              </div>
+              <div className="leading-tight">
+                <div className="text-[10px] font-extrabold text-hb-blue tracking-[.2em] mb-0.5">
+                  AUTHORIZED PARTNER
+                </div>
+                <div className="font-black text-hb-primary dark:text-white text-base lg:text-lg">
+                  Synology 시놀로지 <span className="text-hb-blue">공식 대리점</span>
+                </div>
+              </div>
             </div>
 
             <div>
