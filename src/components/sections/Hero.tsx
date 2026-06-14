@@ -5,11 +5,11 @@ import { site } from "@/data/site";
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-hb-primary text-white">
-      {/* 배경: 서버실 사진 + 다크 네이비 오버레이 */}
+      {/* 배경: Synology NAS 사진 + 다크 네이비 오버레이 */}
       <div className="absolute inset-0">
         <Image
-          src="https://images.unsplash.com/photo-1605745341112-85968b19335b?w=1920&q=80&auto=format"
-          alt="기업용 서버실"
+          src="https://images.unsplash.com/photo-1577538926988-7926820ed209?w=1920&q=80&auto=format"
+          alt="Synology NAS 서버"
           fill
           priority
           sizes="100vw"
