@@ -27,8 +27,8 @@ export const site = {
 
   social: {
     blog: "https://blog.naver.com/hanbyeolsystem",
-    instagram: "https://instagram.com/hanbyeolsystem",
-    threads: "https://www.threads.net/@hanbyeolsystem",
+    instagram: "https://instagram.com/sanghwan_hanbyeol",
+    threads: "https://www.threads.net/@sanghwan_hanbyeol",
   },
 
   stats: [
