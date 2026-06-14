@@ -5,18 +5,18 @@ import { site } from "@/data/site";
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-hb-primary text-white">
-      {/* 배경: Synology NAS 사진 + 다크 네이비 오버레이 */}
+      {/* 배경: 서버실 사진 + 다크 네이비 오버레이 */}
       <div className="absolute inset-0">
         <Image
-          src="https://images.unsplash.com/photo-1577538926988-7926820ed209?w=1920&q=80&auto=format"
-          alt="Synology NAS 서버"
+          src="/hero/server-rack.png"
+          alt="기업용 서버실"
           fill
           priority
           sizes="100vw"
-          className="object-cover opacity-55"
+          className="object-cover opacity-70"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-hb-primary/90 via-hb-primary/75 to-hb-primary/45" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(37,99,235,0.35),transparent_60%)]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-hb-primary/85 via-hb-primary/70 to-hb-primary/35" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(37,99,235,0.30),transparent_60%)]" />
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-hb-primary to-transparent" />
       </div>
 
