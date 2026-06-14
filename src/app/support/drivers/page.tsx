@@ -14,7 +14,7 @@ const brands = [
   { name: "교세라",  en: "Kyocera",  url: "https://www.kyoceradocumentsolutions.com/kr/download/index_ko.html" },
   { name: "브라더",  en: "Brother",  url: "https://www.brother-korea.com/ko-kr/support" },
   { name: "엡손",    en: "EPSON",    url: "https://www.epson.co.kr/%EA%B3%A0%EA%B0%9D%EC%A7%80%EC%9B%90/%ED%94%84%EB%A6%B0%ED%84%B0/sh/s01" },
-  { name: "HP",      en: "HP",       url: "https://support.hp.com/kr-ko/drivers" },
+  { name: "HP",      en: "HP",       url: "https://support.hp.com/kr-ko/drivers/printers" },
   { name: "삼성",    en: "Samsung",  url: "https://www.samsung.com/sec/support/" },
 ];
 
