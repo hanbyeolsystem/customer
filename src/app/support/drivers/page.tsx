@@ -31,32 +31,26 @@ export default function DriversPage() {
           {/* 1) 한별드라이브 — 메인 다운로드 채널 */}
           <Link
             href={embedHref(HANBYEOL_DRIVE, "한별드라이브")}
-            className="group relative overflow-hidden block bg-gradient-to-br from-hb-primary via-hb-blue to-hb-blue-light text-white rounded-3xl p-8 lg:p-12 shadow-2xl hover:shadow-[0_20px_60px_-15px_rgba(37,99,235,0.6)] hover:-translate-y-1 transition mb-10"
+            className="group relative overflow-hidden block bg-gradient-to-br from-hb-primary via-hb-blue to-hb-blue-light text-white rounded-2xl p-5 lg:p-6 shadow-xl hover:shadow-[0_16px_40px_-12px_rgba(37,99,235,0.55)] hover:-translate-y-0.5 transition mb-6"
           >
-            <div className="absolute -top-24 -right-24 w-72 h-72 bg-white/10 rounded-full blur-3xl" />
-            <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-amber-400/20 rounded-full blur-3xl" />
-            <div className="relative">
-              <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur px-3 py-1.5 rounded-full text-[11px] font-extrabold tracking-[.18em] mb-4">
-                <span className="w-1.5 h-1.5 bg-amber-300 rounded-full animate-pulse" />
-                한별 추천 · 가장 빠른 방법
-              </div>
-              <div className="flex items-center gap-4 mb-3">
-                <div className="text-5xl lg:text-6xl">⬇</div>
-                <div>
-                  <h2 className="text-2xl lg:text-3xl font-black leading-tight">
-                    한별드라이브
-                  </h2>
-                  <p className="text-sm lg:text-base text-white/85 mt-1">
-                    한별시스템 통합 드라이버 다운로드 센터
-                  </p>
+            <div className="absolute -top-16 -right-16 w-48 h-48 bg-white/10 rounded-full blur-3xl" />
+            <div className="relative flex items-center gap-4">
+              <div className="text-3xl lg:text-4xl flex-shrink-0">⬇</div>
+              <div className="flex-1 min-w-0">
+                <div className="text-[10px] font-extrabold tracking-[.18em] text-white/80 mb-0.5">
+                  한별 추천
                 </div>
+                <h2 className="text-lg lg:text-xl font-black leading-tight">
+                  한별드라이브
+                </h2>
+                <p className="text-[12px] lg:text-sm text-white/80 mt-0.5">
+                  한별 통합 드라이버 다운로드 센터
+                </p>
               </div>
-              <p className="text-sm lg:text-base text-white/80 leading-relaxed mb-6 max-w-xl">
-                한별이 직접 큐레이션한 드라이버 모음입니다. 모델별 정리된 파일을 바로 받으실 수 있습니다.
-              </p>
-              <div className="inline-flex items-center gap-2 bg-white text-hb-primary font-extrabold text-base lg:text-lg px-6 py-3.5 rounded-xl shadow-lg group-hover:bg-amber-50 transition">
-                882.kr 바로가기 →
+              <div className="hidden sm:inline-flex items-center gap-1 bg-white text-hb-primary font-extrabold text-sm px-4 py-2 rounded-lg shadow group-hover:bg-amber-50 transition flex-shrink-0">
+                한별드라이브 바로가기 →
               </div>
+              <div className="sm:hidden text-2xl flex-shrink-0 group-hover:translate-x-1 transition">→</div>
             </div>
           </Link>
 
