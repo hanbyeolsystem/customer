@@ -25,15 +25,18 @@
   </div>
 </header>
 
-<section class="hc-hero">
-  <div class="hc-hero-inner">
-    <h1>한별 장비, 한 곳에서 끝내세요</h1>
-    <p>드라이버·에러코드·임대 안내까지 — 모바일에서 30초</p>
-    <form class="hc-search" action="drivers/" method="get" role="search">
-      <input type="search" name="q" placeholder="모델명·에러코드 검색 (예: TASKalfa 1801)" aria-label="통합 검색">
-      <button type="submit" aria-label="검색">🔍 <span style="display:none">검색</span></button>
-    </form>
-    <small class="hc-search-hint">현재 드라이버 검색 준비 중 — 곧 공개됩니다</small>
+<section class="hc-hero" aria-label="한별시스템 안내">
+  <div class="hc-slides" id="hc-slides">
+    <img class="slide is-active" src="img/hero/banner-1.png" alt="한별시스템 임대 안내" decoding="async" fetchpriority="high">
+    <img class="slide" src="img/hero/banner-2.png" alt="" loading="lazy" decoding="async">
+    <img class="slide" src="img/hero/banner-3.png" alt="" loading="lazy" decoding="async">
+    <img class="slide" src="img/hero/banner-5.png" alt="" loading="lazy" decoding="async">
+    <div class="hc-slides-dots" aria-hidden="true">
+      <span class="dot is-active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
   </div>
 </section>
 
@@ -60,13 +63,6 @@
       <div class="icon">🏢</div>
       <h3>임대 안내</h3>
       <p>복합기·PC·플로터 임대 견적</p>
-      <span class="arrow">바로가기 →</span>
-    </a>
-
-    <a href="blog/" class="hc-card">
-      <div class="icon">📝</div>
-      <h3>한별블로그</h3>
-      <p>한별시스템 소식·후기·꿀팁</p>
       <span class="arrow">바로가기 →</span>
     </a>
 
@@ -131,6 +127,27 @@
     © 2026 Hanbyeol System. All rights reserved.
   </div>
 </footer>
+
+<script>
+(function(){
+  var root = document.getElementById('hc-slides');
+  if(!root) return;
+  var slides = root.querySelectorAll('.slide');
+  var dots = root.querySelectorAll('.hc-slides-dots .dot');
+  var n = slides.length;
+  if(n < 2) return;
+  var i = 0;
+  function show(k){
+    k = (k + n) % n;
+    slides[i].classList.remove('is-active');
+    dots[i] && dots[i].classList.remove('is-active');
+    slides[k].classList.add('is-active');
+    dots[k] && dots[k].classList.add('is-active');
+    i = k;
+  }
+  setInterval(function(){ show(i + 1); }, 5000);
+})();
+</script>
 
 </body>
 </html>
