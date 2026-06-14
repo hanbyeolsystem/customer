@@ -1,6 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
-import { products } from "@/data/products";
+import { products, RENTAL_SHOP_URL } from "@/data/products";
 
 export function RentalShop() {
   return (
@@ -18,19 +17,23 @@ export function RentalShop() {
               월 정액으로 부담 없이 — 유지보수·토너 모두 포함
             </p>
           </div>
-          <Link
-            href="/shop"
+          <a
+            href={RENTAL_SHOP_URL}
+            target="_blank"
+            rel="noopener"
             className="inline-flex items-center gap-1.5 bg-amber-500 hover:bg-amber-600 text-white font-bold text-sm px-5 py-2.5 rounded-xl transition self-start sm:self-auto"
           >
             임대 쇼핑몰 전체보기 →
-          </Link>
+          </a>
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-5">
           {products.map((p) => (
-            <Link
+            <a
               key={p.id}
-              href={`/shop#${p.id}`}
+              href={p.href}
+              target="_blank"
+              rel="noopener"
               className="group relative bg-[var(--bg)] border border-[var(--line)] rounded-2xl overflow-hidden hover:shadow-xl hover:border-amber-400 hover:-translate-y-0.5 transition"
             >
               {p.badge && (
@@ -38,7 +41,7 @@ export function RentalShop() {
                   {p.badge}
                 </span>
               )}
-              <div className="relative aspect-square bg-[var(--panel)] flex items-center justify-center p-4 overflow-hidden">
+              <div className="relative aspect-square bg-white flex items-center justify-center p-4 overflow-hidden">
                 <Image
                   src={p.image}
                   alt={p.name}
@@ -58,12 +61,12 @@ export function RentalShop() {
                   <span className="text-sm lg:text-base font-black text-hb-blue">
                     {p.monthly}
                   </span>
-                  <span className="text-[11px] font-bold text-[var(--mute)] group-hover:text-hb-blue transition">
-                    상세 →
+                  <span className="text-[11px] font-bold text-[var(--mute)] group-hover:text-amber-600 transition">
+                    상세 ↗
                   </span>
                 </div>
               </div>
-            </Link>
+            </a>
           ))}
         </div>
       </div>
