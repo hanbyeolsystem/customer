@@ -5,18 +5,19 @@ import { site } from "@/data/site";
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-hb-primary text-white">
-      {/* 배경: 서버랙 이미지 + 다크 오버레이 */}
+      {/* 배경: 서버실 사진 + 다크 네이비 오버레이 */}
       <div className="absolute inset-0">
         <Image
-          src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1920&q=70&auto=format"
-          alt="서버랙"
+          src="https://images.unsplash.com/photo-1605745341112-85968b19335b?w=1920&q=80&auto=format"
+          alt="기업용 서버실"
           fill
           priority
           sizes="100vw"
-          className="object-cover opacity-25"
+          className="object-cover opacity-55"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-hb-primary via-hb-primary/90 to-hb-primary/70" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(37,99,235,0.35),transparent_55%)]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-hb-primary/90 via-hb-primary/75 to-hb-primary/45" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(37,99,235,0.35),transparent_60%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-hb-primary to-transparent" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 lg:px-6 py-20 lg:py-32">
