@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const HANBYEOL_DRIVE = "https://882.kr/";
 
 const brands = [
-  { name: "교세라",  en: "Kyocera",  url: "https://www.kyoceradocumentsolutions.com/kr/ko/support-and-download/" },
+  { name: "교세라",  en: "Kyocera",  url: "https://www.kyoceradocumentsolutions.com/kr/download/index_ko.html" },
   { name: "브라더",  en: "Brother",  url: "https://www.brother-korea.com/ko-kr/support" },
   { name: "엡손",    en: "EPSON",    url: "https://www.epson.co.kr/support/" },
   { name: "HP",      en: "HP",       url: "https://support.hp.com/kr-ko/drivers" },
