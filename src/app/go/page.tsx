@@ -1,8 +1,6 @@
 import { Suspense } from "react";
 import { GoViewer } from "./GoViewer";
 
-export const dynamic = "force-dynamic";
-
 export const metadata = {
   title: "외부 사이트 보기",
   robots: { index: false, follow: false },
