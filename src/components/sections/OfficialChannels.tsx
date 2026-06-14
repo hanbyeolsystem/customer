@@ -2,13 +2,23 @@ import Link from "next/link";
 import { site } from "@/data/site";
 import { embedHref } from "@/lib/embed";
 
-const channels = [
+type Channel = {
+  label: string;
+  href: string;
+  desc: string;
+  icon: string;
+  color: string;
+  embed?: boolean; // true: 한별 사이트 안 iframe, false: 새 탭
+};
+
+const channels: Channel[] = [
   {
     label: "네이버 블로그",
     href: site.social.blog,
     desc: "한별의 소식과 운영 노하우",
     icon: "📝",
     color: "from-emerald-500 to-emerald-600",
+    embed: true,
   },
   {
     label: "인스타그램",
@@ -39,11 +49,16 @@ export function OfficialChannels() {
           </h2>
         </div>
         <div className="grid sm:grid-cols-3 gap-4 lg:gap-6">
-          {channels.map((c) => (
-            <Link
+          {channels.map((c) => {
+            const linkProps = c.embed
+              ? { href: embedHref(c.href, c.label) }
+              : { href: c.href, target: "_blank" as const, rel: "noopener" };
+            const Tag = (c.embed ? Link : "a") as React.ElementType;
+            return (
+            <Tag
               key={c.label}
-              href={embedHref(c.href, c.label)}
-              className="group relative overflow-hidden bg-[var(--bg)] border border-[var(--line)] rounded-3xl p-8 lg:p-10 text-center hover:shadow-2xl hover:-translate-y-1 transition"
+              {...linkProps}
+              className="group relative overflow-hidden bg-[var(--bg)] border border-[var(--line)] rounded-3xl p-8 lg:p-10 text-center hover:shadow-2xl hover:-translate-y-1 transition block"
             >
               <div className={`absolute -top-20 -right-20 w-48 h-48 rounded-full bg-gradient-to-br ${c.color} opacity-10 group-hover:opacity-20 transition`} />
               <div className={`relative w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br ${c.color} text-white flex items-center justify-center text-4xl mb-5 shadow-lg group-hover:scale-110 transition`}>
@@ -52,10 +67,11 @@ export function OfficialChannels() {
               <h3 className="font-extrabold text-[var(--ink)] text-lg mb-1.5">{c.label}</h3>
               <p className="text-sm text-[var(--mute)]">{c.desc}</p>
               <div className="mt-5 inline-flex items-center gap-1 text-sm font-bold text-hb-blue group-hover:gap-2 transition">
-                바로가기 →
+                바로가기 {c.embed ? "→" : "↗"}
               </div>
-            </Link>
-          ))}
+            </Tag>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -27,10 +27,10 @@ export function Footer() {
             <div className="flex gap-2">
               <Link href={embedHref(site.social.blog, "한별 블로그")} aria-label="네이버 블로그"
                 className="w-9 h-9 rounded-lg bg-white/5 hover:bg-hb-blue hover:text-white flex items-center justify-center text-base transition">📝</Link>
-              <Link href={embedHref(site.social.instagram, "한별 인스타그램")} aria-label="인스타그램"
-                className="w-9 h-9 rounded-lg bg-white/5 hover:bg-hb-blue hover:text-white flex items-center justify-center text-base transition">📷</Link>
-              <Link href={embedHref(site.social.threads, "한별 Threads")} aria-label="Threads"
-                className="w-9 h-9 rounded-lg bg-white/5 hover:bg-hb-blue hover:text-white flex items-center justify-center text-base transition">🧵</Link>
+              <a href={site.social.instagram} target="_blank" rel="noopener" aria-label="인스타그램"
+                className="w-9 h-9 rounded-lg bg-white/5 hover:bg-hb-blue hover:text-white flex items-center justify-center text-base transition">📷</a>
+              <a href={site.social.threads} target="_blank" rel="noopener" aria-label="Threads"
+                className="w-9 h-9 rounded-lg bg-white/5 hover:bg-hb-blue hover:text-white flex items-center justify-center text-base transition">🧵</a>
             </div>
           </div>
 
