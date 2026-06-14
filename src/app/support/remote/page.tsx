@@ -5,28 +5,30 @@ import { site } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "원격 지원",
-  description: "TeamViewer / AnyDesk / RustDesk 다운로드 후 전화 한 통이면 한별 엔지니어가 즉시 원격 접속합니다.",
+  description: "Seetrol MY 원격지원(한별 전용) · TeamViewer · AnyDesk 다운로드 후 전화 한 통이면 한별 엔지니어가 즉시 원격 접속합니다.",
 };
 
 const tools = [
   {
+    name: "Seetrol MY 원격지원",
+    desc: "한별시스템 전용 파일 · 설치 불필요 · 가장 안정적",
+    href: "/files/hanbyeol-remote.exe",
+    download: "588-0 한별원격.exe",
+    color: "from-hb-blue to-hb-blue-light",
+    badge: "한별 추천",
+    internal: true,
+  },
+  {
     name: "TeamViewer QuickSupport",
-    desc: "Windows 표준 · 가장 안정적 · 설치 불필요",
+    desc: "글로벌 표준 · 예비용",
     href: "https://download.teamviewer.com/download/TeamViewerQS.exe",
-    color: "from-blue-600 to-blue-700",
-    badge: "추천",
+    color: "from-slate-700 to-slate-800",
   },
   {
     name: "AnyDesk",
-    desc: "가벼움 · 빠른 응답속도 · 저사양 PC 적합",
+    desc: "가벼움 · 저사양 PC 예비용",
     href: "https://anydesk.com/ko/downloads/windows",
     color: "from-red-500 to-red-600",
-  },
-  {
-    name: "RustDesk",
-    desc: "오픈소스 · 보안 강화 환경 권장",
-    href: "https://github.com/rustdesk/rustdesk/releases",
-    color: "from-emerald-600 to-emerald-700",
   },
 ];
 
@@ -34,12 +36,12 @@ const steps = [
   {
     n: 1,
     title: "원격지원 도구 다운로드",
-    body: "위 3개 중 하나를 선택해 다운로드하세요. 추천은 TeamViewer QuickSupport.",
+    body: "추천은 한별 전용 Seetrol MY 원격지원. 받아지지 않으면 TeamViewer 또는 AnyDesk 를 사용하세요.",
   },
   {
     n: 2,
     title: "다운로드 파일 실행",
-    body: "실행 시 화면에 ID와 비밀번호가 표시됩니다.",
+    body: "실행 시 화면에 접속 ID 와 비밀번호가 표시됩니다.",
   },
   {
     n: 3,
@@ -65,27 +67,31 @@ export default function RemoteSupportPage() {
             지원 도구 선택 · 다운로드
           </h2>
           <div className="grid md:grid-cols-3 gap-4 lg:gap-5 mb-12">
-            {tools.map((t) => (
-              <a
-                key={t.name}
-                href={t.href}
-                target="_blank"
-                rel="noopener"
-                className={`group relative overflow-hidden bg-gradient-to-br ${t.color} text-white rounded-3xl p-6 lg:p-7 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition`}
-              >
-                {t.badge && (
-                  <span className="absolute top-3 right-3 bg-white text-hb-primary text-[10px] font-extrabold tracking-wider px-2 py-1 rounded-full">
-                    {t.badge}
-                  </span>
-                )}
-                <div className="text-4xl mb-3">⬇</div>
-                <h3 className="text-lg font-extrabold leading-tight mb-1">{t.name}</h3>
-                <p className="text-[13px] text-white/80 mb-5 leading-relaxed">{t.desc}</p>
-                <div className="text-sm font-bold inline-flex items-center gap-1 group-hover:gap-2 transition">
-                  다운로드 →
-                </div>
-              </a>
-            ))}
+            {tools.map((t) => {
+              const isInternal = "internal" in t && t.internal;
+              return (
+                <a
+                  key={t.name}
+                  href={t.href}
+                  download={"download" in t ? t.download : undefined}
+                  target={isInternal ? undefined : "_blank"}
+                  rel={isInternal ? undefined : "noopener"}
+                  className={`group relative overflow-hidden bg-gradient-to-br ${t.color} text-white rounded-3xl p-6 lg:p-7 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition`}
+                >
+                  {t.badge && (
+                    <span className="absolute top-3 right-3 bg-white text-hb-primary text-[10px] font-extrabold tracking-wider px-2 py-1 rounded-full">
+                      {t.badge}
+                    </span>
+                  )}
+                  <div className="text-4xl mb-3">⬇</div>
+                  <h3 className="text-lg font-extrabold leading-tight mb-1">{t.name}</h3>
+                  <p className="text-[13px] text-white/80 mb-5 leading-relaxed">{t.desc}</p>
+                  <div className="text-sm font-bold inline-flex items-center gap-1 group-hover:gap-2 transition">
+                    다운로드 →
+                  </div>
+                </a>
+              );
+            })}
           </div>
 
           {/* 2) 진행 순서 */}

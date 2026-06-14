@@ -9,8 +9,8 @@ export const site = {
   url: "https://xn--bm3bm1i1e348cgwe.kr",
 
   phone: {
-    main: "053-951-1177",
-    mainHref: "tel:053-951-1177",
+    main: "053-588-7119",
+    mainHref: "tel:053-588-7119",
     mobile: "010-4585-6890",
     mobileHref: "tel:010-4585-6890",
     hours: "평일 09:00 ~ 18:00",
