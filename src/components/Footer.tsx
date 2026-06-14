@@ -9,15 +9,16 @@ export function Footer() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 mb-10">
           {/* 브랜드 */}
           <div className="col-span-2 lg:col-span-1">
-            <div className="flex items-center gap-2.5 mb-4">
-              <Image
-                src="/brand/logo.jpg"
-                alt="한별시스템 로고"
-                width={40}
-                height={40}
-                className="w-10 h-10 rounded-lg object-contain bg-white p-0.5"
-              />
-              <span className="font-extrabold text-white text-lg">{site.name}</span>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="bg-white rounded-xl p-1.5">
+                <Image
+                  src="/brand/logo.png"
+                  alt="한별시스템"
+                  width={120}
+                  height={140}
+                  className="h-14 w-auto object-contain"
+                />
+              </div>
             </div>
             <p className="text-sm leading-relaxed text-slate-400 mb-4">
               {site.tagline}

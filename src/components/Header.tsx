@@ -27,22 +27,17 @@ export function Header() {
     >
       <div className="max-w-7xl mx-auto px-4 lg:px-6 h-16 lg:h-[68px] flex items-center justify-between gap-4">
         {/* 로고 */}
-        <Link href="/" className="flex items-center gap-2.5 shrink-0">
+        <Link href="/" className="flex items-center gap-2 shrink-0" aria-label="한별시스템 홈">
           <Image
-            src="/brand/logo.jpg"
-            alt="한별시스템 로고"
-            width={40}
-            height={40}
-            className="w-10 h-10 rounded-lg object-contain bg-white"
+            src="/brand/logo.png"
+            alt="한별시스템"
+            width={240}
+            height={280}
             priority
+            className="h-11 lg:h-12 w-auto object-contain"
           />
-          <span className="flex flex-col leading-tight">
-            <span className="font-extrabold text-[var(--ink)] text-[15px] lg:text-base tracking-tight">
-              한별시스템
-            </span>
-            <span className="text-[10px] font-semibold text-[var(--mute)] tracking-[.15em] hidden sm:block">
-              HANBYEOL SYSTEM
-            </span>
+          <span className="text-[10px] font-semibold text-[var(--mute)] tracking-[.15em] hidden xl:block">
+            HANBYEOL SYSTEM
           </span>
         </Link>
 
