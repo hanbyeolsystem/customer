@@ -5,49 +5,16 @@ import { site } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "원격 지원",
-  description: "Seetrol MY 원격지원(한별 전용) · TeamViewer · AnyDesk 다운로드 후 전화 한 통이면 한별 엔지니어가 즉시 원격 접속합니다.",
+  description: "Seetrol MY 원격지원 (한별 전용). 다운로드 후 화면에 보이는 숫자를 한별시스템에 알려주시면 즉시 원격 접속합니다.",
 };
 
-const tools = [
-  {
-    name: "Seetrol MY 원격지원",
-    desc: "한별시스템 전용 파일 · 설치 불필요 · 가장 안정적",
-    href: "/files/hanbyeol-remote.exe",
-    download: "588-0 한별원격.exe",
-    color: "from-hb-blue to-hb-blue-light",
-    badge: "한별 추천",
-    internal: true,
-  },
-  {
-    name: "TeamViewer QuickSupport",
-    desc: "글로벌 표준 · 예비용",
-    href: "https://download.teamviewer.com/download/TeamViewerQS.exe",
-    color: "from-slate-700 to-slate-800",
-  },
-  {
-    name: "AnyDesk",
-    desc: "가벼움 · 저사양 PC 예비용",
-    href: "https://anydesk.com/ko/downloads/windows",
-    color: "from-red-500 to-red-600",
-  },
-];
+// 다운로드 경로 — 파일명은 절대 변경 금지 (Seetrol 접속 식별자)
+const REMOTE_FILE = "/files/588-0 한별원격.exe";
+const REMOTE_FILENAME = "588-0 한별원격.exe";
 
 const steps = [
-  {
-    n: 1,
-    title: "원격지원 도구 다운로드",
-    body: "추천은 한별 전용 Seetrol MY 원격지원. 받아지지 않으면 TeamViewer 또는 AnyDesk 를 사용하세요.",
-  },
-  {
-    n: 2,
-    title: "다운로드 파일 실행",
-    body: "실행 시 화면에 접속 ID 와 비밀번호가 표시됩니다.",
-  },
-  {
-    n: 3,
-    title: "한별시스템에 전화",
-    body: `${site.phone.main} 으로 전화 → ID/비밀번호 알려주시면 즉시 원격 접속합니다.`,
-  },
+  "클릭 후 열기 또는 다운로드 후 실행",
+  "한별시스템에 화면에 보이는 숫자를 알려주세요",
 ];
 
 export default function RemoteSupportPage() {
@@ -56,69 +23,55 @@ export default function RemoteSupportPage() {
       <PageHeader
         badge="REMOTE SUPPORT"
         title="원격 지원 즉시 연결"
-        description="아래 도구를 다운로드한 후, 전화 한 통이면 한별 엔지니어가 직접 화면을 보며 도와드립니다."
+        description="한별 전용 Seetrol MY 원격지원. 두 단계면 끝납니다."
       />
 
       <section className="py-12 lg:py-16 bg-[var(--bg)]">
-        <div className="max-w-5xl mx-auto px-4 lg:px-6">
-          {/* 1) 도구 선택 */}
-          <h2 className="text-lg lg:text-xl font-extrabold text-[var(--ink)] mb-5 flex items-center gap-2">
-            <span className="w-7 h-7 rounded-lg bg-hb-blue text-white flex items-center justify-center text-sm font-black">1</span>
-            지원 도구 선택 · 다운로드
-          </h2>
-          <div className="grid md:grid-cols-3 gap-4 lg:gap-5 mb-12">
-            {tools.map((t) => {
-              const isInternal = "internal" in t && t.internal;
-              return (
-                <a
-                  key={t.name}
-                  href={t.href}
-                  download={"download" in t ? t.download : undefined}
-                  target={isInternal ? undefined : "_blank"}
-                  rel={isInternal ? undefined : "noopener"}
-                  className={`group relative overflow-hidden bg-gradient-to-br ${t.color} text-white rounded-3xl p-6 lg:p-7 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition`}
-                >
-                  {t.badge && (
-                    <span className="absolute top-3 right-3 bg-white text-hb-primary text-[10px] font-extrabold tracking-wider px-2 py-1 rounded-full">
-                      {t.badge}
-                    </span>
-                  )}
-                  <div className="text-4xl mb-3">⬇</div>
-                  <h3 className="text-lg font-extrabold leading-tight mb-1">{t.name}</h3>
-                  <p className="text-[13px] text-white/80 mb-5 leading-relaxed">{t.desc}</p>
-                  <div className="text-sm font-bold inline-flex items-center gap-1 group-hover:gap-2 transition">
-                    다운로드 →
-                  </div>
-                </a>
-              );
-            })}
-          </div>
+        <div className="max-w-3xl mx-auto px-4 lg:px-6">
+          {/* Seetrol 단일 다운로드 카드 */}
+          <a
+            href={REMOTE_FILE}
+            download={REMOTE_FILENAME}
+            className="group relative overflow-hidden block bg-gradient-to-br from-hb-blue to-hb-blue-light text-white rounded-3xl p-8 lg:p-10 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition mb-10"
+          >
+            <span className="absolute top-4 right-4 bg-white text-hb-primary text-[10px] font-extrabold tracking-wider px-2.5 py-1 rounded-full">
+              한별 추천
+            </span>
+            <div className="text-5xl mb-4">⬇</div>
+            <h2 className="text-xl lg:text-2xl font-extrabold leading-tight mb-1">
+              Seetrol MY 원격지원
+            </h2>
+            <p className="text-[13px] lg:text-sm text-white/80 mb-6 leading-relaxed">
+              한별시스템 전용 · 설치 불필요 · 클릭 즉시 실행
+            </p>
+            <div className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur px-4 py-2.5 rounded-xl text-sm font-extrabold group-hover:bg-white/30 transition">
+              지금 다운로드 →
+            </div>
+          </a>
 
-          {/* 2) 진행 순서 */}
-          <h2 className="text-lg lg:text-xl font-extrabold text-[var(--ink)] mb-5 flex items-center gap-2">
-            <span className="w-7 h-7 rounded-lg bg-hb-blue text-white flex items-center justify-center text-sm font-black">2</span>
+          {/* 진행 순서 — 2단계 */}
+          <h3 className="text-lg lg:text-xl font-extrabold text-[var(--ink)] mb-5">
             진행 순서
-          </h2>
+          </h3>
           <div className="bg-[var(--panel)] border border-[var(--line)] rounded-3xl p-6 lg:p-8 mb-10">
             <ol className="space-y-5">
-              {steps.map((s) => (
-                <li key={s.n} className="flex gap-4">
+              {steps.map((body, idx) => (
+                <li key={idx} className="flex gap-4 items-start">
                   <span className="flex-shrink-0 w-9 h-9 rounded-full bg-hb-blue text-white font-black flex items-center justify-center shadow-md">
-                    {s.n}
+                    {idx + 1}
                   </span>
-                  <div className="pt-1">
-                    <div className="font-extrabold text-[var(--ink)] mb-1">{s.title}</div>
-                    <div className="text-sm text-[var(--mute)] leading-relaxed">{s.body}</div>
+                  <div className="pt-1.5 text-[var(--ink)] font-semibold text-[15px] lg:text-base leading-relaxed">
+                    {body}
                   </div>
                 </li>
               ))}
             </ol>
           </div>
 
-          {/* 3) 전화 CTA */}
+          {/* 전화 CTA */}
           <div className="bg-gradient-to-br from-hb-primary to-hb-blue text-white rounded-3xl p-7 lg:p-9 text-center shadow-xl">
             <div className="text-4xl mb-3">📞</div>
-            <h3 className="text-xl lg:text-2xl font-extrabold mb-2">한별 엔지니어 직통 연결</h3>
+            <h3 className="text-xl lg:text-2xl font-extrabold mb-2">한별시스템 직통</h3>
             <p className="text-sm text-white/80 mb-5">{site.phone.hours}</p>
             <a
               href={site.phone.mainHref}
@@ -129,18 +82,6 @@ export default function RemoteSupportPage() {
             <div className="text-xs text-white/60 mt-3">
               모바일은 <a href={site.phone.mobileHref} className="underline">{site.phone.mobile}</a>
             </div>
-          </div>
-
-          {/* 안전 안내 */}
-          <div className="mt-8 bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20 rounded-2xl p-5 lg:p-6">
-            <h4 className="font-extrabold text-amber-800 dark:text-amber-200 text-sm mb-3 flex items-center gap-2">
-              ⚠️ 보이스피싱 주의
-            </h4>
-            <ul className="space-y-1.5 text-[13px] text-amber-900 dark:text-amber-100 leading-relaxed">
-              <li>• 한별 엔지니어는 <strong>전화 통화 중에만</strong> 원격 접속합니다.</li>
-              <li>• 모르는 번호의 원격 접속 요청은 <strong>절대 응하지 마세요</strong>.</li>
-              <li>• 작업 종료 후 프로그램 창을 닫으면 즉시 접속이 끊깁니다.</li>
-            </ul>
           </div>
 
           <div className="mt-8 text-center">
