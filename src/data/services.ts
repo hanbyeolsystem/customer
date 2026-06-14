@@ -3,7 +3,7 @@ export const quickServices = [
   { icon: "⬇", label: "드라이버 다운로드", href: "/support/drivers", accent: "blue" },
   { icon: "🛠", label: "AS 접수", href: "/support/as", accent: "amber" },
   { icon: "🗄", label: "NAS 기술지원", href: "/nas#support", accent: "indigo" },
-  { icon: "📦", label: "소모품 주문", href: "/support/supplies", accent: "emerald" },
+  { icon: "🛒", label: "임대쇼핑몰", href: "/shop", accent: "emerald" },
   { icon: "📋", label: "견적 요청", href: "/support/quote", accent: "violet" },
 ] as const;
 
