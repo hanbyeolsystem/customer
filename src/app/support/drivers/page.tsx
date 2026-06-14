@@ -60,9 +60,11 @@ export default function DriversPage() {
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 lg:gap-4">
             {brands.map((b) => (
-              <Link
+              <a
                 key={b.en}
-                href={embedHref(b.url, `${b.name} ${b.en}`)}
+                href={b.url}
+                target="_blank"
+                rel="noopener"
                 className="bg-[var(--bg)] border border-[var(--line)] rounded-2xl p-5 lg:p-6 text-center hover:border-hb-blue hover:shadow-lg hover:-translate-y-0.5 transition"
               >
                 <div className="text-3xl mb-2.5">🖨</div>
@@ -73,9 +75,9 @@ export default function DriversPage() {
                   {b.en}
                 </div>
                 <div className="text-[11px] font-bold text-hb-blue mt-3">
-                  공식 사이트 →
+                  공식 사이트 ↗
                 </div>
-              </Link>
+              </a>
             ))}
           </div>
         </div>
