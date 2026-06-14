@@ -38,9 +38,14 @@ export default function NasPage() {
             <p className="text-[var(--mute)] leading-relaxed mb-5">
               단순 저장소가 아닙니다. 백업·보안·협업·재해복구까지 한 박스로 — 그리고 한별 엔지니어가 평생 옆에 있습니다.
             </p>
-            <ul className="space-y-2 mb-7">
+            <ul className="space-y-2.5 mb-7">
+              <li className="flex items-start gap-2.5 text-lg lg:text-2xl font-extrabold text-hb-primary dark:text-white leading-tight">
+                <span className="text-hb-blue font-black mt-0.5 text-xl lg:text-2xl">✓</span>
+                <span>
+                  Synology <span className="text-hb-blue">공식 대리점 정품</span> + A/S 보장
+                </span>
+              </li>
               {[
-                "Synology 공식 대리점 정품 + A/S 보장",
                 "초기 구축부터 운영 유지관리까지 한 회사에서",
                 "랜섬웨어·디스크 장애 실전 복구 경험",
                 "현장 점검 + 원격 모니터링 병행",
@@ -50,21 +55,6 @@ export default function NasPage() {
                 </li>
               ))}
             </ul>
-
-            {/* Synology 공식 대리점 강조 배지 */}
-            <div className="inline-flex items-center gap-3 bg-hb-blue-soft dark:bg-hb-blue/15 border-2 border-hb-blue/40 rounded-2xl pl-3 pr-5 py-3 mb-7 shadow-md">
-              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-hb-blue to-hb-primary text-white flex items-center justify-center flex-shrink-0 text-xl font-black shadow">
-                ✓
-              </div>
-              <div className="leading-tight">
-                <div className="text-[10px] font-extrabold text-hb-blue tracking-[.2em] mb-0.5">
-                  AUTHORIZED PARTNER
-                </div>
-                <div className="font-black text-hb-primary dark:text-white text-base lg:text-lg">
-                  Synology 시놀로지 <span className="text-hb-blue">공식 대리점</span>
-                </div>
-              </div>
-            </div>
 
             <div>
               <Link
