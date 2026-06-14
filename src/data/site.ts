@@ -32,10 +32,10 @@ export const site = {
   },
 
   stats: [
-    { value: "500+", label: "관리 고객사" },
-    { value: "300+", label: "NAS 구축" },
-    { value: "1000+", label: "복사기 설치" },
-    { value: "15+", label: "운영 연수" },
+    { value: "170+", label: "관리 고객사" },
+    { value: "50+",  label: "NAS 구축" },
+    { value: "300+", label: "복사기 설치" },
+    { value: "19+",  label: "운영 연수" },
   ],
 } as const;
 
