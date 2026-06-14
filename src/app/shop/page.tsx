@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { products, RENTAL_SHOP_URL } from "@/data/products";
+import { embedHref } from "@/lib/embed";
 
 export const metadata: Metadata = {
   title: "임대 쇼핑몰",
@@ -20,12 +22,10 @@ export default function ShopPage() {
         <div className="max-w-7xl mx-auto px-4 lg:px-6">
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
             {products.map((p) => (
-              <a
+              <Link
                 id={p.id}
                 key={p.id}
-                href={p.href}
-                target="_blank"
-                rel="noopener"
+                href={embedHref(p.href, p.name)}
                 className="group bg-[var(--bg)] border border-[var(--line)] rounded-2xl overflow-hidden hover:shadow-xl hover:border-amber-400 hover:-translate-y-0.5 transition"
               >
                 {p.badge && (
@@ -51,22 +51,20 @@ export default function ShopPage() {
                   </h3>
                   <div className="flex items-baseline justify-between">
                     <span className="text-lg font-black text-hb-blue">{p.monthly}</span>
-                    <span className="text-[12px] font-bold text-amber-600">상세 ↗</span>
+                    <span className="text-[12px] font-bold text-amber-600">상세 →</span>
                   </div>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
 
           <div className="text-center mt-10">
-            <a
-              href={RENTAL_SHOP_URL}
-              target="_blank"
-              rel="noopener"
+            <Link
+              href={embedHref(RENTAL_SHOP_URL, "한별 임대 쇼핑몰")}
               className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-extrabold text-base px-7 py-3.5 rounded-xl transition shadow-lg"
             >
-              한별 임대 쇼핑몰 전체보기 ↗
-            </a>
+              한별 임대 쇼핑몰 전체보기 →
+            </Link>
           </div>
         </div>
       </section>

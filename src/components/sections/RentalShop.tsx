@@ -1,5 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import { products, RENTAL_SHOP_URL } from "@/data/products";
+import { embedHref } from "@/lib/embed";
 
 export function RentalShop() {
   return (
@@ -17,23 +19,19 @@ export function RentalShop() {
               월 정액으로 부담 없이 — 유지보수·토너 모두 포함
             </p>
           </div>
-          <a
-            href={RENTAL_SHOP_URL}
-            target="_blank"
-            rel="noopener"
+          <Link
+            href={embedHref(RENTAL_SHOP_URL, "한별 임대 쇼핑몰")}
             className="inline-flex items-center gap-1.5 bg-amber-500 hover:bg-amber-600 text-white font-bold text-sm px-5 py-2.5 rounded-xl transition self-start sm:self-auto"
           >
             임대 쇼핑몰 전체보기 →
-          </a>
+          </Link>
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-5">
           {products.map((p) => (
-            <a
+            <Link
               key={p.id}
-              href={p.href}
-              target="_blank"
-              rel="noopener"
+              href={embedHref(p.href, p.name)}
               className="group relative bg-[var(--bg)] border border-[var(--line)] rounded-2xl overflow-hidden hover:shadow-xl hover:border-amber-400 hover:-translate-y-0.5 transition"
             >
               {p.badge && (
@@ -62,11 +60,11 @@ export function RentalShop() {
                     {p.monthly}
                   </span>
                   <span className="text-[11px] font-bold text-[var(--mute)] group-hover:text-amber-600 transition">
-                    상세 ↗
+                    상세 →
                   </span>
                 </div>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>

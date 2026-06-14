@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { site } from "@/data/site";
+import { embedHref } from "@/lib/embed";
 
 const channels = [
   {
@@ -38,11 +40,9 @@ export function OfficialChannels() {
         </div>
         <div className="grid sm:grid-cols-3 gap-4 lg:gap-6">
           {channels.map((c) => (
-            <a
+            <Link
               key={c.label}
-              href={c.href}
-              target="_blank"
-              rel="noopener"
+              href={embedHref(c.href, c.label)}
               className="group relative overflow-hidden bg-[var(--bg)] border border-[var(--line)] rounded-3xl p-8 lg:p-10 text-center hover:shadow-2xl hover:-translate-y-1 transition"
             >
               <div className={`absolute -top-20 -right-20 w-48 h-48 rounded-full bg-gradient-to-br ${c.color} opacity-10 group-hover:opacity-20 transition`} />
@@ -54,7 +54,7 @@ export function OfficialChannels() {
               <div className="mt-5 inline-flex items-center gap-1 text-sm font-bold text-hb-blue group-hover:gap-2 transition">
                 바로가기 →
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>

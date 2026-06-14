@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
+import { embedHref } from "@/lib/embed";
 
 export const metadata: Metadata = {
   title: "드라이버 다운로드",
@@ -27,10 +29,8 @@ export default function DriversPage() {
       <section className="py-12 lg:py-16 bg-[var(--bg)]">
         <div className="max-w-5xl mx-auto px-4 lg:px-6">
           {/* 1) 한별드라이브 — 메인 다운로드 채널 */}
-          <a
-            href={HANBYEOL_DRIVE}
-            target="_blank"
-            rel="noopener"
+          <Link
+            href={embedHref(HANBYEOL_DRIVE, "한별드라이브")}
             className="group relative overflow-hidden block bg-gradient-to-br from-hb-primary via-hb-blue to-hb-blue-light text-white rounded-3xl p-8 lg:p-12 shadow-2xl hover:shadow-[0_20px_60px_-15px_rgba(37,99,235,0.6)] hover:-translate-y-1 transition mb-10"
           >
             <div className="absolute -top-24 -right-24 w-72 h-72 bg-white/10 rounded-full blur-3xl" />
@@ -55,10 +55,10 @@ export default function DriversPage() {
                 한별이 직접 큐레이션한 드라이버 모음입니다. 모델별 정리된 파일을 바로 받으실 수 있습니다.
               </p>
               <div className="inline-flex items-center gap-2 bg-white text-hb-primary font-extrabold text-base lg:text-lg px-6 py-3.5 rounded-xl shadow-lg group-hover:bg-amber-50 transition">
-                882.kr 바로가기 ↗
+                882.kr 바로가기 →
               </div>
             </div>
-          </a>
+          </Link>
 
           {/* 2) 제조사 공식 사이트 */}
           <div className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-4 mb-5 text-sm text-[var(--mute)] leading-relaxed">
@@ -66,11 +66,9 @@ export default function DriversPage() {
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 lg:gap-4">
             {brands.map((b) => (
-              <a
+              <Link
                 key={b.en}
-                href={b.url}
-                target="_blank"
-                rel="noopener"
+                href={embedHref(b.url, `${b.name} ${b.en}`)}
                 className="bg-[var(--bg)] border border-[var(--line)] rounded-2xl p-5 lg:p-6 text-center hover:border-hb-blue hover:shadow-lg hover:-translate-y-0.5 transition"
               >
                 <div className="text-3xl mb-2.5">🖨</div>
@@ -81,9 +79,9 @@ export default function DriversPage() {
                   {b.en}
                 </div>
                 <div className="text-[11px] font-bold text-hb-blue mt-3">
-                  공식 사이트 ↗
+                  공식 사이트 →
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>

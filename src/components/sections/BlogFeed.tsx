@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { posts } from "@/data/posts";
+import { embedHref } from "@/lib/embed";
 
 export function BlogFeed() {
   return (
@@ -17,23 +18,19 @@ export function BlogFeed() {
               Synology 신제품·랜섬웨어 대응·운영 노하우 — 한별 블로그 최신 글
             </p>
           </div>
-          <a
-            href="https://blog.naver.com/hanbyeolsystem"
-            target="_blank"
-            rel="noopener"
+          <Link
+            href={embedHref("https://blog.naver.com/hanbyeolsystem", "한별 블로그")}
             className="inline-flex items-center gap-1.5 text-sm font-bold text-hb-blue hover:gap-2.5 transition"
           >
             블로그 전체 보기 →
-          </a>
+          </Link>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
           {posts.map((p) => (
-            <a
+            <Link
               key={p.title}
-              href={p.href}
-              target="_blank"
-              rel="noopener"
+              href={embedHref(p.href, p.title)}
               className="group bg-[var(--bg)] border border-[var(--line)] rounded-2xl p-5 lg:p-6 hover:shadow-xl hover:border-hb-blue hover:-translate-y-1 transition flex flex-col"
             >
               <div className="flex items-center justify-between mb-3">
@@ -51,7 +48,7 @@ export function BlogFeed() {
               <div className="text-[12px] font-bold text-hb-blue mt-4 inline-flex items-center gap-1">
                 자세히 보기 →
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>

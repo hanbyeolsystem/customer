@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { site } from "@/data/site";
+import { embedHref } from "@/lib/embed";
 
 export function Footer() {
   return (
@@ -24,12 +25,12 @@ export function Footer() {
               {site.tagline}
             </p>
             <div className="flex gap-2">
-              <a href={site.social.blog} target="_blank" rel="noopener" aria-label="네이버 블로그"
-                className="w-9 h-9 rounded-lg bg-white/5 hover:bg-hb-blue hover:text-white flex items-center justify-center text-base transition">📝</a>
-              <a href={site.social.instagram} target="_blank" rel="noopener" aria-label="인스타그램"
-                className="w-9 h-9 rounded-lg bg-white/5 hover:bg-hb-blue hover:text-white flex items-center justify-center text-base transition">📷</a>
-              <a href={site.social.threads} target="_blank" rel="noopener" aria-label="Threads"
-                className="w-9 h-9 rounded-lg bg-white/5 hover:bg-hb-blue hover:text-white flex items-center justify-center text-base transition">🧵</a>
+              <Link href={embedHref(site.social.blog, "한별 블로그")} aria-label="네이버 블로그"
+                className="w-9 h-9 rounded-lg bg-white/5 hover:bg-hb-blue hover:text-white flex items-center justify-center text-base transition">📝</Link>
+              <Link href={embedHref(site.social.instagram, "한별 인스타그램")} aria-label="인스타그램"
+                className="w-9 h-9 rounded-lg bg-white/5 hover:bg-hb-blue hover:text-white flex items-center justify-center text-base transition">📷</Link>
+              <Link href={embedHref(site.social.threads, "한별 Threads")} aria-label="Threads"
+                className="w-9 h-9 rounded-lg bg-white/5 hover:bg-hb-blue hover:text-white flex items-center justify-center text-base transition">🧵</Link>
             </div>
           </div>
 
