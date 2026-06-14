@@ -3,150 +3,461 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#1d4ed8">
-<title>한별고객센터 — 한별 장비, 한 곳에서 끝내세요</title>
-<meta name="description" content="한별시스템 고객을 위한 셀프 서비스 허브. 프린터 드라이버 다운로드, 에러코드 검색, 임대 안내까지 한 곳에서.">
-<meta property="og:title" content="한별고객센터">
-<meta property="og:description" content="드라이버·에러코드·임대 안내를 한 곳에서. 모바일에서 30초.">
+<meta name="theme-color" content="#1a365d">
+<title>한별시스템 — AI &amp; 데이터 통합 전산 솔루션 파트너</title>
+<meta name="description" content="시놀로지 NAS 공식 대리점 · 스마트 오피스 복합기 임대. 원격지원·드라이버·에러코드까지 한 곳에서. 무료 전산 진단 신청.">
+<meta name="keywords" content="시놀로지 NAS, 기업용 NAS, 복합기 임대, 복사기 렌탈, 프린터 드라이버, 원격지원, 한별시스템, 대구 복합기 임대">
+<meta property="og:title" content="한별시스템 — AI &amp; 데이터 통합 전산 솔루션 파트너">
+<meta property="og:description" content="귀사의 데이터 자산, 안전합니까? 한별시스템이 AI와 NAS로 기업의 미래를 설계합니다.">
 <meta property="og:type" content="website">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
-<link rel="stylesheet" href="css/tokens.css">
-<link rel="stylesheet" href="css/components.css">
-</head>
-<body>
 
-<header class="hc-header">
-  <div class="hc-header-inner">
-    <a href="./" class="hc-logo">
-      <span class="mark">HB</span>
-      <span class="name">한별고객센터<small>HANBYEOL CUSTOMER CENTER</small></span>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'hb-navy':      '#1a365d',
+          'hb-navy-deep': '#0f2240',
+          'hb-blue':      '#3182ce',
+          'hb-light':     '#ebf4ff',
+        },
+        fontFamily: {
+          sans: ['Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif; }
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+</style>
+</head>
+<body class="bg-white text-slate-900 antialiased">
+
+<!-- ───── GNB ───── -->
+<header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200">
+  <div class="max-w-6xl mx-auto px-4 lg:px-6 h-16 flex items-center justify-between gap-3">
+    <a href="#top" class="flex items-center gap-2.5">
+      <span class="w-9 h-9 rounded-lg bg-gradient-to-br from-hb-navy to-hb-blue text-white flex items-center justify-center font-black text-xs tracking-tight">HB</span>
+      <span class="font-extrabold text-hb-navy text-base lg:text-lg tracking-tight">한별시스템</span>
     </a>
-    <a href="tel:010-4585-6890" class="hc-call">📞 010-4585-6890</a>
+    <nav class="hidden lg:flex items-center gap-7 text-[14px] font-semibold text-slate-700">
+      <a href="#service" class="hover:text-hb-blue transition">서비스 소개</a>
+      <a href="#nas" class="hover:text-hb-blue transition">NAS 컨설팅</a>
+      <a href="#copier" class="hover:text-hb-blue transition">복사기 임대 케어</a>
+      <a href="#support-grid" class="hover:text-hb-blue transition">고객지원</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <a href="tel:010-4585-6890" class="hidden sm:inline-flex items-center gap-1.5 text-hb-navy font-bold text-sm">
+        📞 010-4585-6890
+      </a>
+      <a href="#diagnose" class="inline-flex items-center gap-1.5 bg-amber-500 hover:bg-amber-600 text-white font-bold text-[13px] sm:text-sm px-3.5 sm:px-4 py-2.5 rounded-full transition shadow-md whitespace-nowrap">
+        무료 전산 진단
+      </a>
+      <button id="mobileMenuBtn" class="lg:hidden p-2 text-slate-700" aria-label="메뉴 열기">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="lg:hidden hidden border-t border-slate-200 bg-white">
+    <a href="#service" class="block px-6 py-3.5 text-sm font-semibold text-slate-700 border-b border-slate-100">서비스 소개</a>
+    <a href="#nas" class="block px-6 py-3.5 text-sm font-semibold text-slate-700 border-b border-slate-100">NAS 컨설팅</a>
+    <a href="#copier" class="block px-6 py-3.5 text-sm font-semibold text-slate-700 border-b border-slate-100">복사기 임대 케어</a>
+    <a href="#support-grid" class="block px-6 py-3.5 text-sm font-semibold text-slate-700 border-b border-slate-100">고객지원</a>
+    <a href="tel:010-4585-6890" class="block px-6 py-3.5 text-sm font-bold text-hb-navy">📞 010-4585-6890</a>
   </div>
 </header>
 
-<section class="hc-hero" aria-label="한별시스템 안내">
-  <div class="hc-slides" id="hc-slides">
-    <img class="slide is-active" src="img/hero/banner-1.png" alt="한별시스템 임대 안내" decoding="async" fetchpriority="high">
-    <img class="slide" src="img/hero/banner-2.png" alt="" loading="lazy" decoding="async">
-    <img class="slide" src="img/hero/banner-3.png" alt="" loading="lazy" decoding="async">
-    <img class="slide" src="img/hero/banner-5.png" alt="" loading="lazy" decoding="async">
-    <div class="hc-slides-dots" aria-hidden="true">
-      <span class="dot is-active"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
+<a id="top"></a>
+
+<!-- ───── 1. Quick Support 존 (최상단) ───── -->
+<section class="bg-slate-50 border-b border-slate-200 py-5 lg:py-7">
+  <div class="max-w-6xl mx-auto px-4 lg:px-6">
+    <div class="flex items-center justify-between gap-3 mb-3">
+      <div class="text-[11px] font-bold text-slate-500 tracking-[.15em] flex items-center gap-2">
+        <span class="w-1 h-3.5 bg-red-600 rounded-sm"></span>
+        QUICK SUPPORT · 기존 고객 빠른 연결
+      </div>
+      <div class="hidden sm:block text-[11px] text-slate-400">평일 09:00~18:00 즉시 응대</div>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <a href="remote/" class="group relative overflow-hidden bg-gradient-to-br from-red-600 to-red-700 text-white rounded-2xl px-5 py-5 lg:py-6 shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition flex items-center gap-4">
+        <div class="w-14 h-14 lg:w-16 lg:h-16 rounded-xl bg-white/20 flex items-center justify-center text-3xl lg:text-4xl flex-shrink-0">🚨</div>
+        <div class="flex-1 min-w-0">
+          <div class="text-[10px] font-extrabold text-white/80 tracking-[.2em]">EMERGENCY</div>
+          <div class="font-extrabold text-lg lg:text-xl leading-tight">원격 지원 즉시 연결</div>
+          <div class="text-[12px] text-white/85 mt-0.5">TeamViewer QuickSupport · 1초 다운로드</div>
+        </div>
+        <div class="text-2xl group-hover:translate-x-1 transition flex-shrink-0">→</div>
+      </a>
+      <div class="bg-gradient-to-br from-hb-navy to-hb-blue text-white rounded-2xl px-5 py-5 lg:py-6 shadow-lg flex items-center gap-4">
+        <div class="w-14 h-14 lg:w-16 lg:h-16 rounded-xl bg-white/20 flex items-center justify-center text-3xl lg:text-4xl flex-shrink-0">⬇</div>
+        <div class="flex-1 min-w-0">
+          <div class="text-[10px] font-extrabold text-white/80 tracking-[.2em]">DRIVER</div>
+          <div class="font-extrabold text-lg lg:text-xl leading-tight mb-2">프린터 드라이버 검색</div>
+          <form action="drivers/" method="get" class="flex gap-2">
+            <select name="brand" class="flex-1 bg-white/15 backdrop-blur border border-white/25 rounded-lg px-2.5 py-1.5 text-[13px] font-semibold focus:outline-none focus:bg-white/25">
+              <option value="" class="text-slate-900">제조사 선택</option>
+              <option value="samsung" class="text-slate-900">삼성</option>
+              <option value="sindoh" class="text-slate-900">신도리코</option>
+              <option value="kyocera" class="text-slate-900">교세라</option>
+              <option value="hp" class="text-slate-900">HP</option>
+              <option value="canon" class="text-slate-900">캐논</option>
+              <option value="epson" class="text-slate-900">엡손</option>
+              <option value="brother" class="text-slate-900">브라더</option>
+            </select>
+            <button type="submit" class="bg-white text-hb-navy font-extrabold text-[13px] px-3.5 py-1.5 rounded-lg hover:bg-amber-100 transition">검색 →</button>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<main class="hc-main">
-
-  <h2 class="hc-section-h">바로가기</h2>
-  <div class="hc-cards">
-
-    <a href="drivers/" class="hc-card">
-      <div class="icon">⬇</div>
-      <h3>드라이버 다운로드</h3>
-      <p>한별 드라이버 사이트 (882.kr)</p>
-      <span class="arrow">바로가기 →</span>
-    </a>
-
-    <a href="error/" class="hc-card">
-      <div class="icon">⚠</div>
-      <h3>에러코드 검색</h3>
-      <p>7개 제조사 1,157건 데이터베이스</p>
-      <span class="arrow">바로가기 →</span>
-    </a>
-
-    <a href="rental/" class="hc-card">
-      <div class="icon">🏢</div>
-      <h3>임대 안내</h3>
-      <p>복합기·PC·플로터 임대 견적</p>
-      <span class="arrow">바로가기 →</span>
-    </a>
-
-  </div>
-
-  <h2 class="hc-section-h">도움말</h2>
-  <div class="hc-cards-3">
-
-    <a href="faq/" class="hc-card">
-      <div class="icon">💬</div>
-      <h3>자주 묻는 질문</h3>
-      <p>설치·연결·청구·소모품 FAQ</p>
-      <span class="arrow">바로가기 →</span>
-    </a>
-
-    <a href="rental/" class="hc-card">
-      <div class="icon">📋</div>
-      <h3>임대 이용 안내</h3>
-      <p>임대 절차와 자주 듣는 질문</p>
-      <span class="arrow">바로가기 →</span>
-    </a>
-
-    <a href="about/" class="hc-card">
-      <div class="icon">🏷</div>
-      <h3>한별 소개</h3>
-      <p>회사·연혁·서비스 라인업</p>
-      <span class="arrow">바로가기 →</span>
-    </a>
-
-  </div>
-
-  <h2 class="hc-section-h">바로 연락</h2>
-  <div class="hc-contact">
-    <div class="hc-contact-row">
-      <a href="tel:010-4585-6890" class="hc-contact-item">
-        <span class="ico">📞</span>
-        <span class="meta"><span class="lbl">전화 (영업/상담)</span><span class="val">010-4585-6890</span></span>
+<!-- ───── 2. Hero ───── -->
+<section class="relative bg-hb-navy text-white overflow-hidden">
+  <div class="absolute inset-0 grid-bg opacity-60"></div>
+  <div class="absolute -top-32 -right-32 w-96 h-96 bg-hb-blue/30 rounded-full blur-3xl"></div>
+  <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-amber-500/15 rounded-full blur-3xl"></div>
+  <div class="relative max-w-6xl mx-auto px-4 lg:px-6 py-16 lg:py-28 text-center">
+    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur px-4 py-1.5 rounded-full text-[11px] font-bold tracking-wider mb-6 border border-white/15">
+      <span class="w-1.5 h-1.5 bg-amber-400 rounded-full animate-pulse"></span>
+      AI &amp; DATA INTEGRATED SOLUTION PARTNER
+    </div>
+    <h1 class="text-[28px] sm:text-4xl lg:text-[56px] font-black leading-[1.15] tracking-tight mb-5">
+      귀사의 데이터 자산,<br>
+      <span class="text-amber-400">안전합니까?</span>
+    </h1>
+    <p class="text-sm sm:text-base lg:text-xl text-white/85 max-w-2xl mx-auto leading-relaxed mb-2 font-medium">
+      한별시스템이 <strong class="text-white font-bold">AI와 NAS</strong>로 기업의 미래를 설계합니다.
+    </p>
+    <p class="text-xs sm:text-sm lg:text-base text-white/60 mb-9">
+      시놀로지 NAS 공식 대리점 · 스마트 오피스 복합기 올인원 케어 솔루션
+    </p>
+    <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 max-w-md sm:max-w-none mx-auto">
+      <a href="#diagnose" class="inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-extrabold text-[15px] lg:text-base px-7 py-3.5 rounded-xl transition shadow-lg shadow-amber-500/30">
+        무료 전산 진단 신청 →
       </a>
-      <a href="tel:053-588-7119" class="hc-contact-item">
-        <span class="ico">☎</span>
-        <span class="meta"><span class="lbl">지점 (대구 본사)</span><span class="val">053-588-7119</span></span>
+      <a href="tel:010-4585-6890" class="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur text-white font-semibold text-[15px] lg:text-base px-7 py-3.5 rounded-xl transition border border-white/20">
+        📞 010-4585-6890
       </a>
-      <a href="mailto:acapaper78@gmail.com" class="hc-contact-item">
-        <span class="ico">✉</span>
-        <span class="meta"><span class="lbl">이메일</span><span class="val">acapaper78@gmail.com</span></span>
+    </div>
+    <div class="mt-12 grid grid-cols-3 gap-3 lg:gap-6 max-w-2xl mx-auto pt-8 border-t border-white/10">
+      <div>
+        <div class="text-2xl lg:text-3xl font-black text-amber-400">14+</div>
+        <div class="text-[11px] lg:text-xs text-white/70 mt-1">년 운영 경력</div>
+      </div>
+      <div>
+        <div class="text-2xl lg:text-3xl font-black text-amber-400">500+</div>
+        <div class="text-[11px] lg:text-xs text-white/70 mt-1">기업 고객사</div>
+      </div>
+      <div>
+        <div class="text-2xl lg:text-3xl font-black text-amber-400">24h</div>
+        <div class="text-[11px] lg:text-xs text-white/70 mt-1">사전 모니터링</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───── 3. Core Business ───── -->
+<section id="service" class="py-14 lg:py-24 bg-slate-50">
+  <div class="max-w-6xl mx-auto px-4 lg:px-6">
+    <div class="text-center mb-10 lg:mb-16">
+      <div class="text-xs font-bold text-hb-blue tracking-[.2em] mb-2">CORE BUSINESS</div>
+      <h2 class="text-2xl lg:text-4xl font-extrabold text-hb-navy tracking-tight">한별이 가장 잘하는 두 가지</h2>
+      <p class="text-sm lg:text-base text-slate-500 mt-3">단순 임대를 넘어, 데이터와 출력 인프라를 통합 관리합니다.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5 lg:gap-7">
+
+      <!-- NAS -->
+      <article id="nas" class="bg-white rounded-3xl p-7 lg:p-10 shadow-md border border-slate-100 hover:shadow-2xl hover:-translate-y-1 transition group">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-14 h-14 rounded-2xl bg-hb-light flex items-center justify-center text-3xl group-hover:scale-110 transition">🗄</div>
+          <div>
+            <div class="text-[10px] font-extrabold text-hb-blue tracking-[.2em]">SYNOLOGY 공식 대리점</div>
+            <h3 class="text-xl lg:text-2xl font-extrabold text-hb-navy leading-tight mt-0.5">시놀로지 NAS<br class="sm:hidden"> 데이터 보안 센터</h3>
+          </div>
+        </div>
+        <p class="text-sm lg:text-[15px] text-slate-600 leading-relaxed mb-5">
+          단순 저장소를 넘어 <strong class="text-hb-navy font-bold">AI 기반 지능형 데이터 서버</strong>로 진화합니다. 랜섬웨어 예방부터 사내 보안 통합까지 한 번에.
+        </p>
+        <ul class="space-y-2.5 mb-7">
+          <li class="flex items-start gap-2.5 text-sm text-slate-700">
+            <span class="flex-shrink-0 w-5 h-5 rounded-full bg-hb-light text-hb-blue text-xs font-bold flex items-center justify-center mt-0.5">✓</span>
+            <span><strong class="text-slate-900">랜섬웨어 사전 방어</strong> + 스냅샷·이중 백업</span>
+          </li>
+          <li class="flex items-start gap-2.5 text-sm text-slate-700">
+            <span class="flex-shrink-0 w-5 h-5 rounded-full bg-hb-light text-hb-blue text-xs font-bold flex items-center justify-center mt-0.5">✓</span>
+            <span>전 직원 <strong class="text-slate-900">파일 통합 관리</strong> + 권한 분리</span>
+          </li>
+          <li class="flex items-start gap-2.5 text-sm text-slate-700">
+            <span class="flex-shrink-0 w-5 h-5 rounded-full bg-hb-light text-hb-blue text-xs font-bold flex items-center justify-center mt-0.5">✓</span>
+            <span><strong class="text-slate-900">시놀로지 공식 대리점</strong> 정품 + A/S 보장</span>
+          </li>
+          <li class="flex items-start gap-2.5 text-sm text-slate-700">
+            <span class="flex-shrink-0 w-5 h-5 rounded-full bg-hb-light text-hb-blue text-xs font-bold flex items-center justify-center mt-0.5">✓</span>
+            <span>구축부터 운영까지 <strong class="text-slate-900">한별 엔지니어</strong>가 끝까지</span>
+          </li>
+        </ul>
+        <a href="#diagnose" class="inline-flex items-center gap-1.5 bg-hb-navy hover:bg-hb-navy-deep text-white font-bold text-sm px-5 py-2.5 rounded-xl transition">
+          NAS 도입 상담 →
+        </a>
+      </article>
+
+      <!-- 복사기 임대 -->
+      <article id="copier" class="bg-white rounded-3xl p-7 lg:p-10 shadow-md border border-slate-100 hover:shadow-2xl hover:-translate-y-1 transition group">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-14 h-14 rounded-2xl bg-amber-50 flex items-center justify-center text-3xl group-hover:scale-110 transition">🖨</div>
+          <div>
+            <div class="text-[10px] font-extrabold text-amber-600 tracking-[.2em]">BEFORE SERVICE</div>
+            <h3 class="text-xl lg:text-2xl font-extrabold text-hb-navy leading-tight mt-0.5">스마트 프리미엄<br class="sm:hidden"> 복합기 임대 케어</h3>
+          </div>
+        </div>
+        <p class="text-sm lg:text-[15px] text-slate-600 leading-relaxed mb-5">
+          멈추지 않는 비즈니스 환경 — <strong class="text-hb-navy font-bold">실시간 모니터링 사전 정비</strong>로 문제 발생 전에 대응합니다.
+        </p>
+        <ul class="space-y-2.5 mb-7">
+          <li class="flex items-start gap-2.5 text-sm text-slate-700">
+            <span class="flex-shrink-0 w-5 h-5 rounded-full bg-amber-50 text-amber-600 text-xs font-bold flex items-center justify-center mt-0.5">✓</span>
+            <span><strong class="text-slate-900">카운터 자동 수집</strong> + 토너·잉크 사전 교체</span>
+          </li>
+          <li class="flex items-start gap-2.5 text-sm text-slate-700">
+            <span class="flex-shrink-0 w-5 h-5 rounded-full bg-amber-50 text-amber-600 text-xs font-bold flex items-center justify-center mt-0.5">✓</span>
+            <span>잉크젯·레이저·<strong class="text-slate-900">A3 컬러</strong> 풀 라인업</span>
+          </li>
+          <li class="flex items-start gap-2.5 text-sm text-slate-700">
+            <span class="flex-shrink-0 w-5 h-5 rounded-full bg-amber-50 text-amber-600 text-xs font-bold flex items-center justify-center mt-0.5">✓</span>
+            <span><strong class="text-slate-900">잉크젯 가격으로 레이저 임대</strong> 캠페인 진행</span>
+          </li>
+          <li class="flex items-start gap-2.5 text-sm text-slate-700">
+            <span class="flex-shrink-0 w-5 h-5 rounded-full bg-amber-50 text-amber-600 text-xs font-bold flex items-center justify-center mt-0.5">✓</span>
+            <span>전국 배송·설치 무료 · <strong class="text-slate-900">24시간 사전 모니터링</strong></span>
+          </li>
+        </ul>
+        <a href="https://hbsys.kr/" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 bg-amber-500 hover:bg-amber-600 text-white font-bold text-sm px-5 py-2.5 rounded-xl transition">
+          모델·요금 보기 →
+        </a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ───── 4. 고객지원 그리드 (드라이버/에러코드/임대) ───── -->
+<section id="support-grid" class="py-14 lg:py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-4 lg:px-6">
+    <div class="text-center mb-9 lg:mb-12">
+      <div class="text-xs font-bold text-slate-500 tracking-[.2em] mb-2">CUSTOMER SUPPORT</div>
+      <h2 class="text-xl lg:text-3xl font-extrabold text-hb-navy tracking-tight">기존 고객을 위한 셀프 서비스</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
+      <a href="drivers/" class="group bg-white border border-slate-200 rounded-2xl p-6 hover:border-hb-blue hover:shadow-lg transition">
+        <div class="w-12 h-12 rounded-xl bg-hb-light text-hb-navy flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition">⬇</div>
+        <h3 class="font-extrabold text-hb-navy text-base mb-1">드라이버 다운로드</h3>
+        <p class="text-xs text-slate-500 mb-3">제조사별 프린터 드라이버 모음</p>
+        <span class="text-xs font-bold text-hb-blue">바로가기 →</span>
+      </a>
+      <a href="error/" class="group bg-white border border-slate-200 rounded-2xl p-6 hover:border-hb-blue hover:shadow-lg transition">
+        <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition">⚠</div>
+        <h3 class="font-extrabold text-hb-navy text-base mb-1">에러코드 검색</h3>
+        <p class="text-xs text-slate-500 mb-3">7개 제조사 1,157건 데이터베이스</p>
+        <span class="text-xs font-bold text-hb-blue">바로가기 →</span>
+      </a>
+      <a href="rental/" class="group bg-white border border-slate-200 rounded-2xl p-6 hover:border-hb-blue hover:shadow-lg transition sm:col-span-2 lg:col-span-1">
+        <div class="w-12 h-12 rounded-xl bg-slate-100 text-hb-navy flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition">🏢</div>
+        <h3 class="font-extrabold text-hb-navy text-base mb-1">임대 안내</h3>
+        <p class="text-xs text-slate-500 mb-3">복합기·PC·플로터 임대 견적</p>
+        <span class="text-xs font-bold text-hb-blue">바로가기 →</span>
       </a>
     </div>
   </div>
+</section>
 
-</main>
-
-<footer class="hc-footer">
-  <div class="links">
-    <a href="about/">회사 소개</a>·
-    <a href="contact/">연락처</a>·
-    <a href="rental/">임대 사이트</a>·
-    <a href="error/">에러코드</a>
+<!-- ───── 5. Lead Generation Form ───── -->
+<section id="diagnose" class="py-14 lg:py-24 bg-gradient-to-br from-slate-100 via-white to-hb-light">
+  <div class="max-w-3xl mx-auto px-4 lg:px-6">
+    <div class="text-center mb-8 lg:mb-10">
+      <div class="inline-flex items-center gap-2 bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-[11px] font-bold tracking-wider mb-3">
+        🎁 FREE DIAGNOSIS
+      </div>
+      <h2 class="text-2xl lg:text-4xl font-extrabold text-hb-navy tracking-tight mb-3">
+        우리 회사 전산 환경<br class="sm:hidden"> 무료 진단
+      </h2>
+      <p class="text-sm lg:text-base text-slate-600 leading-relaxed">
+        5문항만 답해주시면, 한별 컨설턴트가 <strong class="text-hb-navy">1영업일 내 맞춤 진단 보고서</strong>를 보내드립니다.
+      </p>
+    </div>
+    <form id="diagForm" class="bg-white border border-slate-200 rounded-3xl p-6 lg:p-10 space-y-5 shadow-xl shadow-hb-blue/5">
+      <div>
+        <label class="block text-sm font-bold text-slate-700 mb-1.5">회사명 <span class="text-red-600">*</span></label>
+        <input type="text" name="company" required class="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:border-hb-blue focus:ring-2 focus:ring-hb-blue/20 outline-none transition text-[15px]" placeholder="(주)한별시스템" autocomplete="organization">
+      </div>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-bold text-slate-700 mb-1.5">담당자 성함 <span class="text-red-600">*</span></label>
+          <input type="text" name="name" required class="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:border-hb-blue focus:ring-2 focus:ring-hb-blue/20 outline-none transition text-[15px]" placeholder="홍길동" autocomplete="name">
+        </div>
+        <div>
+          <label class="block text-sm font-bold text-slate-700 mb-1.5">연락처 <span class="text-red-600">*</span></label>
+          <input type="tel" name="phone" required class="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:border-hb-blue focus:ring-2 focus:ring-hb-blue/20 outline-none transition text-[15px]" placeholder="010-1234-5678" autocomplete="tel">
+        </div>
+      </div>
+      <div>
+        <label class="block text-sm font-bold text-slate-700 mb-2">관심 분야 <span class="text-slate-400 font-normal">(중복 선택 가능)</span></label>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          <label class="flex items-center justify-center gap-1.5 px-3 py-3 rounded-xl border border-slate-300 hover:border-hb-blue cursor-pointer has-[:checked]:bg-hb-light has-[:checked]:border-hb-blue has-[:checked]:text-hb-navy transition text-[13px] font-semibold text-slate-600">
+            <input type="checkbox" name="interest" value="NAS 구축" class="accent-hb-blue">
+            <span>🗄 NAS</span>
+          </label>
+          <label class="flex items-center justify-center gap-1.5 px-3 py-3 rounded-xl border border-slate-300 hover:border-hb-blue cursor-pointer has-[:checked]:bg-hb-light has-[:checked]:border-hb-blue has-[:checked]:text-hb-navy transition text-[13px] font-semibold text-slate-600">
+            <input type="checkbox" name="interest" value="복합기 임대" class="accent-hb-blue">
+            <span>🖨 복합기</span>
+          </label>
+          <label class="flex items-center justify-center gap-1.5 px-3 py-3 rounded-xl border border-slate-300 hover:border-hb-blue cursor-pointer has-[:checked]:bg-hb-light has-[:checked]:border-hb-blue has-[:checked]:text-hb-navy transition text-[13px] font-semibold text-slate-600">
+            <input type="checkbox" name="interest" value="PC·모니터" class="accent-hb-blue">
+            <span>💻 PC</span>
+          </label>
+          <label class="flex items-center justify-center gap-1.5 px-3 py-3 rounded-xl border border-slate-300 hover:border-hb-blue cursor-pointer has-[:checked]:bg-hb-light has-[:checked]:border-hb-blue has-[:checked]:text-hb-navy transition text-[13px] font-semibold text-slate-600">
+            <input type="checkbox" name="interest" value="유지보수" class="accent-hb-blue">
+            <span>🔧 유지보수</span>
+          </label>
+        </div>
+      </div>
+      <div>
+        <label class="block text-sm font-bold text-slate-700 mb-1.5">현재 상황 / 문의 내용</label>
+        <textarea name="message" rows="4" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-hb-blue focus:ring-2 focus:ring-hb-blue/20 outline-none transition resize-none text-[15px]" placeholder="예) 직원 12명, 복사기 노후 / NAS 도입 검토 중 / 랜섬웨어 사고 후 백업 체계 점검 등"></textarea>
+      </div>
+      <button type="submit" class="w-full bg-gradient-to-r from-hb-navy via-hb-blue to-hb-navy bg-[length:200%_100%] bg-left hover:bg-right transition-[background-position] duration-500 text-white font-extrabold text-base lg:text-lg py-4 rounded-xl shadow-lg shadow-hb-navy/20">
+        📨 무료 진단 보고서 신청하기
+      </button>
+      <p class="text-[11px] lg:text-xs text-slate-400 text-center leading-relaxed">
+        ※ 버튼을 누르면 기기 메일 앱이 자동으로 열립니다.<br>
+        내용을 확인 후 그대로 발송해주시면 1영업일 내 회신드립니다.<br>
+        급하신 경우 <a href="tel:010-4585-6890" class="text-hb-blue font-bold">010-4585-6890</a> 으로 직접 연락 주세요.
+      </p>
+    </form>
   </div>
-  <div class="biz">
-    한별시스템 · 대표 김상환 · 대구광역시 달서구 문화회관11안길 22-7 1층<br>
-    사업자등록번호 514-22-73057 · 통신판매업신고 제2010-대구달서-0190호<br>
-    © 2026 Hanbyeol System. All rights reserved.
+</section>
+
+<!-- ───── Footer ───── -->
+<footer class="bg-slate-900 text-slate-400 py-12 lg:py-16">
+  <div class="max-w-6xl mx-auto px-4 lg:px-6">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 mb-10">
+      <div class="sm:col-span-2 lg:col-span-1">
+        <div class="flex items-center gap-2.5 mb-3">
+          <span class="w-9 h-9 rounded-lg bg-gradient-to-br from-hb-blue to-hb-navy text-white flex items-center justify-center font-black text-xs">HB</span>
+          <span class="font-extrabold text-white text-lg">한별시스템</span>
+        </div>
+        <p class="text-xs leading-relaxed mb-4">AI &amp; 데이터 통합<br>전산 솔루션 파트너</p>
+        <a href="#diagnose" class="inline-flex items-center gap-1.5 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs px-3.5 py-2 rounded-full transition">
+          무료 전산 진단 →
+        </a>
+      </div>
+      <div>
+        <h4 class="text-[11px] font-bold text-white tracking-[.15em] mb-3">고객 지원</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="remote/" class="hover:text-white transition">원격 지원</a></li>
+          <li><a href="drivers/" class="hover:text-white transition">드라이버 다운로드</a></li>
+          <li><a href="error/" class="hover:text-white transition">에러코드 검색</a></li>
+          <li><a href="faq/" class="hover:text-white transition">자주 묻는 질문</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-[11px] font-bold text-white tracking-[.15em] mb-3">서비스</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#nas" class="hover:text-white transition">NAS 컨설팅</a></li>
+          <li><a href="#copier" class="hover:text-white transition">복사기 임대</a></li>
+          <li><a href="rental/" class="hover:text-white transition">임대 견적</a></li>
+          <li><a href="about/" class="hover:text-white transition">회사 소개</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-[11px] font-bold text-white tracking-[.15em] mb-3">연락처</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="tel:010-4585-6890" class="hover:text-white transition">📞 010-4585-6890</a></li>
+          <li><a href="tel:053-588-7119" class="hover:text-white transition">☎ 053-588-7119 (대구)</a></li>
+          <li><a href="mailto:acapaper78@gmail.com" class="hover:text-white transition break-all">✉ acapaper78@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pt-7 border-t border-slate-800 text-[11px] lg:text-xs leading-relaxed text-center text-slate-500">
+      한별시스템 · 대표 김상환 · 대구광역시 달서구 문화회관11안길 22-7 1층<br>
+      사업자등록번호 514-22-73057 · 통신판매업신고 제2010-대구달서-0190호<br>
+      © 2026 Hanbyeol System. All rights reserved.
+    </div>
   </div>
 </footer>
 
+<!-- ───── Alert Modal ───── -->
+<div id="alertModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-[100] p-4">
+  <div class="bg-white rounded-3xl max-w-sm w-full p-7 text-center shadow-2xl">
+    <div class="text-5xl mb-3">📝</div>
+    <p id="alertMsg" class="text-[15px] font-semibold text-slate-700 mb-6 leading-relaxed">메시지</p>
+    <button id="alertOk" class="bg-hb-navy hover:bg-hb-blue text-white font-bold text-sm px-8 py-3 rounded-xl transition">확인</button>
+  </div>
+</div>
+
 <script>
-(function(){
-  var root = document.getElementById('hc-slides');
-  if(!root) return;
-  var slides = root.querySelectorAll('.slide');
-  var dots = root.querySelectorAll('.hc-slides-dots .dot');
-  var n = slides.length;
-  if(n < 2) return;
-  var i = 0;
-  function show(k){
-    k = (k + n) % n;
-    slides[i].classList.remove('is-active');
-    dots[i] && dots[i].classList.remove('is-active');
-    slides[k].classList.add('is-active');
-    dots[k] && dots[k].classList.add('is-active');
-    i = k;
+  // ── 모바일 메뉴
+  var mbtn = document.getElementById('mobileMenuBtn');
+  var menu = document.getElementById('mobileMenu');
+  mbtn.addEventListener('click', function(){ menu.classList.toggle('hidden'); });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ menu.classList.add('hidden'); });
+  });
+
+  // ── 알림 모달
+  function showAlert(msg){
+    document.getElementById('alertMsg').textContent = msg;
+    var m = document.getElementById('alertModal');
+    m.classList.remove('hidden');
+    m.classList.add('flex');
   }
-  setInterval(function(){ show(i + 1); }, 5000);
-})();
+  document.getElementById('alertOk').addEventListener('click', function(){
+    var m = document.getElementById('alertModal');
+    m.classList.add('hidden');
+    m.classList.remove('flex');
+  });
+  document.getElementById('alertModal').addEventListener('click', function(e){
+    if(e.target === this) document.getElementById('alertOk').click();
+  });
+
+  // ── 진단 폼 제출 → mailto
+  document.getElementById('diagForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var fd = new FormData(this);
+    var company = (fd.get('company') || '').trim();
+    var name    = (fd.get('name')    || '').trim();
+    var phone   = (fd.get('phone')   || '').trim();
+    if(!company || !name || !phone){
+      showAlert('진단 신청을 위해 회사명·성함·연락처를 모두 입력해주세요.');
+      return;
+    }
+    var interests = fd.getAll('interest').join(', ') || '(미선택)';
+    var message   = (fd.get('message') || '').trim() || '(없음)';
+    var body =
+      '[한별시스템 무료 전산 진단 신청]\n' +
+      '────────────────────────────\n\n' +
+      '• 회사명: ' + company + '\n' +
+      '• 담당자: ' + name + '\n' +
+      '• 연락처: ' + phone + '\n' +
+      '• 관심분야: ' + interests + '\n\n' +
+      '─ 문의 내용 ─\n' + message + '\n\n' +
+      '────────────────────────────\n' +
+      '※ 한별고객센터(https://hanbyeolsystem.github.io/customer/)를 통해 제출됨';
+    var subject = '[무료 진단 신청] ' + company + ' / ' + name + ' (' + phone + ')';
+    var mail = 'mailto:acapaper78@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    window.location.href = mail;
+  });
 </script>
 
 </body>
