@@ -100,6 +100,12 @@ const paths: Record<string, React.ReactNode> = {
     </>
   ),
   moon: <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z" />,
+  search: (
+    <>
+      <circle cx="11" cy="11" r="8" />
+      <path d="m21 21-4.3-4.3" />
+    </>
+  ),
 };
 
 export type IconName = keyof typeof paths;

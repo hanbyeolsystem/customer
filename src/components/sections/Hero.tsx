@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { site } from "@/data/site";
 import { HeroBackground } from "./HeroBackground";
+import { Icon } from "@/components/Icon";
+import { embedHref } from "@/lib/embed";
 
 /* 통계를 "모니터링 지표"로 재해석 — 회사 자체를 무중단 가동 중인 시스템으로 */
 const monitors = site.stats.map((s, i) => ({
@@ -46,7 +48,7 @@ export function Hero() {
               대구·경북 170여 개 기업의 시스템을 <strong className="text-white font-bold">{site.name}</strong>이 지킵니다.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 max-w-md">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3">
               <Link
                 href="/support/remote"
                 className="inline-flex items-center justify-center gap-2 bg-hb-gold hover:bg-hb-gold-2 text-hb-primary font-extrabold text-[15px] px-7 py-3.5 rounded-xl transition shadow-lg shadow-hb-gold/25"
@@ -54,8 +56,20 @@ export function Hero() {
                 <span aria-hidden>▸</span> 원격지원 시작
               </Link>
               <Link
+                href={embedHref("https://hanbyeolsystem.github.io/hanbyeol-errorcode/", "에러코드 검색")}
+                className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur text-white font-bold text-[15px] px-6 py-3.5 rounded-xl transition border border-white/20"
+              >
+                <Icon name="search" className="w-[18px] h-[18px]" strokeWidth={2} /> 에러코드 검색
+              </Link>
+              <Link
+                href="/support/drivers"
+                className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur text-white font-bold text-[15px] px-6 py-3.5 rounded-xl transition border border-white/20"
+              >
+                <Icon name="download" className="w-[18px] h-[18px]" strokeWidth={2} /> 드라이버 검색
+              </Link>
+              <Link
                 href="/support/quote"
-                className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur text-white font-bold text-[15px] px-7 py-3.5 rounded-xl transition border border-white/20"
+                className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur text-white font-bold text-[15px] px-6 py-3.5 rounded-xl transition border border-white/20"
               >
                 상담 문의
               </Link>
