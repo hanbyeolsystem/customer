@@ -8,6 +8,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { caseStudies } from "@/data/cases";
+import { embedHref } from "@/lib/embed";
 
 export function CaseStudies() {
   return (
@@ -20,7 +21,7 @@ export function CaseStudies() {
               실제 구축 사례
             </h2>
             <p className="text-sm lg:text-base text-[var(--mute)] mt-3">
-              제조·의료·법무·교육·건설 — 업종을 가리지 않고 한별이 함께합니다.
+              건축·의료·교육·기업 — 대구·경북 곳곳의 실제 NAS·복합기 구축 후기입니다.
             </p>
           </div>
           <Link
@@ -48,7 +49,10 @@ export function CaseStudies() {
         >
           {caseStudies.map((c) => (
             <SwiperSlide key={c.id}>
-              <article className="bg-[var(--bg)] border border-[var(--line)] rounded-3xl overflow-hidden hover:shadow-xl transition group h-full flex flex-col">
+              <Link
+                href={embedHref(c.href, c.title)}
+                className="bg-[var(--bg)] border border-[var(--line)] rounded-3xl overflow-hidden hover:shadow-xl hover:border-hb-blue transition group h-full flex flex-col"
+              >
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <Image
                     src={c.image}
@@ -81,8 +85,11 @@ export function CaseStudies() {
                       </span>
                     ))}
                   </div>
+                  <div className="mt-4 inline-flex items-center gap-1 text-[12px] font-bold text-hb-blue group-hover:gap-2 transition-all">
+                    블로그 후기 보기 →
+                  </div>
                 </div>
-              </article>
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>
