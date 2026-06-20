@@ -9,9 +9,7 @@ export function RentalShop() {
       <div className="max-w-7xl mx-auto px-4 lg:px-6">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-9 lg:mb-12">
           <div>
-            <div className="text-[11px] font-extrabold text-amber-600 tracking-[.2em] mb-2">
-              RENTAL SHOP
-            </div>
+            <div className="eyebrow mb-3">RENTAL SHOP</div>
             <h2 className="text-2xl lg:text-4xl font-extrabold text-[var(--ink)] tracking-tight">
               임대 쇼핑몰
             </h2>

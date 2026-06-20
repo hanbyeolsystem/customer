@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { site, nav } from "@/data/site";
 import { ThemeToggle } from "./ThemeToggle";
+import { Icon } from "./Icon";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -60,8 +61,9 @@ export function Header() {
             href={site.phone.mainHref}
             className="hidden lg:flex flex-col items-end text-right leading-tight pr-2"
           >
-            <span className="text-[15px] font-extrabold text-[var(--ink)]">
-              📞 {site.phone.main}
+            <span className="inline-flex items-center gap-1.5 text-[15px] font-extrabold text-[var(--ink)]">
+              <Icon name="phone" className="w-4 h-4 text-hb-blue" strokeWidth={2} />
+              {site.phone.main}
             </span>
             <span className="text-[10px] font-semibold text-[var(--mute)]">
               {site.phone.hours}
@@ -105,7 +107,10 @@ export function Header() {
               href={site.phone.mainHref}
               className="flex items-center justify-between bg-hb-primary text-white rounded-xl px-4 py-3 font-extrabold"
             >
-              <span>📞 {site.phone.main}</span>
+              <span className="inline-flex items-center gap-2">
+                <Icon name="phone" className="w-4 h-4" strokeWidth={2} />
+                {site.phone.main}
+              </span>
               <span className="text-xs font-semibold text-white/70">{site.phone.hours}</span>
             </a>
           </div>

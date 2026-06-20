@@ -1,15 +1,15 @@
 export const quickServices = [
-  { icon: "🚨", label: "원격지원", href: "/support/remote", accent: "red" },
-  { icon: "⬇", label: "드라이버 다운로드", href: "/support/drivers", accent: "blue" },
-  { icon: "🛠", label: "AS 접수", href: "/support/as", accent: "amber" },
-  { icon: "🗄", label: "NAS 기술지원", href: "/nas#support", accent: "indigo" },
-  { icon: "🛒", label: "임대쇼핑몰", href: "/shop", accent: "emerald" },
-  { icon: "📋", label: "견적 요청", href: "/support/quote", accent: "violet" },
+  { icon: "monitor",   label: "원격지원", href: "/support/remote", accent: "red" },
+  { icon: "download",  label: "드라이버 다운로드", href: "/support/drivers", accent: "blue" },
+  { icon: "wrench",    label: "AS 접수", href: "/support/as", accent: "amber" },
+  { icon: "server",    label: "NAS 기술지원", href: "/nas#support", accent: "indigo" },
+  { icon: "cart",      label: "임대쇼핑몰", href: "/shop", accent: "emerald" },
+  { icon: "clipboard", label: "견적 요청", href: "/support/quote", accent: "violet" },
 ] as const;
 
 export const coreServices = [
   {
-    icon: "🗄",
+    icon: "server",
     badge: "MAIN",
     title: "NAS 구축 및 관리",
     summary: "기업 데이터를 안전하게 — Synology 공식 대리점",
@@ -19,7 +19,7 @@ export const coreServices = [
     color: "blue",
   },
   {
-    icon: "🛡",
+    icon: "shield",
     badge: "ESSENTIAL",
     title: "데이터 백업 솔루션",
     summary: "랜섬웨어 시대, 백업이 곧 보험입니다",
@@ -29,7 +29,7 @@ export const coreServices = [
     color: "indigo",
   },
   {
-    icon: "🔧",
+    icon: "settings",
     badge: "365",
     title: "기업 IT 유지관리",
     summary: "PC·서버·네트워크·NAS 한 번에",
@@ -39,7 +39,7 @@ export const coreServices = [
     color: "slate",
   },
   {
-    icon: "🖨",
+    icon: "printer",
     badge: "RENTAL",
     title: "복사기 · 프린터 임대",
     summary: "유지보수·토너 포함, 월 정액으로",

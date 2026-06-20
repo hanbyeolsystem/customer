@@ -8,9 +8,7 @@ export function BlogFeed() {
       <div className="max-w-7xl mx-auto px-4 lg:px-6">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-9 lg:mb-12">
           <div>
-            <div className="text-[11px] font-extrabold text-hb-blue tracking-[.2em] mb-2">
-              LATEST NEWS
-            </div>
+            <div className="eyebrow mb-3">LATEST NEWS</div>
             <h2 className="text-2xl lg:text-4xl font-extrabold text-[var(--ink)] tracking-tight">
               한별시스템 소식
             </h2>

@@ -15,9 +15,7 @@ export function CaseStudies() {
       <div className="max-w-7xl mx-auto px-4 lg:px-6">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-9 lg:mb-12">
           <div>
-            <div className="text-[11px] font-extrabold text-hb-blue tracking-[.2em] mb-2">
-              CASE STUDIES
-            </div>
+            <div className="eyebrow mb-3">CASE STUDIES</div>
             <h2 className="text-2xl lg:text-4xl font-extrabold text-[var(--ink)] tracking-tight">
               실제 구축 사례
             </h2>

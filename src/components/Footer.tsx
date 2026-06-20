@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { site } from "@/data/site";
 import { embedHref } from "@/lib/embed";
+import { Icon } from "@/components/Icon";
 
 export function Footer() {
   return (
@@ -26,11 +27,11 @@ export function Footer() {
             </p>
             <div className="flex gap-2">
               <Link href={embedHref(site.social.blog, "한별 블로그")} aria-label="네이버 블로그"
-                className="w-9 h-9 rounded-lg bg-white/5 hover:bg-hb-blue hover:text-white flex items-center justify-center text-base transition">📝</Link>
+                className="w-9 h-9 rounded-lg bg-white/5 hover:bg-hb-blue hover:text-white flex items-center justify-center transition"><Icon name="pen" className="w-[18px] h-[18px]" /></Link>
               <a href={site.social.instagram} target="_blank" rel="noopener" aria-label="인스타그램"
-                className="w-9 h-9 rounded-lg bg-white/5 hover:bg-hb-blue hover:text-white flex items-center justify-center text-base transition">📷</a>
+                className="w-9 h-9 rounded-lg bg-white/5 hover:bg-hb-blue hover:text-white flex items-center justify-center transition"><Icon name="camera" className="w-[18px] h-[18px]" /></a>
               <a href={site.social.threads} target="_blank" rel="noopener" aria-label="Threads"
-                className="w-9 h-9 rounded-lg bg-white/5 hover:bg-hb-blue hover:text-white flex items-center justify-center text-base transition">🧵</a>
+                className="w-9 h-9 rounded-lg bg-white/5 hover:bg-hb-blue hover:text-white flex items-center justify-center transition"><Icon name="at" className="w-[18px] h-[18px]" /></a>
             </div>
           </div>
 
@@ -61,19 +62,22 @@ export function Footer() {
             <h4 className="text-[11px] font-extrabold text-white tracking-[.18em] mb-3">연락처</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href={site.phone.mainHref} className="hover:text-white transition">
-                  📞 {site.phone.main}
+                <a href={site.phone.mainHref} className="inline-flex items-center gap-2 hover:text-white transition">
+                  <Icon name="phone" className="w-4 h-4 shrink-0 text-hb-blue-light" strokeWidth={2} />
+                  {site.phone.main}
                 </a>
-                <div className="text-[11px] text-slate-500 pl-5 mt-0.5">{site.phone.hours}</div>
+                <div className="text-[11px] text-slate-500 pl-6 mt-0.5">{site.phone.hours}</div>
               </li>
               <li>
-                <a href={site.phone.mobileHref} className="hover:text-white transition">
-                  📱 {site.phone.mobile}
+                <a href={site.phone.mobileHref} className="inline-flex items-center gap-2 hover:text-white transition">
+                  <Icon name="smartphone" className="w-4 h-4 shrink-0 text-hb-blue-light" strokeWidth={2} />
+                  {site.phone.mobile}
                 </a>
               </li>
               <li>
-                <a href={`mailto:${site.email}`} className="hover:text-white transition break-all">
-                  ✉ {site.email}
+                <a href={`mailto:${site.email}`} className="inline-flex items-center gap-2 hover:text-white transition break-all">
+                  <Icon name="mail" className="w-4 h-4 shrink-0 text-hb-blue-light" strokeWidth={2} />
+                  {site.email}
                 </a>
               </li>
             </ul>
