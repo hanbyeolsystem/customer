@@ -2,19 +2,20 @@ import Link from "next/link";
 import { coreServices } from "@/data/services";
 import { Icon, type IconName } from "@/components/Icon";
 
+// 로고 블루 패밀리로 통일 (slate는 중립 톤으로 변화감만 유지)
 const colorMap: Record<string, { icon: string; badge: string; cta: string }> = {
-  blue:   { icon: "bg-hb-blue-soft text-hb-blue dark:bg-blue-500/15 dark:text-hb-blue-light",
+  blue:   { icon: "bg-hb-blue-soft text-hb-blue dark:bg-hb-azure/15 dark:text-hb-blue-light",
             badge: "bg-hb-blue/10 text-hb-blue dark:bg-hb-blue/20 dark:text-hb-blue-light",
             cta: "bg-hb-primary hover:bg-hb-blue text-white" },
-  indigo: { icon: "bg-indigo-50 text-indigo-600 dark:bg-indigo-500/15 dark:text-indigo-300",
-            badge: "bg-indigo-100 text-indigo-700 dark:bg-indigo-500/20 dark:text-indigo-200",
-            cta: "bg-indigo-600 hover:bg-indigo-500 text-white" },
+  indigo: { icon: "bg-hb-azure-soft text-hb-blue dark:bg-hb-azure/15 dark:text-hb-blue-light",
+            badge: "bg-hb-azure/12 text-hb-blue dark:bg-hb-azure/20 dark:text-hb-azure-2",
+            cta: "bg-hb-blue hover:bg-hb-azure text-white" },
   slate:  { icon: "bg-slate-100 text-slate-700 dark:bg-slate-500/15 dark:text-slate-200",
             badge: "bg-slate-200 text-slate-700 dark:bg-slate-500/20 dark:text-slate-200",
-            cta: "bg-slate-800 hover:bg-slate-700 text-white" },
-  amber:  { icon: "bg-amber-50 text-amber-600 dark:bg-amber-500/15 dark:text-amber-300",
-            badge: "bg-amber-100 text-amber-700 dark:bg-amber-500/20 dark:text-amber-200",
-            cta: "bg-amber-500 hover:bg-amber-600 text-white" },
+            cta: "bg-hb-primary hover:bg-hb-primary-2 text-white" },
+  amber:  { icon: "bg-hb-azure-soft text-hb-blue dark:bg-hb-azure/15 dark:text-hb-blue-light",
+            badge: "bg-hb-azure/12 text-hb-blue dark:bg-hb-azure/20 dark:text-hb-azure-2",
+            cta: "bg-hb-blue hover:bg-hb-azure text-white" },
 };
 
 export function CoreServices() {

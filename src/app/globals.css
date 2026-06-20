@@ -5,25 +5,26 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  /* 심야 관제 (deep midnight navy) — 19년 무중단 운영실 */
-  --color-hb-primary:    #0A1E33;
-  --color-hb-primary-2:  #122A45;
+  /* 로고 기반 블루 보석 팔레트 (HB system 다면 그라데이션) */
+  /* 딥 오션 — 다크 서피스(히어로·푸터·CTA) */
+  --color-hb-primary:    #06354F;
+  --color-hb-primary-2:  #0A4E72;
 
-  /* 신호 틸 — 워크호스 액센트 (구 코발트 대체, 흰 배경 AA 통과) */
-  --color-hb-blue:       #0C6E77;
-  --color-hb-blue-light: #2BC4D4;
-  --color-hb-blue-soft:  #D6EEF0;
+  /* 메인 브랜드 블루 — 버튼·링크·eyebrow (흰 배경/흰 글씨 모두 AA) */
+  --color-hb-blue:       #006FA6;
+  --color-hb-blue-light: #4FB8F6;  /* 온다크 하이라이트 (밝은 하늘) */
+  --color-hb-blue-soft:  #DBF1FC;  /* 아이스 배경 틴트 */
 
-  /* 항성 골드 — 시그니처(한별=큰 별). 채움/온다크 전용, 흰 배경 본문에 미사용 */
-  --color-hb-gold:       #F2A516;
-  --color-hb-gold-2:     #FFC247;
-  --color-hb-gold-soft:  #FBE9C6;
+  /* 비비드 azure — 로고 시그니처(글로우·포인트·온다크). 채움/온다크 전용 */
+  --color-hb-azure:      #0090D8;
+  --color-hb-azure-2:    #30B4FC;
+  --color-hb-azure-soft: #CFEBFB;
 
-  /* 관제 화이트 (cool off-white — 크림 아님) */
-  --color-hb-bg:         #F4F7FA;
-  --color-hb-ink:        #0A1E33;
-  --color-hb-mute:       #54677A;
-  --color-hb-line:       #DCE4EC;
+  /* 로고 톤의 쿨 화이트/잉크 */
+  --color-hb-bg:         #F2F8FC;
+  --color-hb-ink:        #06304A;
+  --color-hb-mute:       #5A7689;
+  --color-hb-line:       #D3E3EE;
 
   /* shadcn 호환 시맨틱 토큰 (ui/ 컴포넌트용) */
   --color-border:            #DCE4EC;
@@ -41,18 +42,18 @@
 
 :root {
   --bg:    #FFFFFF;
-  --panel: #F4F7FA;
-  --ink:   #0A1E33;
-  --mute:  #54677A;
-  --line:  #DCE4EC;
+  --panel: #F2F8FC;
+  --ink:   #06304A;
+  --mute:  #5A7689;
+  --line:  #D3E3EE;
 }
 
 .dark {
-  --bg:    #081627;
-  --panel: #0E2238;
-  --ink:   #E6EDF5;
-  --mute:  #8DA2B8;
-  --line:  #1C3350;
+  --bg:    #062338;
+  --panel: #0B3450;
+  --ink:   #E4F1FA;
+  --mute:  #8FAFC6;
+  --line:  #1C4660;
 }
 
 html { scroll-behavior: smooth; }
@@ -91,8 +92,8 @@ body {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--color-hb-gold);
-  box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-hb-gold) 22%, transparent);
+  background: var(--color-hb-azure);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-hb-azure) 22%, transparent);
 }
 
 /* 콘솔 패널 표면 — 하프톤 격자 + 미세 보더 */
@@ -128,7 +129,7 @@ body {
   opacity: 0.5;
 }
 .swiper-pagination-bullet-active {
-  background: var(--color-hb-gold);
+  background: var(--color-hb-azure);
   opacity: 1;
 }
 .swiper-button-next, .swiper-button-prev {

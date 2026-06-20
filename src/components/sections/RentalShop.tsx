@@ -19,7 +19,7 @@ export function RentalShop() {
           </div>
           <Link
             href={embedHref(RENTAL_SHOP_URL, "한별 임대 쇼핑몰")}
-            className="inline-flex items-center gap-1.5 bg-amber-500 hover:bg-amber-600 text-white font-bold text-sm px-5 py-2.5 rounded-xl transition self-start sm:self-auto"
+            className="inline-flex items-center gap-1.5 bg-hb-blue hover:bg-hb-azure text-white font-bold text-sm px-5 py-2.5 rounded-xl transition self-start sm:self-auto"
           >
             임대 쇼핑몰 전체보기 →
           </Link>
@@ -30,10 +30,10 @@ export function RentalShop() {
             <Link
               key={p.id}
               href={embedHref(p.href, p.name)}
-              className="group relative bg-[var(--bg)] border border-[var(--line)] rounded-2xl overflow-hidden hover:shadow-xl hover:border-amber-400 hover:-translate-y-0.5 transition"
+              className="group relative bg-[var(--bg)] border border-[var(--line)] rounded-2xl overflow-hidden hover:shadow-xl hover:border-hb-blue hover:-translate-y-0.5 transition"
             >
               {p.badge && (
-                <span className="absolute top-2.5 left-2.5 z-10 bg-amber-500 text-white text-[10px] font-extrabold tracking-[.15em] px-2 py-1 rounded-full">
+                <span className="absolute top-2.5 left-2.5 z-10 bg-hb-azure text-white text-[10px] font-extrabold tracking-[.15em] px-2 py-1 rounded-full">
                   {p.badge}
                 </span>
               )}
@@ -57,7 +57,7 @@ export function RentalShop() {
                   <span className="text-sm lg:text-base font-black text-hb-blue">
                     {p.monthly}
                   </span>
-                  <span className="text-[11px] font-bold text-[var(--mute)] group-hover:text-amber-600 transition">
+                  <span className="text-[11px] font-bold text-[var(--mute)] group-hover:text-hb-blue transition">
                     상세 →
                   </span>
                 </div>

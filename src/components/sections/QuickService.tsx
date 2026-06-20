@@ -2,13 +2,12 @@ import Link from "next/link";
 import { quickServices } from "@/data/services";
 import { Icon, type IconName } from "@/components/Icon";
 
+// 로고 블루로 통일 — 아이콘은 글리프로 구분, 색은 브랜드 일관성 유지
+const iconChip =
+  "bg-hb-blue-soft text-hb-blue dark:bg-hb-azure/15 dark:text-hb-blue-light";
 const accentMap: Record<string, string> = {
-  red:     "bg-red-50 text-red-600 dark:bg-red-500/10 dark:text-red-300",
-  blue:    "bg-blue-50 text-hb-blue dark:bg-blue-500/10 dark:text-hb-blue-light",
-  amber:   "bg-amber-50 text-amber-600 dark:bg-amber-500/10 dark:text-amber-300",
-  indigo:  "bg-indigo-50 text-indigo-600 dark:bg-indigo-500/10 dark:text-indigo-300",
-  emerald: "bg-emerald-50 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-300",
-  violet:  "bg-violet-50 text-violet-600 dark:bg-violet-500/10 dark:text-violet-300",
+  red: iconChip, blue: iconChip, amber: iconChip,
+  indigo: iconChip, emerald: iconChip, violet: iconChip,
 };
 
 export function QuickService() {

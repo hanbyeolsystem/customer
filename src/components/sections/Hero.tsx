@@ -21,7 +21,7 @@ export function Hero() {
         />
         {/* 왼쪽 텍스트는 보호, 오른쪽은 영상이 드러나게 */}
         <div className="absolute inset-0 bg-gradient-to-r from-hb-primary via-hb-primary/65 to-hb-primary/25" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_18%,rgba(242,165,22,0.20),transparent_42%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_18%,rgba(0,144,216,0.28),transparent_45%)]" />
         <div className="absolute inset-0 console-grid opacity-[0.25]" />
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-hb-primary to-transparent" />
       </div>
@@ -31,13 +31,13 @@ export function Hero() {
           {/* ── 텍스트(논제) ── */}
           <div className="lg:col-span-7">
             <div className="hb-rise inline-flex items-center gap-2.5 font-mono text-[11px] font-semibold tracking-[.18em] text-white/70 mb-7">
-              <span className="hb-blink w-2 h-2 rounded-full bg-hb-gold shadow-[0_0_0_4px_rgba(242,165,22,0.2)]" />
+              <span className="hb-blink w-2 h-2 rounded-full bg-hb-azure shadow-[0_0_0_4px_rgba(0,144,216,0.25)]" />
               SYS.ONLINE — 19Y UPTIME
             </div>
 
             <h1 className="text-[34px] sm:text-5xl lg:text-[62px] font-black leading-[1.1] tracking-tight mb-7">
               19년 동안<br />
-              <span className="text-hb-gold">한 번도 멈추지 않은</span><br />
+              <span className="text-hb-azure">한 번도 멈추지 않은</span><br />
               IT 파트너
             </h1>
 
@@ -51,7 +51,7 @@ export function Hero() {
             <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3">
               <Link
                 href="/support/remote"
-                className="inline-flex items-center justify-center gap-2 bg-hb-gold hover:bg-hb-gold-2 text-hb-primary font-extrabold text-[15px] px-7 py-3.5 rounded-xl transition shadow-lg shadow-hb-gold/25"
+                className="inline-flex items-center justify-center gap-2 bg-hb-blue hover:bg-hb-azure text-white font-extrabold text-[15px] px-7 py-3.5 rounded-xl transition shadow-lg shadow-hb-azure/30"
               >
                 <span aria-hidden>▸</span> 원격지원 시작
               </Link>
@@ -82,7 +82,7 @@ export function Hero() {
               {/* 콘솔 헤더 */}
               <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/10 bg-white/[0.04]">
                 <div className="flex items-center gap-2 font-mono text-[12px] font-semibold tracking-wide text-white/80">
-                  <span className="hb-blink w-2 h-2 rounded-full bg-hb-gold" />
+                  <span className="hb-blink w-2 h-2 rounded-full bg-hb-azure" />
                   hanbyeol.ops
                 </div>
                 <span className="font-mono text-[11px] font-semibold tracking-wider text-hb-blue-light">
@@ -102,18 +102,18 @@ export function Hero() {
                       {m.label}
                     </span>
                     <span className="flex items-center gap-3">
-                      <span className="font-mono text-2xl lg:text-[28px] font-bold text-hb-gold leading-none tabular-nums">
+                      <span className="font-mono text-2xl lg:text-[28px] font-bold text-hb-azure leading-none tabular-nums">
                         {m.value}
                       </span>
                       <span
                         className={[
                           "inline-flex items-center gap-1.5 font-mono text-[10px] font-semibold tracking-wider px-2 py-1 rounded-md",
                           m.status === "LIVE"
-                            ? "text-hb-gold bg-hb-gold/12 border border-hb-gold/25"
+                            ? "text-hb-azure bg-hb-azure/12 border border-hb-azure/25"
                             : "text-hb-blue-light bg-hb-blue-light/10 border border-hb-blue-light/20",
                         ].join(" ")}
                       >
-                        <span className={`w-1.5 h-1.5 rounded-full ${m.status === "LIVE" ? "bg-hb-gold hb-blink" : "bg-hb-blue-light"}`} />
+                        <span className={`w-1.5 h-1.5 rounded-full ${m.status === "LIVE" ? "bg-hb-azure hb-blink" : "bg-hb-blue-light"}`} />
                         {m.status}
                       </span>
                     </span>
