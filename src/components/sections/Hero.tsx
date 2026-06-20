@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/data/site";
+import { HeroBackground } from "./HeroBackground";
 
 /* 통계를 "모니터링 지표"로 재해석 — 회사 자체를 무중단 가동 중인 시스템으로 */
 const monitors = site.stats.map((s, i) => ({
@@ -11,19 +11,16 @@ const monitors = site.stats.map((s, i) => ({
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-hb-primary text-white">
-      {/* 배경: 서버실 + 심야 네이비 + 항성골드 글로우(한별=별) */}
+      {/* 배경: 작업 영상 + 심야 네이비 + 항성골드 글로우(한별=별) */}
       <div className="absolute inset-0">
-        <Image
-          src="/hero/server-rack.png"
-          alt="한별시스템이 관리하는 기업 서버실"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover opacity-40"
+        <HeroBackground
+          posterSrc="/hero/server-rack.png"
+          videoSrc="/hero/hero-loop.mp4"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-hb-primary via-hb-primary/85 to-hb-primary/55" />
+        {/* 왼쪽 텍스트는 보호, 오른쪽은 영상이 드러나게 */}
+        <div className="absolute inset-0 bg-gradient-to-r from-hb-primary via-hb-primary/65 to-hb-primary/25" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_18%,rgba(242,165,22,0.20),transparent_42%)]" />
-        <div className="absolute inset-0 console-grid opacity-[0.5]" />
+        <div className="absolute inset-0 console-grid opacity-[0.25]" />
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-hb-primary to-transparent" />
       </div>
 
