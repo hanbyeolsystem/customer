@@ -20,8 +20,8 @@
   --color-hb-azure-2:    #30B4FC;
   --color-hb-azure-soft: #CFEBFB;
 
-  /* 로고 톤의 쿨 화이트/잉크 */
-  --color-hb-bg:         #F2F8FC;
+  /* 로고 톤의 은은한 하늘 배경/잉크 */
+  --color-hb-bg:         #E8F1FB;
   --color-hb-ink:        #06304A;
   --color-hb-mute:       #5A7689;
   --color-hb-line:       #D3E3EE;
@@ -41,11 +41,11 @@
 }
 
 :root {
-  --bg:    #FFFFFF;
-  --panel: #F2F8FC;
+  --bg:    #E8F1FB;  /* 은은한 하늘색 전체 배경 */
+  --panel: #DCEAF7;  /* 섹션 교차용 — 살짝 더 진한 하늘 */
   --ink:   #06304A;
-  --mute:  #5A7689;
-  --line:  #D3E3EE;
+  --mute:  #51708A;
+  --line:  #C8DBEC;
 }
 
 .dark {
