@@ -1,6 +1,7 @@
 import { Hero } from "@/components/sections/Hero";
 import { QuickService } from "@/components/sections/QuickService";
 import { CoreServices } from "@/components/sections/CoreServices";
+import { InfraConsole } from "@/components/sections/InfraConsole";
 import { CaseStudies } from "@/components/sections/CaseStudies";
 import { RentalShop } from "@/components/sections/RentalShop";
 import { BlogFeed } from "@/components/sections/BlogFeed";
@@ -13,6 +14,7 @@ export default function Home() {
       <Hero />
       <QuickService />
       <CoreServices />
+      <InfraConsole />
       <CaseStudies />
       <RentalShop />
       <BlogFeed />
