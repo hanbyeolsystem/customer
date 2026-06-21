@@ -30,7 +30,9 @@ export function HeroBackground({
         fill
         priority
         sizes="100vw"
-        className="object-cover opacity-60"
+        className={`object-cover transition-opacity duration-700 ${
+          ready ? "opacity-0" : "opacity-60"
+        }`}
       />
       {showVideo && (
         <video
