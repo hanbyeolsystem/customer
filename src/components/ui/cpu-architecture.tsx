@@ -11,7 +11,23 @@ export interface CpuArchitectureSvgProps {
   animateText?: boolean;
   animateLines?: boolean;
   animateMarkers?: boolean;
+  /** 8개 선의 시작점에 표시할 라벨 (경로 순서) */
+  labels?: string[];
+  /** 라벨 글자 색 */
+  labelColor?: string;
 }
+
+// 각 경로 시작점 부근의 라벨 위치 (경로 1~8 순서)
+const LABEL_NODES = [
+  { x: 10, y: 14, anchor: "start" },
+  { x: 180, y: 5, anchor: "end" },
+  { x: 130, y: 14, anchor: "middle" },
+  { x: 172, y: 90, anchor: "end" },
+  { x: 135, y: 73, anchor: "middle" },
+  { x: 95, y: 104, anchor: "middle" },
+  { x: 70, y: 98, anchor: "middle" },
+  { x: 30, y: 24, anchor: "middle" },
+] as const;
 
 const CpuArchitecture = ({
   className,
@@ -23,13 +39,17 @@ const CpuArchitecture = ({
   lineMarkerSize = 18,
   animateLines = true,
   animateMarkers = true,
+  labels,
+  labelColor = "currentColor",
 }: CpuArchitectureSvgProps) => {
+  // 중앙 칩 글자 길이에 맞춰 폰트 크기 (한별시스템 등 긴 한글도 박스 안에 맞춤)
+  const cpuFontSize = text.length >= 5 ? 4.2 : text.length >= 3 ? 6 : 7;
   return (
     <svg
       className={cn("text-muted", className)}
       width={width}
       height={height}
-      viewBox="0 0 200 100"
+      viewBox={labels ? "0 -12 200 124" : "0 0 200 100"}
     >
       {/* Paths */}
       <g
@@ -232,16 +252,33 @@ const CpuArchitecture = ({
         />
         {/* CPU Text */}
         <text
-          x="92"
+          x="100"
           y="52.5"
-          fontSize="7"
+          textAnchor="middle"
+          fontSize={cpuFontSize}
           fill={animateText ? "url(#cpu-text-gradient)" : "white"}
           fontWeight="600"
-          letterSpacing="0.05em"
+          letterSpacing="0.03em"
         >
           {text}
         </text>
       </g>
+
+      {/* 시작점 라벨 */}
+      {labels && (
+        <g fontSize="4" fontWeight="700" fill={labelColor} letterSpacing="0.01em">
+          {labels.slice(0, 8).map((label, i) => (
+            <text
+              key={i}
+              x={LABEL_NODES[i].x}
+              y={LABEL_NODES[i].y}
+              textAnchor={LABEL_NODES[i].anchor}
+            >
+              {label}
+            </text>
+          ))}
+        </g>
+      )}
       {/* Masks */}
       <defs>
         <mask id="cpu-mask-1">

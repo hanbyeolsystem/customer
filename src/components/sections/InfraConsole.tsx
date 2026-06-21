@@ -34,8 +34,22 @@ export function InfraConsole() {
 
           {/* CPU 다이어그램 */}
           <div className="rounded-3xl border border-[var(--line)] bg-hb-primary console-grid p-4 sm:p-8 flex items-center justify-center">
-            <div className="w-full aspect-[2/1]">
-              <CpuArchitecture text="HB" className="text-white/25" />
+            <div className="w-full aspect-[200/124]">
+              <CpuArchitecture
+                text="한별시스템"
+                className="text-white/25"
+                labelColor="#cfe6f7"
+                labels={[
+                  "컴퓨터",
+                  "프린터",
+                  "복사기",
+                  "시놀로지나스",
+                  "라벨프린터",
+                  "빔프로젝트",
+                  "핸드프린터",
+                  "노트북",
+                ]}
+              />
             </div>
           </div>
         </div>
