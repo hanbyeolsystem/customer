@@ -17,9 +17,9 @@ export function HeroBackground({
   const [showVideo, setShowVideo] = useState(false);
   const [ready, setReady] = useState(false);
 
+  // 데스크탑/모바일 모두 영상 재생 (포스터는 로딩 전·폴백용으로 항상 SSR)
   useEffect(() => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!reduce) setShowVideo(true);
+    setShowVideo(true);
   }, []);
 
   return (
