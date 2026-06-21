@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import Link from "next/link";
 import { CHAT_ENDPOINT, SUPABASE_ANON_KEY, type ChatMessage } from "@/lib/chat";
 
 const STORAGE_KEY = "hb_chat_v1";
@@ -232,10 +233,49 @@ function Bubble({ role, content }: ChatMessage) {
             : "bg-[var(--panel)] text-[var(--ink)] rounded-bl-sm",
         ].join(" ")}
       >
-        {content}
+        {isUser ? content : renderRich(content)}
       </div>
     </div>
   );
+}
+
+// 답변 속 마크다운 링크 [라벨](경로) 를 클릭 가능한 링크로 변환.
+// 내부 경로(/...)는 SPA 이동(next/link), 외부(http)·전화(tel)는 새로/기본 동작.
+const LINK_RE = /\[([^\]]+)\]\(([^)\s]+)\)/g;
+
+function renderRich(text: string): ReactNode[] {
+  const nodes: ReactNode[] = [];
+  let last = 0;
+  let m: RegExpExecArray | null;
+  LINK_RE.lastIndex = 0;
+  while ((m = LINK_RE.exec(text)) !== null) {
+    if (m.index > last) nodes.push(text.slice(last, m.index));
+    const [, label, href] = m;
+    const cls =
+      "inline font-bold underline underline-offset-2 text-hb-blue dark:text-hb-azure-2 hover:opacity-80";
+    if (href.startsWith("/")) {
+      nodes.push(
+        <Link key={m.index} href={href} className={cls}>
+          {label}
+        </Link>
+      );
+    } else {
+      const external = href.startsWith("http");
+      nodes.push(
+        <a
+          key={m.index}
+          href={href}
+          className={cls}
+          {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        >
+          {label}
+        </a>
+      );
+    }
+    last = m.index + m[0].length;
+  }
+  if (last < text.length) nodes.push(text.slice(last));
+  return nodes;
 }
 
 function Dot({ d = "0ms" }: { d?: string }) {
