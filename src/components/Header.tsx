@@ -10,6 +10,7 @@ import { Icon } from "./Icon";
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [bmHint, setBmHint] = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -17,6 +18,14 @@ export function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const addBookmark = () => {
+    const isMac =
+      typeof navigator !== "undefined" &&
+      /Mac|iPhone|iPad/i.test(navigator.platform || navigator.userAgent);
+    setBmHint(`${isMac ? "⌘ Cmd" : "Ctrl"} + D 를 눌러 즐겨찾기에 추가하세요`);
+    window.setTimeout(() => setBmHint(null), 4000);
+  };
 
   return (
     <header
@@ -69,6 +78,28 @@ export function Header() {
               {site.phone.hours}
             </span>
           </a>
+          <div className="relative">
+            <button
+              type="button"
+              onClick={addBookmark}
+              aria-label="즐겨찾기 추가"
+              className="inline-flex items-center gap-1.5 h-9 px-2.5 rounded-lg border border-[var(--line)] text-[var(--ink)] hover:border-hb-blue hover:text-hb-blue transition text-[13px] font-bold"
+            >
+              <Icon name="star" className="w-4 h-4 text-hb-azure" strokeWidth={1.8} />
+              <span className="hidden sm:inline">즐겨찾기</span>
+            </button>
+            {bmHint && (
+              <div
+                role="status"
+                className="absolute right-0 top-11 z-50 w-60 rounded-xl border border-[var(--line)] bg-[var(--bg)] shadow-xl px-4 py-3 text-[13px] font-semibold text-[var(--ink)]"
+              >
+                <span className="inline-flex items-center gap-1.5">
+                  <Icon name="star" className="w-4 h-4 text-hb-azure shrink-0" strokeWidth={1.8} />
+                  {bmHint}
+                </span>
+              </div>
+            )}
+          </div>
           <ThemeToggle />
           <button
             type="button"

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { quickServices } from "@/data/services";
+import { Icon, type IconName } from "@/components/Icon";
 
 export const metadata = { title: "고객 지원" };
 
@@ -21,7 +22,9 @@ export default function SupportHub() {
                 href={s.href}
                 className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6 hover:border-hb-blue hover:shadow-lg hover:-translate-y-0.5 transition"
               >
-                <div className="text-3xl mb-3">{s.icon}</div>
+                <div className="w-12 h-12 rounded-xl bg-hb-blue-soft text-hb-blue dark:bg-hb-azure/15 dark:text-hb-blue-light flex items-center justify-center mb-3">
+                  <Icon name={s.icon as IconName} className="w-6 h-6" />
+                </div>
                 <h3 className="font-extrabold text-[var(--ink)] text-lg mb-1">{s.label}</h3>
                 <div className="text-[12px] font-bold text-hb-blue">바로가기 →</div>
               </Link>

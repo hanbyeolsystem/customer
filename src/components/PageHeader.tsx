@@ -22,16 +22,16 @@ export function PageHeader({
         >
           ← {backLabel}
         </Link>
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
+          {title}
+        </h1>
         {badge && (
-          <div className="text-[11px] font-extrabold text-hb-blue-light tracking-[.2em] mb-2">
+          <div className="mt-2.5 font-mono text-[11px] font-semibold text-hb-blue-light/75 tracking-[.2em]">
             {badge}
           </div>
         )}
-        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight">
-          {title}
-        </h1>
         {description && (
-          <p className="text-sm lg:text-base text-white/75 mt-3 max-w-3xl leading-relaxed">
+          <p className="text-base lg:text-lg text-white/80 mt-4 max-w-3xl leading-relaxed">
             {description}
           </p>
         )}
