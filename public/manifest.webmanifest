@@ -1,0 +1,18 @@
+{
+  "id": "/",
+  "lang": "ko",
+  "name": "한별시스템 고객센터",
+  "short_name": "한별시스템",
+  "description": "NAS 구축·데이터 백업·복사기 임대·IT 유지관리. 대구·경북 기업의 IT 파트너 한별시스템 고객지원 허브.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#E8F1FB",
+  "theme_color": "#06354F",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

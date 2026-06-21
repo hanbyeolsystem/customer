@@ -110,7 +110,7 @@ export function ChatWidget() {
         aria-expanded={open}
         className="fixed bottom-5 right-5 z-[60] w-14 h-14 rounded-full bg-hb-blue text-white shadow-xl shadow-hb-blue/30 flex items-center justify-center hover:bg-hb-azure transition active:scale-95"
       >
-        {open ? <IconClose /> : <IconChat />}
+        {open ? <IconClose /> : <RobotIcon className="w-7 h-7" />}
         {!open && (
           <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-hb-azure-2 ring-2 ring-[var(--bg)] hb-blink" />
         )}
@@ -125,8 +125,8 @@ export function ChatWidget() {
         >
           {/* 헤더 */}
           <div className="flex items-center gap-3 px-4 py-3 bg-hb-primary text-white shrink-0">
-            <span className="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center text-lg">
-              ⭐
+            <span className="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center text-white">
+              <RobotIcon className="w-6 h-6" />
             </span>
             <div className="leading-tight flex-1">
               <p className="font-extrabold text-[15px]">한별시스템 상담원 별이</p>
@@ -287,10 +287,30 @@ function Dot({ d = "0ms" }: { d?: string }) {
   );
 }
 
-function IconChat() {
+function RobotIcon({ className = "w-6 h-6" }: { className?: string }) {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 9.5 9.5 0 0 1-4-.9L3 21l1.9-5.5a8.5 8.5 0 0 1-.9-4 8.38 8.38 0 0 1 8.5-8.5 8.38 8.38 0 0 1 8.5 8.5z" />
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      {/* 안테나 */}
+      <path d="M12 2.4v2.2" />
+      <circle cx="12" cy="2" r="1.1" fill="currentColor" stroke="none" />
+      {/* 머리 */}
+      <rect x="4" y="6.6" width="16" height="11.4" rx="3.8" />
+      {/* 귀 */}
+      <path d="M2 11v3.2M22 11v3.2" />
+      {/* 눈 */}
+      <circle cx="9.2" cy="12.1" r="1.35" fill="currentColor" stroke="none" />
+      <circle cx="14.8" cy="12.1" r="1.35" fill="currentColor" stroke="none" />
+      {/* 미소 */}
+      <path d="M9.4 15.3c1.7 1.2 3.5 1.2 5.2 0" />
     </svg>
   );
 }

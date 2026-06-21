@@ -2,15 +2,22 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { site, nav } from "@/data/site";
 import { ThemeToggle } from "./ThemeToggle";
 import { Icon } from "./Icon";
+
+// 크롬/엣지/안드로이드가 설치 가능 시 발생시키는 이벤트
+interface BeforeInstallPromptEvent extends Event {
+  prompt: () => Promise<void>;
+  userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
+}
 
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [bmHint, setBmHint] = useState<string | null>(null);
+  const installRef = useRef<BeforeInstallPromptEvent | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -19,12 +26,64 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const addBookmark = () => {
-    const isMac =
-      typeof navigator !== "undefined" &&
-      /Mac|iPhone|iPad/i.test(navigator.platform || navigator.userAgent);
-    setBmHint(`${isMac ? "⌘ Cmd" : "Ctrl"} + D 를 눌러 즐겨찾기에 추가하세요`);
-    window.setTimeout(() => setBmHint(null), 4000);
+  // PWA: 서비스워커 등록 + 설치 프롬프트 캡처
+  useEffect(() => {
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/sw.js").catch(() => {});
+    }
+    const onPrompt = (e: Event) => {
+      e.preventDefault();
+      installRef.current = e as BeforeInstallPromptEvent;
+    };
+    const onInstalled = () => {
+      installRef.current = null;
+      showHint("설치 완료! 바탕화면·홈 화면에서 한별시스템 아이콘을 확인하세요 ✅");
+    };
+    window.addEventListener("beforeinstallprompt", onPrompt);
+    window.addEventListener("appinstalled", onInstalled);
+    return () => {
+      window.removeEventListener("beforeinstallprompt", onPrompt);
+      window.removeEventListener("appinstalled", onInstalled);
+    };
+  }, []);
+
+  const showHint = (msg: string, ms = 5500) => {
+    setBmHint(msg);
+    window.setTimeout(() => setBmHint(null), ms);
+  };
+
+  // 바탕화면/홈 화면 바로가기 추가 — 플랫폼별 분기
+  const addBookmark = async () => {
+    const nav2 = navigator as Navigator & { standalone?: boolean };
+    const standalone =
+      window.matchMedia("(display-mode: standalone)").matches || nav2.standalone === true;
+    if (standalone) {
+      showHint("이미 앱으로 설치되어 있어요. 바탕화면·홈 화면 아이콘을 사용하세요 👍");
+      return;
+    }
+    // 크롬·엣지·안드로이드: 실제 설치 프롬프트
+    if (installRef.current) {
+      installRef.current.prompt();
+      const { outcome } = await installRef.current.userChoice;
+      installRef.current = null;
+      showHint(
+        outcome === "accepted"
+          ? "설치 중이에요. 잠시 후 아이콘이 생깁니다 ✅"
+          : "설치를 취소했어요. 언제든 다시 눌러주세요.",
+      );
+      return;
+    }
+    const ua = navigator.userAgent || "";
+    // iOS 사파리: 자동 설치 불가 — 수동 안내
+    if (/iPhone|iPad|iPod/i.test(ua)) {
+      showHint("사파리 하단 '공유' → '홈 화면에 추가' 를 누르면 아이콘이 생겨요.");
+      return;
+    }
+    // 그 외(설치 조건 대기·파이어폭스 등): 단축키/주소창 안내
+    const isMac = /Mac/i.test(navigator.platform || ua);
+    showHint(
+      `${isMac ? "⌘ Cmd" : "Ctrl"} + D 로 즐겨찾기에 추가할 수 있어요. 크롬·엣지는 주소창의 '설치' 아이콘으로 바탕화면 바로가기를 만들 수 있습니다.`,
+    );
   };
 
   return (
@@ -91,7 +150,7 @@ export function Header() {
             {bmHint && (
               <div
                 role="status"
-                className="absolute right-0 top-11 z-50 w-60 rounded-xl border border-[var(--line)] bg-[var(--bg)] shadow-xl px-4 py-3 text-[13px] font-semibold text-[var(--ink)]"
+                className="absolute right-0 top-11 z-50 w-72 rounded-xl border border-[var(--line)] bg-[var(--bg)] shadow-xl px-4 py-3 text-[13px] font-semibold leading-relaxed text-[var(--ink)]"
               >
                 <span className="inline-flex items-center gap-1.5">
                   <Icon name="star" className="w-4 h-4 text-hb-azure shrink-0" strokeWidth={1.8} />
