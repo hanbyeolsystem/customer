@@ -3,12 +3,13 @@
 import { useState } from "react";
 import { PageHeader } from "@/components/PageHeader";
 import { site } from "@/data/site";
+import { sendContact } from "@/lib/contact";
 
 export default function QuotePage() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
   const [alert, setAlert] = useState<string | null>(null);
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
     const company = String(fd.get("company") ?? "").trim();
@@ -20,20 +21,37 @@ export default function QuotePage() {
     }
     const interest = fd.getAll("interest").join(", ") || "(미선택)";
     const message  = String(fd.get("message") ?? "").trim() || "(없음)";
-    const subject  = `[견적/상담 요청] ${company} / ${name} (${phone})`;
-    const body =
-      `[한별시스템 견적·상담 요청]\n` +
-      `────────────────────────────\n\n` +
-      `• 회사명: ${company}\n` +
-      `• 담당자: ${name}\n` +
-      `• 연락처: ${phone}\n` +
-      `• 관심분야: ${interest}\n\n` +
-      `─ 내용 ─\n${message}\n\n` +
-      `────────────────────────────\n` +
-      `※ ${site.url} 견적 요청 페이지에서 제출됨`;
-    window.location.href =
-      `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setSubmitted(true);
+
+    setAlert(null);
+    setStatus("sending");
+    const ok = await sendContact("상담·견적", [
+      { label: "회사명", value: company },
+      { label: "담당자", value: name },
+      { label: "연락처", value: phone },
+      { label: "관심분야", value: interest },
+      { label: "내용", value: message },
+    ]);
+    setStatus(ok ? "done" : "error");
+  }
+
+  if (status === "done") {
+    return (
+      <>
+        <PageHeader badge="REQUEST QUOTE" title="상담 · 견적 신청" description="짧게 남겨주시면 한별 컨설턴트가 1영업일 내 회신드립니다." />
+        <section className="py-16 lg:py-24 bg-[var(--bg)]">
+          <div className="max-w-md mx-auto px-4 text-center">
+            <div className="w-16 h-16 mx-auto rounded-2xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center text-3xl mb-5">✓</div>
+            <h2 className="text-xl font-black text-[var(--ink)] mb-2">상담 신청이 접수되었습니다</h2>
+            <p className="text-sm text-[var(--mute)] leading-relaxed mb-6">
+              담당자가 확인 후 1영업일 내 연락드립니다.<br />급하신 경우 아래로 바로 연락 주세요.
+            </p>
+            <a href={site.phone.mainHref} className="inline-flex items-center gap-2 bg-gradient-to-r from-hb-primary to-hb-blue text-white font-extrabold px-7 py-3.5 rounded-xl shadow-lg">
+              전화 상담 {site.phone.main}
+            </a>
+          </div>
+        </section>
+      </>
+    );
   }
 
   return (
@@ -76,21 +94,23 @@ export default function QuotePage() {
                 {alert}
               </div>
             )}
-            <button
-              type="submit"
-              className="w-full bg-gradient-to-r from-hb-primary to-hb-blue hover:opacity-95 text-white font-extrabold text-base py-4 rounded-xl shadow-lg transition"
-            >
-              📨 상담 신청하기
-            </button>
-            <p className="text-[11px] text-[var(--mute)] text-center leading-relaxed">
-              버튼을 누르면 메일 앱이 열립니다. 그대로 보내주시면 됩니다.<br />
-              급하신 경우 <a href={site.phone.mainHref} className="text-hb-blue font-bold">{site.phone.main}</a> 으로 직접 연락 주세요.
-            </p>
-            {submitted && (
-              <div className="bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 text-emerald-700 dark:text-emerald-300 rounded-xl px-4 py-3 text-sm font-semibold text-center">
-                ✓ 메일 앱이 열렸습니다. 발송해 주시면 1영업일 내 회신드립니다.
+            {status === "error" && (
+              <div className="bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/20 text-red-700 dark:text-red-300 rounded-xl px-4 py-3 text-sm font-semibold">
+                전송에 실패했습니다. 잠시 후 다시 시도하시거나{" "}
+                <a href={site.phone.mainHref} className="underline font-bold">{site.phone.main}</a> 으로 연락 주세요.
               </div>
             )}
+            <button
+              type="submit"
+              disabled={status === "sending"}
+              className="w-full bg-gradient-to-r from-hb-primary to-hb-blue hover:opacity-95 disabled:opacity-60 disabled:cursor-not-allowed text-white font-extrabold text-base py-4 rounded-xl shadow-lg transition"
+            >
+              {status === "sending" ? "전송 중…" : "📨 상담 신청하기"}
+            </button>
+            <p className="text-[11px] text-[var(--mute)] text-center leading-relaxed">
+              버튼을 누르면 담당자에게 즉시 접수됩니다.<br />
+              급하신 경우 <a href={site.phone.mainHref} className="text-hb-blue font-bold">{site.phone.main}</a> 으로 직접 연락 주세요.
+            </p>
           </form>
         </div>
       </section>
