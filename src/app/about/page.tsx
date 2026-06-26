@@ -33,28 +33,68 @@ const values: { icon: IconName; title: string; desc: string }[] = [
 const partners = ["Synology", "EPSON", "FujiFilm BI", "Kyocera", "HP", "Canon"];
 
 // 회사 연혁 (최신순). highlight = 강조 마일스톤
-const history: { date: string; text: string; highlight?: boolean }[] = [
-  { date: "2026.03", text: "Synology(시놀로지) NAS 공식 대리점 체결", highlight: true },
-  { date: "2023.01", text: "위더스컴퓨터 2022년도 최우수 대리점 입상" },
-  { date: "2019.10", text: "교세라도큐먼트 서비스센터 선정" },
-  { date: "2019.01", text: "위더스컴퓨터 2018년도 우수 대리점 입상" },
-  { date: "2017.04", text: "교세라도큐먼트 2016년 최우수 성장점 입상" },
-  { date: "2017.02", text: "위더스컴퓨터 2016년 우수 대리점 입상" },
-  { date: "2017.01", text: "고덱스(GoDEX) 라벨프린터 대리점 계약" },
-  { date: "2016.04", text: "교세라도큐먼트 2015년 최우수 성장점 입상" },
-  { date: "2016.01", text: "위더스컴퓨터 대리점 및 대구달서센터 계약" },
-  { date: "2015.06", text: "늑대와여우 2015년 판매 우수대리점 선정" },
-  { date: "2014.05", text: "브라더코리아 프리미엄 센터 선정" },
-  { date: "2013.09", text: "토너공장 및 사무실 확장이전 (월암동 1074)" },
-  { date: "2013.07", text: "교세라도큐먼트솔루션코리아 대리점 등록" },
-  { date: "2012.07", text: "에버콜 PC 서비스 부문 우수센터 선정" },
-  { date: "2012.02", text: "브라더 2011년 하반기 판매 우수대리점 선정" },
-  { date: "2011.01", text: "브라더코리아 서비스센터 등록" },
-  { date: "2011.01", text: "LH공사(대구경북지역본부) PC 유지보수 계약" },
-  { date: "2011.01", text: "늑대와여우 2010년 판매 우수대리점 선정" },
-  { date: "2010.02", text: "늑대와여우(성서공단특판점) 대구서부센터 등록" },
-  { date: "2009.09", text: "에버콜 그린센터 협력업체 선정 (PC서비스)" },
-  { date: "2008.09", text: "늑대와여우컴퓨터(성서공단특판점) 대리점 시작" },
+// 시대(era)별 연혁 — 성장 스텝 차트 + 표 로 시각화
+type Milestone = { date: string; text: string; highlight?: boolean };
+const eras: {
+  name: string;
+  range: string;
+  headline: string;
+  bar: number; // 성장 그래프 막대 높이(%)
+  highlight?: boolean;
+  items: Milestone[];
+}[] = [
+  {
+    name: "태동기",
+    range: "2008 – 2011",
+    headline: "PC 유지보수로 출발, 대구 서부 기반 구축",
+    bar: 40,
+    items: [
+      { date: "2008.09", text: "늑대와여우컴퓨터(성서공단특판점) 대리점 시작" },
+      { date: "2009.09", text: "에버콜 그린센터 협력업체 선정 (PC서비스)" },
+      { date: "2010.02", text: "늑대와여우(성서공단특판점) 대구서부센터 등록" },
+      { date: "2011.01", text: "늑대와여우 2010년 판매 우수대리점 선정" },
+      { date: "2011.01", text: "LH공사(대구경북지역본부) PC 유지보수 계약" },
+      { date: "2011.01", text: "브라더코리아 서비스센터 등록" },
+    ],
+  },
+  {
+    name: "성장기",
+    range: "2012 – 2016",
+    headline: "복사기·토너 사업 확장, 자체 토너공장 이전",
+    bar: 64,
+    items: [
+      { date: "2012.02", text: "브라더 2011년 하반기 판매 우수대리점 선정" },
+      { date: "2012.07", text: "에버콜 PC 서비스 부문 우수센터 선정" },
+      { date: "2013.07", text: "교세라도큐먼트솔루션코리아 대리점 등록" },
+      { date: "2013.09", text: "토너공장 및 사무실 확장이전 (월암동 1074)" },
+      { date: "2014.05", text: "브라더코리아 프리미엄 센터 선정" },
+      { date: "2015.06", text: "늑대와여우 2015년 판매 우수대리점 선정" },
+      { date: "2016.01", text: "위더스컴퓨터 대리점 및 대구달서센터 계약" },
+      { date: "2016.04", text: "교세라도큐먼트 2015년 최우수 성장점 입상" },
+    ],
+  },
+  {
+    name: "안정기",
+    range: "2017 – 2023",
+    headline: "최우수 대리점 연속 입상으로 입지 확립",
+    bar: 82,
+    items: [
+      { date: "2017.01", text: "고덱스(GoDEX) 라벨프린터 대리점 계약" },
+      { date: "2017.02", text: "위더스컴퓨터 2016년 우수 대리점 입상" },
+      { date: "2017.04", text: "교세라도큐먼트 2016년 최우수 성장점 입상" },
+      { date: "2019.01", text: "위더스컴퓨터 2018년도 우수 대리점 입상" },
+      { date: "2019.10", text: "교세라도큐먼트 서비스센터 선정" },
+      { date: "2023.01", text: "위더스컴퓨터 2022년도 최우수 대리점 입상" },
+    ],
+  },
+  {
+    name: "도약기",
+    range: "2024 – 2026",
+    headline: "NAS·데이터 인프라 전문기업으로 도약",
+    bar: 100,
+    highlight: true,
+    items: [{ date: "2026.03", text: "Synology(시놀로지) NAS 공식 대리점 체결", highlight: true }],
+  },
 ];
 
 export default function AboutPage() {
@@ -88,10 +128,18 @@ export default function AboutPage() {
               {site.stats.map((s) => (
                 <div
                   key={s.label}
-                  className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6 lg:p-7 text-center"
+                  className="relative overflow-hidden bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6 lg:p-7"
                 >
-                  <div className="text-3xl lg:text-4xl font-black text-hb-blue tabular-nums">{s.value}</div>
-                  <div className="text-sm font-bold text-[var(--mute)] mt-1.5">{s.label}</div>
+                  <div className="text-4xl lg:text-5xl font-black text-hb-blue tabular-nums leading-none">
+                    {s.value}
+                  </div>
+                  <div className="text-sm font-bold text-[var(--mute)] mt-2.5">{s.label}</div>
+                  <div className="mt-4 h-1.5 rounded-full bg-[var(--line)] overflow-hidden">
+                    <div className="h-full w-full rounded-full bg-gradient-to-r from-hb-blue to-hb-azure" />
+                  </div>
+                  <div className="pointer-events-none absolute -right-3 -top-4 text-7xl font-black text-hb-blue/5 select-none">
+                    {s.value.replace(/[^0-9]/g, "")}
+                  </div>
                 </div>
               ))}
             </div>
@@ -182,51 +230,91 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 4.5 회사 연혁 */}
+      {/* 4.5 회사 연혁 — 성장 그래프 + 시대별 표 */}
       <section className="py-14 lg:py-20 bg-[var(--bg)]">
-        <div className="max-w-3xl mx-auto px-4 lg:px-6">
-          <div className="eyebrow mb-3">HISTORY</div>
-          <h2 className="text-2xl lg:text-3xl font-black text-[var(--ink)] mb-2">회사 연혁</h2>
-          <p className="text-sm text-[var(--mute)] mb-10 lg:mb-12">
-            2008년 작은 컴퓨터 대리점에서 시작해 — 2026년 Synology NAS 공식 대리점까지, 한별이 걸어온 길입니다.
-          </p>
-          <ol className="relative ml-2 border-l-2 border-[var(--line)] space-y-6">
-            {history.map((h, i) => (
-              <li key={`${h.date}-${i}`} className="relative pl-6 lg:pl-8">
-                <span
+        <div className="max-w-4xl mx-auto px-4 lg:px-6">
+          <div className="text-center mb-10 lg:mb-12">
+            <div className="eyebrow mb-3">HISTORY</div>
+            <h2 className="text-2xl lg:text-3xl font-black text-[var(--ink)] mb-2">한별이 걸어온 길</h2>
+            <p className="text-sm text-[var(--mute)]">
+              2008년 컴퓨터 대리점에서 출발 — 2026년 Synology NAS 공식 대리점까지
+            </p>
+          </div>
+
+          {/* 성장 스텝 차트 */}
+          <div className="bg-[var(--panel)] border border-[var(--line)] rounded-3xl p-6 lg:p-10 mb-8">
+            <div className="flex items-end gap-3 sm:gap-6 h-44 lg:h-56">
+              {eras.map((e) => (
+                <div key={e.name} className="flex-1 flex flex-col items-center justify-end h-full">
+                  <div className="text-[11px] lg:text-xs font-extrabold text-[var(--mute)] mb-1.5 tabular-nums">
+                    {e.items.length}건
+                  </div>
+                  <div
+                    className={
+                      "w-full rounded-t-xl relative transition-all " +
+                      (e.highlight
+                        ? "bg-gradient-to-t from-hb-blue to-hb-azure shadow-[0_0_22px_rgba(0,144,216,0.45)]"
+                        : "bg-gradient-to-t from-hb-primary to-hb-blue")
+                    }
+                    style={{ height: `${e.bar}%` }}
+                  >
+                    {e.highlight && (
+                      <span className="absolute -top-5 left-1/2 -translate-x-1/2 text-hb-azure text-base">★</span>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="flex gap-3 sm:gap-6 mt-3 border-t border-[var(--line)] pt-3">
+              {eras.map((e) => (
+                <div key={e.name} className="flex-1 text-center">
+                  <div className={"font-extrabold text-[13px] lg:text-sm " + (e.highlight ? "text-hb-azure" : "text-[var(--ink)]")}>
+                    {e.name}
+                  </div>
+                  <div className="font-mono text-[10px] lg:text-[11px] text-[var(--mute)] mt-0.5">{e.range}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* 시대별 이정표 표 */}
+          <div className="space-y-4 lg:space-y-5">
+            {eras.map((e) => (
+              <div key={e.name} className="rounded-2xl border border-[var(--line)] overflow-hidden">
+                <div
                   className={
-                    "absolute top-1.5 -left-[7px] w-3 h-3 rounded-full border-2 border-[var(--bg)] " +
-                    (h.highlight
-                      ? "bg-hb-azure shadow-[0_0_0_4px_rgba(0,144,216,0.22)]"
-                      : "bg-hb-blue/45")
+                    "flex flex-wrap items-center gap-x-2.5 gap-y-0.5 px-5 py-3.5 " +
+                    (e.highlight ? "bg-hb-primary" : "bg-[var(--panel)]")
                   }
-                />
-                {h.highlight ? (
-                  <div className="relative overflow-hidden rounded-2xl bg-hb-primary text-white p-5 lg:p-6 -mt-1 shadow-xl">
-                    <div className="absolute inset-0 console-grid opacity-50" />
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_90%_0%,rgba(0,144,216,0.28),transparent_60%)]" />
-                    <div className="relative">
-                      <div className="inline-flex items-center gap-2 font-mono text-[10px] font-bold tracking-[.18em] text-hb-azure mb-2">
-                        <span className="hb-blink w-1.5 h-1.5 rounded-full bg-hb-azure" />
-                        LATEST MILESTONE
-                      </div>
-                      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                        <time className="font-mono text-sm font-black text-white tabular-nums">{h.date}</time>
-                        <span className="text-base lg:text-lg font-extrabold">{h.text}</span>
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-0.5 sm:gap-4">
-                    <time className="font-mono text-[13px] font-bold text-hb-blue tabular-nums shrink-0 w-[52px]">
-                      {h.date}
-                    </time>
-                    <p className="text-[14.5px] text-[var(--ink)] leading-snug">{h.text}</p>
-                  </div>
-                )}
-              </li>
+                >
+                  <span className={"font-black " + (e.highlight ? "text-white" : "text-[var(--ink)]")}>{e.name}</span>
+                  <span className={"font-mono text-xs " + (e.highlight ? "text-hb-azure" : "text-hb-blue")}>{e.range}</span>
+                  <span className={"text-[12px] " + (e.highlight ? "text-white/70" : "text-[var(--mute)]")}>
+                    · {e.headline}
+                  </span>
+                </div>
+                <table className="w-full text-sm bg-[var(--bg)]">
+                  <tbody>
+                    {e.items.map((m, i) => (
+                      <tr key={`${m.date}-${i}`} className="border-t border-[var(--line)] first:border-t-0">
+                        <td className="py-2.5 pl-5 pr-3 align-top w-[70px] font-mono text-[12px] font-bold text-hb-blue tabular-nums whitespace-nowrap">
+                          {m.date}
+                        </td>
+                        <td className={"py-2.5 pr-5 leading-snug " + (m.highlight ? "font-extrabold text-[var(--ink)]" : "text-[var(--ink)]/90")}>
+                          {m.text}
+                          {m.highlight && (
+                            <span className="ml-2 inline-block text-[10px] font-bold text-white bg-hb-azure rounded-full px-2 py-0.5 align-middle">
+                              공식 대리점
+                            </span>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             ))}
-          </ol>
+          </div>
         </div>
       </section>
 
