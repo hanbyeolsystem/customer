@@ -5,10 +5,12 @@ import { embedHref } from "@/lib/embed";
 
 export const metadata: Metadata = {
   title: "드라이버 다운로드",
-  description: "한별드라이브 (882.kr) 와 제조사 공식 지원 페이지에서 프린터 드라이버를 받을 수 있습니다.",
+  description: "한별드라이버모음 (882.kr) 과 제조사 공식 지원 페이지에서 프린터 드라이버를 받을 수 있습니다.",
 };
 
 const HANBYEOL_DRIVE = "https://882.kr/";
+// 딸깍P드라이버 설치기 직접 다운로드 (882 파일배포, 한글 파일명 percent-encoding 고정값)
+const DDALKKAK_P_DRIVER = "https://882.kr/?code=%EB%94%B8%EA%B9%8DP%EB%93%9C%EB%9D%BC%EC%9D%B4%EB%B2%84.exe";
 
 const brands = [
   { name: "교세라",  en: "Kyocera",  url: "https://www.kyoceradocumentsolutions.com/kr/download/index_ko.html" },
@@ -24,13 +26,13 @@ export default function DriversPage() {
       <PageHeader
         badge="DRIVERS"
         title="드라이버 다운로드"
-        description="한별드라이브가 가장 빠른 방법입니다. 제조사 공식 페이지에서도 받으실 수 있습니다."
+        description="한별드라이버모음이 가장 빠른 방법입니다. 제조사 공식 페이지에서도 받으실 수 있습니다."
       />
       <section className="py-12 lg:py-16 bg-[var(--bg)]">
         <div className="max-w-5xl mx-auto px-4 lg:px-6">
-          {/* 1) 한별드라이브 — 메인 다운로드 채널 */}
+          {/* 1) 한별드라이버모음 — 메인 다운로드 채널 */}
           <Link
-            href={embedHref(HANBYEOL_DRIVE, "한별드라이브")}
+            href={embedHref(HANBYEOL_DRIVE, "한별드라이버모음")}
             className="group relative overflow-hidden block bg-gradient-to-br from-hb-primary via-hb-blue to-hb-blue-light text-white rounded-2xl p-5 lg:p-6 shadow-xl hover:shadow-[0_16px_40px_-12px_rgba(37,99,235,0.55)] hover:-translate-y-0.5 transition mb-6"
           >
             <div className="absolute -top-16 -right-16 w-48 h-48 bg-white/10 rounded-full blur-3xl" />
@@ -41,22 +43,45 @@ export default function DriversPage() {
                   한별 추천
                 </div>
                 <h2 className="text-lg lg:text-xl font-black leading-tight">
-                  한별드라이브
+                  한별드라이버모음
                 </h2>
                 <p className="text-[12px] lg:text-sm text-white/80 mt-0.5">
                   한별 통합 드라이버 다운로드 센터
                 </p>
               </div>
               <div className="hidden sm:inline-flex items-center gap-1 bg-white text-hb-primary font-extrabold text-sm px-4 py-2 rounded-lg shadow group-hover:bg-amber-50 transition flex-shrink-0">
-                한별드라이브 바로가기 →
+                한별드라이버모음 바로가기 →
               </div>
               <div className="sm:hidden text-2xl flex-shrink-0 group-hover:translate-x-1 transition">→</div>
             </div>
           </Link>
 
+          {/* 1-1) 딸깍P드라이버 — 설치기 직접 다운로드 */}
+          <a
+            href={DDALKKAK_P_DRIVER}
+            className="group flex items-center gap-4 bg-[var(--panel)] border-2 border-hb-blue/40 rounded-2xl p-4 lg:p-5 mb-6 hover:border-hb-blue hover:shadow-lg hover:-translate-y-0.5 transition"
+          >
+            <div className="text-3xl flex-shrink-0">🖱</div>
+            <div className="flex-1 min-w-0">
+              <div className="text-[10px] font-extrabold tracking-[.18em] text-hb-blue mb-0.5">
+                추천 · 클릭 한 번 자동 설치
+              </div>
+              <h3 className="text-base lg:text-lg font-black text-[var(--ink)] leading-tight">
+                딸깍P드라이버
+              </h3>
+              <p className="text-[12px] lg:text-sm text-[var(--mute)] mt-0.5">
+                프린터를 자동으로 찾아 드라이버 설치부터 스캔 설정까지 한 번에
+              </p>
+            </div>
+            <div className="hidden sm:inline-flex items-center gap-1 bg-hb-blue text-white font-extrabold text-sm px-4 py-2 rounded-lg shadow group-hover:bg-hb-primary transition flex-shrink-0">
+              ⬇ 바로 다운로드
+            </div>
+            <div className="sm:hidden text-2xl flex-shrink-0 group-hover:translate-x-1 transition">⬇</div>
+          </a>
+
           {/* 2) 제조사 공식 사이트 */}
           <div className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-4 mb-5 text-sm text-[var(--mute)] leading-relaxed">
-            💡 한별드라이브에서 못 찾으셨다면 아래 제조사 공식 페이지에서 모델명으로 검색하세요. 모델명을 모르시면 한별로 연락 주시면 함께 찾아드립니다.
+            💡 한별드라이버모음에서 못 찾으셨다면 아래 제조사 공식 페이지에서 모델명으로 검색하세요. 모델명을 모르시면 한별로 연락 주시면 함께 찾아드립니다.
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 lg:gap-4">
             {brands.map((b) => (
