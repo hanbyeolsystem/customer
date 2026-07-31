@@ -1,0 +1,58 @@
+name: Naver → Blogger crosspost
+
+on:
+  workflow_dispatch:
+    inputs:
+      backfill:
+        description: "최근 N건 강제 발행 (기본 0 = 새 글만)"
+        default: "0"
+  schedule:
+    # 매일 3회(KST 09:40 / 15:40 / 21:40) — 사이트 재빌드 20분 뒤 실행
+    - cron: "40 0,6,12 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: blogger-crosspost
+  cancel-in-progress: false
+
+jobs:
+  crosspost:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Crosspost new Naver posts to Blogger
+        env:
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
+          BLOGGER_BLOG_ID: ${{ secrets.BLOGGER_BLOG_ID }}
+        run: |
+          if [ -z "$GOOGLE_REFRESH_TOKEN" ]; then
+            echo "::notice::Blogger secrets 미설정 — 크로스포스팅 건너뜀 (scripts/blogger-auth.mjs 로 설정)"
+            exit 0
+          fi
+          BF="${{ github.event.inputs.backfill || '0' }}"
+          if [ "$BF" != "0" ]; then
+            node scripts/naver-to-blogger.mjs --backfill "$BF"
+          else
+            node scripts/naver-to-blogger.mjs
+          fi
+
+      - name: Commit state file
+        run: |
+          if git diff --quiet scripts/blogger-state.json 2>/dev/null; then
+            echo "state 변경 없음"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/blogger-state.json
+          git commit -m "chore: blogger crosspost state 갱신 [skip ci]"
+          git push
