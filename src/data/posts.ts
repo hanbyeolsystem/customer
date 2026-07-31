@@ -6,7 +6,8 @@ export type Post = {
   category: string;
 };
 
-// 네이버 블로그(blog.naver.com/hanbyeolsystem) 실제 게시글 — 2026-06-20 기준 최신 8건
+// ⚠️ 이 목록은 이제 "폴백"용. 실제 표시는 빌드 시 네이버 RSS(src/lib/naver.ts)에서 가져온다.
+// 네이버 RSS 장애 시에만 아래 스냅샷(2026-06-20 기준)이 노출됨.
 export const posts: Post[] = [
   {
     title: "시놀로지 나스 서버 NAS 속도 관리 방법 전문 업체의 도움이 필요한 이유",

@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { posts } from "@/data/posts";
+import { getNaverPosts } from "@/lib/naver";
 import { embedHref } from "@/lib/embed";
 
-export function BlogFeed() {
+export async function BlogFeed() {
+  const posts = await getNaverPosts(8);
   return (
     <section className="py-16 lg:py-24 bg-[var(--panel)]">
       <div className="max-w-7xl mx-auto px-4 lg:px-6">

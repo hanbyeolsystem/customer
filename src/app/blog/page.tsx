@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
-import { posts } from "@/data/posts";
+import { getNaverPosts } from "@/lib/naver";
 import { embedHref } from "@/lib/embed";
 
 export const metadata: Metadata = { title: "한별시스템 소식" };
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const posts = await getNaverPosts(12);
   return (
     <>
       <PageHeader badge="BLOG" title="한별시스템 소식" description="Synology·랜섬웨어·운영 노하우. 네이버 블로그 전체 글은 외부 링크로 열립니다." />

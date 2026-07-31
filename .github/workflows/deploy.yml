@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    # 매일 3회(KST 09:20 / 15:20 / 21:20) 재빌드 — 네이버 블로그 RSS 새 글 자동 반영
+    - cron: "20 0,6,12 * * *"
 
 permissions:
   contents: read
