@@ -30,8 +30,20 @@ export async function BlogFeed() {
             <Link
               key={p.title}
               href={embedHref(p.href, p.title)}
-              className="group bg-[var(--bg)] border border-[var(--line)] rounded-2xl p-5 lg:p-6 hover:shadow-xl hover:border-hb-blue hover:-translate-y-1 transition flex flex-col"
+              className="group bg-[var(--bg)] border border-[var(--line)] rounded-2xl overflow-hidden hover:shadow-xl hover:border-hb-blue hover:-translate-y-1 transition flex flex-col"
             >
+              {p.thumb && (
+                <div className="aspect-[16/10] overflow-hidden bg-hb-blue-soft">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={p.thumb}
+                    alt=""
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                  />
+                </div>
+              )}
+              <div className="p-5 lg:p-6 flex flex-col flex-1">
               <div className="flex items-center justify-between mb-3">
                 <span className="text-[10px] font-extrabold text-hb-blue bg-hb-blue-soft px-2 py-1 rounded-full tracking-wider">
                   {p.category}
@@ -46,6 +58,7 @@ export async function BlogFeed() {
               </p>
               <div className="text-[12px] font-bold text-hb-blue mt-4 inline-flex items-center gap-1">
                 자세히 보기 →
+              </div>
               </div>
             </Link>
           ))}

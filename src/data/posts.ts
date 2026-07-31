@@ -4,6 +4,7 @@ export type Post = {
   date: string;
   href: string;
   category: string;
+  thumb?: string; // 대표 사진 (네이버 RSS 첫 이미지)
 };
 
 // ⚠️ 이 목록은 이제 "폴백"용. 실제 표시는 빌드 시 네이버 RSS(src/lib/naver.ts)에서 가져온다.

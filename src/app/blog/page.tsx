@@ -14,14 +14,27 @@ export default async function BlogPage() {
       <section className="py-12 lg:py-16 bg-[var(--bg)]">
         <div className="max-w-5xl mx-auto px-4 lg:px-6 grid sm:grid-cols-2 gap-5">
           {posts.map((p) => (
-            <Link key={p.title} href={embedHref(p.href, p.title)} className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6 hover:border-hb-blue hover:shadow-lg transition flex flex-col">
-              <div className="flex items-center justify-between mb-2.5">
-                <span className="text-[10px] font-extrabold text-hb-blue bg-hb-blue-soft px-2 py-1 rounded-full tracking-wider">{p.category}</span>
-                <time className="text-xs text-[var(--mute)]">{p.date}</time>
+            <Link key={p.title} href={embedHref(p.href, p.title)} className="group bg-[var(--panel)] border border-[var(--line)] rounded-2xl overflow-hidden hover:border-hb-blue hover:shadow-lg transition flex flex-col">
+              {p.thumb && (
+                <div className="aspect-[16/9] overflow-hidden bg-hb-blue-soft">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={p.thumb}
+                    alt=""
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                  />
+                </div>
+              )}
+              <div className="p-6 flex flex-col flex-1">
+                <div className="flex items-center justify-between mb-2.5">
+                  <span className="text-[10px] font-extrabold text-hb-blue bg-hb-blue-soft px-2 py-1 rounded-full tracking-wider">{p.category}</span>
+                  <time className="text-xs text-[var(--mute)]">{p.date}</time>
+                </div>
+                <h3 className="font-extrabold text-[var(--ink)] text-lg leading-tight mb-2">{p.title}</h3>
+                <p className="text-sm text-[var(--mute)] leading-relaxed flex-1">{p.excerpt}</p>
+                <div className="text-[12px] font-bold text-hb-blue mt-4">자세히 보기 →</div>
               </div>
-              <h3 className="font-extrabold text-[var(--ink)] text-lg leading-tight mb-2">{p.title}</h3>
-              <p className="text-sm text-[var(--mute)] leading-relaxed flex-1">{p.excerpt}</p>
-              <div className="text-[12px] font-bold text-hb-blue mt-4">자세히 보기 →</div>
             </Link>
           ))}
         </div>
