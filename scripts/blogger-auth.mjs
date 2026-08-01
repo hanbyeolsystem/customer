@@ -78,5 +78,6 @@ const server = createServer(async (req, res) => {
 server.listen(PORT, () => {
   console.log("브라우저에서 구글 로그인 창이 열립니다...");
   console.log("안 열리면 이 주소를 직접 여세요:\n" + authUrl + "\n");
-  exec(`start "" "${authUrl.replace(/&/g, "^&")}"`); // Windows
+  // cmd 의 start: URL 을 따옴표로 감싸면 & 이스케이프 불필요 (^& 로 바꾸면 오히려 주소가 깨짐)
+  exec(`start "" "${authUrl}"`); // Windows
 });
