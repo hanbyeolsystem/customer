@@ -43,12 +43,40 @@ export const viewport: Viewport = {
   themeColor: "#06354F",
 };
 
+// GEO: AI·검색엔진이 회사 정보를 "확인"으로 읽게 하는 구조화 데이터
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: site.name,
+  alternateName: site.nameEn,
+  description: site.description,
+  url: site.url,
+  telephone: site.phone.main,
+  email: site.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.address.street,
+    addressLocality: "대구광역시 달서구",
+    addressCountry: "KR",
+  },
+  openingHours: "Mo-Fr 09:00-18:00",
+  sameAs: [site.social.blog, site.social.instagram, site.social.threads],
+  areaServed: "대구·경북",
+  knowsAbout: [
+    "NAS 구축", "데이터 백업", "복사기 임대", "프린터 임대", "기업 IT 유지관리",
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ko" suppressHydrationWarning className="h-full">
       <body className="min-h-full flex flex-col antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <ThemeProvider>
           <Header />
           <main className="flex-1">{children}</main>
