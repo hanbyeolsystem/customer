@@ -8,7 +8,7 @@
 
 ## 정체
 - GitHub: https://github.com/hanbyeolsystem/customer
-- 호스팅: **Vercel** (사용자가 vercel.com/new 에서 임포트 후 자동 배포)
+- 호스팅: **GitHub Pages** — `.github/workflows/deploy.yml`이 main push 시 Next 정적 빌드 후 자동 배포 (약 1분 소요, CDN 캐시 max-age=600 이라 반영 확인은 최대 10분 후). ※ 과거 문서의 "Vercel" 표기는 오기(2026-08-22 정정). 응답 헤더 Server: GitHub.com 으로 확인됨.
 - 도메인: `한별시스템.kr` (퓨니코드 `xn--bm3bm1i1e348cgwe.kr`) — `public/CNAME`
   ※ 과거 문서에 "한별고객센터.kr"로 잘못 적혀 있었음(2026-08-22 정정). 한별고객센터.kr의 퓨니코드는 `xn--i49alou70b2kep5x7wf.kr`로 전혀 다른 도메인.
 
