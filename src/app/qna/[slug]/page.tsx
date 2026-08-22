@@ -1,0 +1,93 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { PageHeader } from "@/components/PageHeader";
+import { qna, qnaBySlug, qnaCats } from "@/data/qna";
+import { site } from "@/data/site";
+
+export function generateStaticParams() {
+  return qna.map((f) => ({ slug: f.slug }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const f = qnaBySlug(slug);
+  if (!f) return {};
+  return {
+    title: f.q,
+    description: f.a.slice(0, 155),
+  };
+}
+
+export default async function QnaDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const f = qnaBySlug(slug);
+  if (!f) notFound();
+  const cat = qnaCats.find((c) => c.id === f.cat);
+  const related = qna.filter((x) => x.cat === f.cat && x.slug !== f.slug).slice(0, 4);
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "QAPage",
+    mainEntity: {
+      "@type": "Question",
+      name: f.q,
+      answerCount: 1,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: f.more ? `${f.a} ${f.more}` : f.a,
+        author: { "@type": "Organization", name: site.name, url: site.url },
+      },
+    },
+  };
+
+  return (
+    <>
+      <PageHeader badge={`Q&A · ${cat?.label ?? ""}`} title={f.q} description="" />
+      <section className="py-10 lg:py-14 bg-[var(--bg)]">
+        <div className="max-w-3xl mx-auto px-4 lg:px-6">
+          {/* 즉답 */}
+          <div className="bg-[var(--panel)] border-l-4 border-hb-blue border border-[var(--line)] rounded-2xl p-6 mb-6">
+            <div className="text-[11px] font-extrabold text-hb-blue tracking-[.18em] mb-2">답변</div>
+            <p className="text-[var(--ink)] leading-relaxed font-medium">{f.a}</p>
+          </div>
+          {f.more && (
+            <div className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6 mb-6">
+              <div className="text-[11px] font-extrabold text-[var(--mute)] tracking-[.18em] mb-2">더 자세히</div>
+              <p className="text-sm text-[var(--ink)]/85 leading-relaxed">{f.more}</p>
+            </div>
+          )}
+
+          <div className="flex gap-3 flex-wrap mb-10">
+            <Link href="/support/quote" className="inline-flex items-center gap-2 bg-hb-blue text-white font-extrabold px-5 py-3 rounded-xl">
+              방문 견적 요청 (무료) →
+            </Link>
+            <a href={site.phone.mainHref} className="inline-flex items-center gap-2 border border-[var(--line)] text-[var(--ink)] font-bold px-5 py-3 rounded-xl hover:bg-[var(--panel)]">
+              📞 {site.phone.main}
+            </a>
+            <Link href="/community" className="inline-flex items-center gap-2 border border-[var(--line)] text-[var(--ink)] font-bold px-5 py-3 rounded-xl hover:bg-[var(--panel)]">
+              커뮤니티에 추가 질문
+            </Link>
+          </div>
+
+          {related.length > 0 && (
+            <>
+              <h2 className="text-base font-extrabold text-[var(--ink)] mb-3">함께 보는 질문</h2>
+              <div className="space-y-2">
+                {related.map((r) => (
+                  <Link key={r.slug} href={`/qna/${r.slug}`} className="block bg-[var(--panel)] border border-[var(--line)] rounded-xl px-4 py-3 text-sm font-bold text-[var(--ink)] hover:border-hb-blue transition">
+                    {r.q}
+                  </Link>
+                ))}
+              </div>
+              <div className="mt-4">
+                <Link href="/qna" className="text-sm font-bold text-hb-blue">← Q&A 전체 보기</Link>
+              </div>
+            </>
+          )}
+        </div>
+      </section>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+    </>
+  );
+}

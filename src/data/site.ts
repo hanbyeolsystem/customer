@@ -45,6 +45,8 @@ export const nav = [
   { href: "/rental", label: "복사기 임대" },
   { href: "/shop", label: "임대 쇼핑몰" },
   { href: "/cases", label: "구축사례" },
+  { href: "/qna", label: "Q&A" },
+  { href: "/community", label: "커뮤니티" },
   { href: "/support", label: "고객지원" },
   { href: "/support/drivers", label: "드라이버" },
   { href: "/blog", label: "블로그" },

@@ -22,3 +22,5 @@ Allow: /
 
 User-agent: Yeti
 Allow: /
+
+Sitemap: https://xn--bm3bm1i1e348cgwe.kr/sitemap.xml
