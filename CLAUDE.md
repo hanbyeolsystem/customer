@@ -9,7 +9,8 @@
 ## 정체
 - GitHub: https://github.com/hanbyeolsystem/customer
 - 호스팅: **Vercel** (사용자가 vercel.com/new 에서 임포트 후 자동 배포)
-- 도메인: `한별고객센터.kr` (퓨니코드 `xn--bm3bm1i1e348cgwe.kr`) — `public/CNAME`
+- 도메인: `한별시스템.kr` (퓨니코드 `xn--bm3bm1i1e348cgwe.kr`) — `public/CNAME`
+  ※ 과거 문서에 "한별고객센터.kr"로 잘못 적혀 있었음(2026-08-22 정정). 한별고객센터.kr의 퓨니코드는 `xn--i49alou70b2kep5x7wf.kr`로 전혀 다른 도메인.
 
 ## 스택 (Next.js 16, 학습데이터와 다를 수 있으니 `node_modules/next/dist/docs/` 참조)
 - Next.js 16 App Router · React 19 · TypeScript 5
