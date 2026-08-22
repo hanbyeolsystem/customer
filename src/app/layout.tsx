@@ -27,6 +27,9 @@ export const metadata: Metadata = {
     description: site.description,
   },
   robots: { index: true, follow: true },
+  verification: {
+    other: { "naver-site-verification": "94d5e00b095d47f09478d4710ec3949381a590fd" },
+  },
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
