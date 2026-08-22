@@ -1,6 +1,30 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
+import { FaqSection } from "@/components/FaqSection";
+
+const rentalFaq = [
+  {
+    q: "복사기는 임대와 구매 중 뭐가 유리한가요?",
+    a: "출력량이 있는 사무실은 대부분 임대가 유리합니다. 임대는 초기 구입비 없이 월 정액으로 시작하고, 토너·부품·출장 수리·정기점검이 모두 요금에 포함되어 고장이 나도 추가 비용이 없습니다. 구매는 기기값 외에 소모품과 수리비를 매번 따로 부담해야 합니다.",
+  },
+  {
+    q: "복사기 임대료에는 무엇이 포함되나요?",
+    a: "토너 등 소모품, 부품 교체, 출장 수리, 분기별 정기점검이 월 정액에 모두 포함됩니다. 출력량은 카운터 자동 수집으로 원격 파악되며, 기기 등급과 월 출력량에 따라 요금이 산정됩니다. 견적은 무료입니다.",
+  },
+  {
+    q: "복사기가 고장 나면 얼마나 빨리 오나요?",
+    a: "대구·경북은 당일, 전국은 1영업일 이내에 출동합니다. 카운터 자동 수집과 분기 정기점검으로 문제가 생기기 전에 먼저 정비하는 비포서비스를 운영해, 평균 다운타임을 90% 줄였습니다.",
+  },
+  {
+    q: "토너가 떨어지면 직접 주문해야 하나요?",
+    a: "아닙니다. 카운터 자동 수집으로 토너 잔량과 출력량을 원격에서 파악해, 소진되기 전에 미리 배송·교체합니다. 임대 고객은 토너를 따로 주문하거나 구매할 필요가 없습니다.",
+  },
+  {
+    q: "어느 지역까지 임대가 가능한가요?",
+    a: "대구·경북을 중심으로 전국 대응이 가능합니다. 현재 300대 이상의 복사기·프린터를 설치·운영 중이며, 19년째 기업 사무기기를 관리해 온 한별시스템이 직접 유지보수합니다.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "복사기·프린터 임대",
@@ -35,6 +59,7 @@ export default function RentalPage() {
           <Link href="/support/quote" className="inline-flex items-center justify-center gap-2 border border-[var(--line)] text-[var(--ink)] font-bold px-6 py-3.5 rounded-xl hover:bg-[var(--panel)]">견적 요청</Link>
         </div>
       </section>
+      <FaqSection title="복사기 임대, 자주 묻는 질문" items={rentalFaq} />
     </>
   );
 }

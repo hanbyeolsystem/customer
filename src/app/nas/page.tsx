@@ -2,6 +2,30 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { PageHeader } from "@/components/PageHeader";
+import { FaqSection } from "@/components/FaqSection";
+
+const nasFaq = [
+  {
+    q: "우리 회사에 NAS가 왜 필요한가요?",
+    a: "회사 데이터가 직원 PC에 흩어져 있으면 디스크 고장·랜섬웨어·실수 삭제 한 번에 업무가 멈춥니다. NAS는 자료를 중앙에 모아 자동 백업하는 회사 전용 저장 서버로, 사고가 나도 데이터를 되살릴 수 있는 최소한의 안전장치입니다.",
+  },
+  {
+    q: "NAS 구축 비용은 어떻게 정해지나요?",
+    a: "사용 인원, 데이터 용량, 백업 범위(외장·클라우드 이중백업 여부)에 따라 기기 모델과 디스크 구성이 정해집니다. 한별시스템은 시놀로지(Synology) 공식 대리점으로 정품 공급과 A/S를 보장하며, 용량 산정과 견적은 무료입니다.",
+  },
+  {
+    q: "랜섬웨어에 걸리면 정말 복구가 되나요?",
+    a: "스냅샷과 격리 백업을 구성해 두면 감염 이전 시점으로 되돌릴 수 있습니다. 한별시스템은 랜섬웨어·디스크 장애 실전 복구 경험을 바탕으로 1시간 내 복구 시나리오를 표준으로 설계하고, 데이터 사본 3개·저장매체 2종·오프사이트 1개의 3-2-1 백업 원칙을 적용합니다.",
+  },
+  {
+    q: "외부나 집에서도 회사 자료에 접속할 수 있나요?",
+    a: "가능합니다. VPN을 구축하면 외부에서도 안전하게 사내망에 접속해 재택근무·모바일 업무를 할 수 있고, Synology Drive·Office 같은 협업 도구로 파일 공유와 문서 동시 편집도 지원합니다.",
+  },
+  {
+    q: "구축한 뒤 관리는 누가 하나요?",
+    a: "한별시스템이 분기 점검, 시스템(DSM) 보안 패치, 디스크 상태(SMART) 모니터링까지 운영을 맡습니다. 대구·경북 기업 중심으로 50건 이상의 NAS를 구축했고 19년째 기업 IT를 관리하고 있습니다.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "NAS 솔루션",
@@ -111,6 +135,7 @@ export default function NasPage() {
           </Link>
         </div>
       </section>
+      <FaqSection title="NAS 구축, 자주 묻는 질문" items={nasFaq} />
     </>
   );
 }
