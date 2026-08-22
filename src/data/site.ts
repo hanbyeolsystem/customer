@@ -26,7 +26,7 @@ export const site = {
   },
 
   social: {
-    blog: "https://blog.naver.com/hanbyeolsystem",
+    blog: "https://hanbyeolsystem.blogspot.com/",
     instagram: "https://instagram.com/sanghwan_hanbyeol",
     threads: "https://www.threads.net/@sanghwan_hanbyeol",
   },

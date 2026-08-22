@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { getNaverPosts } from "@/lib/naver";
+import { getBlogPosts } from "@/lib/blog";
 import { embedHref } from "@/lib/embed";
 
 export async function BlogFeed() {
-  const posts = await getNaverPosts(8);
+  const posts = await getBlogPosts(8);
   return (
     <section className="py-16 lg:py-24 bg-[var(--panel)]">
       <div className="max-w-7xl mx-auto px-4 lg:px-6">
@@ -18,7 +18,7 @@ export async function BlogFeed() {
             </p>
           </div>
           <Link
-            href={embedHref("https://blog.naver.com/hanbyeolsystem", "한별 블로그")}
+            href={embedHref("https://hanbyeolsystem.blogspot.com/", "한별 블로그")}
             className="inline-flex items-center gap-1.5 text-sm font-bold text-hb-blue hover:gap-2.5 transition"
           >
             블로그 전체 보기 →

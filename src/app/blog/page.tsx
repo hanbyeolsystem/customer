@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
-import { getNaverPosts } from "@/lib/naver";
+import { getBlogPosts } from "@/lib/blog";
 import { embedHref } from "@/lib/embed";
 
 export const metadata: Metadata = { title: "한별시스템 소식" };
 
 export default async function BlogPage() {
-  const posts = await getNaverPosts(12);
+  const posts = await getBlogPosts(12);
   return (
     <>
-      <PageHeader badge="BLOG" title="한별시스템 소식" description="Synology·랜섬웨어·운영 노하우. 네이버 블로그 전체 글은 외부 링크로 열립니다." />
+      <PageHeader badge="BLOG" title="한별시스템 소식" description="Synology·랜섬웨어·운영 노하우. 한별 블로그 전체 글은 외부 링크로 열립니다." />
       <section className="py-12 lg:py-16 bg-[var(--bg)]">
         <div className="max-w-7xl mx-auto px-4 lg:px-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {posts.map((p) => (

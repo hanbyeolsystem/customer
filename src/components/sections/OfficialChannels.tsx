@@ -14,11 +14,11 @@ type Channel = {
 
 const channels: Channel[] = [
   {
-    label: "네이버 블로그",
+    label: "한별 블로그",
     href: site.social.blog,
     desc: "한별의 소식과 운영 노하우",
     icon: "pen",
-    color: "from-emerald-500 to-emerald-600",
+    color: "from-orange-500 to-amber-600",
     embed: true,
   },
   {

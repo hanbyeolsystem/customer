@@ -26,7 +26,7 @@ export function Footer() {
               {site.tagline}
             </p>
             <div className="flex gap-2">
-              <Link href={embedHref(site.social.blog, "한별 블로그")} aria-label="네이버 블로그"
+              <Link href={embedHref(site.social.blog, "한별 블로그")} aria-label="한별 블로그"
                 className="w-9 h-9 rounded-lg bg-white/5 hover:bg-hb-blue hover:text-white flex items-center justify-center transition"><Icon name="pen" className="w-[18px] h-[18px]" /></Link>
               <a href={site.social.instagram} target="_blank" rel="noopener" aria-label="인스타그램"
                 className="w-9 h-9 rounded-lg bg-white/5 hover:bg-hb-blue hover:text-white flex items-center justify-center transition"><Icon name="camera" className="w-[18px] h-[18px]" /></a>
