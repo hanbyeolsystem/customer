@@ -18,6 +18,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: news-daily
@@ -57,3 +58,7 @@ jobs:
           git commit -m "chore: IT 새소식 갱신"
           git pull --rebase origin main
           git push
+      - name: Trigger site deploy (봇 커밋은 push 트리거를 못 깨우므로 직접 호출)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --repo ${{ github.repository }} || echo "deploy dispatch 실패(다음 정기 배포에서 반영)"
