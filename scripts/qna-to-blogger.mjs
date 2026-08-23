@@ -124,16 +124,19 @@ async function getAccessToken() {
   return j.access_token;
 }
 
-async function existingPosts(token) {
+async function listAllPosts(token) {
   const blogId = process.env.BLOGGER_BLOG_ID;
-  const res = await fetch(
-    `https://www.googleapis.com/blogger/v3/blogs/${blogId}/posts?maxResults=100&fields=items(id,title)`,
-    { headers: { Authorization: `Bearer ${token}` } }
-  );
-  const j = await res.json();
-  const map = new Map();
-  for (const x of j.items || []) map.set(x.title, x.id);
-  return map;
+  const items = [];
+  let pageToken = "";
+  do {
+    const url = `https://www.googleapis.com/blogger/v3/blogs/${blogId}/posts?maxResults=100&fetchBodies=false${pageToken ? `&pageToken=${pageToken}` : ""}`;
+    const res = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
+    if (!res.ok) throw new Error(`list error: HTTP ${res.status} ${await res.text()}`);
+    const j = await res.json();
+    items.push(...(j.items || []));
+    pageToken = j.nextPageToken || "";
+  } while (pageToken);
+  return items; // {id,title,published,...}
 }
 
 async function updatePost(token, postId, { title, html, labels }) {
@@ -204,9 +207,6 @@ if (DRY) {
   process.exit(0);
 }
 
-const token = await getAccessToken();
-const seen = await existingPosts(token);
-
 async function withBackoff(label, fn) {
   for (let attempt = 1; attempt <= 4; attempt++) {
     try {
@@ -222,25 +222,45 @@ async function withBackoff(label, fn) {
   return null;
 }
 
-// 구버전 글 정리
-for (const t of OBSOLETE_TITLES) {
-  const id = seen.get(t);
-  if (!id) continue;
-  const ok = await withBackoff(`삭제: ${t}`, async () => { await deletePost(token, id); return true; });
-  console.log(ok ? `삭제됨: ${t}` : `삭제 포기: ${t}`);
-  await new Promise((r) => setTimeout(r, 10_000));
+const token = await getAccessToken();
+const all = await withBackoff("글 목록 조회", () => listAllPosts(token));
+if (!all) throw new Error("글 목록 조회 실패 — 중단 (중복 발행 방지)");
+console.log(`기존 글 ${all.length}건 확인`);
+
+// 제목별 그룹: 최신본만 남긴다
+const byTitle = new Map();
+for (const x of all) {
+  const arr = byTitle.get(x.title) || [];
+  arr.push(x);
+  byTitle.set(x.title, arr);
+}
+
+const currentTitles = new Set(allPosts.map((p) => p.title));
+const toDelete = [];
+for (const [title, arr] of byTitle) {
+  if (OBSOLETE_TITLES.includes(title)) { toDelete.push(...arr); continue; }
+  if (arr.length > 1) {
+    arr.sort((a, b) => (b.published || "").localeCompare(a.published || ""));
+    toDelete.push(...arr.slice(1)); // 최신 1건 제외 전부 정리
+  }
+}
+for (const x of toDelete) {
+  const ok = await withBackoff(`삭제: ${x.title}`, async () => { await deletePost(token, x.id); return true; });
+  console.log(ok ? `삭제됨: ${x.title}` : `삭제 포기: ${x.title}`);
+  await new Promise((r) => setTimeout(r, 8_000));
 }
 
 // 현행 시리즈: 있으면 내용 갱신, 없으면 신규 발행
 for (const p of allPosts) {
   const html = buildHtml(p, p.items);
-  const id = seen.get(p.title);
+  const arr = (byTitle.get(p.title) || []).filter((x) => !toDelete.includes(x));
+  const id = arr[0]?.id;
   const url = await withBackoff(p.title, () =>
     id ? updatePost(token, id, { title: p.title, html, labels: p.labels })
        : publish(token, { title: p.title, html, labels: p.labels })
   );
   if (url) console.log(`${id ? "갱신됨" : "발행됨"}: ${url}`);
   else { console.log(`포기(다음 실행 때 재시도): ${p.title}`); break; }
-  await new Promise((r) => setTimeout(r, 20_000));
+  await new Promise((r) => setTimeout(r, 15_000));
 }
 console.log("완료");
