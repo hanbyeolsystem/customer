@@ -2,12 +2,19 @@ name: Daily IT news to Blogger
 
 on:
   workflow_dispatch:
+    inputs:
+      max:
+        description: "이번 실행에서 올릴 최대 건수 (기본 1, 백필 시 크게)"
+        default: "1"
+      per_topic:
+        description: "주제당 최대 건수 (기본 1)"
+        default: "1"
   schedule:
     # 매일 아침 07:30 KST (22:30 UTC 전날)
     - cron: "30 22 * * *"
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: news-daily
@@ -27,4 +34,19 @@ jobs:
           GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
           GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
           BLOGGER_BLOG_ID: ${{ secrets.BLOGGER_BLOG_ID }}
-        run: node scripts/news-to-blogger.mjs
+        run: |
+          MAX="${{ github.event.inputs.max || '1' }}"
+          PT="${{ github.event.inputs.per_topic || '1' }}"
+          node scripts/news-to-blogger.mjs --max "$MAX" --per-topic "$PT"
+      - name: Commit news.json (사이트 반영)
+        run: |
+          if git diff --quiet src/data/news.json 2>/dev/null; then
+            echo "news.json 변경 없음"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull --rebase origin main
+          git add src/data/news.json
+          git commit -m "chore: IT 새소식 갱신"
+          git push

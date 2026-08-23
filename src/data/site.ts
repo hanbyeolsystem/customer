@@ -46,6 +46,7 @@ export const nav = [
   { href: "/shop", label: "임대 쇼핑몰" },
   { href: "/cases", label: "구축사례" },
   { href: "/qna", label: "Q&A" },
+  { href: "/news", label: "새소식" },
   { href: "/community", label: "커뮤니티" },
   { href: "/support", label: "고객지원" },
   { href: "/support/drivers", label: "드라이버" },
