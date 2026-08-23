@@ -9,6 +9,9 @@ on:
       per_topic:
         description: "주제당 최대 건수 (기본 1)"
         default: "1"
+      sync:
+        description: "true = 발행 없이 블로거→news.json 재구성만"
+        default: "false"
   schedule:
     # 매일 아침 07:30 KST (22:30 UTC 전날)
     - cron: "30 22 * * *"
@@ -35,9 +38,13 @@ jobs:
           GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
           BLOGGER_BLOG_ID: ${{ secrets.BLOGGER_BLOG_ID }}
         run: |
-          MAX="${{ github.event.inputs.max || '1' }}"
-          PT="${{ github.event.inputs.per_topic || '1' }}"
-          node scripts/news-to-blogger.mjs --max "$MAX" --per-topic "$PT"
+          if [ "${{ github.event.inputs.sync || 'false' }}" = "true" ]; then
+            node scripts/news-to-blogger.mjs --sync
+          else
+            MAX="${{ github.event.inputs.max || '1' }}"
+            PT="${{ github.event.inputs.per_topic || '1' }}"
+            node scripts/news-to-blogger.mjs --max "$MAX" --per-topic "$PT"
+          fi
       - name: Commit news.json (사이트 반영)
         run: |
           if git diff --quiet src/data/news.json 2>/dev/null; then
@@ -46,7 +53,7 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git pull --rebase origin main
           git add src/data/news.json
           git commit -m "chore: IT 새소식 갱신"
+          git pull --rebase origin main
           git push

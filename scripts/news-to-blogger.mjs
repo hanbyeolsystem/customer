@@ -94,6 +94,42 @@ function buildHtml(item, topic) {
 🔗 <a href="${SITE}/qna/">전산 궁금증 155문답</a> · <a href="${SITE}/community/">커뮤니티에 질문하기</a></p>`;
 }
 
+// ---------- sync 모드: 블로거의 새소식 글에서 news.json 재구성 ----------
+if (process.argv.includes("--sync")) {
+  const token = await getAccessToken();
+  const blogId = process.env.BLOGGER_BLOG_ID;
+  const items = [];
+  let pageToken = "";
+  do {
+    const url = `https://www.googleapis.com/blogger/v3/blogs/${blogId}/posts?maxResults=50${pageToken ? `&pageToken=${pageToken}` : ""}`;
+    const res = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
+    if (!res.ok) throw new Error(`list HTTP ${res.status}`);
+    const j = await res.json();
+    items.push(...(j.items || []));
+    pageToken = j.nextPageToken || "";
+  } while (pageToken);
+  const news = [];
+  for (const p of items) {
+    if (!p.title.startsWith("[IT 새소식] ")) continue;
+    const c = p.content || "";
+    const img = (c.match(/blog-assets\/([a-z0-9-]+\.jpg)/) || [])[1] || "news-tech-01.jpg";
+    const link = (c.match(/원문 보기: <a href="([^"]+)"/) || [])[1] || "";
+    const srcTitle = (c.match(/rel="nofollow">([^<]+)<\/a>/) || [])[1] || "";
+    const source = srcTitle.split(" — ")[0] || "";
+    const desc = (c.match(/<p>([^<]{30,400})<\/p>/) || [])[1] || "";
+    const comment = (c.match(/한별의 한 줄<\/b> — ([^<]+)</) || [])[1] || "";
+    const topic = (p.labels || []).find((l) => l !== "새소식") || "tech";
+    news.push({
+      date: (p.published || "").slice(0, 10), topic, img, source,
+      title: p.title.replace("[IT 새소식] ", ""), link, desc: desc.trim(), comment: comment.trim(), blogger: p.url,
+    });
+  }
+  news.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+  writeFileSync(NEWS_JSON, JSON.stringify(news, null, 2), "utf8");
+  console.log(`sync 완료: news.json ${news.length}건`);
+  process.exit(0);
+}
+
 // ---------- main ----------
 const feedItems = (await Promise.all(FEEDS.map(fetchFeed))).flat();
 const candidates = feedItems.map((x) => ({ ...x, topic: matchTopic(x) })).filter((x) => x.topic);
