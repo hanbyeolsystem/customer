@@ -173,8 +173,24 @@ for (const p of allPosts) {
     console.log(`건너뜀(이미 존재): ${p.title}`);
     continue;
   }
-  const url = await publish(token, { title: p.title, html: buildHtml(p, p.items), labels: p.labels });
-  console.log(`발행됨: ${url}`);
-  await new Promise((r) => setTimeout(r, 2500));
+  let done = false;
+  for (let attempt = 1; attempt <= 4 && !done; attempt++) {
+    try {
+      const url = await publish(token, { title: p.title, html: buildHtml(p, p.items), labels: p.labels });
+      console.log(`발행됨: ${url}`);
+      done = true;
+    } catch (e) {
+      if (String(e).includes("429") || String(e).includes("RESOURCE_EXHAUSTED")) {
+        const wait = 90 * attempt;
+        console.log(`429 속도제한 — ${wait}초 대기 후 재시도 (${attempt}/4): ${p.title}`);
+        await new Promise((r) => setTimeout(r, wait * 1000));
+      } else throw e;
+    }
+  }
+  if (!done) {
+    console.log(`포기(다음 실행 때 재시도됨): ${p.title}`);
+    break; // 쿼터 소진 상태로 판단 — 나머지는 다음 실행에서
+  }
+  await new Promise((r) => setTimeout(r, 20_000));
 }
 console.log("완료");
