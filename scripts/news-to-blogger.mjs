@@ -3,10 +3,22 @@
 // 매일 아침 GitHub Actions(cron)로 실행. 원문 전문 복사 없이 짧은 요약+자체 코멘트+출처 링크만 사용.
 import { getAccessToken, listAllPosts, publishPost, withBackoff, sleep } from "./blogger-lib.mjs";
 
+import { readFileSync, writeFileSync, existsSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { dirname, join } from "node:path";
+
 const DRY = process.argv.includes("--dry-run");
 const IMG = "https://xn--bm3bm1i1e348cgwe.kr/blog-assets";
 const SITE = "https://xn--bm3bm1i1e348cgwe.kr";
-const MAX_POSTS_PER_RUN = 2;
+
+// --max N (기본 1: 매일 1건), --per-topic N (기본 1) — 백필 시 크게 지정
+function argNum(name, def) {
+  const i = process.argv.indexOf(name);
+  return i >= 0 ? parseInt(process.argv[i + 1] || `${def}`, 10) : def;
+}
+const MAX_POSTS_PER_RUN = argNum("--max", 1);
+const PER_TOPIC = argNum("--per-topic", 1);
+const NEWS_JSON = join(dirname(fileURLToPath(import.meta.url)), "..", "src", "data", "news.json");
 
 const FEEDS = [
   { name: "ZDNet Korea", url: "https://feeds.feedburner.com/zdkorea" },
@@ -97,20 +109,33 @@ const all = await withBackoff("목록 조회", () => listAllPosts(token));
 if (!all) throw new Error("목록 조회 실패 — 중단");
 const existing = new Set(all.map((x) => x.title));
 
+const newsJson = existsSync(NEWS_JSON) ? JSON.parse(readFileSync(NEWS_JSON, "utf8")) : [];
+const jsonTitles = new Set(newsJson.map((x) => x.title));
+
 let posted = 0;
-const usedTopics = new Set();
+const topicCount = new Map();
+const kstToday = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);
 for (const c of candidates) {
   if (posted >= MAX_POSTS_PER_RUN) break;
-  if (usedTopics.has(c.topic.key)) continue; // 하루에 같은 주제 1건만
+  if ((topicCount.get(c.topic.key) || 0) >= PER_TOPIC) continue;
   const title = `[IT 새소식] ${c.title}`;
-  if (existing.has(title)) continue; // 이미 올린 기사
+  if (existing.has(title) || jsonTitles.has(c.title)) continue; // 이미 올린 기사
   const url = await withBackoff(title, () =>
     publishPost(token, { title, html: buildHtml(c, c.topic), labels: ["새소식", c.topic.key] })
   );
   if (!url) break;
   console.log(`발행됨: ${url}`);
+  // 홈페이지(/news) 데이터에도 기록 — 커밋되면 사이트가 자동 재빌드됨
+  newsJson.unshift({
+    date: kstToday, topic: c.topic.key, img: c.topic.img, source: c.source,
+    title: c.title, link: c.link, desc: c.desc.slice(0, 250), comment: c.topic.comment, blogger: url,
+  });
   posted++;
-  usedTopics.add(c.topic.key);
+  topicCount.set(c.topic.key, (topicCount.get(c.topic.key) || 0) + 1);
   await sleep(15000);
+}
+if (posted > 0) {
+  writeFileSync(NEWS_JSON, JSON.stringify(newsJson.slice(0, 200), null, 2), "utf8");
+  console.log(`news.json 갱신 (${newsJson.length}건)`);
 }
 console.log(posted === 0 ? "오늘 올릴 새 기사 없음" : `완료: ${posted}건`);
