@@ -27,21 +27,34 @@ export async function InfoCards() {
             <Link
               key={c.href}
               href={embedHref(c.href, c.title)}
-              className="group shrink-0 w-[240px] lg:w-auto snap-start bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-4.5 lg:p-5 hover:border-hb-blue hover:shadow-lg hover:-translate-y-0.5 transition flex flex-col"
+              className="group shrink-0 w-[240px] lg:w-auto snap-start bg-[var(--panel)] border border-[var(--line)] rounded-2xl overflow-hidden hover:border-hb-blue hover:shadow-lg hover:-translate-y-0.5 transition flex flex-col"
             >
-              <div className="flex items-center justify-between mb-2.5">
-                <span className="text-[10px] font-extrabold text-hb-blue bg-hb-blue-soft px-2 py-1 rounded-full tracking-wider">
-                  {c.category}
-                </span>
-                <time className="text-[11px] text-[var(--mute)]">{c.date}</time>
+              {c.thumb && (
+                <div className="aspect-[16/9] overflow-hidden bg-hb-blue-soft">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={c.thumb}
+                    alt=""
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                  />
+                </div>
+              )}
+              <div className="p-4 lg:p-5 flex flex-col flex-1">
+                <div className="flex items-center justify-between mb-2.5">
+                  <span className="text-[10px] font-extrabold text-hb-blue bg-hb-blue-soft px-2 py-1 rounded-full tracking-wider">
+                    {c.category}
+                  </span>
+                  <time className="text-[11px] text-[var(--mute)]">{c.date}</time>
+                </div>
+                <h3 className="font-extrabold text-[var(--ink)] text-[14px] leading-snug mb-1.5 line-clamp-2 group-hover:text-hb-blue transition">
+                  {c.title}
+                </h3>
+                <p className="text-[12px] text-[var(--mute)] leading-relaxed line-clamp-3 flex-1">
+                  {c.excerpt}
+                </p>
+                <div className="text-[11px] font-bold text-hb-blue mt-3">자세히 보기 →</div>
               </div>
-              <h3 className="font-extrabold text-[var(--ink)] text-[14px] leading-snug mb-1.5 line-clamp-2 group-hover:text-hb-blue transition">
-                {c.title}
-              </h3>
-              <p className="text-[12px] text-[var(--mute)] leading-relaxed line-clamp-3 flex-1">
-                {c.excerpt}
-              </p>
-              <div className="text-[11px] font-bold text-hb-blue mt-3">자세히 보기 →</div>
             </Link>
           ))}
         </div>
