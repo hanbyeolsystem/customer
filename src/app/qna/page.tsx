@@ -4,9 +4,9 @@ import { PageHeader } from "@/components/PageHeader";
 import { qna, qnaCats, qnaByCat } from "@/data/qna";
 
 export const metadata: Metadata = {
-  title: "Q&A — 나스·복합기 렌탈·컴퓨터 수리·사무실 인터넷 135문답",
+  title: "Q&A — 나스·복합기 렌탈·컴퓨터 수리·사무실 인터넷 155문답",
   description:
-    "나스(NAS)가 뭔가요? 복합기 렌탈료엔 뭐가 포함되나요? 컴퓨터가 느려요. 사무실 인터넷이 끊겨요 — 대구 IT 전문기업 한별시스템이 실제 고객 질문 135가지에 즉답합니다.",
+    "나스(NAS)가 뭔가요? 복합기 렌탈료엔 뭐가 포함되나요? 컴퓨터가 느려요. 사무실 인터넷이 끊겨요 — 전산 올인원 관리 한별시스템이 실제 고객 질문 155가지에 즉답합니다. 전산은 전화 한 통.",
 };
 
 export default function QnaPage() {
