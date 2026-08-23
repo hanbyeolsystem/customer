@@ -37,38 +37,41 @@ function loadQna() {
 }
 
 // ---------- 글 구성 ----------
+// 네이버 데이터랩 검색량 기반 키워드를 제목에 반영 (렌탈·토너 교체·컴퓨터 수리·랜공사·나스)
+// 문항이 많은 카테고리는 CHUNK 개수씩 나눠 (1부)(2부)... 로 발행
+const CHUNK = 12;
 const POSTS = [
   {
     cat: "nas",
-    title: "NAS 자주 묻는 질문 총정리 — 나스가 뭔가요부터 랜섬웨어 대비까지 (대구 한별시스템)",
+    title: "나스(NAS) 자주 묻는 질문 — 도입·백업·랜섬웨어 대비 | 대구 한별시스템",
     intro:
-      "NAS(나스) 도입을 고민하는 사무실에서 실제로 가장 많이 받는 질문들을 한 편에 정리했습니다. " +
-      "대구·경북에서 19년째 기업 전산을 관리하며 NAS 50대 이상을 구축해 온 한별시스템이 그대로 답합니다.",
-    labels: ["NAS", "데이터백업", "Q&A"],
+      "나스(NAS) 도입을 고민하는 사무실에서 실제로 가장 많이 받는 질문들을 정리했습니다. " +
+      "대구·경북에서 19년째 기업 전산을 관리하며 시놀로지 나스 50대 이상을 구축해 온 한별시스템이 그대로 답합니다.",
+    labels: ["NAS", "나스", "데이터백업", "시놀로지", "Q&A"],
   },
   {
     cat: "printer",
-    title: "복사기·프린터 임대 전 꼭 확인할 것들 — 임대료·토너·수리 Q&A (대구 한별시스템)",
+    title: "복합기 렌탈·토너 교체·프린터 고장 Q&A | 대구 한별시스템",
     intro:
-      "복합기 임대 계약 전 확인 사항, 임대료 산정 기준, 토너·수리 부담까지 — " +
-      "복사기 300대 이상을 설치·관리 중인 한별시스템이 실제 고객 질문에 답합니다.",
-    labels: ["복사기임대", "프린터", "Q&A"],
+      "복합기 렌탈 계약 전 확인 사항부터 토너 교체, 인쇄 안 됨·스캔 오류 같은 고장 대처까지 — " +
+      "복사기·프린터 300대 이상을 설치·관리 중인 한별시스템이 실제 고객 질문에 답합니다.",
+    labels: ["복합기렌탈", "프린터렌탈", "토너교체", "Q&A"],
   },
   {
     cat: "pc",
-    title: "사무실 컴퓨터 관리 Q&A — 임대·업그레이드·전산 유지관리 (대구 한별시스템)",
+    title: "컴퓨터 수리·렌탈 자주 묻는 질문 — 느려짐·고장·데이터 복구 | 대구 한별시스템",
     intro:
-      "컴퓨터 임대가 되는지, 느려진 PC는 바꿔야 하는지, 전산 유지관리 계약은 뭘 해주는지 — " +
-      "대구·경북 170여 고객사의 전산을 관리하는 한별시스템이 답합니다.",
-    labels: ["컴퓨터", "전산관리", "Q&A"],
+      "컴퓨터가 느려졌을 때, 부팅이 안 될 때, 데이터 복구가 필요할 때 — " +
+      "대구 컴퓨터 수리·렌탈 19년, 170여 고객사의 전산을 관리하는 한별시스템이 답합니다.",
+    labels: ["컴퓨터수리", "컴퓨터렌탈", "데이터복구", "Q&A"],
   },
   {
-    cat: "service",
-    title: "방문 견적은 무료인가요? — 한별시스템 방문 서비스 Q&A",
+    cat: "network",
+    title: "사무실 인터넷·와이파이·랜공사 Q&A — 느림·끊김 해결 | 대구 한별시스템",
     intro:
-      "한별시스템은 전화로 대략 요금을 부르는 대신, 직접 방문해 현장을 보고 무료로 견적을 냅니다. " +
-      "방문 지역, 설치 후 사용 교육, 통합 관리에 대한 질문을 정리했습니다.",
-    labels: ["방문견적", "서비스", "Q&A"],
+      "사무실 인터넷이 느리거나 끊길 때, 와이파이 설계, 랜공사(네트워크 공사) 준비까지 — " +
+      "대구·경북 기업 네트워크를 시공·관리하는 한별시스템이 실무 기준으로 답합니다.",
+    labels: ["사무실인터넷", "랜공사", "와이파이", "네트워크", "Q&A"],
   },
 ];
 
@@ -139,11 +142,25 @@ async function publish(token, { title, html, labels }) {
 const qna = loadQna();
 console.log(`qna.ts 에서 ${qna.length}문항 로드`);
 
-if (DRY) {
+function chunkedPosts() {
+  const out = [];
   for (const p of POSTS) {
     const items = qna.filter((f) => f.cat === p.cat);
-    console.log(`\n=== [${p.cat}] ${p.title} (${items.length}문항) ===`);
-    console.log(buildHtml(p, items).slice(0, 500) + " ...");
+    const parts = [];
+    for (let i = 0; i < items.length; i += CHUNK) parts.push(items.slice(i, i + CHUNK));
+    parts.forEach((chunk, idx) => {
+      const suffix = parts.length > 1 ? ` (${idx + 1}부)` : "";
+      out.push({ ...p, title: p.title.replace(" |", `${suffix} |`), items: chunk });
+    });
+  }
+  return out;
+}
+
+const allPosts = chunkedPosts();
+
+if (DRY) {
+  for (const p of allPosts) {
+    console.log(`=== [${p.cat}] ${p.title} (${p.items.length}문항) ===`);
   }
   process.exit(0);
 }
@@ -151,14 +168,13 @@ if (DRY) {
 const token = await getAccessToken();
 const seen = await existingTitles(token);
 
-for (const p of POSTS) {
+for (const p of allPosts) {
   if (seen.has(p.title)) {
     console.log(`건너뜀(이미 존재): ${p.title}`);
     continue;
   }
-  const items = qna.filter((f) => f.cat === p.cat);
-  const url = await publish(token, { title: p.title, html: buildHtml(p, items), labels: p.labels });
+  const url = await publish(token, { title: p.title, html: buildHtml(p, p.items), labels: p.labels });
   console.log(`발행됨: ${url}`);
-  await new Promise((r) => setTimeout(r, 2000));
+  await new Promise((r) => setTimeout(r, 2500));
 }
 console.log("완료");

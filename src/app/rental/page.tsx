@@ -27,8 +27,8 @@ const rentalFaq = [
 ];
 
 export const metadata: Metadata = {
-  title: "복사기·프린터 임대",
-  description: "유지보수·토너 포함 월 정액 임대. 카운터 자동 수집·사전 정비·전국 출동.",
+  title: "복합기·복사기 렌탈(임대) — 대구 프린터 렌탈",
+  description: "대구 복합기 렌탈·프린터 렌탈. 토너 교체·부품·출장수리 포함 월 정액. 카운터 자동 수집·사전 정비·대구 당일 출동.",
 };
 
 export default function RentalPage() {
