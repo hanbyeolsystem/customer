@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
-import { qna, qnaCats, qnaByCat } from "@/data/qna";
+import { QnaBrowser } from "@/components/QnaBrowser";
+import { qna, qnaCats } from "@/data/qna";
 
 export const metadata: Metadata = {
   title: "Q&A — 나스·복합기 렌탈·컴퓨터 수리·사무실 인터넷 155문답",
@@ -25,29 +26,12 @@ export default function QnaPage() {
       <PageHeader
         badge="Q&A"
         title="궁금한 것부터 해결하세요"
-        description="NAS·백업·복사기 임대·전산관리 — 19년간 고객에게 실제로 받은 질문에 그대로 답합니다."
+        description="나스·백업·복합기 렌탈·컴퓨터·네트워크 — 19년간 고객에게 실제로 받은 질문 155가지에 그대로 답합니다."
       />
-      {qnaCats.map((c) => (
-        <section key={c.id} className="py-8 lg:py-10 bg-[var(--bg)]">
-          <div className="max-w-3xl mx-auto px-4 lg:px-6">
-            <h2 className="text-lg lg:text-xl font-extrabold text-[var(--ink)] mb-4">
-              {c.icon} {c.label}
-            </h2>
-            <div className="space-y-2.5">
-              {qnaByCat(c.id).map((f) => (
-                <Link
-                  key={f.slug}
-                  href={`/qna/${f.slug}`}
-                  className="block bg-[var(--panel)] border border-[var(--line)] rounded-2xl px-5 py-4 hover:border-hb-blue transition"
-                >
-                  <div className="font-bold text-[var(--ink)]">{f.q}</div>
-                  <p className="mt-1.5 text-sm text-[var(--mute)] leading-relaxed line-clamp-2">{f.a}</p>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      ))}
+      <QnaBrowser
+        items={qna.map(({ slug, cat, q, a }) => ({ slug, cat, q, a }))}
+        cats={qnaCats.map((c) => ({ ...c }))}
+      />
       <section className="py-10 bg-[var(--panel)]">
         <div className="max-w-3xl mx-auto px-4 lg:px-6 text-center">
           <h2 className="text-lg font-extrabold text-[var(--ink)] mb-2">찾는 질문이 없나요?</h2>

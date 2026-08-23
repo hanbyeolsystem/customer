@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/PageHeader";
 import { qna, qnaBySlug, qnaCats } from "@/data/qna";
+import { qnaImage } from "@/data/qna-images";
 import { site } from "@/data/site";
 
 export function generateStaticParams() {
@@ -45,7 +46,11 @@ export default async function QnaDetailPage({ params }: { params: Promise<{ slug
     <>
       <PageHeader badge={`Q&A · ${cat?.label ?? ""}`} title={f.q} description="" />
       <section className="py-10 lg:py-14 bg-[var(--bg)]">
-        <div className="max-w-3xl mx-auto px-4 lg:px-6">
+        <div className="max-w-4xl mx-auto px-4 lg:px-6">
+          {/* 현장 사진 */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={qnaImage(f.cat, f.slug)} alt={f.q}
+            className="w-full max-h-[420px] object-cover rounded-2xl border border-[var(--line)] mb-6" />
           {/* 즉답 */}
           <div className="bg-[var(--panel)] border-l-4 border-hb-blue border border-[var(--line)] rounded-2xl p-6 mb-6">
             <div className="text-[11px] font-extrabold text-hb-blue tracking-[.18em] mb-2">답변</div>
