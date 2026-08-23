@@ -124,15 +124,46 @@ async function getAccessToken() {
   return j.access_token;
 }
 
-async function existingTitles(token) {
+async function existingPosts(token) {
   const blogId = process.env.BLOGGER_BLOG_ID;
   const res = await fetch(
-    `https://www.googleapis.com/blogger/v3/blogs/${blogId}/posts?maxResults=100&fields=items(title)`,
+    `https://www.googleapis.com/blogger/v3/blogs/${blogId}/posts?maxResults=100&fields=items(id,title)`,
     { headers: { Authorization: `Bearer ${token}` } }
   );
   const j = await res.json();
-  return new Set((j.items || []).map((x) => x.title));
+  const map = new Map();
+  for (const x of j.items || []) map.set(x.title, x.id);
+  return map;
 }
+
+async function updatePost(token, postId, { title, html, labels }) {
+  const blogId = process.env.BLOGGER_BLOG_ID;
+  const res = await fetch(`https://www.googleapis.com/blogger/v3/blogs/${blogId}/posts/${postId}`, {
+    method: "PUT",
+    headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+    body: JSON.stringify({ kind: "blogger#post", id: postId, title, content: html, labels }),
+  });
+  const j = await res.json();
+  if (!j.id) throw new Error(`update error: ${JSON.stringify(j)}`);
+  return j.url;
+}
+
+async function deletePost(token, postId) {
+  const blogId = process.env.BLOGGER_BLOG_ID;
+  const res = await fetch(`https://www.googleapis.com/blogger/v3/blogs/${blogId}/posts/${postId}`, {
+    method: "DELETE",
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  if (!res.ok && res.status !== 204) throw new Error(`delete error: HTTP ${res.status}`);
+}
+
+// 초기(1차) 발행분 — 현행 시리즈와 내용이 중복되어 정리 대상
+const OBSOLETE_TITLES = [
+  "NAS 자주 묻는 질문 총정리 — 나스가 뭔가요부터 랜섬웨어 대비까지 (대구 한별시스템)",
+  "복사기·프린터 임대 전 꼭 확인할 것들 — 임대료·토너·수리 Q&A (대구 한별시스템)",
+  "사무실 컴퓨터 관리 Q&A — 임대·업그레이드·전산 유지관리 (대구 한별시스템)",
+  "방문 견적은 무료인가요? — 한별시스템 방문 서비스 Q&A",
+];
 
 async function publish(token, { title, html, labels }) {
   const blogId = process.env.BLOGGER_BLOG_ID;
@@ -174,31 +205,42 @@ if (DRY) {
 }
 
 const token = await getAccessToken();
-const seen = await existingTitles(token);
+const seen = await existingPosts(token);
 
-for (const p of allPosts) {
-  if (seen.has(p.title)) {
-    console.log(`건너뜀(이미 존재): ${p.title}`);
-    continue;
-  }
-  let done = false;
-  for (let attempt = 1; attempt <= 4 && !done; attempt++) {
+async function withBackoff(label, fn) {
+  for (let attempt = 1; attempt <= 4; attempt++) {
     try {
-      const url = await publish(token, { title: p.title, html: buildHtml(p, p.items), labels: p.labels });
-      console.log(`발행됨: ${url}`);
-      done = true;
+      return await fn();
     } catch (e) {
       if (String(e).includes("429") || String(e).includes("RESOURCE_EXHAUSTED")) {
         const wait = 90 * attempt;
-        console.log(`429 속도제한 — ${wait}초 대기 후 재시도 (${attempt}/4): ${p.title}`);
+        console.log(`429 속도제한 — ${wait}초 대기 후 재시도 (${attempt}/4): ${label}`);
         await new Promise((r) => setTimeout(r, wait * 1000));
       } else throw e;
     }
   }
-  if (!done) {
-    console.log(`포기(다음 실행 때 재시도됨): ${p.title}`);
-    break; // 쿼터 소진 상태로 판단 — 나머지는 다음 실행에서
-  }
+  return null;
+}
+
+// 구버전 글 정리
+for (const t of OBSOLETE_TITLES) {
+  const id = seen.get(t);
+  if (!id) continue;
+  const ok = await withBackoff(`삭제: ${t}`, async () => { await deletePost(token, id); return true; });
+  console.log(ok ? `삭제됨: ${t}` : `삭제 포기: ${t}`);
+  await new Promise((r) => setTimeout(r, 10_000));
+}
+
+// 현행 시리즈: 있으면 내용 갱신, 없으면 신규 발행
+for (const p of allPosts) {
+  const html = buildHtml(p, p.items);
+  const id = seen.get(p.title);
+  const url = await withBackoff(p.title, () =>
+    id ? updatePost(token, id, { title: p.title, html, labels: p.labels })
+       : publish(token, { title: p.title, html, labels: p.labels })
+  );
+  if (url) console.log(`${id ? "갱신됨" : "발행됨"}: ${url}`);
+  else { console.log(`포기(다음 실행 때 재시도): ${p.title}`); break; }
   await new Promise((r) => setTimeout(r, 20_000));
 }
 console.log("완료");
