@@ -6,6 +6,9 @@ on:
       dry_run:
         description: "true = 발행 없이 미리보기만"
         default: "false"
+      task:
+        description: "publish(기본) | label-reviews(설치후기 라벨 일괄 부여)"
+        default: "publish"
 
 permissions:
   contents: read
@@ -25,7 +28,9 @@ jobs:
           GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
           BLOGGER_BLOG_ID: ${{ secrets.BLOGGER_BLOG_ID }}
         run: |
-          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+          if [ "${{ github.event.inputs.task }}" = "label-reviews" ]; then
+            node scripts/label-reviews.mjs
+          elif [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
             node scripts/blog-columns.mjs --dry-run
           else
             node scripts/blog-columns.mjs

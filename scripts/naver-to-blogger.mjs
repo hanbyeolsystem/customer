@@ -186,7 +186,7 @@ if (SEED) {
         const url = await publishToBlogger(token, {
           title: p.title,
           html: body.html,
-          labels: [p.category.replace(/\(.*?\)/g, "").trim()].filter(Boolean),
+          labels: [p.category.replace(/\(.*?\)/g, "").trim(), "설치후기"].filter(Boolean),
         });
         state.posted[p.logNo] = { title: p.title, bloggerUrl: url, postedAt: new Date().toISOString() };
         changed = true;

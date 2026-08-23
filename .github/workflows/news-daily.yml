@@ -42,7 +42,7 @@ jobs:
           if [ "${{ github.event.inputs.sync || 'false' }}" = "true" ]; then
             node scripts/news-to-blogger.mjs --sync
           else
-            MAX="${{ github.event.inputs.max || '1' }}"
+            MAX="${{ github.event.inputs.max || '6' }}"
             PT="${{ github.event.inputs.per_topic || '1' }}"
             node scripts/news-to-blogger.mjs --max "$MAX" --per-topic "$PT"
           fi
