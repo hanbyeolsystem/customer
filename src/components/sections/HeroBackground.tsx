@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 /* 히어로 배경 미디어 레이어.
-   - SSR/기본: 포스터 이미지(server-rack.png) → LCP 안정, CLS 0
+   - SSR/기본: 포스터 이미지(server-rack.jpg) → LCP 안정, CLS 0
    - 모션 허용 사용자에 한해 마운트 후 배경 영상 페이드인(자동재생·무음·루프)
    - prefers-reduced-motion 사용자는 영상 없이 포스터 유지 (a11y CRITICAL) */
 export function HeroBackground({
@@ -26,7 +26,7 @@ export function HeroBackground({
     <>
       <Image
         src={posterSrc}
-        alt="한별시스템 엔지니어가 기업 서버·장비를 점검하는 모습"
+        alt="한별시스템이 구축한 서버랙과 랙마운트 NAS"
         fill
         priority
         sizes="100vw"

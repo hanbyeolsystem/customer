@@ -19,7 +19,7 @@ export const caseStudies: CaseStudy[] = [
       "대용량 도면·설계 자료를 안전하게 보관·공유. DS1825+ 설치로 자료 관리를 일원화한 실제 현장.",
     scale: "대구·경북 · Synology DS1825+",
     tags: ["NAS 구축", "시놀로지", "도면관리"],
-    image: "/cases/ds1825.png",
+    image: "/cases/ds1825.jpg",
     href: "https://blog.naver.com/hanbyeolsystem/224269459051",
   },
   {
@@ -30,7 +30,7 @@ export const caseStudies: CaseStudy[] = [
       "랙마운트 RS2421+로 대량 자료 저장·공유 환경을 구축. 안전한 백업과 권한 관리까지 시공.",
     scale: "랙마운트 · Synology RS2421+",
     tags: ["서버 구축", "랙마운트", "백업"],
-    image: "/cases/rs2421.png",
+    image: "/cases/rs2421.jpg",
     href: "https://blog.naver.com/hanbyeolsystem/224266056667",
   },
   {
@@ -41,7 +41,7 @@ export const caseStudies: CaseStudy[] = [
       "회사 데이터를 안전하게 - DS925+ HDD 세팅부터 설치·운영자 인계까지 진행한 현장 후기.",
     scale: "대구·경북 · Synology DS925+",
     tags: ["NAS 구축", "HDD 세팅", "데이터 백업"],
-    image: "/cases/ds925.png",
+    image: "/cases/ds925.jpg",
     href: "https://blog.naver.com/hanbyeolsystem/224263900340",
   },
   {
@@ -52,7 +52,7 @@ export const caseStudies: CaseStudy[] = [
       "대구를 넘어 창원까지. 사무실 NAS 설치와 이후 서버 관리까지 맡아 진행한 시공 후기.",
     scale: "창원 · 시놀로지 NAS",
     tags: ["NAS 구축", "서버 관리", "원격지원"],
-    image: "/cases/changwon.png",
+    image: "/cases/changwon.jpg",
     href: "https://blog.naver.com/hanbyeolsystem/224292586801",
   },
   {
@@ -63,7 +63,7 @@ export const caseStudies: CaseStudy[] = [
       "정부조달 제품까지 꼼꼼하게. 동선과 인쇄량에 맞춰 복합기를 설치·세팅한 임대 현장.",
     scale: "대구·경북 · 교세라 TASKalfa",
     tags: ["복사기 임대", "교세라", "설치"],
-    image: "/cases/kyocera.png",
+    image: "/cases/kyocera.jpg",
     href: "https://blog.naver.com/hanbyeolsystem/224255706197",
   },
   {
@@ -74,7 +74,7 @@ export const caseStudies: CaseStudy[] = [
       "어지러운 배선을 깔끔하게. 사무실 랜공사와 선정리, 컴퓨터 연결까지 마무리한 시공 후기.",
     scale: "대구 사무실 · 랜공사·선정리",
     tags: ["랜공사", "선정리", "네트워크"],
-    image: "/cases/lan.png",
+    image: "/cases/lan.jpg",
     href: "https://blog.naver.com/hanbyeolsystem/224182683885",
   },
 ];
