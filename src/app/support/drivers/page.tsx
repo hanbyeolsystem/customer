@@ -6,6 +6,7 @@ import { embedHref } from "@/lib/embed";
 export const metadata: Metadata = {
   title: "드라이버 다운로드",
   description: "한별 드라이버 센터 (882.kr) 과 제조사 공식 지원 페이지에서 프린터 드라이버를 받을 수 있습니다.",
+  alternates: { canonical: "/support/drivers/" },
 };
 
 const HANBYEOL_DRIVE = "https://882.kr/?embed=1"; // 새 882 (2026-08-17 재구축): embed=1 → 882 자체 상단바 숨김(홈페이지 헤더 안 이중 표시 방지)
@@ -30,7 +31,7 @@ export default function DriversPage() {
       />
       <section className="py-12 lg:py-16 bg-[var(--bg)]">
         <div className="max-w-5xl mx-auto px-4 lg:px-6">
-          {/* 1) 한별 드라이버 센터 — 메인 다운로드 채널 */}
+          {/* 1) 한별 드라이버 센터 - 메인 다운로드 채널 */}
           <Link
             href={embedHref(HANBYEOL_DRIVE, "한별 드라이버 센터")}
             className="group relative overflow-hidden block bg-gradient-to-br from-hb-primary via-hb-blue to-hb-blue-light text-white rounded-2xl p-5 lg:p-6 shadow-xl hover:shadow-[0_16px_40px_-12px_rgba(37,99,235,0.55)] hover:-translate-y-0.5 transition mb-6"
@@ -46,7 +47,7 @@ export default function DriversPage() {
                   한별 드라이버 센터
                 </h2>
                 <p className="text-[12px] lg:text-sm text-white/80 mt-0.5">
-                  882.kr — 딸깍P드라이버·브랜드별 드라이버·딸깍설치
+                  882.kr - 딸깍P드라이버·브랜드별 드라이버·딸깍설치
                 </p>
               </div>
               <div className="hidden sm:inline-flex items-center gap-1 bg-white text-hb-primary font-extrabold text-sm px-4 py-2 rounded-lg shadow group-hover:bg-amber-50 transition flex-shrink-0">
@@ -56,7 +57,7 @@ export default function DriversPage() {
             </div>
           </Link>
 
-          {/* 1-1) 딸깍P드라이버 — 설치기 직접 다운로드 */}
+          {/* 1-1) 딸깍P드라이버 - 설치기 직접 다운로드 */}
           <a
             href={DDALKKAK_P_DRIVER}
             className="group flex items-center gap-4 bg-[var(--panel)] border-2 border-hb-blue/40 rounded-2xl p-4 lg:p-5 mb-6 hover:border-hb-blue hover:shadow-lg hover:-translate-y-0.5 transition"

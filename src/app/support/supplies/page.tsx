@@ -1,6 +1,9 @@
 import { PageHeader } from "@/components/PageHeader";
 import { ComingSoon } from "@/components/ComingSoon";
-export const metadata = { title: "소모품 주문" };
+export const metadata = {
+  title: "소모품 주문",
+  alternates: { canonical: "/support/supplies/" },
+};
 export default function Page() {
   return (
     <>

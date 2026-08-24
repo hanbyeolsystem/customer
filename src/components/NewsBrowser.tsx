@@ -1,6 +1,6 @@
 "use client";
 
-// 새소식 탐색기 — 검색 + 주제 필터 + 카드 그리드
+// 새소식 탐색기 - 검색 + 주제 필터 + 카드 그리드
 import { useMemo, useState } from "react";
 
 type NewsItem = {
@@ -34,7 +34,7 @@ export function NewsBrowser({ items }: { items: NewsItem[] }) {
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="🔍 소식 검색 — 예: 랜섬웨어, 윈도우, 엔비디아"
+            placeholder="🔍 소식 검색 - 예: 랜섬웨어, 윈도우, 엔비디아"
             className="w-full bg-[var(--panel)] border border-[var(--line)] rounded-2xl px-5 py-3.5 text-[15px] text-[var(--ink)] placeholder:text-[var(--mute)] focus:outline-none focus:border-hb-blue"
           />
           <div className="flex gap-2 flex-wrap">
@@ -76,7 +76,7 @@ export function NewsBrowser({ items }: { items: NewsItem[] }) {
                   <h2 className="font-extrabold text-[var(--ink)] leading-snug mb-2 text-[17px]">{n.title}</h2>
                   <p className="text-sm text-[var(--mute)] leading-relaxed mb-2 line-clamp-3">{n.desc}</p>
                   <p className="text-sm text-[var(--ink)]/85 leading-relaxed mb-4">
-                    <b className="text-hb-blue">한별의 한 줄</b> — {n.comment}
+                    <b className="text-hb-blue">한별의 한 줄</b> - {n.comment}
                   </p>
                   <div className="flex gap-4 text-xs font-bold mt-auto">
                     <a href={n.link} rel="nofollow noopener" target="_blank" className="text-hb-blue">원문 보기 →</a>

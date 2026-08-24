@@ -14,7 +14,7 @@ export function RentalShop() {
               임대 쇼핑몰
             </h2>
             <p className="text-sm lg:text-base text-[var(--mute)] mt-3">
-              월 정액으로 부담 없이 — 유지보수·토너 모두 포함
+              월 정액으로 부담 없이 - 유지보수·토너 모두 포함
             </p>
           </div>
           <Link

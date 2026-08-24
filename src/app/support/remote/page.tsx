@@ -6,9 +6,10 @@ import { site } from "@/data/site";
 export const metadata: Metadata = {
   title: "원격 지원",
   description: "Seetrol MY 원격지원 (한별 전용). 다운로드 후 화면에 보이는 숫자를 한별시스템에 알려주시면 즉시 원격 접속합니다.",
+  alternates: { canonical: "/support/remote/" },
 };
 
-// 다운로드 경로 — 파일명은 절대 변경 금지 (Seetrol 접속 식별자)
+// 다운로드 경로 - 파일명은 절대 변경 금지 (Seetrol 접속 식별자)
 const REMOTE_FILE = "/files/588-0 한별원격.exe";
 const REMOTE_FILENAME = "588-0 한별원격.exe";
 
@@ -49,7 +50,7 @@ export default function RemoteSupportPage() {
             </div>
           </a>
 
-          {/* 진행 순서 — 2단계 */}
+          {/* 진행 순서 - 2단계 */}
           <h3 className="text-lg lg:text-xl font-extrabold text-[var(--ink)] mb-5">
             진행 순서
           </h3>

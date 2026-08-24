@@ -3,7 +3,10 @@ import { PageHeader } from "@/components/PageHeader";
 import { quickServices } from "@/data/services";
 import { Icon, type IconName } from "@/components/Icon";
 
-export const metadata = { title: "고객 지원" };
+export const metadata = {
+  title: "고객 지원",
+  alternates: { canonical: "/support/" },
+};
 
 export default function SupportHub() {
   return (
@@ -11,7 +14,7 @@ export default function SupportHub() {
       <PageHeader
         badge="CUSTOMER SUPPORT"
         title="고객 지원 센터"
-        description="원격지원·드라이버·AS·견적까지 — 필요한 도움을 한 곳에서."
+        description="원격지원·드라이버·AS·견적까지 - 필요한 도움을 한 곳에서."
       />
       <section className="py-12 lg:py-16 bg-[var(--bg)]">
         <div className="max-w-5xl mx-auto px-4 lg:px-6">

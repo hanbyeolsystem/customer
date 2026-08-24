@@ -1,4 +1,4 @@
-// GEO: 즉답형 FAQ 섹션 — 화면 렌더 + FAQPage JSON-LD 스키마를 함께 출력
+// GEO: 즉답형 FAQ 섹션 - 화면 렌더 + FAQPage JSON-LD 스키마를 함께 출력
 // AI 검색엔진(챗GPT·퍼플렉시티 등)이 Q&A를 그대로 인용할 수 있는 구조.
 
 type Faq = { q: string; a: string };

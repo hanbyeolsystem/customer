@@ -2,7 +2,7 @@ import Link from "next/link";
 import { getInfoCards } from "@/lib/blog";
 import { embedHref } from "@/lib/embed";
 
-// 커뮤니티 상단 "오늘의 IT 소식" — 매일 아침 자동 발행되는 블로거 IT소식 카드.
+// 커뮤니티 상단 "오늘의 IT 소식" - 매일 아침 자동 발행되는 블로거 IT소식 카드.
 // 글이 하나도 없으면 섹션을 통째로 숨긴다.
 export async function InfoCards() {
   const cards = await getInfoCards(8);
@@ -17,7 +17,7 @@ export async function InfoCards() {
               오늘의 IT 소식
             </h2>
             <p className="text-[13px] text-[var(--mute)] mt-1.5">
-              NAS·컴퓨터·복사기·네트워크·AI — 매일 아침 한별이 골라 정리해 드립니다.
+              NAS·컴퓨터·복사기·네트워크·AI - 매일 아침 한별이 골라 정리해 드립니다.
             </p>
           </div>
         </div>

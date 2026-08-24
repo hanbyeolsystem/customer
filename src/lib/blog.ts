@@ -1,11 +1,12 @@
 import { posts as fallbackPosts, type Post } from "@/data/posts";
+import { dedash } from "@/lib/utils";
 
-// 구글 블로거(Blogger) RSS — 정적 export 라서 "빌드 시점"에 읽는다.
+// 구글 블로거(Blogger) RSS - 정적 export 라서 "빌드 시점"에 읽는다.
 // 자동 갱신은 .github/workflows/deploy.yml 의 schedule(cron) 재빌드가 담당.
 // (2026-08-23 네이버 RSS → Blogger RSS 전환. 크로스포스팅은 scripts/naver-to-blogger.mjs)
 const RSS_URL = "https://hanbyeolsystem.blogspot.com/feeds/posts/default?alt=rss&max-results=24";
 
-// 매일 자동 발행되는 "IT소식" 카드 글 라벨 — 소식 섹션(getBlogPosts)에서는 제외하고
+// 매일 자동 발행되는 "IT소식" 카드 글 라벨 - 소식 섹션(getBlogPosts)에서는 제외하고
 // 커뮤니티 상단 카드(getInfoCards)에서만 노출한다.
 const INFO_LABEL = "IT소식";
 const INFO_RSS_URL = `https://hanbyeolsystem.blogspot.com/feeds/posts/default/-/${encodeURIComponent(INFO_LABEL)}?alt=rss&max-results=24`;
@@ -71,8 +72,8 @@ function parseItem(item: string): Post & { labels: string[] } {
   const desc = unescapeHtml(tag(item, "description"));
   const labels = tagAll(item, "category");
   return {
-    title: tag(item, "title").replace(/\s*\|\s*한별시스템\s*$/, ""),
-    excerpt: toExcerpt(desc),
+    title: dedash(tag(item, "title").replace(/\s*\|\s*한별시스템\s*$/, "")),
+    excerpt: dedash(toExcerpt(desc)),
     date: toDate(tag(item, "pubDate")),
     // Blogger 의 guid 는 URL 이 아니므로(tag:blogger…) link 를 쓴다
     href: tag(item, "link"),
@@ -104,7 +105,7 @@ export async function getBlogPosts(limit = 12): Promise<Post[]> {
   }
 }
 
-// 커뮤니티 상단 "오늘의 IT 소식" 카드 — IT소식 라벨 피드만 읽는다.
+// 커뮤니티 상단 "오늘의 IT 소식" 카드 - IT소식 라벨 피드만 읽는다.
 // 아직 글이 없거나 피드 장애면 빈 배열(섹션 자체를 숨김).
 export async function getInfoCards(limit = 8): Promise<Post[]> {
   try {

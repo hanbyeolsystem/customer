@@ -1,5 +1,5 @@
 // 한별고객센터 챗봇 설정
-// anon 키는 공개 키(클라이언트 노출 정상) — RLS/verify_jwt 용 식별자일 뿐 비밀이 아니다.
+// anon 키는 공개 키(클라이언트 노출 정상) - RLS/verify_jwt 용 식별자일 뿐 비밀이 아니다.
 // 실제 비밀(ANTHROPIC_API_KEY)은 Edge Function 서버에만 존재한다.
 
 export const CHAT_ENDPOINT =

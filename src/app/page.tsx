@@ -7,6 +7,9 @@ import { RentalShop } from "@/components/sections/RentalShop";
 import { BlogFeed } from "@/components/sections/BlogFeed";
 import { OfficialChannels } from "@/components/sections/OfficialChannels";
 import { CtaBanner } from "@/components/sections/CtaBanner";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 export default function Home() {
   return (

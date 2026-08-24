@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/PageHeader";
-import { qna, qnaBySlug, qnaCats } from "@/data/qna";
+import { qna, qnaBySlug, qnaCats, qnaModified, qnaPublished } from "@/data/qna";
 import { qnaImage } from "@/data/qna-images";
 import { site } from "@/data/site";
 
@@ -17,6 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: f.q,
     description: f.a.slice(0, 155),
+    alternates: { canonical: `/qna/${slug}/` },
   };
 }
 
@@ -27,17 +28,37 @@ export default async function QnaDetailPage({ params }: { params: Promise<{ slug
   const cat = qnaCats.find((c) => c.id === f.cat);
   const related = qna.filter((x) => x.cat === f.cat && x.slug !== f.slug).slice(0, 4);
 
+  // QAPage 구조화 데이터.
+  // Search Console 이 지적한 누락 필드(datePublished / upvoteCount / author / url / text)를
+  // Question·Answer 양쪽에 모두 채운다. upvoteCount 는 추천 기능이 없으므로 0 이 정답.
+  const pageUrl = `${site.url}/qna/${f.slug}/`;
+  const org = { "@type": "Organization", name: site.name, url: site.url };
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "QAPage",
+    "@id": pageUrl,
+    url: pageUrl,
+    inLanguage: "ko-KR",
     mainEntity: {
       "@type": "Question",
+      "@id": `${pageUrl}#question`,
       name: f.q,
+      text: f.q,
       answerCount: 1,
+      upvoteCount: 0,
+      datePublished: qnaPublished,
+      dateModified: qnaModified,
+      author: org,
+      url: pageUrl,
       acceptedAnswer: {
         "@type": "Answer",
+        "@id": `${pageUrl}#answer`,
         text: f.more ? `${f.a} ${f.more}` : f.a,
-        author: { "@type": "Organization", name: site.name, url: site.url },
+        upvoteCount: 0,
+        datePublished: qnaPublished,
+        dateModified: qnaModified,
+        url: pageUrl,
+        author: org,
       },
     },
   };

@@ -14,7 +14,7 @@ export async function BlogFeed() {
               한별시스템 소식
             </h2>
             <p className="text-sm lg:text-base text-[var(--mute)] mt-3">
-              Synology 신제품·랜섬웨어 대응·운영 노하우 — 한별 블로그 최신 글
+              Synology 신제품·랜섬웨어 대응·운영 노하우 - 한별 블로그 최신 글
             </p>
           </div>
           <Link

@@ -11,13 +11,13 @@ export function CtaBanner() {
           <div className="relative">
             <div className="inline-flex items-center gap-2.5 font-mono text-[11px] font-semibold tracking-[.18em] text-white/65 mb-6">
               <span className="hb-blink w-2 h-2 rounded-full bg-hb-azure" />
-              FREE CONSULTATION — 1영업일 회신
+              FREE CONSULTATION - 1영업일 회신
             </div>
             <h2 className="text-2xl lg:text-4xl font-black tracking-tight mb-3 leading-tight">
               지금 시스템 점검, <span className="text-hb-azure">한별</span>과 시작하세요
             </h2>
             <p className="text-sm lg:text-lg text-white/75 mb-9 max-w-2xl mx-auto leading-relaxed">
-              NAS·백업·임대 무엇이든 — 현재 환경을 진단하고 맞춤 견적을 무료로 드립니다.
+              NAS·백업·임대 무엇이든 - 현재 환경을 진단하고 맞춤 견적을 무료로 드립니다.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md sm:max-w-none mx-auto">
               <a

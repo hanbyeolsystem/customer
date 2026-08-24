@@ -26,7 +26,7 @@ export function ChatWidget() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
-  // 같은 기기 재방문 기억 — 직전 대화 복원
+  // 같은 기기 재방문 기억 - 직전 대화 복원
   useEffect(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
@@ -132,7 +132,7 @@ export function ChatWidget() {
               <p className="font-extrabold text-[15px]">한별시스템 상담원 별이</p>
               <p className="text-[11px] text-white/70 inline-flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 hb-blink" />
-                보통 즉시 응답 · 평일 09–18시 전화 053-588-7119
+                보통 즉시 응답 · 평일 09-18시 전화 053-588-7119
               </p>
             </div>
             <button

@@ -27,8 +27,9 @@ const rentalFaq = [
 ];
 
 export const metadata: Metadata = {
-  title: "복합기·복사기 렌탈(임대) — 대구 프린터 렌탈",
+  title: "복합기·복사기 렌탈(임대) - 대구 프린터 렌탈",
   description: "대구 복합기 렌탈·프린터 렌탈. 토너 교체·부품·출장수리 포함 월 정액. 카운터 자동 수집·사전 정비·대구 당일 출동.",
+  alternates: { canonical: "/rental/" },
 };
 
 export default function RentalPage() {
@@ -37,7 +38,7 @@ export default function RentalPage() {
       <PageHeader
         badge="RENTAL CARE"
         title="복사기 · 프린터 임대 케어"
-        description="유지보수·토너·정기점검 모두 포함. 비포서비스(BEFORE SERVICE) — 문제가 생기기 전에 한별이 먼저 갑니다."
+        description="유지보수·토너·정기점검 모두 포함. 비포서비스(BEFORE SERVICE) - 문제가 생기기 전에 한별이 먼저 갑니다."
       />
       <section className="py-12 lg:py-16 bg-[var(--bg)]">
         <div className="max-w-5xl mx-auto px-4 lg:px-6 grid sm:grid-cols-2 gap-4 lg:gap-5">

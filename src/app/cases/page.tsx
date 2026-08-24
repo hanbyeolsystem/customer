@@ -5,7 +5,8 @@ import { caseStudies } from "@/data/cases";
 
 export const metadata: Metadata = {
   title: "구축 사례",
-  description: "제조·의료·회계·법무·교육·건설 — 한별이 구축한 NAS·백업·복합기 사례.",
+  description: "제조·의료·회계·법무·교육·건설 - 한별이 구축한 NAS·백업·복합기 사례.",
+  alternates: { canonical: "/cases/" },
 };
 
 export default function CasesPage() {

@@ -4,7 +4,7 @@ import { HeroBackground } from "./HeroBackground";
 import { Icon } from "@/components/Icon";
 import { embedHref } from "@/lib/embed";
 
-/* 통계를 "모니터링 지표"로 재해석 — 회사 자체를 무중단 가동 중인 시스템으로 */
+/* 통계를 "모니터링 지표"로 재해석 - 회사 자체를 무중단 가동 중인 시스템으로 */
 const monitors = site.stats.map((s, i) => ({
   ...s,
   status: i === site.stats.length - 1 ? "LIVE" : "정상",
@@ -32,7 +32,7 @@ export function Hero() {
           <div className="lg:col-span-7">
             <div className="hb-rise inline-flex items-center gap-2.5 font-mono text-[11px] font-semibold tracking-[.18em] text-white/70 mb-7">
               <span className="hb-blink w-2 h-2 rounded-full bg-hb-azure shadow-[0_0_0_4px_rgba(0,144,216,0.25)]" />
-              SYS.ONLINE — 19Y UPTIME
+              SYS.ONLINE - 19Y UPTIME
             </div>
 
             <h1 className="text-[34px] sm:text-5xl lg:text-[62px] font-black leading-[1.1] tracking-tight mb-7">

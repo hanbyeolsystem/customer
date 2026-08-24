@@ -11,7 +11,7 @@ export type Post = {
 // 피드 장애 시에만 아래 스냅샷(2026-08-23 기준)이 노출됨.
 export const posts: Post[] = [
   {
-    title: "대구 나스 계정 관리 — 직원마다 따로 관리하고 싶으신 분께, 시놀로지 DS925+로 개인 계정 세팅해드린 이야기",
+    title: "대구 나스 계정 관리 - 직원마다 따로 관리하고 싶으신 분께, 시놀로지 DS925+로 개인 계정 세팅해드린 이야기",
     excerpt:
       "직원마다 따로 아이디를 만들어주고 싶어요\" 대구의 한 사무실 대표님께서 연락을 주셨습니다. \"나스를 하나 들이려고 하는데요, 그냥 공용 폴더 하나 만들어서 다 같이 쓰는 방식 말고, 직원 한 명 한…",
     date: "2026-08-23",
@@ -38,7 +38,7 @@ export const posts: Post[] = [
     thumb: "https://mblogthumb-phinf.pstatic.net/MjAyNjA4MjBfMTc4/MDAxNzg3MjEyOTg5Mjk2.XI9kriLWJ0vRdUwXZqyGwBe_g2o4bI4w1hutzej74LAg.0InB2CHqBDAcpnRXWtbrxfiaJjCQGc3wBZxRaT-byt4g.JPEG/KakaoTalk_20260807_152857287_22.jpg?type=w580",
   },
   {
-    title: "대구 복사기렌탈 — 사무기기 설치, 함께 정리한 이야기 | 한별시스템 Kyocera TASKalfa",
+    title: "대구 복사기렌탈 - 사무기기 설치, 함께 정리한 이야기 | 한별시스템 Kyocera TASKalfa",
     excerpt:
       "새 복합기는 들여놨는데, 그다음이 문제네요\" 대구에서 사무실을 운영하시는 대표님께 연락을 받았습니다. 복합기 렌탈 계약은 이미 끝냈는데, 정작 설치 당일이 되니 막막하다는 말씀이었습니다. \"기기는…",
     date: "2026-08-20",
@@ -47,7 +47,7 @@ export const posts: Post[] = [
     thumb: "https://jrzesjgyrvgvwazfajec.supabase.co/storage/v1/object/public/autopost-media/posts/eaed1e26-3bf1-4693-9368-4cbf52dc3364.jpg",
   },
   {
-    title: "대구 복사기렌탈 — 공장 현장에 인터넷 연결요청, 함께 해결한 이야기",
+    title: "대구 복사기렌탈 - 공장 현장에 인터넷 연결요청, 함께 해결한 이야기",
     excerpt:
       "안녕하세요, 한별시스템입니다. 공장 현장에 인터넷 연결요청 이런 고민, 생각보다 많은 분들이 하십니다. 혼자 결정하기엔 막막하고, 잘못 고르면 비용만 나가니까요. 그래서 가장 부담이 적은 방법을 먼…",
     date: "2026-08-17",
@@ -56,7 +56,7 @@ export const posts: Post[] = [
     thumb: "https://jrzesjgyrvgvwazfajec.supabase.co/storage/v1/object/public/autopost-media/posts/b232dbe8-b458-4ccd-bcba-27bb910e0888.jpg",
   },
   {
-    title: "대구 데이터 백업 — 여러 대에 흩어진 도면 파일, 함께 정리한 이야기 | 한별시스템 Synology DS925+",
+    title: "대구 데이터 백업 - 여러 대에 흩어진 도면 파일, 함께 정리한 이야기 | 한별시스템 Synology DS925+",
     excerpt:
       "도면이 이 컴퓨터, 저 컴퓨터에 다 흩어져 있어요\" 대구에서 건축 설계사무실을 운영하시는 소장님께서 사무실을 방문해 달라고 연락을 주셨습니다. 통화 중에 이런 말씀을 하셨습니다. \"직원마다 컴퓨터에…",
     date: "2026-08-17",

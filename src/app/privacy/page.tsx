@@ -1,6 +1,9 @@
 import { PageHeader } from "@/components/PageHeader";
 import { ComingSoon } from "@/components/ComingSoon";
-export const metadata = { title: "개인정보처리방침" };
+export const metadata = {
+  title: "개인정보처리방침",
+  alternates: { canonical: "/privacy/" },
+};
 export default function Page() {
   return (
     <>

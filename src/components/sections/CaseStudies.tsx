@@ -21,7 +21,7 @@ export function CaseStudies() {
               실제 구축 사례
             </h2>
             <p className="text-sm lg:text-base text-[var(--mute)] mt-3">
-              건축·의료·교육·기업 — 대구·경북 곳곳의 실제 NAS·복합기 구축 후기입니다.
+              건축·의료·교육·기업 - 대구·경북 곳곳의 실제 NAS·복합기 구축 후기입니다.
             </p>
           </div>
           <Link

@@ -30,14 +30,15 @@ const nasFaq = [
 export const metadata: Metadata = {
   title: "NAS 솔루션",
   description: "Synology NAS 구축 · 데이터 백업 · RAID · VPN · 원격근무 · 랜섬웨어 대응 · 유지관리. 대구·경북 기업의 데이터 인프라.",
+  alternates: { canonical: "/nas/" },
 };
 
 const offerings = [
   { icon: "🗄", title: "NAS 구축",        body: "용량 산정·모델 선정·초기 설정·운영자 인계까지 한 번에." },
   { icon: "💾", title: "데이터 백업",     body: "스케줄·증분·이중 백업·세대 관리·검증까지 자동화." },
-  { icon: "🧩", title: "RAID 설계",       body: "1/5/6/10 — 가용성과 비용의 최적 조합 컨설팅." },
+  { icon: "🧩", title: "RAID 설계",       body: "1/5/6/10 - 가용성과 비용의 최적 조합 컨설팅." },
   { icon: "🔒", title: "VPN 구축",        body: "외부에서 안전한 사내망 접속. 모바일·재택근무 대응." },
-  { icon: "🏠", title: "원격근무 환경",   body: "Drive·Office·Chat·Mail — Synology 협업 스택 셋업." },
+  { icon: "🏠", title: "원격근무 환경",   body: "Drive·Office·Chat·Mail - Synology 협업 스택 셋업." },
   { icon: "☁",  title: "클라우드 연동",  body: "Hyper Backup으로 외부 클라우드 이중백업." },
   { icon: "🛡", title: "랜섬웨어 대응",   body: "스냅샷·WORM·격리 백업. 1시간 내 복구 시나리오." },
   { icon: "🔧", title: "유지관리",        body: "분기 점검·DSM 패치·디스크 SMART 모니터링." },
@@ -60,7 +61,7 @@ export default function NasPage() {
               왜 한별의 <span className="text-hb-blue">Synology NAS</span> 인가
             </h2>
             <p className="text-[var(--mute)] leading-relaxed mb-5">
-              단순 저장소가 아닙니다. 백업·보안·협업·재해복구까지 한 박스로 — 그리고 한별 엔지니어가 평생 옆에 있습니다.
+              단순 저장소가 아닙니다. 백업·보안·협업·재해복구까지 한 박스로 - 그리고 한별 엔지니어가 평생 옆에 있습니다.
             </p>
             <ul className="space-y-2.5 mb-7">
               <li className="flex items-start gap-2.5 text-lg lg:text-2xl font-extrabold text-hb-primary dark:text-white leading-tight">

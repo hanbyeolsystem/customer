@@ -2,7 +2,7 @@ import Link from "next/link";
 import { quickServices } from "@/data/services";
 import { Icon, type IconName } from "@/components/Icon";
 
-// 로고 블루로 통일 — 아이콘은 글리프로 구분, 색은 브랜드 일관성 유지
+// 로고 블루로 통일 - 아이콘은 글리프로 구분, 색은 브랜드 일관성 유지
 const iconChip =
   "bg-hb-blue-soft text-hb-blue dark:bg-hb-azure/15 dark:text-hb-blue-light";
 const accentMap: Record<string, string> = {

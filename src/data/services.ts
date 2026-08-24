@@ -12,7 +12,7 @@ export const coreServices = [
     icon: "server",
     badge: "MAIN",
     title: "NAS 구축 및 관리",
-    summary: "기업 데이터를 안전하게 — Synology 공식 대리점",
+    summary: "기업 데이터를 안전하게 - Synology 공식 대리점",
     items: ["Synology NAS 구축·세팅", "RAID 1/5/6/10 구성", "VPN·원격근무 환경", "사후 유지관리 지원"],
     href: "/nas",
     cta: "NAS 솔루션 보기",

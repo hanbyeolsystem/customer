@@ -1,4 +1,4 @@
-// Q&A·새소식 카테고리별 현장사진 매핑 — slug 해시로 안정적으로 분배(같은 글=늘 같은 사진)
+// Q&A·새소식 카테고리별 현장사진 매핑 - slug 해시로 안정적으로 분배(같은 글=늘 같은 사진)
 
 const POOL: Record<string, string[]> = {
   nas: ["nas-real-01.jpg", "nas-real-02.jpg", "nas-real-03.jpg", "nas-01.jpg"],

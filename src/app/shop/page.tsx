@@ -8,6 +8,7 @@ import { embedHref } from "@/lib/embed";
 export const metadata: Metadata = {
   title: "임대 쇼핑몰",
   description: "A3 컬러·흑백 복합기, A4 레이저, 잉크젯, PC·노트북, 대형 디스플레이 등 한별시스템 월 정액 임대 라인업.",
+  alternates: { canonical: "/shop/" },
 };
 
 export default function ShopPage() {
@@ -16,7 +17,7 @@ export default function ShopPage() {
       <PageHeader
         badge="RENTAL SHOP"
         title="임대 쇼핑몰"
-        description="월 정액으로 부담 없이 — 유지보수·토너 모두 포함. 카드를 클릭하면 한별 임대 쇼핑몰(hbsys.kr) 의 상세 페이지로 이동합니다."
+        description="월 정액으로 부담 없이 - 유지보수·토너 모두 포함. 카드를 클릭하면 한별 임대 쇼핑몰(hbsys.kr) 의 상세 페이지로 이동합니다."
       />
       <section className="py-12 lg:py-16 bg-[var(--bg)]">
         <div className="max-w-7xl mx-auto px-4 lg:px-6">

@@ -8,7 +8,7 @@ export type Product = {
   badge?: string;
 };
 
-// 한별시스템 주력 — 교세라(레이저) · 엡손(잉크젯) 6개 라인업
+// 한별시스템 주력 - 교세라(레이저) · 엡손(잉크젯) 6개 라인업
 // 카드 클릭 시 hbsys.kr 상품 상세 페이지로 새 탭 이동
 export const products: Product[] = [
   {

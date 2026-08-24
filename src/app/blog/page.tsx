@@ -4,7 +4,10 @@ import { PageHeader } from "@/components/PageHeader";
 import { getBlogPosts } from "@/lib/blog";
 import { embedHref } from "@/lib/embed";
 
-export const metadata: Metadata = { title: "한별시스템 소식" };
+export const metadata: Metadata = {
+  title: "한별시스템 소식",
+  alternates: { canonical: "/blog/" },
+};
 
 export default async function BlogPage() {
   const posts = await getBlogPosts(12);

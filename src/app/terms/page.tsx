@@ -1,6 +1,9 @@
 import { PageHeader } from "@/components/PageHeader";
 import { ComingSoon } from "@/components/ComingSoon";
-export const metadata = { title: "이용약관" };
+export const metadata = {
+  title: "이용약관",
+  alternates: { canonical: "/terms/" },
+};
 export default function Page() {
   return (
     <>

@@ -1,5 +1,5 @@
 /* 일관된 라인 아이콘 세트 (Lucide 기반, stroke 1.8, currentColor)
-   — ui-ux-pro-max 규칙 no-emoji-icons / icon-style-consistent 준수.
+   - ui-ux-pro-max 규칙 no-emoji-icons / icon-style-consistent 준수.
    이모지 대신 SVG: 테마 색 상속·선명도·다크모드 대응. */
 
 type IconProps = {

@@ -5,7 +5,10 @@ import { Icon, type IconName } from "@/components/Icon";
 import { site } from "@/data/site";
 import { coreServices } from "@/data/services";
 
-export const metadata: Metadata = { title: "회사 소개" };
+export const metadata: Metadata = {
+  title: "회사 소개",
+  alternates: { canonical: "/about/" },
+};
 
 const values: { icon: IconName; title: string; desc: string }[] = [
   {
@@ -26,14 +29,14 @@ const values: { icon: IconName; title: string; desc: string }[] = [
   {
     icon: "settings",
     title: "통합 IT 관리",
-    desc: "PC·서버·네트워크·NAS·복사기까지 — 흩어진 IT를 한 곳에서 관리합니다.",
+    desc: "PC·서버·네트워크·NAS·복사기까지 - 흩어진 IT를 한 곳에서 관리합니다.",
   },
 ];
 
 const partners = ["Synology", "EPSON", "FujiFilm BI", "Kyocera", "HP", "Canon"];
 
 // 회사 연혁 (최신순). highlight = 강조 마일스톤
-// 시대(era)별 연혁 — 성장 스텝 차트 + 표 로 시각화
+// 시대(era)별 연혁 - 성장 스텝 차트 + 표 로 시각화
 type Milestone = { date: string; text: string; highlight?: boolean };
 const eras: {
   name: string;
@@ -45,7 +48,7 @@ const eras: {
 }[] = [
   {
     name: "태동기",
-    range: "2008 – 2011",
+    range: "2008 - 2011",
     headline: "PC 유지보수로 출발, 대구 서부 기반 구축",
     bar: 40,
     items: [
@@ -59,7 +62,7 @@ const eras: {
   },
   {
     name: "성장기",
-    range: "2012 – 2016",
+    range: "2012 - 2016",
     headline: "복사기·토너 사업 확장, 자체 토너공장 이전",
     bar: 64,
     items: [
@@ -75,7 +78,7 @@ const eras: {
   },
   {
     name: "안정기",
-    range: "2017 – 2023",
+    range: "2017 - 2023",
     headline: "최우수 대리점 연속 입상으로 입지 확립",
     bar: 82,
     items: [
@@ -89,7 +92,7 @@ const eras: {
   },
   {
     name: "도약기",
-    range: "2024 – 2026",
+    range: "2024 - 2026",
     headline: "NAS·데이터 인프라 전문기업으로 도약",
     bar: 100,
     highlight: true,
@@ -116,11 +119,11 @@ export default function AboutPage() {
               <div className="space-y-4 text-[var(--mute)] leading-relaxed text-[15px]">
                 <p>
                   한별시스템은 대구·경북 지역 기업의 IT 인프라를 19년간 함께해온 전문 기업입니다. NAS 구축과 데이터
-                  백업, 복사기 임대, 그리고 상시 IT 유지관리까지 — 기업 운영에 필요한 IT를 한 손에서 책임집니다.
+                  백업, 복사기 임대, 그리고 상시 IT 유지관리까지 - 기업 운영에 필요한 IT를 한 손에서 책임집니다.
                 </p>
                 <p>
                   저희는 한 번 맺은 인연을 길게 봅니다. 장비를 파는 데서 끝나지 않고, 고객사의 업무가 멈추지 않도록
-                  곁에서 관리하는 것 — 그것이 한별이 일하는 방식입니다.
+                  곁에서 관리하는 것 - 그것이 한별이 일하는 방식입니다.
                 </p>
               </div>
             </div>
@@ -194,7 +197,7 @@ export default function AboutPage() {
                   한 번 인연을 맺은 고객사와는 길게 함께합니다.
                 </p>
                 <p>
-                  Synology NAS 공식 대리점으로서의 전문성, 19년의 운영 노하우, 그리고 무엇보다 발 빠른 현장 대응 —
+                  Synology NAS 공식 대리점으로서의 전문성, 19년의 운영 노하우, 그리고 무엇보다 발 빠른 현장 대응 -
                   그것이 한별이 자랑하는 가치입니다. 앞으로도 고객의 업무가 멈추지 않도록, 보이지 않는 곳에서
                   든든하게 받치겠습니다.
                 </p>
@@ -230,14 +233,14 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 4.5 회사 연혁 — 성장 그래프 + 시대별 표 */}
+      {/* 4.5 회사 연혁 - 성장 그래프 + 시대별 표 */}
       <section className="py-14 lg:py-20 bg-[var(--bg)]">
         <div className="max-w-4xl mx-auto px-4 lg:px-6">
           <div className="text-center mb-10 lg:mb-12">
             <div className="eyebrow mb-3">HISTORY</div>
             <h2 className="text-2xl lg:text-3xl font-black text-[var(--ink)] mb-2">한별이 걸어온 길</h2>
             <p className="text-sm text-[var(--mute)]">
-              2008년 컴퓨터 대리점에서 출발 — 2026년 Synology NAS 공식 대리점까지
+              2008년 컴퓨터 대리점에서 출발 - 2026년 Synology NAS 공식 대리점까지
             </p>
           </div>
 

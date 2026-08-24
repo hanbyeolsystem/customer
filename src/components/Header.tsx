@@ -52,7 +52,7 @@ export function Header() {
     window.setTimeout(() => setBmHint(null), ms);
   };
 
-  // 바탕화면/홈 화면 바로가기 추가 — 플랫폼별 분기
+  // 바탕화면/홈 화면 바로가기 추가 - 플랫폼별 분기
   const addBookmark = async () => {
     const nav2 = navigator as Navigator & { standalone?: boolean };
     const standalone =
@@ -74,7 +74,7 @@ export function Header() {
       return;
     }
     const ua = navigator.userAgent || "";
-    // iOS 사파리: 자동 설치 불가 — 수동 안내
+    // iOS 사파리: 자동 설치 불가 - 수동 안내
     if (/iPhone|iPad|iPod/i.test(ua)) {
       showHint("사파리 하단 '공유' → '홈 화면에 추가' 를 누르면 아이콘이 생겨요.");
       return;

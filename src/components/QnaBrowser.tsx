@@ -1,6 +1,6 @@
 "use client";
 
-// Q&A 탐색기 — 검색 + 카테고리 필터 + 현장사진 카드 그리드
+// Q&A 탐색기 - 검색 + 카테고리 필터 + 현장사진 카드 그리드
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { qnaImage } from "@/data/qna-images";
@@ -29,7 +29,7 @@ export function QnaBrowser({ items, cats }: { items: Item[]; cats: Cat[] }) {
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="🔍 궁금한 것을 검색해 보세요 — 예: 토너, 랜섬웨어, 와이파이 느림"
+            placeholder="🔍 궁금한 것을 검색해 보세요 - 예: 토너, 랜섬웨어, 와이파이 느림"
             className="w-full bg-[var(--panel)] border border-[var(--line)] rounded-2xl px-5 py-3.5 text-[15px] text-[var(--ink)] placeholder:text-[var(--mute)] focus:outline-none focus:border-hb-blue"
           />
           <div className="flex gap-2 flex-wrap">

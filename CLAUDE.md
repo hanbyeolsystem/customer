@@ -37,7 +37,27 @@
 - 폼은 모두 `mailto:` 방식 — 다음 단계로 Formspree/Edge Function 권장
 - 한글 폴더 `고객용사이트/` 안에 있지만 git push 는 `customer/` 리포로 됨
 
+## 색인(SEO) 규칙 — 2026-08-24 Search Console 경고 대응으로 확립
+- `trailingSlash: true` 라서 GitHub Pages 는 `/nas` → `/nas/` 로 **301** 한다.
+  `src/app/sitemap.ts` 의 URL 은 **반드시 끝에 슬래시**를 붙일 것. 안 붙이면 Search Console 이
+  전 페이지를 "리디렉션이 포함된 페이지"로 색인 제외한다.
+- 색인 대상 페이지는 **전부 self-canonical** 필수: 각 page 의 metadata 에
+  `alternates: { canonical: "/경로/" }` (metadataBase 기준 상대경로, 슬래시 포함).
+- 폼 페이지를 `"use client"` 로 만들면 metadata 를 못 내보내 title/description 이 홈과 같아지고
+  "중복 페이지"로 색인 제외된다. → 폼은 별도 클라이언트 컴포넌트로 빼고 page.tsx 는 서버로 유지
+  (`support/as/AsForm.tsx`, `support/quote/QuoteForm.tsx` 가 그 형태).
+- noindex 페이지(`/go/`)와 Next 부산물(`/404/`, `/_not-found/`)은 **사이트맵에 넣지 말 것**.
+  robots.txt 로 막으면 안 된다(막으면 구글이 noindex 자체를 못 읽는다).
+- Q&A 구조화 데이터(QAPage/FAQPage)는 `datePublished`·`dateModified`·`author`·`upvoteCount`·`url`
+  누락 시 경고가 뜬다. 날짜는 `src/data/qna.ts` 의 `qnaPublished`/`qnaModified` 상수를 쓰며,
+  **Q&A 본문을 고치면 `qnaModified` 도 함께 갱신**할 것.
+
+## 표기 규칙
+- 사용자에게 보이는 텍스트에 **em-dash(—)·en-dash(–) 금지**, 일반 하이픈(-)만 사용.
+  외부에서 들어오는 문자열(블로거 RSS, news.json)은 `dedash()` (`src/lib/utils.ts`) 로 정리한다.
+
 ## 작업 자동 배포
-`main` 브랜치 push 시 Vercel 이 자동 빌드. 사용자에게 별도 배포 요청 불필요.
+`main` 브랜치 push 시 **GitHub Pages** 워크플로(`.github/workflows/deploy.yml`)가 자동 빌드·배포.
+사용자에게 별도 배포 요청 불필요. (Vercel 아님)
 
 관련: [[project_customer_center]] — 메모리에는 v0.1 정적 사이트 기록. 본 v0.3 Next.js로 완전 교체됨.

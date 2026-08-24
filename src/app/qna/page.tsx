@@ -2,22 +2,33 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { QnaBrowser } from "@/components/QnaBrowser";
-import { qna, qnaCats } from "@/data/qna";
+import { qna, qnaCats, qnaModified, qnaPublished } from "@/data/qna";
+import { site } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "Q&A — 나스·복합기 렌탈·컴퓨터 수리·사무실 인터넷 155문답",
+  title: "Q&A - 나스·복합기 렌탈·컴퓨터 수리·사무실 인터넷 155문답",
   description:
-    "나스(NAS)가 뭔가요? 복합기 렌탈료엔 뭐가 포함되나요? 컴퓨터가 느려요. 사무실 인터넷이 끊겨요 — 전산 올인원 관리 한별시스템이 실제 고객 질문 155가지에 즉답합니다. 전산은 전화 한 통.",
+    "나스(NAS)가 뭔가요? 복합기 렌탈료엔 뭐가 포함되나요? 컴퓨터가 느려요. 사무실 인터넷이 끊겨요 - 전산 올인원 관리 한별시스템이 실제 고객 질문 155가지에 즉답합니다. 전산은 전화 한 통.",
+  alternates: { canonical: "/qna/" },
 };
 
 export default function QnaPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    "@id": `${site.url}/qna/`,
+    url: `${site.url}/qna/`,
+    inLanguage: "ko-KR",
+    datePublished: qnaPublished,
+    dateModified: qnaModified,
     mainEntity: qna.map((f) => ({
       "@type": "Question",
       name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: f.a,
+        url: `${site.url}/qna/${f.slug}/`,
+      },
     })),
   };
 
@@ -26,7 +37,7 @@ export default function QnaPage() {
       <PageHeader
         badge="Q&A"
         title="궁금한 것부터 해결하세요"
-        description="나스·백업·복합기 렌탈·컴퓨터·네트워크 — 19년간 고객에게 실제로 받은 질문 155가지에 그대로 답합니다."
+        description="나스·백업·복합기 렌탈·컴퓨터·네트워크 - 19년간 고객에게 실제로 받은 질문 155가지에 그대로 답합니다."
       />
       <QnaBrowser
         items={qna.map(({ slug, cat, q, a }) => ({ slug, cat, q, a }))}

@@ -1,6 +1,6 @@
 "use client";
 
-// 커뮤니티 게시판 — Supabase(asms-pacai) community_posts 테이블 사용.
+// 커뮤니티 게시판 - Supabase(asms-pacai) community_posts 테이블 사용.
 // 회원가입 없이 닉네임으로 질문/답변. anon 키는 공개용 키(RLS로 보호됨).
 
 import { useCallback, useEffect, useState } from "react";
@@ -66,7 +66,7 @@ export function CommunityBoard() {
   }, [load]);
 
   async function submit(body: Partial<Post> & { website?: string }) {
-    if (body.website) return true; // honeypot — 봇이면 조용히 무시
+    if (body.website) return true; // honeypot - 봇이면 조용히 무시
     const last = Number(localStorage.getItem("hb_comm_last") || 0);
     if (Date.now() - last < 30_000) {
       alert("잠시 후 다시 작성해 주세요. (30초 간격)");

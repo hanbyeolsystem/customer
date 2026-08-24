@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
 import { NewsBrowser } from "@/components/NewsBrowser";
 import newsData from "@/data/news.json";
+import { dedash } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "IT 새소식 — 사무실에 영향 주는 소식만 골라서",
+  title: "IT 새소식 - 사무실에 영향 주는 소식만 골라서",
   description:
-    "보안·윈도우·프린터·나스(NAS)·네트워크·AI — 대구 전산 올인원 관리 한별시스템이 사무실 업무와 관련 있는 IT 소식만 골라 매일 아침 전해 드립니다.",
+    "보안·윈도우·프린터·나스(NAS)·네트워크·AI - 대구 전산 올인원 관리 한별시스템이 사무실 업무와 관련 있는 IT 소식만 골라 매일 아침 전해 드립니다.",
+  alternates: { canonical: "/news/" },
 };
 
 type NewsItem = {
@@ -15,7 +17,13 @@ type NewsItem = {
 };
 
 export default function NewsPage() {
-  const items = (newsData as NewsItem[]).slice(0, 100);
+  // news.json 은 자동 생성이라 em-dash 가 섞여 들어올 수 있어 렌더 직전에 정리한다.
+  const items = (newsData as NewsItem[]).slice(0, 100).map((n) => ({
+    ...n,
+    title: dedash(n.title),
+    desc: dedash(n.desc),
+    comment: dedash(n.comment),
+  }));
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
