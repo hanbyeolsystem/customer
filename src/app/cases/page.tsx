@@ -4,8 +4,8 @@ import { PageHeader } from "@/components/PageHeader";
 import { caseStudies } from "@/data/cases";
 
 export const metadata: Metadata = {
-  title: "구축 사례",
-  description: "제조·의료·회계·법무·교육·건설 - 한별이 구축한 NAS·백업·복합기 사례.",
+  title: "구축 사례 - 대구·경북 NAS·복합기 설치 현장",
+  description: "대구·경북 사무실에 실제로 설치한 시놀로지 NAS, 교세라 복합기, 사무실 랜공사 현장 기록. 건축사무소·대학교·공장 등 업종별 구축 사례와 고객 후기를 확인하세요.",
   alternates: { canonical: "/cases/" },
 };
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { FaqSection } from "@/components/FaqSection";
+import { AnswerBlock } from "@/components/AnswerBlock";
 
 const rentalFaq = [
   {
@@ -39,6 +40,16 @@ export default function RentalPage() {
         badge="RENTAL CARE"
         title="복사기 · 프린터 임대 케어"
         description="유지보수·토너·정기점검 모두 포함. 비포서비스(BEFORE SERVICE) - 문제가 생기기 전에 한별이 먼저 갑니다."
+      />
+      <AnswerBlock
+        question="대구에서 복합기 임대(렌탈)를 맡기면 월 정액에 무엇이 포함되나요?"
+        answer="토너 등 소모품, 부품 교체, 출장 수리, 분기별 정기점검이 월 정액 하나에 전부 포함됩니다. 초기 구입비가 없고 고장이 나도 추가 비용이 붙지 않습니다. 대구광역시 달서구에 본사를 둔 한별시스템은 2008년부터 복합기·프린터 300대 이상을 설치·운영해 왔고, 대구·경북은 당일, 전국은 1영업일 안에 출동합니다."
+        facts={[
+          { label: "설치·운영", value: "300대 이상" },
+          { label: "출동", value: "대구·경북 당일" },
+          { label: "포함", value: "토너·부품·출장" },
+          { label: "문의", value: "053-588-7119" },
+        ]}
       />
       <section className="py-12 lg:py-16 bg-[var(--bg)]">
         <div className="max-w-5xl mx-auto px-4 lg:px-6 grid sm:grid-cols-2 gap-4 lg:gap-5">

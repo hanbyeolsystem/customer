@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { PageHeader } from "@/components/PageHeader";
 import { FaqSection } from "@/components/FaqSection";
+import { AnswerBlock } from "@/components/AnswerBlock";
 
 const nasFaq = [
   {
@@ -28,8 +29,8 @@ const nasFaq = [
 ];
 
 export const metadata: Metadata = {
-  title: "NAS 솔루션",
-  description: "Synology NAS 구축 · 데이터 백업 · RAID · VPN · 원격근무 · 랜섬웨어 대응 · 유지관리. 대구·경북 기업의 데이터 인프라.",
+  title: "대구 NAS 구축 - 기업용 나스·데이터 백업",
+  description: "대구 나스(NAS) 구축 전문. 시놀로지 공식 대리점으로 기업용 NAS 50건 이상 구축. RAID 설계·3-2-1 백업·랜섬웨어 대응·VPN 원격접속까지. 대구·경북 당일 방문, 무료 견적.",
   alternates: { canonical: "/nas/" },
 };
 
@@ -51,6 +52,16 @@ export default function NasPage() {
         badge="NAS SOLUTION · SYNOLOGY 공식 대리점"
         title="데이터가 멈추면 업무도 멈춥니다"
         description="기업 데이터 보호를 위한 통합 NAS 솔루션. 구축부터 운영까지 한별이 끝까지 책임집니다."
+      />
+      <AnswerBlock
+        question="대구에서 회사 NAS(나스)를 구축하려면 어디에 맡겨야 하나요?"
+        answer="한별시스템은 대구광역시 달서구에 있는 시놀로지(Synology) 공식 대리점으로, 기업용 NAS를 50건 이상 구축했습니다. 하드웨어 납품에 그치지 않고 RAID 설계, 3-2-1 백업 구성, 랜섬웨어 대비 스냅샷, VPN 원격접속 설정, 직원 사용 교육까지 현장에서 진행합니다. 대구·경북은 당일 방문해 현장을 직접 보고 무료로 견적을 냅니다."
+        facts={[
+          { label: "구축 실적", value: "50건 이상" },
+          { label: "자격", value: "시놀로지 공식 대리점" },
+          { label: "방문 견적", value: "무료" },
+          { label: "문의", value: "053-588-7119" },
+        ]}
       />
 
       {/* Hero 비주얼 */}

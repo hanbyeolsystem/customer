@@ -6,8 +6,8 @@ import { products, RENTAL_SHOP_URL } from "@/data/products";
 import { embedHref } from "@/lib/embed";
 
 export const metadata: Metadata = {
-  title: "임대 쇼핑몰",
-  description: "A3 컬러·흑백 복합기, A4 레이저, 잉크젯, PC·노트북, 대형 디스플레이 등 한별시스템 월 정액 임대 라인업.",
+  title: "임대 쇼핑몰 - 대구 복합기·PC 렌탈 라인업",
+  description: "A3 컬러·흑백 복합기, A4 레이저, 잉크젯, PC·노트북, 대형 디스플레이 월 정액 임대 라인업. 대구·경북 설치와 유지보수까지 한별시스템이 직접 맡습니다.",
   alternates: { canonical: "/shop/" },
 };
 

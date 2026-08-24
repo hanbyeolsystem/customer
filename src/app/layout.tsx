@@ -4,7 +4,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ChatWidget } from "@/components/ChatWidget";
-import { site } from "@/data/site";
+import { businessId, site } from "@/data/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -48,29 +48,109 @@ export const viewport: Viewport = {
   themeColor: "#06354F",
 };
 
-// GEO: AI·검색엔진이 회사 정보를 "확인"으로 읽게 하는 구조화 데이터
+// GEO/AEO: AI·검색엔진이 회사 정보를 "확인된 사실"로 읽게 하는 구조화 데이터.
+// @graph 로 LocalBusiness 와 WebSite 를 각각 @id 를 가진 하나의 엔티티로 묶는다.
+// Organization 을 따로 두면 같은 회사가 두 엔티티로 쪼개지므로 만들지 않는다.
+// 다른 페이지(QAPage 등)에서 author 를 쓸 때는 BUSINESS_ID 를 참조할 것.
+const BUSINESS_ID = businessId;
+const WEBSITE_ID = `${site.url}/#website`;
+
+// 한별시스템이 실제로 제공하는 서비스 (구글 비즈니스 프로필 서비스 목록과 동일 범위)
+const serviceCatalog = [
+  { name: "기업용 NAS 구축·데이터 백업", desc: "시놀로지 NAS 설치, RAID 설계, 3-2-1 백업 구성, 랜섬웨어 대비, VPN 원격접속. 구축 실적 50건 이상." },
+  { name: "복합기·프린터 렌탈(임대)", desc: "월 정액에 토너 등 소모품, 부품 교체, 출장 수리, 분기 정기점검 포함. 설치·운영 300대 이상." },
+  { name: "기업 전산 유지관리", desc: "컴퓨터·복합기·NAS·네트워크를 한 회사가 통합 관리하는 올인원 전산 유지보수. 관리 고객사 170곳 이상." },
+  { name: "컴퓨터 수리·PC 임대", desc: "대구 지역 출장 컴퓨터 수리, 사무실 PC 표준화, 데이터 복구." },
+  { name: "사무실 네트워크·랜공사", desc: "CAT6 이상 랜 배선 시공, 공유기·스위치 구성, 인터넷 장애 진단." },
+  { name: "홈페이지 제작·관리", desc: "검색과 AI 검색 노출을 고려한 기업 홈페이지 설계·제작·유지관리." },
+];
+
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: site.name,
-  alternateName: site.nameEn,
-  description: site.description,
-  url: site.url,
-  telephone: site.phone.main,
-  email: site.email,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: site.address.street,
-    addressLocality: "대구광역시 달서구",
-    addressCountry: "KR",
-  },
-  openingHours: "Mo-Fr 09:00-18:00",
-  sameAs: [site.social.blog, site.social.instagram, site.social.threads],
-  areaServed: [
-    "대구광역시", "달서구", "성서공단", "경상북도", "영남권", "전국",
-  ],
-  knowsAbout: [
-    "NAS 구축", "데이터 백업", "복사기 임대", "프린터 임대", "기업 IT 유지관리",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "@id": BUSINESS_ID,
+      name: site.name,
+      alternateName: [site.nameEn, "대구 한별시스템"],
+      description: site.description,
+      url: site.url,
+      telephone: site.phone.main,
+      email: site.email,
+      founder: { "@type": "Person", name: site.address.ceo },
+      foundingDate: site.foundingDate,
+      foundingLocation: { "@type": "Place", name: "대구광역시 달서구 성서공단" },
+      slogan: "전산은 전화 한 통",
+      logo: `${site.url}/icons/icon-512.png`,
+      image: [`${site.url}/icons/icon-512.png`, `${site.url}/brand/logo.png`],
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: site.address.streetOnly,
+        addressLocality: site.address.locality,
+        addressRegion: site.address.region,
+        addressCountry: "KR",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: site.geo.lat,
+        longitude: site.geo.lng,
+      },
+      hasMap: site.social.googleMaps,
+      openingHours: "Mo-Fr 09:00-18:00",
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          opens: "09:00",
+          closes: "18:00",
+        },
+      ],
+      sameAs: [
+        site.social.blog,
+        site.social.instagramBiz,
+        site.social.instagram,
+        site.social.threads,
+        site.social.googleMaps,
+      ],
+      areaServed: [
+        { "@type": "City", name: "대구광역시" },
+        { "@type": "AdministrativeArea", name: "달서구" },
+        { "@type": "Place", name: "성서공단" },
+        { "@type": "AdministrativeArea", name: "경상북도" },
+        { "@type": "Country", name: "대한민국" },
+      ],
+      knowsAbout: [
+        "NAS 구축", "시놀로지 NAS", "데이터 백업", "랜섬웨어 대응", "복합기 렌탈",
+        "프린터 임대", "토너 교체", "컴퓨터 수리", "데이터 복구", "사무실 네트워크",
+        "랜공사", "기업 IT 유지관리", "홈페이지 제작",
+      ],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "한별시스템 서비스",
+        itemListElement: serviceCatalog.map((s) => ({
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: s.name,
+            description: s.desc,
+            provider: { "@id": BUSINESS_ID },
+            areaServed: [
+              { "@type": "City", name: "대구광역시" },
+              { "@type": "AdministrativeArea", name: "경상북도" },
+            ],
+          },
+        })),
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": WEBSITE_ID,
+      url: site.url,
+      name: site.name,
+      description: site.description,
+      inLanguage: "ko-KR",
+      publisher: { "@id": BUSINESS_ID },
+    },
   ],
 };
 

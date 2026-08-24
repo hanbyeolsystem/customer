@@ -6,7 +6,9 @@ import { site } from "@/data/site";
 import { coreServices } from "@/data/services";
 
 export const metadata: Metadata = {
-  title: "회사 소개",
+  title: "회사 소개 - 대구 달서구 전산 관리 업체",
+  description:
+    "한별시스템은 2008년 대구 성서공단에서 출발해 19년째 대구·경북 기업의 전산을 맡아 온 IT 업체입니다. 대구광역시 달서구 문화회관11안길 소재, 관리 고객사 170곳, Synology NAS 공식 대리점.",
   alternates: { canonical: "/about/" },
 };
 

@@ -5,7 +5,9 @@ import { getBlogPosts } from "@/lib/blog";
 import { embedHref } from "@/lib/embed";
 
 export const metadata: Metadata = {
-  title: "한별시스템 소식",
+  title: "한별시스템 소식 - 설치 후기와 현장 이야기",
+  description:
+    "대구·경북 사무실에 시놀로지 NAS와 복합기를 설치하며 겪은 현장 이야기, 랜섬웨어 대응과 백업 운영 노하우를 한별시스템 블로그에서 전합니다.",
   alternates: { canonical: "/blog/" },
 };
 

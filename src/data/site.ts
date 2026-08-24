@@ -20,15 +20,28 @@ export const site = {
 
   address: {
     street: "대구광역시 달서구 문화회관11안길 22-7 1층",
+    // 도로명 주소만 떼어낸 값 (schema.org PostalAddress.streetAddress 용)
+    streetOnly: "문화회관11안길 22-7 1층",
+    locality: "달서구",
+    region: "대구광역시",
+    jibun: "대구광역시 달서구 장동 868-3",
     bizNo: "514-22-73057",
     mailOrder: "제2010-대구달서-0190호",
     ceo: "김상환",
   },
 
+  // 위경도: 네이버 지역검색 API 로 확인한 실측값 (추측 금지)
+  geo: { lat: 35.8403373, lng: 128.5260250 },
+
+  // 2008년 대구 성서공단에서 컴퓨터 대리점으로 창업 (구글 비즈니스 프로필 개업일 기준)
+  foundingDate: "2008-09-01",
+
   social: {
     blog: "https://hanbyeolsystem.blogspot.com/",
     instagram: "https://instagram.com/sanghwan_hanbyeol",
+    instagramBiz: "https://www.instagram.com/hanbyeolsystem",
     threads: "https://www.threads.net/@sanghwan_hanbyeol",
+    googleMaps: "https://maps.google.com/?cid=8994991007847125486",
   },
 
   stats: [
@@ -38,6 +51,11 @@ export const site = {
     { value: "19+",  label: "운영 연수" },
   ],
 } as const;
+
+// 사이트 전체가 공유하는 회사 엔티티 @id.
+// LocalBusiness 는 layout.tsx 에서 한 번만 선언하고, 다른 페이지의 스키마(QAPage author 등)는
+// 이 @id 로 참조한다. 그래야 같은 회사가 여러 엔티티로 쪼개지지 않는다.
+export const businessId = `${site.url}/#business`;
 
 export const nav = [
   { href: "/", label: "홈" },

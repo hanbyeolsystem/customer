@@ -4,8 +4,8 @@ import { PageHeader } from "@/components/PageHeader";
 import { embedHref } from "@/lib/embed";
 
 export const metadata: Metadata = {
-  title: "드라이버 다운로드",
-  description: "한별 드라이버 센터 (882.kr) 과 제조사 공식 지원 페이지에서 프린터 드라이버를 받을 수 있습니다.",
+  title: "프린터 드라이버 다운로드",
+  description: "복합기·프린터 드라이버를 기종만 고르면 자동으로 설치해 주는 딸깍P드라이버를 한별 드라이버 센터(882.kr)에서 무료로 받을 수 있습니다. 제조사 공식 지원 페이지 링크도 함께 정리했습니다.",
   alternates: { canonical: "/support/drivers/" },
 };
 

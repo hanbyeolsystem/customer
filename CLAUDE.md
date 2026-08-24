@@ -52,6 +52,21 @@
   누락 시 경고가 뜬다. 날짜는 `src/data/qna.ts` 의 `qnaPublished`/`qnaModified` 상수를 쓰며,
   **Q&A 본문을 고치면 `qnaModified` 도 함께 갱신**할 것.
 
+## GEO/AEO (AI 검색 인용 최적화) — 2026-08-24 적용
+- `public/robots.txt` 는 AI 크롤러 30종을 명시 허용. **차단 추가 금지**(GEO 목적이 인용 유도).
+- `public/llms.txt` / `public/llms-full.txt` 는 **손으로 고치지 말 것**. `scripts/gen-llms.mjs` 가
+  `src/data/qna.ts` + 회사 사실 블록에서 생성하며, `package.json` 의 `prebuild` 로 매 빌드마다 재생성된다.
+  문구를 바꾸려면 gen-llms.mjs 안의 `FACTS` / `SERVICES` / `DIFF` 상수를 고칠 것.
+- 회사 엔티티는 `layout.tsx` 의 `@graph`(LocalBusiness + WebSite) **한 곳에서만** 선언한다.
+  다른 페이지 스키마에서 회사를 가리킬 땐 `businessId`(`src/data/site.ts`)를 `@id` 로 참조.
+  Organization 스키마를 따로 만들면 엔티티가 쪼개지므로 만들지 말 것.
+- 위경도(`site.geo`)는 네이버 지역검색 API 실측값이다. **추측으로 바꾸지 말 것.**
+- 즉답 블록은 `src/components/AnswerBlock.tsx` 사용(질문형 h2 + 결론부터 2~3문장 + 수치 칩).
+  현재 `/nas` `/rental` `/support` 상단에 배치. 확인 안 된 수치는 절대 넣지 말 것.
+- 지역 키워드는 "대구/달서구/성서공단/경북" + 서비스 조합으로 title·description·본문에 자연스럽게만.
+  네이버 데이터랩 실측: **렌탈 > 임대**(4~14배), 나스(한글) > 시놀로지, 토너교체·랜공사·대구컴퓨터수리 강세.
+  홈 타이틀에 "대구"를 넣은 이유는 동명의 서울 에어커튼 업체가 브랜드 단독 검색을 점유하기 때문.
+
 ## 표기 규칙
 - 사용자에게 보이는 텍스트에 **em-dash(—)·en-dash(–) 금지**, 일반 하이픈(-)만 사용.
   외부에서 들어오는 문자열(블로거 RSS, news.json)은 `dedash()` (`src/lib/utils.ts`) 로 정리한다.

@@ -1,7 +1,9 @@
 import { PageHeader } from "@/components/PageHeader";
 import { ComingSoon } from "@/components/ComingSoon";
 export const metadata = {
-  title: "소모품 주문",
+  title: "토너·소모품 주문",
+  description:
+    "복합기·프린터 토너와 드럼 등 소모품 주문. 한별시스템 임대 고객은 카운터 자동 수집으로 토너가 소진되기 전에 미리 배송되므로 따로 주문할 필요가 없습니다. 대구·경북 당일 배송.",
   alternates: { canonical: "/support/supplies/" },
 };
 export default function Page() {

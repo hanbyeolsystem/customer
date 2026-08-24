@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/PageHeader";
 import { qna, qnaBySlug, qnaCats, qnaModified, qnaPublished } from "@/data/qna";
 import { qnaImage } from "@/data/qna-images";
-import { site } from "@/data/site";
+import { businessId, site } from "@/data/site";
 
 export function generateStaticParams() {
   return qna.map((f) => ({ slug: f.slug }));
@@ -32,7 +32,8 @@ export default async function QnaDetailPage({ params }: { params: Promise<{ slug
   // Search Console 이 지적한 누락 필드(datePublished / upvoteCount / author / url / text)를
   // Question·Answer 양쪽에 모두 채운다. upvoteCount 는 추천 기능이 없으므로 0 이 정답.
   const pageUrl = `${site.url}/qna/${f.slug}/`;
-  const org = { "@type": "Organization", name: site.name, url: site.url };
+  // layout.tsx 의 LocalBusiness 와 같은 엔티티임을 @id 로 알린다(엔티티 분열 방지).
+  const org = { "@type": "Organization", "@id": businessId, name: site.name, url: site.url };
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "QAPage",
