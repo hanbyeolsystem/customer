@@ -92,6 +92,14 @@ export default function NasPage() {
               ))}
             </ul>
 
+            <p className="text-sm text-[var(--mute)] leading-relaxed mb-5">
+              구매가 부담되면 임대로도 시작하실 수 있습니다. 월 10만원부터, 기본 36개월 계약이고
+              장비와 설치, 백업 관리, 장애 출장, 하드디스크 교체까지 월 정액에 들어갑니다.{" "}
+              <Link href="/nas/price" className="font-bold text-hb-blue hover:underline">
+                구축 비용과 임대료 보기
+              </Link>
+            </p>
+
             <div className="flex flex-col sm:flex-row gap-3">
               <Link
                 href="/support/quote"
@@ -103,7 +111,7 @@ export default function NasPage() {
                 href="/nas/price"
                 className="inline-flex items-center justify-center gap-2 border border-[var(--line)] text-[var(--ink)] font-bold px-6 py-3.5 rounded-xl hover:bg-[var(--bg)] transition"
               >
-                구축 비용 보기
+                구축 비용·임대료 보기
               </Link>
             </div>
           </div>

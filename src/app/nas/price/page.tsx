@@ -10,7 +10,7 @@ import { site } from "@/data/site";
 export const metadata: Metadata = {
   title: "대구 NAS 구축 비용 - 규모별 견적 가이드",
   description:
-    "대구 중소기업 NAS 구축 비용을 규모별로 공개합니다. 직원 5~10명 사무실 131만원대부터 대용량 구성까지 시놀로지 장비 기준 실제 금액. 장비 구매 시 설치·초기 설정·백업 구성·사용 교육 무료.",
+    "대구 중소기업 NAS 구축 비용을 규모별로 공개합니다. 직원 5~10명 사무실 131만원대부터 대용량 구성까지 시놀로지 장비 기준 실제 금액. 장비 구매 시 설치·초기 설정·백업 구성·사용 교육 무료이며, 초기 비용이 부담되면 월 10만원부터 시작하는 NAS 임대도 가능합니다.",
   alternates: { canonical: "/nas/price/" },
 };
 
@@ -64,6 +64,49 @@ const disks = [
   { cap: "8TB", price: "609,000원" },
   { cap: "12TB", price: "812,000원" },
   { cap: "16TB", price: "1,015,000원" },
+];
+
+// 임대 조건 (사장님 확정). 임의 변경 금지.
+const rentalIncluded = [
+  { icon: "🖥", title: "장비", body: "시놀로지 본체와 하드디스크를 한별시스템이 준비해 드립니다. 장비 값을 따로 내지 않습니다." },
+  { icon: "🔧", title: "설치와 초기 설정", body: "현장 설치, 공유 폴더와 계정 구성, 직원 사용 교육까지 임대료에 들어갑니다." },
+  { icon: "🔁", title: "백업 스케줄 관리", body: "백업이 계속 돌고 있는지 저희가 보고 있습니다. 담당자가 따로 챙기지 않아도 됩니다." },
+  { icon: "🚗", title: "장애 시 출장", body: "문제가 생기면 방문합니다. 출장비를 건건이 청구하지 않습니다." },
+  { icon: "💽", title: "하드디스크 교체", body: "쓰다가 하드가 고장 나면 저희가 교체합니다. 디스크 값도 추가로 받지 않습니다." },
+  { icon: "📅", title: "기본 36개월", body: "기본 계약 기간은 36개월(3년)입니다. 구성이 커지면 월 임대료가 올라갑니다." },
+];
+
+const buyVsRent = [
+  {
+    item: "초기 비용",
+    buy: "장비 값 130만원대부터 한 번에",
+    rent: "월 10만원부터, 초기 목돈 없음",
+  },
+  {
+    item: "매월 나가는 돈",
+    buy: "없음 (전기료 수준)",
+    rent: "월 임대료 10만원부터, 기본 36개월",
+  },
+  {
+    item: "장비 소유",
+    buy: "회사 자산으로 남습니다",
+    rent: "계약 기간 동안 빌려 쓰는 방식입니다",
+  },
+  {
+    item: "관리 책임",
+    buy: "설치·초기 설정·교육은 구매 시 무료, 이후 관리는 별도 협의",
+    rent: "백업 관리까지 한별시스템이 맡습니다",
+  },
+  {
+    item: "하드디스크 고장 시",
+    buy: "디스크를 새로 구매해 교체합니다",
+    rent: "월 정액에 교체가 포함됩니다",
+  },
+  {
+    item: "이런 곳에 맞습니다",
+    buy: "한 대를 오래 쓰고 자산으로 남기고 싶은 곳",
+    rent: "초기 목돈이 부담되고 관리까지 맡기고 싶은 곳",
+  },
 ];
 
 const factors = [
@@ -124,6 +167,14 @@ const priceFaq = [
     a: "초기 비용은 NAS가 큽니다. 대신 구글드라이브 같은 클라우드는 인원수만큼 월 구독료가 계속 나가는 반면 NAS는 구축 이후 전기료 수준으로 돌아갑니다. 인원이 많고 파일이 클수록 NAS가 유리해집니다.",
   },
   {
+    q: "NAS를 구매하지 않고 임대할 수 있나요?",
+    a: "됩니다. 월 10만원부터 시작하고 기본 계약 기간은 36개월(3년)입니다. 월 임대료 안에 장비, 설치와 초기 설정, 백업 스케줄 관리, 장애 발생 시 출장, 하드디스크 고장 시 교체가 모두 들어갑니다. 복합기 임대에서 토너와 부품, 출장수리가 월 정액에 포함되는 것과 같은 구조입니다. 월 임대료는 구성에 따라 올라가므로 인원과 자료량을 알려 주시면 금액을 잡아 드립니다.",
+  },
+  {
+    q: "임대 중에 하드디스크가 고장 나면 비용이 드나요?",
+    a: "들지 않습니다. 임대 계약이면 하드디스크 교체가 월 정액에 포함되어 있어 디스크 값도 출장비도 따로 청구하지 않습니다. 장애가 생기면 저희가 방문해 교체하고 자료를 다시 정상화해 드립니다.",
+  },
+  {
     q: "대구 외 지역도 시공이 되나요?",
     a: "됩니다. 대구·경북을 중심으로 하지만 창원 사무실에 시놀로지 NAS를 설치하고 이후 서버 관리까지 맡은 사례가 있습니다. 지역이 멀면 방문 일정만 미리 조율합니다.",
   },
@@ -142,11 +193,11 @@ export default function NasPricePage() {
 
       <AnswerBlock
         question="대구에서 중소기업 NAS를 구축하면 비용이 얼마나 드나요?"
-        answer="장비 기준 130만원대부터 시작합니다. 직원 5~10명 사무실에 많이 쓰는 시놀로지 DS225+ 2베이에 4TB 하드 2개를 넣은 구성이 1,313,000원(VAT 별도, 포함 1,444,300원)이고, 직원 10~30명 규모라면 DS925+ 4베이에 8TB 2개를 넣어 2,284,000원(VAT 별도, 포함 2,512,400원) 선입니다. 한별시스템에서 장비를 구매하시면 설치와 초기 설정, 백업 스케줄 구성, 직원 사용 교육까지 무료로 진행합니다."
+        answer="장비 기준 130만원대부터 시작합니다. 직원 5~10명 사무실에 많이 쓰는 시놀로지 DS225+ 2베이에 4TB 하드 2개를 넣은 구성이 1,313,000원(VAT 별도, 포함 1,444,300원)이고, 직원 10~30명 규모라면 DS925+ 4베이에 8TB 2개를 넣어 2,284,000원(VAT 별도, 포함 2,512,400원) 선입니다. 한별시스템에서 장비를 구매하시면 설치와 초기 설정, 백업 스케줄 구성, 직원 사용 교육까지 무료로 진행합니다. 초기 목돈이 부담되면 구매 대신 임대도 됩니다. 즉 구매는 130만원대부터, 임대는 기본 36개월 계약에 월 10만원부터이며 임대료 안에 장비와 설치, 백업 관리, 장애 출장, 하드디스크 교체까지 들어갑니다."
         facts={[
-          { label: "최소 구성", value: "1,313,000원" },
+          { label: "구매 최소 구성", value: "1,313,000원" },
+          { label: "임대", value: "월 10만원부터" },
           { label: "설치·설정", value: "구매 시 무료" },
-          { label: "방문 견적", value: "무료" },
           { label: "문의", value: site.phone.main },
         ]}
       />
@@ -215,8 +266,78 @@ export default function NasPricePage() {
         </div>
       </section>
 
-      {/* 개별 단가 */}
+      {/* NAS 임대 */}
       <section className="py-14 lg:py-20 bg-[var(--bg)]">
+        <div className="max-w-5xl mx-auto px-4 lg:px-6">
+          <div className="text-[11px] font-extrabold text-hb-blue tracking-[.2em] mb-2">NAS RENTAL</div>
+          <h2 className="text-2xl lg:text-3xl font-extrabold text-[var(--ink)] mb-3">
+            구매 대신 임대로 시작하는 방법
+          </h2>
+          <p className="text-sm text-[var(--mute)] leading-relaxed mb-7">
+            처음에 목돈을 들이기 어렵다면 NAS도 임대로 쓰실 수 있습니다.
+            복합기 임대에서 토너와 부품, 출장수리가 월 정액에 들어가는 것과 같은 구조입니다.
+            장비만 빌려 드리는 것이 아니라 관리까지 저희가 맡습니다.
+          </p>
+
+          <div className="rounded-2xl border border-[var(--line)] bg-[var(--panel)] p-6 lg:p-8 mb-7">
+            <div className="flex flex-wrap items-end gap-x-3 gap-y-1 mb-2">
+              <span className="text-3xl lg:text-4xl font-black text-hb-blue tabular-nums">월 10만원</span>
+              <span className="text-lg font-extrabold text-[var(--ink)]">부터</span>
+              <span className="text-sm font-bold text-[var(--mute)]">기본 계약 36개월(3년)</span>
+            </div>
+            <p className="text-[15px] text-[var(--ink)]/90 leading-relaxed font-medium">
+              월 임대료는 구성에 따라 올라갑니다. 인원과 자료량을 알려 주시면 우리 사무실 기준 월 얼마인지 잡아 드립니다.
+            </p>
+          </div>
+
+          <h3 className="text-lg lg:text-xl font-black text-[var(--ink)] mb-4">
+            월 정액에 들어가는 것
+          </h3>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5 mb-12">
+            {rentalIncluded.map((r) => (
+              <div key={r.title} className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6">
+                <div className="text-3xl mb-2">{r.icon}</div>
+                <h4 className="font-extrabold text-[var(--ink)] mb-1.5">{r.title}</h4>
+                <p className="text-sm text-[var(--mute)] leading-relaxed">{r.body}</p>
+              </div>
+            ))}
+          </div>
+
+          <h3 className="text-lg lg:text-xl font-black text-[var(--ink)] mb-3">
+            구매와 임대, 무엇이 다른가요
+          </h3>
+          <p className="text-sm text-[var(--mute)] leading-relaxed mb-5">
+            어느 쪽이 무조건 낫다고 말씀드리지 않습니다. 회사 사정에 따라 답이 다릅니다.
+          </p>
+          <div className="overflow-x-auto rounded-2xl border border-[var(--line)] bg-[var(--panel)]">
+            <table className="w-full text-sm min-w-[560px]">
+              <thead>
+                <tr className="bg-hb-primary text-white text-left">
+                  <th className="py-3 px-4 font-extrabold whitespace-nowrap">항목</th>
+                  <th className="py-3 px-4 font-extrabold whitespace-nowrap">구매</th>
+                  <th className="py-3 px-4 font-extrabold whitespace-nowrap">임대</th>
+                </tr>
+              </thead>
+              <tbody>
+                {buyVsRent.map((r) => (
+                  <tr key={r.item} className="border-t border-[var(--line)] align-top">
+                    <td className="py-3.5 px-4 font-black text-[var(--ink)] whitespace-nowrap">{r.item}</td>
+                    <td className="py-3.5 px-4 text-[var(--ink)]/90 leading-relaxed">{r.buy}</td>
+                    <td className="py-3.5 px-4 text-[var(--ink)]/90 leading-relaxed">{r.rent}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-5 text-[13px] text-[var(--mute)] leading-relaxed">
+            참고. 임대는 월 10만원부터, 기본 계약 기간은 36개월입니다. 총액이 궁금하시면 월 임대료에 개월 수를 곱해 보시면 됩니다.
+            구매와 임대 중 어느 쪽이 맞는지 상담 때 회사 상황에 맞춰 같이 따져 드립니다.
+          </p>
+        </div>
+      </section>
+
+      {/* 개별 단가 */}
+      <section className="py-14 lg:py-20 bg-[var(--panel)]">
         <div className="max-w-5xl mx-auto px-4 lg:px-6">
           <h2 className="text-2xl lg:text-3xl font-extrabold text-[var(--ink)] mb-3">개별 단가</h2>
           <p className="text-sm text-[var(--mute)] leading-relaxed mb-7">
@@ -224,8 +345,8 @@ export default function NasPricePage() {
             모두 VAT 별도 권장소비자가입니다.
           </p>
           <div className="grid md:grid-cols-2 gap-5">
-            <div className="rounded-2xl border border-[var(--line)] bg-[var(--panel)] overflow-hidden">
-              <div className="px-5 py-3 bg-[var(--bg)] border-b border-[var(--line)] font-extrabold text-[var(--ink)]">
+            <div className="rounded-2xl border border-[var(--line)] bg-[var(--bg)] overflow-hidden">
+              <div className="px-5 py-3 bg-[var(--panel)] border-b border-[var(--line)] font-extrabold text-[var(--ink)]">
                 시놀로지 본체
               </div>
               <table className="w-full text-sm">
@@ -242,8 +363,8 @@ export default function NasPricePage() {
                 </tbody>
               </table>
             </div>
-            <div className="rounded-2xl border border-[var(--line)] bg-[var(--panel)] overflow-hidden">
-              <div className="px-5 py-3 bg-[var(--bg)] border-b border-[var(--line)] font-extrabold text-[var(--ink)]">
+            <div className="rounded-2xl border border-[var(--line)] bg-[var(--bg)] overflow-hidden">
+              <div className="px-5 py-3 bg-[var(--panel)] border-b border-[var(--line)] font-extrabold text-[var(--ink)]">
                 하드디스크 (시놀로지 정품 HAT)
               </div>
               <table className="w-full text-sm">
@@ -264,14 +385,14 @@ export default function NasPricePage() {
       </section>
 
       {/* 비용에 영향을 주는 요소 */}
-      <section className="py-14 lg:py-20 bg-[var(--panel)]">
+      <section className="py-14 lg:py-20 bg-[var(--bg)]">
         <div className="max-w-5xl mx-auto px-4 lg:px-6">
           <h2 className="text-2xl lg:text-3xl font-extrabold text-[var(--ink)] mb-8">
             비용을 좌우하는 것들
           </h2>
           <div className="grid sm:grid-cols-2 gap-4 lg:gap-5">
             {factors.map((f) => (
-              <div key={f.title} className="bg-[var(--bg)] border border-[var(--line)] rounded-2xl p-6">
+              <div key={f.title} className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6">
                 <div className="text-3xl mb-2">{f.icon}</div>
                 <h3 className="font-extrabold text-[var(--ink)] mb-1.5">{f.title}</h3>
                 <p className="text-sm text-[var(--mute)] leading-relaxed">{f.body}</p>
@@ -282,7 +403,7 @@ export default function NasPricePage() {
       </section>
 
       {/* 실제 구축 사례 */}
-      <section className="py-14 lg:py-20 bg-[var(--bg)]">
+      <section className="py-14 lg:py-20 bg-[var(--panel)]">
         <div className="max-w-7xl mx-auto px-4 lg:px-6">
           <h2 className="text-2xl lg:text-3xl font-extrabold text-[var(--ink)] mb-3">
             이 금액대로 실제 설치한 현장
@@ -294,7 +415,7 @@ export default function NasPricePage() {
             {nasCases.map((c) => (
               <article
                 key={c.id}
-                className="bg-[var(--panel)] border border-[var(--line)] rounded-3xl overflow-hidden"
+                className="bg-[var(--bg)] border border-[var(--line)] rounded-3xl overflow-hidden"
               >
                 <div className="relative aspect-[16/10]">
                   <Image
