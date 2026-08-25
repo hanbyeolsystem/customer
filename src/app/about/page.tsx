@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { PageHeader } from "@/components/PageHeader";
+import Link from "next/link";
+import { HeroBackground } from "@/components/sections/HeroBackground";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { Icon, type IconName } from "@/components/Icon";
 import { site } from "@/data/site";
@@ -105,7 +106,41 @@ const eras: {
 export default function AboutPage() {
   return (
     <>
-      <PageHeader badge="ABOUT US" title={`${site.name} 소개`} description={site.tagline} />
+      {/* 히어로: 홍보영상 배경 + 스크림 위 텍스트.
+          높이는 콘텐츠(패딩)로 고정하고 영상은 absolute 라서 로드 전후 레이아웃이 튀지 않는다(CLS 0).
+          모바일(<768px)과 prefers-reduced-motion 사용자는 영상을 아예 받지 않고 포스터만 본다. */}
+      <section className="relative overflow-hidden bg-hb-primary text-white border-b border-white/10">
+        <div className="absolute inset-0">
+          <HeroBackground
+            posterSrc="/video/company-bg-poster.jpg"
+            videoSrc="/video/company-bg.mp4"
+            posterAlt="한별시스템 사무실과 현장 작업 모습"
+            minWidth={768}
+          />
+          {/* 가독성 스크림: 영상이 밝은 장면으로 바뀌어도 흰 글씨가 읽히도록 2겹 */}
+          <div className="absolute inset-0 bg-hb-primary/72" />
+          <div className="absolute inset-0 bg-gradient-to-r from-hb-primary via-hb-primary/70 to-hb-primary/45" />
+          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-hb-primary to-transparent" />
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 lg:px-6 py-16 lg:py-28">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-white/70 hover:text-white mb-4 transition"
+          >
+            ← 메인으로
+          </Link>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)]">
+            {site.name} 소개
+          </h1>
+          <div className="mt-2.5 font-mono text-[11px] font-semibold text-hb-blue-light/85 tracking-[.2em]">
+            ABOUT US
+          </div>
+          <p className="text-base lg:text-lg text-white/85 mt-4 max-w-3xl leading-relaxed drop-shadow-[0_1px_8px_rgba(0,0,0,0.4)]">
+            {site.tagline}
+          </p>
+        </div>
+      </section>
 
       {/* 1. 개요 + 통계 */}
       <section className="py-14 lg:py-20 bg-[var(--bg)]">
