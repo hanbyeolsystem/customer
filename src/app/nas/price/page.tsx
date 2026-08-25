@@ -1,0 +1,379 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import Image from "next/image";
+import { PageHeader } from "@/components/PageHeader";
+import { FaqSection } from "@/components/FaqSection";
+import { AnswerBlock } from "@/components/AnswerBlock";
+import { caseStudies } from "@/data/cases";
+import { site } from "@/data/site";
+
+export const metadata: Metadata = {
+  title: "대구 NAS 구축 비용 - 규모별 견적 가이드",
+  description:
+    "대구 중소기업 NAS 구축 비용을 규모별로 공개합니다. 직원 5~10명 사무실 131만원대부터 대용량 구성까지 시놀로지 장비 기준 실제 금액. 장비 구매 시 설치·초기 설정·백업 구성·사용 교육 무료.",
+  alternates: { canonical: "/nas/price/" },
+};
+
+// 시놀로지 공식 공급 단가표 기준 권장소비자가 (VAT 별도). 임의 변경 금지.
+const packages = [
+  {
+    tier: "소규모",
+    target: "직원 5~10명 사무실",
+    gear: "DS225+ (2베이) + 4TB HDD 2개",
+    net: "1,313,000원",
+    vat: "1,444,300원",
+    note: "가장 많이 나가는 입문 구성",
+  },
+  {
+    tier: "중간",
+    target: "직원 10~30명",
+    gear: "DS925+ (4베이) + 8TB HDD 2개",
+    net: "2,284,000원",
+    vat: "2,512,400원",
+    note: "베이 2칸을 남겨 두고 나중에 증설",
+  },
+  {
+    tier: "중간+",
+    target: "자료량이 많은 10~30명",
+    gear: "DS925+ (4베이) + 8TB HDD 4개",
+    net: "3,502,000원",
+    vat: "3,852,200원",
+    note: "처음부터 베이를 다 채우는 구성",
+  },
+  {
+    tier: "대용량",
+    target: "건축·설계 등 대용량 업종",
+    gear: "DS1825+ (8베이) + 16TB HDD 4개",
+    net: "5,999,000원",
+    vat: "6,598,900원",
+    note: "도면·영상 등 큰 파일이 계속 쌓이는 곳",
+  },
+];
+
+const bodies = [
+  { model: "DS225+", bay: "2베이", price: "581,000원" },
+  { model: "DS425+", bay: "4베이", price: "871,000원" },
+  { model: "DS925+", bay: "4베이", price: "1,066,000원" },
+  { model: "DS1525+", bay: "5베이", price: "1,357,000원" },
+  { model: "DS1825+", bay: "8베이", price: "1,939,000원" },
+];
+
+const disks = [
+  { cap: "4TB", price: "366,000원" },
+  { cap: "6TB", price: "507,000원" },
+  { cap: "8TB", price: "609,000원" },
+  { cap: "12TB", price: "812,000원" },
+  { cap: "16TB", price: "1,015,000원" },
+];
+
+const factors = [
+  {
+    icon: "💽",
+    title: "디스크 용량과 개수",
+    body: "전체 비용에서 가장 크게 움직이는 항목입니다. 8TB 하드 1개가 609,000원이라 2개를 더 넣으면 그만큼 합계가 올라갑니다.",
+  },
+  {
+    icon: "🗄",
+    title: "베이(하드 꽂는 칸) 수",
+    body: "2베이와 4베이는 본체 가격 차이가 있습니다. 지금 자료가 적어도 몇 년 뒤 증설을 생각하면 베이가 넉넉한 쪽이 결과적으로 저렴할 때가 많습니다.",
+  },
+  {
+    icon: "🔁",
+    title: "백업 이중화 범위",
+    body: "NAS 한 대만 둘지, 외장 저장장치나 클라우드까지 사본을 둘지에 따라 추가 비용이 붙습니다. 3-2-1 원칙을 지키려면 사본이 하나 더 필요합니다.",
+  },
+  {
+    icon: "🔌",
+    title: "현장 조건",
+    body: "랜 배선 상태, 설치 위치, 기존 자료 이전량 같은 현장 조건에 따라 작업 범위가 달라집니다. 방문해서 보고 정확히 알려 드립니다.",
+  },
+];
+
+const nasCases = caseStudies.filter((c) =>
+  ["case-ds1825", "case-ds925", "case-rs2421", "case-changwon"].includes(c.id),
+);
+
+const relatedQna = [
+  { slug: "nas-capacity", label: "NAS 용량은 얼마나 잡아야 하나요? 2베이·4베이 차이는 뭔가요?" },
+  { slug: "nas-hdd-count", label: "하드디스크는 처음에 몇 개를 넣어야 하나요?" },
+  { slug: "nas-raid", label: "RAID가 뭔가요? 하드 하나가 고장 나면 자료가 다 날아가나요?" },
+  { slug: "nas-vs-cloud-cost", label: "구글드라이브·드롭박스를 쓰다가 NAS로 바꾸면 뭐가 좋아지나요?" },
+  { slug: "nas-lifespan", label: "NAS는 얼마나 오래 쓰나요? 전기료는 많이 나오나요?" },
+  { slug: "nas-process", label: "NAS 도입 절차는 어떻게 되나요? 기간은 얼마나 걸리나요?" },
+];
+
+const priceFaq = [
+  {
+    q: "NAS 구축 비용에 설치비도 포함인가요?",
+    a: "장비를 한별시스템에서 구매하시면 설치, 초기 설정, 백업 스케줄 구성, 직원 사용 교육까지 무료입니다. 표에 적힌 금액이 장비 값이고 여기에 설치비를 따로 붙이지 않습니다.",
+  },
+  {
+    q: "대구 중소기업이 NAS를 구축하면 최소 얼마부터 시작하나요?",
+    a: "직원 5~10명 사무실 기준으로 시놀로지 DS225+ 2베이에 4TB 하드 2개를 넣은 구성이 1,313,000원(VAT 별도), VAT 포함 1,444,300원입니다. 여기에 설치와 초기 설정 비용은 붙지 않습니다.",
+  },
+  {
+    q: "표에 적힌 금액이 최종 견적인가요?",
+    a: "표의 금액은 시놀로지 권장소비자가 기준 장비 합계입니다. 랜 배선 공사, UPS 추가, 기존 자료 이전 범위 같은 현장 조건이 붙으면 달라질 수 있어 방문 확인 후 최종 견적을 드립니다. 방문 견적은 무료입니다.",
+  },
+  {
+    q: "하드 용량을 다 쓸 수 있나요?",
+    a: "아닙니다. NAS는 하드 하나가 고장 나도 자료가 살아 있도록 RAID로 묶기 때문에 실사용 용량이 디스크 총합보다 작습니다. 예를 들어 4TB 두 개를 미러로 묶으면 실사용은 약 4TB입니다. 디스크 개수와 RAID 방식에 따라 달라지므로 상담 때 구성별로 정확히 계산해 드립니다.",
+  },
+  {
+    q: "클라우드보다 비싼가요?",
+    a: "초기 비용은 NAS가 큽니다. 대신 구글드라이브 같은 클라우드는 인원수만큼 월 구독료가 계속 나가는 반면 NAS는 구축 이후 전기료 수준으로 돌아갑니다. 인원이 많고 파일이 클수록 NAS가 유리해집니다.",
+  },
+  {
+    q: "대구 외 지역도 시공이 되나요?",
+    a: "됩니다. 대구·경북을 중심으로 하지만 창원 사무실에 시놀로지 NAS를 설치하고 이후 서버 관리까지 맡은 사례가 있습니다. 지역이 멀면 방문 일정만 미리 조율합니다.",
+  },
+];
+
+export default function NasPricePage() {
+  return (
+    <>
+      <PageHeader
+        badge="NAS PRICE GUIDE · SYNOLOGY 공식 대리점"
+        title="대구 NAS 구축 비용"
+        description="규모별로 실제 금액을 그대로 공개합니다. 시놀로지 권장소비자가 기준, VAT 별도와 포함을 함께 적었습니다."
+        back="/nas"
+        backLabel="NAS 솔루션"
+      />
+
+      <AnswerBlock
+        question="대구에서 중소기업 NAS를 구축하면 비용이 얼마나 드나요?"
+        answer="장비 기준 130만원대부터 시작합니다. 직원 5~10명 사무실에 많이 쓰는 시놀로지 DS225+ 2베이에 4TB 하드 2개를 넣은 구성이 1,313,000원(VAT 별도, 포함 1,444,300원)이고, 직원 10~30명 규모라면 DS925+ 4베이에 8TB 2개를 넣어 2,284,000원(VAT 별도, 포함 2,512,400원) 선입니다. 한별시스템에서 장비를 구매하시면 설치와 초기 설정, 백업 스케줄 구성, 직원 사용 교육까지 무료로 진행합니다."
+        facts={[
+          { label: "최소 구성", value: "1,313,000원" },
+          { label: "설치·설정", value: "구매 시 무료" },
+          { label: "방문 견적", value: "무료" },
+          { label: "문의", value: site.phone.main },
+        ]}
+      />
+
+      {/* 규모별 견적 표 */}
+      <section className="py-14 lg:py-20 bg-[var(--panel)]">
+        <div className="max-w-5xl mx-auto px-4 lg:px-6">
+          <div className="text-[11px] font-extrabold text-hb-blue tracking-[.2em] mb-2">PRICE TABLE</div>
+          <h2 className="text-2xl lg:text-3xl font-extrabold text-[var(--ink)] mb-3">
+            규모별 NAS 구축 견적
+          </h2>
+          <p className="text-sm text-[var(--mute)] leading-relaxed mb-7">
+            시놀로지 권장소비자가 기준 장비 합계입니다. 하드디스크는 시놀로지 정품(HAT) 기준이며,
+            금액은 공급가 변동에 따라 달라질 수 있습니다.
+          </p>
+
+          <div className="overflow-x-auto rounded-2xl border border-[var(--line)] bg-[var(--bg)]">
+            <table className="w-full text-sm min-w-[640px]">
+              <thead>
+                <tr className="bg-hb-primary text-white text-left">
+                  <th className="py-3 px-4 font-extrabold whitespace-nowrap">구성</th>
+                  <th className="py-3 px-4 font-extrabold whitespace-nowrap">대상</th>
+                  <th className="py-3 px-4 font-extrabold whitespace-nowrap">장비</th>
+                  <th className="py-3 px-4 font-extrabold whitespace-nowrap text-right">합계 (VAT 별도)</th>
+                  <th className="py-3 px-4 font-extrabold whitespace-nowrap text-right">VAT 포함</th>
+                </tr>
+              </thead>
+              <tbody>
+                {packages.map((p) => (
+                  <tr key={p.tier} className="border-t border-[var(--line)] align-top">
+                    <td className="py-3.5 px-4">
+                      <span className="font-black text-[var(--ink)]">{p.tier}</span>
+                      <span className="block text-[11px] text-[var(--mute)] mt-0.5">{p.note}</span>
+                    </td>
+                    <td className="py-3.5 px-4 text-[var(--ink)]/90">{p.target}</td>
+                    <td className="py-3.5 px-4 text-[var(--ink)]/90">{p.gear}</td>
+                    <td className="py-3.5 px-4 text-right font-extrabold text-hb-blue tabular-nums whitespace-nowrap">
+                      {p.net}
+                    </td>
+                    <td className="py-3.5 px-4 text-right font-bold text-[var(--ink)] tabular-nums whitespace-nowrap">
+                      {p.vat}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* 설치비 정책 */}
+          <div className="mt-7 border-l-4 border-hb-blue bg-[var(--bg)] border border-[var(--line)] rounded-2xl p-6 lg:p-7">
+            <h3 className="text-lg lg:text-xl font-black text-[var(--ink)] mb-2">
+              장비를 한별시스템에서 구매하시면 <span className="text-hb-blue">설치비 0원</span>
+            </h3>
+            <p className="text-[15px] text-[var(--ink)]/90 leading-relaxed font-medium">
+              설치, 초기 설정, 백업 스케줄 구성, 사용 교육까지 무료입니다.
+              장비만 넘겨 드리고 끝내지 않습니다. 직원분들이 실제로 쓸 수 있는 상태까지 현장에서 맞춰 드립니다.
+            </p>
+          </div>
+
+          {/* RAID 실사용 용량 안내 */}
+          <p className="mt-5 text-[13px] text-[var(--mute)] leading-relaxed">
+            참고. NAS는 하드 하나가 고장 나도 자료가 살아 있도록 RAID로 묶기 때문에 실사용 용량이
+            디스크 총합보다 작습니다. 예를 들어 4TB 두 개를 미러로 묶으면 실사용은 약 4TB입니다.
+            디스크 개수와 RAID 방식에 따라 달라지므로 상담 때 구성별로 정확히 안내해 드립니다.
+          </p>
+        </div>
+      </section>
+
+      {/* 개별 단가 */}
+      <section className="py-14 lg:py-20 bg-[var(--bg)]">
+        <div className="max-w-5xl mx-auto px-4 lg:px-6">
+          <h2 className="text-2xl lg:text-3xl font-extrabold text-[var(--ink)] mb-3">개별 단가</h2>
+          <p className="text-sm text-[var(--mute)] leading-relaxed mb-7">
+            본체와 하드디스크를 따로 조합하고 싶을 때 참고하시라고 단가를 그대로 적었습니다.
+            모두 VAT 별도 권장소비자가입니다.
+          </p>
+          <div className="grid md:grid-cols-2 gap-5">
+            <div className="rounded-2xl border border-[var(--line)] bg-[var(--panel)] overflow-hidden">
+              <div className="px-5 py-3 bg-[var(--bg)] border-b border-[var(--line)] font-extrabold text-[var(--ink)]">
+                시놀로지 본체
+              </div>
+              <table className="w-full text-sm">
+                <tbody>
+                  {bodies.map((b) => (
+                    <tr key={b.model} className="border-t border-[var(--line)] first:border-t-0">
+                      <td className="py-2.5 px-5 font-bold text-[var(--ink)] whitespace-nowrap">{b.model}</td>
+                      <td className="py-2.5 px-2 text-[12px] text-[var(--mute)] whitespace-nowrap">{b.bay}</td>
+                      <td className="py-2.5 px-5 text-right font-extrabold text-hb-blue tabular-nums whitespace-nowrap">
+                        {b.price}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="rounded-2xl border border-[var(--line)] bg-[var(--panel)] overflow-hidden">
+              <div className="px-5 py-3 bg-[var(--bg)] border-b border-[var(--line)] font-extrabold text-[var(--ink)]">
+                하드디스크 (시놀로지 정품 HAT)
+              </div>
+              <table className="w-full text-sm">
+                <tbody>
+                  {disks.map((d) => (
+                    <tr key={d.cap} className="border-t border-[var(--line)] first:border-t-0">
+                      <td className="py-2.5 px-5 font-bold text-[var(--ink)] whitespace-nowrap">{d.cap}</td>
+                      <td className="py-2.5 px-5 text-right font-extrabold text-hb-blue tabular-nums whitespace-nowrap">
+                        {d.price}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 비용에 영향을 주는 요소 */}
+      <section className="py-14 lg:py-20 bg-[var(--panel)]">
+        <div className="max-w-5xl mx-auto px-4 lg:px-6">
+          <h2 className="text-2xl lg:text-3xl font-extrabold text-[var(--ink)] mb-8">
+            비용을 좌우하는 것들
+          </h2>
+          <div className="grid sm:grid-cols-2 gap-4 lg:gap-5">
+            {factors.map((f) => (
+              <div key={f.title} className="bg-[var(--bg)] border border-[var(--line)] rounded-2xl p-6">
+                <div className="text-3xl mb-2">{f.icon}</div>
+                <h3 className="font-extrabold text-[var(--ink)] mb-1.5">{f.title}</h3>
+                <p className="text-sm text-[var(--mute)] leading-relaxed">{f.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 실제 구축 사례 */}
+      <section className="py-14 lg:py-20 bg-[var(--bg)]">
+        <div className="max-w-7xl mx-auto px-4 lg:px-6">
+          <h2 className="text-2xl lg:text-3xl font-extrabold text-[var(--ink)] mb-3">
+            이 금액대로 실제 설치한 현장
+          </h2>
+          <p className="text-sm text-[var(--mute)] leading-relaxed mb-8">
+            표만 보면 감이 안 오실 수 있어 실제 시공 현장을 함께 놓았습니다.
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {nasCases.map((c) => (
+              <article
+                key={c.id}
+                className="bg-[var(--panel)] border border-[var(--line)] rounded-3xl overflow-hidden"
+              >
+                <div className="relative aspect-[16/10]">
+                  <Image
+                    src={c.image}
+                    alt={c.title}
+                    fill
+                    sizes="(min-width:1024px) 25vw, 50vw"
+                    className="object-cover"
+                  />
+                  <span className="absolute top-3 left-3 bg-hb-primary/85 text-white text-[10px] font-extrabold tracking-[.15em] px-2.5 py-1 rounded-full">
+                    {c.industry}
+                  </span>
+                </div>
+                <div className="p-5">
+                  <h3 className="font-extrabold text-[var(--ink)] leading-tight mb-2">{c.title}</h3>
+                  <p className="text-[13px] text-[var(--mute)] leading-relaxed mb-3">{c.summary}</p>
+                  <div className="text-[12px] font-semibold text-hb-blue">{c.scale}</div>
+                </div>
+              </article>
+            ))}
+          </div>
+          <div className="mt-8">
+            <Link
+              href="/cases"
+              className="inline-flex items-center gap-2 border border-[var(--line)] text-[var(--ink)] font-bold px-6 py-3 rounded-xl hover:bg-[var(--panel)] transition"
+            >
+              구축 사례 전체 보기 →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <FaqSection title="NAS 구축 비용, 자주 묻는 질문" items={priceFaq} />
+
+      {/* 관련 Q&A */}
+      <section className="pb-14 lg:pb-20 bg-[var(--bg)]">
+        <div className="max-w-3xl mx-auto px-4 lg:px-6">
+          <h2 className="text-lg lg:text-xl font-extrabold text-[var(--ink)] mb-4">관련 Q&amp;A</h2>
+          <ul className="space-y-2">
+            {relatedQna.map((q) => (
+              <li key={q.slug}>
+                <Link
+                  href={`/qna/${q.slug}`}
+                  className="block bg-[var(--panel)] border border-[var(--line)] rounded-xl px-5 py-3.5 text-sm font-semibold text-[var(--ink)] hover:border-hb-blue transition"
+                >
+                  {q.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-14 lg:py-20 bg-[var(--panel)]">
+        <div className="max-w-3xl mx-auto px-4 lg:px-6 text-center">
+          <h2 className="text-2xl lg:text-3xl font-extrabold text-[var(--ink)] mb-3">
+            우리 사무실은 얼마나 나올까요
+          </h2>
+          <p className="text-[var(--mute)] leading-relaxed mb-8">
+            직원 수와 지금 쓰는 자료량만 알려 주시면 구성과 금액을 잡아 드립니다.
+            대구·경북은 방문해서 직접 보고 견적을 냅니다. 견적은 무료입니다.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <a
+              href={site.phone.mainHref}
+              className="inline-flex items-center justify-center gap-2 bg-hb-blue hover:bg-hb-blue-light text-white font-extrabold px-6 py-3.5 rounded-xl shadow-lg shadow-hb-blue/30 transition"
+            >
+              전화 상담 {site.phone.main}
+            </a>
+            <Link
+              href="/support/quote"
+              className="inline-flex items-center justify-center gap-2 border border-[var(--line)] text-[var(--ink)] font-bold px-6 py-3.5 rounded-xl hover:bg-[var(--bg)] transition"
+            >
+              견적 요청하기 →
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

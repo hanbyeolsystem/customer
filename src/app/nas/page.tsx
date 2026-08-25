@@ -92,12 +92,18 @@ export default function NasPage() {
               ))}
             </ul>
 
-            <div>
+            <div className="flex flex-col sm:flex-row gap-3">
               <Link
                 href="/support/quote"
-                className="inline-flex items-center gap-2 bg-hb-blue hover:bg-hb-blue-light text-white font-extrabold px-6 py-3.5 rounded-xl shadow-lg shadow-hb-blue/30 transition"
+                className="inline-flex items-center justify-center gap-2 bg-hb-blue hover:bg-hb-blue-light text-white font-extrabold px-6 py-3.5 rounded-xl shadow-lg shadow-hb-blue/30 transition"
               >
                 NAS 도입 상담 →
+              </Link>
+              <Link
+                href="/nas/price"
+                className="inline-flex items-center justify-center gap-2 border border-[var(--line)] text-[var(--ink)] font-bold px-6 py-3.5 rounded-xl hover:bg-[var(--bg)] transition"
+              >
+                구축 비용 보기
               </Link>
             </div>
           </div>
