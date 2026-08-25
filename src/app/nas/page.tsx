@@ -100,6 +100,14 @@ export default function NasPage() {
               </Link>
             </p>
 
+            <p className="text-sm text-[var(--mute)] leading-relaxed mb-5">
+              이미 쓰고 계신 NAS가 고장 났다면{" "}
+              <Link href="/nas/repair" className="font-bold text-hb-blue hover:underline">
+                NAS 수리·점검 안내
+              </Link>
+              를 먼저 확인해 주세요. 만지기 전에 하지 말아야 할 것부터 정리해 두었습니다.
+            </p>
+
             <div className="flex flex-col sm:flex-row gap-3">
               <Link
                 href="/support/quote"

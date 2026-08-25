@@ -504,6 +504,13 @@ export default function NasPricePage() {
             직원 수와 지금 쓰는 자료량만 알려 주시면 구성과 금액을 잡아 드립니다.
             대구·경북은 방문해서 직접 보고 견적을 냅니다. 견적은 무료입니다.
           </p>
+          <p className="text-sm text-[var(--mute)] leading-relaxed mb-8">
+            새로 도입하는 게 아니라 쓰던 NAS가 고장 난 상황이라면{" "}
+            <Link href="/nas/repair" className="font-bold text-hb-blue hover:underline">
+              NAS 수리·점검 안내
+            </Link>
+            를 봐 주세요.
+          </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
               href={site.phone.mainHref}
