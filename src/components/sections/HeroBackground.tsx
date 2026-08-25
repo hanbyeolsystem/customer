@@ -10,23 +10,32 @@ import { useEffect, useState } from "react";
 export function HeroBackground({
   posterSrc,
   videoSrc,
+  posterAlt = "한별시스템이 구축한 서버랙과 랙마운트 NAS",
+  minWidth = 0,
 }: {
   posterSrc: string;
   videoSrc: string;
+  /** 포스터 이미지 대체 텍스트 */
+  posterAlt?: string;
+  /** 이 픽셀 폭 미만에서는 영상을 아예 불러오지 않고 포스터만 쓴다(모바일 데이터 절약). 0 = 항상 재생 */
+  minWidth?: number;
 }) {
   const [showVideo, setShowVideo] = useState(false);
   const [ready, setReady] = useState(false);
 
-  // 데스크탑/모바일 모두 영상 재생 (포스터는 로딩 전·폴백용으로 항상 SSR)
+  // 포스터는 로딩 전·폴백용으로 항상 SSR. 영상은 아래 두 조건을 통과할 때만 마운트한다.
+  //  - prefers-reduced-motion: reduce 사용자는 영상 없이 포스터 유지 (a11y)
+  //  - 화면 폭이 minWidth 미만이면 영상 파일 자체를 받지 않는다 (모바일 데이터)
   useEffect(() => {
-    setShowVideo(true);
-  }, []);
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!reduce && window.innerWidth >= minWidth) setShowVideo(true);
+  }, [minWidth]);
 
   return (
     <>
       <Image
         src={posterSrc}
-        alt="한별시스템이 구축한 서버랙과 랙마운트 NAS"
+        alt={posterAlt}
         fill
         priority
         sizes="100vw"
@@ -34,22 +43,22 @@ export function HeroBackground({
           ready ? "opacity-0" : "opacity-60"
         }`}
       />
-      {showVideo && (
-        <video
-          src={videoSrc}
-          poster={posterSrc}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          aria-hidden="true"
-          onCanPlay={() => setReady(true)}
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
-            ready ? "opacity-70" : "opacity-0"
-          }`}
-        />
-      )}
+      {/* src 는 위 조건을 통과했을 때만 붙는다. src 없는 video 는 아무것도 내려받지 않는다. */}
+      <video
+        src={showVideo ? videoSrc : undefined}
+        poster={posterSrc}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
+        tabIndex={-1}
+        onCanPlay={() => setReady(true)}
+        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+          ready ? "opacity-70" : "opacity-0"
+        }`}
+      />
     </>
   );
 }
