@@ -72,6 +72,13 @@ export function CoreServices() {
             );
           })}
         </div>
+
+        <p className="text-sm text-[var(--mute)] leading-relaxed text-center mt-8">
+          사무실 랜 배선 공사부터 데이터 백업 구축, 공유 폴더 설정까지 한 회사에서 처리합니다.{" "}
+          <Link href="/network" className="font-bold text-hb-blue hover:underline">
+            네트워크 공사·데이터 백업 구축 보기 →
+          </Link>
+        </p>
       </div>
     </section>
   );

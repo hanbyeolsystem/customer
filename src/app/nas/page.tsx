@@ -108,6 +108,14 @@ export default function NasPage() {
               를 먼저 확인해 주세요. 만지기 전에 하지 말아야 할 것부터 정리해 두었습니다.
             </p>
 
+            <p className="text-sm text-[var(--mute)] leading-relaxed mb-5">
+              사무실 랜 배선부터 손봐야 한다면{" "}
+              <Link href="/network" className="font-bold text-hb-blue hover:underline">
+                네트워크 공사·데이터 백업 구축 안내
+              </Link>
+              를 보세요. 배선 공사부터 공유 폴더와 백업 설정까지 한 회사에서 처리합니다.
+            </p>
+
             <div className="flex flex-col sm:flex-row gap-3">
               <Link
                 href="/support/quote"

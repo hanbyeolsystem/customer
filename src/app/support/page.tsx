@@ -66,6 +66,13 @@ export default function SupportHub() {
               </Link>
             ))}
           </div>
+          <p className="text-sm text-[var(--mute)] leading-relaxed mt-6 text-center">
+            사무실 랜 배선 공사나 데이터 백업 구축이 필요하시면{" "}
+            <Link href="/network" className="font-bold text-hb-blue hover:underline">
+              네트워크 공사·데이터 백업 구축 안내
+            </Link>
+            를 확인해 주세요.
+          </p>
         </div>
       </section>
       <FaqSection title="전산 유지보수, 자주 묻는 질문" items={supportFaq} />
