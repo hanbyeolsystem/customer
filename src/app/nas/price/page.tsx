@@ -10,42 +10,47 @@ import { site } from "@/data/site";
 export const metadata: Metadata = {
   title: "대구 NAS 구축 비용 - 규모별 견적 가이드",
   description:
-    "대구 중소기업 NAS 구축 비용을 규모별로 공개합니다. 직원 5~10명 사무실 131만원대부터 대용량 구성까지 시놀로지 장비 기준 실제 금액. 장비 구매 시 설치·초기 설정·백업 구성·사용 교육 무료이며, 초기 비용이 부담되면 월 10만원(VAT 별도)부터 시작하는 NAS 임대도 가능합니다.",
+    "대구 중소기업 NAS 구축 비용을 규모별로 공개합니다. 직원 5~10명 사무실 기준 장비와 출장 설치·설정교육까지 171만원대부터 대용량 구성까지 실제 금액. 금액은 현장 조건과 구성에 따라 달라질 수 있으니 053-588-7119로 전화 확인해 주세요. 초기 비용이 부담되면 월 10만원(VAT 별도)부터 시작하는 NAS 임대도 가능합니다.",
   alternates: { canonical: "/nas/price/" },
 };
 
-// 시놀로지 공식 공급 단가표 기준 권장소비자가 (VAT 별도). 임의 변경 금지.
+// 시놀로지 공식 공급 단가표 기준 권장소비자가 + 출장 설치·설정교육 40만원 (VAT 별도). 임의 변경 금지.
+const INSTALL_FEE = "400,000원";
 const packages = [
   {
     tier: "소규모",
     target: "직원 5~10명 사무실",
     gear: "DS225+ (2베이) + 4TB HDD 2개",
-    net: "1,313,000원",
-    vat: "1,444,300원",
+    gearNet: "1,313,000원",
+    net: "1,713,000원",
+    vat: "1,884,300원",
     note: "가장 많이 나가는 입문 구성",
   },
   {
     tier: "중간",
     target: "직원 10~30명",
     gear: "DS925+ (4베이) + 8TB HDD 2개",
-    net: "2,284,000원",
-    vat: "2,512,400원",
+    gearNet: "2,284,000원",
+    net: "2,684,000원",
+    vat: "2,952,400원",
     note: "베이 2칸을 남겨 두고 나중에 증설",
   },
   {
     tier: "중간+",
     target: "자료량이 많은 10~30명",
     gear: "DS925+ (4베이) + 8TB HDD 4개",
-    net: "3,502,000원",
-    vat: "3,852,200원",
+    gearNet: "3,502,000원",
+    net: "3,902,000원",
+    vat: "4,292,200원",
     note: "처음부터 베이를 다 채우는 구성",
   },
   {
     tier: "대용량",
     target: "건축·설계 등 대용량 업종",
     gear: "DS1825+ (8베이) + 16TB HDD 4개",
-    net: "5,999,000원",
-    vat: "6,598,900원",
+    gearNet: "5,999,000원",
+    net: "6,399,000원",
+    vat: "7,038,900원",
     note: "도면·영상 등 큰 파일이 계속 쌓이는 곳",
   },
 ];
@@ -79,7 +84,7 @@ const rentalIncluded = [
 const buyVsRent = [
   {
     item: "초기 비용",
-    buy: "장비 값 130만원대부터 한 번에",
+    buy: "장비와 출장 설치·설정교육까지 171만원대부터 한 번에",
     rent: "월 10만원부터(VAT 별도), 초기 목돈 없음",
   },
   {
@@ -94,7 +99,7 @@ const buyVsRent = [
   },
   {
     item: "관리 책임",
-    buy: "설치·초기 설정·교육은 구매 시 무료, 이후 관리는 별도 협의",
+    buy: "출장 설치·설정교육(1시간) 40만원이 견적에 포함, 이후 관리는 별도 협의",
     rent: "백업 관리까지 한별시스템이 맡습니다",
   },
   {
@@ -148,15 +153,15 @@ const relatedQna = [
 const priceFaq = [
   {
     q: "NAS 구축 비용에 설치비도 포함인가요?",
-    a: "장비를 한별시스템에서 구매하시면 설치, 초기 설정, 백업 스케줄 구성, 직원 사용 교육까지 무료입니다. 표에 적힌 금액이 장비 값이고 여기에 설치비를 따로 붙이지 않습니다.",
+    a: `포함되어 있습니다. 출장 설치와 설정교육(1시간)이 400,000원(VAT 별도)이고, 위 견적표의 합계에 이 금액이 이미 더해져 있습니다. 현장에서 설치, 초기 설정, 백업 스케줄 구성, 직원 사용 교육까지 진행합니다. 다만 랜 배선 상태, 기존 자료 이전량, 설치 위치 같은 현장 조건에 따라 금액이 달라질 수 있으니 정확한 금액은 ${site.phone.main}로 전화 주셔서 확인해 주세요.`,
   },
   {
     q: "대구 중소기업이 NAS를 구축하면 최소 얼마부터 시작하나요?",
-    a: "직원 5~10명 사무실 기준으로 시놀로지 DS225+ 2베이에 4TB 하드 2개를 넣은 구성이 1,313,000원(VAT 별도), VAT 포함 1,444,300원입니다. 여기에 설치와 초기 설정 비용은 붙지 않습니다.",
+    a: `직원 5~10명 사무실 기준으로 시놀로지 DS225+ 2베이에 4TB 하드 2개를 넣은 구성이 장비 1,313,000원에 출장 설치·설정교육 400,000원을 더해 1,713,000원(VAT 별도), VAT 포함 1,884,300원입니다. 구성과 현장 조건에 따라 달라질 수 있어 ${site.phone.main}로 전화 확인을 권해 드립니다.`,
   },
   {
     q: "표에 적힌 금액이 최종 견적인가요?",
-    a: "표의 금액은 시놀로지 권장소비자가 기준 장비 합계입니다. 랜 배선 공사, UPS 추가, 기존 자료 이전 범위 같은 현장 조건이 붙으면 달라질 수 있어 방문 확인 후 최종 견적을 드립니다. 방문 견적은 무료입니다.",
+    a: `표의 금액은 시놀로지 권장소비자가 기준 장비 합계에 출장 설치·설정교육 400,000원을 더한 금액입니다. 랜 배선 공사, UPS 추가, 기존 자료 이전 범위 같은 현장 조건이 붙으면 달라질 수 있어 방문 확인 후 최종 견적을 드립니다. 방문 견적은 무료입니다.`,
   },
   {
     q: "하드 용량을 다 쓸 수 있나요?",
@@ -193,11 +198,11 @@ export default function NasPricePage() {
 
       <AnswerBlock
         question="대구에서 중소기업 NAS를 구축하면 비용이 얼마나 드나요?"
-        answer="장비 기준 130만원대부터 시작합니다. 직원 5~10명 사무실에 많이 쓰는 시놀로지 DS225+ 2베이에 4TB 하드 2개를 넣은 구성이 1,313,000원(VAT 별도, 포함 1,444,300원)이고, 직원 10~30명 규모라면 DS925+ 4베이에 8TB 2개를 넣어 2,284,000원(VAT 별도, 포함 2,512,400원) 선입니다. 한별시스템에서 장비를 구매하시면 설치와 초기 설정, 백업 스케줄 구성, 직원 사용 교육까지 무료로 진행합니다. 초기 목돈이 부담되면 구매 대신 임대도 됩니다. 즉 구매는 130만원대부터, 임대는 기본 36개월 계약에 월 10만원(VAT 별도)부터이며 임대료 안에 장비와 설치, 백업 관리, 장애 출장, 하드디스크 교체까지 들어갑니다."
+        answer={`장비와 설치까지 171만원대부터 시작합니다. 직원 5~10명 사무실에 많이 쓰는 시놀로지 DS225+ 2베이에 4TB 하드 2개 구성이 장비 1,313,000원 + 출장 설치·설정교육 400,000원 = 1,713,000원(VAT 별도, 포함 1,884,300원)이고, 직원 10~30명 규모라면 DS925+ 4베이에 8TB 2개를 넣어 장비 2,284,000원에 설치 400,000원을 더한 2,684,000원(VAT 별도, 포함 2,952,400원) 선입니다. 출장 설치와 설정교육 1시간이 견적에 포함되며, 랜 배선 상태와 자료 이전량 등 현장 조건에 따라 금액이 달라질 수 있으니 정확한 금액은 ${site.phone.main}로 전화 확인해 주세요. 초기 목돈이 부담되면 구매 대신 임대도 됩니다. 임대는 기본 36개월 계약에 월 10만원(VAT 별도)부터이며 임대료 안에 장비와 설치, 백업 관리, 장애 출장, 하드디스크 교체까지 들어갑니다.`}
         facts={[
-          { label: "구매 최소 구성", value: "1,313,000원" },
+          { label: "구매 최소 구성", value: "1,713,000원" },
           { label: "임대", value: "월 10만원부터(VAT 별도)" },
-          { label: "설치·설정", value: "구매 시 무료" },
+          { label: "출장 설치·교육", value: "40만원" },
           { label: "문의", value: site.phone.main },
         ]}
       />
@@ -210,17 +215,18 @@ export default function NasPricePage() {
             규모별 NAS 구축 견적
           </h2>
           <p className="text-sm text-[var(--mute)] leading-relaxed mb-7">
-            시놀로지 권장소비자가 기준 장비 합계입니다. 하드디스크는 시놀로지 정품(HAT) 기준이며,
-            금액은 공급가 변동에 따라 달라질 수 있습니다.
+            시놀로지 권장소비자가 기준 장비 값에 출장 설치·설정교육(1시간) 40만원을 더한 금액입니다.
+            하드디스크는 시놀로지 정품(HAT) 기준이며, 금액은 공급가 변동과 현장 조건에 따라 달라질 수 있습니다.
           </p>
 
           <div className="overflow-x-auto rounded-2xl border border-[var(--line)] bg-[var(--bg)]">
-            <table className="w-full text-sm min-w-[640px]">
+            <table className="w-full text-sm min-w-[760px]">
               <thead>
                 <tr className="bg-hb-primary text-white text-left">
                   <th className="py-3 px-4 font-extrabold whitespace-nowrap">구성</th>
                   <th className="py-3 px-4 font-extrabold whitespace-nowrap">대상</th>
                   <th className="py-3 px-4 font-extrabold whitespace-nowrap">장비</th>
+                  <th className="py-3 px-4 font-extrabold whitespace-nowrap text-right">설치·교육</th>
                   <th className="py-3 px-4 font-extrabold whitespace-nowrap text-right">합계 (VAT 별도)</th>
                   <th className="py-3 px-4 font-extrabold whitespace-nowrap text-right">VAT 포함</th>
                 </tr>
@@ -233,7 +239,15 @@ export default function NasPricePage() {
                       <span className="block text-[11px] text-[var(--mute)] mt-0.5">{p.note}</span>
                     </td>
                     <td className="py-3.5 px-4 text-[var(--ink)]/90">{p.target}</td>
-                    <td className="py-3.5 px-4 text-[var(--ink)]/90">{p.gear}</td>
+                    <td className="py-3.5 px-4 text-[var(--ink)]/90">
+                      {p.gear}
+                      <span className="block text-[11px] text-[var(--mute)] tabular-nums mt-0.5">
+                        장비 값 {p.gearNet}
+                      </span>
+                    </td>
+                    <td className="py-3.5 px-4 text-right font-bold text-[var(--ink)]/90 tabular-nums whitespace-nowrap">
+                      {INSTALL_FEE}
+                    </td>
                     <td className="py-3.5 px-4 text-right font-extrabold text-hb-blue tabular-nums whitespace-nowrap">
                       {p.net}
                     </td>
@@ -246,15 +260,22 @@ export default function NasPricePage() {
             </table>
           </div>
 
-          {/* 설치비 정책 */}
+          {/* 설치비 정책 + 전화 확인 안내 */}
           <div className="mt-7 border-l-4 border-hb-blue bg-[var(--bg)] border border-[var(--line)] rounded-2xl p-6 lg:p-7">
             <h3 className="text-lg lg:text-xl font-black text-[var(--ink)] mb-2">
-              장비를 한별시스템에서 구매하시면 <span className="text-hb-blue">설치비 0원</span>
+              정확한 금액은 <span className="text-hb-blue">{site.phone.main}</span>로 전화 확인해 주세요
             </h3>
-            <p className="text-[15px] text-[var(--ink)]/90 leading-relaxed font-medium">
-              설치, 초기 설정, 백업 스케줄 구성, 사용 교육까지 무료입니다.
-              장비만 넘겨 드리고 끝내지 않습니다. 직원분들이 실제로 쓸 수 있는 상태까지 현장에서 맞춰 드립니다.
+            <p className="text-[15px] text-[var(--ink)]/90 leading-relaxed font-medium mb-3">
+              위 합계에는 출장 설치와 설정교육(1시간) 400,000원이 포함되어 있습니다.
+              다만 랜 배선 상태, 기존 자료 이전량, 설치 위치 같은 현장 상황과 구성에 따라 금액이 달라질 수 있습니다.
+              표만 보고 판단하지 마시고 전화 주시면 우리 사무실 기준으로 정확히 잡아 드립니다.
             </p>
+            <a
+              href={site.phone.mainHref}
+              className="inline-flex items-center justify-center gap-2 bg-hb-blue hover:bg-hb-blue-light text-white font-extrabold px-5 py-3 rounded-xl shadow-lg shadow-hb-blue/30 transition"
+            >
+              전화 문의 {site.phone.main}
+            </a>
           </div>
 
           {/* RAID 실사용 용량 안내 */}
@@ -381,6 +402,10 @@ export default function NasPricePage() {
               </table>
             </div>
           </div>
+          <p className="mt-5 text-[13px] text-[var(--mute)] leading-relaxed">
+            위 단가는 장비 값입니다. 여기에 출장 설치·설정교육 40만원(VAT 별도)이 더해집니다.
+            구성이 정해지면 {site.phone.main}로 전화 주시면 합계를 바로 알려 드립니다.
+          </p>
         </div>
       </section>
 
