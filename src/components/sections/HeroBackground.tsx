@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /* 히어로 배경 미디어 레이어.
    - SSR/기본: 포스터 이미지(server-rack.jpg) → LCP 안정, CLS 0
@@ -22,6 +22,7 @@ export function HeroBackground({
 }) {
   const [showVideo, setShowVideo] = useState(false);
   const [ready, setReady] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   // 포스터는 로딩 전·폴백용으로 항상 SSR. 영상은 아래 두 조건을 통과할 때만 마운트한다.
   //  - prefers-reduced-motion: reduce 사용자는 영상 없이 포스터 유지 (a11y)
@@ -30,6 +31,21 @@ export function HeroBackground({
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!reduce && window.innerWidth >= minWidth) setShowVideo(true);
   }, [minWidth]);
+
+  // src 를 마운트 후에 붙이므로 브라우저가 스스로 로드를 시작하지 않는다.
+  // load() 로 새 src 를 인식시키고 play() 를 직접 호출한다.
+  // muted 를 코드로 다시 세팅하는 것은 React 가 muted 를 property 로만 다뤄
+  // 자동재생 정책에 걸리는 경우가 있어서다.
+  useEffect(() => {
+    if (!showVideo) return;
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = true;
+    v.load();
+    v.play().catch(() => {
+      /* 자동재생이 막히면 포스터가 그대로 보인다. 배경 장식이라 조용히 넘어간다. */
+    });
+  }, [showVideo]);
 
   return (
     <>
@@ -45,6 +61,7 @@ export function HeroBackground({
       />
       {/* src 는 위 조건을 통과했을 때만 붙는다. src 없는 video 는 아무것도 내려받지 않는다. */}
       <video
+        ref={videoRef}
         src={showVideo ? videoSrc : undefined}
         poster={posterSrc}
         autoPlay
