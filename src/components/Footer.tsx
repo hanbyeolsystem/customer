@@ -60,7 +60,7 @@ export function Footer() {
               <li><Link href="/support/as" className="hover:text-white transition">AS 접수</Link></li>
               <li><Link href="/support/quote" className="hover:text-white transition">견적 요청</Link></li>
               <li><Link href="/nas/repair" className="hover:text-white transition">NAS 수리·점검</Link></li>
-              <li><Link href="/qna" className="hover:text-white transition">Q&amp;A 155문답</Link></li>
+              <li><Link href="/qna" className="hover:text-white transition">Q&amp;A 전체 문답</Link></li>
             </ul>
           </div>
 

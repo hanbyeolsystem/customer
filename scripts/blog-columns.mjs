@@ -19,7 +19,7 @@ function buildHtml(c) {
   out += `<hr>
 <p><b>한별시스템</b> — 컴퓨터·복합기 렌탈·나스(NAS)·네트워크·홈페이지, 전산 올인원 관리<br>
 📞 053-588-7119 (평일 09:00~18:00) · 대구·경북 당일 방문 · <i>전산은 전화 한 통</i><br>
-🔗 <a href="${SITE_BASE}/qna/">궁금증 155문답 보기</a> · <a href="${SITE_BASE}/community/">커뮤니티에 질문하기</a></p>`;
+🔗 <a href="${SITE_BASE}/qna/">전산 궁금증 모음 보기</a> · <a href="${SITE_BASE}/community/">커뮤니티에 질문하기</a></p>`;
   return out;
 }
 

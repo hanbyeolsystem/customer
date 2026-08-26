@@ -91,7 +91,7 @@ function buildHtml(item, topic) {
 <p><b>한별의 한 줄</b> — ${topic.comment}</p>
 <hr>
 <p><b>한별시스템</b> — 전산 올인원 관리 · 📞 053-588-7119 · <i>전산은 전화 한 통</i><br>
-🔗 <a href="${SITE}/qna/">전산 궁금증 155문답</a> · <a href="${SITE}/community/">커뮤니티에 질문하기</a></p>`;
+🔗 <a href="${SITE}/qna/">전산 궁금증 모음</a> · <a href="${SITE}/community/">커뮤니티에 질문하기</a></p>`;
 }
 
 // ---------- sync 모드: 블로거의 새소식 글에서 news.json 재구성 ----------

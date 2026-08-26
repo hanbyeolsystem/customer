@@ -6,9 +6,8 @@ import { qna, qnaCats, qnaModified, qnaPublished } from "@/data/qna";
 import { site } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "Q&A - 나스·복합기 렌탈·컴퓨터 수리·사무실 인터넷 155문답",
-  description:
-    "나스(NAS)가 뭔가요? 복합기 렌탈료엔 뭐가 포함되나요? 컴퓨터가 느려요. 사무실 인터넷이 끊겨요 - 전산 올인원 관리 한별시스템이 실제 고객 질문 155가지에 즉답합니다. 전산은 전화 한 통.",
+  title: `Q&A - 사내 AI·나스·복합기 렌탈·컴퓨터 수리 ${qna.length}문답`,
+  description: `사내 AI를 회사 안에서 돌릴 수 있나요? DS925+ 설치하면 얼마인가요? 랜섬웨어에 걸리면 NAS 자료도 암호화되나요? 복합기 렌탈료엔 뭐가 포함되나요? 대구 한별시스템이 실제 고객 질문 ${qna.length}가지에 즉답합니다. 전산은 전화 한 통.`,
   alternates: { canonical: "/qna/" },
 };
 

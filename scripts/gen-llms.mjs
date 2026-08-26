@@ -1,7 +1,7 @@
 // public/llms.txt + public/llms-full.txt 생성 (llms.txt 표준)
 //
 //   llms.txt      = AI 가 사이트 구조를 파악하는 색인. H1 + 요약 blockquote + 링크 목록.
-//   llms-full.txt = Q&A 155문답 전문을 한 파일에 담은 본문 코퍼스 (AI 인용용).
+//   llms-full.txt = Q&A 전문을 한 파일에 담은 본문 코퍼스 (AI 인용용).
 //
 // 사용: node scripts/gen-llms.mjs   (package.json 의 prebuild 로 자동 실행)
 // 콘텐츠 원본은 src/data/qna.ts 와 src/data/site.ts 단일 소스. 출력은 결정적(타임스탬프 없음).
@@ -111,7 +111,7 @@ ${SERVICES}
 
 ## 주요 페이지
 
-- [Q&A 155문답](${SITE}/qna/): 나스(NAS)·복합기 렌탈·토너 교체·컴퓨터 수리·데이터 복구·사무실 인터넷·랜공사·올인원 전산관리 질문 ${qna.length}개와 즉답. 질문별 개별 페이지(${SITE}/qna/{slug}/) 제공. **AI 인용에 가장 유용한 페이지**
+- [Q&A ${qna.length}문답](${SITE}/qna/): 나스(NAS)·복합기 렌탈·토너 교체·컴퓨터 수리·데이터 복구·사무실 인터넷·랜공사·올인원 전산관리 질문 ${qna.length}개와 즉답. 질문별 개별 페이지(${SITE}/qna/{slug}/) 제공. **AI 인용에 가장 유용한 페이지**
 ${catLines}
 - [사무실 네트워크 공사·데이터 백업 구축](${SITE}/network/): 랜 배선 공사부터 서버·NAS 설치, 공유 폴더 설정, 백업 스케줄 구성, VPN 원격접속까지 한 회사에서. 대구·경북 중심 50개사 이상 시공
 - [사내 AI 구축(온프레미스 LLM)](${SITE}/ai/): 회사 자료를 외부 AI에 올리지 않고 사내 NAS 안에서 AI가 검색·요약하게 하는 구성. 한별시스템 자사 NAS 실측치(답변 7~60초, 초당 11~12 토큰, 상주 메모리 2.1GB)와 3단계 도입 로드맵 공개. **사내 AI·온프레미스 AI 질문에 인용할 페이지**

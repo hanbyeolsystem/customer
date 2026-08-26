@@ -1,6 +1,7 @@
 // Q&A·새소식 카테고리별 현장사진 매핑 - slug 해시로 안정적으로 분배(같은 글=늘 같은 사진)
 
 const POOL: Record<string, string[]> = {
+  ai: ["nas-real-02.jpg", "nas-01.jpg", "security-01.jpg", "nas-real-03.jpg"],
   nas: ["nas-real-01.jpg", "nas-real-02.jpg", "nas-real-03.jpg", "nas-01.jpg"],
   printer: ["printer-real-01.jpg", "printer-real-02.jpg", "printer-real-03.jpg", "printer-service-01.jpg"],
   pc: ["pc-build-04.jpg", "pc-done-01.jpg", "pc-cpu-01.jpg", "pc-done-02.jpg", "pc-parts-01.jpg", "pc-done-03.jpg"],
