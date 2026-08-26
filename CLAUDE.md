@@ -63,6 +63,22 @@
 - 위경도(`site.geo`)는 네이버 지역검색 API 실측값이다. **추측으로 바꾸지 말 것.**
 - 즉답 블록은 `src/components/AnswerBlock.tsx` 사용(질문형 h2 + 결론부터 2~3문장 + 수치 칩).
   현재 `/nas` `/rental` `/support` 상단에 배치. 확인 안 된 수치는 절대 넣지 말 것.
+- **OG/트위터 카드 이미지**는 `public/og.jpg`(1200x630). `scripts/gen-og.mjs` 로 만들어 **커밋해 둔 결과물**이며
+  빌드 때 다시 만들지 않는다(한글 폰트가 있는 로컬에서만 실행). 문구·사진을 바꾸려면 그 스크립트를 고치고
+  `node scripts/gen-og.mjs` 실행 후 결과 이미지를 함께 커밋할 것.
+- **서비스·가격 구조화 데이터**는 `src/lib/schema.ts` 의 `serviceLd()` / `monthlyOffer()` 를 쓴다.
+  서비스 `@id` 는 `serviceId("/nas/")` 형태이고 **`layout.tsx` 의 `serviceCatalog` 항목 id 와 반드시 같아야**
+  하나의 엔티티로 합쳐진다. 같은 @id 를 여러 페이지에서 쓸 때 `url` 은 서비스 대표 페이지로 통일하고
+  가격 페이지 같은 부속 화면은 `channelUrl` 로 넘긴다.
+  금액을 고치면 **화면 배열과 스키마 양쪽**(`prices`/`packages` + `offers`)을 같이 고칠 것.
+- **사이트맵 lastmod 는 git 커밋 날짜**다. `scripts/gen-lastmod.mjs` 가 prebuild 로 `src/data/lastmod.json` 을
+  만든다. `new Date()` 로 되돌리지 말 것 - 하루 3번 도는 재빌드 크론 때문에 "전 페이지가 매일 수정됨"이 되어
+  구글이 lastmod 를 통째로 무시한다. CI 는 `fetch-depth: 0` 이 필요하고, 얕은 클론이면 날짜를 비워
+  사이트맵에서 lastmod 를 생략한다(틀린 날짜보다 없는 편이 낫다).
+- 회사 `@id`(businessId)를 참조할 땐 **`{ "@id": businessId }` 만** 쓴다. `"@type": "Organization"` 을
+  같이 붙이면 LocalBusiness 노드와 타입이 겹쳐 엔티티가 흐려진다.
+- 자사 운영 사이트(882.kr·hbsys.kr·에러코드)는 `site.owned` 에 모아 두고 `sameAs` 로 내보낸다. 새 사이트가 생기면 여기 추가.
+- 가격 페이지(`/rental/price/`·`/nas/price/`)는 "얼마"로 검색해 들어오는 핵심 페이지라 **푸터에서 전 페이지 링크**를 준다.
 - 지역 키워드는 "대구/달서구/성서공단/경북" + 서비스 조합으로 title·description·본문에 자연스럽게만.
   네이버 데이터랩 실측: **렌탈 > 임대**(4~14배), 나스(한글) > 시놀로지, 토너교체·랜공사·대구컴퓨터수리 강세.
   홈 타이틀에 "대구"를 넣은 이유는 동명의 서울 에어커튼 업체가 브랜드 단독 검색을 점유하기 때문.

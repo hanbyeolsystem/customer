@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHeader } from "@/components/PageHeader";
 import { caseStudies } from "@/data/cases";
+import { JsonLd } from "@/components/JsonLd";
+import { businessId, site } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "구축 사례 - 대구·경북 NAS·복합기 설치 현장",
@@ -9,9 +11,33 @@ export const metadata: Metadata = {
   alternates: { canonical: "/cases/" },
 };
 
+// 구축 사례 목록을 기계가 읽을 수 있게. AI 가 "대구 NAS 구축 실적"을 물었을 때
+// 업종·장비까지 인용할 수 있도록 이미지와 업종을 함께 넣는다.
+const casesJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "@id": `${site.url}/cases/#list`,
+  name: "한별시스템 구축 사례",
+  numberOfItems: caseStudies.length,
+  itemListElement: caseStudies.map((c, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    item: {
+      "@type": "CreativeWork",
+      name: c.title,
+      description: c.summary,
+      about: c.industry,
+      image: `${site.url}${c.image}`,
+      url: c.href,
+      creator: { "@id": businessId },
+    },
+  })),
+};
+
 export default function CasesPage() {
   return (
     <>
+      <JsonLd data={casesJsonLd} />
       <PageHeader badge="CASE STUDIES" title="실제 구축 사례" description="업종을 가리지 않습니다. 한별의 손길이 닿은 현장들." />
       <section className="py-12 lg:py-16 bg-[var(--bg)]">
         <div className="max-w-7xl mx-auto px-4 lg:px-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">

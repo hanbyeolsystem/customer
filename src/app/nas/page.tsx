@@ -4,6 +4,9 @@ import Image from "next/image";
 import { PageHeader } from "@/components/PageHeader";
 import { FaqSection } from "@/components/FaqSection";
 import { AnswerBlock } from "@/components/AnswerBlock";
+import { JsonLd } from "@/components/JsonLd";
+import { monthlyOffer, serviceId, serviceLd } from "@/lib/schema";
+import { site } from "@/data/site";
 
 const nasFaq = [
   {
@@ -45,9 +48,23 @@ const offerings = [
   { icon: "🔧", title: "유지관리",        body: "분기 점검·DSM 패치·디스크 SMART 모니터링." },
 ];
 
+// 서비스 엔티티. @id 가 layout.tsx serviceCatalog 의 id 와 같아야 한 엔티티로 합쳐진다.
+const serviceJsonLd = serviceLd({
+  id: serviceId("/nas/"),
+  url: `${site.url}/nas/`,
+  name: "기업용 NAS 구축·데이터 백업",
+  serviceType: "NAS 구축 및 데이터 백업 구축",
+  description:
+    "시놀로지 NAS 설치, RAID 설계, 3-2-1 백업 구성, 랜섬웨어 대응, VPN 원격접속, DSM 보안 설정과 분기 점검까지. 대구·경북 50개사 이상 구축. 임대는 월 100,000원부터(VAT 별도), 구매는 장비와 출장 설치·설정교육까지 1,713,000원부터(VAT 별도).",
+  offers: [
+    monthlyOffer("시놀로지 NAS 임대(기본 36개월)", 100000, "장비·설치·백업 관리·장애 출장·하드디스크 교체 포함"),
+  ],
+});
+
 export default function NasPage() {
   return (
     <>
+      <JsonLd data={serviceJsonLd} />
       <PageHeader
         badge="NAS SOLUTION · SYNOLOGY 공식 대리점"
         title="데이터가 멈추면 업무도 멈춥니다"

@@ -32,8 +32,10 @@ export default async function QnaDetailPage({ params }: { params: Promise<{ slug
   // Search Console 이 지적한 누락 필드(datePublished / upvoteCount / author / url / text)를
   // Question·Answer 양쪽에 모두 채운다. upvoteCount 는 추천 기능이 없으므로 0 이 정답.
   const pageUrl = `${site.url}/qna/${f.slug}/`;
-  // layout.tsx 의 LocalBusiness 와 같은 엔티티임을 @id 로 알린다(엔티티 분열 방지).
-  const org = { "@type": "Organization", "@id": businessId, name: site.name, url: site.url };
+  // layout.tsx 의 LocalBusiness 를 @id 로 참조만 한다.
+  // 여기서 "@type": "Organization" 을 다시 선언하면 같은 @id 에 타입이 두 개 붙어
+  // 엔티티가 흐려지므로, 노드 본체는 layout 한 곳에만 둔다.
+  const org = { "@id": businessId };
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "QAPage",

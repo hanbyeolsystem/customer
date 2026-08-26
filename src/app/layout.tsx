@@ -5,6 +5,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ChatWidget } from "@/components/ChatWidget";
 import { businessId, site } from "@/data/site";
+import { serviceId } from "@/lib/schema";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -27,6 +28,21 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: `${site.name} - ${site.tagline}`,
     description: site.description,
+    url: site.url,
+    // 카카오톡·페이스북·구글/AI 카드 미리보기 이미지. public/og.jpg 는
+    // scripts/gen-og.mjs 로 만들어 커밋해 둔 실물 사진 카드(1200x630).
+    images: [{
+      url: "/og.jpg",
+      width: 1200,
+      height: 630,
+      alt: "한별시스템 - 대구 NAS 구축·복합기 렌탈·기업 전산 유지관리 053-588-7119",
+    }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} - ${site.tagline}`,
+    description: site.description,
+    images: ["/og.jpg"],
   },
   robots: { index: true, follow: true },
   verification: {
@@ -56,13 +72,15 @@ const BUSINESS_ID = businessId;
 const WEBSITE_ID = `${site.url}/#website`;
 
 // 한별시스템이 실제로 제공하는 서비스 (구글 비즈니스 프로필 서비스 목록과 동일 범위)
+// id 는 해당 서비스 페이지에서도 같은 @id 로 선언해 하나의 엔티티로 합쳐진다.
+// (서비스 페이지 쪽 선언은 src/lib/schema.ts 의 serviceLd() 참조 - id 를 반드시 일치시킬 것)
 const serviceCatalog = [
-  { name: "기업용 NAS 구축·데이터 백업", desc: "시놀로지 NAS 설치, RAID 설계, 3-2-1 백업 구성, 랜섬웨어 대비, VPN 원격접속. 구축 실적 50개사 이상(네트워크 공사·백업 구축과 같은 현장 기준)." },
-  { name: "복합기·프린터 렌탈(임대)", desc: "흑백 복사기 월 7만원부터, 컬러 복사기 월 10만원부터(VAT 별도). 월 정액에 토너 등 소모품, 부품 교체, 출장 수리, 분기 정기점검 포함. 설치·운영 300대 이상." },
-  { name: "기업 전산 유지관리", desc: "컴퓨터·복합기·NAS·네트워크를 한 회사가 통합 관리하는 올인원 전산 유지보수. 관리 고객사 170곳 이상." },
-  { name: "컴퓨터 수리·PC 임대", desc: "대구 지역 출장 컴퓨터 수리, 사무실 PC 표준화, 데이터 복구." },
-  { name: "사무실 네트워크·랜공사·데이터 백업 구축", desc: "CAT6 이상 랜 배선 시공, 공유기·스위치 구성, 서버·NAS 설치, 공유 폴더와 권한 설정, 3-2-1 데이터 백업 구축, VPN 원격접속, 인터넷 장애 진단까지 한 회사에서 시공. 대구·경북 중심 50개사 이상 실적." },
-  { name: "홈페이지 제작·관리", desc: "검색과 AI 검색 노출을 고려한 기업 홈페이지 설계·제작·유지관리." },
+  { id: serviceId("/nas/"), url: `${site.url}/nas/`, name: "기업용 NAS 구축·데이터 백업", desc: "시놀로지 NAS 설치, RAID 설계, 3-2-1 백업 구성, 랜섬웨어 대비, VPN 원격접속. 구축 실적 50개사 이상(네트워크 공사·백업 구축과 같은 현장 기준)." },
+  { id: serviceId("/rental/"), url: `${site.url}/rental/`, name: "복합기·프린터 렌탈(임대)", desc: "흑백 복사기 월 7만원부터, 컬러 복사기 월 10만원부터(VAT 별도). 월 정액에 토너 등 소모품, 부품 교체, 출장 수리, 분기 정기점검 포함. 설치·운영 300대 이상." },
+  { id: serviceId("/support/"), url: `${site.url}/support/`, name: "기업 전산 유지관리", desc: "컴퓨터·복합기·NAS·네트워크를 한 회사가 통합 관리하는 올인원 전산 유지보수. 관리 고객사 170곳 이상." },
+  { id: `${site.url}/support/#repair-service`, url: `${site.url}/support/`, name: "컴퓨터 수리·PC 임대", desc: "대구 지역 출장 컴퓨터 수리, 사무실 PC 표준화, 데이터 복구." },
+  { id: serviceId("/network/"), url: `${site.url}/network/`, name: "사무실 네트워크·랜공사·데이터 백업 구축", desc: "CAT6 이상 랜 배선 시공, 공유기·스위치 구성, 서버·NAS 설치, 공유 폴더와 권한 설정, 3-2-1 데이터 백업 구축, VPN 원격접속, 인터넷 장애 진단까지 한 회사에서 시공. 대구·경북 중심 50개사 이상 실적." },
+  { id: `${site.url}/#web-service`, url: site.url, name: "홈페이지 제작·관리", desc: "검색과 AI 검색 노출을 고려한 기업 홈페이지 설계·제작·유지관리." },
 ];
 
 const jsonLd = {
@@ -118,6 +136,8 @@ const jsonLd = {
         site.social.instagram,
         site.social.threads,
         site.social.googleMaps,
+        // 한별시스템이 직접 운영하는 다른 사이트들. 같은 회사임을 검색·AI 가 알게 한다.
+        ...site.owned,
       ],
       areaServed: [
         { "@type": "City", name: "대구광역시" },
@@ -139,6 +159,8 @@ const jsonLd = {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
+            "@id": s.id,
+            url: s.url,
             name: s.name,
             description: s.desc,
             provider: { "@id": BUSINESS_ID },

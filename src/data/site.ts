@@ -44,6 +44,14 @@ export const site = {
     googleMaps: "https://maps.google.com/?cid=8994991007847125486",
   },
 
+  // 한별시스템이 직접 운영하는 다른 사이트. LocalBusiness.sameAs 에 들어가
+  // "이 사이트들도 같은 회사"임을 검색엔진·AI 에 알린다. 새 사이트가 생기면 여기 추가.
+  owned: [
+    "https://882.kr/",                                          // 한별 드라이버 센터
+    "https://hbsys.kr/",                                        // 한별 임대 쇼핑몰
+    "https://hanbyeolsystem.github.io/hanbyeol-errorcode/",     // 프린터 에러코드 검색
+  ],
+
   stats: [
     { value: "170+", label: "관리 고객사" },
     { value: "50+",  label: "NAS 구축" },

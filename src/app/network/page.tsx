@@ -4,6 +4,8 @@ import { PageHeader } from "@/components/PageHeader";
 import { AnswerBlock } from "@/components/AnswerBlock";
 import { FaqSection } from "@/components/FaqSection";
 import { site } from "@/data/site";
+import { JsonLd } from "@/components/JsonLd";
+import { serviceId, serviceLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "대구 사무실 네트워크 공사·데이터 백업 구축",
@@ -87,9 +89,19 @@ const networkFaq = [
   },
 ];
 
+const serviceJsonLd = serviceLd({
+  id: serviceId("/network/"),
+  url: `${site.url}/network/`,
+  name: "사무실 네트워크 공사·데이터 백업 구축",
+  serviceType: "사무실 랜공사 및 데이터 백업 구축",
+  description:
+    "CAT6 이상 랜 배선 시공, 공유기·스위치 구성, 서버·NAS 설치, 공유 폴더와 권한 설정, 3-2-1 백업 스케줄 구성, VPN 원격접속, 인터넷 장애 진단까지 한 회사에서 시공. 대구·경북 중심 50개사 이상 실적.",
+});
+
 export default function NetworkPage() {
   return (
     <>
+      <JsonLd data={serviceJsonLd} />
       <PageHeader
         badge="NETWORK · BACKUP"
         title="랜 공사부터 데이터 백업까지, 한 회사에서"

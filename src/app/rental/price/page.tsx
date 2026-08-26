@@ -4,6 +4,8 @@ import { PageHeader } from "@/components/PageHeader";
 import { FaqSection } from "@/components/FaqSection";
 import { AnswerBlock } from "@/components/AnswerBlock";
 import { site } from "@/data/site";
+import { JsonLd } from "@/components/JsonLd";
+import { monthlyOffer, serviceId, serviceLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "대구 복합기 임대료 - 월 얼마인지 가격 공개",
@@ -137,9 +139,32 @@ const priceFaq = [
   },
 ];
 
+// 위 prices 배열과 같은 금액을 기계가 읽는 형태로도 내보낸다.
+// AI 검색·구글이 "대구 복합기 임대료 얼마" 질문에 이 값을 그대로 인용할 수 있게 하는 것이 목적.
+// @id 가 /rental/ 서비스와 같으므로 두 페이지 선언이 하나의 서비스 엔티티로 합쳐진다.
+const priceJsonLd = serviceLd({
+  id: serviceId("/rental/"),
+  url: `${site.url}/rental/`, // 같은 @id 를 쓰므로 서비스 대표 URL 로 통일(가격 페이지는 availableChannel 로)
+  name: "복합기·프린터 렌탈(임대) 월 임대료",
+  serviceType: "복합기·프린터 렌탈",
+  description:
+    "품목별 월 임대료(전부 시작가, VAT 별도). 월 정액에 토너 등 소모품, 부품 교체, 출장 수리, 분기 정기점검이 모두 포함된다.",
+  channelUrl: `${site.url}/rental/price/`,
+  offers: [
+    monthlyOffer("흑백 레이저 프린터 렌탈", 30000, "인쇄만 하는 소량 사무실"),
+    monthlyOffer("잉크젯 무한 프린터 렌탈", 40000, "컬러 출력이 필요하고 장수가 많지 않은 곳"),
+    monthlyOffer("컬러 레이저 프린터 렌탈", 50000, "컬러 인쇄가 잦고 속도가 필요한 곳"),
+    monthlyOffer("흑백 복사기(흑백 디지털복합기) 렌탈", 70000, "복사·스캔·팩스를 같이 쓰는 일반 사무실"),
+    monthlyOffer("컬러 복사기(컬러 디지털복합기) 렌탈", 100000, "컬러 자료와 제안서를 자주 뽑는 곳"),
+    monthlyOffer("데스크탑 + 모니터 세트 렌탈", 40000, "데스크탑 35,000원 + 모니터 5,000원"),
+    monthlyOffer("시놀로지 NAS 임대", 100000, "기본 계약 36개월, 백업 관리 포함"),
+  ],
+});
+
 export default function RentalPricePage() {
   return (
     <>
+      <JsonLd data={priceJsonLd} />
       <PageHeader
         badge="RENTAL PRICE GUIDE"
         title="대구 복합기·프린터 임대료"

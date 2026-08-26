@@ -4,6 +4,9 @@ import { quickServices } from "@/data/services";
 import { Icon, type IconName } from "@/components/Icon";
 import { AnswerBlock } from "@/components/AnswerBlock";
 import { FaqSection } from "@/components/FaqSection";
+import { JsonLd } from "@/components/JsonLd";
+import { serviceId, serviceLd } from "@/lib/schema";
+import { site } from "@/data/site";
 
 export const metadata = {
   title: "고객 지원 - 대구 컴퓨터 수리·프린터 출장 수리·전산 유지보수",
@@ -31,9 +34,19 @@ const supportFaq = [
   },
 ];
 
+const serviceJsonLd = serviceLd({
+  id: serviceId("/support/"),
+  url: `${site.url}/support/`,
+  name: "기업 전산 유지관리",
+  serviceType: "기업 IT 유지보수 및 출장 수리",
+  description:
+    "컴퓨터·복합기·NAS·네트워크를 한 회사가 통합 관리하는 올인원 전산 유지보수. 원격지원, 출장 수리, AS 접수, 토너·소모품 공급, 무료 방문 견적. 관리 고객사 170곳 이상, 대구·경북 당일 방문.",
+});
+
 export default function SupportHub() {
   return (
     <>
+      <JsonLd data={serviceJsonLd} />
       <PageHeader
         badge="CUSTOMER SUPPORT"
         title="고객 지원 센터"

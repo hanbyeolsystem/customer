@@ -3,6 +3,9 @@ import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { FaqSection } from "@/components/FaqSection";
 import { AnswerBlock } from "@/components/AnswerBlock";
+import { JsonLd } from "@/components/JsonLd";
+import { monthlyOffer, serviceId, serviceLd } from "@/lib/schema";
+import { site } from "@/data/site";
 
 const rentalFaq = [
   {
@@ -33,9 +36,26 @@ export const metadata: Metadata = {
   alternates: { canonical: "/rental/" },
 };
 
+// 서비스 엔티티 + 대표 월 임대료. 금액은 /rental/price/ 와 반드시 일치시킬 것.
+const serviceJsonLd = serviceLd({
+  id: serviceId("/rental/"),
+  url: `${site.url}/rental/`,
+  name: "복합기·프린터 렌탈(임대)",
+  serviceType: "복합기·프린터 렌탈",
+  description:
+    "흑백 복사기 월 70,000원부터, 컬러 복사기 월 100,000원부터(VAT 별도). 월 정액 하나로 토너 등 소모품, 부품 교체, 출장 수리, 분기 정기점검이 모두 포함된다. 설치·운영 300대 이상, 대구·경북 당일 출동.",
+  channelUrl: `${site.url}/rental/price/`,
+  offers: [
+    monthlyOffer("흑백 복사기(흑백 디지털복합기) 렌탈", 70000, "복사·스캔·팩스를 같이 쓰는 일반 사무실"),
+    monthlyOffer("컬러 복사기(컬러 디지털복합기) 렌탈", 100000, "컬러 자료와 제안서를 자주 뽑는 곳"),
+    monthlyOffer("흑백 레이저 프린터 렌탈", 30000, "인쇄만 하는 소량 사무실"),
+  ],
+});
+
 export default function RentalPage() {
   return (
     <>
+      <JsonLd data={serviceJsonLd} />
       <PageHeader
         badge="RENTAL CARE"
         title="복사기 · 프린터 임대 케어"

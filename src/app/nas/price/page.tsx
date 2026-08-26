@@ -6,6 +6,8 @@ import { FaqSection } from "@/components/FaqSection";
 import { AnswerBlock } from "@/components/AnswerBlock";
 import { caseStudies } from "@/data/cases";
 import { site } from "@/data/site";
+import { JsonLd } from "@/components/JsonLd";
+import { monthlyOffer, serviceId, serviceLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "대구 NAS 구축 비용 - 규모별 견적 가이드",
@@ -185,9 +187,80 @@ const priceFaq = [
   },
 ];
 
+// 위 packages 표와 같은 금액을 기계가 읽는 형태로 내보낸다(전부 VAT 별도, 시작가).
+// 금액을 고치면 packages 배열과 여기 둘 다 고칠 것.
+const priceJsonLd = serviceLd({
+  id: serviceId("/nas/"),
+  url: `${site.url}/nas/`, // 같은 @id 를 쓰므로 서비스 대표 URL 로 통일(가격 페이지는 availableChannel 로)
+  name: "대구 NAS 구축 비용",
+  serviceType: "NAS 구축 및 데이터 백업 구축",
+  description:
+    "규모별 시놀로지 NAS 구축 견적. 장비 값에 출장 설치·설정교육(1시간) 400,000원이 포함된 금액이며 전부 VAT 별도다. 초기 비용이 부담되면 월 100,000원부터 임대도 가능하다.",
+  channelUrl: `${site.url}/nas/price/`,
+  offers: [
+    {
+      "@type": "Offer",
+      name: "소규모 구성 - DS225+ (2베이) + 4TB HDD 2개, 직원 5~10명",
+      priceCurrency: "KRW",
+      price: 1713000,
+      availability: "https://schema.org/InStock",
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        priceCurrency: "KRW",
+        price: 1713000,
+        minPrice: 1713000,
+        valueAddedTaxIncluded: false,
+      },
+    },
+    {
+      "@type": "Offer",
+      name: "중간 구성 - DS925+ (4베이) + 8TB HDD 2개, 직원 10~30명",
+      priceCurrency: "KRW",
+      price: 2684000,
+      availability: "https://schema.org/InStock",
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        priceCurrency: "KRW",
+        price: 2684000,
+        minPrice: 2684000,
+        valueAddedTaxIncluded: false,
+      },
+    },
+    {
+      "@type": "Offer",
+      name: "대용량 구성 - DS1825+ (8베이) + 16TB HDD 4개",
+      priceCurrency: "KRW",
+      price: 6399000,
+      availability: "https://schema.org/InStock",
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        priceCurrency: "KRW",
+        price: 6399000,
+        minPrice: 6399000,
+        valueAddedTaxIncluded: false,
+      },
+    },
+    {
+      "@type": "Offer",
+      name: "출장 설치·설정교육(1시간)",
+      priceCurrency: "KRW",
+      price: 400000,
+      availability: "https://schema.org/InStock",
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        priceCurrency: "KRW",
+        price: 400000,
+        valueAddedTaxIncluded: false,
+      },
+    },
+    monthlyOffer("시놀로지 NAS 임대(기본 36개월)", 100000, "장비·설치·백업 관리·장애 출장·하드디스크 교체 포함"),
+  ],
+});
+
 export default function NasPricePage() {
   return (
     <>
+      <JsonLd data={priceJsonLd} />
       <PageHeader
         badge="NAS PRICE GUIDE · SYNOLOGY 공식 대리점"
         title="대구 NAS 구축 비용"

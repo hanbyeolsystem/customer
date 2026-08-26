@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
-import { qna } from "@/data/qna";
+import lastmod from "@/data/lastmod.json";
+import { qna, qnaModified } from "@/data/qna";
 import { site } from "@/data/site";
 
 export const dynamic = "force-static";
@@ -15,12 +16,16 @@ const pages = [
   "/terms/", "/privacy/",
 ];
 
+// lastmod 는 git 커밋 날짜(scripts/gen-lastmod.mjs 가 prebuild 로 생성).
+// new Date() 를 쓰면 하루 3번 도는 재빌드 크론 때문에 "전 페이지가 매일 수정됨"이 되어
+// 구글이 lastmod 자체를 무시한다. 날짜를 모르면 넣지 않는 편이 낫다.
+const lm: Record<string, string> = lastmod;
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
   return [
     ...pages.map((p) => ({
       url: `${site.url}${p}`,
-      lastModified: now,
+      ...(lm[p] ? { lastModified: new Date(lm[p]) } : {}),
       changeFrequency: "weekly" as const,
       priority:
         p === "/" ? 1
@@ -30,7 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     ...qna.map((f) => ({
       url: `${site.url}/qna/${f.slug}/`,
-      lastModified: now,
+      lastModified: new Date(qnaModified),
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),

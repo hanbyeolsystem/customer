@@ -41,8 +41,12 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               <li><Link href="/nas" className="hover:text-white transition">NAS 솔루션</Link></li>
               <li><Link href="/rental" className="hover:text-white transition">복사기 임대</Link></li>
+              <li><Link href="/network" className="hover:text-white transition">네트워크·랜공사</Link></li>
               <li><Link href="/shop" className="hover:text-white transition">임대 쇼핑몰</Link></li>
               <li><Link href="/cases" className="hover:text-white transition">구축 사례</Link></li>
+              {/* 가격 페이지는 "얼마"로 검색해 들어오는 핵심 페이지라 전 페이지에서 링크를 준다 */}
+              <li><Link href="/rental/price" className="hover:text-white transition">복합기 임대료</Link></li>
+              <li><Link href="/nas/price" className="hover:text-white transition">NAS 구축 비용</Link></li>
             </ul>
           </div>
 
@@ -54,6 +58,8 @@ export function Footer() {
               <li><Link href="/support/drivers" className="hover:text-white transition">드라이버 다운로드</Link></li>
               <li><Link href="/support/as" className="hover:text-white transition">AS 접수</Link></li>
               <li><Link href="/support/quote" className="hover:text-white transition">견적 요청</Link></li>
+              <li><Link href="/nas/repair" className="hover:text-white transition">NAS 수리·점검</Link></li>
+              <li><Link href="/qna" className="hover:text-white transition">Q&amp;A 155문답</Link></li>
             </ul>
           </div>
 
