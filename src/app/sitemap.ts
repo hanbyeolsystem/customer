@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import lastmod from "@/data/lastmod.json";
 import { caseStudies } from "@/data/cases";
+import { guides } from "@/data/guides";
 import { nasModels } from "@/data/synology";
 import { qna, qnaModified } from "@/data/qna";
 import { site } from "@/data/site";
@@ -12,7 +13,7 @@ export const dynamic = "force-static";
 // 색인 제외하므로, 실제로 200 을 주는 슬래시 주소만 넣는다.
 // noindex 페이지(/go/, /404/, /_not-found/)는 절대 넣지 않는다.
 const pages = [
-  "/", "/ai/", "/nas/", "/nas/price/", "/nas/repair/", "/rental/", "/rental/price/", "/network/", "/shop/", "/cases/", "/qna/", "/news/", "/community/",
+  "/", "/ai/", "/guide/", "/nas/", "/nas/price/", "/nas/repair/", "/rental/", "/rental/price/", "/network/", "/shop/", "/cases/", "/qna/", "/news/", "/community/",
   "/support/", "/support/as/", "/support/quote/", "/support/remote/",
   "/support/drivers/", "/support/supplies/", "/blog/", "/about/", "/contact/",
   "/terms/", "/privacy/",
@@ -34,6 +35,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
           : p === "/qna/" || p === "/nas/" || p === "/rental/" || p === "/ai/" ? 0.9
             : p === "/terms/" || p === "/privacy/" ? 0.2
               : 0.6,
+    })),
+    // 가이드 칼럼 - 비교표 중심 콘텐츠
+    ...guides.map((g) => ({
+      url: `${site.url}/guide/${g.slug}/`,
+      lastModified: new Date(`${g.updated}T00:00:00+09:00`),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
     })),
     // 시놀로지 모델별 페이지 - "DS925+ 설치" 같은 모델명 검색을 받는 페이지
     ...nasModels.map((m) => ({
