@@ -16,8 +16,9 @@ export function Hero() {
       {/* 배경: 작업 영상 + 심야 네이비 + 항성골드 글로우(한별=별) */}
       <div className="absolute inset-0">
         <HeroBackground
-          posterSrc="/hero/server-rack.jpg"
+          posterSrc="/hero/hero-poster.jpg"
           videoSrc="/hero/hero-loop.mp4?v=5"
+          posterAlt="한별시스템 엔지니어가 서버랙 장비를 점검하는 모습"
         />
         {/* 왼쪽 텍스트는 보호, 오른쪽은 영상이 드러나게 */}
         <div className="absolute inset-0 bg-gradient-to-r from-hb-primary via-hb-primary/65 to-hb-primary/25" />
