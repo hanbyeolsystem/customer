@@ -4,9 +4,11 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 /* 히어로 배경 미디어 레이어.
-   - SSR/기본: 포스터 이미지(server-rack.jpg) → LCP 안정, CLS 0
-   - 모션 허용 사용자에 한해 마운트 후 배경 영상 페이드인(자동재생·무음·루프)
-   - prefers-reduced-motion 사용자는 영상 없이 포스터 유지 (a11y CRITICAL) */
+   - SSR/기본: 포스터 이미지 → LCP 안정, CLS 0
+   - 마운트 후 배경 영상 페이드인(자동재생·무음·루프)
+   - prefers-reduced-motion 은 의도적으로 보지 않는다. 윈도우 "애니메이션 효과" 를
+     성능 때문에 꺼둔 사용자가 많아 배경영상까지 사라지는 오탐이 컸다(2026-08-26 사이트 운영자 결정).
+     영상은 aria-hidden 장식 레이어라 정보 손실은 없다. */
 export function HeroBackground({
   posterSrc,
   videoSrc,
@@ -24,12 +26,10 @@ export function HeroBackground({
   const [ready, setReady] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // 포스터는 로딩 전·폴백용으로 항상 SSR. 영상은 아래 두 조건을 통과할 때만 마운트한다.
-  //  - prefers-reduced-motion: reduce 사용자는 영상 없이 포스터 유지 (a11y)
-  //  - 화면 폭이 minWidth 미만이면 영상 파일 자체를 받지 않는다 (모바일 데이터)
+  // 포스터는 로딩 전·폴백용으로 항상 SSR.
+  // 영상은 화면 폭이 minWidth 이상일 때만 마운트한다(모바일 데이터 절약). 0 이면 항상.
   useEffect(() => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!reduce && window.innerWidth >= minWidth) setShowVideo(true);
+    if (window.innerWidth >= minWidth) setShowVideo(true);
   }, [minWidth]);
 
   // src 를 마운트 후에 붙이므로 브라우저가 스스로 로드를 시작하지 않는다.
