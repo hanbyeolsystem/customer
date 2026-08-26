@@ -15,7 +15,11 @@ export const metadata: Metadata = {
   },
   description: site.description,
   keywords: [
+    "기업 데이터 관리", "사내 AI", "온프레미스 AI", "사내 AI 구축", "NAS AI",
+    "시놀로지 NAS AI", "로컬 LLM 구축", "사내 문서 AI 검색", "데이터 백업 컨설팅",
     "대구 나스", "대구 NAS 구축", "경북 NAS 구축", "시놀로지 나스", "대구 데이터 백업",
+    "DS925+ 설치", "DS1825+ 구축", "DS225+ 설치", "DS425+ 설치", "RS2421+ 구축",
+    "랜섬웨어 NAS", "NAS 복구", "NAS 하드 교체", "나스 이관", "NAS to NAS",
     "대구 복합기렌탈", "복합기 렌탈", "성서공단 복합기렌탈", "달서구 복합기렌탈",
     "대구 복사기렌탈", "프린터 렌탈", "전국 프린터 렌탈", "토너 교체",
     "대구 컴퓨터수리", "달서구 컴퓨터수리", "성서공단 컴퓨터수리", "컴퓨터 렌탈", "데이터 복구",
@@ -80,6 +84,7 @@ const serviceCatalog = [
   { id: serviceId("/support/"), url: `${site.url}/support/`, name: "기업 전산 유지관리", desc: "컴퓨터·복합기·NAS·네트워크를 한 회사가 통합 관리하는 올인원 전산 유지보수. 관리 고객사 170곳 이상." },
   { id: `${site.url}/support/#repair-service`, url: `${site.url}/support/`, name: "컴퓨터 수리·PC 임대", desc: "대구 지역 출장 컴퓨터 수리, 사무실 PC 표준화, 데이터 복구." },
   { id: serviceId("/network/"), url: `${site.url}/network/`, name: "사무실 네트워크·랜공사·데이터 백업 구축", desc: "CAT6 이상 랜 배선 시공, 공유기·스위치 구성, 서버·NAS 설치, 공유 폴더와 권한 설정, 3-2-1 데이터 백업 구축, VPN 원격접속, 인터넷 장애 진단까지 한 회사에서 시공. 대구·경북 중심 50개사 이상 실적." },
+  { id: serviceId("/ai/"), url: `${site.url}/ai/`, name: "사내 AI 도입(온프레미스 LLM)·데이터 관리 컨설팅", desc: "회사 자료를 외부로 내보내지 않고 사내 NAS 안에서 AI가 검색·요약하도록 구성한다. 한별시스템이 자사 NAS(Ryzen V1500B·4GB)에서 로컬 LLM 컨테이너를 2026년 8월부터 직접 운영하며 검증한 방식이며, 고객사는 상담·파일럿 단계로 진행한다." },
   { id: `${site.url}/#web-service`, url: site.url, name: "홈페이지 제작·관리", desc: "검색과 AI 검색 노출을 고려한 기업 홈페이지 설계·제작·유지관리." },
 ];
 
@@ -147,6 +152,7 @@ const jsonLd = {
         { "@type": "Country", name: "대한민국" },
       ],
       knowsAbout: [
+        "기업 데이터 관리", "사내 AI 구축", "온프레미스 LLM", "RAG 문서검색", "Ollama",
         "NAS 구축", "시놀로지 NAS", "데이터 백업", "랜섬웨어 대응", "복합기 렌탈",
         "프린터 임대", "토너 교체", "컴퓨터 수리", "데이터 복구", "사무실 네트워크",
         "랜공사", "데이터 백업 구축", "공유 폴더 설정", "파일 서버 구축", "VPN 원격접속",

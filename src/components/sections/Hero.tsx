@@ -37,16 +37,15 @@ export function Hero() {
             </div>
 
             <h1 className="text-[34px] sm:text-5xl lg:text-[62px] font-black leading-[1.1] tracking-tight mb-7">
-              19년 동안<br />
-              <span className="text-hb-azure">한 번도 멈추지 않은</span><br />
-              IT 파트너
+              데이터는 회사 안에,<br />
+              <span className="text-hb-azure">AI도 회사 안에</span>
             </h1>
 
             <p className="text-base lg:text-lg text-white/85 leading-relaxed mb-2 font-medium">
-              NAS 구축 · 데이터 백업 · 복사기 임대 · IT 유지관리
+              NAS 구축 · 백업 컨설팅 · 사내 AI 도입 · 전산 유지관리
             </p>
             <p className="text-sm lg:text-base text-white/60 mb-9">
-              대구·경북 170여 개 기업의 시스템을 <strong className="text-white font-bold">{site.name}</strong>이 지킵니다.
+              대구·경북 170여 개 기업의 데이터를 19년째 <strong className="text-white font-bold">{site.name}</strong>이 맡고 있습니다.
             </p>
 
             <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3">

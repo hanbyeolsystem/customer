@@ -10,7 +10,7 @@ export const dynamic = "force-static";
 // 색인 제외하므로, 실제로 200 을 주는 슬래시 주소만 넣는다.
 // noindex 페이지(/go/, /404/, /_not-found/)는 절대 넣지 않는다.
 const pages = [
-  "/", "/nas/", "/nas/price/", "/nas/repair/", "/rental/", "/rental/price/", "/network/", "/shop/", "/cases/", "/qna/", "/news/", "/community/",
+  "/", "/ai/", "/nas/", "/nas/price/", "/nas/repair/", "/rental/", "/rental/price/", "/network/", "/shop/", "/cases/", "/qna/", "/news/", "/community/",
   "/support/", "/support/as/", "/support/quote/", "/support/remote/",
   "/support/drivers/", "/support/supplies/", "/blog/", "/about/", "/contact/",
   "/terms/", "/privacy/",
@@ -29,7 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
       priority:
         p === "/" ? 1
-          : p === "/qna/" || p === "/nas/" || p === "/rental/" ? 0.9
+          : p === "/qna/" || p === "/nas/" || p === "/rental/" || p === "/ai/" ? 0.9
             : p === "/terms/" || p === "/privacy/" ? 0.2
               : 0.6,
     })),
