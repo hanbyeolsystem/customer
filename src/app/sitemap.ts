@@ -11,7 +11,7 @@ export const dynamic = "force-static";
 const pages = [
   "/", "/nas/", "/nas/price/", "/nas/repair/", "/rental/", "/network/", "/shop/", "/cases/", "/qna/", "/news/", "/community/",
   "/support/", "/support/as/", "/support/quote/", "/support/remote/",
-  "/support/drivers/", "/support/supplies/", "/blog/", "/about/",
+  "/support/drivers/", "/support/supplies/", "/blog/", "/about/", "/contact/",
   "/terms/", "/privacy/",
 ];
 

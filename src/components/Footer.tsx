@@ -80,6 +80,11 @@ export function Footer() {
                   {site.email}
                 </a>
               </li>
+              <li className="pt-1">
+                <Link href="/contact" className="font-semibold text-hb-blue-light hover:text-white transition">
+                  연락처·찾아오시는 길 →
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

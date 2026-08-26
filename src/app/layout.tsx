@@ -78,6 +78,13 @@ const jsonLd = {
       telephone: site.phone.main,
       email: site.email,
       founder: { "@type": "Person", name: site.address.ceo },
+      // 동명 업체와 구분되는 법적 식별자 (사업자등록번호)
+      identifier: {
+        "@type": "PropertyValue",
+        name: "사업자등록번호",
+        value: site.address.bizNo,
+      },
+      taxID: site.address.bizNo,
       foundingDate: site.foundingDate,
       foundingLocation: { "@type": "Place", name: "대구광역시 달서구 성서공단" },
       slogan: "전산은 전화 한 통",

@@ -73,6 +73,13 @@ export default function SupportHub() {
             </Link>
             를 확인해 주세요.
           </p>
+          <p className="text-sm text-[var(--mute)] leading-relaxed mt-2 text-center">
+            대표전화·오시는 길·영업시간은{" "}
+            <Link href="/contact" className="font-bold text-hb-blue hover:underline">
+              연락처·찾아오시는 길
+            </Link>
+            에 정리해 두었습니다.
+          </p>
         </div>
       </section>
       <FaqSection title="전산 유지보수, 자주 묻는 질문" items={supportFaq} />

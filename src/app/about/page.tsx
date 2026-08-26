@@ -382,6 +382,13 @@ export default function AboutPage() {
               </div>
             ))}
           </dl>
+          <p className="text-sm text-[var(--mute)] leading-relaxed mt-5">
+            전화·이메일·영업시간과 오시는 길은{" "}
+            <Link href="/contact" className="font-bold text-hb-blue hover:underline">
+              연락처·찾아오시는 길
+            </Link>
+            에서 확인하실 수 있습니다.
+          </p>
         </div>
       </section>
 
