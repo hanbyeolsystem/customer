@@ -140,7 +140,7 @@ const factors = [
 ];
 
 const nasCases = caseStudies.filter((c) =>
-  ["case-ds1825", "case-ds925", "case-rs2421", "case-changwon"].includes(c.id),
+  ["bukgu-architect-ds1825", "daegu-office-ds925-hdd", "university-rs2421", "changwon-office-ds925"].includes(c.slug),
 );
 
 const relatedQna = [
@@ -511,13 +511,14 @@ export default function NasPricePage() {
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {nasCases.map((c) => (
-              <article
-                key={c.id}
-                className="bg-[var(--bg)] border border-[var(--line)] rounded-3xl overflow-hidden"
+              <Link
+                key={c.slug}
+                href={`/cases/${c.slug}`}
+                className="bg-[var(--bg)] border border-[var(--line)] rounded-3xl overflow-hidden hover:border-hb-blue transition"
               >
                 <div className="relative aspect-[16/10]">
                   <Image
-                    src={c.image}
+                    src={c.images[0]}
                     alt={c.title}
                     fill
                     sizes="(min-width:1024px) 25vw, 50vw"
@@ -530,9 +531,9 @@ export default function NasPricePage() {
                 <div className="p-5">
                   <h3 className="font-extrabold text-[var(--ink)] leading-tight mb-2">{c.title}</h3>
                   <p className="text-[13px] text-[var(--mute)] leading-relaxed mb-3">{c.summary}</p>
-                  <div className="text-[12px] font-semibold text-hb-blue">{c.scale}</div>
+                  <div className="text-[12px] font-semibold text-hb-blue">{c.region} · {c.gear[0]}</div>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
           <div className="mt-8">

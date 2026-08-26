@@ -8,7 +8,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { caseStudies } from "@/data/cases";
-import { embedHref } from "@/lib/embed";
 
 export function CaseStudies() {
   return (
@@ -47,15 +46,15 @@ export function CaseStudies() {
           }}
           className="!pb-12"
         >
-          {caseStudies.map((c) => (
-            <SwiperSlide key={c.id}>
+          {caseStudies.slice(0, 9).map((c) => (
+            <SwiperSlide key={c.slug}>
               <Link
-                href={embedHref(c.href, c.title)}
+                href={`/cases/${c.slug}`}
                 className="bg-[var(--bg)] border border-[var(--line)] rounded-3xl overflow-hidden hover:shadow-xl hover:border-hb-blue transition group h-full flex flex-col"
               >
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <Image
-                    src={c.image}
+                    src={c.images[0]}
                     alt={c.title}
                     fill
                     sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 90vw"
@@ -73,7 +72,7 @@ export function CaseStudies() {
                     {c.summary}
                   </p>
                   <div className="text-[12px] font-semibold text-hb-blue mb-3">
-                    {c.scale}
+                    {c.region} · {c.gear[0]}
                   </div>
                   <div className="flex flex-wrap gap-1.5">
                     {c.tags.map((t) => (
@@ -86,7 +85,7 @@ export function CaseStudies() {
                     ))}
                   </div>
                   <div className="mt-4 inline-flex items-center gap-1 text-[12px] font-bold text-hb-blue group-hover:gap-2 transition-all">
-                    블로그 후기 보기 →
+                    시공 내용 보기 →
                   </div>
                 </div>
               </Link>

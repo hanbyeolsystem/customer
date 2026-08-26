@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import lastmod from "@/data/lastmod.json";
+import { caseStudies } from "@/data/cases";
 import { qna, qnaModified } from "@/data/qna";
 import { site } from "@/data/site";
 
@@ -32,6 +33,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
           : p === "/qna/" || p === "/nas/" || p === "/rental/" || p === "/ai/" ? 0.9
             : p === "/terms/" || p === "/privacy/" ? 0.2
               : 0.6,
+    })),
+    // 구축 사례 상세 - 사례별 시공 시점을 lastmod 로 쓴다
+    ...caseStudies.map((c) => ({
+      url: `${site.url}/cases/${c.slug}/`,
+      lastModified: new Date(`${c.date}-01T00:00:00+09:00`),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
     })),
     ...qna.map((f) => ({
       url: `${site.url}/qna/${f.slug}/`,
