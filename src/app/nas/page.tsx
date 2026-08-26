@@ -7,6 +7,7 @@ import { AnswerBlock } from "@/components/AnswerBlock";
 import { JsonLd } from "@/components/JsonLd";
 import { monthlyOffer, serviceId, serviceLd } from "@/lib/schema";
 import { site } from "@/data/site";
+import { nasModels, won } from "@/data/synology";
 
 const nasFaq = [
   {
@@ -194,6 +195,41 @@ export default function NasPage() {
           </Link>
         </div>
       </section>
+      {/* 모델별 페이지 - "DS925+ 설치" 처럼 모델명으로 찾아오는 분들을 위한 진입점 */}
+      <section className="py-16 lg:py-20 bg-[var(--bg)]">
+        <div className="max-w-5xl mx-auto px-4 lg:px-6">
+          <div className="text-[11px] font-extrabold text-hb-blue tracking-[.2em] mb-2">MODELS</div>
+          <h2 className="text-2xl lg:text-3xl font-extrabold text-[var(--ink)] mb-3">
+            시놀로지 모델별 구축 비용
+          </h2>
+          <p className="text-sm text-[var(--mute)] leading-relaxed mb-7 max-w-3xl">
+            모델명을 이미 정하고 오셨다면 바로 확인하세요. 모델마다 본체가, 구성별 견적, 실제 설치 사례를
+            정리해 두었습니다.
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {nasModels.map((m) => (
+              <Link
+                key={m.slug}
+                href={`/nas/model/${m.slug}`}
+                className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-5 hover:border-hb-blue transition group"
+              >
+                <div className="flex items-baseline justify-between gap-2 mb-2">
+                  <span className="text-lg font-extrabold text-[var(--ink)]">{m.model}</span>
+                  <span className="text-[11px] font-bold text-[var(--mute)]">{m.bayLabel}</span>
+                </div>
+                <div className="text-sm font-extrabold text-hb-blue mb-2">
+                  {m.price ? `본체 ${won(m.price)}` : "별도 견적"}
+                </div>
+                <p className="text-[13px] text-[var(--mute)] leading-relaxed mb-3">{m.fitFor}</p>
+                <span className="inline-flex items-center gap-1 text-[12px] font-bold text-hb-blue group-hover:gap-2 transition-all">
+                  구성별 견적 보기 →
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <FaqSection title="NAS 구축, 자주 묻는 질문" items={nasFaq} />
     </>
   );

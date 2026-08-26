@@ -6,6 +6,7 @@ import { FaqSection } from "@/components/FaqSection";
 import { AnswerBlock } from "@/components/AnswerBlock";
 import { caseStudies } from "@/data/cases";
 import { site } from "@/data/site";
+import { INSTALL_FEE as INSTALL_FEE_WON, disks as synologyDisks, nasModels, won } from "@/data/synology";
 import { JsonLd } from "@/components/JsonLd";
 import { monthlyOffer, serviceId, serviceLd } from "@/lib/schema";
 
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
 };
 
 // 시놀로지 공식 공급 단가표 기준 권장소비자가 + 출장 설치·설정교육 40만원 (VAT 별도). 임의 변경 금지.
-const INSTALL_FEE = "400,000원";
+const INSTALL_FEE = won(INSTALL_FEE_WON);
 const packages = [
   {
     tier: "소규모",
@@ -57,21 +58,12 @@ const packages = [
   },
 ];
 
-const bodies = [
-  { model: "DS225+", bay: "2베이", price: "581,000원" },
-  { model: "DS425+", bay: "4베이", price: "871,000원" },
-  { model: "DS925+", bay: "4베이", price: "1,066,000원" },
-  { model: "DS1525+", bay: "5베이", price: "1,357,000원" },
-  { model: "DS1825+", bay: "8베이", price: "1,939,000원" },
-];
+// 본체·디스크 단가는 src/data/synology.ts 한 곳에서만 관리한다.
+const bodies = nasModels
+  .filter((m) => m.price)
+  .map((m) => ({ model: m.model, bay: m.bayLabel, price: won(m.price!), slug: m.slug }));
 
-const disks = [
-  { cap: "4TB", price: "366,000원" },
-  { cap: "6TB", price: "507,000원" },
-  { cap: "8TB", price: "609,000원" },
-  { cap: "12TB", price: "812,000원" },
-  { cap: "16TB", price: "1,015,000원" },
-];
+const diskRows = synologyDisks.map((d) => ({ cap: d.cap, price: won(d.price) }));
 
 // 임대 조건 (사장님 확정). 임의 변경 금지.
 const rentalIncluded = [
@@ -447,7 +439,11 @@ export default function NasPricePage() {
                 <tbody>
                   {bodies.map((b) => (
                     <tr key={b.model} className="border-t border-[var(--line)] first:border-t-0">
-                      <td className="py-2.5 px-5 font-bold text-[var(--ink)] whitespace-nowrap">{b.model}</td>
+                      <td className="py-2.5 px-5 font-bold whitespace-nowrap">
+                        <Link href={`/nas/model/${b.slug}`} className="text-[var(--ink)] hover:text-hb-blue hover:underline">
+                          {b.model}
+                        </Link>
+                      </td>
                       <td className="py-2.5 px-2 text-[12px] text-[var(--mute)] whitespace-nowrap">{b.bay}</td>
                       <td className="py-2.5 px-5 text-right font-extrabold text-hb-blue tabular-nums whitespace-nowrap">
                         {b.price}
@@ -463,7 +459,7 @@ export default function NasPricePage() {
               </div>
               <table className="w-full text-sm">
                 <tbody>
-                  {disks.map((d) => (
+                  {diskRows.map((d) => (
                     <tr key={d.cap} className="border-t border-[var(--line)] first:border-t-0">
                       <td className="py-2.5 px-5 font-bold text-[var(--ink)] whitespace-nowrap">{d.cap}</td>
                       <td className="py-2.5 px-5 text-right font-extrabold text-hb-blue tabular-nums whitespace-nowrap">

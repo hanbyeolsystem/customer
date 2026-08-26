@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import lastmod from "@/data/lastmod.json";
 import { caseStudies } from "@/data/cases";
+import { nasModels } from "@/data/synology";
 import { qna, qnaModified } from "@/data/qna";
 import { site } from "@/data/site";
 
@@ -33,6 +34,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
           : p === "/qna/" || p === "/nas/" || p === "/rental/" || p === "/ai/" ? 0.9
             : p === "/terms/" || p === "/privacy/" ? 0.2
               : 0.6,
+    })),
+    // 시놀로지 모델별 페이지 - "DS925+ 설치" 같은 모델명 검색을 받는 페이지
+    ...nasModels.map((m) => ({
+      url: `${site.url}/nas/model/${m.slug}/`,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
     })),
     // 구축 사례 상세 - 사례별 시공 시점을 lastmod 로 쓴다
     ...caseStudies.map((c) => ({
