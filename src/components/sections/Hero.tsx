@@ -17,7 +17,7 @@ export function Hero() {
       <div className="absolute inset-0">
         <HeroBackground
           posterSrc="/hero/server-rack.jpg"
-          videoSrc="/hero/hero-loop.mp4?v=4"
+          videoSrc="/hero/hero-loop.mp4?v=5"
         />
         {/* 왼쪽 텍스트는 보호, 오른쪽은 영상이 드러나게 */}
         <div className="absolute inset-0 bg-gradient-to-r from-hb-primary via-hb-primary/65 to-hb-primary/25" />
