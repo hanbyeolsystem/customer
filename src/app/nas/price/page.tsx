@@ -509,7 +509,11 @@ export default function NasPricePage() {
             <Link href="/nas/repair" className="font-bold text-hb-blue hover:underline">
               NAS 수리·점검 안내
             </Link>
-            를 봐 주세요.
+            를 봐 주세요. 복합기·프린터 쪽 월 임대료는{" "}
+            <Link href="/rental/price" className="font-bold text-hb-blue hover:underline">
+              복합기·프린터 임대료
+            </Link>
+            에 품목별로 정리해 두었습니다.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a

@@ -284,6 +284,10 @@ export default function ContactPage() {
             <Link href="/about" className="font-bold text-hb-blue hover:underline">
               회사 소개
             </Link>
+            에서, 복합기·프린터 월 임대료는{" "}
+            <Link href="/rental/price" className="font-bold text-hb-blue hover:underline">
+              복합기·프린터 임대료
+            </Link>
             에서 보실 수 있습니다.
           </p>
         </div>
