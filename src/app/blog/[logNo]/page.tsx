@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/PageHeader";
 import { JsonLd } from "@/components/JsonLd";
+import { AnswerBlock } from "@/components/AnswerBlock";
 import { naverPosts, naverPostByNo, naverCats } from "@/data/naver-posts";
 import { caseBySlug } from "@/data/cases";
 import { businessId, site } from "@/data/site";
@@ -19,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ logNo: st
   if (!p) return {};
   return {
     title: p.title,
-    description: p.excerpt.slice(0, 150),
+    description: `${p.title} - ${p.excerpt}`.slice(0, 155),
     alternates: { canonical: `/blog/${logNo}/` },
     openGraph: p.thumb ? { images: [{ url: p.thumb }] } : undefined,
   };
@@ -37,6 +38,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ logNo
   const others = Array.from({ length: Math.min(4, same.length - 1) }, (_, k) => same[(i + 1 + k) % same.length]);
   const pageUrl = `${site.url}/blog/${p.logNo}/`;
   let imgN = 0;
+  // 즉답: 본문 첫 문단들을 그대로 요약으로 쓴다(새로 지어내지 않음). 글 전체가 짧으면 즉답도 짧다.
+  const lead = p.blocks.filter((b) => b.t === "p").map((b) => b.text).join(" ").slice(0, 320);
+  const answer = `${lead}${lead.length >= 320 ? "…" : ""} (${p.date.replace(/-/g, ".")} 현장, 대구광역시 달서구 한별시스템 ${site.phone.main})`;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -62,6 +66,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ logNo
       <JsonLd data={jsonLd} />
       <JsonLd data={breadcrumbLd([{ name: "현장 블로그", path: "/blog/" }, { name: p.title, path: `/blog/${p.logNo}/` }])} />
       <PageHeader badge={`${cat?.label ?? p.catLabel} · ${p.date.replace(/-/g, ".")}`} title={p.title} description="" back="/blog" backLabel="현장 블로그" />
+      <AnswerBlock
+        question={`${p.title}, 어떤 내용인가요?`}
+        answer={answer}
+        facts={[{ label: "분류", value: p.catLabel }, { label: "현장 사진", value: `${p.images}장` }, { label: "작성", value: p.date.replace(/-/g, ".") }]}
+      />
 
       <article className="py-10 lg:py-14 bg-[var(--bg)]">
         <div className="max-w-3xl mx-auto px-4 lg:px-6">
@@ -122,7 +131,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ logNo
                   <Link key={o.logNo} href={`/blog/${o.logNo}`} className="flex gap-3 bg-[var(--panel)] border border-[var(--line)] rounded-xl p-3 hover:border-hb-blue transition">
                     {o.thumb && (
                       // eslint-disable-next-line @next/next/no-img-element
-                      <img src={o.thumb} alt="" loading="lazy" decoding="async" referrerPolicy="no-referrer" width={96} height={72} className="w-24 h-[72px] object-cover rounded-lg shrink-0" />
+                      <img src={o.thumb} alt={o.title} loading="lazy" decoding="async" referrerPolicy="no-referrer" width={96} height={72} className="w-24 h-[72px] object-cover rounded-lg shrink-0" />
                     )}
                     <div className="min-w-0">
                       <div className="text-[11px] text-[var(--mute)] mb-1">{o.date.replace(/-/g, ".")}</div>
