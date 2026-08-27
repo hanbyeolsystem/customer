@@ -3,7 +3,7 @@ import lastmod from "@/data/lastmod.json";
 import { caseStudies } from "@/data/cases";
 import { guides } from "@/data/guides";
 import { nasModels } from "@/data/synology";
-import { qna, qnaModified } from "@/data/qna";
+import { qna, qnaCats, qnaModified } from "@/data/qna";
 import { site } from "@/data/site";
 
 export const dynamic = "force-static";
@@ -35,6 +35,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
           : p === "/qna/" || p === "/nas/" || p === "/rental/" || p === "/ai/" ? 0.9
             : p === "/terms/" || p === "/privacy/" ? 0.2
               : 0.6,
+    })),
+    // Q&A 분류별 목록(FAQPage 스키마는 여기에)
+    ...qnaCats.map((c) => ({
+      url: `${site.url}/qna/cat/${c.id}/`,
+      lastModified: new Date(qnaModified),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
     })),
     // 가이드 칼럼 - 비교표 중심 콘텐츠
     ...guides.map((g) => ({

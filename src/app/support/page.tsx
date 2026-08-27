@@ -7,6 +7,7 @@ import { FaqSection } from "@/components/FaqSection";
 import { JsonLd } from "@/components/JsonLd";
 import { serviceId, serviceLd } from "@/lib/schema";
 import { site } from "@/data/site";
+import { breadcrumbLd } from "@/lib/schema";
 
 export const metadata = {
   title: "고객 지원 - 대구 컴퓨터 수리·프린터 출장 수리·전산 유지보수",
@@ -46,6 +47,7 @@ const serviceJsonLd = serviceLd({
 export default function SupportHub() {
   return (
     <>
+      <JsonLd data={breadcrumbLd([{ name: "고객지원", path: "/support/" }])} />
       <JsonLd data={serviceJsonLd} />
       <PageHeader
         badge="CUSTOMER SUPPORT"

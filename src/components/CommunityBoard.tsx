@@ -15,7 +15,7 @@ const HEADERS = {
   "Content-Type": "application/json",
 };
 
-type Post = {
+export type Post = {
   id: number;
   parent_id: number | null;
   nick: string;
@@ -37,9 +37,11 @@ function fmtDate(s: string) {
   return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")} ${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`;
 }
 
-export function CommunityBoard() {
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [loading, setLoading] = useState(true);
+// initialPosts: 빌드 시점에 서버가 받아 둔 글. 크롤러(AI 봇 포함)는 JS 를 안 돌리므로
+// 이게 없으면 게시판이 빈 페이지로 보인다. 화면이 뜨면 최신 글을 다시 받는다.
+export function CommunityBoard({ initialPosts = [] }: { initialPosts?: Post[] }) {
+  const [posts, setPosts] = useState<Post[]>(initialPosts);
+  const [loading, setLoading] = useState(initialPosts.length === 0);
   const [error, setError] = useState("");
   const [showForm, setShowForm] = useState(false);
   const [replyTo, setReplyTo] = useState<number | null>(null);

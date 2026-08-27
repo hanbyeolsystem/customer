@@ -70,3 +70,22 @@ export function serviceLd(opts: {
     ...(opts.offers?.length ? { offers: opts.offers } : {}),
   };
 }
+
+/**
+ * 빵부스러기(BreadcrumbList). 홈은 자동으로 앞에 붙는다.
+ * path 는 "/nas/price/" 처럼 슬래시로 끝나는 사이트 상대경로.
+ */
+export function breadcrumbLd(items: { name: string; path: string }[]) {
+  const list = [{ name: "홈", path: "/" }, ...items];
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": `${site.url}${items[items.length - 1]?.path ?? "/"}#breadcrumb`,
+    itemListElement: list.map((it, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: it.name,
+      item: `${site.url}${it.path}`,
+    })),
+  };
+}

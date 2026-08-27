@@ -5,6 +5,9 @@ import { CtaBanner } from "@/components/sections/CtaBanner";
 import { Icon, type IconName } from "@/components/Icon";
 import { site } from "@/data/site";
 import { coreServices } from "@/data/services";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbLd } from "@/lib/schema";
+import { AnswerBlock } from "@/components/AnswerBlock";
 
 export const metadata: Metadata = {
   title: "회사 소개 - 대구 달서구 전산 관리 업체",
@@ -106,6 +109,7 @@ const eras: {
 export default function AboutPage() {
   return (
     <>
+      <JsonLd data={breadcrumbLd([{ name: "회사 소개", path: "/about/" }])} />
       {/* 히어로: 홍보영상 배경 + 스크림 위 텍스트.
           높이는 콘텐츠(패딩)로 고정하고 영상은 absolute 라서 로드 전후 레이아웃이 튀지 않는다(CLS 0).
           모바일(<768px)과 prefers-reduced-motion 사용자는 영상을 아예 받지 않고 포스터만 본다. */}
@@ -415,6 +419,11 @@ export default function AboutPage() {
       </section>
 
       <CtaBanner />
+      <AnswerBlock
+        question="한별시스템은 어떤 회사인가요?"
+        answer="2008년 대구 성서공단에서 컴퓨터 대리점으로 시작해 19년째 대구·경북 기업의 전산을 맡고 있는 기업 데이터 관리 회사입니다. 시놀로지 NAS 구축 50건 이상, 복사기·복합기 설치 300대 이상, 관리 고객사 170곳 이상이며 2026년 3월 시놀로지 공식 대리점 계약을 체결했습니다. 컴퓨터, 복합기, NAS, 사무실 네트워크를 한 회사가 관리해 장애가 났을 때 고객이 원인을 구분할 필요가 없고, 자사 NAS에서 로컬 LLM을 직접 운영하며 사내 AI 도입을 상담합니다. 대구광역시 달서구 문화회관11안길 22-7 1층, 대표 김상환, 사업자등록번호 514-22-73057, 대표번호 053-588-7119."
+        facts={[{ label: "창업", value: "2008년" }, { label: "관리 고객사", value: "170곳 이상" }, { label: "NAS 구축", value: "50건 이상" }, { label: "복사기 설치", value: "300대 이상" }]}
+      />
     </>
   );
 }

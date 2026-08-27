@@ -3,6 +3,9 @@ import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { getBlogPosts } from "@/lib/blog";
 import { embedHref } from "@/lib/embed";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbLd } from "@/lib/schema";
+import { AnswerBlock } from "@/components/AnswerBlock";
 
 export const metadata: Metadata = {
   title: "한별시스템 소식 - 설치 후기와 현장 이야기",
@@ -15,7 +18,13 @@ export default async function BlogPage() {
   const posts = await getBlogPosts(12);
   return (
     <>
+      <JsonLd data={breadcrumbLd([{ name: "소식", path: "/blog/" }])} />
       <PageHeader badge="BLOG" title="한별시스템 소식" description="Synology·랜섬웨어·운영 노하우. 한별 블로그 전체 글은 외부 링크로 열립니다." />
+      <AnswerBlock
+        question="한별시스템 소식에는 무엇이 올라오나요?"
+        answer="대구·경북 현장에서 실제로 시공한 시놀로지 NAS, 교세라 복합기, 랜공사 설치 후기와 사무실 업무에 영향을 주는 IT 소식을 올립니다. 후기는 네이버 블로그 원문과 구글 블로거에 함께 발행되며, 시공 현장 20건은 구축 사례 페이지에 과제·시공 내용·결과와 현장 사진으로 정리되어 있습니다. 매일 아침 IT 새소식을 골라 한별의 한 줄 코멘트와 함께 요약합니다."
+        facts={[{ label: "구축 사례", value: "20건 공개" }, { label: "발행", value: "네이버·블로거" }, { label: "IT 소식", value: "매일 갱신" }, { label: "문의", value: "053-588-7119" }]}
+      />
       <section className="py-12 lg:py-16 bg-[var(--bg)]">
         <div className="max-w-7xl mx-auto px-4 lg:px-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {posts.map((p) => (

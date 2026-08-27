@@ -21,7 +21,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!g) return {};
   return {
     title: g.title,
-    description: g.answer.slice(0, 250),
+    // 검색결과에서 잘리지 않게 155자 안으로. lead 가 짧으면 answer 첫 문장으로 채운다.
+    description: (g.lead.length >= 110 ? g.lead : `${g.lead} ${g.answer.split(". ")[0]}.`).slice(0, 155),
     alternates: { canonical: `/guide/${slug}/` },
   };
 }
@@ -33,7 +34,10 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
 
   const pageUrl = `${site.url}/guide/${g.slug}/`;
   const cat = guideCats.find((c) => c.id === g.cat);
-  const related = guides.filter((x) => x.cat === g.cat && x.slug !== g.slug).slice(0, 3);
+  // 같은 분류에서 "내 다음 3개"를 고른다. 항상 앞의 3개만 고르면 그 3개만 링크를 받는다.
+  const sameCat = guides.filter((x) => x.cat === g.cat);
+  const gi = sameCat.findIndex((x) => x.slug === g.slug);
+  const related = Array.from({ length: Math.min(3, sameCat.length - 1) }, (_, i) => sameCat[(gi + 1 + i) % sameCat.length]);
 
   const cases = (g.related?.cases ?? []).map(caseBySlug).filter((c): c is NonNullable<typeof c> => Boolean(c));
   const qnas = (g.related?.qna ?? []).map(qnaBySlug).filter((q): q is NonNullable<typeof q> => Boolean(q));

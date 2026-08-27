@@ -9,11 +9,12 @@ import { site } from "@/data/site";
 import { INSTALL_FEE as INSTALL_FEE_WON, disks as synologyDisks, nasModels, won } from "@/data/synology";
 import { JsonLd } from "@/components/JsonLd";
 import { monthlyOffer, serviceId, serviceLd } from "@/lib/schema";
+import { breadcrumbLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "대구 NAS 구축 비용 - 규모별 견적 가이드",
   description:
-    "대구 중소기업 NAS 구축 비용을 규모별로 공개합니다. 직원 5~10명 사무실 기준 장비와 출장 설치·설정교육까지 171만원대부터 대용량 구성까지 실제 금액. 금액은 현장 조건과 구성에 따라 달라질 수 있으니 053-588-7119로 전화 확인해 주세요. 초기 비용이 부담되면 월 10만원(VAT 별도)부터 시작하는 NAS 임대도 가능합니다.",
+    "대구 중소기업 NAS 구축 비용 규모별 공개. DS225+ 4TB 2개 구성이 출장 설치·설정교육 포함 171만원대부터(VAT 별도), 임대는 월 10만원부터. 정확한 금액은 현장 확인 후 안내. 053-588-7119.",
   alternates: { canonical: "/nas/price/" },
 };
 
@@ -252,6 +253,7 @@ const priceJsonLd = serviceLd({
 export default function NasPricePage() {
   return (
     <>
+      <JsonLd data={breadcrumbLd([{ name: "NAS 솔루션", path: "/nas/" }, { name: "NAS 구축 비용", path: "/nas/price/" }])} />
       <JsonLd data={priceJsonLd} />
       <PageHeader
         badge="NAS PRICE GUIDE · SYNOLOGY 공식 대리점"

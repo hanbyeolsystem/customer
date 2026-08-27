@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { site } from "@/data/site";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbLd } from "@/lib/schema";
+import { AnswerBlock } from "@/components/AnswerBlock";
 
 export const metadata: Metadata = {
   title: "원격 지원 - 방문 없이 바로 해결",
@@ -21,10 +24,16 @@ const steps = [
 export default function RemoteSupportPage() {
   return (
     <>
+      <JsonLd data={breadcrumbLd([{ name: "고객지원", path: "/support/" }, { name: "원격 지원", path: "/support/remote/" }])} />
       <PageHeader
         badge="REMOTE SUPPORT"
         title="원격 지원 즉시 연결"
         description="한별 전용 Seetrol MY 원격지원. 두 단계면 끝납니다."
+      />
+      <AnswerBlock
+        question="원격 지원은 어떻게 받나요?"
+        answer="한별 전용 원격 프로그램을 내려받아 실행하고 화면에 보이는 숫자를 053-588-7119로 알려 주시면 즉시 접속합니다. 설정 문제, 프로그램 오류, 인쇄 문제 상당수가 원격으로 해결되며 이용자의 동의 하에 요청한 문제 해결 범위로만 작업합니다. 원격으로 안 되는 증상은 대구·경북 당일 방문으로 이어집니다. 관리 고객사 170곳 이상을 원격 우선, 필요 시 방문 방식으로 유지관리하고 있습니다."
+        facts={[{ label: "접속", value: "숫자 전달 즉시" }, { label: "범위", value: "요청한 문제만" }, { label: "안 되면", value: "당일 방문" }, { label: "전화", value: "053-588-7119" }]}
       />
 
       <section className="py-12 lg:py-16 bg-[var(--bg)]">

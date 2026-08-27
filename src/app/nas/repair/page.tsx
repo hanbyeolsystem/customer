@@ -4,11 +4,13 @@ import { PageHeader } from "@/components/PageHeader";
 import { AnswerBlock } from "@/components/AnswerBlock";
 import { FaqSection } from "@/components/FaqSection";
 import { site } from "@/data/site";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "대구 NAS 수리 - 시놀로지 점검·하드 교체 문의",
   description:
-    "대구 나스가 고장 났을 때. 시놀로지 NAS 점검, 하드디스크 교체, 재설정, 랜섬웨어 대응 상담을 대구·경북 현장에서 직접 처리하며 연간 NAS 수리 20건 이상을 다룹니다. 관리 거래처는 출장 점검 무료, 신규 고객은 기본 출장 점검비 300,000원부터(VAT 별도). 053-588-7119로 전화 주시면 증상을 먼저 듣고 방문 일정을 안내해 드립니다.",
+    "대구 NAS 수리·점검. 전원 불량, 접속 불가, 디스크 경고, 랜섬웨어 의심 등 증상별 대응. 유지관리·임대 고객 출장 점검 무료, 신규 고객 30만원부터(VAT 별도). 053-588-7119.",
   alternates: { canonical: "/nas/repair/" },
 };
 
@@ -94,6 +96,7 @@ const repairFaq = [
 export default function NasRepairPage() {
   return (
     <>
+      <JsonLd data={breadcrumbLd([{ name: "NAS 솔루션", path: "/nas/" }, { name: "NAS 수리·점검", path: "/nas/repair/" }])} />
       <PageHeader
         badge="NAS REPAIR · 대구·경북 현장 출장"
         title="NAS가 고장 났습니다"

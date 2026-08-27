@@ -8,6 +8,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { monthlyOffer, serviceId, serviceLd } from "@/lib/schema";
 import { site } from "@/data/site";
 import { nasModels, won } from "@/data/synology";
+import { breadcrumbLd } from "@/lib/schema";
 
 const nasFaq = [
   {
@@ -65,6 +66,7 @@ const serviceJsonLd = serviceLd({
 export default function NasPage() {
   return (
     <>
+      <JsonLd data={breadcrumbLd([{ name: "NAS 솔루션", path: "/nas/" }])} />
       <JsonLd data={serviceJsonLd} />
       <PageHeader
         badge="NAS SOLUTION · SYNOLOGY 공식 대리점"

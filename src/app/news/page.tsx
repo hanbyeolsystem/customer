@@ -3,6 +3,9 @@ import { PageHeader } from "@/components/PageHeader";
 import { NewsBrowser } from "@/components/NewsBrowser";
 import newsData from "@/data/news.json";
 import { dedash } from "@/lib/utils";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbLd } from "@/lib/schema";
+import { AnswerBlock } from "@/components/AnswerBlock";
 
 export const metadata: Metadata = {
   title: "IT 새소식 - 사무실에 영향 주는 소식만 골라서",
@@ -34,10 +37,16 @@ export default function NewsPage() {
   };
   return (
     <>
+      <JsonLd data={breadcrumbLd([{ name: "IT 새소식", path: "/news/" }])} />
       <PageHeader
         badge="NEWS"
         title="IT 새소식"
         description="사무실 업무에 영향 주는 소식만 골라, 매일 아침 한 줄 코멘트와 함께 전해 드립니다."
+      />
+      <AnswerBlock
+        question="IT 새소식은 어떤 기준으로 고르나요?"
+        answer="사무실 업무에 실제로 영향을 주는 소식만 고릅니다. 윈도우 업데이트, 보안 취약점, 랜섬웨어 동향, 프린터·복합기 제조사 소식, AI 도구 변화처럼 중소기업 전산 담당자가 알아야 할 것을 매일 아침 요약하고 한별시스템의 한 줄 코멘트를 붙입니다. 자세한 내용은 원문 링크로 연결되며, 소식과 관련된 실무 판단 기준은 가이드와 Q&A 페이지에 정리되어 있습니다."
+        facts={[{ label: "갱신", value: "매일 아침" }, { label: "기준", value: "사무실 영향도" }, { label: "코멘트", value: "한별 한 줄" }, { label: "관련", value: "가이드 30편" }]}
       />
       <NewsBrowser items={items} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />

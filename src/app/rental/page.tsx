@@ -6,6 +6,7 @@ import { AnswerBlock } from "@/components/AnswerBlock";
 import { JsonLd } from "@/components/JsonLd";
 import { monthlyOffer, serviceId, serviceLd } from "@/lib/schema";
 import { site } from "@/data/site";
+import { breadcrumbLd } from "@/lib/schema";
 
 const rentalFaq = [
   {
@@ -55,6 +56,7 @@ const serviceJsonLd = serviceLd({
 export default function RentalPage() {
   return (
     <>
+      <JsonLd data={breadcrumbLd([{ name: "복합기 렌탈", path: "/rental/" }])} />
       <JsonLd data={serviceJsonLd} />
       <PageHeader
         badge="RENTAL CARE"

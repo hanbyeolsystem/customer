@@ -6,6 +6,7 @@ import { FaqSection } from "@/components/FaqSection";
 import { site } from "@/data/site";
 import { JsonLd } from "@/components/JsonLd";
 import { serviceId, serviceLd } from "@/lib/schema";
+import { breadcrumbLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "대구 사무실 네트워크 공사·데이터 백업 구축",
@@ -101,6 +102,7 @@ const serviceJsonLd = serviceLd({
 export default function NetworkPage() {
   return (
     <>
+      <JsonLd data={breadcrumbLd([{ name: "네트워크·랜공사", path: "/network/" }])} />
       <JsonLd data={serviceJsonLd} />
       <PageHeader
         badge="NETWORK · BACKUP"

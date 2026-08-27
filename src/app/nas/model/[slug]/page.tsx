@@ -29,11 +29,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!m) return {};
   const q = quote(m, m.recommend.cap, m.recommend.count);
   const priceLine = m.price
-    ? `본체 ${won(m.price)}, ${m.recommend.cap} ${m.recommend.count}개 구성 시 출장 설치·설정교육까지 ${won(q.net)}(VAT 별도).`
-    : "구성에 따라 별도 견적으로 안내합니다.";
+    ? `본체 ${won(m.price)}, ${m.recommend.cap} ${m.recommend.count}개 구성 ${won(q.net)}(VAT 별도).`
+    : "구성별 별도 견적.";
   return {
     title: `시놀로지 ${m.model} 설치 - 대구 NAS 구축 비용과 구성`,
-    description: `시놀로지 ${m.model}(${m.bayLabel}) 설치·구축. ${priceLine} 대구·경북 시놀로지 공식 대리점 한별시스템이 장비 선정부터 RAID 설정, 현장 설치, 1시간 사용 교육까지 진행합니다. 임대는 월 ${won(RENT_FROM)}부터. 문의 ${site.phone.main}.`,
+    description: `시놀로지 ${m.model}(${m.bayLabel}) 설치. ${priceLine} 대구·경북 시놀로지 공식 대리점 한별시스템이 설치·RAID·1시간 교육까지. 임대 월 ${won(RENT_FROM)}부터. ${site.phone.main}`,
     alternates: { canonical: `/nas/model/${slug}/` },
   };
 }
@@ -95,6 +95,8 @@ export default async function NasModelPage({ params }: { params: Promise<{ slug:
         model: m.model,
         category: "NAS 스토리지",
         url: pageUrl,
+        // 상품 리치결과 필수 항목. 실제 설치 현장 사진이 있으면 그것을, 없으면 대표 카드 이미지를 쓴다.
+        image: cases.length ? cases.map((c) => `${site.url}${c.images[0]}`) : [`${site.url}/og.jpg`],
         ...(m.price
           ? {
               offers: configs.map((c) => ({

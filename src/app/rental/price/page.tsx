@@ -6,11 +6,12 @@ import { AnswerBlock } from "@/components/AnswerBlock";
 import { site } from "@/data/site";
 import { JsonLd } from "@/components/JsonLd";
 import { monthlyOffer, serviceId, serviceLd } from "@/lib/schema";
+import { breadcrumbLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "대구 복합기 임대료 - 월 얼마인지 가격 공개",
   description:
-    "대구 복합기·프린터 임대료를 품목별로 공개합니다. 흑백 복사기 월 7만원부터, 컬러 복사기 월 10만원부터, 흑백 레이저 프린터 월 3만원부터(VAT 별도). 토너 등 소모품·부품 교체·출장 수리·분기 정기점검이 월 정액에 포함됩니다. 기종과 출력량에 따라 달라지니 053-588-7119로 전화 확인해 주세요.",
+    "대구 복합기·프린터 월 임대료 공개. 흑백 복사기 7만원, 컬러 복사기 10만원, 흑백 레이저 프린터 3만원부터(VAT 별도). 토너·부품·출장 수리·분기 점검 포함. 053-588-7119.",
   alternates: { canonical: "/rental/price/" },
 };
 
@@ -164,6 +165,7 @@ const priceJsonLd = serviceLd({
 export default function RentalPricePage() {
   return (
     <>
+      <JsonLd data={breadcrumbLd([{ name: "복합기 렌탈", path: "/rental/" }, { name: "월 임대료", path: "/rental/price/" }])} />
       <JsonLd data={priceJsonLd} />
       <PageHeader
         badge="RENTAL PRICE GUIDE"

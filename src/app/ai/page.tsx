@@ -6,6 +6,7 @@ import { FaqSection } from "@/components/FaqSection";
 import { JsonLd } from "@/components/JsonLd";
 import { serviceId, serviceLd } from "@/lib/schema";
 import { site } from "@/data/site";
+import { breadcrumbLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "사내 AI 구축 - 회사 자료를 밖으로 내보내지 않는 NAS AI",
@@ -119,6 +120,7 @@ const serviceJsonLd = serviceLd({
 export default function AiPage() {
   return (
     <>
+      <JsonLd data={breadcrumbLd([{ name: "사내 AI 구축", path: "/ai/" }])} />
       <JsonLd data={serviceJsonLd} />
       <PageHeader
         badge="ON-PREMISE AI · 기업 데이터 관리"

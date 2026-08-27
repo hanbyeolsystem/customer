@@ -6,6 +6,7 @@ import { AnswerBlock } from "@/components/AnswerBlock";
 import { JsonLd } from "@/components/JsonLd";
 import { caseCats, caseStudies } from "@/data/cases";
 import { businessId, site } from "@/data/site";
+import { breadcrumbLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "구축 사례 - 대구·경북 NAS·복합기·랜공사 실제 시공 기록",
@@ -50,6 +51,7 @@ const counts = caseCats.map((cat) => ({
 export default function CasesPage() {
   return (
     <>
+      <JsonLd data={breadcrumbLd([{ name: "구축 사례", path: "/cases/" }])} />
       <JsonLd data={casesJsonLd} />
       <PageHeader
         badge="CASE STUDIES · 현장 기록"

@@ -15,7 +15,9 @@ function hash(s: string) {
   return h;
 }
 
-export function qnaImage(cat: string, slug: string): string {
+// size "thumb" 는 scripts/optimize-images.mjs 가 만든 480px 소형본(/blog-assets/thumb/).
+export function qnaImage(cat: string, slug: string, size: "full" | "thumb" = "full"): string {
   const pool = POOL[cat] ?? POOL.service;
-  return `/blog-assets/${pool[hash(slug) % pool.length]}`;
+  const file = pool[hash(slug) % pool.length];
+  return size === "thumb" ? `/blog-assets/thumb/${file}` : `/blog-assets/${file}`;
 }

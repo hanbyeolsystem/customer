@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { embedHref } from "@/lib/embed";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbLd } from "@/lib/schema";
+import { AnswerBlock } from "@/components/AnswerBlock";
 
 export const metadata: Metadata = {
   title: "프린터 드라이버 다운로드",
@@ -24,10 +27,16 @@ const brands = [
 export default function DriversPage() {
   return (
     <>
+      <JsonLd data={breadcrumbLd([{ name: "고객지원", path: "/support/" }, { name: "드라이버 다운로드", path: "/support/drivers/" }])} />
       <PageHeader
         badge="DRIVERS"
         title="드라이버 다운로드"
         description="한별 드라이버 센터이 가장 빠른 방법입니다. 제조사 공식 페이지에서도 받으실 수 있습니다."
+      />
+      <AnswerBlock
+        question="프린터 드라이버는 어디서 받나요?"
+        answer="한별 드라이버 센터 882.kr에서 무료로 받을 수 있습니다. 기종만 고르면 자동으로 설치해 주는 딸깍P드라이버와 제조사 공식 드라이버, 그리고 복합기 출력량을 자동 수집하는 딸깍P카운터를 배포합니다. 설치가 안 되거나 인쇄가 안 되는 경우 882.kr 지원요청 게시판에 남기시거나 053-588-7119로 전화 주시면 원격으로 확인합니다. 제조사별 프린터 에러코드 검색도 무료로 제공합니다."
+        facts={[{ label: "다운로드", value: "882.kr 무료" }, { label: "자동 설치", value: "딸깍P드라이버" }, { label: "카운터", value: "딸깍P카운터" }, { label: "문제 시", value: "원격 지원" }]}
       />
       <section className="py-12 lg:py-16 bg-[var(--bg)]">
         <div className="max-w-5xl mx-auto px-4 lg:px-6">
