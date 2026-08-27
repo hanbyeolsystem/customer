@@ -63,7 +63,7 @@ export function NewsBrowser({ items }: { items: NewsItem[] }) {
             {filtered.map((n) => (
               <article key={n.title} className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl overflow-hidden flex flex-col">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={`/blog-assets/${n.img.replace(/.jpe?g$/i, ".webp")}`} alt={TOPIC_LABEL[n.topic] ?? n.topic} loading="lazy"
+                <img src={`/blog-assets/${n.img.replace(/\.jpe?g$/i, ".webp")}`} alt={TOPIC_LABEL[n.topic] ?? n.topic} loading="lazy"
                   className="w-full aspect-[3/2] object-cover" />
                 <div className="p-5 lg:p-6 flex-1 flex flex-col">
                   <div className="flex items-center gap-2 text-[11px] text-[var(--mute)] mb-2">
