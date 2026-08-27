@@ -1,12 +1,12 @@
 // Q&A·새소식 카테고리별 현장사진 매핑 - slug 해시로 안정적으로 분배(같은 글=늘 같은 사진)
 
 const POOL: Record<string, string[]> = {
-  ai: ["nas-real-02.jpg", "nas-01.jpg", "security-01.jpg", "nas-real-03.jpg"],
-  nas: ["nas-real-01.jpg", "nas-real-02.jpg", "nas-real-03.jpg", "nas-01.jpg"],
-  printer: ["printer-real-01.jpg", "printer-real-02.jpg", "printer-real-03.jpg", "printer-service-01.jpg"],
-  pc: ["pc-build-04.jpg", "pc-done-01.jpg", "pc-cpu-01.jpg", "pc-done-02.jpg", "pc-parts-01.jpg", "pc-done-03.jpg"],
-  network: ["network-01.jpg", "office-monitor-01.jpg"],
-  service: ["brand-store-01.jpg", "printer-real-02.jpg", "pc-build-05.jpg", "printer-service-01.jpg"],
+  ai: ["nas-real-02.webp", "nas-01.webp", "security-01.webp", "nas-real-03.webp"],
+  nas: ["nas-real-01.webp", "nas-real-02.webp", "nas-real-03.webp", "nas-01.webp"],
+  printer: ["printer-real-01.webp", "printer-real-02.webp", "printer-real-03.webp", "printer-service-01.webp"],
+  pc: ["pc-build-04.webp", "pc-done-01.webp", "pc-cpu-01.webp", "pc-done-02.webp", "pc-parts-01.webp", "pc-done-03.webp"],
+  network: ["network-01.webp", "office-monitor-01.webp"],
+  service: ["brand-store-01.webp", "printer-real-02.webp", "pc-build-05.webp", "printer-service-01.webp"],
 };
 
 function hash(s: string) {

@@ -116,7 +116,7 @@ export default function AboutPage() {
       <section className="relative overflow-hidden bg-hb-primary text-white border-b border-white/10">
         <div className="absolute inset-0">
           <HeroBackground
-            posterSrc="/video/company-bg-poster.jpg"
+            posterSrc="/video/company-bg-poster.webp"
             videoSrc="/video/company-bg.mp4"
             posterAlt="한별시스템 사무실과 현장 작업 모습"
             minWidth={768}

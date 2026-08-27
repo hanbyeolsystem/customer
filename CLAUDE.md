@@ -54,6 +54,8 @@
 - 커뮤니티 글은 `community/page.tsx` 가 빌드 시점에 Supabase 에서 받아 `CommunityBoard initialPosts` 로 넘긴다(크롤러용).
   하루 3번 재빌드 크론이 새 글을 반영한다.
 - 이미지는 `node scripts/optimize-images.mjs` 로 한 번 눌러서 커밋(mozjpeg q78, 최대 1400px). Q&A 카드는 `qnaImage(cat, slug, "thumb")` 480px.
+- **화면은 WebP 를 쓴다**(2026-08-27). `node scripts/to-webp.mjs` 가 cases·blog-assets·hero·video·blog-posts 의 JPEG/PNG 를 .webp 로 만든다(원본 JPEG 는 옛 링크용으로 두고, blog-posts 만 원본 삭제).
+  새 사진을 넣으면 optimize → to-webp 순서로 돌리고 `.webp` 경로로 참조할 것. og.jpg·brand/logo.png·icons/ 는 JPEG/PNG 유지(SNS 카드·구글 로고·PWA 규격).
 - 점수·할 일 관리는 종합관리툴 **🔍 사이트 노출 지수**(`한별시스템\임대관리\seo-board`). 재측정은 `node tools/seo-audit/audit.mjs hanbyeol`.
   2026-08-27 측정: 종합 79 (기술 93 · 콘텐츠 76 · GEO 87 · 오프사이트 54). 오프사이트가 병목 = 네이버 블로그 50편에 사이트 링크 0편.
 

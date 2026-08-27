@@ -47,10 +47,10 @@ export const caseStudies: CaseStudy[] = [
     gear: ["Synology NAS", "NAS to NAS 데이터 이관"],
     tags: ["NAS 이관", "데이터 이전", "서버 재구축"],
     images: [
-      "/cases/daegu-junggu-nas-to-nas-1.jpg",
-      "/cases/daegu-junggu-nas-to-nas-2.jpg",
-      "/cases/daegu-junggu-nas-to-nas-3.jpg",
-      "/cases/daegu-junggu-nas-to-nas-4.jpg",
+      "/cases/daegu-junggu-nas-to-nas-1.webp",
+      "/cases/daegu-junggu-nas-to-nas-2.webp",
+      "/cases/daegu-junggu-nas-to-nas-3.webp",
+      "/cases/daegu-junggu-nas-to-nas-4.webp",
     ],
     href: "https://blog.naver.com/hanbyeolsystem/224385618782",
     challenge:
@@ -81,10 +81,10 @@ export const caseStudies: CaseStudy[] = [
     gear: ["Synology DS925+", "8TB HDD"],
     tags: ["NAS 구축", "DS925+", "유지관리"],
     images: [
-      "/cases/yecheon-office-ds925-1.jpg",
-      "/cases/yecheon-office-ds925-2.jpg",
-      "/cases/yecheon-office-ds925-3.jpg",
-      "/cases/yecheon-office-ds925-4.jpg",
+      "/cases/yecheon-office-ds925-1.webp",
+      "/cases/yecheon-office-ds925-2.webp",
+      "/cases/yecheon-office-ds925-3.webp",
+      "/cases/yecheon-office-ds925-4.webp",
     ],
     href: "https://blog.naver.com/hanbyeolsystem/224377621676",
     challenge:
@@ -115,10 +115,10 @@ export const caseStudies: CaseStudy[] = [
     gear: ["Synology DS925+"],
     tags: ["NAS 구축", "공공기관", "DS925+"],
     images: [
-      "/cases/bukgu-culture-foundation-ds925-1.jpg",
-      "/cases/bukgu-culture-foundation-ds925-2.jpg",
-      "/cases/bukgu-culture-foundation-ds925-3.jpg",
-      "/cases/bukgu-culture-foundation-ds925-4.jpg",
+      "/cases/bukgu-culture-foundation-ds925-1.webp",
+      "/cases/bukgu-culture-foundation-ds925-2.webp",
+      "/cases/bukgu-culture-foundation-ds925-3.webp",
+      "/cases/bukgu-culture-foundation-ds925-4.webp",
     ],
     href: "https://blog.naver.com/hanbyeolsystem/224370108980",
     challenge:
@@ -148,10 +148,10 @@ export const caseStudies: CaseStudy[] = [
     gear: ["Synology DS1825+", "Seagate IronWolf 8TB"],
     tags: ["NAS 구축", "DS1825+", "도면 관리", "대용량"],
     images: [
-      "/cases/bukgu-architect-ds1825-1.jpg",
-      "/cases/bukgu-architect-ds1825-2.jpg",
-      "/cases/bukgu-architect-ds1825-3.jpg",
-      "/cases/bukgu-architect-ds1825-4.jpg",
+      "/cases/bukgu-architect-ds1825-1.webp",
+      "/cases/bukgu-architect-ds1825-2.webp",
+      "/cases/bukgu-architect-ds1825-3.webp",
+      "/cases/bukgu-architect-ds1825-4.webp",
     ],
     href: "https://blog.naver.com/hanbyeolsystem/224269459051",
     challenge:
@@ -182,10 +182,10 @@ export const caseStudies: CaseStudy[] = [
     gear: ["Synology RS2421+", "Seagate IronWolf 8TB", "PC 세팅"],
     tags: ["랙마운트", "RS2421+", "대학교", "서버 구축"],
     images: [
-      "/cases/university-rs2421-1.jpg",
-      "/cases/university-rs2421-2.jpg",
-      "/cases/university-rs2421-3.jpg",
-      "/cases/university-rs2421-4.jpg",
+      "/cases/university-rs2421-1.webp",
+      "/cases/university-rs2421-2.webp",
+      "/cases/university-rs2421-3.webp",
+      "/cases/university-rs2421-4.webp",
     ],
     href: "https://blog.naver.com/hanbyeolsystem/224266056667",
     challenge:
@@ -215,10 +215,10 @@ export const caseStudies: CaseStudy[] = [
     gear: ["Synology DS925+", "Seagate IronWolf 8TB", "RAID 5"],
     tags: ["NAS 구축", "RAID 5", "원거리 시공", "서버 관리"],
     images: [
-      "/cases/changwon-office-ds925-1.jpg",
-      "/cases/changwon-office-ds925-2.jpg",
-      "/cases/changwon-office-ds925-3.jpg",
-      "/cases/changwon-office-ds925-4.jpg",
+      "/cases/changwon-office-ds925-1.webp",
+      "/cases/changwon-office-ds925-2.webp",
+      "/cases/changwon-office-ds925-3.webp",
+      "/cases/changwon-office-ds925-4.webp",
     ],
     href: "https://blog.naver.com/hanbyeolsystem/224292586801",
     challenge:
@@ -249,10 +249,10 @@ export const caseStudies: CaseStudy[] = [
     gear: ["Synology DS925+", "Synology DS1515+", "Seagate IronWolf 8TB"],
     tags: ["NAS 구축", "다중 사이트", "업그레이드"],
     images: [
-      "/cases/two-site-ds925-ds1515-1.jpg",
-      "/cases/two-site-ds925-ds1515-2.jpg",
-      "/cases/two-site-ds925-ds1515-3.jpg",
-      "/cases/two-site-ds925-ds1515-4.jpg",
+      "/cases/two-site-ds925-ds1515-1.webp",
+      "/cases/two-site-ds925-ds1515-2.webp",
+      "/cases/two-site-ds925-ds1515-3.webp",
+      "/cases/two-site-ds925-ds1515-4.webp",
     ],
     href: "https://blog.naver.com/hanbyeolsystem/224270612865",
     challenge:
@@ -283,10 +283,10 @@ export const caseStudies: CaseStudy[] = [
     gear: ["Synology DS925+", "Seagate IronWolf 4TB"],
     tags: ["NAS 구축", "초기 세팅", "사용 교육"],
     images: [
-      "/cases/daegu-office-ds925-hdd-1.jpg",
-      "/cases/daegu-office-ds925-hdd-2.jpg",
-      "/cases/daegu-office-ds925-hdd-3.jpg",
-      "/cases/daegu-office-ds925-hdd-4.jpg",
+      "/cases/daegu-office-ds925-hdd-1.webp",
+      "/cases/daegu-office-ds925-hdd-2.webp",
+      "/cases/daegu-office-ds925-hdd-3.webp",
+      "/cases/daegu-office-ds925-hdd-4.webp",
     ],
     href: "https://blog.naver.com/hanbyeolsystem/224263900340",
     challenge:
@@ -317,10 +317,10 @@ export const caseStudies: CaseStudy[] = [
     gear: ["데이터 복구", "Synology DS925+"],
     tags: ["NAS 복구", "데이터 복원", "서버 재구축"],
     images: [
-      "/cases/nas-recovery-ds925-1.jpg",
-      "/cases/nas-recovery-ds925-2.jpg",
-      "/cases/nas-recovery-ds925-3.jpg",
-      "/cases/nas-recovery-ds925-4.jpg",
+      "/cases/nas-recovery-ds925-1.webp",
+      "/cases/nas-recovery-ds925-2.webp",
+      "/cases/nas-recovery-ds925-3.webp",
+      "/cases/nas-recovery-ds925-4.webp",
     ],
     href: "https://blog.naver.com/hanbyeolsystem/224223721226",
     challenge:
@@ -351,9 +351,9 @@ export const caseStudies: CaseStudy[] = [
     gear: ["Synology NAS", "RAID 재구성"],
     tags: ["병원 NAS", "RAID", "개인정보", "장애 대응"],
     images: [
-      "/cases/andong-hospital-nas-1.jpg",
-      "/cases/andong-hospital-nas-2.jpg",
-      "/cases/andong-hospital-nas-3.jpg",
+      "/cases/andong-hospital-nas-1.webp",
+      "/cases/andong-hospital-nas-2.webp",
+      "/cases/andong-hospital-nas-3.webp",
     ],
     href: "https://blog.naver.com/hanbyeolsystem/224306875156",
     challenge:
@@ -385,10 +385,10 @@ export const caseStudies: CaseStudy[] = [
     gear: ["Kyocera TASKalfa 3011i", "Kyocera TASKalfa 3552ci"],
     tags: ["복합기 렌탈", "교세라", "A3", "동선 설계"],
     images: [
-      "/cases/daegu-suseong-kyocera-2set-1.jpg",
-      "/cases/daegu-suseong-kyocera-2set-2.jpg",
-      "/cases/daegu-suseong-kyocera-2set-3.jpg",
-      "/cases/daegu-suseong-kyocera-2set-4.jpg",
+      "/cases/daegu-suseong-kyocera-2set-1.webp",
+      "/cases/daegu-suseong-kyocera-2set-2.webp",
+      "/cases/daegu-suseong-kyocera-2set-3.webp",
+      "/cases/daegu-suseong-kyocera-2set-4.webp",
     ],
     href: "https://blog.naver.com/hanbyeolsystem/224378549930",
     challenge:
@@ -419,9 +419,9 @@ export const caseStudies: CaseStudy[] = [
     gear: ["Kyocera TASKalfa VFM251ci"],
     tags: ["복합기 렌탈", "교세라", "터치 패널"],
     images: [
-      "/cases/bukgu-office-vfm251ci-1.jpg",
-      "/cases/bukgu-office-vfm251ci-2.jpg",
-      "/cases/bukgu-office-vfm251ci-3.jpg",
+      "/cases/bukgu-office-vfm251ci-1.webp",
+      "/cases/bukgu-office-vfm251ci-2.webp",
+      "/cases/bukgu-office-vfm251ci-3.webp",
     ],
     href: "https://blog.naver.com/hanbyeolsystem/224362822407",
     challenge:
@@ -452,9 +452,9 @@ export const caseStudies: CaseStudy[] = [
     gear: ["Kyocera TASKalfa VFM251ci"],
     tags: ["복합기 렌탈", "교세라", "소규모 사무실"],
     images: [
-      "/cases/donggu-office-vfm251ci-1.jpg",
-      "/cases/donggu-office-vfm251ci-2.jpg",
-      "/cases/donggu-office-vfm251ci-3.jpg",
+      "/cases/donggu-office-vfm251ci-1.webp",
+      "/cases/donggu-office-vfm251ci-2.webp",
+      "/cases/donggu-office-vfm251ci-3.webp",
     ],
     href: "https://blog.naver.com/hanbyeolsystem/224348251468",
     challenge:
@@ -484,9 +484,9 @@ export const caseStudies: CaseStudy[] = [
     gear: ["Kyocera TASKalfa VFM251ci"],
     tags: ["복합기 임대", "교세라", "설치"],
     images: [
-      "/cases/kyocera-vfm251ci-install-1.jpg",
-      "/cases/kyocera-vfm251ci-install-2.jpg",
-      "/cases/kyocera-vfm251ci-install-3.jpg",
+      "/cases/kyocera-vfm251ci-install-1.webp",
+      "/cases/kyocera-vfm251ci-install-2.webp",
+      "/cases/kyocera-vfm251ci-install-3.webp",
     ],
     href: "https://blog.naver.com/hanbyeolsystem/224255706197",
     challenge:
@@ -515,10 +515,10 @@ export const caseStudies: CaseStudy[] = [
     gear: ["Kyocera TASKalfa VFM251ci", "Kyocera TASKalfa 4012iG"],
     tags: ["복합기 렌탈", "정부조달", "부품 교체"],
     images: [
-      "/cases/kyocera-gov-supply-2site-1.jpg",
-      "/cases/kyocera-gov-supply-2site-2.jpg",
-      "/cases/kyocera-gov-supply-2site-3.jpg",
-      "/cases/kyocera-gov-supply-2site-4.jpg",
+      "/cases/kyocera-gov-supply-2site-1.webp",
+      "/cases/kyocera-gov-supply-2site-2.webp",
+      "/cases/kyocera-gov-supply-2site-3.webp",
+      "/cases/kyocera-gov-supply-2site-4.webp",
     ],
     href: "https://blog.naver.com/hanbyeolsystem/224247824845",
     challenge:
@@ -550,10 +550,10 @@ export const caseStudies: CaseStudy[] = [
     gear: ["사무용 PC", "듀얼 모니터", "Kyocera TASKalfa VFM351ci"],
     tags: ["PC 임대", "듀얼 모니터", "복합기 렌탈", "현장 사무실"],
     images: [
-      "/cases/site-office-pc-vfm351ci-1.jpg",
-      "/cases/site-office-pc-vfm351ci-2.jpg",
-      "/cases/site-office-pc-vfm351ci-3.jpg",
-      "/cases/site-office-pc-vfm351ci-4.jpg",
+      "/cases/site-office-pc-vfm351ci-1.webp",
+      "/cases/site-office-pc-vfm351ci-2.webp",
+      "/cases/site-office-pc-vfm351ci-3.webp",
+      "/cases/site-office-pc-vfm351ci-4.webp",
     ],
     href: "https://blog.naver.com/hanbyeolsystem/224239744647",
     challenge:
@@ -584,9 +584,9 @@ export const caseStudies: CaseStudy[] = [
     gear: ["사무용 PC 렌탈"],
     tags: ["PC 임대", "컴퓨터 렌탈", "AS 포함"],
     images: [
-      "/cases/office-pc-rental-1.jpg",
-      "/cases/office-pc-rental-2.jpg",
-      "/cases/office-pc-rental-3.jpg",
+      "/cases/office-pc-rental-1.webp",
+      "/cases/office-pc-rental-2.webp",
+      "/cases/office-pc-rental-3.webp",
     ],
     href: "https://blog.naver.com/hanbyeolsystem/224354453494",
     challenge:
@@ -616,7 +616,7 @@ export const caseStudies: CaseStudy[] = [
       "세 가지를 각각 다른 업체에서 알아봐야 하나 고민하던 대표님께 한 번의 방문으로 전부 정리해 드린 현장.",
     gear: ["사무용 PC", "복합기 렌탈", "Synology NAS"],
     tags: ["올인원", "통합 구축", "시놀로지 공식 대리점"],
-    images: ["/cases/daegu-office-allinone-1.jpg", "/cases/daegu-office-allinone-2.jpg"],
+    images: ["/cases/daegu-office-allinone-1.webp", "/cases/daegu-office-allinone-2.webp"],
     href: "https://blog.naver.com/hanbyeolsystem/224337412783",
     challenge:
       "컴퓨터는 여기서, 프린터는 저기서, 나스는 또 다른 데서 알아봐야 하느냐는 질문이 출발점이었습니다. 따로 상담을 받으면 정보가 뒤섞이고 견적도 각각 받아야 해서 시간과 에너지가 몇 배로 듭니다.",
@@ -646,9 +646,9 @@ export const caseStudies: CaseStudy[] = [
     gear: ["ViewSonic LS740HD"],
     tags: ["빔프로젝터 임대", "사무기기 렌탈", "선정리"],
     images: [
-      "/cases/daegu-junggu-projector-1.jpg",
-      "/cases/daegu-junggu-projector-2.jpg",
-      "/cases/daegu-junggu-projector-3.jpg",
+      "/cases/daegu-junggu-projector-1.webp",
+      "/cases/daegu-junggu-projector-2.webp",
+      "/cases/daegu-junggu-projector-3.webp",
     ],
     href: "https://blog.naver.com/hanbyeolsystem/224312964916",
     challenge:
@@ -679,10 +679,10 @@ export const caseStudies: CaseStudy[] = [
     gear: ["랜 배선", "멀티탭·콘센트 정리", "PC 연결"],
     tags: ["랜공사", "선정리", "네트워크 시공"],
     images: [
-      "/cases/daegu-lan-wiring-1.jpg",
-      "/cases/daegu-lan-wiring-2.jpg",
-      "/cases/daegu-lan-wiring-3.jpg",
-      "/cases/daegu-lan-wiring-4.jpg",
+      "/cases/daegu-lan-wiring-1.webp",
+      "/cases/daegu-lan-wiring-2.webp",
+      "/cases/daegu-lan-wiring-3.webp",
+      "/cases/daegu-lan-wiring-4.webp",
     ],
     href: "https://blog.naver.com/hanbyeolsystem/224182683885",
     challenge:

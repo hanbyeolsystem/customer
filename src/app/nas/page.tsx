@@ -153,7 +153,7 @@ export default function NasPage() {
           </div>
           <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-[var(--line)] shadow-xl">
             <Image
-              src="/hero/server-rack.jpg"
+              src="/hero/server-rack.webp"
               alt="기업 NAS 서버실"
               fill
               sizes="(min-width:1024px) 50vw, 100vw"

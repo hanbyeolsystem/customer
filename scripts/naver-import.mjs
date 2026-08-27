@@ -9,7 +9,7 @@
 //   node scripts/naver-import.mjs --limit 5    # 시험용
 //   node scripts/naver-import.mjs --rss        # RSS 최신 50편만 훑는다(빠름, 워크플로용)
 //
-// 사진 정책: 글당 앞 2장은 900px 로 내려받아 저장(public/blog-posts/<logNo>/), 나머지는
+// 사진 정책: 글당 앞 2장은 900px WebP 로 내려받아 저장(public/blog-posts/<logNo>/), 나머지는
 //            네이버 CDN 주소(?type=w966)를 그대로 쓴다(외부 referer 허용 실측 확인). 292편 전부
 //            내려받으면 저장소가 100MB 넘게 커지기 때문.
 // 결과: src/data/naver-posts.json (최신순). .github/workflows/naver-import.yml 이 하루 3번 새 글을 커밋한다.
@@ -161,12 +161,12 @@ async function fetchPost(item) {
         if (!meta.width || meta.width < 500 || meta.width / meta.height > 3) { b.drop = true; continue; }
         mkdirSync(dir, { recursive: true });
         const img = await cropBands(buf);
-        const out = await img.resize({ width: 900, withoutEnlargement: true }).jpeg({ quality: 75, mozjpeg: true, progressive: true }).toBuffer();
+        const out = await img.resize({ width: 900, withoutEnlargement: true }).webp({ quality: 78, effort: 5 }).toBuffer();
         const om = await sharp(out).metadata();
         n++; local++;
-        const file = `${dir}/${n}.jpg`;
+        const file = `${dir}/${n}.webp`;
         writeFileSync(file + ".tmp", out); renameSync(file + ".tmp", file);
-        b.src = `/blog-posts/${item.logNo}/${n}.jpg`; b.w = om.width; b.h = om.height;
+        b.src = `/blog-posts/${item.logNo}/${n}.webp`; b.w = om.width; b.h = om.height;
       } catch (e) { b.drop = true; if (process.env.DEBUG) console.log(`    사진 실패 ${b.src.slice(0, 60)}: ${e.message}`); }
     } else {
       n++; b.src = `${b.src}?type=w966`; b.remote = true; // 네이버 CDN 그대로
