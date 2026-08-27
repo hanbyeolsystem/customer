@@ -25,6 +25,7 @@
 - `src/data/synology.ts` — ⭐시놀로지 본체·디스크 단가와 모델 정보. **금액의 단일 출처**
 - `src/data/guides.ts` — 가이드(비교표 칼럼) 30편
 - `src/data/qna.ts` — Q&A 256문답 (ai/nas/printer/pc/network/service)
+- `src/data/qna-deep.ts` — Q&A 심화 본문(slug별 섹션·비교표). 본문이 얇은 문항부터 여기에 채운다
 - `src/data/products.ts` — 임대 상품 (hbsys.kr SVG 재사용)
 - `src/data/posts.ts` — 네이버 RSS 폴백 스냅샷
 
@@ -42,7 +43,19 @@
 - `/cases/[slug]/` 20건 — "지역+장비+업종" 롱테일. 새 사례는 `node scripts/gen-case-draft.mjs` 로 초안 생성
 - `/guide/[slug]/` 30편 — 비교표 중심. AI 검색이 표와 숫자를 그대로 인용한다
 - `/qna/[slug]/` 256건 — 질문 단위 색인
+- `/qna/cat/[cat]/` 6종 — 분류별 목록. **FAQPage 스키마는 여기에만**(/qna/ 는 CollectionPage). 예전엔 /qna/ 한 장이 587KB 였다
 - 새 콘텐츠를 넣으면 `src/app/sitemap.ts` 에도 추가할 것(자동 아님)
+
+## 노출 지수 100점 작업 (2026-08-27) — 규칙으로 굳은 것
+- **관련글은 순환 배정**(Q&A `sameCat[(idx+1+i) % n]`, 가이드도 동일). `.slice(0, N)` 으로 앞 N개만 고르면 그 N개만 링크를 받고
+  나머지 250개가 고립된다(실측: 내부 링크 1개뿐인 페이지 166개 → 해결).
+- **준비중 페이지를 사이트맵에 두지 말 것.** ComingSoon 컴포넌트를 쓰는 페이지가 생기면 내용을 채우거나 sitemap 에서 뺀다.
+- **빵부스러기는 `breadcrumbLd()`**(`src/lib/schema.ts`), 즉답은 `AnswerBlock`. 새 페이지는 둘 다 넣는 것이 기본.
+- 커뮤니티 글은 `community/page.tsx` 가 빌드 시점에 Supabase 에서 받아 `CommunityBoard initialPosts` 로 넘긴다(크롤러용).
+  하루 3번 재빌드 크론이 새 글을 반영한다.
+- 이미지는 `node scripts/optimize-images.mjs` 로 한 번 눌러서 커밋(mozjpeg q78, 최대 1400px). Q&A 카드는 `qnaImage(cat, slug, "thumb")` 480px.
+- 점수·할 일 관리는 종합관리툴 **🔍 사이트 노출 지수**(`한별시스템\임대관리\seo-board`). 재측정은 `node tools/seo-audit/audit.mjs hanbyeol`.
+  2026-08-27 측정: 종합 79 (기술 93 · 콘텐츠 76 · GEO 87 · 오프사이트 54). 오프사이트가 병목 = 네이버 블로그 50편에 사이트 링크 0편.
 
 ## 디자인 토큰 (변경 시 `globals.css @theme`)
 - `--color-hb-primary` `#0F172A`
@@ -121,3 +134,14 @@
 10편 기획안·대본이 `고객용사이트/유튜브-10편-기획안.md` 에 있다. 영상은 사장님이 직접 촬영.
 영상 URL 이 생기면 각 서비스 페이지에 임베드 + `VideoObject` 스키마를 붙인다.
 **영상이 없는 상태로 /video/ 같은 빈 페이지를 미리 만들지 말 것**(빈 페이지는 색인에 해가 된다).
+
+## 네이버 블로그 이관 (2026-08-27) — /blog/<logNo>/ 286편
+네이버 블로그 글 전체(2017~)를 본문·사진째 사이트에 둔다. 링크만 두면 검색어가 네이버로 가고, 사이트에 두면 한별시스템.kr 로 들어온다.
+- `scripts/naver-list.mjs` 가 모바일 목록 API(`/api/blogs/hanbyeolsystem/post-list`)로 전체 글을 열거한다(RSS 는 최신 50편뿐).
+- `scripts/naver-import.mjs` 가 글을 받아 `src/data/naver-posts.json` 을 만든다. **손으로 고치지 말 것.** 워크플로 `naver-import.yml` 이 하루 3번 새 글만 추가.
+  - `--all` 전부 다시, `--only <logNo,...>` 특정 글만, `--redo-noimg` 사진 0장 글만 다시, `DEBUG=1` 로 사진 실패 사유 출력.
+  - 사진 정책: 글당 앞 2장만 900px 로 저장(`public/blog-posts/<logNo>/`), 나머지는 네이버 CDN `?type=w966` 그대로(외부 referer 허용 실측). 전부 저장하면 저장소가 100MB 를 넘는다.
+  - 본문 추출은 SmartEditor ONE → SmartEditor 2(`se_component_wrap`, 2017~18) → 구형 `post_ct` 순으로 시도. 2017년 글 대부분은 원래 사진이 없다.
+  - **sharp 함정**: 같은 sharp 객체에 `.raw()` 를 부른 뒤 `.extract()` 하면 헤더 없는 raw 버퍼가 나와 "unsupported image format" 이 난다. `cropBands()` 는 판독용/자르기용 객체를 분리해 두었다. 되돌리지 말 것.
+- 화면: `/blog/` 는 네이버 분류명(catLabel) 그대로 묶고, `/blog/[logNo]/` 는 BlogPosting + 빵부스러기 + 관련 비용 페이지·구축사례 링크 + 같은 분류 순환 4편.
+- **구글 블로거 발행은 하루 4편**(`blogger-crosspost.yml`, 09:40/21:40 × 2편, `--all` 모드). 새 글 우선, 옛 글은 `published` 에 원래 날짜. 한꺼번에 수백 편 올리면 블로거 스팸 판정 위험. dispatch 입력 `backfill=all` 은 비상용 일괄 발행.

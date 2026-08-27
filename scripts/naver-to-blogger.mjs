@@ -20,11 +20,12 @@ const BLOG_ID_NAVER = "hanbyeolsystem";
 const RSS_URL = `https://rss.blog.naver.com/${BLOG_ID_NAVER}.xml`;
 const STATE_FILE = join(dirname(fileURLToPath(import.meta.url)), "blogger-state.json");
 const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) hanbyeol-crosspost/1.0";
-const MAX_PER_RUN = 5; // 한 번에 최대 발행 수 (스팸 방지)
+const MAX_PER_RUN = 2; // 한 번에 최대 발행 수. 하루 2회 실행이라 하루 4편 - 옛 글 286편을 한꺼번에 올리지 않는다(블로거 스팸 판정 회피)
 
 const args = process.argv.slice(2);
 const DRY = args.includes("--dry-run");
 const SEED = args.includes("--seed");
+const ALL_POSTS = args.includes("--all"); // RSS(최신 50) 대신 목록 API 로 전체 글(2017~) 대상
 const backfillIdx = args.indexOf("--backfill");
 const BACKFILL = backfillIdx >= 0 ? parseInt(args[backfillIdx + 1] || "0", 10) : 0;
 
@@ -68,14 +69,17 @@ function balancedDiv(html, startIdx) {
 }
 
 function extractBody(pageHtml) {
-  const at = pageHtml.search(/<div[^>]*class="[^"]*se-main-container/);
-  if (at < 0) throw new Error("se-main-container not found");
+  // SmartEditor ONE → SmartEditor 2(2017~18 글) → 구형 post_ct 순으로 본문 컨테이너를 찾는다
+  let at = pageHtml.search(/<div[^>]*class="[^"]*se-main-container/);
+  if (at < 0) at = pageHtml.search(/<div[^>]*class="[^"]*se_component_wrap/);
+  if (at < 0) at = pageHtml.search(/<div[^>]*(?:id="post_ct"|class="[^"]*post_ct)/);
+  if (at < 0) throw new Error("본문 컨테이너를 찾지 못함");
   const container = balancedDiv(pageHtml, at);
 
   // 문단(<p class="se-text-paragraph">)과 이미지(<img class="se-image-resource">)를
   // 문서 순서대로 수집해 네이버 클래스 없는 깨끗한 HTML 로 재조립
   const parts = [];
-  const re = /<p[^>]*class="[^"]*se-text-paragraph[^"]*"[^>]*>([\s\S]*?)<\/p>|<img\b[^>]*>/g;
+  const re = /<p[^>]*class="[^"]*(?:se-text-paragraph|se_textarea|se_paragraph)[^"]*"[^>]*>([\s\S]*?)<\/p>|<img\b[^>]*>/g;
   let m;
   while ((m = re.exec(container))) {
     if (m[0].startsWith("<p")) {
@@ -135,12 +139,12 @@ async function getAccessToken() {
   return j.access_token;
 }
 
-async function publishToBlogger(token, { title, html, labels }) {
+async function publishToBlogger(token, { title, html, labels, published }) {
   const blogId = process.env.BLOGGER_BLOG_ID;
   const res = await fetch(`https://www.googleapis.com/blogger/v3/blogs/${blogId}/posts/`, {
     method: "POST",
     headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
-    body: JSON.stringify({ kind: "blogger#post", title, content: html, labels }),
+    body: JSON.stringify({ kind: "blogger#post", title, content: html, labels, ...(published ? { published } : {}) }),
   });
   const j = await res.json();
   if (!j.id) throw new Error(`publish error: ${JSON.stringify(j)}`);
@@ -152,8 +156,15 @@ const state = existsSync(STATE_FILE)
   ? JSON.parse(readFileSync(STATE_FILE, "utf8"))
   : { posted: {} };
 
-const rss = await fetchRss();
-console.log(`RSS ${rss.length}건 확인`);
+let rss;
+if (ALL_POSTS) {
+  const { listAllPostsThorough } = await import("./naver-list.mjs");
+  rss = (await listAllPostsThorough()).map((p) => ({ logNo: p.logNo, title: p.title, category: p.category || "소식", pubDate: p.date }));
+  console.log(`목록 API ${rss.length}건 확인 (전체)`);
+} else {
+  rss = await fetchRss();
+  console.log(`RSS ${rss.length}건 확인`);
+}
 
 if (SEED) {
   for (const p of rss) state.posted[p.logNo] ||= { title: p.title, seededAt: new Date().toISOString() };
@@ -164,8 +175,12 @@ if (SEED) {
   // (seed 로 기록만 된 글 포함, bloggerUrl 있는 진짜 발행글은 제외)
   let targets = BACKFILL > 0
     ? rss.slice(0, BACKFILL).filter((p) => !state.posted[p.logNo]?.bloggerUrl)
-    : rss.filter((p) => !state.posted[p.logNo]);
-  targets = targets.slice(0, Math.max(MAX_PER_RUN, BACKFILL)).reverse(); // 오래된 글부터
+    : ALL_POSTS
+      ? rss.filter((p) => !state.posted[p.logNo]?.bloggerUrl) // 전체 모드: "seed 만 된" 옛 글도 발행 대상
+      : rss.filter((p) => !state.posted[p.logNo]);
+  targets = ALL_POSTS
+    ? targets.slice(0, Math.max(MAX_PER_RUN, BACKFILL)) // 최신 글부터(새 글이 바로 나가고, 옛 글은 원래 날짜로 들어가니 순서 무관)
+    : targets.slice(0, Math.max(MAX_PER_RUN, BACKFILL)).reverse(); // 오래된 글부터
 
   if (targets.length === 0) {
     console.log("새 글 없음 — 종료");
@@ -183,13 +198,17 @@ if (SEED) {
           console.log(`  dry-run: scripts/dryrun-${p.logNo}.html 저장`);
           continue;
         }
+        const pub = p.pubDate ? new Date(p.pubDate) : null;
         const url = await publishToBlogger(token, {
           title: p.title,
           html: body.html,
           labels: [p.category.replace(/\(.*?\)/g, "").trim(), "설치후기"].filter(Boolean),
+          // 옛 글은 원래 날짜로 발행해 블로그 시간순이 맞게 (오늘 날짜로 수백 건이 몰리지 않게)
+          published: pub && !isNaN(pub.getTime()) ? pub.toISOString() : undefined,
         });
         state.posted[p.logNo] = { title: p.title, bloggerUrl: url, postedAt: new Date().toISOString() };
         changed = true;
+        writeFileSync(STATE_FILE, JSON.stringify(state, null, 2) + "\n"); // 중간에 죽어도 진행분 보존
         console.log(`  발행 완료 → ${url}`);
         await new Promise((r) => setTimeout(r, 2000));
       } catch (e) {

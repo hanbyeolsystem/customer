@@ -1,9 +1,14 @@
 import Link from "next/link";
 import { getBlogPosts } from "@/lib/blog";
 import { embedHref } from "@/lib/embed";
+import { naverPosts } from "@/data/naver-posts";
 
+// 홈 "소식": 사이트 안으로 가져온 글(/blog/<번호>/)을 먼저 쓰고, 없을 때만 블로거 RSS 로 대체한다.
 export async function BlogFeed() {
-  const posts = await getBlogPosts(8);
+  const imported = naverPosts.slice(0, 8).map((p) => ({
+    title: p.title, href: `/blog/${p.logNo}`, internal: true, thumb: p.thumb, category: p.catLabel, date: p.date.replace(/-/g, "."), excerpt: p.excerpt,
+  }));
+  const posts = imported.length ? imported : (await getBlogPosts(8)).map((p) => ({ ...p, internal: false }));
   return (
     <section className="py-16 lg:py-24 bg-[var(--panel)]">
       <div className="max-w-7xl mx-auto px-4 lg:px-6">
@@ -18,7 +23,7 @@ export async function BlogFeed() {
             </p>
           </div>
           <Link
-            href={embedHref("https://hanbyeolsystem.blogspot.com/", "한별 블로그")}
+            href={imported.length ? "/blog" : embedHref("https://hanbyeolsystem.blogspot.com/", "한별 블로그")}
             className="inline-flex items-center gap-1.5 text-sm font-bold text-hb-blue hover:gap-2.5 transition"
           >
             블로그 전체 보기 →
@@ -29,7 +34,7 @@ export async function BlogFeed() {
           {posts.map((p) => (
             <Link
               key={p.title}
-              href={embedHref(p.href, p.title)}
+              href={p.internal ? p.href : embedHref(p.href, p.title)}
               className="group bg-[var(--bg)] border border-[var(--line)] rounded-2xl overflow-hidden hover:shadow-xl hover:border-hb-blue hover:-translate-y-1 transition flex flex-col"
             >
               {p.thumb && (
@@ -37,8 +42,10 @@ export async function BlogFeed() {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={p.thumb}
-                    alt=""
+                    alt={p.title}
                     loading="lazy"
+                    decoding="async"
+                    referrerPolicy="no-referrer"
                     className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
                   />
                 </div>

@@ -1,0 +1,47 @@
+name: Naver blog → site import
+
+# 네이버 블로그 새 글을 본문·사진째 사이트로 가져와 커밋한다 (scripts/naver-import.mjs).
+# 커밋 후 deploy.yml 을 직접 실행한다 (GITHUB_TOKEN 푸시는 push 트리거를 발동시키지 않기 때문).
+on:
+  schedule:
+    - cron: "40 1,7,13 * * *"   # KST 10:40 / 16:40 / 22:40
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: naver-import
+  cancel-in-progress: false
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Import new posts
+        run: node scripts/naver-import.mjs
+      - name: Commit if changed
+        id: commit
+        run: |
+          git add src/data/naver-posts.json public/blog-posts
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git config user.name "hanbyeol-bot"
+            git config user.email "acapaper78@gmail.com"
+            git commit -m "chore(blog): 네이버 새 글 가져옴 ($(date -u +%Y-%m-%d))"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Trigger deploy
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref main

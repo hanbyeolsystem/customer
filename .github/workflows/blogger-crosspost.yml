@@ -7,8 +7,8 @@ on:
         description: "최근 N건 강제 발행 (기본 0 = 새 글만)"
         default: "0"
   schedule:
-    # 매일 3회(KST 09:40 / 15:40 / 21:40) — 사이트 재빌드 20분 뒤 실행
-    - cron: "40 0,6,12 * * *"
+    # 매일 2회(KST 09:40 / 21:40) x 2편 = 하루 4편. 네이버 새 글 우선, 나머지는 옛 글(2017~) 원래 날짜로 채움
+    - cron: "40 0,12 * * *"
 
 permissions:
   contents: write
@@ -39,13 +39,16 @@ jobs:
             exit 0
           fi
           BF="${{ github.event.inputs.backfill || '0' }}"
-          if [ "$BF" != "0" ]; then
+          if [ "$BF" = "all" ]; then
+            node scripts/naver-to-blogger.mjs --all --backfill 1000
+          elif [ "$BF" != "0" ]; then
             node scripts/naver-to-blogger.mjs --backfill "$BF"
           else
-            node scripts/naver-to-blogger.mjs
+            node scripts/naver-to-blogger.mjs --all
           fi
 
       - name: Commit state file
+        if: always()
         run: |
           if git diff --quiet scripts/blogger-state.json 2>/dev/null; then
             echo "state 변경 없음"

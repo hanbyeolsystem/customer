@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import lastmod from "@/data/lastmod.json";
 import { caseStudies } from "@/data/cases";
 import { guides } from "@/data/guides";
+import { naverPosts } from "@/data/naver-posts";
 import { nasModels } from "@/data/synology";
 import { qna, qnaCats, qnaModified } from "@/data/qna";
 import { site } from "@/data/site";
@@ -35,6 +36,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
           : p === "/qna/" || p === "/nas/" || p === "/rental/" || p === "/ai/" ? 0.9
             : p === "/terms/" || p === "/privacy/" ? 0.2
               : 0.6,
+    })),
+    // 네이버 블로그에서 가져온 글 - 글 날짜를 lastmod 로
+    ...naverPosts.map((b) => ({
+      url: `${site.url}/blog/${b.logNo}/`,
+      lastModified: new Date(`${b.date}T00:00:00+09:00`),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
     })),
     // Q&A 분류별 목록(FAQPage 스키마는 여기에)
     ...qnaCats.map((c) => ({
