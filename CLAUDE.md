@@ -147,3 +147,8 @@
   - **sharp 함정**: 같은 sharp 객체에 `.raw()` 를 부른 뒤 `.extract()` 하면 헤더 없는 raw 버퍼가 나와 "unsupported image format" 이 난다. `cropBands()` 는 판독용/자르기용 객체를 분리해 두었다. 되돌리지 말 것.
 - 화면: `/blog/` 는 네이버 분류명(catLabel) 그대로 묶고, `/blog/[logNo]/` 는 BlogPosting + 빵부스러기 + 관련 비용 페이지·구축사례 링크 + 같은 분류 순환 4편.
 - **구글 블로거 발행은 하루 4편**(`blogger-crosspost.yml`, 09:40/21:40 × 2편, `--all` 모드). 새 글 우선, 옛 글은 `published` 에 원래 날짜. 한꺼번에 수백 편 올리면 블로거 스팸 판정 위험. dispatch 입력 `backfill=all` 은 비상용 일괄 발행.
+
+## 영문 거울 도메인 hanbyeolsystem.kr (2026-08-27)
+- claude.ai 등 한글 도메인을 못 읽는 AI 도구용. 리포 `hanbyeolsystem/hanbyeolsystem-kr` 의 워크플로가 **이 리포를 그대로 빌드**해 Pages 로 올린다(하루 3번 + 수동). 소스는 여기 하나뿐.
+- 거울은 전 페이지 `noindex, follow` + 사이트맵 없음 + canonical 은 한별시스템.kr 그대로 → 검색 점수는 원본에만. **대표 주소를 바꾸는 게 아니다.** 사이트맵·스키마·서치콘솔은 계속 한별시스템.kr.
+- 빌드가 깨지면 거울도 같이 깨진다. `npm run build` 통과가 곧 거울 배포 조건.
