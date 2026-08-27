@@ -7,6 +7,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { caseBySlug, caseStudies } from "@/data/cases";
 import { businessId, site } from "@/data/site";
 import { FaqSection } from "@/components/FaqSection";
+import { AnswerBlock } from "@/components/AnswerBlock";
 import { INSTALL_FEE, RENT_FROM, nasModels, quote, won } from "@/data/synology";
 import type { CaseStudy } from "@/data/cases";
 
@@ -140,6 +141,16 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
         description={c.summary}
         back="/cases"
         backLabel="구축 사례"
+      />
+      <AnswerBlock
+        question={`${c.title}, 어떤 현장이었나요?`}
+        answer={[c.summary, c.challenge, c.result].filter(Boolean).join(" ")}
+        facts={[
+          { label: "지역", value: c.region },
+          { label: "업종", value: c.industry },
+          { label: "투입 장비", value: `${c.gear.length}종` },
+          { label: "시공", value: c.date.replace("-", ".") },
+        ]}
       />
 
       {/* 핵심 스펙 */}

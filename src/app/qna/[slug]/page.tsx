@@ -105,7 +105,18 @@ export default async function QnaDetailPage({ params }: { params: Promise<{ slug
           {/* 즉답 */}
           <div className="bg-[var(--panel)] border-l-4 border-hb-blue border border-[var(--line)] rounded-2xl p-6 mb-6">
             <div className="text-[11px] font-extrabold text-hb-blue tracking-[.18em] mb-2">답변</div>
+            <h2 className="text-base font-extrabold text-[var(--ink)] mb-2">{/\?$/.test(f.q) ? f.q : `${f.q}?`}</h2>
             <p className="text-[var(--ink)] leading-relaxed font-medium">{f.a}</p>
+            <div className="flex flex-wrap gap-2 mt-4">
+              {[
+                { label: "방문", value: "대구·경북 당일" },
+                { label: "관리 고객사", value: "170곳+" },
+                { label: "NAS 구축", value: "50건+" },
+                { label: "복사기 설치", value: "300대+" },
+              ].map((x) => (
+                <span key={x.label} className="inline-flex items-baseline gap-1 text-[12px] bg-hb-blue-soft text-hb-blue rounded-full px-3 py-1"><span className="opacity-70">{x.label}</span><b>{x.value}</b></span>
+              ))}
+            </div>
           </div>
           {f.more && (
             <div className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6 mb-6">
