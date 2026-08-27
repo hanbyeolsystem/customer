@@ -6,7 +6,7 @@
 // Search Console 이 "datePublished 누락"으로 경고하던 필드다.
 // Q&A 본문(qna.ts)을 손볼 때 qnaModified 를 함께 갱신할 것.
 export const qnaPublished = "2026-08-22";
-export const qnaModified = "2026-08-26";
+export const qnaModified = "2026-08-27";
 
 export type QnaItem = {
   slug: string;
