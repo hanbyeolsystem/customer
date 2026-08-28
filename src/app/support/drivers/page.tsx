@@ -8,7 +8,7 @@ import { AnswerBlock } from "@/components/AnswerBlock";
 
 export const metadata: Metadata = {
   title: "프린터 드라이버 다운로드",
-  description: "복합기·프린터 드라이버를 기종만 고르면 자동으로 설치해 주는 딸깍P드라이버를 한별 드라이버 센터(882.kr)에서 무료로 받을 수 있습니다. 제조사 공식 지원 페이지 링크도 함께 정리했습니다.",
+  description: "복합기·프린터 드라이버를 기종만 고르면 자동으로 설치해 주는 딸깍P드라이버를 한별 드라이버 센터(882.kr)에서 무료로 받을 수 있습니다. 거래처 프로필 저장·IP 자동보정 방식의 딸깍설치는 특허 출원중(제10-2026-0162666호)입니다. 제조사 공식 지원 페이지 링크도 함께 정리했습니다.",
   alternates: { canonical: "/support/drivers/" },
 };
 
@@ -36,7 +36,7 @@ export default function DriversPage() {
       <AnswerBlock
         question="프린터 드라이버는 어디서 받나요?"
         answer="한별 드라이버 센터 882.kr에서 무료로 받을 수 있습니다. 기종만 고르면 자동으로 설치해 주는 딸깍P드라이버와 제조사 공식 드라이버, 그리고 복합기 출력량을 자동 수집하는 딸깍P카운터를 배포합니다. 설치가 안 되거나 인쇄가 안 되는 경우 882.kr 지원요청 게시판에 남기시거나 053-588-7119로 전화 주시면 원격으로 확인합니다. 제조사별 프린터 에러코드 검색도 무료로 제공합니다."
-        facts={[{ label: "다운로드", value: "882.kr 무료" }, { label: "자동 설치", value: "딸깍P드라이버" }, { label: "카운터", value: "딸깍P카운터" }, { label: "문제 시", value: "원격 지원" }]}
+        facts={[{ label: "다운로드", value: "882.kr 무료" }, { label: "자동 설치", value: "딸깍P드라이버" }, { label: "딸깍설치", value: "특허 출원중" }, { label: "카운터", value: "딸깍P카운터" }, { label: "문제 시", value: "원격 지원" }]}
       />
       <section className="py-12 lg:py-16 bg-[var(--bg)]">
         <div className="max-w-5xl mx-auto px-4 lg:px-6">
@@ -82,12 +82,34 @@ export default function DriversPage() {
               <p className="text-[12px] lg:text-sm text-[var(--mute)] mt-0.5">
                 프린터를 자동으로 찾아 드라이버 설치부터 스캔 설정까지 한 번에
               </p>
+              <span className="inline-flex items-center gap-1 mt-1.5 rounded-full bg-hb-blue/10 text-hb-blue text-[10px] lg:text-[11px] font-bold px-2 py-0.5">
+                특허 출원중 · 제10-2026-0162666호
+              </span>
             </div>
             <div className="hidden sm:inline-flex items-center gap-1 bg-hb-blue text-white font-extrabold text-sm px-4 py-2 rounded-lg shadow group-hover:bg-hb-primary transition flex-shrink-0">
               ⬇ 바로 다운로드
             </div>
             <div className="sm:hidden text-2xl flex-shrink-0 group-hover:translate-x-1 transition">⬇</div>
           </a>
+
+          {/* 1-2) 딸깍설치(거래처 프로필) - 특허 출원 기술 안내 */}
+          <div className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-4 lg:p-5 mb-6">
+            <div className="flex items-start gap-3">
+              <div className="text-2xl flex-shrink-0">⚡</div>
+              <div className="min-w-0">
+                <h3 className="font-extrabold text-[var(--ink)] text-[15px] lg:text-base leading-tight">
+                  딸깍설치 (거래처 프로필)
+                </h3>
+                <p className="text-[13px] lg:text-sm text-[var(--mute)] leading-relaxed mt-1">
+                  한 번 설치한 프린터 구성을 거래처 단위로 저장해 두고, 다른 PC에서 그대로 불러와 재설치합니다.
+                  프린터 IP가 바뀌어도 자동으로 찾아 보정하므로 새 PC가 와도 클릭 한 번이면 끝납니다.
+                </p>
+                <p className="text-[12px] font-bold text-hb-blue mt-2">
+                  거래처 프로필 저장·IP 자동보정 기술 특허 출원중 (제10-2026-0162666호, 2026-08-28 출원)
+                </p>
+              </div>
+            </div>
+          </div>
 
           {/* 2) 제조사 공식 사이트 */}
           <div className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-4 mb-5 text-sm text-[var(--mute)] leading-relaxed">

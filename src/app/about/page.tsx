@@ -43,7 +43,7 @@ const partners = ["Synology", "EPSON", "FujiFilm BI", "Kyocera", "HP", "Canon"];
 
 // 회사 연혁 (최신순). highlight = 강조 마일스톤
 // 시대(era)별 연혁 - 성장 스텝 차트 + 표 로 시각화
-type Milestone = { date: string; text: string; highlight?: boolean };
+type Milestone = { date: string; text: string; highlight?: boolean; badge?: string };
 const eras: {
   name: string;
   range: string;
@@ -102,7 +102,15 @@ const eras: {
     headline: "NAS·데이터 인프라 전문기업으로 도약",
     bar: 100,
     highlight: true,
-    items: [{ date: "2026.03", text: "Synology(시놀로지) NAS 공식 대리점 체결", highlight: true }],
+    items: [
+      { date: "2026.03", text: "Synology(시놀로지) NAS 공식 대리점 체결", highlight: true },
+      {
+        date: "2026.08",
+        text: "자체 개발 기술 특허 출원 - 거래처 단위 설치 프로필을 이용한 네트워크 프린터 자동 설치 방법 및 시스템 (제10-2026-0162666호)",
+        highlight: true,
+        badge: "특허 출원중",
+      },
+    ],
   },
 ];
 
@@ -348,7 +356,7 @@ export default function AboutPage() {
                           {m.text}
                           {m.highlight && (
                             <span className="ml-2 inline-block text-[10px] font-bold text-white bg-hb-azure rounded-full px-2 py-0.5 align-middle">
-                              공식 대리점
+                              {m.badge ?? "공식 대리점"}
                             </span>
                           )}
                         </td>
