@@ -7,7 +7,7 @@ import { AnswerBlock } from "@/components/AnswerBlock";
 import { JsonLd } from "@/components/JsonLd";
 import { monthlyOffer, serviceId, serviceLd } from "@/lib/schema";
 import { site } from "@/data/site";
-import { nasModels, won } from "@/data/synology";
+import { BUY_FROM, nasModels, won } from "@/data/synology";
 import { breadcrumbLd } from "@/lib/schema";
 
 const nasFaq = [
@@ -58,7 +58,7 @@ const serviceJsonLd = serviceLd({
   name: "기업용 NAS 구축·데이터 백업",
   serviceType: "NAS 구축 및 데이터 백업 구축",
   description:
-    "시놀로지 NAS 설치, RAID 설계, 3-2-1 백업 구성, 랜섬웨어 대응, VPN 원격접속, DSM 보안 설정과 분기 점검까지. 대구·경북 50개사 이상 구축. 임대는 월 100,000원부터(VAT 별도), 구매는 장비와 출장 설치·설정교육까지 1,713,000원부터(VAT 별도).",
+    `시놀로지 NAS 설치, RAID 설계, 3-2-1 백업 구성, 랜섬웨어 대응, VPN 원격접속, DSM 보안 설정과 분기 점검까지. 대구·경북 50개사 이상 구축. 임대는 월 100,000원부터(VAT 별도), 구매는 장비와 출장 설치·설정교육까지 ${won(BUY_FROM)}부터(VAT 별도).`,
   offers: [
     monthlyOffer("시놀로지 NAS 임대(기본 36개월)", 100000, "장비·설치·백업 관리·장애 출장·하드디스크 교체 포함"),
   ],

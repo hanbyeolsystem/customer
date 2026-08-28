@@ -3,6 +3,7 @@
 // ⚠️ 금액은 시놀로지 공식 공급 단가표 기준 권장소비자가이며 전부 VAT 별도다.
 //    사장님 확정가이므로 임의로 바꾸지 말 것. 여기만 고치면 /nas/price/ 와
 //    /nas/model/* 가 같이 바뀐다(같은 금액을 두 곳에 적지 않기 위해 만든 파일).
+// ⚠️ 2026-08-28 사장님 단가표로 갱신(본체 12종·디스크 6종).
 //
 // ⚠️ 하드웨어 상세 사양(CPU·RAM·확장 유닛 등)은 여기에 적지 않는다.
 //    확인되지 않은 사양을 적으면 신뢰가 깨진다. 사양은 시놀로지 공식 사양표로 링크한다.
@@ -29,14 +30,16 @@ export type NasModel = {
   caseSlugs: string[]; // 한별시스템 실제 설치 사례
 };
 
-export type DiskCap = "4TB" | "6TB" | "8TB" | "12TB" | "16TB";
+export type DiskCap = "4TB" | "6TB" | "8TB" | "12TB" | "16TB" | "20TB";
 
-export const disks: { cap: DiskCap; price: number }[] = [
-  { cap: "4TB", price: 366_000 },
-  { cap: "6TB", price: 507_000 },
-  { cap: "8TB", price: 609_000 },
-  { cap: "12TB", price: 812_000 },
-  { cap: "16TB", price: 1_015_000 },
+/** 하드디스크(3.5인치 SATA, 시놀로지 정품 NAS용) */
+export const disks: { cap: DiskCap; model: string; price: number }[] = [
+  { cap: "4TB", model: "HAT3300-4T", price: 372_000 },
+  { cap: "6TB", model: "HAT3300-6T", price: 528_000 },
+  { cap: "8TB", model: "HAT3320-8T", price: 724_000 },
+  { cap: "12TB", model: "HAT3310-12T", price: 921_000 },
+  { cap: "16TB", model: "HAT3310-16T", price: 1_099_000 },
+  { cap: "20TB", model: "HAT3320-20T", price: 1_313_000 },
 ];
 
 export const diskPrice = (cap: DiskCap) => disks.find((d) => d.cap === cap)!.price;
@@ -47,7 +50,7 @@ export const nasModels: NasModel[] = [
     model: "DS225+",
     bays: 2,
     bayLabel: "2베이",
-    price: 581_000,
+    price: 561_000,
     form: "데스크형",
     headline: "가장 작게 시작하는 구성",
     fitFor: "직원 5~10명 사무실, 문서와 사진 위주",
@@ -62,7 +65,7 @@ export const nasModels: NasModel[] = [
     model: "DS425+",
     bays: 4,
     bayLabel: "4베이",
-    price: 871_000,
+    price: 935_000,
     form: "데스크형",
     headline: "4베이를 가장 싸게 가는 길",
     fitFor: "베이 수는 필요하지만 예산을 조이는 사무실",
@@ -77,7 +80,7 @@ export const nasModels: NasModel[] = [
     model: "DS925+",
     bays: 4,
     bayLabel: "4베이",
-    price: 1_066_000,
+    price: 1_402_000,
     form: "데스크형",
     headline: "한별시스템이 가장 많이 설치한 모델",
     fitFor: "직원 10~30명 사무실, 공공기관, 설계·제조",
@@ -99,7 +102,7 @@ export const nasModels: NasModel[] = [
     model: "DS1525+",
     bays: 5,
     bayLabel: "5베이",
-    price: 1_357_000,
+    price: 2_058_000,
     form: "데스크형",
     headline: "4베이로는 모자라고 8베이는 과할 때",
     fitFor: "자료 증가 속도가 빠른 중간 규모",
@@ -114,7 +117,7 @@ export const nasModels: NasModel[] = [
     model: "DS1825+",
     bays: 8,
     bayLabel: "8베이",
-    price: 1_939_000,
+    price: 2_460_000,
     form: "데스크형",
     headline: "도면·영상이 계속 쌓이는 곳",
     fitFor: "건축·설계사무소, 영상·디자인, 대용량 업종",
@@ -149,3 +152,57 @@ export function quote(model: NasModel, cap: DiskCap, count: number) {
   const net = gear + INSTALL_FEE;
   return { gear, net, vat: vatIncl(net) };
 }
+
+// 단가표에는 있지만 설명을 확인하지 못해 /nas/model/ 착지 페이지를 만들지 않은 본체.
+// 여기에 headline·fitFor 같은 소개 문구를 지어내 붙이지 말 것(얇은 페이지 금지).
+export const extraBodies = [
+  { model: "DS124", bays: 1, price: 242_000 },
+  { model: "DS223j", bays: 2, price: 316_000 },
+  { model: "DS223", bays: 2, price: 466_000 },
+  { model: "DS725+", bays: 2, price: 1_309_000 },
+  { model: "DS423", bays: 4, price: 654_000 },
+  { model: "DS620slim", bays: 6, price: 840_000, note: "2.5인치 드라이브 전용" },
+  { model: "DS2422+", bays: 12, price: 3_367_000 },
+];
+
+/** 본체 단가표 전체(모델 페이지가 있는 것은 slug 로 연결). 별도 견적 모델은 빠진다. */
+export const unitPrices: {
+  model: string;
+  bays: number;
+  bayLabel: string;
+  price: number;
+  slug?: string;
+  note?: string;
+}[] = [
+  ...nasModels
+    .filter((m) => m.price)
+    .map((m) => ({ model: m.model, bays: m.bays, bayLabel: m.bayLabel, price: m.price!, slug: m.slug })),
+  ...extraBodies.map((b) => ({ ...b, bayLabel: `${b.bays}베이` })),
+].sort((a, b) => a.bays - b.bays || a.price - b.price);
+
+/** 본체 최저가(1베이 보급형 기준) */
+export const bodyLow = Math.min(...unitPrices.map((u) => u.price));
+
+// /nas/price/ 규모별 견적표와 /nas/buy/ 판매가 예시가 공유하는 표준 구성.
+export const standardConfigs: {
+  slug: string;
+  cap: DiskCap;
+  count: number;
+  tier: string;
+  target: string;
+  note: string;
+}[] = [
+  { slug: "ds225-plus", cap: "4TB", count: 2, tier: "소규모", target: "직원 5~10명 사무실", note: "가장 많이 나가는 입문 구성" },
+  { slug: "ds925-plus", cap: "8TB", count: 2, tier: "중간", target: "직원 10~30명", note: "베이 2칸을 남겨 두고 나중에 증설" },
+  { slug: "ds925-plus", cap: "8TB", count: 4, tier: "중간+", target: "자료량이 많은 10~30명", note: "처음부터 베이를 다 채우는 구성" },
+  { slug: "ds1825-plus", cap: "16TB", count: 4, tier: "대용량", target: "건축·설계 등 대용량 업종", note: "도면·영상 등 큰 파일이 계속 쌓이는 곳" },
+];
+
+/** 표준 구성별 장비값·합계·VAT 포함 금액 */
+export const standardQuotes = standardConfigs.map((c) => {
+  const model = nasModelBySlug(c.slug)!;
+  return { ...c, model, ...quote(model, c.cap, c.count) };
+});
+
+/** 장비 + 출장 설치까지 포함한 최저 판매가(VAT 별도) */
+export const BUY_FROM = Math.min(...standardQuotes.map((q) => q.net));

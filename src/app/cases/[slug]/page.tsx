@@ -8,7 +8,7 @@ import { caseBySlug, caseStudies } from "@/data/cases";
 import { businessId, site } from "@/data/site";
 import { FaqSection } from "@/components/FaqSection";
 import { AnswerBlock } from "@/components/AnswerBlock";
-import { INSTALL_FEE, RENT_FROM, nasModels, quote, won } from "@/data/synology";
+import { INSTALL_FEE, RENT_FROM, nasModels, quote, standardQuotes, won } from "@/data/synology";
 import type { CaseStudy } from "@/data/cases";
 
 // 사례마다 붙는 FAQ. 템플릿이지만 장비·지역·금액이 현장별로 달라 내용이 겹치지 않는다.
@@ -26,7 +26,7 @@ function caseFaq(c: CaseStudy) {
     } else {
       faq.push({
         q: "이 현장처럼 구성하면 비용이 얼마나 드나요?",
-        a: `장비 구성과 디스크 용량에 따라 달라 현장을 보고 견적을 냅니다. 참고로 DS925+에 8TB 2개와 출장 설치·설정교육 ${won(INSTALL_FEE)}까지 하면 2,684,000원(VAT 별도)이고, 임대는 월 ${won(RENT_FROM)}부터입니다. 방문 견적은 무료입니다.`,
+        a: `장비 구성과 디스크 용량에 따라 달라 현장을 보고 견적을 냅니다. 참고로 DS925+에 8TB 2개와 출장 설치·설정교육 ${won(INSTALL_FEE)}까지 하면 ${won(standardQuotes[1].net)}(VAT 별도)이고, 임대는 월 ${won(RENT_FROM)}부터입니다. 방문 견적은 무료입니다.`,
       });
     }
     faq.push({

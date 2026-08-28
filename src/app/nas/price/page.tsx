@@ -6,65 +6,42 @@ import { FaqSection } from "@/components/FaqSection";
 import { AnswerBlock } from "@/components/AnswerBlock";
 import { caseStudies } from "@/data/cases";
 import { site } from "@/data/site";
-import { INSTALL_FEE as INSTALL_FEE_WON, disks as synologyDisks, nasModels, won } from "@/data/synology";
+import {
+  BUY_FROM,
+  INSTALL_FEE as INSTALL_FEE_WON,
+  diskPrice,
+  disks as synologyDisks,
+  standardQuotes,
+  unitPrices,
+  won,
+} from "@/data/synology";
 import { JsonLd } from "@/components/JsonLd";
 import { monthlyOffer, serviceId, serviceLd } from "@/lib/schema";
 import { breadcrumbLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "대구 NAS 구축 비용 - 규모별 견적 가이드",
-  description:
-    "대구 중소기업 NAS 구축 비용 규모별 공개. DS225+ 4TB 2개 구성이 출장 설치·설정교육 포함 171만원대부터(VAT 별도), 임대는 월 10만원부터. 정확한 금액은 현장 확인 후 안내. 053-588-7119.",
+  description: `대구 중소기업 NAS 구축 비용 규모별 공개. DS225+ 4TB 2개 구성이 출장 설치·설정교육 포함 ${won(BUY_FROM)}부터(VAT 별도), 임대는 월 10만원부터. 정확한 금액은 현장 확인 후 안내. 053-588-7119.`,
   alternates: { canonical: "/nas/price/" },
 };
 
 // 시놀로지 공식 공급 단가표 기준 권장소비자가 + 출장 설치·설정교육 40만원 (VAT 별도). 임의 변경 금지.
+// 금액은 src/data/synology.ts 단일 출처에서 계산한다. 여기에 숫자를 적지 않는다.
 const INSTALL_FEE = won(INSTALL_FEE_WON);
-const packages = [
-  {
-    tier: "소규모",
-    target: "직원 5~10명 사무실",
-    gear: "DS225+ (2베이) + 4TB HDD 2개",
-    gearNet: "1,313,000원",
-    net: "1,713,000원",
-    vat: "1,884,300원",
-    note: "가장 많이 나가는 입문 구성",
-  },
-  {
-    tier: "중간",
-    target: "직원 10~30명",
-    gear: "DS925+ (4베이) + 8TB HDD 2개",
-    gearNet: "2,284,000원",
-    net: "2,684,000원",
-    vat: "2,952,400원",
-    note: "베이 2칸을 남겨 두고 나중에 증설",
-  },
-  {
-    tier: "중간+",
-    target: "자료량이 많은 10~30명",
-    gear: "DS925+ (4베이) + 8TB HDD 4개",
-    gearNet: "3,502,000원",
-    net: "3,902,000원",
-    vat: "4,292,200원",
-    note: "처음부터 베이를 다 채우는 구성",
-  },
-  {
-    tier: "대용량",
-    target: "건축·설계 등 대용량 업종",
-    gear: "DS1825+ (8베이) + 16TB HDD 4개",
-    gearNet: "5,999,000원",
-    net: "6,399,000원",
-    vat: "7,038,900원",
-    note: "도면·영상 등 큰 파일이 계속 쌓이는 곳",
-  },
-];
+const packages = standardQuotes.map((q) => ({
+  tier: q.tier,
+  target: q.target,
+  gear: `${q.model.model} (${q.model.bayLabel}) + ${q.cap} HDD ${q.count}개`,
+  gearNet: won(q.gear),
+  net: won(q.net),
+  vat: won(q.vat),
+  note: q.note,
+}));
 
 // 본체·디스크 단가는 src/data/synology.ts 한 곳에서만 관리한다.
-const bodies = nasModels
-  .filter((m) => m.price)
-  .map((m) => ({ model: m.model, bay: m.bayLabel, price: won(m.price!), slug: m.slug }));
+const bodies = unitPrices.map((u) => ({ ...u, priceText: won(u.price) }));
 
-const diskRows = synologyDisks.map((d) => ({ cap: d.cap, price: won(d.price) }));
+const diskRows = synologyDisks.map((d) => ({ cap: d.cap, model: d.model, price: won(d.price) }));
 
 // 임대 조건 (사장님 확정). 임의 변경 금지.
 const rentalIncluded = [
@@ -79,7 +56,7 @@ const rentalIncluded = [
 const buyVsRent = [
   {
     item: "초기 비용",
-    buy: "장비와 출장 설치·설정교육까지 171만원대부터 한 번에",
+    buy: `장비와 출장 설치·설정교육까지 ${won(BUY_FROM)}부터 한 번에`,
     rent: "월 10만원부터(VAT 별도), 초기 목돈 없음",
   },
   {
@@ -113,7 +90,7 @@ const factors = [
   {
     icon: "💽",
     title: "디스크 용량과 개수",
-    body: "전체 비용에서 가장 크게 움직이는 항목입니다. 8TB 하드 1개가 609,000원이라 2개를 더 넣으면 그만큼 합계가 올라갑니다.",
+    body: `전체 비용에서 가장 크게 움직이는 항목입니다. 8TB 하드 1개가 ${won(diskPrice("8TB"))}이라 2개를 더 넣으면 그만큼 합계가 올라갑니다.`,
   },
   {
     icon: "🗄",
@@ -152,7 +129,7 @@ const priceFaq = [
   },
   {
     q: "대구 중소기업이 NAS를 구축하면 최소 얼마부터 시작하나요?",
-    a: `직원 5~10명 사무실 기준으로 시놀로지 DS225+ 2베이에 4TB 하드 2개를 넣은 구성이 장비 1,313,000원에 출장 설치·설정교육 400,000원을 더해 1,713,000원(VAT 별도), VAT 포함 1,884,300원입니다. 구성과 현장 조건에 따라 달라질 수 있어 ${site.phone.main}로 전화 확인을 권해 드립니다.`,
+    a: `직원 5~10명 사무실 기준으로 시놀로지 DS225+ 2베이에 4TB 하드 2개를 넣은 구성이 장비 ${won(standardQuotes[0].gear)}에 출장 설치·설정교육 ${INSTALL_FEE}을 더해 ${won(standardQuotes[0].net)}(VAT 별도), VAT 포함 ${won(standardQuotes[0].vat)}입니다. 구성과 현장 조건에 따라 달라질 수 있어 ${site.phone.main}로 전화 확인을 권해 드립니다.`,
   },
   {
     q: "표에 적힌 금액이 최종 견적인가요?",
@@ -195,13 +172,13 @@ const priceJsonLd = serviceLd({
       "@type": "Offer",
       name: "소규모 구성 - DS225+ (2베이) + 4TB HDD 2개, 직원 5~10명",
       priceCurrency: "KRW",
-      price: 1713000,
+      price: standardQuotes[0].net,
       availability: "https://schema.org/InStock",
       priceSpecification: {
         "@type": "PriceSpecification",
         priceCurrency: "KRW",
-        price: 1713000,
-        minPrice: 1713000,
+        price: standardQuotes[0].net,
+        minPrice: standardQuotes[0].net,
         valueAddedTaxIncluded: false,
       },
     },
@@ -209,13 +186,13 @@ const priceJsonLd = serviceLd({
       "@type": "Offer",
       name: "중간 구성 - DS925+ (4베이) + 8TB HDD 2개, 직원 10~30명",
       priceCurrency: "KRW",
-      price: 2684000,
+      price: standardQuotes[1].net,
       availability: "https://schema.org/InStock",
       priceSpecification: {
         "@type": "PriceSpecification",
         priceCurrency: "KRW",
-        price: 2684000,
-        minPrice: 2684000,
+        price: standardQuotes[1].net,
+        minPrice: standardQuotes[1].net,
         valueAddedTaxIncluded: false,
       },
     },
@@ -223,13 +200,13 @@ const priceJsonLd = serviceLd({
       "@type": "Offer",
       name: "대용량 구성 - DS1825+ (8베이) + 16TB HDD 4개",
       priceCurrency: "KRW",
-      price: 6399000,
+      price: standardQuotes[3].net,
       availability: "https://schema.org/InStock",
       priceSpecification: {
         "@type": "PriceSpecification",
         priceCurrency: "KRW",
-        price: 6399000,
-        minPrice: 6399000,
+        price: standardQuotes[3].net,
+        minPrice: standardQuotes[3].net,
         valueAddedTaxIncluded: false,
       },
     },
@@ -265,9 +242,9 @@ export default function NasPricePage() {
 
       <AnswerBlock
         question="대구에서 중소기업 NAS를 구축하면 비용이 얼마나 드나요?"
-        answer={`장비와 설치까지 171만원대부터 시작합니다. 직원 5~10명 사무실에 많이 쓰는 시놀로지 DS225+ 2베이에 4TB 하드 2개 구성이 장비 1,313,000원 + 출장 설치·설정교육 400,000원 = 1,713,000원(VAT 별도, 포함 1,884,300원)이고, 직원 10~30명 규모라면 DS925+ 4베이에 8TB 2개를 넣어 장비 2,284,000원에 설치 400,000원을 더한 2,684,000원(VAT 별도, 포함 2,952,400원) 선입니다. 출장 설치와 설정교육 1시간이 견적에 포함되며, 랜 배선 상태와 자료 이전량 등 현장 조건에 따라 금액이 달라질 수 있으니 정확한 금액은 ${site.phone.main}로 전화 확인해 주세요. 초기 목돈이 부담되면 구매 대신 임대도 됩니다. 임대는 기본 36개월 계약에 월 10만원(VAT 별도)부터이며 임대료 안에 장비와 설치, 백업 관리, 장애 출장, 하드디스크 교체까지 들어갑니다.`}
+        answer={`장비와 설치까지 ${won(BUY_FROM)}부터 시작합니다. 직원 5~10명 사무실에 많이 쓰는 시놀로지 DS225+ 2베이에 4TB 하드 2개 구성이 장비 ${won(standardQuotes[0].gear)} + 출장 설치·설정교육 ${INSTALL_FEE} = ${won(standardQuotes[0].net)}(VAT 별도, 포함 ${won(standardQuotes[0].vat)})이고, 직원 10~30명 규모라면 DS925+ 4베이에 8TB 2개를 넣어 장비 ${won(standardQuotes[1].gear)}에 설치 ${INSTALL_FEE}을 더한 ${won(standardQuotes[1].net)}(VAT 별도, 포함 ${won(standardQuotes[1].vat)}) 선입니다. 출장 설치와 설정교육 1시간이 견적에 포함되며, 랜 배선 상태와 자료 이전량 등 현장 조건에 따라 금액이 달라질 수 있으니 정확한 금액은 ${site.phone.main}로 전화 확인해 주세요. 초기 목돈이 부담되면 구매 대신 임대도 됩니다. 임대는 기본 36개월 계약에 월 10만원(VAT 별도)부터이며 임대료 안에 장비와 설치, 백업 관리, 장애 출장, 하드디스크 교체까지 들어갑니다.`}
         facts={[
-          { label: "구매 최소 구성", value: "1,713,000원" },
+          { label: "구매 최소 구성", value: won(BUY_FROM) },
           { label: "임대", value: "월 10만원부터(VAT 별도)" },
           { label: "출장 설치·교육", value: "40만원" },
           { label: "문의", value: site.phone.main },
@@ -439,7 +416,8 @@ export default function NasPricePage() {
           <h2 className="text-2xl lg:text-3xl font-extrabold text-[var(--ink)] mb-3">개별 단가</h2>
           <p className="text-sm text-[var(--mute)] leading-relaxed mb-7">
             본체와 하드디스크를 따로 조합하고 싶을 때 참고하시라고 단가를 그대로 적었습니다.
-            모두 VAT 별도 권장소비자가입니다.
+            모두 VAT 별도 권장소비자가입니다. 구성별 견적 페이지가 있는 모델은 모델명을 누르면 이동하고,
+            랙마운트 RS2421+는 단가표에 없어 별도 견적으로 안내합니다.
           </p>
           <div className="grid md:grid-cols-2 gap-5">
             <div className="rounded-2xl border border-[var(--line)] bg-[var(--bg)] overflow-hidden">
@@ -451,13 +429,20 @@ export default function NasPricePage() {
                   {bodies.map((b) => (
                     <tr key={b.model} className="border-t border-[var(--line)] first:border-t-0">
                       <td className="py-2.5 px-5 font-bold whitespace-nowrap">
-                        <Link href={`/nas/model/${b.slug}`} className="text-[var(--ink)] hover:text-hb-blue hover:underline">
-                          {b.model}
-                        </Link>
+                        {b.slug ? (
+                          <Link href={`/nas/model/${b.slug}`} className="text-[var(--ink)] hover:text-hb-blue hover:underline">
+                            {b.model}
+                          </Link>
+                        ) : (
+                          <span className="text-[var(--ink)]">{b.model}</span>
+                        )}
                       </td>
-                      <td className="py-2.5 px-2 text-[12px] text-[var(--mute)] whitespace-nowrap">{b.bay}</td>
+                      <td className="py-2.5 px-2 text-[12px] text-[var(--mute)] whitespace-nowrap">
+                        {b.bayLabel}
+                        {b.note ? <span className="block">{b.note}</span> : null}
+                      </td>
                       <td className="py-2.5 px-5 text-right font-extrabold text-hb-blue tabular-nums whitespace-nowrap">
-                        {b.price}
+                        {b.priceText}
                       </td>
                     </tr>
                   ))}
@@ -472,7 +457,10 @@ export default function NasPricePage() {
                 <tbody>
                   {diskRows.map((d) => (
                     <tr key={d.cap} className="border-t border-[var(--line)] first:border-t-0">
-                      <td className="py-2.5 px-5 font-bold text-[var(--ink)] whitespace-nowrap">{d.cap}</td>
+                      <td className="py-2.5 px-5 font-bold text-[var(--ink)] whitespace-nowrap">
+                        {d.cap}
+                        <span className="block text-[11px] font-medium text-[var(--mute)]">{d.model}</span>
+                      </td>
                       <td className="py-2.5 px-5 text-right font-extrabold text-hb-blue tabular-nums whitespace-nowrap">
                         {d.price}
                       </td>

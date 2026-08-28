@@ -7,36 +7,28 @@ import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbLd } from "@/lib/schema";
 import { businessId, site } from "@/data/site";
 import {
+  BUY_FROM,
   INSTALL_FEE,
   RENT_FROM,
-  type DiskCap,
+  bodyLow,
+  diskPrice,
   disks,
   nasModelBySlug,
   nasModels,
-  quote,
+  standardQuotes,
+  unitPrices,
   won,
 } from "@/data/synology";
 
 export const metadata: Metadata = {
   title: "대구 NAS 판매 - 시놀로지 공식 대리점 정품 구매·견적",
-  description:
-    "대구 NAS 판매. 시놀로지 공식 대리점 한별시스템이 DS225+·DS425+·DS925+·DS1525+·DS1825+·RS2421+ 정품을 판매·납품합니다. 본체 581,000원부터, 하드 구성과 출장 설치까지 1,713,000원부터(VAT 별도). 통신판매업신고 제2010-대구달서-0190호. 053-588-7119.",
+  description: `대구 NAS 판매. 시놀로지 공식 대리점 한별시스템이 DS225+·DS425+·DS925+·DS1525+·DS1825+·RS2421+ 정품을 판매·납품합니다. 본체 ${won(bodyLow)}부터, 하드 구성과 출장 설치까지 ${won(BUY_FROM)}부터(VAT 별도). 통신판매업신고 제2010-대구달서-0190호. 053-588-7119.`,
   alternates: { canonical: "/nas/buy/" },
 };
 
 // 판매가 예시. 금액은 src/data/synology.ts 단일 출처에서 계산하므로 여기에 숫자를 적지 않는다.
 // (/nas/price/ 의 규모별 견적표와 같은 구성·같은 금액이다)
-const examples: { slug: string; cap: DiskCap; count: number; target: string; note: string }[] = [
-  { slug: "ds225-plus", cap: "4TB", count: 2, target: "직원 5~10명 사무실", note: "가장 많이 나가는 입문 구성" },
-  { slug: "ds925-plus", cap: "8TB", count: 2, target: "직원 10~30명", note: "베이 2칸을 남겨 두고 나중에 증설" },
-  { slug: "ds925-plus", cap: "8TB", count: 4, target: "자료량이 많은 10~30명", note: "처음부터 베이를 다 채우는 구성" },
-  { slug: "ds1825-plus", cap: "16TB", count: 4, target: "건축·설계 등 대용량 업종", note: "도면·영상이 계속 쌓이는 곳" },
-];
-
-const buyRows = examples.map((e) => {
-  const m = nasModelBySlug(e.slug)!;
-  return { ...e, model: m, ...quote(m, e.cap, e.count) };
-});
+const buyRows = standardQuotes;
 
 const lowPrice = Math.min(...buyRows.map((r) => r.net));
 const highPrice = Math.max(...buyRows.map((r) => r.net));
@@ -46,7 +38,6 @@ const body = (slug: string) => {
   const p = nasModelBySlug(slug)!.price;
   return p ? won(p) : "별도 견적";
 };
-const bodyLow = Math.min(...nasModels.filter((m) => m.price).map((m) => m.price!));
 
 const steps = [
   {
@@ -104,7 +95,7 @@ const buyVsRent = [
 const buyFaq = [
   {
     q: "NAS를 사면 하드디스크도 같이 오나요?",
-    a: `본체와 하드디스크를 함께 판매합니다. NAS 본체에는 하드가 들어 있지 않아서 따로 넣어야 하고, 최소 두 개를 묶어야 한 개가 고장 나도 자료가 남습니다. 하드디스크 단가는 4TB ${won(disks[0].price)}, 8TB ${won(disks[2].price)}, 16TB ${won(disks[4].price)}(전부 VAT 별도)이며, 용량과 개수는 실제 자료량을 보고 정해 드립니다.`,
+    a: `본체와 하드디스크를 함께 판매합니다. NAS 본체에는 하드가 들어 있지 않아서 따로 넣어야 하고, 최소 두 개를 묶어야 한 개가 고장 나도 자료가 남습니다. 하드디스크 단가는 4TB ${won(diskPrice("4TB"))}, 8TB ${won(diskPrice("8TB"))}, 16TB ${won(diskPrice("16TB"))}(전부 VAT 별도)이며, 용량과 개수는 실제 자료량을 보고 정해 드립니다.`,
   },
   {
     q: "판매가에 설치비도 포함인가요?",
@@ -186,10 +177,10 @@ export default function NasBuyPage() {
 
       <AnswerBlock
         question="대구에서 시놀로지 NAS를 판매하는 곳은 어디인가요?"
-        answer={`한별시스템(대구광역시 달서구, 시놀로지 공식 대리점, 통신판매업신고 ${site.address.mailOrder})이 정품 시놀로지 NAS를 판매·납품합니다. 판매 모델은 DS225+(2베이) ${body("ds225-plus")}, DS425+(4베이) ${body("ds425-plus")}, DS925+(4베이) ${body("ds925-plus")}, DS1525+(5베이) ${body("ds1525-plus")}, DS1825+(8베이) ${body("ds1825-plus")}이고 랙마운트 RS2421+(12베이)는 구성별 별도 견적입니다(본체 기준, VAT 별도). 본체만 파는 것이 아니라 하드디스크 구성과 RAID 설계까지 같이 잡아 드리며, 하드를 포함한 판매가는 직원 5~10명 사무실 기준 DS225+에 4TB 2개를 넣고 출장 설치·설정교육 ${won(INSTALL_FEE)}까지 더해 ${won(lowPrice)}부터입니다(VAT 별도). 목돈이 부담되면 구매 대신 임대도 있습니다. 월 ${won(RENT_FROM)}부터(기본 36개월, VAT 별도)이고 임대료에 장비·설치·백업 관리·장애 출장·하드디스크 교체가 들어갑니다. 대구·경북은 당일 방문하며 문의는 ${site.phone.main}입니다.`}
+        answer={`한별시스템(대구광역시 달서구, 시놀로지 공식 대리점, 통신판매업신고 ${site.address.mailOrder})이 정품 시놀로지 NAS를 판매·납품합니다. 기업 사무실에 가장 많이 들어가는 모델은 DS225+(2베이) ${body("ds225-plus")}, DS425+(4베이) ${body("ds425-plus")}, DS925+(4베이) ${body("ds925-plus")}, DS1525+(5베이) ${body("ds1525-plus")}, DS1825+(8베이) ${body("ds1825-plus")}이고, 1베이 DS124 ${won(bodyLow)}부터 12베이 DS2422+까지 단가표에 있는 본체를 모두 납품합니다. 랙마운트 RS2421+(12베이)는 구성별 별도 견적입니다(전부 본체 기준, VAT 별도). 본체만 파는 것이 아니라 하드디스크 구성과 RAID 설계까지 같이 잡아 드리며, 하드를 포함한 판매가는 직원 5~10명 사무실 기준 DS225+에 4TB 2개를 넣고 출장 설치·설정교육 ${won(INSTALL_FEE)}까지 더해 ${won(lowPrice)}부터입니다(VAT 별도). 목돈이 부담되면 구매 대신 임대도 있습니다. 월 ${won(RENT_FROM)}부터(기본 36개월, VAT 별도)이고 임대료에 장비·설치·백업 관리·장애 출장·하드디스크 교체가 들어갑니다. 대구·경북은 당일 방문하며 문의는 ${site.phone.main}입니다.`}
         facts={[
           { label: "판매 최저 구성", value: `${won(lowPrice)}부터` },
-          { label: "본체 최저가", value: `${won(bodyLow)}부터` },
+          { label: "본체 최저가", value: `1베이 ${won(bodyLow)}` },
           { label: "출장 설치·교육", value: won(INSTALL_FEE) },
           { label: "자격", value: "시놀로지 공식 대리점" },
           { label: "임대 대안", value: `월 ${won(RENT_FROM)}부터` },
@@ -234,6 +225,46 @@ export default function NasBuyPage() {
                       <Link href={`/nas/model/${m.slug}`} className="text-[12px] font-bold text-hb-blue hover:underline">
                         구성별 견적 →
                       </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* 개별 단가(본체) - 단가표에 있는 본체를 전부 그대로 공개한다 */}
+          <h3 className="text-lg lg:text-xl font-black text-[var(--ink)] mt-10 mb-2">개별 단가 (본체 전체)</h3>
+          <p className="text-sm text-[var(--mute)] leading-relaxed mb-5">
+            위 다섯 모델 외에 단가표에 올라 있는 본체도 같은 조건으로 납품합니다. 전부 VAT 별도
+            권장소비자가이며 하드디스크와 출장 설치·설정교육 {won(INSTALL_FEE)}은 별도로 더해집니다.
+          </p>
+          <div className="overflow-x-auto rounded-2xl border border-[var(--line)] bg-[var(--bg)]">
+            <table className="w-full text-sm min-w-[420px]">
+              <thead>
+                <tr className="bg-[var(--panel)] text-left">
+                  <th className="py-2.5 px-5 font-extrabold text-[var(--ink)] whitespace-nowrap">모델</th>
+                  <th className="py-2.5 px-2 font-extrabold text-[var(--ink)] whitespace-nowrap">베이</th>
+                  <th className="py-2.5 px-5 font-extrabold text-[var(--ink)] text-right whitespace-nowrap">본체 판매가</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-[var(--line)]">
+                {unitPrices.map((u) => (
+                  <tr key={u.model}>
+                    <td className="py-2.5 px-5 font-bold whitespace-nowrap">
+                      {u.slug ? (
+                        <Link href={`/nas/model/${u.slug}`} className="text-[var(--ink)] hover:text-hb-blue hover:underline">
+                          {u.model}
+                        </Link>
+                      ) : (
+                        <span className="text-[var(--ink)]">{u.model}</span>
+                      )}
+                    </td>
+                    <td className="py-2.5 px-2 text-[12px] text-[var(--mute)] whitespace-nowrap">
+                      {u.bayLabel}
+                      {u.note ? <span className="block">{u.note}</span> : null}
+                    </td>
+                    <td className="py-2.5 px-5 text-right font-extrabold text-hb-blue tabular-nums whitespace-nowrap">
+                      {won(u.price)}
                     </td>
                   </tr>
                 ))}
