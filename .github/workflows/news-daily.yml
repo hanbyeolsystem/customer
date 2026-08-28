@@ -12,6 +12,9 @@ on:
       sync:
         description: "true = 발행 없이 블로거→news.json 재구성만"
         default: "false"
+      fix_images:
+        description: "true = 기존 새소식 글의 기본 사진을 원문 사진으로 교체 후 news.json 재구성"
+        default: "false"
   schedule:
     # 매일 아침 07:30 KST (22:30 UTC 전날)
     - cron: "30 22 * * *"
@@ -39,7 +42,10 @@ jobs:
           GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
           BLOGGER_BLOG_ID: ${{ secrets.BLOGGER_BLOG_ID }}
         run: |
-          if [ "${{ github.event.inputs.sync || 'false' }}" = "true" ]; then
+          if [ "${{ github.event.inputs.fix_images || 'false' }}" = "true" ]; then
+            node scripts/news-to-blogger.mjs --fix-images
+            node scripts/news-to-blogger.mjs --sync
+          elif [ "${{ github.event.inputs.sync || 'false' }}" = "true" ]; then
             node scripts/news-to-blogger.mjs --sync
           else
             MAX="${{ github.event.inputs.max || '6' }}"

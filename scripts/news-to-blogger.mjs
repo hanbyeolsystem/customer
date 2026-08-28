@@ -1,7 +1,7 @@
 // IT 새소식 자동 발행 — 국내 IT/보안 RSS에서 관련 기사를 골라 요약+코멘트+사진과 함께 블로그에 올린다
 // 사용: node scripts/news-to-blogger.mjs [--dry-run]
 // 매일 아침 GitHub Actions(cron)로 실행. 원문 전문 복사 없이 짧은 요약+자체 코멘트+출처 링크만 사용.
-import { getAccessToken, listAllPosts, publishPost, withBackoff, sleep } from "./blogger-lib.mjs";
+import { getAccessToken, listAllPosts, publishPost, updatePost, withBackoff, sleep } from "./blogger-lib.mjs";
 
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
@@ -10,6 +10,19 @@ import { dirname, join } from "node:path";
 const DRY = process.argv.includes("--dry-run");
 const IMG = "https://xn--bm3bm1i1e348cgwe.kr/blog-assets";
 const SITE = "https://xn--bm3bm1i1e348cgwe.kr";
+
+// 원문 기사의 대표 사진(og:image / twitter:image). 없으면 "" → 주제 기본 사진으로 폴백
+async function ogImage(link) {
+  try {
+    const res = await fetch(link, { headers: { "User-Agent": "Mozilla/5.0 hanbyeol-news/1.0" }, signal: AbortSignal.timeout(15000) });
+    if (!res.ok) return "";
+    const html = (await res.text()).slice(0, 200000);
+    const m = html.match(/<meta[^>]+(?:property|name)=["'](?:og:image|twitter:image)(?::secure_url)?["'][^>]+content=["']([^"']+)["']/i)
+           || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+(?:property|name)=["'](?:og:image|twitter:image)["']/i);
+    const u = m ? m[1].replace(/&amp;/g, "&").trim() : "";
+    return /^https?:\/\//.test(u) ? u : "";
+  } catch { return ""; }
+}
 
 // --max N (기본 1: 매일 1건), --per-topic N (기본 1) — 백필 시 크게 지정
 function argNum(name, def) {
@@ -82,9 +95,9 @@ function matchTopic(item) {
   return null;
 }
 
-function buildHtml(item, topic) {
+function buildHtml(item, topic, img = "") {
   const kst = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);
-  return `<div class="separator" style="clear:both;text-align:center;"><img src="${IMG}/${topic.img}" alt="${item.title}" style="max-width:100%;height:auto;border-radius:8px;" /></div>
+  return `<div class="separator" style="clear:both;text-align:center;"><img src="${img || `${IMG}/${topic.img}`}" alt="${item.title}" style="max-width:100%;height:auto;border-radius:8px;" /></div>
 <p><b>오늘의 소식 (${kst})</b></p>
 <p>${item.desc ? item.desc.slice(0, 250) + (item.desc.length > 250 ? "…" : "") : item.title}</p>
 <p>👉 원문 보기: <a href="${item.link}" rel="nofollow">${item.source} — ${item.title}</a></p>
@@ -112,7 +125,8 @@ if (process.argv.includes("--sync")) {
   for (const p of items) {
     if (!p.title.startsWith("[IT 새소식] ")) continue;
     const c = p.content || "";
-    const img = (c.match(/blog-assets\/([a-z0-9-]+\.jpg)/) || [])[1] || "news-tech-01.jpg";
+    const first = (c.match(/<img[^>]+src="([^"]+)"/) || [])[1] || "";
+    const img = first.includes("/blog-assets/") ? first.split("/blog-assets/")[1] : (first || "news-tech-01.jpg");
     const link = (c.match(/원문 보기: <a href="([^"]+)"/) || [])[1] || "";
     const srcTitle = (c.match(/rel="nofollow">([^<]+)<\/a>/) || [])[1] || "";
     const source = srcTitle.split(" — ")[0] || "";
@@ -127,6 +141,34 @@ if (process.argv.includes("--sync")) {
   news.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
   writeFileSync(NEWS_JSON, JSON.stringify(news, null, 2), "utf8");
   console.log(`sync 완료: news.json ${news.length}건`);
+  process.exit(0);
+}
+
+// ---------- fix-images 모드: 기존 새소식 글의 주제 기본 사진을 원문 og:image 로 교체 ----------
+if (process.argv.includes("--fix-images")) {
+  const token = await getAccessToken();
+  const blogId = process.env.BLOGGER_BLOG_ID;
+  let pageToken = "", fixed = 0;
+  do {
+    const url = `https://www.googleapis.com/blogger/v3/blogs/${blogId}/posts?maxResults=50${pageToken ? `&pageToken=${pageToken}` : ""}`;
+    const res = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
+    if (!res.ok) throw new Error(`list HTTP ${res.status}`);
+    const j = await res.json();
+    for (const p of j.items || []) {
+      if (!p.title.startsWith("[IT 새소식] ")) continue;
+      const c = p.content || "";
+      if (!/<img[^>]+src="[^"]*\/blog-assets\/[^"]*"/.test(c)) continue; // 이미 원문 사진
+      const link = (c.match(/원문 보기: <a href="([^"]+)"/) || [])[1] || "";
+      const og = link ? await ogImage(link) : "";
+      if (!og) { console.log(`원문 사진 없음: ${p.title}`); continue; }
+      const html = c.replace(/(<img[^>]+src=")[^"]*\/blog-assets\/[^"]*(")/, `$1${og}$2`);
+      await withBackoff(p.title, () => updatePost(token, p.id, { title: p.title, html, labels: p.labels || [] }));
+      fixed++; console.log(`교체: ${p.title}`);
+      await sleep(3000);
+    }
+    pageToken = j.nextPageToken || "";
+  } while (pageToken);
+  console.log(`fix-images 완료: ${fixed}건`);
   process.exit(0);
 }
 
@@ -156,14 +198,15 @@ for (const c of candidates) {
   if ((topicCount.get(c.topic.key) || 0) >= PER_TOPIC) continue;
   const title = `[IT 새소식] ${c.title}`;
   if (existing.has(title) || jsonTitles.has(c.title)) continue; // 이미 올린 기사
+  const og = await ogImage(c.link); // 원문 대표 사진을 메인 사진으로
   const url = await withBackoff(title, () =>
-    publishPost(token, { title, html: buildHtml(c, c.topic), labels: ["새소식", c.topic.key] })
+    publishPost(token, { title, html: buildHtml(c, c.topic, og), labels: ["새소식", c.topic.key] })
   );
   if (!url) break;
   console.log(`발행됨: ${url}`);
   // 홈페이지(/news) 데이터에도 기록 — 커밋되면 사이트가 자동 재빌드됨
   newsJson.unshift({
-    date: kstToday, topic: c.topic.key, img: c.topic.img, source: c.source,
+    date: kstToday, topic: c.topic.key, img: og || c.topic.img, source: c.source,
     title: c.title, link: c.link, desc: c.desc.slice(0, 250), comment: c.topic.comment, blogger: url,
   });
   posted++;
