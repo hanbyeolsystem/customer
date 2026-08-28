@@ -307,7 +307,11 @@ export default async function NasModelPage({ params }: { params: Promise<{ slug:
             {m.model}가 우리 회사에 맞는지 현장을 보고 판단해 드립니다. 맞지 않으면 다른 모델을 권합니다.
             대구·경북 당일 방문, 방문 견적 무료.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3 justify-center">
+            {/* 모델명으로 들어와 "이거 얼마에 파나요"를 묻는 분들의 착지점 (전 모델 공통) */}
+            <Link href="/nas/buy" className="inline-flex items-center justify-center bg-hb-primary hover:bg-hb-blue text-white font-extrabold text-[15px] px-7 py-3.5 rounded-xl transition">
+              이 모델 구매 문의(판매가 보기)
+            </Link>
             <Link href="/support/quote" className="inline-flex items-center justify-center bg-hb-blue hover:bg-hb-azure text-white font-extrabold text-[15px] px-7 py-3.5 rounded-xl transition">
               무료 방문 견적 요청
             </Link>

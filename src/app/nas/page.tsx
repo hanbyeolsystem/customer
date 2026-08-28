@@ -40,6 +40,7 @@ export const metadata: Metadata = {
 };
 
 const offerings = [
+  { icon: "🛒", title: "NAS 판매·납품",   body: "시놀로지 정품 판매. 본체와 하드 구성까지 맞춰 납품합니다." },
   { icon: "🗄", title: "NAS 구축",        body: "용량 산정·모델 선정·초기 설정·운영자 인계까지 한 번에." },
   { icon: "💾", title: "데이터 백업",     body: "스케줄·증분·이중 백업·세대 관리·검증까지 자동화." },
   { icon: "🧩", title: "RAID 설계",       body: "1/5/6/10 - 가용성과 비용의 최적 조합 컨설팅." },
@@ -75,7 +76,7 @@ export default function NasPage() {
       />
       <AnswerBlock
         question="대구에서 회사 NAS(나스)를 구축하려면 어디에 맡겨야 하나요?"
-        answer="한별시스템은 대구광역시 달서구에 있는 시놀로지(Synology) 공식 대리점으로, 기업용 NAS를 50건 이상 구축했습니다. 하드웨어 납품에 그치지 않고 RAID 설계, 3-2-1 백업 구성, 랜섬웨어 대비 스냅샷, VPN 원격접속 설정, 직원 사용 교육까지 현장에서 진행합니다. 대구·경북은 당일 방문해 현장을 직접 보고 무료로 견적을 냅니다."
+        answer="한별시스템은 대구광역시 달서구에 있는 시놀로지(Synology) 공식 대리점으로, 기업용 NAS를 판매·구축합니다(구축 실적 50건 이상). 정품 장비 판매와 납품에 그치지 않고 RAID 설계, 3-2-1 백업 구성, 랜섬웨어 대비 스냅샷, VPN 원격접속 설정, 직원 사용 교육까지 현장에서 진행합니다. 대구·경북은 당일 방문해 현장을 직접 보고 무료로 견적을 냅니다."
         facts={[
           { label: "구축 실적", value: "50건 이상" },
           { label: "자격", value: "시놀로지 공식 대리점" },
@@ -111,6 +112,14 @@ export default function NasPage() {
                 </li>
               ))}
             </ul>
+
+            <p className="text-sm text-[var(--mute)] leading-relaxed mb-5">
+              장비만 구매하실 분도 됩니다. 시놀로지 정품 본체와 하드디스크를 판매·납품하며 모델별 판매가는{" "}
+              <Link href="/nas/buy" className="font-bold text-hb-blue hover:underline">
+                NAS 판매·구매 안내
+              </Link>
+              에 정리해 두었습니다.
+            </p>
 
             <p className="text-sm text-[var(--mute)] leading-relaxed mb-5">
               구매가 부담되면 임대로도 시작하실 수 있습니다. 월 10만원(VAT 별도)부터, 기본 36개월 계약이고

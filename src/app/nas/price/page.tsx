@@ -345,6 +345,15 @@ export default function NasPricePage() {
             </a>
           </div>
 
+          {/* 판매(구매) 페이지로 - "NAS 판매/구매"로 찾아오는 분들의 착지점 */}
+          <p className="mt-5 text-sm text-[var(--ink)]/85 leading-relaxed">
+            장비 구매(판매가)만 확인하고 싶으시면{" "}
+            <Link href="/nas/buy" className="font-bold text-hb-blue hover:underline">
+              NAS 판매·구매 안내
+            </Link>
+            를 보세요. 시놀로지 모델별 본체 판매가와 하드디스크 단가, 구매 절차를 따로 정리해 두었습니다.
+          </p>
+
           {/* RAID 실사용 용량 안내 */}
           <p className="mt-5 text-[13px] text-[var(--mute)] leading-relaxed">
             참고. NAS는 하드 하나가 고장 나도 자료가 살아 있도록 RAID로 묶기 때문에 실사용 용량이

@@ -48,6 +48,7 @@ export function Footer() {
               {/* 가격 페이지는 "얼마"로 검색해 들어오는 핵심 페이지라 전 페이지에서 링크를 준다 */}
               <li><Link href="/rental/price" className="hover:text-white transition">복합기 임대료</Link></li>
               <li><Link href="/nas/price" className="hover:text-white transition">NAS 구축 비용</Link></li>
+              <li><Link href="/nas/buy" className="hover:text-white transition">NAS 판매·구매</Link></li>
             </ul>
           </div>
 
