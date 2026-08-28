@@ -1,5 +1,49 @@
 [
   {
+    "date": "2026-08-28",
+    "topic": "network",
+    "img": "https://image.zdnet.co.kr/2026/08/28/c2b92be99b96754ffde57df68cf6dfcb.png",
+    "source": "ZDNet Korea",
+    "title": "수요는 줄고 공급은 넘치고…중국 태양광업계 적자 심화",
+    "link": "https://zdnet.co.kr/view/?no=20260828115152",
+    "desc": "[지디넷코리아]중국 태양광 시장 수요 위축과 공급과잉이 이어지면서 퉁웨이와 진코솔라, JA솔라 등 주요 제조업체의 상반기 손실이 확대됐다. 28일(현지시간) 블룸버그통신에 따르면 세계 최대 폴리실리콘 생산업체 퉁웨이는 올해 상반기 51억 2000만위안(약 1조 500억원)의 순손실을 기록했다. 지난해 같은 기간 순손실 49억 6000만위안(약 1조 180억원)보다 적자 규모가 늘었다.태양광 모듈 업체인 진코솔라와 JA솔라도 상반기 손실이 확대됐",
+    "comment": "사무실 네트워크와 닿아 있는 소식입니다. 인터넷이 느리다면 회선 탓만은 아닐 수 있습니다.",
+    "blogger": "https://hanbyeolsystem.blogspot.com/2026/08/it_01327657806.html"
+  },
+  {
+    "date": "2026-08-28",
+    "topic": "nas",
+    "img": "https://mmx.prnasia.com/media/MS1976770/20260827011923EDT_image_1.jpg?id=OA2915874&p=medium600",
+    "source": "ZDNet Korea",
+    "title": "MSI XpertStation WS300, 엔비디아 DGX 스테이션 기반으로 정식 출시",
+    "link": "https://zdnet.co.kr/view/?no=20260828131013",
+    "desc": "[지디넷코리아]타이베이, 2026년 8월 28일 /PRNewswire/ -- MSI가 엔비디아 DGX 스테이션(NVIDIA DGX Station) 아키텍처를 기반으로 한 XpertStation WS300의 출하를 시작했다고 발표했다. 엔비디아 GB300 그레이스 블랙웰 울트라 데스크톱 슈퍼칩(NVIDIA GB300 Grace Blackwell Ultra Desktop Superchip)으로 구동되는 이 데스크사이드 AI 슈퍼컴퓨터는 이제 ASI",
+    "comment": "회사 데이터 보관에 관한 소식입니다. 우리 회사 백업 상태가 궁금해지셨다면 무료 점검부터 받아 보세요.",
+    "blogger": "https://hanbyeolsystem.blogspot.com/2026/08/it-msi-xpertstation-ws300-dgx.html"
+  },
+  {
+    "date": "2026-08-28",
+    "topic": "ai",
+    "img": "https://image.zdnet.co.kr/2026/08/28/ai78becafee2abb96815cf8d3e166b9554.jpg",
+    "source": "ZDNet Korea",
+    "title": "\"AI로 일 빨라졌다\" 80%…\"AI가 이익에 기여\" 37%뿐",
+    "link": "https://zdnet.co.kr/view/?no=20260828142114",
+    "desc": "[지디넷코리아]AI를 쓰는 응답자 10명 중 8명이 생산성이 높아졌다고 답했으나, 회사 이익에 AI가 기여했다고 답한 비율은 1년 전과 같았다. 맥킨지(McKinsey)가 2026년 8월 발표한 'AI 현황 2026: ROI를 향한 길(The state of AI in 2026: On the road to ROI)' 보고서가 확인한 AI 도입 성과 격차다. AI 도입 성과 격차란 개인이 체감하는 업무 효율 상승과 기업이 실제로 얻는 재무 성과 ",
+    "comment": "AI 소식은 많지만 실무에 쓸 수 있는 것은 일부입니다. 사무실에 적용할 만한 것만 골라 소개해 드립니다.",
+    "blogger": "https://hanbyeolsystem.blogspot.com/2026/08/it-ai-80ai-37.html"
+  },
+  {
+    "date": "2026-08-28",
+    "topic": "security",
+    "img": "https://image.zdnet.co.kr/2026/08/28/3d2e67da32c445469bf228943c456dbb.png",
+    "source": "ZDNet Korea",
+    "title": "로빈후드는 왜 온체인 인프라를 직접 구축하나",
+    "link": "https://zdnet.co.kr/view/?no=20260828131910",
+    "desc": "[지디넷코리아]로빈후드의 가상자산 서비스가 과거에는 단순 '비트코인·알트코인 매매·중개'에 머물렀다면 최근 로빈후드의 행보는 차원이 다릅니다.로빈후드는 '모든 자산의 온체인화'를 목표로 삼고 있습니다. 기존 리테일 고객 기반과 막강한 자본력을 바탕으로 글로벌 가상자산 거래소 비트스탬프와 캐나다 가상자산 플랫폼 원더파이(WonderFi)를 잇달아 인수한데 이어, 아비트럼 기반 자체 레이어(L)2 메인넷인 '로빈후드 체인’을 공식 출시했습니다.이 ",
+    "comment": "보안 사고는 늘 '우리는 아니겠지' 하는 사무실에서 납니다. 백업과 기본 설정 점검, 미루지 마세요.",
+    "blogger": "https://hanbyeolsystem.blogspot.com/2026/08/it_01677240565.html"
+  },
+  {
     "date": "2026-08-26",
     "topic": "network",
     "img": "https://img.etnews.com/news/article/2026/08/27/news-p.v1.20260827.b31199cbdf5548d8810f4602361b557b_P1.jpg",
