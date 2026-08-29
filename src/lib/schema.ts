@@ -96,5 +96,6 @@ export function breadcrumbLd(items: { name: string; path: string }[]) {
 export function isoDateTime(d: string) {
   if (!d) return d;
   if (/T\d\d:\d\d/.test(d)) return d; // 이미 시각이 있음
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(d)) return d; // "2026-08" 같은 월 단위 값은 그대로(시각을 붙이면 잘못된 값이 됨)
   return `${d}T09:00:00+09:00`;
 }
