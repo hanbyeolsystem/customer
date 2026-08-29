@@ -199,9 +199,14 @@ if (SEED) {
           continue;
         }
         const pub = p.pubDate ? new Date(p.pubDate) : null;
+        // 글 끝에 사이트의 같은 글(/blog/<logNo>/)로 가는 링크. 블로거 → 한별시스템.kr 유입·백링크(노출 지수 오프사이트 문항).
+        const siteFooter =
+          `<p style="margin-top:18px;padding-top:10px;border-top:1px solid #e2e8f0;font-size:13px;color:#64748b;">` +
+          `이 글은 한별시스템 홈페이지에도 있습니다: <a href="https://xn--bm3bm1i1e348cgwe.kr/blog/${p.logNo}/">한별시스템.kr/blog/${p.logNo}</a>` +
+          ` · 대구광역시 달서구 한별시스템 053-588-7119 · <a href="https://xn--bm3bm1i1e348cgwe.kr/support/quote/">무료 방문 견적</a></p>`;
         const url = await publishToBlogger(token, {
           title: p.title,
-          html: body.html,
+          html: body.html + "\n" + siteFooter,
           labels: [p.category.replace(/\(.*?\)/g, "").trim(), "설치후기"].filter(Boolean),
           // 옛 글은 원래 날짜로 발행해 블로그 시간순이 맞게 (오늘 날짜로 수백 건이 몰리지 않게)
           published: pub && !isNaN(pub.getTime()) ? pub.toISOString() : undefined,
