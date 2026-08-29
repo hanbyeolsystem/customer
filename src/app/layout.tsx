@@ -102,6 +102,8 @@ const jsonLd = {
       description: site.description,
       url: site.url,
       telephone: site.phone.main,
+      // 리치 검색결과 테스트(2026-08-29) 권장 항목. 월 임대 3만원부터 NAS 구축 300만원대까지(사이트 게시가 기준).
+      priceRange: "₩30,000 - ₩3,000,000",
       email: site.email,
       founder: { "@type": "Person", name: site.address.ceo },
       // 동명 업체와 구분되는 법적 식별자 (사업자등록번호)
@@ -121,6 +123,7 @@ const jsonLd = {
         streetAddress: site.address.streetOnly,
         addressLocality: site.address.locality,
         addressRegion: site.address.region,
+        postalCode: "42699", // 문화회관11안길 22-7 (장동 868-3) 우편번호
         addressCountry: "KR",
       },
       geo: {
