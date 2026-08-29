@@ -3,7 +3,7 @@ import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { AnswerBlock } from "@/components/AnswerBlock";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbLd } from "@/lib/schema";
+import { breadcrumbLd, isoDateTime } from "@/lib/schema";
 import { naverCats, naverPosts } from "@/data/naver-posts";
 import { businessId, site } from "@/data/site";
 
@@ -30,7 +30,7 @@ const jsonLd = {
     "@type": "BlogPosting",
     "@id": `${site.url}/blog/${p.logNo}/#post`,
     headline: p.title,
-    datePublished: p.date,
+    datePublished: isoDateTime(p.date),
     url: `${site.url}/blog/${p.logNo}/`,
     ...(p.thumb ? { image: p.thumb.startsWith("http") ? p.thumb : `${site.url}${p.thumb}` } : {}),
   })),

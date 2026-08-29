@@ -10,6 +10,7 @@ import { caseBySlug } from "@/data/cases";
 import { qnaBySlug } from "@/data/qna";
 import { nasModelBySlug } from "@/data/synology";
 import { businessId, site } from "@/data/site";
+import { isoDateTime } from "@/lib/schema";
 
 export function generateStaticParams() {
   return guides.map((g) => ({ slug: g.slug }));
@@ -54,8 +55,8 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
         articleSection: cat?.label,
         url: pageUrl,
         inLanguage: "ko-KR",
-        datePublished: g.updated,
-        dateModified: g.updated,
+        datePublished: isoDateTime(g.updated),
+        dateModified: isoDateTime(g.updated),
         author: { "@id": businessId },
         publisher: { "@id": businessId },
         mainEntityOfPage: pageUrl,

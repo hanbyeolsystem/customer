@@ -7,7 +7,7 @@ import { AnswerBlock } from "@/components/AnswerBlock";
 import { naverPosts, naverPostByNo, naverCats } from "@/data/naver-posts";
 import { caseBySlug } from "@/data/cases";
 import { businessId, site } from "@/data/site";
-import { breadcrumbLd } from "@/lib/schema";
+import { breadcrumbLd, isoDateTime } from "@/lib/schema";
 
 // 네이버 블로그에서 가져온 글(scripts/naver-import.mjs). 본문·사진 전문을 사이트 안에 둔다.
 export function generateStaticParams() {
@@ -52,8 +52,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ logNo
     url: pageUrl,
     mainEntityOfPage: pageUrl,
     inLanguage: "ko-KR",
-    datePublished: p.date,
-    dateModified: p.date,
+    datePublished: isoDateTime(p.date),
+    dateModified: isoDateTime(p.date),
     image: p.blocks.filter((b) => b.t === "img").map((b) => (b.src.startsWith("http") ? b.src : `${site.url}${b.src}`)),
     author: { "@id": businessId },
     publisher: { "@id": businessId },

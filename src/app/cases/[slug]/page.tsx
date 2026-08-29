@@ -10,6 +10,7 @@ import { FaqSection } from "@/components/FaqSection";
 import { AnswerBlock } from "@/components/AnswerBlock";
 import { INSTALL_FEE, RENT_FROM, nasModels, quote, standardQuotes, won } from "@/data/synology";
 import type { CaseStudy } from "@/data/cases";
+import { isoDateTime } from "@/lib/schema";
 
 // 사례마다 붙는 FAQ. 템플릿이지만 장비·지역·금액이 현장별로 달라 내용이 겹치지 않는다.
 // 금액은 synology.ts 와 /rental/price 의 확정가만 쓴다.
@@ -114,7 +115,7 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
         image: c.images.map((i) => `${site.url}${i}`),
         url: pageUrl,
         inLanguage: "ko-KR",
-        dateCreated: c.date,
+        dateCreated: isoDateTime(c.date),
         locationCreated: { "@type": "Place", name: c.region },
         creator: { "@id": businessId },
         keywords: c.tags.join(", "),

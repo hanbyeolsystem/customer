@@ -6,7 +6,7 @@ import { AnswerBlock } from "@/components/AnswerBlock";
 import { JsonLd } from "@/components/JsonLd";
 import { caseCats, caseStudies } from "@/data/cases";
 import { businessId, site } from "@/data/site";
-import { breadcrumbLd } from "@/lib/schema";
+import { breadcrumbLd, isoDateTime } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "구축 사례 - 대구·경북 NAS·복합기·랜공사 실제 시공 기록",
@@ -35,7 +35,7 @@ const casesJsonLd = {
       about: `${c.industry} · ${c.gear.join(", ")}`,
       image: `${site.url}${c.images[0]}`,
       url: `${site.url}/cases/${c.slug}/`,
-      dateCreated: c.date,
+      dateCreated: isoDateTime(c.date),
       locationCreated: { "@type": "Place", name: c.region },
       creator: { "@id": businessId },
     },

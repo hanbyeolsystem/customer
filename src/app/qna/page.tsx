@@ -6,7 +6,7 @@ import { QnaBrowser } from "@/components/QnaBrowser";
 import { JsonLd } from "@/components/JsonLd";
 import { qna, qnaCats, qnaModified } from "@/data/qna";
 import { site } from "@/data/site";
-import { breadcrumbLd } from "@/lib/schema";
+import { breadcrumbLd, isoDateTime } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: `Q&A - 사내 AI·나스·복합기 렌탈·컴퓨터 수리 ${qna.length}문답`,
@@ -25,7 +25,7 @@ const jsonLd = {
   url: `${site.url}/qna/`,
   name: `한별시스템 Q&A ${qna.length}문답`,
   inLanguage: "ko-KR",
-  dateModified: qnaModified,
+  dateModified: isoDateTime(qnaModified),
   hasPart: counts.map((c) => ({
     "@type": "CollectionPage",
     name: c.label,

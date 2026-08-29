@@ -89,3 +89,12 @@ export function breadcrumbLd(items: { name: string; path: string }[]) {
     })),
   };
 }
+
+
+// 구글 구조화 데이터의 datePublished/dateModified 는 시간대가 있는 ISO 8601 을 요구한다(Search Console 경고 2026-08-29:
+// "datetime 속성에 시간대가 누락됨"). 날짜만 있는 값("2026-08-22")을 KST 09:00 으로 고정 변환한다.
+export function isoDateTime(d: string) {
+  if (!d) return d;
+  if (/T\d\d:\d\d/.test(d)) return d; // 이미 시각이 있음
+  return `${d}T09:00:00+09:00`;
+}

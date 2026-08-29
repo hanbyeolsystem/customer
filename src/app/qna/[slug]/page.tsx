@@ -9,7 +9,7 @@ import { qnaImage } from "@/data/qna-images";
 import { guides } from "@/data/guides";
 import { caseStudies } from "@/data/cases";
 import { businessId, site } from "@/data/site";
-import { breadcrumbLd } from "@/lib/schema";
+import { breadcrumbLd, isoDateTime } from "@/lib/schema";
 
 export function generateStaticParams() {
   return qna.map((f) => ({ slug: f.slug }));
@@ -69,8 +69,8 @@ export default async function QnaDetailPage({ params }: { params: Promise<{ slug
       text: f.q,
       answerCount: 1,
       upvoteCount: 0,
-      datePublished: qnaPublished,
-      dateModified: qnaModified,
+      datePublished: isoDateTime(qnaPublished),
+      dateModified: isoDateTime(qnaModified),
       author: org,
       url: pageUrl,
       acceptedAnswer: {
@@ -78,8 +78,8 @@ export default async function QnaDetailPage({ params }: { params: Promise<{ slug
         "@id": `${pageUrl}#answer`,
         text: fullAnswer,
         upvoteCount: 0,
-        datePublished: qnaPublished,
-        dateModified: qnaModified,
+        datePublished: isoDateTime(qnaPublished),
+        dateModified: isoDateTime(qnaModified),
         url: pageUrl,
         author: org,
       },

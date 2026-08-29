@@ -4,7 +4,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { JsonLd } from "@/components/JsonLd";
 import { guideCats, guides } from "@/data/guides";
 import { businessId, site } from "@/data/site";
-import { breadcrumbLd } from "@/lib/schema";
+import { breadcrumbLd, isoDateTime } from "@/lib/schema";
 import { AnswerBlock } from "@/components/AnswerBlock";
 
 export const metadata: Metadata = {
@@ -30,7 +30,7 @@ const jsonLd = {
       headline: g.title,
       description: g.lead,
       url: `${site.url}/guide/${g.slug}/`,
-      datePublished: g.updated,
+      datePublished: isoDateTime(g.updated),
       author: { "@id": businessId },
     },
   })),

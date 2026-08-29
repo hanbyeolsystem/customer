@@ -7,7 +7,7 @@ import { QnaBrowser } from "@/components/QnaBrowser";
 import { JsonLd } from "@/components/JsonLd";
 import { qna, qnaCats, qnaModified, qnaPublished } from "@/data/qna";
 import { site } from "@/data/site";
-import { breadcrumbLd } from "@/lib/schema";
+import { breadcrumbLd, isoDateTime } from "@/lib/schema";
 
 // 분류별 Q&A 목록. 여기에만 FAQPage 스키마를 둔다(분류당 30~80문항).
 export function generateStaticParams() {
@@ -80,8 +80,8 @@ export default async function QnaCatPage({ params }: { params: Promise<{ cat: st
     "@id": pageUrl,
     url: pageUrl,
     inLanguage: "ko-KR",
-    datePublished: qnaPublished,
-    dateModified: qnaModified,
+    datePublished: isoDateTime(qnaPublished),
+    dateModified: isoDateTime(qnaModified),
     mainEntity: items.map((f) => ({
       "@type": "Question",
       name: f.q,
