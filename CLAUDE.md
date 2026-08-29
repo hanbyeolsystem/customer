@@ -82,6 +82,9 @@
   (`support/as/AsForm.tsx`, `support/quote/QuoteForm.tsx` 가 그 형태).
 - noindex 페이지(`/go/`)와 Next 부산물(`/404/`, `/_not-found/`)은 **사이트맵에 넣지 말 것**.
   robots.txt 로 막으면 안 된다(막으면 구글이 noindex 자체를 못 읽는다).
+- 스키마의 날짜(datePublished/dateModified/dateCreated)는 **반드시 `isoDateTime()`(`src/lib/schema.ts`)** 으로 감싼다.
+  날짜만("2026-08-22") 넣으면 Search Console 이 "datetime 시간대 누락/값 오류"(Q&A 8건, 2026-08-29) 를 보낸다. 데이터 파일의 값은 날짜만 두고 페이지에서 변환.
+- Product(/nas/model/*, /nas/buy/) 의 `review`·`aggregateRating` 누락 경고는 **실제 후기가 생기기 전엔 채우지 말 것**(지어낸 평점은 정책 위반). 권장 항목이라 노출엔 영향 없음.
 - Q&A 구조화 데이터(QAPage/FAQPage)는 `datePublished`·`dateModified`·`author`·`upvoteCount`·`url`
   누락 시 경고가 뜬다. 날짜는 `src/data/qna.ts` 의 `qnaPublished`/`qnaModified` 상수를 쓰며,
   **Q&A 본문을 고치면 `qnaModified` 도 함께 갱신**할 것.
