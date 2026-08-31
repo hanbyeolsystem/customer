@@ -19,6 +19,9 @@ export function Hero() {
           posterSrc="/hero/hero-poster.webp"
           videoSrc="/hero/hero-loop.mp4?v=5"
           posterAlt="한별시스템 엔지니어가 서버랙 장비를 점검하는 모습"
+          // 배경 영상 2MB. 모바일에서는 받지 않고 포스터(57KB)만 쓴다.
+          // 데스크탑도 첫 페인트가 끝난 뒤에 받는다(HeroBackground 참고).
+          minWidth={1024}
         />
         {/* 왼쪽 텍스트는 보호, 오른쪽은 영상이 드러나게 */}
         <div className="absolute inset-0 bg-gradient-to-r from-hb-primary via-hb-primary/65 to-hb-primary/25" />

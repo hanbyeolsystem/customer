@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { preload } from "react-dom";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Header } from "@/components/Header";
@@ -119,7 +120,9 @@ const jsonLd = {
       foundingLocation: { "@type": "Place", name: "대구광역시 달서구 성서공단" },
       slogan: "전산은 전화 한 통",
       logo: `${site.url}/icons/icon-512.png`,
-      image: [`${site.url}/icons/icon-512.png`, `${site.url}/brand/logo.png`],
+      // logo 는 icon-512.png(PNG) 그대로 둔다 - 구글 로고 슬롯은 PNG 가 가장 안전하다.
+      // image 배열의 브랜드 로고만 화면과 같은 WebP 로 맞춘다(logo.png 원본은 아이콘·OG 생성 소스로 남아 있음).
+      image: [`${site.url}/icons/icon-512.png`, `${site.url}/brand/logo.webp`],
       address: {
         "@type": "PostalAddress",
         streetAddress: site.address.streetOnly,
@@ -201,9 +204,24 @@ const jsonLd = {
   ],
 };
 
+// Pretendard 가변 폰트 dynamic subset 중 가장 많이 쓰는 두 조각(영문·숫자·기호와 빈도 높은 한글)을
+// 미리 받는다. 나머지 90조각은 브라우저가 화면에 그릴 글자를 보고 알아서 받는다.
+// JSX <link rel="preload"> 로 쓰면 Next 와 React 가 각각 한 번씩 넣어 head 에 두 벌이 생긴다.
+// ReactDOM.preload() 는 한 번만 넣는다.
+// 조각 번호는 scripts/fetch-pretendard.mjs 가 만든 순서 기준이며, 폰트 버전을 올리면
+// 어느 조각이 첫 화면에 필요한지 다시 확인할 것.
+const HERO_FONT_CHUNKS = [91, 90];
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  for (const n of HERO_FONT_CHUNKS) {
+    preload(`/fonts/pretendard/PretendardVariable.subset.${n}.woff2`, {
+      as: "font",
+      type: "font/woff2",
+      crossOrigin: "anonymous",
+    });
+  }
   return (
     <html lang="ko" suppressHydrationWarning className="h-full">
       <body className="min-h-full flex flex-col antialiased">

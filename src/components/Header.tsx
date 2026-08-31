@@ -98,10 +98,10 @@ export function Header() {
         {/* 로고 */}
         <Link href="/" className="flex items-center gap-2 shrink-0" aria-label="한별시스템 홈">
           <Image
-            src="/brand/logo.png"
+            src="/brand/logo.webp"
             alt="한별시스템"
-            width={240}
-            height={280}
+            width={307}
+            height={336}
             priority
             className="h-11 lg:h-12 w-auto object-contain"
           />

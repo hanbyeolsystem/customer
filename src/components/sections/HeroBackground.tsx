@@ -27,9 +27,22 @@ export function HeroBackground({
   const videoRef = useRef<HTMLVideoElement>(null);
 
   // 포스터는 로딩 전·폴백용으로 항상 SSR.
-  // 영상은 화면 폭이 minWidth 이상일 때만 마운트한다(모바일 데이터 절약). 0 이면 항상.
+  // 영상(약 2MB)은 두 관문을 통과해야 내려받는다.
+  //  1) 화면 폭이 minWidth 이상 - 모바일은 아예 받지 않는다(데이터 절약).
+  //  2) 첫 페인트가 끝난 뒤 - 마운트 즉시 붙이면 2MB 가 글꼴·이미지와 대역폭을 다투어
+  //     첫 화면이 늦어진다. 브라우저가 한가해지는 시점(requestIdleCallback)까지 미룬다.
+  //     배경 장식이라 조금 늦게 떠도 손해가 없다.
   useEffect(() => {
-    if (window.innerWidth >= minWidth) setShowVideo(true);
+    if (window.innerWidth < minWidth) return;
+    const start = () => setShowVideo(true);
+    const ric = window.requestIdleCallback;
+    if (ric) {
+      const id = ric(start, { timeout: 3000 });
+      return () => window.cancelIdleCallback?.(id);
+    }
+    // requestIdleCallback 이 없는 브라우저(구형 사파리)는 로드 완료 뒤로만 미룬다.
+    const t = window.setTimeout(start, 1200);
+    return () => window.clearTimeout(t);
   }, [minWidth]);
 
   // src 를 마운트 후에 붙이므로 브라우저가 스스로 로드를 시작하지 않는다.

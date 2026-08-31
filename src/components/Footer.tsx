@@ -14,10 +14,10 @@ export function Footer() {
             <div className="flex items-center gap-3 mb-4">
               <div className="bg-white rounded-xl p-1.5">
                 <Image
-                  src="/brand/logo.png"
+                  src="/brand/logo.webp"
                   alt="한별시스템"
-                  width={120}
-                  height={140}
+                  width={307}
+                  height={336}
                   className="h-14 w-auto object-contain"
                 />
               </div>

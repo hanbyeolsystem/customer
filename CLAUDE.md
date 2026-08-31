@@ -55,9 +55,23 @@
   하루 3번 재빌드 크론이 새 글을 반영한다.
 - 이미지는 `node scripts/optimize-images.mjs` 로 한 번 눌러서 커밋(mozjpeg q78, 최대 1400px). Q&A 카드는 `qnaImage(cat, slug, "thumb")` 480px.
 - **화면은 WebP 를 쓴다**(2026-08-27). `node scripts/to-webp.mjs` 가 cases·blog-assets·hero·video·blog-posts 의 JPEG/PNG 를 .webp 로 만든다(원본 JPEG 는 옛 링크용으로 두고, blog-posts 만 원본 삭제).
-  새 사진을 넣으면 optimize → to-webp 순서로 돌리고 `.webp` 경로로 참조할 것. og.jpg·brand/logo.png·icons/ 는 JPEG/PNG 유지(SNS 카드·구글 로고·PWA 규격).
+  새 사진을 넣으면 optimize → to-webp 순서로 돌리고 `.webp` 경로로 참조할 것. og.jpg·icons/ 는 JPEG/PNG 유지(SNS 카드·PWA 규격).
+  `brand/logo.png` 는 **원본 소스로 남겨 둔다**(gen-og.mjs·generate-icons.mjs 가 읽는다). 화면·스키마 image 는 `brand/logo.webp`(307x336, 17KB).
+- **외부 이미지는 리포 안에 복제한다.** 임대 쇼핑몰 카드 사진은 `public/products/*.webp` 다.
+  예전엔 hbsys.kr PNG(장당 350~380KB, 6장 2.2MB)를 직접 불러 모바일에서 빈 흰 박스로 남았다.
+  상품이 바뀌면 원본을 받아 600px WebP(q82)로 눌러 넣고 `src/data/products.ts` 경로만 고친다.
 - 점수·할 일 관리는 종합관리툴 **🔍 사이트 노출 지수**(`한별시스템\임대관리\seo-board`). 재측정은 `node tools/seo-audit/audit.mjs hanbyeol`.
   2026-08-27 측정: 종합 79 (기술 93 · 콘텐츠 76 · GEO 87 · 오프사이트 54). 오프사이트가 병목 = 네이버 블로그 50편에 사이트 링크 0편.
+
+## 폰트·홈 무게 (2026-09-01)
+- **Pretendard 는 self-host**(`public/fonts/pretendard` 92조각 + `src/app/pretendard.css`).
+  `scripts/fetch-pretendard.mjs` 가 만들며 **pretendard.css 를 손으로 고치지 말 것**. 버전은 스크립트의 `PRETENDARD_VERSION`.
+- 가변 폰트(`font-weight: 45 920`) dynamic subset 이라 파일 하나가 실제 쓰는 6개 웨이트(400·500·600·700·800·900)를 전부 덮고,
+  브라우저는 화면에 그리는 글자가 든 조각만 받는다. 실측 홈 437KB(예전 jsDelivr 풀 로드는 6.7MB).
+  **jsDelivr `@import` 로 되돌리지 말 것.** `font-display: swap` 유지, 첫 화면용 조각 90·91 은 layout.tsx 에서 preload.
+- `--font-sans` 폴백에 시스템 한글 폰트(Malgun Gothic 등)를 반드시 남길 것. 폰트가 못 와도 한글이 깨지면 안 된다.
+- 히어로 배경 영상(2MB)은 **모바일에서 받지 않고**(`minWidth={1024}`) 데스크탑도 첫 페인트 뒤 `requestIdleCallback` 때 받는다.
+  포스터(`hero-poster.webp` 57KB)는 항상 즉시. 영상은 장식이라 늦게 떠도 된다.
 
 ## 디자인 토큰 (변경 시 `globals.css @theme`)
 - `--color-hb-primary` `#0F172A`
@@ -115,6 +129,18 @@
 - 회사 `@id`(businessId)를 참조할 땐 **`{ "@id": businessId }` 만** 쓴다. `"@type": "Organization"` 을
   같이 붙이면 LocalBusiness 노드와 타입이 겹쳐 엔티티가 흐려진다.
 - 자사 운영 사이트(882.kr·hbsys.kr·에러코드)는 `site.owned` 에 모아 두고 `sameAs` 로 내보낸다. 새 사이트가 생기면 여기 추가.
+- **지도·플레이스 등재는 `site.listings`**(`src/data/site.ts`). 네이버 플레이스 1866521598 · 카카오맵 1828766417 은
+  2026-09-01 실측으로 확인한 ID 다. `sameAs`(layout.tsx) 와 화면(푸터 "지도에서 보기", /contact/ 길찾기 버튼)이
+  같은 값을 쓴다. **ID 를 추측해서 넣지 말 것** - 실제로 열어 업체명이 한별시스템인지 확인한 주소만 넣는다.
+  당근 비즈프로필은 공개 웹 주소를 확인하지 못해 빠져 있다(내부 ID 2310438 로는 안 열린다).
+- **페이지 갱신일은 `webPageLd()` + `<UpdatedAt />`**(`src/lib/schema.ts`, `src/components/UpdatedAt.tsx`).
+  서비스·가격 페이지(/nas/ /nas/buy/ /nas/price/ /rental/ /rental/price/ /ai/ /network/)에 붙어 있다.
+  `dateModified` 는 schema.org 상 CreativeWork 속성이라 Service·Product 에 직접 붙이지 않는다.
+  대신 WebPage 노드에 싣고 `mainEntity` 로 그 페이지의 Service·Product `@id` 를 가리킨다.
+  날짜는 **`lastmod.json`(git 커밋 날짜) 한 출처**에서만 읽는다. 하드코딩·`new Date()` 금지.
+  사이트맵에만 필요한 동적 라우트(예 `/nas/model/`)는 `gen-lastmod.mjs` 의 `dynamicRoutes` 에 추가한다.
+- 서비스 지역을 구·군 단위로 화면에 적은 페이지는 스키마 `areaServed` 도 같이 맞춘다.
+  목록은 `schema.ts` 의 `daeguDistricts`(대구 7구 2군) / `gyeongbukCities` / `daeguGyeongbukServed` 한 곳에서 온다.
 - 가격 페이지(`/rental/price/`·`/nas/price/`)는 "얼마"로 검색해 들어오는 핵심 페이지라 **푸터에서 전 페이지 링크**를 준다.
 - **금액은 `src/data/synology.ts` 한 곳에만 적는다.** /nas/price/ 와 /nas/model/* 가 같이 읽는다.
   복합기 임대료는 `/rental/price/` 의 `prices` 배열과 그 페이지 스키마 `offers` 두 곳을 같이 고칠 것.

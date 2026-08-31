@@ -1,4 +1,8 @@
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
+/* Pretendard 는 self-host 한다(public/fonts/pretendard, scripts/fetch-pretendard.mjs 가 생성).
+   예전에는 여기서 jsDelivr 의 static/pretendard.css 를 불러 9개 웨이트 풀 woff2 6.7MB 를 통째로
+   받았다. 지금은 가변 폰트 dynamic subset 이라 화면에 실제로 그리는 글자가 든 조각만 내려온다
+   (홈 실측 437KB). 되돌리지 말 것. */
+@import "./pretendard.css";
 @import "tailwindcss";
 
 /* class 기반 다크모드 (next-themes 호환) */
@@ -33,11 +37,15 @@
   --color-accent:            #D6EEF0;
   --color-accent-foreground: #0A1E33;
 
-  /* 사이트 전체 Pretendard 통일 — mono 토큰도 Pretendard 사용 */
-  --font-sans: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic',
-    -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-mono: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic',
-    -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* 사이트 전체 Pretendard 통일 - mono 토큰도 Pretendard 사용.
+     'Pretendard Variable' 이 self-host 한 가변 폰트, 'Pretendard' 는 이용자 PC 에 설치돼 있을 때.
+     그 뒤는 폰트가 못 오더라도 한글이 깨지지 않게 하는 시스템 폴백이다(윈도우 맑은 고딕까지). */
+  --font-sans: 'Pretendard Variable', 'Pretendard', system-ui, -apple-system,
+    BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Segoe UI', 'Malgun Gothic',
+    'Noto Sans KR', sans-serif;
+  --font-mono: 'Pretendard Variable', 'Pretendard', system-ui, -apple-system,
+    BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Segoe UI', 'Malgun Gothic',
+    'Noto Sans KR', sans-serif;
 }
 
 :root {
