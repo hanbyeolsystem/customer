@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
+import { UpdatedAt } from "@/components/UpdatedAt";
 import { AnswerBlock } from "@/components/AnswerBlock";
 import { FaqSection } from "@/components/FaqSection";
 import { site } from "@/data/site";
 import { JsonLd } from "@/components/JsonLd";
 import { serviceId, serviceLd } from "@/lib/schema";
-import { breadcrumbLd } from "@/lib/schema";
+import { breadcrumbLd, webPageLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "대구 사무실 네트워크 공사·데이터 백업 구축",
@@ -99,16 +100,25 @@ const serviceJsonLd = serviceLd({
     "CAT6 이상 랜 배선 시공, 공유기·스위치 구성, 서버·NAS 설치, 공유 폴더와 권한 설정, 3-2-1 백업 스케줄 구성, VPN 원격접속, 인터넷 장애 진단까지 한 회사에서 시공. 대구·경북 중심 50개사 이상 실적.",
 });
 
+// 페이지 갱신일(WebPage.dateModified). 날짜 출처는 사이트맵 lastmod 와 같은 git 커밋 날짜.
+const pageJsonLd = webPageLd({
+  path: "/network/",
+  name: "사무실 네트워크 공사·데이터 백업 구축",
+  mainEntityId: serviceId("/network/"),
+});
+
 export default function NetworkPage() {
   return (
     <>
       <JsonLd data={breadcrumbLd([{ name: "네트워크·랜공사", path: "/network/" }])} />
       <JsonLd data={serviceJsonLd} />
+      <JsonLd data={pageJsonLd} />
       <PageHeader
         badge="NETWORK · BACKUP"
         title="랜 공사부터 데이터 백업까지, 한 회사에서"
         description="사무실 배선 시공, 서버·NAS 설치, 공유 폴더 설정, 백업 구축을 나눠 맡길 필요가 없습니다."
       />
+      <UpdatedAt path="/network/" note="작업 범위 기준일입니다. 방문 견적은 무료입니다." />
 
       <AnswerBlock
         question="대구에서 사무실 네트워크 공사와 데이터 백업 구축을 한 곳에 맡길 수 있나요?"

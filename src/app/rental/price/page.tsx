@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
+import { UpdatedAt } from "@/components/UpdatedAt";
 import { FaqSection } from "@/components/FaqSection";
 import { AnswerBlock } from "@/components/AnswerBlock";
 import { site } from "@/data/site";
 import { JsonLd } from "@/components/JsonLd";
 import { monthlyOffer, serviceId, serviceLd } from "@/lib/schema";
-import { breadcrumbLd } from "@/lib/schema";
+import { breadcrumbLd, webPageLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "대구 복합기 임대료 - 월 얼마인지 가격 공개",
@@ -162,11 +163,20 @@ const priceJsonLd = serviceLd({
   ],
 });
 
+// 페이지 갱신일(WebPage.dateModified). 날짜 출처는 사이트맵 lastmod 와 같은 git 커밋 날짜.
+const pageJsonLd = webPageLd({
+  path: "/rental/price/",
+  name: "복합기·프린터 월 임대료",
+  // 이 페이지의 Service 선언은 /rental/ 과 같은 @id 를 쓴다(위 priceJsonLd 참고).
+  mainEntityId: serviceId("/rental/"),
+});
+
 export default function RentalPricePage() {
   return (
     <>
       <JsonLd data={breadcrumbLd([{ name: "복합기 렌탈", path: "/rental/" }, { name: "월 임대료", path: "/rental/price/" }])} />
       <JsonLd data={priceJsonLd} />
+      <JsonLd data={pageJsonLd} />
       <PageHeader
         badge="RENTAL PRICE GUIDE"
         title="대구 복합기·프린터 임대료"
@@ -174,6 +184,7 @@ export default function RentalPricePage() {
         back="/rental"
         backLabel="임대 케어"
       />
+      <UpdatedAt path="/rental/price/" note="품목별 월 임대료 기준일입니다. VAT 별도." />
 
       <AnswerBlock
         question="대구에서 복합기 임대하면 월 얼마인가요?"

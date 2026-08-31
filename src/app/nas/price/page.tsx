@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { PageHeader } from "@/components/PageHeader";
+import { UpdatedAt } from "@/components/UpdatedAt";
 import { FaqSection } from "@/components/FaqSection";
 import { AnswerBlock } from "@/components/AnswerBlock";
 import { caseStudies } from "@/data/cases";
@@ -17,7 +18,7 @@ import {
 } from "@/data/synology";
 import { JsonLd } from "@/components/JsonLd";
 import { monthlyOffer, serviceId, serviceLd } from "@/lib/schema";
-import { breadcrumbLd } from "@/lib/schema";
+import { breadcrumbLd, webPageLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "대구 NAS 구축 비용 - 규모별 견적 가이드",
@@ -227,11 +228,20 @@ const priceJsonLd = serviceLd({
   ],
 });
 
+// 페이지 갱신일(WebPage.dateModified). 날짜 출처는 사이트맵 lastmod 와 같은 git 커밋 날짜.
+const pageJsonLd = webPageLd({
+  path: "/nas/price/",
+  name: "NAS 구축 비용·임대료",
+  // 이 페이지의 Service 선언은 /nas/ 와 같은 @id 를 쓴다(위 priceJsonLd 참고).
+  mainEntityId: serviceId("/nas/"),
+});
+
 export default function NasPricePage() {
   return (
     <>
       <JsonLd data={breadcrumbLd([{ name: "NAS 솔루션", path: "/nas/" }, { name: "NAS 구축 비용", path: "/nas/price/" }])} />
       <JsonLd data={priceJsonLd} />
+      <JsonLd data={pageJsonLd} />
       <PageHeader
         badge="NAS PRICE GUIDE · SYNOLOGY 공식 대리점"
         title="대구 NAS 구축 비용"
@@ -239,6 +249,7 @@ export default function NasPricePage() {
         back="/nas"
         backLabel="NAS 솔루션"
       />
+      <UpdatedAt path="/nas/price/" note="구축 비용과 임대료 기준일입니다. VAT 별도." />
 
       <AnswerBlock
         question="대구에서 중소기업 NAS를 구축하면 비용이 얼마나 드나요?"

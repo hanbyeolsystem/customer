@@ -170,14 +170,33 @@ export default function ContactPage() {
                 지번 주소
               </div>
               <p className="text-sm font-medium text-[var(--ink)]/90">{site.address.jibun}</p>
-              <a
-                href={site.social.googleMaps}
-                target="_blank"
-                rel="noopener"
-                className="mt-6 inline-flex items-center gap-2 rounded-xl bg-hb-blue text-white font-bold text-sm px-5 py-3 hover:brightness-110 transition"
-              >
-                구글 지도로 길 찾기 →
-              </a>
+              {/* 세 지도 모두 같은 사업장이다. sameAs(layout.tsx)에 등록된 주소와 같은 값. */}
+              <div className="mt-6 flex flex-wrap gap-2">
+                <a
+                  href={site.listings.naverPlace}
+                  target="_blank"
+                  rel="noopener"
+                  className="inline-flex items-center gap-2 rounded-xl bg-hb-blue text-white font-bold text-sm px-5 py-3 hover:brightness-110 transition"
+                >
+                  네이버 지도로 길 찾기 →
+                </a>
+                <a
+                  href={site.listings.kakaoPlace}
+                  target="_blank"
+                  rel="noopener"
+                  className="inline-flex items-center gap-2 rounded-xl border border-[var(--line)] text-[var(--ink)] font-bold text-sm px-5 py-3 hover:border-hb-blue transition"
+                >
+                  카카오맵 →
+                </a>
+                <a
+                  href={site.social.googleMaps}
+                  target="_blank"
+                  rel="noopener"
+                  className="inline-flex items-center gap-2 rounded-xl border border-[var(--line)] text-[var(--ink)] font-bold text-sm px-5 py-3 hover:border-hb-blue transition"
+                >
+                  구글 지도 →
+                </a>
+              </div>
             </div>
             <div className="bg-[var(--bg)] border border-[var(--line)] rounded-2xl p-6">
               <div className="text-[11px] font-extrabold text-[var(--mute)] tracking-[.14em] mb-3">

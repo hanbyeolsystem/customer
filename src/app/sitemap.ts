@@ -58,9 +58,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
-    // 시놀로지 모델별 페이지 - "DS925+ 설치" 같은 모델명 검색을 받는 페이지
+    // 시놀로지 모델별 페이지 - "DS925+ 설치" 같은 모델명 검색을 받는 페이지.
+    // 본문이 전부 synology.ts 에서 나오므로 lastmod 도 그 파일의 커밋 날짜를 쓴다
+    // (gen-lastmod.mjs 의 dynamicRoutes["/nas/model/"]).
     ...nasModels.map((m) => ({
       url: `${site.url}/nas/model/${m.slug}/`,
+      ...(lm["/nas/model/"] ? { lastModified: new Date(lm["/nas/model/"]) } : {}),
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),

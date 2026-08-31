@@ -101,7 +101,9 @@ const jsonLd = {
       alternateName: [site.nameEn, "대구 한별시스템"],
       description: site.description,
       url: site.url,
-      telephone: site.phone.main,
+      // 대표전화와 대표 휴대전화 둘 다. 출장이 잦아 대표번호를 못 받을 때
+      // 휴대전화로 연락이 가야 하고, 푸터·연락처 페이지에도 두 번호가 같이 떠 있다.
+      telephone: [site.phone.main, site.phone.mobile],
       // 리치 검색결과 테스트(2026-08-29) 권장 항목. 월 임대 3만원부터 NAS 구축 300만원대까지(사이트 게시가 기준).
       priceRange: "₩30,000 - ₩3,000,000",
       email: site.email,
@@ -147,6 +149,9 @@ const jsonLd = {
         site.social.instagram,
         site.social.threads,
         site.social.googleMaps,
+        // 지도·플레이스 등재(네이버·카카오). 구글 지도와 함께 세 지도에서 같은 회사로 묶인다.
+        site.listings.naverPlace,
+        site.listings.kakaoPlace,
         // 한별시스템이 직접 운영하는 다른 사이트들. 같은 회사임을 검색·AI 가 알게 한다.
         ...site.owned,
       ],

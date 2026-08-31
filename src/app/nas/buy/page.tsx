@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
+import { UpdatedAt } from "@/components/UpdatedAt";
 import { AnswerBlock } from "@/components/AnswerBlock";
 import { FaqSection } from "@/components/FaqSection";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbLd } from "@/lib/schema";
+import { breadcrumbLd, webPageLd } from "@/lib/schema";
 import { businessId, site } from "@/data/site";
 import {
   BUY_FROM,
@@ -162,11 +163,19 @@ const productLd = {
   },
 };
 
+// 페이지 갱신일(WebPage.dateModified). 날짜 출처는 사이트맵 lastmod 와 같은 git 커밋 날짜.
+const pageJsonLd = webPageLd({
+  path: "/nas/buy/",
+  name: "시놀로지 NAS 판매·구매 안내",
+  mainEntityId: `${pageUrl}#product`,
+});
+
 export default function NasBuyPage() {
   return (
     <>
       <JsonLd data={breadcrumbLd([{ name: "NAS 솔루션", path: "/nas/" }, { name: "NAS 판매", path: "/nas/buy/" }])} />
       <JsonLd data={productLd} />
+      <JsonLd data={pageJsonLd} />
       <PageHeader
         badge="NAS 판매 · SYNOLOGY 공식 대리점"
         title="대구 NAS 판매"
@@ -174,6 +183,7 @@ export default function NasBuyPage() {
         back="/nas"
         backLabel="NAS 솔루션"
       />
+      <UpdatedAt path="/nas/buy/" note="본체·하드디스크 판매가 기준일입니다. VAT 별도." />
 
       <AnswerBlock
         question="대구에서 시놀로지 NAS를 판매하는 곳은 어디인가요?"

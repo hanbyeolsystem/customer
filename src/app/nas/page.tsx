@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { PageHeader } from "@/components/PageHeader";
+import { UpdatedAt } from "@/components/UpdatedAt";
 import { FaqSection } from "@/components/FaqSection";
 import { AnswerBlock } from "@/components/AnswerBlock";
 import { JsonLd } from "@/components/JsonLd";
 import { monthlyOffer, serviceId, serviceLd } from "@/lib/schema";
 import { site } from "@/data/site";
 import { BUY_FROM, nasModels, won } from "@/data/synology";
-import { breadcrumbLd } from "@/lib/schema";
+import { breadcrumbLd, webPageLd } from "@/lib/schema";
 
 const nasFaq = [
   {
@@ -39,6 +40,38 @@ export const metadata: Metadata = {
   alternates: { canonical: "/nas/" },
 };
 
+// 실제 구축 현장 사진. 구축사례(src/data/cases.ts)의 원문 후기에 근거가 있는 현장만 쓴다.
+// 사진만 붙이지 않고 그 현장에서 무엇을 판단했는지 설명과 함께 둔다.
+const nasShots = [
+  {
+    src: "/cases/bukgu-architect-ds1825-1.webp",
+    w: 966,
+    h: 513,
+    alt: "대구 북구 건축사무소에 설치한 시놀로지 DS1825+ 8베이 NAS",
+    slug: "bukgu-architect-ds1825",
+    caption:
+      "대구 북구 건축사무소의 DS1825+ 8베이입니다. 도면은 한 번 쌓이기 시작하면 줄지 않기 때문에, 지금 쓰는 용량이 아니라 몇 년 뒤 용량을 보고 베이 수를 정합니다. 처음부터 다 채우지 않고 증설할 자리를 남겨 두는 편이 나중에 싸게 먹힙니다.",
+  },
+  {
+    src: "/cases/university-rs2421-1.webp",
+    w: 966,
+    h: 511,
+    alt: "성운대학교에 구축한 시놀로지 RS2421+ 랙마운트 NAS",
+    slug: "university-rs2421",
+    caption:
+      "성운대학교에 넣은 RS2421+ 랙마운트입니다. 서버랙이 이미 있는 곳은 데스크형 대신 랙마운트로 가야 열과 소음, 자리 문제가 같이 풀립니다. 랙 안 배선과 전원 계통까지 정리해서 넘겨 드립니다.",
+  },
+  {
+    src: "/cases/andong-hospital-nas-1.webp",
+    w: 966,
+    h: 628,
+    alt: "경북 안동 병원 NAS의 RAID 구성 오류로 고장 난 디스크 점검 현장",
+    slug: "andong-hospital-nas",
+    caption:
+      "경북 안동의 병원입니다. RAID를 잘못 잡아 디스크가 고장 난 뒤에 부른 현장이라, 이 사진은 잘 된 설치가 아니라 잘못된 설치의 결과입니다. RAID는 백업이 아니라 가용성 장치이고, 처음 설계를 어떻게 잡느냐로 나중에 살릴 수 있는지가 갈립니다.",
+  },
+];
+
 const offerings = [
   { icon: "🛒", title: "NAS 판매·납품",   body: "시놀로지 정품 판매. 본체와 하드 구성까지 맞춰 납품합니다." },
   { icon: "🗄", title: "NAS 구축",        body: "용량 산정·모델 선정·초기 설정·운영자 인계까지 한 번에." },
@@ -64,16 +97,25 @@ const serviceJsonLd = serviceLd({
   ],
 });
 
+// 페이지 갱신일(WebPage.dateModified). 날짜 출처는 사이트맵 lastmod 와 같은 git 커밋 날짜.
+const pageJsonLd = webPageLd({
+  path: "/nas/",
+  name: "대구 NAS 구축·기업용 나스와 데이터 백업",
+  mainEntityId: serviceId("/nas/"),
+});
+
 export default function NasPage() {
   return (
     <>
       <JsonLd data={breadcrumbLd([{ name: "NAS 솔루션", path: "/nas/" }])} />
       <JsonLd data={serviceJsonLd} />
+      <JsonLd data={pageJsonLd} />
       <PageHeader
         badge="NAS SOLUTION · SYNOLOGY 공식 대리점"
         title="데이터가 멈추면 업무도 멈춥니다"
         description="기업 데이터 보호를 위한 통합 NAS 솔루션. 구축부터 운영까지 한별이 끝까지 책임집니다."
       />
+      <UpdatedAt path="/nas/" note="구축 범위와 임대료 기준일입니다. 모델별 본체가는 NAS 판매·구매 안내에 있습니다." />
       <AnswerBlock
         question="대구에서 회사 NAS(나스)를 구축하려면 어디에 맡겨야 하나요?"
         answer="한별시스템은 대구광역시 달서구에 있는 시놀로지(Synology) 공식 대리점으로, 기업용 NAS를 판매·구축합니다(구축 실적 50건 이상). 정품 장비 판매와 납품에 그치지 않고 RAID 설계, 3-2-1 백업 구성, 랜섬웨어 대비 스냅샷, VPN 원격접속 설정, 직원 사용 교육까지 현장에서 진행합니다. 대구·경북은 당일 방문해 현장을 직접 보고 무료로 견적을 냅니다."
@@ -185,6 +227,40 @@ export default function NasPage() {
                 <h3 className="font-extrabold text-[var(--ink)] mb-1.5">{o.title}</h3>
                 <p className="text-[13px] text-[var(--mute)] leading-relaxed">{o.body}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 실제 구축 현장 - 사진과 그때의 판단을 같이 둔다 */}
+      <section className="py-14 lg:py-20 bg-[var(--panel)] border-y border-[var(--line)]">
+        <div className="max-w-5xl mx-auto px-4 lg:px-6">
+          <div className="text-[11px] font-extrabold text-hb-blue tracking-[.2em] mb-2">FIELD</div>
+          <h2 className="text-2xl lg:text-3xl font-extrabold text-[var(--ink)] tracking-tight mb-3">
+            현장에서 무엇을 보고 정하는가
+          </h2>
+          <p className="text-sm text-[var(--mute)] leading-relaxed mb-8 max-w-3xl">
+            같은 시놀로지라도 업종과 자료 성격에 따라 모델과 RAID 구성이 달라집니다. 실제 현장 세 곳의
+            사진과 그때 무엇을 기준으로 정했는지를 함께 올려 둡니다.
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
+            {nasShots.map((s) => (
+              <figure key={s.src} className="m-0">
+                <Image
+                  src={s.src}
+                  alt={s.alt}
+                  width={s.w}
+                  height={s.h}
+                  sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
+                  className="w-full h-auto rounded-2xl border border-[var(--line)]"
+                />
+                <figcaption className="text-[13.5px] text-[var(--ink)]/85 leading-relaxed mt-3">
+                  {s.caption}{" "}
+                  <Link href={`/cases/${s.slug}`} className="font-bold text-hb-blue hover:underline">
+                    이 현장 자세히 보기 →
+                  </Link>
+                </figcaption>
+              </figure>
             ))}
           </div>
         </div>

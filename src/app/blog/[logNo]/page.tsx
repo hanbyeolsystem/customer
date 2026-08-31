@@ -42,6 +42,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ logNo
   const lead = p.blocks.filter((b) => b.t === "p").map((b) => b.text).join(" ").slice(0, 320);
   const answer = `${lead}${lead.length >= 320 ? "…" : ""} (${p.date.replace(/-/g, ".")} 현장. 대구·경북 고객사 170곳+ 를 관리하는 대구광역시 달서구 한별시스템, ${site.phone.main})`;
 
+  // BlogPosting.image 는 비어 있으면 안 된다(2017~18 옛 글은 원래 사진이 없다).
+  // 본문에 실린 사진 → 목록 썸네일 → 사이트 공용 OG 카드 순으로 채운다.
+  const abs = (s: string) => (s.startsWith("http") ? s : `${site.url}${s}`);
+  const bodyImages = p.blocks.filter((b) => b.t === "img").map((b) => abs(b.src));
+  const postImages = bodyImages.length
+    ? bodyImages
+    : [abs(p.thumb ?? "/og.jpg")];
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -54,7 +62,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ logNo
     inLanguage: "ko-KR",
     datePublished: isoDateTime(p.date),
     dateModified: isoDateTime(p.date),
-    image: p.blocks.filter((b) => b.t === "img").map((b) => (b.src.startsWith("http") ? b.src : `${site.url}${b.src}`)),
+    image: postImages,
     author: { "@id": businessId },
     publisher: { "@id": businessId },
     isBasedOn: p.href,

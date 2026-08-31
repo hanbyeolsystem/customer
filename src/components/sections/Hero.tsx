@@ -95,7 +95,10 @@ export function Hero() {
                 {monitors.map((m, i) => (
                   <li
                     key={m.label}
-                    className="hb-rise flex items-center justify-between px-5 py-4"
+                    // 모바일 오른쪽 여백: 플로팅 상담 버튼(ChatWidget, fixed right-5 w-14)이
+                    // 화면 오른쪽 아래에 떠 있어 이 줄이 화면 하단에 걸리면 "정상"/"LIVE" 배지를 가린다.
+                    // 배지가 버튼 왼쪽으로 비켜나도록 모바일에서만 오른쪽을 72px 비운다.
+                    className="hb-rise flex items-center justify-between py-4 pl-5 pr-[4.5rem] sm:pr-5"
                     style={{ animationDelay: `${260 + i * 90}ms` }}
                   >
                     <span className="text-[13px] lg:text-sm text-white/75 font-medium">

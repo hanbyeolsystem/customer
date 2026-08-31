@@ -47,6 +47,17 @@ export const site = {
     googleMaps: "https://maps.google.com/?cid=8994991007847125486",
   },
 
+  // 지도·플레이스 등재. LocalBusiness.sameAs 로 내보내 "같은 회사"임을 알린다.
+  // 아이디는 2026-09-01 실측으로 확인한 값이다(추측으로 바꾸지 말 것).
+  //  - 네이버 플레이스 1866521598 : 카테고리 IT서비스, 대구 달서구 장동 868-3
+  //  - 카카오맵 1828766417        : 053-588-7119, 대구 달서구 장동 868-3 1층
+  // 당근 비즈프로필(내부 ID 2310438)은 공개 웹 주소를 확인하지 못해 넣지 않았다.
+  // 당근 공개 주소는 /kr/local-profile/<이름>-<해시>/ 형태이고 내부 ID 로는 열리지 않는다.
+  listings: {
+    naverPlace: "https://map.naver.com/p/entry/place/1866521598",
+    kakaoPlace: "https://place.map.kakao.com/1828766417",
+  },
+
   // 한별시스템이 직접 운영하는 다른 사이트. LocalBusiness.sameAs 에 들어가
   // "이 사이트들도 같은 회사"임을 검색엔진·AI 에 알린다. 새 사이트가 생기면 여기 추가.
   owned: [

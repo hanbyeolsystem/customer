@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
+import { UpdatedAt } from "@/components/UpdatedAt";
 import { AnswerBlock } from "@/components/AnswerBlock";
 import { FaqSection } from "@/components/FaqSection";
 import { JsonLd } from "@/components/JsonLd";
 import { serviceId, serviceLd } from "@/lib/schema";
 import { site } from "@/data/site";
-import { breadcrumbLd } from "@/lib/schema";
+import { breadcrumbLd, webPageLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "사내 AI 구축 - 회사 자료를 밖으로 내보내지 않는 NAS AI",
@@ -117,16 +118,25 @@ const serviceJsonLd = serviceLd({
     "회사 자료를 외부로 내보내지 않고 사내 NAS 안에서 AI가 검색·요약하도록 구성한다. 한별시스템이 자사 NAS(Ryzen V1500B·RAM 4GB)에서 로컬 LLM 컨테이너를 2026년 8월 3일부터 직접 운영하며 검증했고, 소형 모델 기준 답변 시간 7~60초를 실측했다. 도입은 NAS 문서 검색, 사내 전용 AI 서버(RAG), 완전 온프레미스 3단계로 나뉜다.",
 });
 
+// 페이지 갱신일(WebPage.dateModified). 날짜 출처는 사이트맵 lastmod 와 같은 git 커밋 날짜.
+const pageJsonLd = webPageLd({
+  path: "/ai/",
+  name: "사내 AI 구축(온프레미스 LLM)",
+  mainEntityId: serviceId("/ai/"),
+});
+
 export default function AiPage() {
   return (
     <>
       <JsonLd data={breadcrumbLd([{ name: "사내 AI 구축", path: "/ai/" }])} />
       <JsonLd data={serviceJsonLd} />
+      <JsonLd data={pageJsonLd} />
       <PageHeader
         badge="ON-PREMISE AI · 기업 데이터 관리"
         title="데이터는 회사 안에, AI도 회사 안에"
         description="회사 자료를 외부 AI에 올리지 않고, 사내 NAS 안에서 AI가 찾아 주게 만듭니다. 한별시스템이 자사 NAS에서 먼저 돌려 보고 검증한 구성입니다."
       />
+      <UpdatedAt path="/ai/" note="실측값과 도입 단계 기준일입니다." />
 
       <AnswerBlock
         question="회사 자료를 외부에 올리지 않고 AI를 쓸 수 있나요?"

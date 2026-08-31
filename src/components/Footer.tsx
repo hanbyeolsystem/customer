@@ -95,6 +95,18 @@ export function Footer() {
                 </Link>
               </li>
             </ul>
+            {/* 지도 등재. LocalBusiness.sameAs 와 같은 주소를 화면에도 두어야
+                검색·AI 가 "같은 회사"로 확인할 수 있다. */}
+            <div className="mt-4 pt-4 border-t border-white/10">
+              <div className="text-[11px] font-extrabold text-white/70 tracking-[.14em] mb-2">지도에서 보기</div>
+              <div className="flex flex-wrap gap-x-3 gap-y-1.5 text-[12px]">
+                <a href={site.listings.naverPlace} target="_blank" rel="noopener" className="hover:text-white transition">네이버 지도</a>
+                <span className="text-slate-700">·</span>
+                <a href={site.listings.kakaoPlace} target="_blank" rel="noopener" className="hover:text-white transition">카카오맵</a>
+                <span className="text-slate-700">·</span>
+                <a href={site.social.googleMaps} target="_blank" rel="noopener" className="hover:text-white transition">구글 지도</a>
+              </div>
+            </div>
           </div>
         </div>
 

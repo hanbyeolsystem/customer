@@ -22,6 +22,13 @@ const extraDeps = {
   "/qna/": ["src/data/qna.ts"],
 };
 
+// sitemap 의 pages 배열에는 없지만 lastmod 가 필요한 동적 라우트.
+// 키는 sitemap.ts 가 lm[...] 으로 찾는 이름이고, 값은 그 페이지 내용을 좌우하는 파일들이다.
+// (모델별 페이지는 본문이 전부 synology.ts 에서 나온다)
+const dynamicRoutes = {
+  "/nas/model/": ["src/app/nas/model/[slug]/page.tsx", "src/data/synology.ts"],
+};
+
 function git(args) {
   return execFileSync("git", args, { encoding: "utf8" }).trim();
 }
@@ -47,8 +54,25 @@ try {
   shallow = true;
 }
 
+function newestCommit(files) {
+  const dates = files
+    .map((f) => {
+      try {
+        return git(["log", "-1", "--format=%cI", "--", f]) || null;
+      } catch {
+        return null;
+      }
+    })
+    .filter(Boolean);
+  return dates.length ? dates.sort().at(-1) : null;
+}
+
 const map = {};
 if (!shallow && routes.length) {
+  for (const [route, files] of Object.entries(dynamicRoutes)) {
+    const d = newestCommit(files);
+    if (d) map[route] = d;
+  }
   for (const route of routes) {
     const files = [routeToPage(route), ...(extraDeps[route] ?? [])];
     const dates = files
