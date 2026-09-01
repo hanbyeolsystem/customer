@@ -1,5 +1,60 @@
 [
   {
+    "date": "2026-09-01",
+    "topic": "security",
+    "img": "https://image.zdnet.co.kr/2026/08/31/76d8c7bc1de1d3c37877fbae4d2e349c.jpg",
+    "source": "ZDNet Korea",
+    "title": "토스 \"외산 SASE 대신 자체 개발…'타이탄' 2000명 사용\"",
+    "link": "https://zdnet.co.kr/view/?no=20260831231056",
+    "desc": "[지디넷코리아]종합 금융 플랫폼 '토스'를 운영하는 비바리퍼블리카(Viva Republica)가 작년 2분기 외산 보안솔루션 사용을 종료, 현재 자체 개발한 보안 솔루션 '타이탄(Titan)'을 사용하고 있다. '토스'는 금융업 분류상 전자금융에 속한다. 전자금융회사 중 토스처럼 중요 보안 솔루션을 국산을 사용, 외산을 대체한 건 이례적이다.'토스'가 개발한 '타이탄'은 보안 솔루션 종류 중 SASE(Se­cure Access Service E",
+    "comment": "보안 사고는 늘 '우리는 아니겠지' 하는 사무실에서 납니다. 백업과 기본 설정 점검, 미루지 마세요.",
+    "blogger": "https://hanbyeolsystem.blogspot.com/2026/08/it-sase-2000.html"
+  },
+  {
+    "date": "2026-09-01",
+    "topic": "windows",
+    "img": "https://image.zdnet.co.kr/2026/09/01/5d90078b589c1b33a45a336634cb1a1c.jpg",
+    "source": "ZDNet Korea",
+    "title": "삼성전자, 보급형 노트북 '뉴 갤럭시북6' 출시",
+    "link": "https://zdnet.co.kr/view/?no=20260901080514",
+    "desc": "[지디넷코리아]삼성전자가 1일 온라인 학습과 일상 업무 처리에 최적화된 보급형 노트북 '뉴 갤럭시북6'를 국내 출시했다.뉴 갤럭시북6는 인텔이 4월 공개한 코어 시리즈3(와일드캣 레이크) 프로세서 기반으로 LPDDR5X 8GB 메모리, 14형 1920×1200 화소 IPS LCD 등을 적용해 가격을 낮췄다.프로세서는 코어3 304(P1+E4 코어), 코어3 315(P2+E4) 중 선택 가능하며 각각 15 TOPS(1초당 1조번 연산) 급 NPU",
+    "comment": "업무 PC에 영향을 주는 변화는 미리 알아두면 대응이 쉽습니다. 우리 사무실에 해당하는지 궁금하면 전화 주세요.",
+    "blogger": "https://hanbyeolsystem.blogspot.com/2026/08/it-6.html"
+  },
+  {
+    "date": "2026-09-01",
+    "topic": "ai",
+    "img": "https://image.zdnet.co.kr/2026/09/01/667594174a21361e7e467f85a96fbf5d.jpg",
+    "source": "ZDNet Korea",
+    "title": "튜링, 70억원 규모 투자 유치…글로벌 대학생 AI 시장 공략",
+    "link": "https://zdnet.co.kr/view/?no=20260901083244",
+    "desc": "[지디넷코리아]추론 AI 에이전트 개발사 튜링이 70억원 규모의 시리즈B 투자를 유치했다.1일 회사에 따르면, 이번 투자에는 산업은행, 킹고투자파트너스, 컴퍼니케이파트너스가 신규 투자사로 참여했다. 기존 투자사인 코오롱인베스트먼트도 후속 투자를 단행했다. 튜링은 추론 AI 기술을 바탕으로 대학생의 학업 전반을 지원하는 에이전트 서비스 'GPAI'를 운영 중이다. GPAI는 출시 1년 만에 가입자 150만 명을 넘어섰으며, 미국 MIT, 스탠퍼드",
+    "comment": "AI 소식은 많지만 실무에 쓸 수 있는 것은 일부입니다. 사무실에 적용할 만한 것만 골라 소개해 드립니다.",
+    "blogger": "https://hanbyeolsystem.blogspot.com/2026/08/it-70-ai.html"
+  },
+  {
+    "date": "2026-09-01",
+    "topic": "network",
+    "img": "https://image.zdnet.co.kr/2026/09/01/9b7180611de2f145e076e643308f604b.jpg",
+    "source": "ZDNet Korea",
+    "title": "후지필름코리아, '천 개의 카메라' 신규 기록 프로젝트 개시",
+    "link": "https://zdnet.co.kr/view/?no=20260901085155",
+    "desc": "[지디넷코리아]후지필름일렉트로닉이미징코리아(이하 후지필름코리아)는 1일 사회공헌 프로젝트 '천 개의 카메라' 일환으로 서울과 전남 서남해안 지역의 사진 촬영 활동에 나선다고 밝혔다.'천 개의 카메라'는 후지필름코리아가 다큐멘터리 작가 성남훈과 함께 추진한 사회공익 프로젝트다. 전문·시민 사진가가 지역과 문화유산을 촬영하고, 이를 전시와 출판물 등으로 발전시키는 방식으로 운영된다.이번에 진행되는 '서울기록 프로젝트 16기'는 참가자 10명이 약 ",
+    "comment": "사무실 네트워크와 닿아 있는 소식입니다. 인터넷이 느리다면 회선 탓만은 아닐 수 있습니다.",
+    "blogger": "https://hanbyeolsystem.blogspot.com/2026/08/it_0334008880.html"
+  },
+  {
+    "date": "2026-09-01",
+    "topic": "nas",
+    "img": "https://image.zdnet.co.kr/2026/09/01/ea13ce984138ec2baccab72ff53bc1bd.jpg",
+    "source": "ZDNet Korea",
+    "title": "SKT, 에어 요금제 가입자에 유튜브프리미엄 1년 쏜다",
+    "link": "https://zdnet.co.kr/view/?no=20260901085927",
+    "desc": "[지디넷코리아]SK텔레콤이 자급제 전용 통신 서비스 ‘에어(air)’ 회선 20만명 돌파를 맞아 신규 가입자에게 ‘유튜브 프리미엄 라이트’를 1년간 무료로 제공한다.SK텔레콤은 1내년 2월28일까지 에어 공식 앱과 홈페이지에서 ‘에어 X’ 요금제에 새로 가입하면 유튜브 프리미엄 라이트 무료 구독 프로모션을 진행한다고 밝혔다. 가입 후 개통하면 1년간 혜택을 받을 수 있다.에어 X는 월 5만8000원에 데이터를 무제한으로 제공하는 요금제다. 프로",
+    "comment": "회사 데이터 보관에 관한 소식입니다. 우리 회사 백업 상태가 궁금해지셨다면 무료 점검부터 받아 보세요.",
+    "blogger": "https://hanbyeolsystem.blogspot.com/2026/08/it-skt-1.html"
+  },
+  {
     "date": "2026-08-31",
     "topic": "security",
     "img": "https://img.etnews.com/news/article/2026/08/30/news-p.v1.20260830.63578724335347be8ca4493c625c93ca_P2.jpg",
