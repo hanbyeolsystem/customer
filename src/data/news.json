@@ -1,5 +1,49 @@
 [
   {
+    "date": "2026-09-02",
+    "topic": "nas",
+    "img": "https://img.etnews.com/news/article/2026/09/01/news-p.v1.20260901.3dba147d74184fff9c8598dd3552ab65_P1.jpg",
+    "source": "전자신문",
+    "title": "정부, 민간 AIDC서 GPU서비스 직접 조달…공공 클라우드 개방 가속",
+    "link": "https://www.etnews.com/20260901000341",
+    "desc": "정부가 처음으로 외부 민간 인공지능 데이터센터(AIDC)의 그래픽처리장치(GPU) 서비스를 직접 제공받는다. 보안을 이유로 폐쇄적 원칙을 고수해온 공공 인프라 정책이 국가 AI 경쟁력 확보라는 현실적 요구 앞에서 변화를 택한 것으로 풀이된다. 1일 업계에 따르면 행정안전부 국가정보자원관리원 대구센터(대구 PPP)는 고성능 AI 연산 자원을 확보하기 위해 삼성SDS 동탄 데이터센터의 GPU 서비스를 전용선으로 연계하는 방식을 도입한다. 대구 PP",
+    "comment": "회사 데이터 보관에 관한 소식입니다. 우리 회사 백업 상태가 궁금해지셨다면 무료 점검부터 받아 보세요.",
+    "blogger": "https://hanbyeolsystem.blogspot.com/2026/09/it-aidc-gpu.html"
+  },
+  {
+    "date": "2026-09-02",
+    "topic": "windows",
+    "img": "https://image.zdnet.co.kr/2026/09/01/5dac648a610edda5c3d33ced2b0a64cb.jpg",
+    "source": "ZDNet Korea",
+    "title": "그라비티 게임 어라이즈, 베이커리 액션 RPG '아르타' 콘솔 버전 12월10일 출시",
+    "link": "https://zdnet.co.kr/view/?no=20260901175742",
+    "desc": "[지디넷코리아]던전 탐험과 빵집 경영을 결합한 하이브리드 액션 RPG '아르타'가 오는 12월 콘솔 플랫폼으로 글로벌 출시된다.그라비티의 일본 지사 그라비티 게임 어라이즈(GGA)는 베이커리 경영 액션 RPG '이하 아르타'의 닌텐도 스위치 및 플레이스테이션5·4 버전을 오는 12월10일 글로벌 시장에 정식 발매한다고 1일 밝혔다.지난해 11월 스팀을 통해 먼저 선보인 PC 버전은 이용자 평가에서 '매우 긍정적(94%)'을 기록하며 글로벌 시장",
+    "comment": "업무 PC에 영향을 주는 변화는 미리 알아두면 대응이 쉽습니다. 우리 사무실에 해당하는지 궁금하면 전화 주세요.",
+    "blogger": "https://hanbyeolsystem.blogspot.com/2026/09/it-rpg-1210.html"
+  },
+  {
+    "date": "2026-09-02",
+    "topic": "ai",
+    "img": "https://image.zdnet.co.kr/2026/05/13/67d3a27ae30e622646873e33a54ee462.jpg",
+    "source": "ZDNet Korea",
+    "title": "산업부, 내년에도 M.AX·메가프로젝트 총력 지원…예산 14조1691억원 편성",
+    "link": "https://zdnet.co.kr/view/?no=20260901184416",
+    "desc": "[지디넷코리아]산업부가 올해에 이어 내년에도 제조 인공지능전환(M.AX)과 메가프로젝트에 총력 지원한다.산업통상자원부는 2027년 예산안을 역대 최대 규모인 13조 2573억원으로 편성했다. 올해 본예산 9조 4342억원 보다 40.5% 증가한 규모다. 산업부 출범 이후 역대 최고 증가율이다.국가 미래 성장동력 확충을 위해 신설되는 미래대응기금(기획예산처 세출)에 편성된 산업부 소관 사업(9118억원 규모)을 포함하면 실질적인 산업부 예산 규모",
+    "comment": "AI 소식은 많지만 실무에 쓸 수 있는 것은 일부입니다. 사무실에 적용할 만한 것만 골라 소개해 드립니다.",
+    "blogger": "https://hanbyeolsystem.blogspot.com/2026/09/it-max-141691.html"
+  },
+  {
+    "date": "2026-09-02",
+    "topic": "security",
+    "img": "https://zdnet.co.kr/images/default_img.jpg",
+    "source": "ZDNet Korea",
+    "title": "리본, 시장을 선도하는 핵심 인프라 포트폴리오 강화",
+    "link": "https://zdnet.co.kr/view/?no=20260902021002",
+    "desc": "[지디넷코리아] 신세대 라우터, 확장된 라우팅과 자동화, 보안, 동기화 역량 제공 플레이노, 텍사스, 2026년 9월 2일 /PRNewswire/ -- 실시간 통신 기술과 IP 라우팅, 광 네트워크 솔루션 분야의 글로벌 선도기업 리본 커뮤니케이션즈(Ribbon Communications Inc., 나스닥: RBBN)가 9월 1일, 핵심 인프라 포트폴리오 확대를 발표했다. 이 포트폴리오는 유틸리티 기업들이 점차 복잡해지는 운영 네트워크를 현대화하",
+    "comment": "보안 사고는 늘 '우리는 아니겠지' 하는 사무실에서 납니다. 백업과 기본 설정 점검, 미루지 마세요.",
+    "blogger": "https://hanbyeolsystem.blogspot.com/2026/09/it.html"
+  },
+  {
     "date": "2026-09-01",
     "topic": "security",
     "img": "https://image.zdnet.co.kr/2026/08/31/76d8c7bc1de1d3c37877fbae4d2e349c.jpg",
