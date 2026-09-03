@@ -1,5 +1,60 @@
 [
   {
+    "date": "2026-09-03",
+    "topic": "nas",
+    "img": "https://image.zdnet.co.kr/2026/09/02/70277f0191877c34df94fe0f0151160a.png",
+    "source": "ZDNet Korea",
+    "title": "'SK하이닉스 특허 양수' 미미르IP, 미디어텍 상대 미국 특허소송 제기",
+    "link": "https://zdnet.co.kr/view/?no=20260902182159",
+    "desc": "[지디넷코리아]SK하이닉스에서 미국 특허 1021건을 양수한 특허관리전문기업(NPE) 미미르IP(MimirIP)가 대만 미디어텍을 상대로 미국 텍사스동부연방법원에 특허침해소송을 지난 1일(현지시간) 제기했다. 미미르IP는 미디어텍의 시스템온칩(SoC) 제품인 디멘시티와 헬리오, 콤파니오 등이 자사 특허 4건을 침해했다고 주장했다. 디멘시티는 하이엔드 스마트폰, 헬리오는 로엔드 스마트폰에 주로 사용하는 AP다. 쟁점 특허 4건 등록번호와 발명의 ",
+    "comment": "회사 데이터 보관에 관한 소식입니다. 우리 회사 백업 상태가 궁금해지셨다면 무료 점검부터 받아 보세요.",
+    "blogger": "https://hanbyeolsystem.blogspot.com/2026/09/it-sk-ip.html"
+  },
+  {
+    "date": "2026-09-03",
+    "topic": "windows",
+    "img": "https://mmx.prnasia.com/media/MS1979133/20260831223654EDT_image_1.jpg?id=OA2922859&p=medium600",
+    "source": "ZDNet Korea",
+    "title": "궁극의 선명함: AGON by AOC, 세계 최초 5K NVIDIA G-SYNC® Pulsar 게이밍 모니터 공개",
+    "link": "https://zdnet.co.kr/view/?no=20260902191003",
+    "desc": "[지디넷코리아]AGP327KG, 5K 초고해상도와 NVIDIA G-SYNC Pulsar 기술을 결합해 탁월한 모션 선명도와 부드럽고 화면 찢어짐 없는 가변 주사율 게이밍 경험 제공 타이베이, 2026년 9월 2일 / -- 2025 IDC 보고서 기준 7년 연속 세계 1위 게이밍 모니터 브랜드로 선정된 AGON by AOC가 9월 1일 엔비디아 지싱크 펄사(NVIDIA G-SYNC Pulsar) 기술을 탑재한 세계 최초의 5K 게이밍 모니터 AG",
+    "comment": "업무 PC에 영향을 주는 변화는 미리 알아두면 대응이 쉽습니다. 우리 사무실에 해당하는지 궁금하면 전화 주세요.",
+    "blogger": "https://hanbyeolsystem.blogspot.com/2026/09/it-agon-by-aoc-5k-nvidia-g-sync-pulsar.html"
+  },
+  {
+    "date": "2026-09-03",
+    "topic": "network",
+    "img": "https://mmx.prnasia.com/media/MS1979609/Sceye-ST1-HAPS-launch-from-New-Mexico.jpg?id=OA2924773&p=medium600",
+    "source": "ZDNet Korea",
+    "title": "스카이와 소프트뱅크, 일본에서 성층권 연결성 시연 완료…HAPS 상용화에 한 걸음 더 가까이",
+    "link": "https://zdnet.co.kr/view/?no=20260902221003",
+    "desc": "[지디넷코리아] 스카이(Sceye) 서비스 테스트 프로그램 첫 임무, 성층권에서 뉴멕시코부터 일본까지 1만 5000km 넘게 비행…소프트뱅크 코프(SoftBank Corp.)의 코어 네트워크와 백홀 연결, 기기 직접 연결 및 엣지 컴퓨팅 역량과 HAPS 기반 드론 통신 검증 도쿄, 2026년 9월 2일 /PRNewswire/ -- 통신 및 실시간 환경 모니터링용 고고도 플랫폼 시스템(High-Altitude Platform Systems, HA",
+    "comment": "사무실 네트워크와 닿아 있는 소식입니다. 인터넷이 느리다면 회선 탓만은 아닐 수 있습니다.",
+    "blogger": "https://hanbyeolsystem.blogspot.com/2026/09/it-haps.html"
+  },
+  {
+    "date": "2026-09-03",
+    "topic": "security",
+    "img": "https://image.zdnet.co.kr/2026/09/02/f8c9ddf6274a09d6d452c221c90d5593.jpg",
+    "source": "ZDNet Korea",
+    "title": "마크애니, 동남아 최대 테크 컨퍼런스서 글로벌 혁신상 수상",
+    "link": "https://zdnet.co.kr/view/?no=20260902221926",
+    "desc": "[지디넷코리아]정보보안 및 인공지능(AI) 기술 전문기업 마크애니가 태국 방콕 퀸 시리킷 국립 컨벤션 센터(QSNCC)에서 열린 ‘테크소스 글로벌 서밋 2026(Techsauce Global Summit 2026)’ 어워즈에서 기술 부문 혁신상을 수상했다.'테크소스 어워즈 2026'은 기술과 혁신을 통해 비즈니스와 산업, 사회를 발전시킨 전 세계 기업과 개인을 선정해 시상하는 행사다. 올해는 ‘넥스트를 향한 경주(The Race to The N",
+    "comment": "보안 사고는 늘 '우리는 아니겠지' 하는 사무실에서 납니다. 백업과 기본 설정 점검, 미루지 마세요.",
+    "blogger": "https://hanbyeolsystem.blogspot.com/2026/09/it_01074323260.html"
+  },
+  {
+    "date": "2026-09-03",
+    "topic": "ai",
+    "img": "https://zdnet.co.kr/images/default_img.jpg",
+    "source": "ZDNet Korea",
+    "title": "헬피 AI, 존 레고를 최고 재무 책임자로 선임",
+    "link": "https://zdnet.co.kr/view/?no=20260903021002",
+    "desc": "[지디넷코리아] 6개 상장 및 비상장 기업에서 100억 달러가 넘는 자금을 조달한 베테랑 최고 재무 책임자, 헬피 AI의 재무 전략을 주도할 예정 멜버른, 호주, 2026년 9월 3일 /PRNewswire/ -- 모바일을 통해 모두를 위한 맞춤형 검진을 제공함으로써 전 세계 헬스케어를 혁신하는 AI 기반 예방 네트워크인 헬피 AI(Helfie AI, 이하 '헬피')가 9월 2일, 존 레고(John Rego)를 최고 재무 책임자로 선임했다고 발표",
+    "comment": "AI 소식은 많지만 실무에 쓸 수 있는 것은 일부입니다. 사무실에 적용할 만한 것만 골라 소개해 드립니다.",
+    "blogger": "https://hanbyeolsystem.blogspot.com/2026/09/it-ai.html"
+  },
+  {
     "date": "2026-09-02",
     "topic": "nas",
     "img": "https://img.etnews.com/news/article/2026/09/01/news-p.v1.20260901.3dba147d74184fff9c8598dd3552ab65_P1.jpg",
