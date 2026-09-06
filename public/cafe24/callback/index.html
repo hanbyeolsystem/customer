@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cafe24 인증코드</title>
+<style>
+  body{font-family:Pretendard,sans-serif;padding:40px;background:#E8F1FB;color:#06354F}
+  code{font-size:22px;background:#fff;padding:12px 16px;border:1px solid #bcd;display:inline-block;word-break:break-all}
+  p{margin:8px 0}
+</style>
+</head>
+<body>
+<h2>Cafe24 인증코드</h2>
+<p id="msg">code 파라미터가 없습니다.</p>
+<code id="c" hidden></code>
+<script>
+  var q = new URLSearchParams(location.search);
+  var code = (q.get('code') || '').replace(/[^A-Za-z0-9_\-]/g, '');
+  var err = q.get('error');
+  if (code) {
+    document.getElementById('msg').textContent = '아래 코드를 1분 안에 토큰 스크립트에 넣으세요.';
+    var c = document.getElementById('c'); c.textContent = code; c.hidden = false;
+  } else if (err) {
+    document.getElementById('msg').textContent = '오류: ' + err + ' ' + (q.get('error_description') || '');
+  }
+</script>
+</body>
+</html>
