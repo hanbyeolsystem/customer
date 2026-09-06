@@ -70,9 +70,12 @@
   브라우저는 화면에 그리는 글자가 든 조각만 받는다. 실측 홈 437KB(예전 jsDelivr 풀 로드는 6.7MB).
   **jsDelivr `@import` 로 되돌리지 말 것.** `font-display: swap` 유지, 첫 화면용 조각 90·91 은 layout.tsx 에서 preload.
 - `--font-sans` 폴백에 시스템 한글 폰트(Malgun Gothic 등)를 반드시 남길 것. 폰트가 못 와도 한글이 깨지면 안 된다.
-- **글꼴 3종(2026-09-06 사장님 지시)**: 본문 `--font-sans`=Sandoll 고딕Neo3, 제목·상품명 `--font-display`=Sandoll 네모니2(h1~h3 base + `font-display` 유틸),
-  강조 `--font-effect`=네모니2(어비체 대신 확정. `font-effect` 유틸, 히어로 "AI도 회사 안에"). 선언은 `src/app/brand-fonts.css`, 파일은 `public/fonts/brand/`.
-  산돌 폰트는 유료라 파일이 리포에 없다 - 파일이 오거나 산돌구름 웹폰트 `<script>`를 layout.tsx head 에 넣기 전까지는 Pretendard 로 나온다(정상).
+- **사이트 글꼴 = 여기어때 잘난체 고딕(2026-09-06 사장님 확정)**. 처음 지시는 산돌 고딕Neo3(본문)·네모니2(제목)였으나 유료라
+  "무료가 아니면 잘난체 고딕" 으로 대체. `python scripts/build-jalnan.py` 가 공식 zip 을 받아 Pretendard 와 같은 92조각으로 잘라
+  `public/fonts/jalnan/`(687KB) + `src/app/jalnan.css` 를 만든다(손으로 고치지 말 것). 단일 굵기라 `font-weight: 100 900` 으로 선언해 가짜 굵게 없음.
+  토큰: `--font-sans`(본문·mono) / `--font-display`(h1~h3 base, `font-display` 유틸, 상품명) / `--font-effect`(히어로 강조). 지금은 셋 다 잘난체.
+  본문만 가볍게 하려면 `--font-sans` 에서 'Jalnan Gothic' 만 빼면 된다. 잘난체에 없는 글자는 Pretendard 로 내려가므로 Pretendard 는 그대로 둔다.
+  layout.tsx preload 는 잘난체 조각 91·90·89·88.
 - 히어로 배경 영상(2MB)은 **모바일에서 받지 않고**(`minWidth={1024}`) 데스크탑도 첫 페인트 뒤 `requestIdleCallback` 때 받는다.
   포스터(`hero-poster.webp` 57KB)는 항상 즉시. 영상은 장식이라 늦게 떠도 된다.
 

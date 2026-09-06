@@ -3,7 +3,7 @@
    받았다. 지금은 가변 폰트 dynamic subset 이라 화면에 실제로 그리는 글자가 든 조각만 내려온다
    (홈 실측 437KB). 되돌리지 말 것. */
 @import "./pretendard.css";
-@import "./brand-fonts.css";
+@import "./jalnan.css";
 @import "tailwindcss";
 
 /* class 기반 다크모드 (next-themes 호환) */
@@ -38,15 +38,15 @@
   --color-accent:            #D6EEF0;
   --color-accent-foreground: #0A1E33;
 
-  /* 글꼴 3종 (2026-09-06): 본문 Sandoll 고딕Neo3 / 제목·상품명·강조 Sandoll 네모니2.
-     앞의 영문 이름은 self-host(@font-face, brand-fonts.css), 한글 이름은 산돌구름 웹폰트 스크립트용.
-     둘 다 없으면 Pretendard(self-host) -> 시스템 한글 폰트 순으로 내려간다. 폴백을 지우지 말 것. */
-  --font-sans: 'Sandoll GothicNeo3', 'Sandoll 고딕Neo3', 'Pretendard Variable', 'Pretendard',
-    system-ui, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Segoe UI',
-    'Malgun Gothic', 'Noto Sans KR', sans-serif;
+  /* 글꼴 (2026-09-06 사장님 확정): 사이트 전체 = 여기어때 잘난체 고딕(무료, self-host 92조각, jalnan.css).
+     처음 지정한 산돌 고딕Neo3·네모니2 는 유료라 "무료가 아니면 잘난체 고딕" 지시로 대체됐다.
+     잘난체에 없는 글자는 Pretendard(self-host) -> 시스템 한글 폰트 순으로 내려간다. 폴백을 지우지 말 것.
+     본문만 다시 가볍게 하려면 --font-sans 에서 'Jalnan Gothic' 만 빼면 된다(제목·강조는 display/effect 토큰이 맡는다). */
+  --font-sans: 'Jalnan Gothic', 'Pretendard Variable', 'Pretendard', system-ui, -apple-system,
+    BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Segoe UI', 'Malgun Gothic', 'Noto Sans KR', sans-serif;
   --font-mono: var(--font-sans);
-  --font-display: 'Sandoll Nemony2', 'Sandoll 네모니2', var(--font-sans);
-  --font-effect: var(--font-display);  /* 강조도 네모니2 (어비체 대신, 사장님 확정) */
+  --font-display: 'Jalnan Gothic', var(--font-sans);  /* 제목·상품명 */
+  --font-effect: var(--font-display);                  /* 강조(히어로) */
 }
 
 :root {
@@ -74,7 +74,7 @@ html { scroll-behavior: smooth; }
   border-radius: 4px;
 }
 
-/* 제목은 제품 폰트(네모니2). 유틸리티(font-sans 등)가 이기도록 base 층에 둔다 */
+/* 제목은 display 토큰. 유틸리티(font-sans 등)가 이기도록 base 층에 둔다 */
 @layer base {
   h1, h2, h3 { font-family: var(--font-display); }
 }

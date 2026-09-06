@@ -105,18 +105,18 @@ export function Header() {
             priority
             className="h-11 lg:h-12 w-auto object-contain"
           />
-          <span className="text-[10px] font-semibold text-[var(--mute)] tracking-[.15em] hidden xl:block">
+          <span className="text-[10px] font-semibold text-[var(--mute)] tracking-[.15em] hidden 2xl:block">
             HANBYEOL SYSTEM
           </span>
         </Link>
 
         {/* 중앙 메뉴 */}
-        <nav className="hidden xl:flex items-center gap-1 text-[14px] font-semibold text-[var(--ink)]/85">
+        <nav className="hidden xl:flex items-center gap-0 text-[13px] font-semibold text-[var(--ink)]/85 whitespace-nowrap">
           {nav.map((n) => (
             <Link
               key={n.href}
               href={n.href}
-              className="px-3 py-2 rounded-md hover:bg-[var(--panel)] hover:text-hb-blue transition"
+              className="px-1.5 py-2 rounded-md hover:bg-[var(--panel)] hover:text-hb-blue transition"
             >
               {n.label}
             </Link>

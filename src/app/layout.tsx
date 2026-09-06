@@ -204,19 +204,20 @@ const jsonLd = {
   ],
 };
 
-// Pretendard 가변 폰트 dynamic subset 중 가장 많이 쓰는 두 조각(영문·숫자·기호와 빈도 높은 한글)을
-// 미리 받는다. 나머지 90조각은 브라우저가 화면에 그릴 글자를 보고 알아서 받는다.
+// 잘난체 고딕(사이트 기본 글꼴, jalnan.css) dynamic subset 중 첫 화면 히어로 문구가 쓰는 조각
+// (영문·숫자·기호 91, 빈도 높은 한글 90·89·88, 각 6~8KB)을 미리 받는다. 나머지는 브라우저가
+// 화면에 그릴 글자를 보고 알아서 받는다. Pretendard 는 잘난체에 없는 글자에만 쓰이므로 preload 하지 않는다.
 // JSX <link rel="preload"> 로 쓰면 Next 와 React 가 각각 한 번씩 넣어 head 에 두 벌이 생긴다.
 // ReactDOM.preload() 는 한 번만 넣는다.
-// 조각 번호는 scripts/fetch-pretendard.mjs 가 만든 순서 기준이며, 폰트 버전을 올리면
-// 어느 조각이 첫 화면에 필요한지 다시 확인할 것.
-const HERO_FONT_CHUNKS = [91, 90];
+// 조각 번호는 scripts/build-jalnan.py 가 만든 순서(= pretendard.css 범위) 기준이며, 히어로 문구를
+// 바꾸면 어느 조각이 첫 화면에 필요한지 다시 확인할 것.
+const HERO_FONT_CHUNKS = [91, 90, 89, 88];
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   for (const n of HERO_FONT_CHUNKS) {
-    preload(`/fonts/pretendard/PretendardVariable.subset.${n}.woff2`, {
+    preload(`/fonts/jalnan/JalnanGothic.subset.${n}.woff2`, {
       as: "font",
       type: "font/woff2",
       crossOrigin: "anonymous",
