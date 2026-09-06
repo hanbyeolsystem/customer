@@ -1,0 +1,28 @@
+/* 지정 글꼴 3종 (2026-09-06 사장님 지시)
+   말자막(본문)  = Sandoll 고딕Neo3   -> --font-sans / --font-mono
+   제품(제목)    = Sandoll 네모니2    -> --font-display (h1~h3, 상품명)
+   효과(강조)    = 어비체(Uhbee)      -> --font-effect (히어로 강조 문구)
+
+   산돌 폰트는 유료라 리포에 파일이 없다. 붙이는 방법은 둘 중 하나:
+   A) 산돌구름 웹폰트: 산돌구름 > 웹폰트 프로젝트에 한별시스템.kr 등록 -> 받은 <script> 한 줄을
+      layout.tsx <head> 에 넣는다. globals.css 의 글꼴 스택에 'Sandoll 고딕Neo3' 'Sandoll 네모니2'
+      이름이 이미 들어 있어 아래 @font-face 없이도 뜬다.
+   B) 파일 self-host: woff2 를 public/fonts/brand/ 에 아래 이름 그대로 넣는다.
+   둘 다 없으면 Pretendard 로 지금과 똑같이 나온다(한글 안 깨짐). */
+
+/* Sandoll 고딕Neo3 - 본문 6웨이트 (사이트가 실제 쓰는 400~900) */
+@font-face { font-family: 'Sandoll GothicNeo3'; font-weight: 400; font-display: swap; src: url('/fonts/brand/GothicNeo3-400.woff2') format('woff2'); }
+@font-face { font-family: 'Sandoll GothicNeo3'; font-weight: 500; font-display: swap; src: url('/fonts/brand/GothicNeo3-500.woff2') format('woff2'); }
+@font-face { font-family: 'Sandoll GothicNeo3'; font-weight: 600; font-display: swap; src: url('/fonts/brand/GothicNeo3-600.woff2') format('woff2'); }
+@font-face { font-family: 'Sandoll GothicNeo3'; font-weight: 700; font-display: swap; src: url('/fonts/brand/GothicNeo3-700.woff2') format('woff2'); }
+@font-face { font-family: 'Sandoll GothicNeo3'; font-weight: 800; font-display: swap; src: url('/fonts/brand/GothicNeo3-800.woff2') format('woff2'); }
+@font-face { font-family: 'Sandoll GothicNeo3'; font-weight: 900; font-display: swap; src: url('/fonts/brand/GothicNeo3-900.woff2') format('woff2'); }
+
+/* Sandoll 네모니2 - 제목·상품명 (font-bold / extrabold / black 이 주로 쓰임) */
+@font-face { font-family: 'Sandoll Nemony2'; font-weight: 400; font-display: swap; src: url('/fonts/brand/Nemony2-400.woff2') format('woff2'); }
+@font-face { font-family: 'Sandoll Nemony2'; font-weight: 700; font-display: swap; src: url('/fonts/brand/Nemony2-700.woff2') format('woff2'); }
+@font-face { font-family: 'Sandoll Nemony2'; font-weight: 900; font-display: swap; src: url('/fonts/brand/Nemony2-900.woff2') format('woff2'); }
+
+/* 어비체 - 단일 웨이트. 어떤 어비 폰트든 파일명을 Uhbee.woff2(또는 .ttf) 로 넣는다 */
+@font-face { font-family: 'Uhbee'; font-weight: 400; font-display: swap;
+  src: url('/fonts/brand/Uhbee.woff2') format('woff2'), url('/fonts/brand/Uhbee.ttf') format('truetype'); }

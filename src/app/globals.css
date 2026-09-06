@@ -3,6 +3,7 @@
    받았다. 지금은 가변 폰트 dynamic subset 이라 화면에 실제로 그리는 글자가 든 조각만 내려온다
    (홈 실측 437KB). 되돌리지 말 것. */
 @import "./pretendard.css";
+@import "./brand-fonts.css";
 @import "tailwindcss";
 
 /* class 기반 다크모드 (next-themes 호환) */
@@ -37,15 +38,15 @@
   --color-accent:            #D6EEF0;
   --color-accent-foreground: #0A1E33;
 
-  /* 사이트 전체 Pretendard 통일 - mono 토큰도 Pretendard 사용.
-     'Pretendard Variable' 이 self-host 한 가변 폰트, 'Pretendard' 는 이용자 PC 에 설치돼 있을 때.
-     그 뒤는 폰트가 못 오더라도 한글이 깨지지 않게 하는 시스템 폴백이다(윈도우 맑은 고딕까지). */
-  --font-sans: 'Pretendard Variable', 'Pretendard', system-ui, -apple-system,
-    BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Segoe UI', 'Malgun Gothic',
-    'Noto Sans KR', sans-serif;
-  --font-mono: 'Pretendard Variable', 'Pretendard', system-ui, -apple-system,
-    BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Segoe UI', 'Malgun Gothic',
-    'Noto Sans KR', sans-serif;
+  /* 글꼴 3종 (2026-09-06): 본문 Sandoll 고딕Neo3 / 제목·상품명 Sandoll 네모니2 / 강조 어비체.
+     앞의 영문 이름은 self-host(@font-face, brand-fonts.css), 한글 이름은 산돌구름 웹폰트 스크립트용.
+     둘 다 없으면 Pretendard(self-host) -> 시스템 한글 폰트 순으로 내려간다. 폴백을 지우지 말 것. */
+  --font-sans: 'Sandoll GothicNeo3', 'Sandoll 고딕Neo3', 'Pretendard Variable', 'Pretendard',
+    system-ui, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Segoe UI',
+    'Malgun Gothic', 'Noto Sans KR', sans-serif;
+  --font-mono: var(--font-sans);
+  --font-display: 'Sandoll Nemony2', 'Sandoll 네모니2', var(--font-sans);
+  --font-effect: 'Uhbee', var(--font-display);
 }
 
 :root {
@@ -71,6 +72,11 @@ html { scroll-behavior: smooth; }
   outline: 2px solid var(--color-hb-blue);
   outline-offset: 2px;
   border-radius: 4px;
+}
+
+/* 제목은 제품 폰트(네모니2). 유틸리티(font-sans 등)가 이기도록 base 층에 둔다 */
+@layer base {
+  h1, h2, h3 { font-family: var(--font-display); }
 }
 
 body {

@@ -50,7 +50,7 @@ export function RentalShop() {
                 <div className="text-[11px] font-bold text-[var(--mute)] tracking-wider mb-1">
                   {p.category}
                 </div>
-                <div className="text-[13px] lg:text-sm font-extrabold text-[var(--ink)] leading-tight mb-2 line-clamp-2 min-h-[2.5em]">
+                <div className="font-display text-[13px] lg:text-sm font-extrabold text-[var(--ink)] leading-tight mb-2 line-clamp-2 min-h-[2.5em]">
                   {p.name}
                 </div>
                 <div className="flex items-baseline justify-between">

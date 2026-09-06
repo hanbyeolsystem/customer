@@ -41,7 +41,7 @@ export function Hero() {
 
             <h1 className="text-[34px] sm:text-5xl lg:text-[62px] font-black leading-[1.1] tracking-tight mb-7">
               데이터는 회사 안에,<br />
-              <span className="text-hb-azure">AI도 회사 안에</span>
+              <span className="text-hb-azure font-effect">AI도 회사 안에</span>
             </h1>
 
             <p className="text-base lg:text-lg text-white/85 leading-relaxed mb-2 font-medium">
