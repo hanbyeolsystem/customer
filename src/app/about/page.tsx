@@ -6,7 +6,7 @@ import { Icon, type IconName } from "@/components/Icon";
 import { site } from "@/data/site";
 import { coreServices } from "@/data/services";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbLd } from "@/lib/schema";
+import { breadcrumbLd, webPageLd } from "@/lib/schema";
 import { AnswerBlock } from "@/components/AnswerBlock";
 
 export const metadata: Metadata = {
@@ -118,6 +118,7 @@ export default function AboutPage() {
   return (
     <>
       <JsonLd data={breadcrumbLd([{ name: "회사 소개", path: "/about/" }])} />
+      <JsonLd data={webPageLd({ path: "/about/", name: String(metadata.title), description: metadata.description ?? undefined })} />
       {/* 히어로: 홍보영상 배경 + 스크림 위 텍스트.
           높이는 콘텐츠(패딩)로 고정하고 영상은 absolute 라서 로드 전후 레이아웃이 튀지 않는다(CLS 0).
           모바일(<768px)과 prefers-reduced-motion 사용자는 영상을 아예 받지 않고 포스터만 본다. */}

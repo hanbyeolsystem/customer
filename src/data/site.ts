@@ -51,11 +51,12 @@ export const site = {
   // 아이디는 2026-09-01 실측으로 확인한 값이다(추측으로 바꾸지 말 것).
   //  - 네이버 플레이스 1866521598 : 카테고리 IT서비스, 대구 달서구 장동 868-3
   //  - 카카오맵 1828766417        : 053-588-7119, 대구 달서구 장동 868-3 1층
-  // 당근 비즈프로필(내부 ID 2310438)은 공개 웹 주소를 확인하지 못해 넣지 않았다.
-  // 당근 공개 주소는 /kr/local-profile/<이름>-<해시>/ 형태이고 내부 ID 로는 열리지 않는다.
+  //  - 당근 비즈프로필 2310438(관리용 ID) : 공개 주소는 아래 local-profile 해시(2026-09-07 장동 검색으로 실측).
+  //    같은 이름의 다른 프로필(…-gxeidaign72h, 전화번호 없음)은 우리 것이 아니니 바꾸지 말 것.
   listings: {
     naverPlace: "https://map.naver.com/p/entry/place/1866521598",
     kakaoPlace: "https://place.map.kakao.com/1828766417",
+    daangnProfile: "https://www.daangn.com/kr/local-profile/%ED%95%9C%EB%B3%84%EC%8B%9C%EC%8A%A4%ED%85%9C-8mzu5s16he1z/",
   },
 
   // 한별시스템이 직접 운영하는 다른 사이트. LocalBusiness.sameAs 에 들어가

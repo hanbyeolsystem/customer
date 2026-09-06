@@ -105,6 +105,8 @@ export function Footer() {
                 <a href={site.listings.kakaoPlace} target="_blank" rel="noopener" className="hover:text-white transition">카카오맵</a>
                 <span className="text-slate-700">·</span>
                 <a href={site.social.googleMaps} target="_blank" rel="noopener" className="hover:text-white transition">구글 지도</a>
+                <span className="text-slate-700">·</span>
+                <a href={site.listings.daangnProfile} target="_blank" rel="noopener" className="hover:text-white transition">당근 동네업체</a>
               </div>
             </div>
           </div>

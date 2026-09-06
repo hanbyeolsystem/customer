@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { metaDescription } from "@/lib/utils";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/PageHeader";
@@ -20,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ logNo: st
   if (!p) return {};
   return {
     title: p.title,
-    description: `${p.title} - ${p.excerpt}`.slice(0, 155),
+    description: metaDescription(`${p.title} - ${p.excerpt}`, "한별시스템 현장 블로그, 대구·경북 NAS·복합기·전산 설치 기록."),
     alternates: { canonical: `/blog/${logNo}/` },
     openGraph: p.thumb ? { images: [{ url: p.thumb }] } : undefined,
   };

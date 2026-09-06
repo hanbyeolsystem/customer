@@ -5,6 +5,7 @@ import { AnswerBlock } from "@/components/AnswerBlock";
 import { FaqSection } from "@/components/FaqSection";
 import { Icon, type IconName } from "@/components/Icon";
 import { businessId, site } from "@/data/site";
+import { isoDateTime, pageUpdatedAt } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "연락처·찾아오시는 길 - 대구 달서구 한별시스템 053-588-7119",
@@ -27,6 +28,8 @@ const jsonLd = {
       about: { "@id": businessId },
       mainEntity: { "@id": businessId },
       isPartOf: { "@id": `${site.url}/#website` },
+      // 갱신일은 git 커밋 날짜(lastmod.json). 모르면 내보내지 않는다.
+      ...(pageUpdatedAt("/contact/") ? { dateModified: isoDateTime(pageUpdatedAt("/contact/")!) } : {}),
     },
     {
       "@type": "BreadcrumbList",

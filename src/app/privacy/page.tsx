@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbLd } from "@/lib/schema";
+import { breadcrumbLd, webPageLd } from "@/lib/schema";
 import { site } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -105,6 +105,7 @@ export default function PrivacyPage() {
   return (
     <>
       <JsonLd data={breadcrumbLd([{ name: "개인정보처리방침", path: "/privacy/" }])} />
+      <JsonLd data={webPageLd({ path: "/privacy/", name: String(metadata.title), description: metadata.description ?? undefined })} />
       <PageHeader badge={`시행일 ${EFFECTIVE.replace(/-/g, ".")}`} title="개인정보처리방침" description="한별시스템이 상담·견적·AS 접수 과정에서 받는 개인정보를 어떻게 다루는지 안내합니다." />
       <section className="py-10 lg:py-14 bg-[var(--bg)]">
         <div className="max-w-3xl mx-auto px-4 lg:px-6">

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { AsForm } from "./AsForm";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbLd } from "@/lib/schema";
+import { breadcrumbLd, webPageLd } from "@/lib/schema";
 import { AnswerBlock } from "@/components/AnswerBlock";
 
 // 폼 본체는 클라이언트 컴포넌트(AsForm)로 분리했다.
@@ -17,6 +17,7 @@ export default function AsPage() {
   return (
     <>
       <JsonLd data={breadcrumbLd([{ name: "고객지원", path: "/support/" }, { name: "AS 접수", path: "/support/as/" }])} />
+      <JsonLd data={webPageLd({ path: "/support/as/", name: String(metadata.title), description: metadata.description ?? undefined })} />
       <AsForm />
       <AnswerBlock
         question="AS 접수는 어떻게 진행되나요?"

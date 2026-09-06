@@ -4,7 +4,7 @@ import { CommunityBoard } from "@/components/CommunityBoard";
 import { InfoCards } from "@/components/sections/InfoCards";
 import { AnswerBlock } from "@/components/AnswerBlock";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbLd } from "@/lib/schema";
+import { breadcrumbLd, webPageLd } from "@/lib/schema";
 import { site } from "@/data/site";
 import type { Post } from "@/components/CommunityBoard";
 
@@ -37,6 +37,7 @@ export default async function CommunityPage() {
   return (
     <>
       <JsonLd data={breadcrumbLd([{ name: "커뮤니티", path: "/community/" }])} />
+      <JsonLd data={webPageLd({ path: "/community/", name: String(metadata.title), description: metadata.description ?? undefined })} />
       <PageHeader
         badge="COMMUNITY"
         title="무엇이든 물어보세요"

@@ -4,7 +4,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { JsonLd } from "@/components/JsonLd";
 import { guideCats, guides } from "@/data/guides";
 import { businessId, site } from "@/data/site";
-import { breadcrumbLd, isoDateTime } from "@/lib/schema";
+import { breadcrumbLd, isoDateTime, webPageLd } from "@/lib/schema";
 import { AnswerBlock } from "@/components/AnswerBlock";
 
 export const metadata: Metadata = {
@@ -40,6 +40,7 @@ export default function GuideIndexPage() {
   return (
     <>
       <JsonLd data={breadcrumbLd([{ name: "가이드", path: "/guide/" }])} />
+      <JsonLd data={webPageLd({ path: "/guide/", name: String(metadata.title), description: metadata.description ?? undefined })} />
       <JsonLd data={jsonLd} />
       <PageHeader
         badge="GUIDE · 표로 보는 판단 기준"

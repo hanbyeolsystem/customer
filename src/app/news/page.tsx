@@ -4,7 +4,7 @@ import { NewsBrowser } from "@/components/NewsBrowser";
 import newsData from "@/data/news.json";
 import { dedash } from "@/lib/utils";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbLd } from "@/lib/schema";
+import { breadcrumbLd, webPageLd } from "@/lib/schema";
 import { AnswerBlock } from "@/components/AnswerBlock";
 
 export const metadata: Metadata = {
@@ -38,6 +38,7 @@ export default function NewsPage() {
   return (
     <>
       <JsonLd data={breadcrumbLd([{ name: "IT 새소식", path: "/news/" }])} />
+      <JsonLd data={webPageLd({ path: "/news/", name: String(metadata.title), description: metadata.description ?? undefined })} />
       <PageHeader
         badge="NEWS"
         title="IT 새소식"

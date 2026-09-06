@@ -3,12 +3,12 @@ import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { embedHref } from "@/lib/embed";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbLd } from "@/lib/schema";
+import { breadcrumbLd, webPageLd } from "@/lib/schema";
 import { AnswerBlock } from "@/components/AnswerBlock";
 
 export const metadata: Metadata = {
   title: "프린터 드라이버 다운로드",
-  description: "복합기·프린터 드라이버를 기종만 고르면 자동으로 설치해 주는 딸깍P드라이버를 한별 드라이버 센터(882.kr)에서 무료로 받을 수 있습니다. 거래처 프로필 저장·IP 자동보정 방식의 딸깍설치는 특허 출원중(제10-2026-0162666호)입니다. 제조사 공식 지원 페이지 링크도 함께 정리했습니다.",
+  description: "복합기·프린터 드라이버를 기종만 고르면 자동으로 설치해 주는 딸깍P드라이버를 한별 드라이버 센터(882.kr)에서 무료로 받을 수 있습니다. 딸깍설치 기술은 특허 출원중이며, 제조사 공식 지원 페이지 링크도 함께 정리했습니다.",
   alternates: { canonical: "/support/drivers/" },
 };
 
@@ -28,6 +28,7 @@ export default function DriversPage() {
   return (
     <>
       <JsonLd data={breadcrumbLd([{ name: "고객지원", path: "/support/" }, { name: "드라이버 다운로드", path: "/support/drivers/" }])} />
+      <JsonLd data={webPageLd({ path: "/support/drivers/", name: String(metadata.title), description: metadata.description ?? undefined })} />
       <PageHeader
         badge="DRIVERS"
         title="드라이버 다운로드"

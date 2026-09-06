@@ -155,6 +155,7 @@ const jsonLd = {
         // 지도·플레이스 등재(네이버·카카오). 구글 지도와 함께 세 지도에서 같은 회사로 묶인다.
         site.listings.naverPlace,
         site.listings.kakaoPlace,
+        site.listings.daangnProfile,
         // 한별시스템이 직접 운영하는 다른 사이트들. 같은 회사임을 검색·AI 가 알게 한다.
         ...site.owned,
       ],
@@ -204,20 +205,26 @@ const jsonLd = {
   ],
 };
 
-// 잘난체 고딕(사이트 기본 글꼴, jalnan.css) dynamic subset 중 첫 화면 히어로 문구가 쓰는 조각
-// (영문·숫자·기호 91, 빈도 높은 한글 90·89·88, 각 6~8KB)을 미리 받는다. 나머지는 브라우저가
-// 화면에 그릴 글자를 보고 알아서 받는다. Pretendard 는 잘난체에 없는 글자에만 쓰이므로 preload 하지 않는다.
+// 첫 화면이 쓰는 폰트 조각을 미리 받는다(각 6~8KB). 히어로 제목(h1)은 잘난체 고딕(jalnan.css) 조각 91·90·89,
+// 본문·버튼은 Pretendard(pretendard.css) 조각 91·90(영문·숫자·기호와 빈도 높은 한글). 나머지는 브라우저가
+// 화면에 그릴 글자를 보고 알아서 받는다.
 // JSX <link rel="preload"> 로 쓰면 Next 와 React 가 각각 한 번씩 넣어 head 에 두 벌이 생긴다.
 // ReactDOM.preload() 는 한 번만 넣는다.
-// 조각 번호는 scripts/build-jalnan.py 가 만든 순서(= pretendard.css 범위) 기준이며, 히어로 문구를
-// 바꾸면 어느 조각이 첫 화면에 필요한지 다시 확인할 것.
-const HERO_FONT_CHUNKS = [91, 90, 89, 88];
+// 조각 번호는 두 폰트가 같은 unicode-range 순서(scripts/fetch-pretendard.mjs = scripts/build-jalnan.py)라 같이 쓴다.
+// 히어로 문구를 바꾸면 어느 조각이 첫 화면에 필요한지 다시 확인할 것.
+const HERO_FONT_CHUNKS: Array<[string, number]> = [
+  ["/fonts/jalnan/JalnanGothic.subset", 91],
+  ["/fonts/jalnan/JalnanGothic.subset", 90],
+  ["/fonts/jalnan/JalnanGothic.subset", 89],
+  ["/fonts/pretendard/PretendardVariable.subset", 91],
+  ["/fonts/pretendard/PretendardVariable.subset", 90],
+];
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  for (const n of HERO_FONT_CHUNKS) {
-    preload(`/fonts/jalnan/JalnanGothic.subset.${n}.woff2`, {
+  for (const [base, n] of HERO_FONT_CHUNKS) {
+    preload(`${base}.${n}.woff2`, {
       as: "font",
       type: "font/woff2",
       crossOrigin: "anonymous",

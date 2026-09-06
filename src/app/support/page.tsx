@@ -5,7 +5,7 @@ import { Icon, type IconName } from "@/components/Icon";
 import { AnswerBlock } from "@/components/AnswerBlock";
 import { FaqSection } from "@/components/FaqSection";
 import { JsonLd } from "@/components/JsonLd";
-import { serviceId, serviceLd } from "@/lib/schema";
+import { serviceId, serviceLd, webPageLd } from "@/lib/schema";
 import { site } from "@/data/site";
 import { breadcrumbLd } from "@/lib/schema";
 
@@ -48,6 +48,7 @@ export default function SupportHub() {
   return (
     <>
       <JsonLd data={breadcrumbLd([{ name: "고객지원", path: "/support/" }])} />
+      <JsonLd data={webPageLd({ path: "/support/", name: String(metadata.title), description: metadata.description ?? undefined })} />
       <JsonLd data={serviceJsonLd} />
       <PageHeader
         badge="CUSTOMER SUPPORT"

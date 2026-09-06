@@ -23,7 +23,7 @@ import {
 
 export const metadata: Metadata = {
   title: "대구 NAS 판매 - 시놀로지 공식 대리점 정품 구매·견적",
-  description: `대구 NAS 판매. 시놀로지 공식 대리점 한별시스템이 DS225+·DS425+·DS925+·DS1525+·DS1825+·RS2421+ 정품을 판매·납품합니다. 본체 ${won(bodyLow)}부터, 하드 구성과 출장 설치까지 ${won(BUY_FROM)}부터(VAT 별도). 통신판매업신고 제2010-대구달서-0190호. 053-588-7119.`,
+  description: `대구 NAS 판매. 시놀로지 공식 대리점 한별시스템이 DS225+·DS925+·DS1825+·RS2421+ 정품을 판매·납품합니다. 본체 ${won(bodyLow)}부터, 하드 구성과 출장 설치까지 ${won(BUY_FROM)}부터(VAT 별도). 053-588-7119.`,
   alternates: { canonical: "/nas/buy/" },
 };
 

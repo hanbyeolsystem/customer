@@ -5,7 +5,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { products, RENTAL_SHOP_URL } from "@/data/products";
 import { embedHref } from "@/lib/embed";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbLd } from "@/lib/schema";
+import { breadcrumbLd, webPageLd } from "@/lib/schema";
 import { AnswerBlock } from "@/components/AnswerBlock";
 
 export const metadata: Metadata = {
@@ -18,6 +18,7 @@ export default function ShopPage() {
   return (
     <>
       <JsonLd data={breadcrumbLd([{ name: "임대 쇼핑몰", path: "/shop/" }])} />
+      <JsonLd data={webPageLd({ path: "/shop/", name: String(metadata.title), description: metadata.description ?? undefined })} />
       <PageHeader
         badge="RENTAL SHOP"
         title="임대 쇼핑몰"

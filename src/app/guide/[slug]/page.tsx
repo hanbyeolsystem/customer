@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { metaDescription } from "@/lib/utils";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/PageHeader";
@@ -23,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: g.title,
     // 검색결과에서 잘리지 않게 155자 안으로. lead 가 짧으면 answer 첫 문장으로 채운다.
-    description: (g.lead.length >= 110 ? g.lead : `${g.lead} ${g.answer.split(". ")[0]}.`).slice(0, 155),
+    description: metaDescription(g.lead.length >= 110 ? g.lead : `${g.lead} ${g.answer.split(". ")[0]}.`, "한별시스템 가이드, 비교표로 정리한 사무실 IT 판단 기준."),
     alternates: { canonical: `/guide/${slug}/` },
   };
 }

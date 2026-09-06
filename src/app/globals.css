@@ -38,14 +38,15 @@
   --color-accent:            #D6EEF0;
   --color-accent-foreground: #0A1E33;
 
-  /* 글꼴 (2026-09-06 사장님 확정): 사이트 전체 = 여기어때 잘난체 고딕(무료, self-host 92조각, jalnan.css).
+  /* 글꼴 (2026-09-07 사장님 확정): 본문 = Pretendard, 제목·상품명·강조 = 여기어때 잘난체 고딕(무료, self-host 92조각, jalnan.css).
+     잘난체는 굵기가 하나뿐인 제목용이라 본문까지 넣으면 전부 굵게 보여 "본문은 가볍게" 지시로 본문만 Pretendard 로 되돌렸다.
      처음 지정한 산돌 고딕Neo3·네모니2 는 유료라 "무료가 아니면 잘난체 고딕" 지시로 대체됐다.
      잘난체에 없는 글자는 Pretendard(self-host) -> 시스템 한글 폰트 순으로 내려간다. 폴백을 지우지 말 것.
-     본문만 다시 가볍게 하려면 --font-sans 에서 'Jalnan Gothic' 만 빼면 된다(제목·강조는 display/effect 토큰이 맡는다). */
-  --font-sans: 'Jalnan Gothic', 'Pretendard Variable', 'Pretendard', system-ui, -apple-system,
+     본문까지 잘난체로 하려면 --font-sans 맨 앞에 'Jalnan Gothic' 을 넣으면 된다. */
+  --font-sans: 'Pretendard Variable', 'Pretendard', system-ui, -apple-system,
     BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Segoe UI', 'Malgun Gothic', 'Noto Sans KR', sans-serif;
   --font-mono: var(--font-sans);
-  --font-display: 'Jalnan Gothic', var(--font-sans);  /* 제목·상품명 */
+  --font-display: 'Jalnan Gothic', var(--font-sans);  /* 제목(h1~h3)·상품명 */
   --font-effect: var(--font-display);                  /* 강조(히어로) */
 }
 

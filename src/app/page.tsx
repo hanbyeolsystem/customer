@@ -8,6 +8,9 @@ import { BlogFeed } from "@/components/sections/BlogFeed";
 import { OfficialChannels } from "@/components/sections/OfficialChannels";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/JsonLd";
+import { webPageLd } from "@/lib/schema";
+import { businessId } from "@/data/site";
 
 // 홈 타이틀에 지역을 넣는다. "한별시스템" 단독 검색은 동명의 서울 에어커튼 업체가 상위를
 // 차지하고 있어, 지역+서비스 조합("대구 나스", "대구 복합기 렌탈")이 실제 유입 경로다.
@@ -21,6 +24,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
+      <JsonLd data={webPageLd({ path: "/", name: "한별시스템 - 대구 기업 데이터 관리·NAS 구축·사내 AI 도입", mainEntityId: businessId })} />
       <Hero />
       <QuickService />
       <CoreServices />

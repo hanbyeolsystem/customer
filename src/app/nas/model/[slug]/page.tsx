@@ -6,6 +6,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { AnswerBlock } from "@/components/AnswerBlock";
 import { FaqSection } from "@/components/FaqSection";
 import { JsonLd } from "@/components/JsonLd";
+import { webPageLd } from "@/lib/schema";
 import { caseBySlug } from "@/data/cases";
 import { businessId, site } from "@/data/site";
 import {
@@ -133,6 +134,7 @@ export default async function NasModelPage({ params }: { params: Promise<{ slug:
   return (
     <>
       <JsonLd data={jsonLd} />
+      <JsonLd data={webPageLd({ path: `/nas/model/${m.slug}/`, name: `시놀로지 ${m.model} 설치`, mainEntityId: `${pageUrl}#product` })} />
       <PageHeader
         badge={`SYNOLOGY ${m.model} · ${m.bayLabel} ${m.form}`}
         title={`시놀로지 ${m.model} 설치`}

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbLd } from "@/lib/schema";
+import { breadcrumbLd, webPageLd } from "@/lib/schema";
 import { site } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -101,6 +101,7 @@ export default function TermsPage() {
   return (
     <>
       <JsonLd data={breadcrumbLd([{ name: "이용약관", path: "/terms/" }])} />
+      <JsonLd data={webPageLd({ path: "/terms/", name: String(metadata.title), description: metadata.description ?? undefined })} />
       <PageHeader badge={`시행일 ${EFFECTIVE.replace(/-/g, ".")}`} title="이용약관" description="웹사이트와 상담·견적·AS 접수 서비스 이용 조건입니다." />
       <section className="py-10 lg:py-14 bg-[var(--bg)]">
         <div className="max-w-3xl mx-auto px-4 lg:px-6">

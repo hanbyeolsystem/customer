@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { metaDescription } from "@/lib/utils";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/PageHeader";
@@ -61,7 +62,7 @@ export async function generateMetadata({ params }: { params: Promise<{ cat: stri
   const n = qna.filter((q) => q.cat === cat).length;
   return {
     title: `${intro.title} ${n}문항`,
-    description: intro.desc.slice(0, 155),
+    description: metaDescription(intro.desc, `한별시스템 Q&A ${n}문항, 실제 현장 기준 즉답.`),
     alternates: { canonical: `/qna/cat/${cat}/` },
   };
 }

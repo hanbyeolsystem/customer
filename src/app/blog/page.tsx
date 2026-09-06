@@ -3,7 +3,7 @@ import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { AnswerBlock } from "@/components/AnswerBlock";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbLd, isoDateTime } from "@/lib/schema";
+import { breadcrumbLd, isoDateTime, webPageLd } from "@/lib/schema";
 import { naverCats, naverPosts } from "@/data/naver-posts";
 import { businessId, site } from "@/data/site";
 
@@ -41,6 +41,7 @@ export default function BlogPage() {
     <>
       <JsonLd data={jsonLd} />
       <JsonLd data={breadcrumbLd([{ name: "현장 블로그", path: "/blog/" }])} />
+      <JsonLd data={webPageLd({ path: "/blog/", name: String(metadata.title), description: metadata.description ?? undefined })} />
       <PageHeader badge={`BLOG · ${naverPosts.length}편`} title="현장 블로그" description="대구·경북 사무실에 시놀로지 NAS와 복합기를 설치하며 겪은 현장 이야기. 사진과 본문을 그대로 실었습니다." />
       <AnswerBlock
         question="한별시스템 현장 블로그에는 어떤 글이 있나요?"

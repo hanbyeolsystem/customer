@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { metaDescription } from "@/lib/utils";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/PageHeader";
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!f) return {};
   return {
     title: f.q,
-    description: f.a.slice(0, 150),
+    description: metaDescription(f.a),
     alternates: { canonical: `/qna/${slug}/` },
   };
 }

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { site } from "@/data/site";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbLd } from "@/lib/schema";
+import { breadcrumbLd, webPageLd } from "@/lib/schema";
 import { AnswerBlock } from "@/components/AnswerBlock";
 
 export const metadata: Metadata = {
@@ -25,6 +25,7 @@ export default function RemoteSupportPage() {
   return (
     <>
       <JsonLd data={breadcrumbLd([{ name: "고객지원", path: "/support/" }, { name: "원격 지원", path: "/support/remote/" }])} />
+      <JsonLd data={webPageLd({ path: "/support/remote/", name: String(metadata.title), description: metadata.description ?? undefined })} />
       <PageHeader
         badge="REMOTE SUPPORT"
         title="원격 지원 즉시 연결"

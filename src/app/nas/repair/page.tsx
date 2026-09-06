@@ -5,7 +5,7 @@ import { AnswerBlock } from "@/components/AnswerBlock";
 import { FaqSection } from "@/components/FaqSection";
 import { site } from "@/data/site";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbLd } from "@/lib/schema";
+import { breadcrumbLd, webPageLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "대구 NAS 수리 - 시놀로지 점검·하드 교체 문의",
@@ -97,6 +97,7 @@ export default function NasRepairPage() {
   return (
     <>
       <JsonLd data={breadcrumbLd([{ name: "NAS 솔루션", path: "/nas/" }, { name: "NAS 수리·점검", path: "/nas/repair/" }])} />
+      <JsonLd data={webPageLd({ path: "/nas/repair/", name: String(metadata.title), description: metadata.description ?? undefined })} />
       <PageHeader
         badge="NAS REPAIR · 대구·경북 현장 출장"
         title="NAS가 고장 났습니다"

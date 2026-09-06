@@ -21,9 +21,18 @@ export function serviceId(path: string) {
 
 const lastmodMap: Record<string, string> = lastmod;
 
-/** 갱신일 ISO 문자열("2026-08-28T20:52:46+09:00"). 모르면 undefined. */
+/** 갱신일 ISO 문자열("2026-08-28T20:52:46+09:00"). 모르면 undefined.
+ *  동적 페이지(/cases/x/, /nas/model/x/)는 lastmod.json 에 개별 항목이 없으므로
+ *  사이트맵과 같은 규칙으로 가장 가까운 상위 경로("/cases/", "/nas/model/")의 날짜를 쓴다. */
 export function pageUpdatedAt(path: string) {
-  return lastmodMap[path];
+  if (lastmodMap[path]) return lastmodMap[path];
+  let p = path;
+  while (p.length > 1) {
+    p = p.replace(/[^/]+\/$/, "");
+    if (lastmodMap[p]) return lastmodMap[p];
+    if (p === "/") break;
+  }
+  return undefined;
 }
 
 /** 화면에 쓸 갱신일 "2026-08-28". 모르면 undefined. */

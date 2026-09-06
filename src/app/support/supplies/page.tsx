@@ -4,7 +4,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { AnswerBlock } from "@/components/AnswerBlock";
 import { FaqSection } from "@/components/FaqSection";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbLd } from "@/lib/schema";
+import { breadcrumbLd, webPageLd } from "@/lib/schema";
 import { site } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -51,6 +51,7 @@ export default function SuppliesPage() {
   return (
     <>
       <JsonLd data={breadcrumbLd([{ name: "고객지원", path: "/support/" }, { name: "토너·소모품 주문", path: "/support/supplies/" }])} />
+      <JsonLd data={webPageLd({ path: "/support/supplies/", name: String(metadata.title), description: metadata.description ?? undefined })} />
       <PageHeader badge="SUPPLIES" title="토너·소모품 주문" description="기종만 알려 주시면 맞는 제품을 찾아 드립니다. 임대 고객은 주문하실 일이 없습니다." back="/support" backLabel="고객지원" />
 
       <AnswerBlock

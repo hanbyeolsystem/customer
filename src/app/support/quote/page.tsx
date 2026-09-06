@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { QuoteForm } from "./QuoteForm";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbLd } from "@/lib/schema";
+import { breadcrumbLd, webPageLd } from "@/lib/schema";
 import { AnswerBlock } from "@/components/AnswerBlock";
 
 // 폼 본체는 클라이언트 컴포넌트(QuoteForm)로 분리했다.
@@ -17,6 +17,7 @@ export default function QuotePage() {
   return (
     <>
       <JsonLd data={breadcrumbLd([{ name: "고객지원", path: "/support/" }, { name: "무료 방문 견적", path: "/support/quote/" }])} />
+      <JsonLd data={webPageLd({ path: "/support/quote/", name: String(metadata.title), description: metadata.description ?? undefined })} />
       <QuoteForm />
       <AnswerBlock
         question="방문 견적은 정말 무료인가요?"
