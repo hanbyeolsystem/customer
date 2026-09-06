@@ -71,7 +71,7 @@
   **jsDelivr `@import` 로 되돌리지 말 것.** `font-display: swap` 유지, 첫 화면용 조각 90·91 은 layout.tsx 에서 preload.
 - `--font-sans` 폴백에 시스템 한글 폰트(Malgun Gothic 등)를 반드시 남길 것. 폰트가 못 와도 한글이 깨지면 안 된다.
 - **글꼴 3종(2026-09-06 사장님 지시)**: 본문 `--font-sans`=Sandoll 고딕Neo3, 제목·상품명 `--font-display`=Sandoll 네모니2(h1~h3 base + `font-display` 유틸),
-  강조 `--font-effect`=어비체(`font-effect` 유틸, 히어로 "AI도 회사 안에"). 선언은 `src/app/brand-fonts.css`, 파일은 `public/fonts/brand/`.
+  강조 `--font-effect`=네모니2(어비체 대신 확정. `font-effect` 유틸, 히어로 "AI도 회사 안에"). 선언은 `src/app/brand-fonts.css`, 파일은 `public/fonts/brand/`.
   산돌 폰트는 유료라 파일이 리포에 없다 - 파일이 오거나 산돌구름 웹폰트 `<script>`를 layout.tsx head 에 넣기 전까지는 Pretendard 로 나온다(정상).
 - 히어로 배경 영상(2MB)은 **모바일에서 받지 않고**(`minWidth={1024}`) 데스크탑도 첫 페인트 뒤 `requestIdleCallback` 때 받는다.
   포스터(`hero-poster.webp` 57KB)는 항상 즉시. 영상은 장식이라 늦게 떠도 된다.

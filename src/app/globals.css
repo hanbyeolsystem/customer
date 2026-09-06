@@ -38,7 +38,7 @@
   --color-accent:            #D6EEF0;
   --color-accent-foreground: #0A1E33;
 
-  /* 글꼴 3종 (2026-09-06): 본문 Sandoll 고딕Neo3 / 제목·상품명 Sandoll 네모니2 / 강조 어비체.
+  /* 글꼴 3종 (2026-09-06): 본문 Sandoll 고딕Neo3 / 제목·상품명·강조 Sandoll 네모니2.
      앞의 영문 이름은 self-host(@font-face, brand-fonts.css), 한글 이름은 산돌구름 웹폰트 스크립트용.
      둘 다 없으면 Pretendard(self-host) -> 시스템 한글 폰트 순으로 내려간다. 폴백을 지우지 말 것. */
   --font-sans: 'Sandoll GothicNeo3', 'Sandoll 고딕Neo3', 'Pretendard Variable', 'Pretendard',
@@ -46,7 +46,7 @@
     'Malgun Gothic', 'Noto Sans KR', sans-serif;
   --font-mono: var(--font-sans);
   --font-display: 'Sandoll Nemony2', 'Sandoll 네모니2', var(--font-sans);
-  --font-effect: 'Uhbee', var(--font-display);
+  --font-effect: var(--font-display);  /* 강조도 네모니2 (어비체 대신, 사장님 확정) */
 }
 
 :root {
