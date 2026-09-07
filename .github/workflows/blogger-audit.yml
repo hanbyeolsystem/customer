@@ -9,6 +9,9 @@ on:
       check_images:
         description: "true = 사진 링크 생존 확인 (느림, 수천 개)"
         default: "true"
+  # 수동 실행 권한이 없는 도구(Claude 세션 등)용: 커밋 메시지에 [blogger-audit] 또는 [blogger-audit fix] 를 넣어 push 하면 돈다
+  push:
+    branches: ["**"]
 
 permissions:
   contents: write
@@ -19,6 +22,7 @@ concurrency:
 
 jobs:
   audit:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[blogger-audit')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -33,14 +37,19 @@ jobs:
           GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
           GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
           BLOGGER_BLOG_ID: ${{ secrets.BLOGGER_BLOG_ID }}
+          HEAD_MSG: ${{ github.event.head_commit.message }}
         run: |
           if [ -z "$GOOGLE_REFRESH_TOKEN" ]; then
             echo "::error::Blogger secrets 미설정"
             exit 1
           fi
+          MODE="${{ github.event.inputs.mode || 'report' }}"
+          case "$HEAD_MSG" in *"[blogger-audit fix]"*) MODE=fix ;; esac
+          echo "MODE=$MODE" >> "$GITHUB_ENV"
           ARGS=""
-          [ "${{ github.event.inputs.mode }}" = "fix" ] && ARGS="$ARGS --fix"
+          [ "$MODE" = "fix" ] && ARGS="$ARGS --fix"
           [ "${{ github.event.inputs.check_images }}" = "false" ] && ARGS="$ARGS --no-img"
+          echo "mode=$MODE args=$ARGS"
           node scripts/blogger-audit.mjs $ARGS
 
       - name: Upload report
@@ -51,7 +60,7 @@ jobs:
           path: scripts/blogger-audit-report.json
 
       - name: Commit state file (fix 모드)
-        if: github.event.inputs.mode == 'fix'
+        if: env.MODE == 'fix'
         run: |
           if git diff --quiet scripts/blogger-state.json 2>/dev/null; then
             echo "state 변경 없음"
