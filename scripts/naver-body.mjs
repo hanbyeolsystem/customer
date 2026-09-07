@@ -9,6 +9,17 @@ const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) hanbyeol-crosspost/1.0";
 
 // 네이버 사진 주소 정리: blogfiles.pstatic.net 은 외부(블로거)에서 불러오면 403 이 난다(2026-09-07 실측).
 // 같은 경로를 postfiles.pstatic.net + ?type=w966 으로 바꾸면 열린다.
+// 같은 파일을 가리키는 후보 주소들(살아있는 것을 골라 쓴다). 사이트 가져오기(naver-import)는 mblogthumb-phinf 호스트를 쓴다(1,500장 실측 정상).
+export function pstaticCandidates(src) {
+  const base = fixPstaticUrl(src);
+  const out = [base];
+  for (const host of ["mblogthumb-phinf.pstatic.net", "postfiles.pstatic.net"]) {
+    const u = base.replace(/^https:\/\/[^/]+\//, `https://${host}/`);
+    if (!out.includes(u)) out.push(u);
+  }
+  return out.filter((u) => u !== src.replace(/&amp;/g, "&"));
+}
+
 export function fixPstaticUrl(src) {
   let u = String(src || "").replace(/&amp;/g, "&");
   if (!/pstatic\.net/.test(u)) return u;

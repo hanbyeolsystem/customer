@@ -18,7 +18,7 @@ import { readFileSync, writeFileSync, existsSync, appendFileSync } from "node:fs
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { getAccessToken, updatePost, deletePost, withBackoff, sleep } from "./blogger-lib.mjs";
-import { fetchPostBody, siteFooter, footerLogNo, fixPstaticUrl } from "./naver-body.mjs";
+import { fetchPostBody, siteFooter, footerLogNo, pstaticCandidates } from "./naver-body.mjs";
 import { COLUMNS } from "./blog-columns-data.mjs";
 
 const DIR = dirname(fileURLToPath(import.meta.url));
@@ -220,10 +220,19 @@ for (const p of posts) {
 
 // 깨진 네이버 사진은 postfiles 호스트로 바꾸면 열리는지 확인해 둔다(보고서에도 "복구 가능" 으로 표시)
 const repairable = new Map(); // 깨진 src → 살아있는 대체 src
+const imgDiag = []; // 보고서에 붙일 후보 확인 결과
 if (CHECK_IMG) {
   const cands = [...new Set(broken.flatMap((b) => (b.problems.find((p) => p.code === "img")?.raw || []).map(([s]) => s)))]
-    .filter((s) => /pstatic\.net/.test(s) && fixPstaticUrl(s) !== s);
-  await mapLimit(cands, 6, async (s) => { if (!(await checkImage(fixPstaticUrl(s)))) repairable.set(s, fixPstaticUrl(s)); });
+    .filter((s) => /pstatic\.net/.test(s));
+  await mapLimit(cands, 4, async (s) => {
+    const tried = [];
+    for (const u of pstaticCandidates(s)) {
+      const r = await checkImage(u);
+      tried.push(`${r || "OK"} ${u.replace(/^https:\/\//, "").slice(0, 60)}`);
+      if (!r) { repairable.set(s, u); break; }
+    }
+    imgDiag.push(`- 깨진 네이버 사진 ${s}\n  - 후보: ${tried.join(" | ") || "없음"}`);
+  });
   for (const b of broken) {
     const pr = b.problems.find((p) => p.code === "img");
     if (!pr) continue;
@@ -269,6 +278,7 @@ for (const b of broken) {
     for (const i of pr.imgs || []) lines.push(`      - ${i}`);
   }
 }
+if (imgDiag.length) lines.push(`- 깨진 네이버 사진 대체 주소 확인 (${repairable.size}/${imgDiag.length}장 복구 가능)`, ...imgDiag);
 lines.push(`- 상태파일에 기록 안 된 설치후기 발행글 ${unrecorded.length}건 (다음 크로스포스트 때 또 올라갈 수 있는 글)`);
 for (const u of unrecorded.slice(0, 30)) lines.push(`  - ${u.logNo} ${u.title.slice(0, 40)} → ${u.url}${u.stateUrl ? ` (상태파일: ${u.stateUrl})` : ""}`);
 lines.push(`- 상태파일에는 있는데 블로거에 없는 글 ${missing.length}건`);
