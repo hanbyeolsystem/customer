@@ -200,6 +200,13 @@
   - **sharp 함정**: 같은 sharp 객체에 `.raw()` 를 부른 뒤 `.extract()` 하면 헤더 없는 raw 버퍼가 나와 "unsupported image format" 이 난다. `cropBands()` 는 판독용/자르기용 객체를 분리해 두었다. 되돌리지 말 것.
 - 화면: `/blog/` 는 네이버 분류명(catLabel) 그대로 묶고, `/blog/[logNo]/` 는 BlogPosting + 빵부스러기 + 관련 비용 페이지·구축사례 링크 + 같은 분류 순환 4편.
 - **구글 블로거 발행은 하루 4편**(`blogger-crosspost.yml`, 09:40/21:40 × 2편, `--all` 모드). 새 글 우선, 옛 글은 `published` 에 원래 날짜. 한꺼번에 수백 편 올리면 블로거 스팸 판정 위험. dispatch 입력 `backfill=all` 은 비상용 일괄 발행.
+- **블로거 점검·정리는 `scripts/blogger-audit.mjs`**(2026-09-07). 워크플로 `blogger-audit.yml` 을 수동 실행(mode=report|fix)하거나,
+  커밋 **제목**에 `[blogger-audit]`(점검만) / `[blogger-audit fix]`(정리) 를 넣어 push 하면 돈다. 보고서는 실행 요약(Step Summary)과 아티팩트.
+  찾는 것: 중복(같은 네이버 원본·같은 뉴스 원문·같은 제목) · 깨진 글(본문 없음·죽은 사진·푸터 없음·라벨 없음) · 상태파일 불일치.
+  fix 는 중복 삭제, 네이버 원본이 있는 글은 본문을 다시 받아 갱신(발행일 유지), 원본 없는 글은 살아있는 사진 주소로만 교체. 원본을 못 찾는 글(다른 도구로 올린 글)은 손대지 않는다.
+  - **`blogfiles.pstatic.net` 사진은 블로거에서 403** 이다(실측). `naver-body.fixPstaticUrl` 이 `postfiles.pstatic.net?type=w966` 으로 바꾼다. 되돌리지 말 것.
+  - 네이버 본문 추출은 `scripts/naver-body.mjs` 한 곳(naver-to-blogger·blogger-audit 공용).
+  - 크로스포스트 state 커밋은 `pull --rebase` 뒤 push. 예전엔 다른 워크플로가 먼저 push 하면 기록이 사라져 같은 글이 또 올라갔다.
 
 ## 영문 거울 도메인 hanbyeolsystem.kr (2026-08-27)
 - claude.ai 등 한글 도메인을 못 읽는 AI 도구용. 리포 `hanbyeolsystem/hanbyeolsystem-kr` 의 워크플로가 **이 리포를 그대로 빌드**해 Pages 로 올린다(하루 3번 + 수동). 소스는 여기 하나뿐.
