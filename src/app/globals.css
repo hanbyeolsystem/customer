@@ -10,33 +10,34 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  /* 로고 기반 블루 보석 팔레트 (HB system 다면 그라데이션) */
-  /* 딥 오션 — 다크 서피스(히어로·푸터·CTA) */
-  --color-hb-primary:    #06354F;
-  --color-hb-primary-2:  #0A4E72;
+  /* 2026-09-08 리디자인: "AI 느낌"을 뺀다. 유리 패널·글로우·격자·네온 파랑을 버리고
+     종이(웜 그레이)·잉크·한 가지 브랜드 블루만 쓴다. 파랑은 링크와 강조 한 단어에만. */
+  /* 밤(다크 슬라이드·푸터·페이지 헤더) */
+  --color-hb-primary:    #0C1820;
+  --color-hb-primary-2:  #142430;
 
-  /* 메인 브랜드 블루 — 버튼·링크·eyebrow (흰 배경/흰 글씨 모두 AA) */
-  --color-hb-blue:       #006FA6;
-  --color-hb-blue-light: #4FB8F6;  /* 온다크 하이라이트 (밝은 하늘) */
-  --color-hb-blue-soft:  #DBF1FC;  /* 아이스 배경 틴트 */
+  /* 브랜드 블루 - 링크·강조 단어. 흰 배경/흰 글씨 모두 AA */
+  --color-hb-blue:       #0F5F8E;
+  --color-hb-blue-light: #8CC4EB;  /* 온다크 강조 */
+  --color-hb-blue-soft:  #E3EDF4;  /* 옅은 배경 틴트 */
 
-  /* 비비드 azure — 로고 시그니처(글로우·포인트·온다크). 채움/온다크 전용 */
-  --color-hb-azure:      #0090D8;
-  --color-hb-azure-2:    #30B4FC;
-  --color-hb-azure-soft: #CFEBFB;
+  /* 예전 azure 계열은 호환용으로 남기되 채도를 낮춘다(온다크 강조 단어·채팅 버튼) */
+  --color-hb-azure:      #2D8CC8;
+  --color-hb-azure-2:    #5FAEDF;
+  --color-hb-azure-soft: #D9E8F2;
 
-  /* 로고 톤의 은은한 하늘 배경/잉크 */
-  --color-hb-bg:         #E8F1FB;
-  --color-hb-ink:        #06304A;
-  --color-hb-mute:       #5A7689;
-  --color-hb-line:       #D3E3EE;
+  /* 종이·잉크 */
+  --color-hb-bg:         #F4F4F0;
+  --color-hb-ink:        #15191D;
+  --color-hb-mute:       #5E656C;
+  --color-hb-line:       #D6D6CF;
 
   /* shadcn 호환 시맨틱 토큰 (ui/ 컴포넌트용) */
-  --color-border:            #DCE4EC;
-  --color-muted:             #64748B;
-  --color-muted-foreground:  #54677A;
-  --color-accent:            #D6EEF0;
-  --color-accent-foreground: #0A1E33;
+  --color-border:            #D6D6CF;
+  --color-muted:             #6B7278;
+  --color-muted-foreground:  #5E656C;
+  --color-accent:            #E9E9E3;
+  --color-accent-foreground: #15191D;
 
   /* 글꼴 (2026-09-07 사장님 확정): 본문 = Pretendard, 제목·상품명·강조 = 여기어때 잘난체 고딕(무료, self-host 92조각, jalnan.css).
      잘난체는 굵기가 하나뿐인 제목용이라 본문까지 넣으면 전부 굵게 보여 "본문은 가볍게" 지시로 본문만 Pretendard 로 되돌렸다.
@@ -51,19 +52,20 @@
 }
 
 :root {
-  --bg:    #E8F1FB;  /* 은은한 하늘색 전체 배경 */
-  --panel: #DCEAF7;  /* 섹션 교차용 — 살짝 더 진한 하늘 */
-  --ink:   #06304A;
-  --mute:  #51708A;
-  --line:  #C8DBEC;
+  --bg:    #F4F4F0;  /* 종이 - 웜 그레이 */
+  --panel: #E9E9E3;  /* 섹션 교차용 - 한 톤 진한 종이 */
+  --ink:   #15191D;
+  --mute:  #5E656C;
+  --line:  #D6D6CF;
+  --header-h: 4rem;
 }
 
 .dark {
-  --bg:    #062338;
-  --panel: #0B3450;
-  --ink:   #E4F1FA;
-  --mute:  #8FAFC6;
-  --line:  #1C4660;
+  --bg:    #101417;
+  --panel: #171C21;
+  --ink:   #E8E9E4;
+  --mute:  #9AA1A8;
+  --line:  #2A3138;
 }
 
 html { scroll-behavior: smooth; }
@@ -84,31 +86,22 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-sans);
+  word-break: keep-all;          /* 한글은 어절 단위로 줄을 바꾼다 */
+  overflow-wrap: break-word;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-/* ── 시그니처: 관제 콘솔 실(thread) ─────────────────────────────
-   섹션마다 반복되는 모노스페이스 라벨 = "운영실 로그 라인" 느낌.
-   골드 점은 라이브 신호를 인코딩(장식 아님). */
+/* 섹션 라벨 - 작은 대문자/한글 라벨. 모노·깜빡이는 점은 뺐다(2026-09-08) */
 .eyebrow {
-  font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: .16em;
+  letter-spacing: .12em;
   text-transform: uppercase;
   color: var(--mute);
   display: inline-flex;
   align-items: center;
-  gap: .55rem;
-}
-.eyebrow::before {
-  content: "";
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--color-hb-azure);
-  box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-hb-azure) 22%, transparent);
+  gap: .5rem;
 }
 
 /* 콘솔 패널 표면 — 하프톤 격자 + 미세 보더 */
@@ -118,6 +111,30 @@ body {
     linear-gradient(90deg, color-mix(in oklab, var(--color-hb-blue-light) 8%, transparent) 1px, transparent 1px);
   background-size: 32px 32px;
 }
+
+/* ── 홈 슬라이드 ─────────────────────────────────────────────
+   홈은 화면 한 장 = 슬라이드 한 장. 문서 스크롤에 proximity 스냅을 걸어 손가락을 떼면
+   가까운 슬라이드 머리로 정렬된다(mandatory 는 트랙패드·긴 슬라이드에서 거슬려 쓰지 않는다).
+   슬라이드가 화면보다 길면(모바일) 그냥 스크롤된다. 헤더(sticky 4rem) 아래로 정렬. */
+html:has(.hb-slide) { scroll-snap-type: y proximity; scroll-padding-top: var(--header-h); }
+.hb-slide {
+  scroll-snap-align: start;
+  min-height: calc(100svh - var(--header-h));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hb-slide-hero { min-height: 100svh; margin-top: calc(var(--header-h) * -1); }
+@media (min-width: 1024px) { :root { --header-h: 68px; } }
+
+/* 사진 위 글씨 보호용 - 위는 옅게, 아래는 진하게. 글로우·격자 없음 */
+.hb-photo-veil {
+  background: linear-gradient(to bottom, rgba(12,24,32,.35) 0%, rgba(12,24,32,.15) 40%, rgba(12,24,32,.82) 100%);
+}
+
+/* 얇은 선으로만 나누는 표 격자 */
+.hb-grid-lines { gap: 1px; background: var(--line); }
+.hb-grid-lines > * { background: var(--bg); }
 
 /* 페이지 로드 리빌(절제) */
 @keyframes hb-rise {
@@ -140,82 +157,16 @@ body {
 
 /* Swiper 토큰 동기화 */
 .swiper-pagination-bullet {
-  background: var(--color-hb-mute);
-  opacity: 0.5;
+  background: var(--mute);
+  opacity: 0.45;
+  width: 18px; height: 2px; border-radius: 0;
 }
 .swiper-pagination-bullet-active {
-  background: var(--color-hb-azure);
+  background: var(--ink);
   opacity: 1;
 }
 .swiper-button-next, .swiper-button-prev {
-  color: var(--color-hb-blue) !important;
+  color: var(--ink) !important;
 }
-
-/* ── CPU Architecture 컴포넌트 (components/ui/cpu-architecture) ── */
-.cpu-architecture {
-  offset-anchor: 10px 0px;
-  animation: animation-path;
-  animation-iteration-count: infinite;
-  animation-timing-function: cubic-bezier(0.75, -0.01, 0, 0.99);
-}
-
-.cpu-line-1 {
-  offset-path: path("M 10 20 h 79.5 q 5 0 5 5 v 30");
-  animation-duration: 5s;
-  animation-delay: 1s;
-}
-
-.cpu-line-2 {
-  offset-path: path("M 180 10 h -69.7 q -5 0 -5 5 v 40");
-  animation-delay: 6s;
-  animation-duration: 2s;
-}
-
-.cpu-line-3 {
-  offset-path: path("M 130 20 v 21.8 q 0 5 -5 5 h -25");
-  animation-delay: 4s;
-  animation-duration: 6s;
-}
-
-.cpu-line-4 {
-  offset-path: path("M 170 80 v -21.8 q 0 -5 -5 -5 h -65");
-  animation-delay: 3s;
-  animation-duration: 3s;
-}
-
-.cpu-line-5 {
-  offset-path: path(
-    "M 135 65 h 15 q 5 0 5 5 v 10 q 0 5 -5 5 h -39.8 q -5 0 -5 -5 v -35"
-  );
-  animation-delay: 9s;
-  animation-duration: 4s;
-}
-
-.cpu-line-6 {
-  offset-path: path("M 94.8 95 v -46");
-  animation-delay: 3s;
-  animation-duration: 7s;
-}
-
-.cpu-line-7 {
-  offset-path: path(
-    "M 88 88 v -15 q 0 -5 -5 -5 h -10 q -5 0 -5 -5 v -5 q 0 -5 5 -5 h 28"
-  );
-  animation-delay: 4s;
-  animation-duration: 4s;
-}
-
-.cpu-line-8 {
-  offset-path: path("M 30 30 h 25 q 5 0 5 5 v 6.5 q 0 5 5 5 h 35");
-  animation-delay: 3s;
-  animation-duration: 3s;
-}
-
-@keyframes animation-path {
-  0% {
-    offset-distance: 0%;
-  }
-  100% {
-    offset-distance: 100%;
-  }
-}
+.swiper-button-next::after, .swiper-button-prev::after { font-size: 18px !important; }
+@media (max-width: 639px) { .swiper-button-next, .swiper-button-prev { display: none; } } /* 폰은 손가락으로 넘긴다 */

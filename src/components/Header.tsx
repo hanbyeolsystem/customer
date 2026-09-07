@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { site, nav } from "@/data/site";
 import { ThemeToggle } from "./ThemeToggle";
 import { Icon } from "./Icon";
@@ -16,6 +17,8 @@ interface BeforeInstallPromptEvent extends Event {
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  // 홈 표지는 사진이 헤더 뒤까지 올라오므로, 맨 위에서는 헤더를 투명하게 두고 글씨를 희게 쓴다
+  const overHero = usePathname() === "/" && !scrolled && !open;
   const [bmHint, setBmHint] = useState<string | null>(null);
   const installRef = useRef<BeforeInstallPromptEvent | null>(null);
 
@@ -89,21 +92,22 @@ export function Header() {
   return (
     <header
       className={[
-        "sticky top-0 z-50 backdrop-blur transition-shadow",
-        "bg-[color-mix(in_oklab,var(--bg)_92%,transparent)]",
-        scrolled ? "shadow-sm border-b border-[var(--line)]" : "border-b border-transparent",
+        "sticky top-0 z-50 transition-[background-color,box-shadow,color] duration-300",
+        overHero
+          ? "bg-transparent text-white border-b border-transparent"
+          : "backdrop-blur bg-[color-mix(in_oklab,var(--bg)_92%,transparent)] text-[var(--ink)] border-b " + (scrolled ? "border-[var(--line)]" : "border-transparent"),
       ].join(" ")}
     >
       <div className="max-w-7xl mx-auto px-4 lg:px-6 h-16 lg:h-[68px] flex items-center justify-between gap-4">
         {/* 로고 */}
-        <Link href="/" className="flex items-center gap-2 shrink-0" aria-label="한별시스템 홈">
+        <Link href="/" className={`flex items-center gap-2 shrink-0 rounded-md ${overHero ? "bg-white/95 px-1.5 py-1" : ""}`} aria-label="한별시스템 홈">
           <Image
             src="/brand/logo.webp"
             alt="한별시스템"
             width={307}
             height={336}
             priority
-            className="h-11 lg:h-12 w-auto object-contain"
+            className={`${overHero ? "h-9 lg:h-10" : "h-11 lg:h-12"} w-auto object-contain transition-all`}
           />
           <span className="text-[10px] font-semibold text-[var(--mute)] tracking-[.15em] hidden 2xl:block">
             HANBYEOL SYSTEM
@@ -111,12 +115,12 @@ export function Header() {
         </Link>
 
         {/* 중앙 메뉴 */}
-        <nav className="hidden xl:flex items-center gap-0 text-[13px] font-semibold text-[var(--ink)]/85 whitespace-nowrap">
+        <nav className="hidden xl:flex items-center gap-0 text-[13px] font-semibold opacity-90 whitespace-nowrap">
           {nav.map((n) => (
             <Link
               key={n.href}
               href={n.href}
-              className="px-1.5 py-2 rounded-md hover:bg-[var(--panel)] hover:text-hb-blue transition"
+              className="px-1.5 py-2 rounded-md hover:opacity-70 transition"
             >
               {n.label}
             </Link>
@@ -129,11 +133,11 @@ export function Header() {
             href={site.phone.mainHref}
             className="hidden lg:flex flex-col items-end text-right leading-tight pr-2"
           >
-            <span className="inline-flex items-center gap-1.5 text-[15px] font-extrabold text-[var(--ink)]">
-              <Icon name="phone" className="w-4 h-4 text-hb-blue" strokeWidth={2} />
+            <span className="inline-flex items-center gap-1.5 text-[15px] font-bold text-current">
+              <Icon name="phone" className="w-4 h-4" strokeWidth={2} />
               {site.phone.main}
             </span>
-            <span className="text-[10px] font-semibold text-[var(--mute)]">
+            <span className="text-[10px] font-semibold opacity-60">
               {site.phone.hours}
             </span>
           </a>
@@ -142,9 +146,9 @@ export function Header() {
               type="button"
               onClick={addBookmark}
               aria-label="즐겨찾기 추가"
-              className="inline-flex items-center gap-1.5 h-9 px-2.5 rounded-lg border border-[var(--line)] text-[var(--ink)] hover:border-hb-blue hover:text-hb-blue transition text-[13px] font-bold"
+              className="inline-flex items-center gap-1.5 h-9 px-2.5 rounded-md border border-current/25 text-current hover:border-current transition text-[13px] font-semibold"
             >
-              <Icon name="star" className="w-4 h-4 text-hb-azure" strokeWidth={1.8} />
+              <Icon name="star" className="w-4 h-4" strokeWidth={1.8} />
               <span className="hidden sm:inline">즐겨찾기</span>
             </button>
             {bmHint && (
@@ -164,7 +168,7 @@ export function Header() {
             type="button"
             aria-label="메뉴 열기"
             onClick={() => setOpen((v) => !v)}
-            className="xl:hidden inline-flex items-center justify-center w-9 h-9 rounded-lg border border-[var(--line)] text-[var(--ink)]"
+            className="xl:hidden inline-flex items-center justify-center w-9 h-9 rounded-md border border-current/25 text-current"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
               {open ? (
@@ -180,13 +184,13 @@ export function Header() {
       {/* 모바일 메뉴 */}
       {open && (
         <div className="xl:hidden border-t border-[var(--line)] bg-[var(--bg)]">
-          <div className="px-4 py-3 grid grid-cols-2 gap-1">
+          <div className="px-2 py-2 grid grid-cols-2 gap-0.5">
             {nav.map((n) => (
               <Link
                 key={n.href}
                 href={n.href}
                 onClick={() => setOpen(false)}
-                className="px-3 py-3 rounded-lg text-sm font-semibold text-[var(--ink)]/85 hover:bg-[var(--panel)] hover:text-hb-blue transition"
+                className="px-3 py-3 rounded-md text-[15px] font-semibold text-[var(--ink)] hover:bg-[var(--panel)] transition"
               >
                 {n.label}
               </Link>
@@ -195,7 +199,7 @@ export function Header() {
           <div className="px-4 pb-4">
             <a
               href={site.phone.mainHref}
-              className="flex items-center justify-between bg-hb-primary text-white rounded-xl px-4 py-3 font-extrabold"
+              className="flex items-center justify-between bg-[var(--ink)] text-[var(--bg)] rounded-md px-4 py-3.5 font-bold"
             >
               <span className="inline-flex items-center gap-2">
                 <Icon name="phone" className="w-4 h-4" strokeWidth={2} />

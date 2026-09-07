@@ -1,139 +1,62 @@
 import Link from "next/link";
 import { site } from "@/data/site";
 import { HeroBackground } from "./HeroBackground";
-import { Icon } from "@/components/Icon";
-import { embedHref } from "@/lib/embed";
 
-/* 통계를 "모니터링 지표"로 재해석 - 회사 자체를 무중단 가동 중인 시스템으로 */
-const monitors = site.stats.map((s, i) => ({
-  ...s,
-  status: i === site.stats.length - 1 ? "LIVE" : "정상",
-}));
-
+/* 표지 슬라이드. 사진 한 장, 문장 하나, 숫자 넉 줄.
+   유리 패널·콘솔·글로우는 2026-09-08 리디자인에서 뺐다. 숫자는 site.stats 실측값. */
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-hb-primary text-white">
-      {/* 배경: 작업 영상 + 심야 네이비 + 항성골드 글로우(한별=별) */}
+    <section id="top" className="hb-slide hb-slide-hero relative overflow-hidden bg-hb-primary text-white">
       <div className="absolute inset-0">
         <HeroBackground
           posterSrc="/hero/hero-poster.webp"
           videoSrc="/hero/hero-loop.mp4?v=5"
           posterAlt="한별시스템 엔지니어가 서버랙 장비를 점검하는 모습"
           // 배경 영상 2MB. 모바일에서는 받지 않고 포스터(57KB)만 쓴다.
-          // 데스크탑도 첫 페인트가 끝난 뒤에 받는다(HeroBackground 참고).
           minWidth={1024}
         />
-        {/* 왼쪽 텍스트는 보호, 오른쪽은 영상이 드러나게 */}
-        <div className="absolute inset-0 bg-gradient-to-r from-hb-primary via-hb-primary/65 to-hb-primary/25" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_18%,rgba(0,144,216,0.28),transparent_45%)]" />
-        <div className="absolute inset-0 console-grid opacity-[0.25]" />
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-hb-primary to-transparent" />
+        <div className="absolute inset-0 hb-photo-veil" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 lg:px-6 py-20 lg:py-32">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          {/* ── 텍스트(논제) ── */}
-          <div className="lg:col-span-7">
-            <div className="hb-rise inline-flex items-center gap-2.5 font-mono text-[11px] font-semibold tracking-[.18em] text-white/70 mb-7">
-              <span className="hb-blink w-2 h-2 rounded-full bg-hb-azure shadow-[0_0_0_4px_rgba(0,144,216,0.25)]" />
-              SYS.ONLINE - 19Y UPTIME
-            </div>
+      <div className="relative flex-1 flex flex-col justify-end max-w-6xl w-full mx-auto px-5 lg:px-8 pt-28 pb-[5.5rem] lg:pb-12">
+        <p className="hb-rise text-[12px] lg:text-[13px] font-semibold tracking-[.12em] text-white/70 mb-5 lg:mb-7">
+          기업 데이터 관리 · 사내 AI · 복합기 임대 · 대구
+        </p>
 
-            <h1 className="text-[34px] sm:text-5xl lg:text-[62px] font-black leading-[1.1] tracking-tight mb-7">
-              데이터는 회사 안에,<br />
-              <span className="text-hb-azure font-effect">AI도 회사 안에</span>
-            </h1>
+        <h1 className="hb-rise text-[38px] sm:text-[52px] lg:text-[76px] leading-[1.12] tracking-[-0.01em] mb-6 lg:mb-8 max-w-4xl" style={{ animationDelay: "80ms" }}>
+          데이터는 회사 안에,<br />
+          <span className="text-hb-blue-light">AI도 회사 안에</span>
+        </h1>
 
-            <p className="text-base lg:text-lg text-white/85 leading-relaxed mb-2 font-medium">
-              NAS 구축 · 백업 컨설팅 · 사내 AI 도입 · 전산 유지관리
-            </p>
-            <p className="text-sm lg:text-base text-white/60 mb-9">
-              대구·경북 170여 개 기업의 데이터를 19년째 <strong className="text-white font-bold">{site.name}</strong>이 맡고 있습니다.
-            </p>
+        <p className="hb-rise text-[16px] lg:text-[19px] text-white/85 leading-relaxed max-w-xl mb-8 lg:mb-10" style={{ animationDelay: "160ms" }}>
+          대구·경북 170여 개 기업의 데이터를 19년째 {site.name}이 맡고 있습니다.
+          NAS 구축과 백업, 사내 AI 도입, 복합기 임대, 전산 유지관리를 한 회사에서 합니다.
+        </p>
 
-            <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3">
-              <Link
-                href="/support/remote"
-                className="inline-flex items-center justify-center gap-2 bg-hb-blue hover:bg-hb-azure text-white font-extrabold text-[15px] px-7 py-3.5 rounded-xl transition shadow-lg shadow-hb-azure/30"
-              >
-                <span aria-hidden>▸</span> 원격지원 시작
-              </Link>
-              <Link
-                href={embedHref("https://hanbyeolsystem.github.io/hanbyeol-errorcode/", "에러코드 검색")}
-                className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur text-white font-bold text-[15px] px-6 py-3.5 rounded-xl transition border border-white/20"
-              >
-                <Icon name="search" className="w-[18px] h-[18px]" strokeWidth={2} /> 에러코드 검색
-              </Link>
-              <Link
-                href="/support/drivers"
-                className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur text-white font-bold text-[15px] px-6 py-3.5 rounded-xl transition border border-white/20"
-              >
-                <Icon name="download" className="w-[18px] h-[18px]" strokeWidth={2} /> 드라이버 검색
-              </Link>
-              <Link
-                href="/support/quote"
-                className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur text-white font-bold text-[15px] px-6 py-3.5 rounded-xl transition border border-white/20"
-              >
-                상담 문의
-              </Link>
-            </div>
-          </div>
-
-          {/* ── 시그니처: 라이브 운영 콘솔 ── */}
-          <div className="lg:col-span-5">
-            <div className="hb-rise rounded-2xl border border-white/15 bg-white/[0.06] backdrop-blur-md overflow-hidden shadow-2xl shadow-black/30" style={{ animationDelay: "120ms" }}>
-              {/* 콘솔 헤더 */}
-              <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/10 bg-white/[0.04]">
-                <div className="flex items-center gap-2 font-mono text-[12px] font-semibold tracking-wide text-white/80">
-                  <span className="hb-blink w-2 h-2 rounded-full bg-hb-azure" />
-                  hanbyeol.ops
-                </div>
-                <span className="font-mono text-[11px] font-semibold tracking-wider text-hb-blue-light">
-                  UPTIME 19Y
-                </span>
-              </div>
-
-              {/* 모니터링 지표 */}
-              <ul className="divide-y divide-white/10">
-                {monitors.map((m, i) => (
-                  <li
-                    key={m.label}
-                    // 모바일 오른쪽 여백: 플로팅 상담 버튼(ChatWidget, fixed right-5 w-14)이
-                    // 화면 오른쪽 아래에 떠 있어 이 줄이 화면 하단에 걸리면 "정상"/"LIVE" 배지를 가린다.
-                    // 배지가 버튼 왼쪽으로 비켜나도록 모바일에서만 오른쪽을 72px 비운다.
-                    className="hb-rise flex items-center justify-between py-4 pl-5 pr-[4.5rem] sm:pr-5"
-                    style={{ animationDelay: `${260 + i * 90}ms` }}
-                  >
-                    <span className="text-[13px] lg:text-sm text-white/75 font-medium">
-                      {m.label}
-                    </span>
-                    <span className="flex items-center gap-3">
-                      <span className="font-mono text-2xl lg:text-[28px] font-bold text-hb-azure leading-none tabular-nums">
-                        {m.value}
-                      </span>
-                      <span
-                        className={[
-                          "inline-flex items-center gap-1.5 font-mono text-[10px] font-semibold tracking-wider px-2 py-1 rounded-md",
-                          m.status === "LIVE"
-                            ? "text-hb-azure bg-hb-azure/12 border border-hb-azure/25"
-                            : "text-hb-blue-light bg-hb-blue-light/10 border border-hb-blue-light/20",
-                        ].join(" ")}
-                      >
-                        <span className={`w-1.5 h-1.5 rounded-full ${m.status === "LIVE" ? "bg-hb-azure hb-blink" : "bg-hb-blue-light"}`} />
-                        {m.status}
-                      </span>
-                    </span>
-                  </li>
-                ))}
-              </ul>
-
-              {/* 콘솔 푸터 */}
-              <div className="px-5 py-3 border-t border-white/10 bg-white/[0.04] font-mono text-[10.5px] tracking-wide text-white/45">
-                ● 실시간 모니터링 · 대구·경북 전역 출동
-              </div>
-            </div>
-          </div>
+        <div className="hb-rise flex flex-col sm:flex-row gap-3 mb-12 lg:mb-16" style={{ animationDelay: "240ms" }}>
+          <a
+            href={site.phone.mainHref}
+            className="inline-flex items-center justify-center h-13 sm:h-12 px-7 rounded-md bg-white text-hb-primary font-bold text-[16px] hover:bg-white/90 transition"
+          >
+            전화 {site.phone.main}
+          </a>
+          <Link
+            href="/support/remote"
+            className="inline-flex items-center justify-center h-13 sm:h-12 px-7 rounded-md border border-white/45 text-white font-semibold text-[16px] hover:bg-white/10 transition"
+          >
+            원격지원 시작
+          </Link>
         </div>
+
+        {/* 숫자 넉 줄 - 장식 없는 실측값 */}
+        <dl className="hb-rise grid grid-cols-2 lg:grid-cols-4 border-t border-white/25" style={{ animationDelay: "320ms" }}>
+          {site.stats.map((s) => (
+            <div key={s.label} className="py-4 lg:py-5 pr-4 border-b border-white/15 lg:border-b-0 lg:border-r lg:border-white/15 lg:pl-5 first:lg:pl-0 last:lg:border-r-0">
+              <dd className="font-display text-[28px] lg:text-[36px] leading-none mb-1.5">{s.value}</dd>
+              <dt className="text-[12px] lg:text-[13px] text-white/65 font-medium">{s.label}</dt>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );

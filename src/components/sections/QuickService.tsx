@@ -1,41 +1,62 @@
 import Link from "next/link";
 import { quickServices } from "@/data/services";
+import { site } from "@/data/site";
+import { embedHref } from "@/lib/embed";
 import { Icon, type IconName } from "@/components/Icon";
+import { SlideHead } from "./SlideHead";
 
-// 로고 블루로 통일 - 아이콘은 글리프로 구분, 색은 브랜드 일관성 유지
-const iconChip =
-  "bg-hb-blue-soft text-hb-blue dark:bg-hb-azure/15 dark:text-hb-blue-light";
-const accentMap: Record<string, string> = {
-  red: iconChip, blue: iconChip, amber: iconChip,
-  indigo: iconChip, emerald: iconChip, violet: iconChip,
+/* 06 지원. 기존 고객이 홈에서 가장 많이 누르는 것들. 모바일은 손가락 크기의 줄, 데스크탑은 선 격자. */
+const links: { icon: IconName; label: string; href: string }[] = [
+  ...quickServices.map((s) => ({ icon: s.icon as IconName, label: s.label, href: s.href as string })),
+  { icon: "search", label: "에러코드 검색", href: embedHref("https://hanbyeolsystem.github.io/hanbyeol-errorcode/", "에러코드 검색") },
+];
+const notes: Record<string, string> = {
+  "원격지원": "엔지니어가 화면을 보며 바로 해결",
+  "드라이버 다운로드": "복합기·프린터 드라이버, 딸깍 설치",
+  "AS 접수": "출장·점검 접수",
+  "NAS 기술지원": "시놀로지 NAS 장애·설정",
+  "임대쇼핑몰": "복합기·프린터 월 요금",
+  "견적 요청": "무료 방문 견적",
+  "에러코드 검색": "프린터 에러코드 원인과 조치",
 };
 
 export function QuickService() {
   return (
-    <section className="py-10 lg:py-14 bg-[var(--panel)] border-y border-[var(--line)]">
-      <div className="max-w-7xl mx-auto px-4 lg:px-6">
-        <div className="flex items-baseline justify-between mb-5">
-          <h2 className="text-lg lg:text-xl font-extrabold text-[var(--ink)] tracking-tight">
-            빠른 서비스 바로가기
-          </h2>
-          <span className="eyebrow hidden sm:inline-flex">QUICK SERVICE</span>
-        </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 lg:gap-4">
-          {quickServices.map((s) => (
-            <Link
-              key={s.label}
-              href={s.href}
-              className="group bg-[var(--bg)] border border-[var(--line)] rounded-2xl p-4 lg:p-5 hover:border-hb-blue hover:shadow-lg hover:-translate-y-0.5 transition text-center"
-            >
-              <div className={`w-12 h-12 lg:w-14 lg:h-14 mx-auto rounded-xl flex items-center justify-center mb-2.5 group-hover:scale-110 transition ${accentMap[s.accent] ?? accentMap.blue}`}>
-                <Icon name={s.icon as IconName} className="w-6 h-6 lg:w-7 lg:h-7" />
-              </div>
-              <div className="text-[13px] lg:text-sm font-bold text-[var(--ink)]">
-                {s.label}
-              </div>
-            </Link>
+    <section id="support" className="hb-slide bg-[var(--panel)] py-16 lg:py-20">
+      <div className="max-w-6xl w-full mx-auto px-5 lg:px-8">
+        <SlideHead
+          no="06"
+          kicker="지원"
+          title="지금 바로 필요한 것"
+          lead="이미 쓰고 계신 분들을 위한 창구입니다. 평일 09:00~18:00, 급하면 전화가 가장 빠릅니다."
+        />
+        <ul className="grid sm:grid-cols-2 lg:grid-cols-4 hb-grid-lines border border-[var(--line)]">
+          {links.map((l) => (
+            <li key={l.label} className="!bg-[var(--bg)]">
+              <Link
+                href={l.href}
+                className="flex items-center gap-4 lg:flex-col lg:items-start lg:gap-5 p-4 lg:p-6 min-h-14 hover:bg-[var(--bg)]/60 transition group"
+              >
+                <Icon name={l.icon} className="w-6 h-6 lg:w-7 lg:h-7 shrink-0 text-[var(--ink)]" strokeWidth={1.5} />
+                <span className="flex-1 min-w-0">
+                  <span className="block text-[16px] lg:text-[17px] font-semibold text-[var(--ink)] group-hover:text-hb-blue transition">{l.label}</span>
+                  <span className="block text-[13px] text-[var(--mute)] mt-0.5">{notes[l.label]}</span>
+                </span>
+                <span aria-hidden className="lg:hidden text-[var(--mute)]">›</span>
+              </Link>
+            </li>
           ))}
-        </div>
+          <li className="!bg-[var(--bg)]">
+            <a href={site.phone.mainHref} className="flex items-center gap-4 lg:flex-col lg:items-start lg:gap-5 p-4 lg:p-6 min-h-14 hover:bg-[var(--bg)]/60 transition group">
+              <Icon name="phone" className="w-6 h-6 lg:w-7 lg:h-7 shrink-0 text-[var(--ink)]" strokeWidth={1.5} />
+              <span className="flex-1 min-w-0">
+                <span className="block text-[16px] lg:text-[17px] font-semibold text-[var(--ink)] group-hover:text-hb-blue transition">전화 {site.phone.main}</span>
+                <span className="block text-[13px] text-[var(--mute)] mt-0.5">{site.phone.hours}</span>
+              </span>
+              <span aria-hidden className="lg:hidden text-[var(--mute)]">›</span>
+            </a>
+          </li>
+        </ul>
       </div>
     </section>
   );

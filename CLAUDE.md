@@ -79,7 +79,19 @@
 - 히어로 배경 영상(2MB)은 **모바일에서 받지 않고**(`minWidth={1024}`) 데스크탑도 첫 페인트 뒤 `requestIdleCallback` 때 받는다.
   포스터(`hero-poster.webp` 57KB)는 항상 즉시. 영상은 장식이라 늦게 떠도 된다.
 
-## 디자인 토큰 (변경 시 `globals.css @theme`)
+## 디자인 (2026-09-08 리디자인 - "AI 느낌 빼고 슬라이드형 고급 홈, 폰 최적화" 사장님 지시)
+- **버린 것**: 유리 패널·글로우·격자(console-grid)·깜빡이는 점(hb-blink)·모노 대문자 eyebrow·아이콘 타일·배지 칩·카드 그림자·hover 확대·"→" 남발.
+  다시 넣지 말 것. 장식은 얇은 선(`--line`)과 여백으로만 한다. 버튼은 `rounded-md`, 잉크(검정)/흰색 채움, 파랑은 링크·강조 한 단어에만.
+- **팔레트**: 종이 `--bg #F4F4F0` / `--panel #E9E9E3` / 잉크 `#15191D` / 회색 `#5E656C` / 선 `#D6D6CF`, 밤 `hb-primary #0C1820`, 브랜드 블루 `hb-blue #0F5F8E`(온다크 `hb-blue-light`). 다크모드는 `.dark` 변수.
+- **홈 = 슬라이드 7장**(`page.tsx` 순서 = `SlideHead no`): 01 표지(Hero) · 02 하는 일(CoreServices) · 03 사내 AI(AiSlide, 실측값) · 04 현장(CaseStudies) · 05 임대(RentalShop) · 06 지원(QuickService) · 07 소식·연락(BlogFeed).
+  각 섹션은 `.hb-slide`(min-height 100svh-헤더, 스냅 proximity, id 있음). 데스크탑 `SlideNav` 가 오른쪽에 장 번호. 슬라이드를 넣고 빼면 번호를 같이 고칠 것.
+  데스크탑 1440×900 에서 한 장이 한 화면에 들어가야 한다(임대는 6열, 소식은 4건인 이유).
+- **모바일**: 하단 고정 바 `MobileBar`(전화·원격지원·견적, lg 미만) + body `pb-14`. ChatWidget 버튼은 바 위로 올려 둠. 표지는 폰에서 하단 바만큼 아래 여백. 폰에서는 Swiper 화살표 숨김.
+  본문 `word-break: keep-all`(어절 단위 줄바꿈). 헤더는 홈 맨 위에서만 투명(`overHero`)이고 로고 뒤에 흰 판.
+- **글꼴 슬롯**은 위 "폰트·홈 무게" 참고(제목 잘난체, 본문 Pretendard). 슬라이드 제목은 폰 30px / 데스크탑 52px, 표지 h1 은 38/76px.
+- 화면 확인은 Edge 헤드리스가 폰 폭(390)을 못 만들므로 `agent-browser set viewport 390 800` 으로 찍는다. Edge 는 창 높이 = 100svh 라 전체 페이지 캡처가 슬라이드마다 늘어나니 슬라이드별로 찍을 것.
+
+## 디자인 토큰 (변경 시 `globals.css @theme`)## 디자인 토큰 (변경 시 `globals.css @theme`)
 - `--color-hb-primary` `#0F172A`
 - `--color-hb-blue` `#2563EB` / `--color-hb-blue-light` `#60A5FA` / `--color-hb-blue-soft` `#DBEAFE`
 - `--color-hb-bg` `#F8FAFC`

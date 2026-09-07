@@ -108,11 +108,11 @@ export function ChatWidget() {
         onClick={() => setOpen((v) => !v)}
         aria-label={open ? "상담창 닫기" : "상담창 열기"}
         aria-expanded={open}
-        className="fixed bottom-5 right-5 z-[60] w-14 h-14 rounded-full bg-hb-blue text-white shadow-xl shadow-hb-blue/30 flex items-center justify-center hover:bg-hb-azure transition active:scale-95"
+        className="fixed bottom-[4.75rem] lg:bottom-5 right-4 lg:right-5 z-[60] w-13 h-13 lg:w-14 lg:h-14 rounded-full bg-hb-blue text-white shadow-lg shadow-black/20 flex items-center justify-center hover:bg-hb-azure transition active:scale-95"
       >
         {open ? <IconClose /> : <RobotIcon className="w-7 h-7" />}
         {!open && (
-          <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-hb-azure-2 ring-2 ring-[var(--bg)] hb-blink" />
+          <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-hb-azure-2 ring-2 ring-[var(--bg)] " />
         )}
       </button>
 
@@ -121,7 +121,7 @@ export function ChatWidget() {
         <div
           role="dialog"
           aria-label="한별시스템 고객센터 상담"
-          className="fixed z-[60] bottom-24 right-4 left-4 sm:left-auto sm:right-5 sm:w-[380px] max-h-[72vh] h-[560px] flex flex-col rounded-2xl border border-[var(--line)] bg-[var(--bg)] shadow-2xl overflow-hidden hb-rise"
+          className="fixed z-[60] bottom-[8.5rem] lg:bottom-24 right-4 left-4 sm:left-auto sm:right-5 sm:w-[380px] max-h-[72vh] h-[560px] flex flex-col rounded-2xl border border-[var(--line)] bg-[var(--bg)] shadow-2xl overflow-hidden hb-rise"
         >
           {/* 헤더 */}
           <div className="flex items-center gap-3 px-4 py-3 bg-hb-primary text-white shrink-0">
