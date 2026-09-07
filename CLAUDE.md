@@ -63,33 +63,28 @@
 - 점수·할 일 관리는 종합관리툴 **🔍 사이트 노출 지수**(`한별시스템\임대관리\seo-board`). 재측정은 `node tools/seo-audit/audit.mjs hanbyeol`.
   2026-08-27 측정: 종합 79 (기술 93 · 콘텐츠 76 · GEO 87 · 오프사이트 54). 오프사이트가 병목 = 네이버 블로그 50편에 사이트 링크 0편.
 
-## 폰트·홈 무게 (2026-09-01)
-- **Pretendard 는 self-host**(`public/fonts/pretendard` 92조각 + `src/app/pretendard.css`).
-  `scripts/fetch-pretendard.mjs` 가 만들며 **pretendard.css 를 손으로 고치지 말 것**. 버전은 스크립트의 `PRETENDARD_VERSION`.
-- 가변 폰트(`font-weight: 45 920`) dynamic subset 이라 파일 하나가 실제 쓰는 6개 웨이트(400·500·600·700·800·900)를 전부 덮고,
-  브라우저는 화면에 그리는 글자가 든 조각만 받는다. 실측 홈 437KB(예전 jsDelivr 풀 로드는 6.7MB).
-  **jsDelivr `@import` 로 되돌리지 말 것.** `font-display: swap` 유지, 첫 화면용 조각 90·91 은 layout.tsx 에서 preload.
-- `--font-sans` 폴백에 시스템 한글 폰트(Malgun Gothic 등)를 반드시 남길 것. 폰트가 못 와도 한글이 깨지면 안 된다.
-- **사이트 글꼴(2026-09-07 사장님 확정) = 본문 Pretendard, 제목·상품명·강조 여기어때 잘난체 고딕**. 처음 지시는 산돌 고딕Neo3(본문)·네모니2(제목)였으나 유료라
-  "무료가 아니면 잘난체 고딕" 으로 대체했고, 잘난체는 단일 굵기라 본문까지 넣으니 전부 굵어 "본문은 가볍게" 로 본문만 Pretendard 로 되돌림. `python scripts/build-jalnan.py` 가 공식 zip 을 받아 Pretendard 와 같은 92조각으로 잘라
-  `public/fonts/jalnan/`(687KB) + `src/app/jalnan.css` 를 만든다(손으로 고치지 말 것). 단일 굵기라 `font-weight: 100 900` 으로 선언해 가짜 굵게 없음.
-  토큰: `--font-sans`(본문·mono)=Pretendard / `--font-display`(h1~h3 base, `font-display` 유틸, 상품명)=잘난체 / `--font-effect`(히어로 강조)=display.
-  본문까지 잘난체로 하려면 `--font-sans` 맨 앞에 'Jalnan Gothic' 을 넣는다. 잘난체에 없는 글자는 Pretendard 로 내려간다.
-  layout.tsx preload 는 잘난체 조각 91·90·89 + Pretendard 조각 91·90.
-- 히어로 배경 영상(2MB)은 **모바일에서 받지 않고**(`minWidth={1024}`) 데스크탑도 첫 페인트 뒤 `requestIdleCallback` 때 받는다.
-  포스터(`hero-poster.webp` 57KB)는 항상 즉시. 영상은 장식이라 늦게 떠도 된다.
+## 폰트·홈 무게
+- **글꼴 = 시놀로지 사이트와 같은 Inter + Noto Sans KR(2026-09-08 사장님 지시 "시놀로지 글꼴 형태로")**. 둘 다 OFL 무료, 가변 폰트를
+  `scripts/fetch-webfonts.mjs` 가 Google Fonts 조각(unicode-range, Noto 124 + Inter 7 = 131조각 4MB)으로 받아 `public/fonts/webfonts/` + `src/app/webfonts.css` 에 둔다.
+  **webfonts.css 를 손으로 고치지 말 것.** 정적 4웨이트로 받으면 16MB 라 가변으로 받는다. 굵기는 시놀로지처럼 본문 300/400, 제목 700.
+- Pretendard 는 두 글꼴에 없는 글자용 폴백으로만 남긴다(`pretendard.css`, `scripts/fetch-pretendard.mjs`). 안 쓰면 내려받지 않는다.
+  이전 글꼴(잘난체 고딕 9/6~9/7, 산돌 지정 9/6)은 폐기. `--font-sans` 폴백에 시스템 한글 폰트(Malgun Gothic 등)를 반드시 남길 것.
+- 첫 화면용 조각(Inter 7, Noto 115·117~120)은 layout.tsx 에서 preload. fetch-webfonts 를 다시 돌리면 번호가 바뀔 수 있으니 확인.
+- 배너 사진은 next/image `priority`(첫 장만). 예전 히어로 배경 영상(hero-loop.mp4)은 홈에서 더 안 쓴다(about 페이지 HeroBackground 만).
 
-## 디자인 (2026-09-08 리디자인 - "AI 느낌 빼고 슬라이드형 고급 홈, 폰 최적화" 사장님 지시)
-- **버린 것**: 유리 패널·글로우·격자(console-grid)·깜빡이는 점(hb-blink)·모노 대문자 eyebrow·아이콘 타일·배지 칩·카드 그림자·hover 확대·"→" 남발.
-  다시 넣지 말 것. 장식은 얇은 선(`--line`)과 여백으로만 한다. 버튼은 `rounded-md`, 잉크(검정)/흰색 채움, 파랑은 링크·강조 한 단어에만.
-- **팔레트**: 종이 `--bg #F4F4F0` / `--panel #E9E9E3` / 잉크 `#15191D` / 회색 `#5E656C` / 선 `#D6D6CF`, 밤 `hb-primary #0C1820`, 브랜드 블루 `hb-blue #0F5F8E`(온다크 `hb-blue-light`). 다크모드는 `.dark` 변수.
-- **홈 = 슬라이드 7장**(`page.tsx` 순서 = `SlideHead no`): 01 표지(Hero) · 02 하는 일(CoreServices) · 03 사내 AI(AiSlide, 실측값) · 04 현장(CaseStudies) · 05 임대(RentalShop) · 06 지원(QuickService) · 07 소식·연락(BlogFeed).
-  각 섹션은 `.hb-slide`(min-height 100svh-헤더, 스냅 proximity, id 있음). 데스크탑 `SlideNav` 가 오른쪽에 장 번호. 슬라이드를 넣고 빼면 번호를 같이 고칠 것.
-  데스크탑 1440×900 에서 한 장이 한 화면에 들어가야 한다(임대는 6열, 소식은 4건인 이유).
-- **모바일**: 하단 고정 바 `MobileBar`(전화·원격지원·견적, lg 미만) + body `pb-14`. ChatWidget 버튼은 바 위로 올려 둠. 표지는 폰에서 하단 바만큼 아래 여백. 폰에서는 Swiper 화살표 숨김.
-  본문 `word-break: keep-all`(어절 단위 줄바꿈). 헤더는 홈 맨 위에서만 투명(`overHero`)이고 로고 뒤에 흰 판.
-- **글꼴 슬롯**은 위 "폰트·홈 무게" 참고(제목 잘난체, 본문 Pretendard). 슬라이드 제목은 폰 30px / 데스크탑 52px, 표지 h1 은 38/76px.
-- 화면 확인은 Edge 헤드리스가 폰 폭(390)을 못 만들므로 `agent-browser set viewport 390 800` 으로 찍는다. Edge 는 창 높이 = 100svh 라 전체 페이지 캡처가 슬라이드마다 늘어나니 슬라이드별로 찍을 것.
+## 디자인 (2026-09-08 사장님 지시 "시놀로지(synology.com/ko-kr) 디자인 참고, 데이터는 그대로")
+- **참고 대상은 시놀로지 홈 그대로**: 검정 헤더(흰 로고·드롭다운 4그룹·흰 테두리 알약 "원격지원") -> 사진 배너 캐러셀(흰 굵은 제목·가벼운 부제·파란 알약 버튼·하단 점 알약+일시정지)
+  -> 가운데 제목+설명 + 사진 카드 4장(라벨 아래) -> RAID 계산기(옅은 회청 바탕) -> 파스텔 그라데이션 "무엇을 도와드릴까요?"(상담 위젯 연결)
+  -> 신뢰 섹션(숫자 넉 줄 + 현장 사진 캐러셀 + 파란 알약) -> 임대 제품 카드 -> **검정 소식 섹션** -> 지원 아이콘 줄(검정 원) -> 흰 푸터(4열, 제목 밑줄).
+  `page.tsx` 순서가 이것이다. 섹션 파일은 `components/sections/`(Hero·CoreServices·RaidSection·AskSection·CaseStudies·RentalShop·BlogFeed·QuickService).
+- **팔레트(시놀로지 CSS 실측)**: 본문 `#2E3742`, 회색 `#606A72`, 선 `#DCE4EC`, 옅은 바탕 `--panel #F3F6F9`, 파랑 `hb-blue #0067E6`(hover `#0050BF`), 검정 `hb-primary #000`.
+  버튼은 `.syn-btn`(파랑 알약) / `.syn-btn-outline` / `.syn-btn-dark` 만 쓴다. 다크모드는 `.dark` 변수.
+- **헤더 메뉴 데이터는 `site.ts navGroups`**(제품·서비스 / 자료 / 지원 / 회사 정보). 평면 `nav` 는 그대로 두었다.
+- **RAID 계산기**: 계산은 `src/lib/raid.ts`(SHR 층 계산·RAID 0/1/5/6/10·JBOD), 화면은 `components/RaidCalculator.tsx`(홈은 `compact`, 전체는 `/nas/raid-calculator/`).
+  규칙을 바꾸면 `node scripts/raid-check.mjs` 를 돌려 손계산 값과 맞는지 확인할 것(시놀로지 계산기와 같은 규칙: 표기 TB, 1TB=1000GB).
+- **모바일**: 하단 고정 바 `MobileBar`(전화·원격지원·견적, lg 미만) + body `pb-14`. 헤더 서랍은 그룹 아코디언. 본문 `word-break: keep-all`. 폰에서는 Swiper 화살표 숨김.
+- 홈 "무엇을 도와드릴까요?"는 `window.dispatchEvent(new CustomEvent("hb:ask", {detail: 질문}))` 으로 ChatWidget(상담원 별이)을 열고 질문을 보낸다.
+- 화면 확인은 Edge 헤드리스가 폰 폭(390)을 못 만들므로 `agent-browser set viewport 390 800` 으로 찍는다. 헤드리스는 다크모드로 뜨니 라이트 확인은 `localStorage.theme='light'` 를 심은 iframe 페이지로.
 
 ## 디자인 토큰 (변경 시 `globals.css @theme`)## 디자인 토큰 (변경 시 `globals.css @theme`)
 - `--color-hb-primary` `#0F172A`

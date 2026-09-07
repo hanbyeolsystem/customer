@@ -3,8 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
-import { usePathname } from "next/navigation";
-import { site, nav } from "@/data/site";
+import { site, navGroups } from "@/data/site";
 import { ThemeToggle } from "./ThemeToggle";
 import { Icon } from "./Icon";
 
@@ -15,19 +14,11 @@ interface BeforeInstallPromptEvent extends Event {
 }
 
 export function Header() {
-  const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  // 홈 표지는 사진이 헤더 뒤까지 올라오므로, 맨 위에서는 헤더를 투명하게 두고 글씨를 희게 쓴다
-  const overHero = usePathname() === "/" && !scrolled && !open;
+  const [open, setOpen] = useState(false);        // 모바일 서랍
+  const [menu, setMenu] = useState<number | null>(null); // 데스크탑 드롭다운(터치용 click 토글)
+  const [acc, setAcc] = useState<number | null>(0);   // 모바일 서랍 아코디언
   const [bmHint, setBmHint] = useState<string | null>(null);
   const installRef = useRef<BeforeInstallPromptEvent | null>(null);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   // PWA: 서비스워커 등록 + 설치 프롬프트 캡처
   useEffect(() => {
@@ -90,123 +81,119 @@ export function Header() {
   };
 
   return (
-    <header
-      className={[
-        "sticky top-0 z-50 transition-[background-color,box-shadow,color] duration-300",
-        overHero
-          ? "bg-transparent text-white border-b border-transparent"
-          : "backdrop-blur bg-[color-mix(in_oklab,var(--bg)_92%,transparent)] text-[var(--ink)] border-b " + (scrolled ? "border-[var(--line)]" : "border-transparent"),
-      ].join(" ")}
-    >
-      <div className="max-w-7xl mx-auto px-4 lg:px-6 h-16 lg:h-[68px] flex items-center justify-between gap-4">
+    /* 시놀로지식 검정 헤더(2026-09-08). 흰 로고·흰 메뉴·드롭다운·흰 테두리 알약 버튼 */
+    <header className="sticky top-0 z-50 bg-hb-primary text-white" onMouseLeave={() => setMenu(null)}>
+      <div className="max-w-[1280px] mx-auto px-4 lg:px-6 h-16 lg:h-[72px] flex items-center gap-6 lg:gap-10">
         {/* 로고 */}
-        <Link href="/" className={`flex items-center gap-2 shrink-0 rounded-md ${overHero ? "bg-white/95 px-1.5 py-1" : ""}`} aria-label="한별시스템 홈">
-          <Image
-            src="/brand/logo.webp"
-            alt="한별시스템"
-            width={307}
-            height={336}
-            priority
-            className={`${overHero ? "h-9 lg:h-10" : "h-11 lg:h-12"} w-auto object-contain transition-all`}
-          />
-          <span className="text-[10px] font-semibold text-[var(--mute)] tracking-[.15em] hidden 2xl:block">
-            HANBYEOL SYSTEM
+        <Link href="/" className="flex items-center gap-2.5 shrink-0" aria-label="한별시스템 홈">
+          <span className="bg-white rounded-md px-1.5 py-1 inline-flex">
+            <Image src="/brand/logo.webp" alt="" width={307} height={336} priority className="h-8 lg:h-9 w-auto object-contain" />
           </span>
+          <span className="text-[19px] lg:text-[21px] font-bold tracking-tight">한별시스템</span>
         </Link>
 
-        {/* 중앙 메뉴 */}
-        <nav className="hidden xl:flex items-center gap-0 text-[13px] font-semibold opacity-90 whitespace-nowrap">
-          {nav.map((n) => (
-            <Link
-              key={n.href}
-              href={n.href}
-              className="px-1.5 py-2 rounded-md hover:opacity-70 transition"
-            >
-              {n.label}
-            </Link>
+        {/* 데스크탑 메뉴(드롭다운) */}
+        <nav className="hidden lg:flex items-center gap-1 h-full" aria-label="주 메뉴">
+          {navGroups.map((g, i) => (
+            <div key={g.label} className="relative h-full flex items-center" onMouseEnter={() => setMenu(i)}>
+              <button
+                type="button"
+                aria-expanded={menu === i}
+                onClick={() => setMenu(menu === i ? null : i)}
+                className={`h-10 px-4 rounded-full text-[15px] font-medium transition ${menu === i ? "bg-white/12" : "hover:bg-white/10"}`}
+              >
+                {g.label}
+              </button>
+              {menu === i && (
+                <div className="absolute left-0 top-[calc(100%-6px)] w-[340px] rounded-xl bg-white text-[var(--ink)] shadow-[0_18px_50px_rgba(0,0,0,.22)] border border-[var(--line)] p-2 dark:bg-[#1B1F24] dark:text-[#E6E9ED]">
+                  {g.items.map((it) => (
+                    <Link
+                      key={it.href}
+                      href={it.href}
+                      onClick={() => setMenu(null)}
+                      className="block px-4 py-2.5 rounded-lg hover:bg-[var(--panel)] transition"
+                    >
+                      <span className="block text-[15px] font-medium">{it.label}</span>
+                      <span className="block text-[13px] text-[var(--mute)]">{it.desc}</span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
         </nav>
 
         {/* 우측 */}
-        <div className="flex items-center gap-2 shrink-0">
-          <a
-            href={site.phone.mainHref}
-            className="hidden lg:flex flex-col items-end text-right leading-tight pr-2"
-          >
-            <span className="inline-flex items-center gap-1.5 text-[15px] font-bold text-current">
-              <Icon name="phone" className="w-4 h-4" strokeWidth={2} />
-              {site.phone.main}
+        <div className="ml-auto flex items-center gap-1.5 lg:gap-2 shrink-0">
+          <a href={site.phone.mainHref} className="hidden xl:flex flex-col items-end leading-tight pr-2">
+            <span className="inline-flex items-center gap-1.5 text-[15px] font-semibold">
+              <Icon name="phone" className="w-4 h-4" strokeWidth={2} />{site.phone.main}
             </span>
-            <span className="text-[10px] font-semibold opacity-60">
-              {site.phone.hours}
-            </span>
+            <span className="text-[11px] text-white/60">{site.phone.hours}</span>
           </a>
           <div className="relative">
             <button
               type="button"
               onClick={addBookmark}
               aria-label="즐겨찾기 추가"
-              className="inline-flex items-center gap-1.5 h-9 px-2.5 rounded-md border border-current/25 text-current hover:border-current transition text-[13px] font-semibold"
+              title="바탕화면·홈 화면에 추가"
+              className="inline-flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/10 transition"
             >
-              <Icon name="star" className="w-4 h-4" strokeWidth={1.8} />
-              <span className="hidden sm:inline">즐겨찾기</span>
+              <Icon name="star" className="w-5 h-5" strokeWidth={1.8} />
             </button>
             {bmHint && (
-              <div
-                role="status"
-                className="absolute right-0 top-11 z-50 w-72 rounded-xl border border-[var(--line)] bg-[var(--bg)] shadow-xl px-4 py-3 text-[13px] font-semibold leading-relaxed text-[var(--ink)]"
-              >
-                <span className="inline-flex items-center gap-1.5">
-                  <Icon name="star" className="w-4 h-4 text-hb-azure shrink-0" strokeWidth={1.8} />
-                  {bmHint}
-                </span>
+              <div role="status" className="absolute right-0 top-12 z-50 w-72 rounded-xl border border-[var(--line)] bg-[var(--bg)] text-[var(--ink)] shadow-xl px-4 py-3 text-[13px] font-medium leading-relaxed">
+                {bmHint}
               </div>
             )}
           </div>
           <ThemeToggle />
+          <Link href="/support/remote" className="hidden sm:inline-flex syn-btn-outline !h-10 !px-5 !text-[14px] border-white/80">
+            원격지원
+          </Link>
           <button
             type="button"
-            aria-label="메뉴 열기"
+            aria-label={open ? "메뉴 닫기" : "메뉴 열기"}
+            aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="xl:hidden inline-flex items-center justify-center w-9 h-9 rounded-md border border-current/25 text-current"
+            className="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/10"
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
-              {open ? (
-                <path d="M6 6l12 12M18 6L6 18" />
-              ) : (
-                <path d="M3 6h18M3 12h18M3 18h18" />
-              )}
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M3 6h18M3 12h18M3 18h18" />}
             </svg>
           </button>
         </div>
       </div>
 
-      {/* 모바일 메뉴 */}
+      {/* 모바일 서랍 - 그룹 아코디언 */}
       {open && (
-        <div className="xl:hidden border-t border-[var(--line)] bg-[var(--bg)]">
-          <div className="px-2 py-2 grid grid-cols-2 gap-0.5">
-            {nav.map((n) => (
-              <Link
-                key={n.href}
-                href={n.href}
-                onClick={() => setOpen(false)}
-                className="px-3 py-3 rounded-md text-[15px] font-semibold text-[var(--ink)] hover:bg-[var(--panel)] transition"
+        <div className="lg:hidden absolute inset-x-0 top-full max-h-[calc(100svh-4rem)] overflow-y-auto bg-hb-primary border-t border-white/10 pb-6">
+          {navGroups.map((g, i) => (
+            <div key={g.label} className="border-b border-white/10">
+              <button
+                type="button"
+                aria-expanded={acc === i}
+                onClick={() => setAcc(acc === i ? null : i)}
+                className="w-full flex items-center justify-between px-5 h-14 text-[16px] font-medium"
               >
-                {n.label}
-              </Link>
-            ))}
-          </div>
-          <div className="px-4 pb-4">
-            <a
-              href={site.phone.mainHref}
-              className="flex items-center justify-between bg-[var(--ink)] text-[var(--bg)] rounded-md px-4 py-3.5 font-bold"
-            >
-              <span className="inline-flex items-center gap-2">
-                <Icon name="phone" className="w-4 h-4" strokeWidth={2} />
-                {site.phone.main}
-              </span>
-              <span className="text-xs font-semibold text-white/70">{site.phone.hours}</span>
-            </a>
+                {g.label}
+                <svg aria-hidden width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className={`text-white/60 transition-transform ${acc === i ? "rotate-180" : ""}`}><path d="M6 9l6 6 6-6" /></svg>
+              </button>
+              {acc === i && (
+                <div className="pb-2">
+                  {g.items.map((it) => (
+                    <Link key={it.href} href={it.href} onClick={() => setOpen(false)} className="block px-7 py-2.5 text-[15px] text-white/85 hover:text-white">
+                      {it.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+          <div className="px-5 pt-5 flex flex-col gap-3">
+            <a href={site.phone.mainHref} className="syn-btn w-full">전화 {site.phone.main}</a>
+            <Link href="/support/remote" onClick={() => setOpen(false)} className="syn-btn-outline w-full border-white/80">원격지원 시작</Link>
+            <p className="text-[12px] text-white/50 text-center">{site.phone.hours}</p>
           </div>
         </div>
       )}

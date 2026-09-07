@@ -16,7 +16,7 @@ export function ThemeToggle() {
       type="button"
       aria-label="다크모드 전환"
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="inline-flex items-center justify-center w-9 h-9 rounded-md border border-current/25 text-current hover:border-current transition"
+      className="inline-flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/10 text-current transition"
     >
       <span suppressHydrationWarning className="inline-flex">
         <Icon name={isDark ? "sun" : "moon"} className="w-[18px] h-[18px]" strokeWidth={2} />

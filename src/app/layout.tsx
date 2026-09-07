@@ -206,19 +206,17 @@ const jsonLd = {
   ],
 };
 
-// 첫 화면이 쓰는 폰트 조각을 미리 받는다(각 6~8KB). 히어로 제목(h1)은 잘난체 고딕(jalnan.css) 조각 91·90·89,
-// 본문·버튼은 Pretendard(pretendard.css) 조각 91·90(영문·숫자·기호와 빈도 높은 한글). 나머지는 브라우저가
-// 화면에 그릴 글자를 보고 알아서 받는다.
-// JSX <link rel="preload"> 로 쓰면 Next 와 React 가 각각 한 번씩 넣어 head 에 두 벌이 생긴다.
-// ReactDOM.preload() 는 한 번만 넣는다.
-// 조각 번호는 두 폰트가 같은 unicode-range 순서(scripts/fetch-pretendard.mjs = scripts/build-jalnan.py)라 같이 쓴다.
-// 히어로 문구를 바꾸면 어느 조각이 첫 화면에 필요한지 다시 확인할 것.
+// 첫 화면(배너 제목·부제·숫자)이 쓰는 글꼴 조각을 미리 받는다(각 5~15KB). Inter 라틴 조각 1개 + Noto Sans KR 빈도 높은 한글 조각 5개.
+// 나머지 조각은 브라우저가 화면에 그릴 글자를 보고 알아서 받는다. Pretendard 는 폴백이라 preload 하지 않는다.
+// JSX <link rel="preload"> 로 쓰면 Next 와 React 가 각각 한 번씩 넣어 head 에 두 벌이 생긴다. ReactDOM.preload() 는 한 번만 넣는다.
+// 조각 번호는 scripts/fetch-webfonts.mjs 를 다시 돌리면 바뀔 수 있으니 webfonts.css 에서 다시 확인할 것.
 const HERO_FONT_CHUNKS: Array<[string, number]> = [
-  ["/fonts/jalnan/JalnanGothic.subset", 91],
-  ["/fonts/jalnan/JalnanGothic.subset", 90],
-  ["/fonts/jalnan/JalnanGothic.subset", 89],
-  ["/fonts/pretendard/PretendardVariable.subset", 91],
-  ["/fonts/pretendard/PretendardVariable.subset", 90],
+  ["/fonts/webfonts/inter-w400-700", 7],
+  ["/fonts/webfonts/notosanskr-w300-700", 120],
+  ["/fonts/webfonts/notosanskr-w300-700", 119],
+  ["/fonts/webfonts/notosanskr-w300-700", 118],
+  ["/fonts/webfonts/notosanskr-w300-700", 117],
+  ["/fonts/webfonts/notosanskr-w300-700", 115],
 ];
 
 export default function RootLayout({

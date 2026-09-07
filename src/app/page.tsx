@@ -1,11 +1,11 @@
 import { Hero } from "@/components/sections/Hero";
-import { QuickService } from "@/components/sections/QuickService";
 import { CoreServices } from "@/components/sections/CoreServices";
-import { AiSlide } from "@/components/sections/AiSlide";
+import { RaidSection } from "@/components/sections/RaidSection";
+import { AskSection } from "@/components/sections/AskSection";
 import { CaseStudies } from "@/components/sections/CaseStudies";
 import { RentalShop } from "@/components/sections/RentalShop";
 import { BlogFeed } from "@/components/sections/BlogFeed";
-import { SlideNav } from "@/components/SlideNav";
+import { QuickService } from "@/components/sections/QuickService";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/JsonLd";
 import { webPageLd } from "@/lib/schema";
@@ -24,15 +24,15 @@ export default function Home() {
   return (
     <>
       <JsonLd data={webPageLd({ path: "/", name: "한별시스템 - 대구 기업 데이터 관리·NAS 구축·사내 AI 도입", mainEntityId: businessId })} />
-      {/* 홈 = 슬라이드 7장. 순서가 곧 번호(SlideHead no)다. 바꾸면 번호도 같이. */}
+      {/* 홈 구성(2026-09-08 시놀로지 홈 참고): 배너 캐러셀 -> 사진 카드 4 -> RAID 계산기 -> 물어보기 -> 신뢰·사례 -> 임대 -> 검정 소식 -> 지원 아이콘 줄 */}
       <Hero />
       <CoreServices />
-      <AiSlide />
+      <RaidSection />
+      <AskSection />
       <CaseStudies />
       <RentalShop />
-      <QuickService />
       <BlogFeed />
-      <SlideNav />
+      <QuickService />
     </>
   );
 }

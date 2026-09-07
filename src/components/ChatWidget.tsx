@@ -53,6 +53,18 @@ export function ChatWidget() {
     if (open) inputRef.current?.focus();
   }, [open]);
 
+  // 홈 "무엇을 도와드릴까요?" 섹션(AskSection)이 window 이벤트로 위젯을 열고 질문을 넘긴다
+  useEffect(() => {
+    const onAsk = (e: Event) => {
+      const q = (e as CustomEvent<string>).detail;
+      setOpen(true);
+      if (q) setTimeout(() => send(q), 50);
+    };
+    window.addEventListener("hb:ask", onAsk);
+    return () => window.removeEventListener("hb:ask", onAsk);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [messages, loading]);
+
   async function send(text: string) {
     const content = text.trim();
     if (!content || loading) return;
