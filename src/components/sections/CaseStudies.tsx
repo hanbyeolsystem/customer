@@ -13,7 +13,7 @@ import { SlideHead } from "./SlideHead";
 /* 05 현장. 사진은 전부 실제 시공 현장(네이버 블로그 후기 근거). 배지·태그·확대 효과 없이 사진과 한 줄 설명만. */
 export function CaseStudies() {
   return (
-    <section id="cases" className="hb-slide bg-[var(--panel)] py-16 lg:py-20">
+    <section id="cases" className="hb-slide bg-[var(--panel)] py-16 lg:py-24">
       <div className="max-w-6xl w-full mx-auto px-5 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <SlideHead
@@ -29,7 +29,7 @@ export function CaseStudies() {
         </div>
       </div>
 
-      <div className="max-w-6xl w-full mx-auto pl-5 lg:px-8 mt-8 lg:mt-12">
+      <div data-reveal className="max-w-6xl w-full mx-auto pl-5 lg:px-8 mt-8 lg:mt-12">
         <Swiper
           modules={[Navigation, Pagination]}
           slidesPerView={1.15}

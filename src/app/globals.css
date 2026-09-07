@@ -113,20 +113,16 @@ body {
   background-size: 32px 32px;
 }
 
-/* ── 홈 슬라이드 ─────────────────────────────────────────────
-   홈은 화면 한 장 = 슬라이드 한 장. 문서 스크롤에 proximity 스냅을 걸어 손가락을 떼면
-   가까운 슬라이드 머리로 정렬된다(mandatory 는 트랙패드·긴 슬라이드에서 거슬려 쓰지 않는다).
-   슬라이드가 화면보다 길면(모바일) 그냥 스크롤된다. 헤더(sticky 4rem) 아래로 정렬. */
-html:has(.hb-slide) { scroll-snap-type: y proximity; scroll-padding-top: var(--header-h); }
-.hb-slide {
-  scroll-snap-align: start;
-  min-height: calc(100svh - var(--header-h));
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.hb-slide-hero { min-height: 100svh; margin-top: calc(var(--header-h) * -1); }
+/* ── 홈 섹션 ─────────────────────────────────────────────
+   번호가 붙은 섹션 8장. 예전엔 화면 한 장 크기(100svh)에 스크롤 스냅을 걸었지만 마우스·폰에서 부자연스럽고
+   중간 글이 가려져 2026-09-08 사장님 지시로 스냅과 고정 높이를 뺐다. 지금은 보통 문서처럼 흐른다. */
+.hb-slide { scroll-margin-top: var(--header-h); }
+.hb-slide-hero { min-height: 100svh; margin-top: calc(var(--header-h) * -1); display: flex; flex-direction: column; }
 @media (min-width: 1024px) { :root { --header-h: 68px; } }
+
+/* 스크롤 나타나기 (Reveal.tsx). html.hb-js 가 있을 때만 숨겼다가 .is-in 에서 보인다 */
+.hb-js [data-reveal] { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+.hb-js [data-reveal].is-in { opacity: 1; transform: none; }
 
 /* 사진 위 글씨 보호용 - 위는 옅게, 아래는 진하게. 글로우·격자 없음 */
 .hb-photo-veil {

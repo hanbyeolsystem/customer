@@ -19,13 +19,13 @@ export async function BlogFeed() {
   ] as const;
 
   return (
-    <section id="news" className="hb-slide bg-[var(--bg)] py-16 lg:py-20">
+    <section id="news" className="hb-slide bg-[var(--bg)] py-16 lg:py-24">
       <div className="max-w-6xl w-full mx-auto px-5 lg:px-8">
         <SlideHead no="08" kicker="소식 · 연락" title="읽을거리와 연락처" className="mb-8 lg:mb-10" />
 
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-14">
           {/* 연락 - 모바일에서 먼저 */}
-          <div className="order-1 lg:order-2 lg:col-span-5">
+          <div data-reveal className="order-1 lg:order-2 lg:col-span-5">
             <a href={site.phone.mainHref} className="block font-display text-[34px] sm:text-[40px] lg:text-[44px] leading-none text-[var(--ink)] hover:text-hb-blue transition">
               {site.phone.main}
             </a>
@@ -61,7 +61,7 @@ export async function BlogFeed() {
           </div>
 
           {/* 최근 글 */}
-          <div className="order-2 lg:order-1 lg:col-span-7">
+          <div data-reveal className="order-2 lg:order-1 lg:col-span-7">
             <div className="flex items-baseline justify-between mb-2">
               <h3 className="font-sans text-[13px] font-semibold tracking-[.12em] text-[var(--mute)]">최근 글</h3>
               <Link

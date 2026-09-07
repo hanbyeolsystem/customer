@@ -14,7 +14,7 @@ const facts = [
 
 export function AiSlide() {
   return (
-    <section id="ai" className="hb-slide bg-hb-primary text-white py-16 lg:py-20">
+    <section id="ai" className="hb-slide bg-hb-primary text-white py-16 lg:py-24">
       <div className="max-w-6xl w-full mx-auto px-5 lg:px-8 grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
         <div className="lg:col-span-7">
           <SlideHead
@@ -26,7 +26,7 @@ export function AiSlide() {
             className="mb-8"
           />
 
-          <dl className="border-t border-white/20">
+          <dl data-reveal className="border-t border-white/20">
             {facts.map(([k, v]) => (
               <div key={k} className="grid grid-cols-[7.5rem_1fr] lg:grid-cols-[9rem_1fr] gap-4 py-3.5 border-b border-white/12 text-[15px]">
                 <dt className="text-white/55">{k}</dt>
@@ -43,7 +43,7 @@ export function AiSlide() {
           </Link>
         </div>
 
-        <figure className="lg:col-span-5">
+        <figure data-reveal className="lg:col-span-5">
           <div className="relative aspect-[4/3] lg:aspect-[4/5] overflow-hidden rounded-md">
             <Image
               src="/hero/server-rack.webp"

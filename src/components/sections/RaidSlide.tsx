@@ -5,7 +5,7 @@ import { SlideHead } from "./SlideHead";
 /* 04 RAID 계산기 슬라이드(2026-09-08 사장님 "RAID 부분은 남겨줘"). 전체 버전과 참고·FAQ 는 /nas/raid-calculator/ 에. */
 export function RaidSlide() {
   return (
-    <section id="raid" className="hb-slide bg-[var(--panel)] py-16 lg:py-20">
+    <section id="raid" className="hb-slide bg-[var(--panel)] py-16 lg:py-24">
       <div className="max-w-6xl w-full mx-auto px-5 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 lg:mb-10">
           <SlideHead
@@ -19,7 +19,7 @@ export function RaidSlide() {
             전체 RAID 종류와 참고 사항
           </Link>
         </div>
-        <div className="rounded-md bg-[var(--bg)] border border-[var(--line)] p-4 lg:p-8">
+        <div data-reveal className="rounded-md bg-[var(--bg)] border border-[var(--line)] p-4 lg:p-8">
           <RaidCalculator compact />
         </div>
       </div>

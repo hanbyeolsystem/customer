@@ -22,7 +22,7 @@ const notes: Record<string, string> = {
 
 export function QuickService() {
   return (
-    <section id="support" className="hb-slide bg-[var(--panel)] py-16 lg:py-20">
+    <section id="support" className="hb-slide bg-[var(--panel)] py-16 lg:py-24">
       <div className="max-w-6xl w-full mx-auto px-5 lg:px-8">
         <SlideHead
           no="07"
@@ -30,7 +30,7 @@ export function QuickService() {
           title="지금 바로 필요한 것"
           lead="이미 쓰고 계신 분들을 위한 창구입니다. 평일 09:00~18:00, 급하면 전화가 가장 빠릅니다."
         />
-        <ul className="grid sm:grid-cols-2 lg:grid-cols-4 hb-grid-lines border border-[var(--line)]">
+        <ul data-reveal className="grid sm:grid-cols-2 lg:grid-cols-4 hb-grid-lines border border-[var(--line)]">
           {links.map((l) => (
             <li key={l.label} className="!bg-[var(--bg)]">
               <Link

@@ -6,6 +6,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ChatWidget } from "@/components/ChatWidget";
 import { MobileBar } from "@/components/MobileBar";
+import { Reveal } from "@/components/Reveal";
 import { businessId, site } from "@/data/site";
 import { serviceId } from "@/lib/schema";
 import { BUY_FROM, bodyLow, won } from "@/data/synology";
@@ -244,6 +245,7 @@ export default function RootLayout({
           <Footer />
           <MobileBar />
           <ChatWidget />
+          <Reveal />
         </ThemeProvider>
       </body>
     </html>

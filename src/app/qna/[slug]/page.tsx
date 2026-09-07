@@ -7,6 +7,8 @@ import { JsonLd } from "@/components/JsonLd";
 import { qna, qnaBySlug, qnaCats, qnaModified, qnaPublished } from "@/data/qna";
 import { qnaDeep } from "@/data/qna-deep";
 import { qnaImage } from "@/data/qna-images";
+import { articlePhotos } from "@/lib/photos";
+import { Figure } from "@/components/Figure";
 import { guides } from "@/data/guides";
 import { caseStudies } from "@/data/cases";
 import { businessId, site } from "@/data/site";
@@ -53,6 +55,8 @@ export default async function QnaDetailPage({ params }: { params: Promise<{ slug
   const relCases = catCases.length ? Array.from({ length: Math.min(2, catCases.length) }, (_, i) => catCases[(idx + i) % catCases.length]) : [];
 
   const deep = qnaDeep[f.slug];
+  // 본문 중간 실사 사진(2026-09-08): 답변 뒤 1장 + 심화 섹션 2개마다 1장(최대 3장). 상단 대표 사진과는 겹치지 않게.
+  const photos = articlePhotos(f.cat, f.slug, Math.min(3, 1 + Math.floor((deep?.length ?? 0) / 2)), [qnaImage(f.cat, f.slug)]);
   const fullAnswer = [f.a, f.more, ...(deep?.map((d) => d.body.join(" ")) ?? [])].filter(Boolean).join(" ");
 
   const pageUrl = `${site.url}/qna/${f.slug}/`;
@@ -119,8 +123,9 @@ export default async function QnaDetailPage({ params }: { params: Promise<{ slug
               ))}
             </div>
           </div>
+          {photos[0] && <Figure photo={photos[0]} priority className="my-6" />}
           {f.more && (
-            <div className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6 mb-6">
+            <div data-reveal className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6 mb-6">
               <div className="text-[11px] font-extrabold text-[var(--mute)] tracking-[.18em] mb-2">더 자세히</div>
               <p className="text-sm text-[var(--ink)]/85 leading-relaxed">{f.more}</p>
             </div>
@@ -129,8 +134,9 @@ export default async function QnaDetailPage({ params }: { params: Promise<{ slug
           {/* 심화 설명 */}
           {deep && deep.length > 0 && (
             <div className="space-y-6 mb-8">
-              {deep.map((d) => (
-                <section key={d.h}>
+              {deep.map((d, i) => (
+                <section key={d.h} data-reveal>
+                  {i % 2 === 1 && photos[(i + 1) / 2] && <Figure photo={photos[(i + 1) / 2]} className="mt-0 mb-8" />}
                   <h2 className="text-lg lg:text-xl font-extrabold text-[var(--ink)] mb-3">{d.h}</h2>
                   {d.body.map((para) => (
                     <p key={para.slice(0, 40)} className="text-[15px] text-[var(--ink)]/85 leading-relaxed mb-3">{para}</p>

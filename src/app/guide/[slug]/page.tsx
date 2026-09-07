@@ -12,6 +12,8 @@ import { qnaBySlug } from "@/data/qna";
 import { nasModelBySlug } from "@/data/synology";
 import { businessId, site } from "@/data/site";
 import { isoDateTime } from "@/lib/schema";
+import { articlePhotos } from "@/lib/photos";
+import { Figure } from "@/components/Figure";
 
 export function generateStaticParams() {
   return guides.map((g) => ({ slug: g.slug }));
@@ -33,6 +35,8 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   const { slug } = await params;
   const g = guideBySlug(slug);
   if (!g) notFound();
+  // 본문 중간 실사 사진(2026-09-08): 섹션 2개마다 1장, 최대 3장. 가이드 분류 office 는 PC·네트워크 현장 사진.
+  const photos = articlePhotos(g.cat, g.slug, Math.min(3, Math.max(1, Math.floor(g.sections.length / 2))));
 
   const pageUrl = `${site.url}/guide/${g.slug}/`;
   const cat = guideCats.find((c) => c.id === g.cat);
@@ -90,8 +94,9 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
 
       <article className="py-10 lg:py-14 bg-[var(--bg)]">
         <div className="max-w-4xl mx-auto px-4 lg:px-6 space-y-12">
-          {g.sections.map((sec) => (
-            <section key={sec.h}>
+          {g.sections.map((sec, i) => (
+            <section key={sec.h} data-reveal>
+              {i > 0 && i % 2 === 0 && photos[i / 2 - 1] && <Figure photo={photos[i / 2 - 1]} className="mt-0 mb-10" />}
               <h2 className="text-xl lg:text-2xl font-extrabold text-[var(--ink)] mb-4">{sec.h}</h2>
 
               {sec.type === "text" &&

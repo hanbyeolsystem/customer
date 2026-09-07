@@ -83,9 +83,13 @@
 - **버린 것**: 유리 패널·글로우·격자(console-grid)·깜빡이는 점(hb-blink)·모노 대문자 eyebrow·아이콘 타일·배지 칩·카드 그림자·hover 확대·"→" 남발.
   다시 넣지 말 것. 장식은 얇은 선(`--line`)과 여백으로만 한다. 버튼은 `rounded-md`, 잉크(검정)/흰색 채움, 파랑은 링크·강조 한 단어에만.
 - **팔레트**: 흰 바탕 `--bg #FFFFFF`(2026-09-08 사장님 "기본 바탕화면은 흰색") / `--panel #F3F3F0` / 잉크 `#15191D` / 회색 `#5E656C` / 선 `#DEDED8`, 밤 `hb-primary #0C1820`, 브랜드 블루 `hb-blue #0F5F8E`(온다크 `hb-blue-light`). 다크모드는 `.dark` 변수.
-- **홈 = 슬라이드 8장**(`page.tsx` 순서 = `SlideHead no`): 01 표지(Hero) · 02 하는 일(CoreServices) · 03 사내 AI(AiSlide, 실측값) · 04 RAID 계산기(RaidSlide) · 05 현장(CaseStudies) · 06 임대(RentalShop) · 07 지원(QuickService) · 08 소식·연락(BlogFeed).
-  각 섹션은 `.hb-slide`(min-height 100svh-헤더, 스냅 proximity, id 있음). 데스크탑 `SlideNav` 가 오른쪽에 장 번호. 슬라이드를 넣고 빼면 번호를 같이 고칠 것.
-  데스크탑 1440×900 에서 한 장이 한 화면에 들어가야 한다(임대는 6열, 소식은 4건인 이유). RAID 계산기는 디스크를 넣으면 결과가 아래로 늘어난다(예외).
+- **홈 = 번호 붙은 섹션 8장**(`page.tsx` 순서 = `SlideHead no`): 01 표지(Hero) · 02 하는 일(CoreServices) · 03 사내 AI(AiSlide, 실측값) · 04 RAID 계산기(RaidSlide) · 05 현장(CaseStudies) · 06 임대(RentalShop) · 07 지원(QuickService) · 08 소식·연락(BlogFeed).
+  **스크롤 스냅·화면 고정 높이·오른쪽 장 번호(SlideNav)는 2026-09-08 사장님 지시로 뺐다**(마우스·폰에서 부자연스럽고 중간 글이 가려짐). 지금은 보통 문서처럼 흐르고 번호는 제목에만 남는다. 다시 넣지 말 것.
+- **스크롤 나타나기**: `components/Reveal.tsx`(layout 에 마운트)가 `[data-reveal]` 요소에 화면 진입 시 `.is-in` 을 붙인다. 숨김은 `html.hb-js` 가 있을 때만(JS 없음·크롤러는 전부 보임).
+  prefers-reduced-motion 은 HeroBackground 와 같은 이유로 무시한다(사장님 PC 포함, 윈도우 애니메이션 효과 꺼진 PC 가 많음). 새 블록에 효과를 주려면 `data-reveal` 만 붙이면 된다.
+- **본문 중간 실사 사진**(사장님 "글씨만 있으니 직관적이지 않다"): `src/lib/photos.ts` 가 cases.ts 사진 78장(캡션 자동: 지역·업종·장비)과 blog-assets 실사(그래픽 배너 제외)를 분류별 풀로 만들고,
+  `articlePhotos(cat, slug, n, except)` 가 글마다 고정된 사진을 고른다. Q&A 는 답변 뒤 1장 + 심화 섹션 2개마다 1장(최대 3), 가이드는 섹션 2개마다 1장(최대 3). 화면은 `components/Figure.tsx`.
+  새 사례 사진이 cases.ts 에 들어가면 자동으로 풀에 포함된다. AI 생성 이미지는 쓰지 않았다(실사만).
 - **RAID 계산기**(2026-09-08, 시놀로지 RAID Calculator 참고 자체 구현): 계산은 `src/lib/raid.ts`(SHR 층 계산·RAID 0/1/5/6/10·JBOD), 화면 `components/RaidCalculator.tsx`(홈 슬라이드는 `compact`, 전체는 `/nas/raid-calculator/` 페이지: 참고 5항+FAQ). 규칙을 바꾸면 `node scripts/raid-check.mjs` 로 손계산 값과 대조할 것.
   2026-09-08 시놀로지 형식 홈(검정 헤더·배너 캐러셀·드롭다운 메뉴)을 한 번 만들었다가 사장님 지시로 슬라이드 홈으로 되돌렸다(커밋 5112e86 참고). RAID 계산기만 남겼다.
 - **모바일**: 하단 고정 바 `MobileBar`(전화·원격지원·견적, lg 미만) + body `pb-14`. ChatWidget 버튼은 바 위로 올려 둠. 표지는 폰에서 하단 바만큼 아래 여백. 폰에서는 Swiper 화살표 숨김.

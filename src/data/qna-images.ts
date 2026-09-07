@@ -1,11 +1,12 @@
 // Q&A·새소식 카테고리별 현장사진 매핑 - slug 해시로 안정적으로 분배(같은 글=늘 같은 사진)
 
 const POOL: Record<string, string[]> = {
-  ai: ["nas-real-02.webp", "nas-01.webp", "security-01.webp", "nas-real-03.webp"],
-  nas: ["nas-real-01.webp", "nas-real-02.webp", "nas-real-03.webp", "nas-01.webp"],
+  // 그래픽 배너(nas-01·security-01·network-01)는 실사가 아니라 뺐다(2026-09-08)
+  ai: ["nas-real-02.webp", "nas-real-01.webp", "nas-real-03.webp"],
+  nas: ["nas-real-01.webp", "nas-real-02.webp", "nas-real-03.webp"],
   printer: ["printer-real-01.webp", "printer-real-02.webp", "printer-real-03.webp", "printer-service-01.webp"],
   pc: ["pc-build-04.webp", "pc-done-01.webp", "pc-cpu-01.webp", "pc-done-02.webp", "pc-parts-01.webp", "pc-done-03.webp"],
-  network: ["network-01.webp", "office-monitor-01.webp"],
+  network: ["office-monitor-01.webp", "pc-done-01.webp"],
   service: ["brand-store-01.webp", "printer-real-02.webp", "pc-build-05.webp", "printer-service-01.webp"],
 };
 

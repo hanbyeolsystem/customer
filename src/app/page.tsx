@@ -6,7 +6,6 @@ import { RaidSlide } from "@/components/sections/RaidSlide";
 import { CaseStudies } from "@/components/sections/CaseStudies";
 import { RentalShop } from "@/components/sections/RentalShop";
 import { BlogFeed } from "@/components/sections/BlogFeed";
-import { SlideNav } from "@/components/SlideNav";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/JsonLd";
 import { webPageLd } from "@/lib/schema";
@@ -25,7 +24,7 @@ export default function Home() {
   return (
     <>
       <JsonLd data={webPageLd({ path: "/", name: "한별시스템 - 대구 기업 데이터 관리·NAS 구축·사내 AI 도입", mainEntityId: businessId })} />
-      {/* 홈 = 슬라이드 8장. 순서가 곧 번호(SlideHead no)다. 바꾸면 번호도 같이. */}
+      {/* 홈 = 번호 붙은 섹션 8장. 순서가 곧 번호(SlideHead no)다. 바꾸면 번호도 같이. 스냅·고정 높이 없음(2026-09-08). */}
       <Hero />
       <CoreServices />
       <AiSlide />
@@ -34,7 +33,6 @@ export default function Home() {
       <RentalShop />
       <QuickService />
       <BlogFeed />
-      <SlideNav />
     </>
   );
 }

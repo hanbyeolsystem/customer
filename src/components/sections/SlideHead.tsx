@@ -1,4 +1,4 @@
-/* 홈 슬라이드 공통 머리. 홈은 7장짜리 한 벌이라 장 번호가 정보다(SlideNav 와 같은 순서). */
+/* 홈 섹션 공통 머리. 홈은 8장짜리 한 벌이라 장 번호가 정보다. 스크롤로 들어오면 나타난다(data-reveal). */
 export function SlideHead({
   no,
   kicker,
@@ -16,7 +16,7 @@ export function SlideHead({
 }) {
   const mute = dark ? "text-white/60" : "text-[var(--mute)]";
   return (
-    <header className={`mb-8 lg:mb-12 ${className}`}>
+    <header data-reveal className={`mb-8 lg:mb-12 ${className}`}>
       <p className={`text-[12px] lg:text-[13px] font-semibold tracking-[.12em] mb-4 lg:mb-5 ${mute}`}>
         <span className="font-display tracking-normal mr-2">{no}</span>{kicker}
       </p>

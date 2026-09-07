@@ -5,7 +5,7 @@ import { SlideHead } from "./SlideHead";
 /* 02 하는 일. 아이콘 타일·배지·카드 그림자 없이 선과 글자만으로 네 가지를 나열한다. */
 export function CoreServices() {
   return (
-    <section id="services" className="hb-slide bg-[var(--bg)] py-16 lg:py-20">
+    <section id="services" className="hb-slide bg-[var(--bg)] py-16 lg:py-24">
       <div className="max-w-6xl w-full mx-auto px-5 lg:px-8">
         <SlideHead
           no="02"
@@ -14,7 +14,7 @@ export function CoreServices() {
           lead="장비마다 업체를 따로 부르지 않아도 됩니다. 데이터·백업·전산·출력을 한별시스템 한 곳에서 맡습니다."
         />
 
-        <div className="grid sm:grid-cols-2 border-t border-[var(--line)]">
+        <div data-reveal className="grid sm:grid-cols-2 border-t border-[var(--line)]">
           {coreServices.map((s) => (
             <article
               key={s.title}
@@ -34,7 +34,7 @@ export function CoreServices() {
           ))}
         </div>
 
-        <p className="mt-6 lg:mt-8 text-[14px] text-[var(--mute)] leading-relaxed">
+        <p data-reveal className="mt-6 lg:mt-8 text-[14px] text-[var(--mute)] leading-relaxed">
           사무실 랜 배선 공사부터 공유 폴더 설정까지 같이 합니다.{" "}
           <Link href="/network" className="font-semibold text-hb-blue underline underline-offset-4 decoration-hb-blue/40 hover:decoration-hb-blue">
             네트워크 공사·데이터 백업 구축 보기

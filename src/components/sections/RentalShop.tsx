@@ -7,7 +7,7 @@ import { SlideHead } from "./SlideHead";
 /* 06 임대. 흰 바탕 제품 사진 + 이름 + 월 요금. 배지·그림자·확대 없음. */
 export function RentalShop() {
   return (
-    <section id="rental" className="hb-slide bg-[var(--bg)] py-16 lg:py-20">
+    <section id="rental" className="hb-slide bg-[var(--bg)] py-16 lg:py-24">
       <div className="max-w-6xl w-full mx-auto px-5 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 lg:mb-12">
           <SlideHead
@@ -25,7 +25,7 @@ export function RentalShop() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 hb-grid-lines border border-[var(--line)]">
+        <div data-reveal className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 hb-grid-lines border border-[var(--line)]">
           {products.map((p) => (
             <Link
               key={p.id}
