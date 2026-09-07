@@ -204,7 +204,7 @@
   커밋 **제목**에 `[blogger-audit]`(점검만) / `[blogger-audit fix]`(정리) 를 넣어 push 하면 돈다. 보고서는 실행 요약(Step Summary)과 아티팩트.
   찾는 것: 중복(같은 네이버 원본·같은 뉴스 원문·같은 제목) · 깨진 글(본문 없음·죽은 사진·푸터 없음·라벨 없음) · 상태파일 불일치.
   fix 는 중복 삭제, 네이버 원본이 있는 글은 본문을 다시 받아 갱신(발행일 유지), 원본 없는 글은 살아있는 사진 주소로만 교체. 원본을 못 찾는 글(다른 도구로 올린 글)은 손대지 않는다.
-  - **`blogfiles.pstatic.net` 사진은 블로거에서 403** 이다(실측). `naver-body.fixPstaticUrl` 이 `postfiles.pstatic.net?type=w966` 으로 바꾼다. 되돌리지 말 것.
+  - **`blogfiles.pstatic.net` 사진(움직이는 배너 GIF)은 블로거에서 403** 이다(실측 50장, postfiles 도 403). `naver-body.fixPstaticUrl` 이 `mblogthumb-phinf.pstatic.net?type=w966` 으로 바꾼다(사이트 가져오기와 같은 호스트). 되돌리지 말 것.
   - 네이버 본문 추출은 `scripts/naver-body.mjs` 한 곳(naver-to-blogger·blogger-audit 공용).
   - 크로스포스트 state 커밋은 `pull --rebase` 뒤 push. 예전엔 다른 워크플로가 먼저 push 하면 기록이 사라져 같은 글이 또 올라갔다.
 
