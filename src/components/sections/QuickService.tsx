@@ -1,30 +1,61 @@
 import Link from "next/link";
 import { quickServices } from "@/data/services";
+import { site } from "@/data/site";
 import { embedHref } from "@/lib/embed";
 import { Icon, type IconName } from "@/components/Icon";
+import { SlideHead } from "./SlideHead";
 
-/* 지원 바로가기: 시놀로지 푸터 위 아이콘 줄 형식(검정 원 안 흰 선 아이콘 + 라벨, 가운데 정렬). 홈 본문에도 한 번 둔다. */
+/* 07 지원. 기존 고객이 홈에서 가장 많이 누르는 것들. 모바일은 손가락 크기의 줄, 데스크탑은 선 격자. */
 const links: { icon: IconName; label: string; href: string }[] = [
   ...quickServices.map((s) => ({ icon: s.icon as IconName, label: s.label, href: s.href as string })),
   { icon: "search", label: "에러코드 검색", href: embedHref("https://hanbyeolsystem.github.io/hanbyeol-errorcode/", "에러코드 검색") },
 ];
+const notes: Record<string, string> = {
+  "원격지원": "엔지니어가 화면을 보며 바로 해결",
+  "드라이버 다운로드": "복합기·프린터 드라이버, 딸깍 설치",
+  "AS 접수": "출장·점검 접수",
+  "NAS 기술지원": "시놀로지 NAS 장애·설정",
+  "임대쇼핑몰": "복합기·프린터 월 요금",
+  "견적 요청": "무료 방문 견적",
+  "에러코드 검색": "프린터 에러코드 원인과 조치",
+};
 
-export function QuickService({ title = "지원" }: { title?: string }) {
+export function QuickService() {
   return (
-    <section id="support" className="bg-[var(--bg)] py-14 lg:py-20 border-t border-[var(--line)]">
-      <div className="max-w-[1280px] mx-auto px-5 lg:px-6">
-        {title && <h2 className="text-center text-[24px] lg:text-[30px] leading-tight mb-8 lg:mb-10">{title}</h2>}
-        <ul className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 gap-y-8 gap-x-3">
+    <section id="support" className="hb-slide bg-[var(--panel)] py-16 lg:py-20">
+      <div className="max-w-6xl w-full mx-auto px-5 lg:px-8">
+        <SlideHead
+          no="07"
+          kicker="지원"
+          title="지금 바로 필요한 것"
+          lead="이미 쓰고 계신 분들을 위한 창구입니다. 평일 09:00~18:00, 급하면 전화가 가장 빠릅니다."
+        />
+        <ul className="grid sm:grid-cols-2 lg:grid-cols-4 hb-grid-lines border border-[var(--line)]">
           {links.map((l) => (
-            <li key={l.label} className="text-center">
-              <Link href={l.href} className="group inline-flex flex-col items-center gap-3">
-                <span className="w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-hb-primary text-white flex items-center justify-center group-hover:bg-hb-blue transition">
-                  <Icon name={l.icon} className="w-6 h-6 lg:w-7 lg:h-7" strokeWidth={1.6} />
+            <li key={l.label} className="!bg-[var(--bg)]">
+              <Link
+                href={l.href}
+                className="flex items-center gap-4 lg:flex-col lg:items-start lg:gap-5 p-4 lg:p-6 min-h-14 hover:bg-[var(--bg)]/60 transition group"
+              >
+                <Icon name={l.icon} className="w-6 h-6 lg:w-7 lg:h-7 shrink-0 text-[var(--ink)]" strokeWidth={1.5} />
+                <span className="flex-1 min-w-0">
+                  <span className="block text-[16px] lg:text-[17px] font-semibold text-[var(--ink)] group-hover:text-hb-blue transition">{l.label}</span>
+                  <span className="block text-[13px] text-[var(--mute)] mt-0.5">{notes[l.label]}</span>
                 </span>
-                <span className="text-[13px] lg:text-[14px] font-medium text-[var(--ink)] group-hover:text-hb-blue transition">{l.label}</span>
+                <span aria-hidden className="lg:hidden text-[var(--mute)]">›</span>
               </Link>
             </li>
           ))}
+          <li className="!bg-[var(--bg)]">
+            <a href={site.phone.mainHref} className="flex items-center gap-4 lg:flex-col lg:items-start lg:gap-5 p-4 lg:p-6 min-h-14 hover:bg-[var(--bg)]/60 transition group">
+              <Icon name="phone" className="w-6 h-6 lg:w-7 lg:h-7 shrink-0 text-[var(--ink)]" strokeWidth={1.5} />
+              <span className="flex-1 min-w-0">
+                <span className="block text-[16px] lg:text-[17px] font-semibold text-[var(--ink)] group-hover:text-hb-blue transition">전화 {site.phone.main}</span>
+                <span className="block text-[13px] text-[var(--mute)] mt-0.5">{site.phone.hours}</span>
+              </span>
+              <span aria-hidden className="lg:hidden text-[var(--mute)]">›</span>
+            </a>
+          </li>
         </ul>
       </div>
     </section>
