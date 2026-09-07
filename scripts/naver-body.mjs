@@ -7,6 +7,18 @@ export const BLOG_ID_NAVER = "hanbyeolsystem";
 export const SITE_ORIGIN = "https://xn--bm3bm1i1e348cgwe.kr"; // 한별시스템.kr
 const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) hanbyeol-crosspost/1.0";
 
+// 네이버 사진 주소 정리: blogfiles.pstatic.net 은 외부(블로거)에서 불러오면 403 이 난다(2026-09-07 실측).
+// 같은 경로를 postfiles.pstatic.net + ?type=w966 으로 바꾸면 열린다.
+export function fixPstaticUrl(src) {
+  let u = String(src || "").replace(/&amp;/g, "&");
+  if (!/pstatic\.net/.test(u)) return u;
+  u = u.replace(/^https?:\/\/blogfiles\.pstatic\.net\//i, "https://postfiles.pstatic.net/");
+  u = u.replace(/^http:\/\//i, "https://");
+  u = u.replace(/\?type=[^&"]+/, "?type=w966");
+  if (!/\?type=/.test(u)) u += (u.includes("?") ? "&" : "?") + "type=w966";
+  return u;
+}
+
 function balancedDiv(html, startIdx) {
   // startIdx = "<div" 시작 위치. 여는/닫는 div 를 세어 컨테이너 전체를 반환
   let depth = 0;
@@ -50,7 +62,7 @@ export function extractBody(pageHtml) {
       const src =
         (m[0].match(/data-lazy-src="([^"]+)"/) || m[0].match(/\bsrc="([^"]+)"/) || [])[1];
       if (!src || !/pstatic\.net/.test(src)) continue;
-      const full = src.replace(/\?type=[^&"]+/, "?type=w966"); // 큰 사이즈로
+      const full = fixPstaticUrl(src); // 큰 사이즈로 + 외부에서 열리는 호스트로
       parts.push(
         `<div class="separator" style="clear:both;text-align:center;margin:14px 0;">` +
           `<img src="${full}" style="max-width:100%;height:auto;" loading="lazy" /></div>`

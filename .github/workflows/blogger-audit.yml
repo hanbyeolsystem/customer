@@ -44,7 +44,8 @@ jobs:
             exit 1
           fi
           MODE="${{ github.event.inputs.mode || 'report' }}"
-          case "$HEAD_MSG" in *"[blogger-audit fix]"*) MODE=fix ;; esac
+          HEAD_SUBJECT="$(printf '%s' "$HEAD_MSG" | head -n 1)"   # 커밋 제목 줄만 본다(본문 설명에 적힌 표식으로 오작동하지 않게)
+          case "$HEAD_SUBJECT" in *"[blogger-audit fix]"*) MODE=fix ;; esac
           echo "MODE=$MODE" >> "$GITHUB_ENV"
           ARGS=""
           [ "$MODE" = "fix" ] && ARGS="$ARGS --fix"

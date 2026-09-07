@@ -18,7 +18,7 @@ import { readFileSync, writeFileSync, existsSync, appendFileSync } from "node:fs
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { getAccessToken, updatePost, deletePost, withBackoff, sleep } from "./blogger-lib.mjs";
-import { fetchPostBody, siteFooter, footerLogNo, SITE_ORIGIN } from "./naver-body.mjs";
+import { fetchPostBody, siteFooter, footerLogNo, fixPstaticUrl } from "./naver-body.mjs";
 import { COLUMNS } from "./blog-columns-data.mjs";
 
 const DIR = dirname(fileURLToPath(import.meta.url));
@@ -77,9 +77,10 @@ const imgSrcs = (html) => [...String(html || "").matchAll(/<img\b[^>]*\bsrc="([^
 function classify(p) {
   const title = p.title || "";
   const labels = p.labels || [];
-  const logNo = footerLogNo(p.content);
+  // 원본 logNo: 푸터 링크 > 네이버 글 제목과 정확히 같은 경우(푸터가 붙기 전에 올라간 옛 크로스포스트)
+  const logNo = footerLogNo(p.content) || naverByTitle.get(normTitle(title)) || null;
   if (title.startsWith(NEWS_PREFIX) || labels.includes("새소식")) return { kind: "news", key: null };
-  if (logNo) return { kind: "review", key: `naver:${logNo}`, logNo };
+  if (logNo) return { kind: "review", key: `naver:${logNo}`, logNo, footer: !!footerLogNo(p.content) };
   if (labels.includes("설치후기")) return { kind: "review", key: null };
   if (COLUMN_TITLES.has(normTitle(title)) || labels.includes("Q&A")) return { kind: "column", key: null };
   return { kind: "other", key: null };
@@ -129,7 +130,13 @@ const stateByUrl = new Map(Object.entries(state.posted).filter(([, v]) => v.blog
 const newsJson = existsSync(NEWS_JSON) ? JSON.parse(readFileSync(NEWS_JSON, "utf8")) : [];
 const newsUrls = new Set(newsJson.map((n) => n.blogger).filter(Boolean));
 const naverPosts = existsSync(NAVER_JSON) ? JSON.parse(readFileSync(NAVER_JSON, "utf8")) : [];
-const naverImgCount = new Map(naverPosts.map((p) => [String(p.logNo), (p.images || []).length]));
+const naverImgCount = new Map(naverPosts.map((p) => [String(p.logNo), Number(p.images) || 0]));
+// 제목 → logNo (같은 제목이 둘이면 신뢰하지 않음)
+const naverByTitle = new Map();
+for (const p of naverPosts) {
+  const k = normTitle(p.title);
+  naverByTitle.set(k, naverByTitle.has(k) ? null : String(p.logNo));
+}
 
 const token = await getAccessToken();
 const posts = await listPostsWithBodies(token);
@@ -197,17 +204,32 @@ for (const p of posts) {
   if (p._text.length < 100) problems.push({ code: "empty", msg: `본문 ${p._text.length}자` });
   if (/\bundefined\b|\[object Object\]|&lt;(p|div|img)\b/.test(p.content)) problems.push({ code: "html", msg: "깨진 HTML(undefined · 이스케이프된 태그)" });
   const badImgs = CHECK_IMG ? p._imgs.map((s) => [s, imgCache.get(s)]).filter(([, r]) => r) : [];
-  if (badImgs.length) problems.push({ code: "img", msg: `사진 ${badImgs.length}/${p._imgs.length}장 깨짐`, imgs: badImgs.map(([s, r]) => `${r} ${s.slice(0, 90)}`) });
+  if (badImgs.length) problems.push({ code: "img", msg: `사진 ${badImgs.length}/${p._imgs.length}장 깨짐`, imgs: badImgs.map(([s, r]) => `${r} ${s.slice(0, 90)}`), raw: badImgs });
   if (p._imgs.some((s) => /^http:\/\//i.test(s))) problems.push({ code: "mixed", msg: "http:// 사진(혼합 콘텐츠)" });
   if (p.kind === "review") {
-    if (!p.logNo) problems.push({ code: "footer", msg: "한별시스템.kr 원문 링크(푸터) 없음" });
+    if (p.logNo && !p.footer) problems.push({ code: "footer", msg: `한별시스템.kr 원문 링크(푸터) 없음 (네이버 ${p.logNo})` });
+    if (!p.logNo) problems.push({ code: "nosrc", msg: "네이버 원본을 못 찾음(다른 도구로 올린 글로 보임) - 손대지 않음" });
     const expect = p.logNo ? naverImgCount.get(p.logNo) : undefined;
-    if (p._imgs.length === 0 && (expect === undefined || expect > 0)) problems.push({ code: "noimg", msg: `사진 0장(네이버 원본 ${expect ?? "?"}장)` });
+    if (p.logNo && p._imgs.length === 0 && (expect === undefined || expect > 0)) problems.push({ code: "noimg", msg: `사진 0장(네이버 원본 ${expect ?? "?"}장)` });
   }
   if (p.kind === "news" && !/원문 보기: <a href="https?:\/\//.test(p.content)) problems.push({ code: "newslink", msg: "뉴스 원문 링크 없음" });
   if (!(p.labels || []).length) problems.push({ code: "label", msg: "라벨 없음" });
   if (p._status !== "live") problems.push({ code: "status", msg: `공개 안 됨(${p._status})` });
-  if (problems.length) broken.push({ id: p.id, url: p.url, title: p.title, kind: p.kind, logNo: p.logNo || null, status: p._status, published: p.published, labels: p.labels || [], problems });
+  if (problems.length) broken.push({ id: p.id, url: p.url, title: p.title, kind: p.kind, logNo: p.logNo || null, status: p._status, published: p.published, labels: p.labels || [], problems, _content: p.content });
+}
+
+// 깨진 네이버 사진은 postfiles 호스트로 바꾸면 열리는지 확인해 둔다(보고서에도 "복구 가능" 으로 표시)
+const repairable = new Map(); // 깨진 src → 살아있는 대체 src
+if (CHECK_IMG) {
+  const cands = [...new Set(broken.flatMap((b) => (b.problems.find((p) => p.code === "img")?.raw || []).map(([s]) => s)))]
+    .filter((s) => /pstatic\.net/.test(s) && fixPstaticUrl(s) !== s);
+  await mapLimit(cands, 6, async (s) => { if (!(await checkImage(fixPstaticUrl(s)))) repairable.set(s, fixPstaticUrl(s)); });
+  for (const b of broken) {
+    const pr = b.problems.find((p) => p.code === "img");
+    if (!pr) continue;
+    const n = pr.raw.filter(([s]) => repairable.has(s)).length;
+    if (n) pr.msg += ` - 그중 ${n}장은 주소 교체로 복구 가능`;
+  }
 }
 
 // ---------- 3) 상태파일 불일치 ----------
@@ -280,6 +302,21 @@ if (FIX) {
     }
     await sleep(WRITE_GAP_MS);
   }
+  // (b2) 네이버 원본이 없는 글(다른 도구로 올린 글·새소식 등)의 깨진 네이버 사진은 주소만 교체
+  const refreshed = new Set(report.fixes.filter((f) => f.action === "refresh" && f.ok).map((f) => f.url));
+  for (const b of broken) {
+    if (refreshed.has(b.url)) continue;
+    const pr = b.problems.find((p) => p.code === "img");
+    if (!pr) continue;
+    const swaps = pr.raw.filter(([s]) => repairable.has(s));
+    if (!swaps.length) continue;
+    let html = b._content;
+    for (const [s] of swaps) html = html.split(s).join(repairable.get(s)).split(s.replace(/&/g, "&amp;")).join(repairable.get(s));
+    const ok = await withBackoff(`사진 주소 교체 ${b.url}`, () => updatePost(token, b.id, { title: b.title, html, labels: b.labels, published: b.published }));
+    report.fixes.push({ action: "img-swap", url: b.url, ok: !!ok, count: swaps.length });
+    lines.push(`- ${ok ? "사진 주소 교체" : "교체 실패"}: ${b.title.slice(0, 40)} (${swaps.length}장)`);
+    await sleep(WRITE_GAP_MS);
+  }
   // (c) 라벨 없는 설치후기 글에 라벨만 추가 (본문 갱신 대상은 위에서 이미 처리)
   for (const b of broken) {
     if (b.kind !== "review" || b.labels.length || b.problems.some((p) => REFRESH.has(p.code))) continue;
@@ -316,6 +353,7 @@ if (FIX) {
   }
 }
 
+for (const b of broken) { delete b._content; for (const pr of b.problems) delete pr.raw; }
 writeFileSync(REPORT_FILE, JSON.stringify(report, null, 2) + "\n");
 const summary = lines.join("\n");
 console.log("\n" + summary);
