@@ -6,6 +6,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { JsonLd } from "@/components/JsonLd";
 import { qna, qnaBySlug, qnaCats, qnaModified, qnaPublished } from "@/data/qna";
 import { qnaDeep } from "@/data/qna-deep";
+import { qnaDeep2 } from "@/data/qna-deep-2";
 import { qnaImage } from "@/data/qna-images";
 import { articlePhotos } from "@/lib/photos";
 import { Figure } from "@/components/Figure";
@@ -54,7 +55,8 @@ export default async function QnaDetailPage({ params }: { params: Promise<{ slug
   const catCases = caseStudies.filter((c) => c.category === CASE_CAT[f.cat]);
   const relCases = catCases.length ? Array.from({ length: Math.min(2, catCases.length) }, (_, i) => catCases[(idx + i) % catCases.length]) : [];
 
-  const deep = qnaDeep[f.slug];
+  // 심화 1부 + 2부(2026-09-07 확장). 같은 제목이 겹치면 1부 것만 둔다.
+  const deep = [...(qnaDeep[f.slug] ?? []), ...(qnaDeep2[f.slug] ?? [])].filter((d, i, a) => a.findIndex((x) => x.h === d.h) === i);
   // 본문 중간 실사 사진(2026-09-08): 답변 뒤 1장 + 심화 섹션 2개마다 1장(최대 3장). 상단 대표 사진과는 겹치지 않게.
   const photos = articlePhotos(f.cat, f.slug, Math.min(3, 1 + Math.floor((deep?.length ?? 0) / 2)), [qnaImage(f.cat, f.slug)]);
   const fullAnswer = [f.a, f.more, ...(deep?.map((d) => d.body.join(" ")) ?? [])].filter(Boolean).join(" ");

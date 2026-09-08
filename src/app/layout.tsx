@@ -84,8 +84,9 @@ const WEBSITE_ID = `${site.url}/#website`;
 // id 는 해당 서비스 페이지에서도 같은 @id 로 선언해 하나의 엔티티로 합쳐진다.
 // (서비스 페이지 쪽 선언은 src/lib/schema.ts 의 serviceLd() 참조 - id 를 반드시 일치시킬 것)
 const serviceCatalog = [
-  { id: serviceId("/nas/"), url: `${site.url}/nas/`, name: "기업용 NAS 구축·데이터 백업", desc: "시놀로지 NAS 설치, RAID 설계, 3-2-1 백업 구성, 랜섬웨어 대비, VPN 원격접속. 구축 실적 50개사 이상(네트워크 공사·백업 구축과 같은 현장 기준)." },
-  { id: serviceId("/nas/buy/"), url: `${site.url}/nas/buy/`, name: "시놀로지 NAS 판매·납품", desc: `시놀로지 공식 대리점 정품 NAS 판매. 1베이 DS124부터 12베이 DS2422+까지 본체 ${won(bodyLow)}부터, 사무실 표준 구성은 하드디스크와 출장 설치·설정교육까지 ${won(BUY_FROM)}부터(VAT 별도). 대구·경북 직접 납품·설치.` },
+  // alt: 검색·AI 가 쓰는 한글 표기("나스")와 지역어. "대구 나스"는 화장품·상호와 겹치는 다의어라 서비스명에 명시한다.
+  { id: serviceId("/nas/"), url: `${site.url}/nas/`, name: "기업용 NAS 구축·데이터 백업", alt: ["대구 나스 구축", "대구 NAS 설치", "대구 나스 업체"], desc: "시놀로지 NAS 설치, RAID 설계, 3-2-1 백업 구성, 랜섬웨어 대비, VPN 원격접속. 구축 실적 50개사 이상(네트워크 공사·백업 구축과 같은 현장 기준)." },
+  { id: serviceId("/nas/buy/"), url: `${site.url}/nas/buy/`, name: "시놀로지 NAS 판매·납품", alt: ["대구 나스 판매", "대구 시놀로지 나스 구매"], desc: `시놀로지 공식 대리점 정품 NAS 판매. 1베이 DS124부터 12베이 DS2422+까지 본체 ${won(bodyLow)}부터, 사무실 표준 구성은 하드디스크와 출장 설치·설정교육까지 ${won(BUY_FROM)}부터(VAT 별도). 대구·경북 직접 납품·설치.` },
   { id: serviceId("/rental/"), url: `${site.url}/rental/`, name: "복합기·프린터 렌탈(임대)", desc: "흑백 복사기 월 7만원부터, 컬러 복사기 월 10만원부터(VAT 별도). 월 정액에 토너 등 소모품, 부품 교체, 출장 수리, 분기 정기점검 포함. 설치·운영 300대 이상." },
   { id: serviceId("/support/"), url: `${site.url}/support/`, name: "기업 전산 유지관리", desc: "컴퓨터·복합기·NAS·네트워크를 한 회사가 통합 관리하는 올인원 전산 유지보수. 관리 고객사 170곳 이상." },
   { id: `${site.url}/support/#repair-service`, url: `${site.url}/support/`, name: "컴퓨터 수리·PC 임대", desc: "대구 지역 출장 컴퓨터 수리, 사무실 PC 표준화, 데이터 복구." },
@@ -185,6 +186,7 @@ const jsonLd = {
             "@id": s.id,
             url: s.url,
             name: s.name,
+            ...(s.alt ? { alternateName: s.alt } : {}),
             description: s.desc,
             provider: { "@id": BUSINESS_ID },
             areaServed: [
