@@ -61,6 +61,7 @@ export function Footer() {
               <li><Link href="/support/as" className="hover:text-white transition">AS 접수</Link></li>
               <li><Link href="/support/quote" className="hover:text-white transition">견적 요청</Link></li>
               <li><Link href="/nas/repair" className="hover:text-white transition">NAS 수리·점검</Link></li>
+              <li><Link href="/nas/area" className="hover:text-white transition">출장 지역(경북·경남)</Link></li>
               <li><Link href="/nas/raid-calculator" className="hover:text-white transition">RAID 계산기</Link></li>
               <li><Link href="/guide" className="hover:text-white transition">가이드·비교표</Link></li>
               <li><Link href="/qna" className="hover:text-white transition">Q&amp;A 전체 문답</Link></li>

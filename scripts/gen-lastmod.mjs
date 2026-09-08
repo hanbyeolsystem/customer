@@ -27,6 +27,7 @@ const extraDeps = {
 // (모델별 페이지는 본문이 전부 synology.ts 에서 나온다)
 const dynamicRoutes = {
   "/nas/model/": ["src/app/nas/model/[slug]/page.tsx", "src/data/synology.ts"],
+  "/nas/area/": ["src/app/nas/area/[slug]/page.tsx", "src/app/nas/area/page.tsx", "src/data/areas.ts"],
 };
 
 function git(args) {

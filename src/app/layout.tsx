@@ -8,7 +8,7 @@ import { ChatWidget } from "@/components/ChatWidget";
 import { MobileBar } from "@/components/MobileBar";
 import { Reveal } from "@/components/Reveal";
 import { businessId, site } from "@/data/site";
-import { serviceId } from "@/lib/schema";
+import { daeguGyeongbukServed, serviceId } from "@/lib/schema";
 import { BUY_FROM, bodyLow, won } from "@/data/synology";
 
 export const metadata: Metadata = {
@@ -162,11 +162,11 @@ const jsonLd = {
         // 한별시스템이 직접 운영하는 다른 사이트들. 같은 회사임을 검색·AI 가 알게 한다.
         ...site.owned,
       ],
+      // 서비스 지역: 대구 7구 2군 + 경북 시군 + 경남(창원·마산·창녕) 을 시군 단위로(schema.ts 한 곳). 전국은 1영업일 대응.
       areaServed: [
-        { "@type": "City", name: "대구광역시" },
-        { "@type": "AdministrativeArea", name: "달서구" },
+        { "@type": "AdministrativeArea", name: "대구광역시 달서구" },
         { "@type": "Place", name: "성서공단" },
-        { "@type": "AdministrativeArea", name: "경상북도" },
+        ...daeguGyeongbukServed,
         { "@type": "Country", name: "대한민국" },
       ],
       knowsAbout: [
@@ -192,6 +192,7 @@ const jsonLd = {
             areaServed: [
               { "@type": "City", name: "대구광역시" },
               { "@type": "AdministrativeArea", name: "경상북도" },
+              { "@type": "AdministrativeArea", name: "경상남도" },
             ],
           },
         })),

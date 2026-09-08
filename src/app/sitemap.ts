@@ -4,6 +4,7 @@ import { caseStudies } from "@/data/cases";
 import { guides } from "@/data/guides";
 import { naverPosts } from "@/data/naver-posts";
 import { nasModels } from "@/data/synology";
+import { areas } from "@/data/areas";
 import { qna, qnaCats, qnaModified } from "@/data/qna";
 import { site } from "@/data/site";
 
@@ -14,7 +15,7 @@ export const dynamic = "force-static";
 // 색인 제외하므로, 실제로 200 을 주는 슬래시 주소만 넣는다.
 // noindex 페이지(/go/, /404/, /_not-found/)는 절대 넣지 않는다.
 const pages = [
-  "/", "/ai/", "/guide/", "/nas/", "/nas/buy/", "/nas/price/", "/nas/repair/", "/nas/raid-calculator/", "/rental/", "/rental/price/", "/network/", "/shop/", "/cases/", "/qna/", "/news/", "/community/",
+  "/", "/ai/", "/guide/", "/nas/", "/nas/buy/", "/nas/price/", "/nas/repair/", "/nas/raid-calculator/", "/nas/area/", "/rental/", "/rental/price/", "/network/", "/shop/", "/cases/", "/qna/", "/news/", "/community/",
   "/support/", "/support/as/", "/support/quote/", "/support/remote/",
   "/support/drivers/", "/support/supplies/", "/blog/", "/about/", "/contact/",
   "/terms/", "/privacy/",
@@ -36,6 +37,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
           : p === "/qna/" || p === "/nas/" || p === "/rental/" || p === "/ai/" ? 0.9
             : p === "/terms/" || p === "/privacy/" ? 0.2
               : 0.6,
+    })),
+    // 지역별 NAS 출장 안내(구미·김천·안동·창원 등). 본문은 areas.ts 에서 나온다
+    ...areas.map((a) => ({
+      url: `${site.url}/nas/area/${a.slug}/`,
+      ...(lm["/nas/area/"] ? { lastModified: new Date(lm["/nas/area/"]) } : {}),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
     })),
     // 네이버 블로그에서 가져온 글 - 글 날짜를 lastmod 로
     ...naverPosts.map((b) => ({

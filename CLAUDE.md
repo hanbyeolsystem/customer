@@ -60,6 +60,9 @@
 - **외부 이미지는 리포 안에 복제한다.** 임대 쇼핑몰 카드 사진은 `public/products/*.webp` 다.
   예전엔 hbsys.kr PNG(장당 350~380KB, 6장 2.2MB)를 직접 불러 모바일에서 빈 흰 박스로 남았다.
   상품이 바뀌면 원본을 받아 600px WebP(q82)로 눌러 넣고 `src/data/products.ts` 경로만 고친다.
+- **지역 페이지 `/nas/area/[slug]/`(2026-09-09, 구미·김천·창녕·고령·성주·문경·예천·안동·창원·마산·경북 + 허브 `/nas/area/`)**: 데이터는 `src/data/areas.ts` 한 곳.
+  지사·지역 고객사 수·없는 사례를 지어내지 않는다(실적은 cases.ts·naver-posts 에 있는 것만 연결). 방문 정책 = 대구·경북 당일, 경남 일정 방문(llms.txt 와 동일).
+  금액은 synology.ts 를 그대로 쓴다. 지역 Q&A 11문항(`area-*`, cat service)이 짝으로 있고 llms.txt "출장 지역" 절은 gen-llms.mjs 가 areas.ts 에서 뽑는다.
 - **Q&A 심화 2부 = `src/data/qna-deep-2.ts`**(2026-09-08, 258문항). 1부(qna-deep.ts)와 같은 규칙이며 page.tsx 가 둘을 이어 붙인다(제목 겹치면 1부만).
   만든 방법: 4문항씩 병렬 작성 → 허용 사실(회사 수치·확정 단가만) 대조 반박 검증 → 반려분 수정. 새 문항이 생기면 1부에 손으로 쓰거나 같은 방식으로 2부에 추가.
 - **IndexNow**(`scripts/indexnow.mjs`, 키 파일 `public/<키>.txt`): deploy.yml 마지막 단계가 사이트맵 전체 URL 을 Bing·네이버에 통보한다(챗GPT 검색은 Bing 색인). 키를 바꾸면 파일명·내용·스크립트 KEY 세 곳 같이.

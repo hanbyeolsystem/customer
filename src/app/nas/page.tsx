@@ -8,6 +8,7 @@ import { AnswerBlock } from "@/components/AnswerBlock";
 import { JsonLd } from "@/components/JsonLd";
 import { monthlyOffer, serviceId, serviceLd } from "@/lib/schema";
 import { site } from "@/data/site";
+import { areas } from "@/data/areas";
 import { BUY_FROM, nasModels, won } from "@/data/synology";
 import { breadcrumbLd, webPageLd } from "@/lib/schema";
 
@@ -262,6 +263,27 @@ export default function NasPage() {
                 </figcaption>
               </figure>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 출장 지역 - 대구 밖 지역 검색("구미 나스", "안동 NAS 업체")이 여기서 지역 페이지로 이어진다 */}
+      <section id="area" className="py-14 lg:py-20 bg-[var(--bg)]">
+        <div className="max-w-5xl mx-auto px-4 lg:px-6">
+          <div className="text-[11px] font-extrabold text-hb-blue tracking-[.2em] mb-2">AREA</div>
+          <h2 className="text-2xl lg:text-3xl font-extrabold text-[var(--ink)] tracking-tight mb-3">
+            대구에서 출발해 경북·경남까지 직접 갑니다
+          </h2>
+          <p className="text-sm text-[var(--mute)] leading-relaxed mb-6 max-w-3xl">
+            대구 전역과 경북은 당일 방문 원칙, 경남 창녕·창원·마산은 일정을 잡아 방문합니다. 지역별 거리와 방문 방식, 그 지역 현장 기록은 아래 페이지에 있습니다.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {areas.map((a) => (
+              <Link key={a.slug} href={`/nas/area/${a.slug}`} className="px-3.5 py-2 rounded-full border border-[var(--line)] bg-[var(--panel)] text-sm font-bold text-[var(--ink)] hover:border-hb-blue hover:text-hb-blue transition">
+                {a.name} NAS {a.cases.length > 0 ? "· 사례" : ""}
+              </Link>
+            ))}
+            <Link href="/nas/area" className="px-3.5 py-2 rounded-full bg-hb-blue text-white text-sm font-extrabold hover:bg-hb-azure transition">출장 지역 전체 안내</Link>
           </div>
         </div>
       </section>
