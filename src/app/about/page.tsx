@@ -39,7 +39,16 @@ const values: { icon: IconName; title: string; desc: string }[] = [
   },
 ];
 
-const partners = ["Synology", "EPSON", "FujiFilm BI", "Kyocera", "HP", "Canon"];
+// 공식 파트너 - 사장님 확정 목록(2026-09-08). 임의 추가 금지
+const partners: { name: string; role: string }[] = [
+  { name: "브라더코리아", role: "서비스센터 · 공식대리점" },
+  { name: "교세라", role: "서비스센터 · 공식대리점" },
+  { name: "시놀로지 NAS", role: "공식대리점" },
+  { name: "고덱스", role: "라벨프린터" },
+  { name: "벤트사이", role: "핸드프린터" },
+  { name: "웰리스", role: "제균기" },
+  { name: "빔프로젝터", role: "판매 · 임대" },
+];
 
 // 회사 연혁 (최신순). highlight = 강조 마일스톤
 // 시대(era)별 연혁 - 성장 스텝 차트 + 표 로 시각화
@@ -411,19 +420,19 @@ export default function AboutPage() {
           <div className="text-center mb-8">
             <div className="eyebrow mb-3">PARTNERS</div>
             <h2 className="text-2xl lg:text-3xl font-black text-[var(--ink)] mb-2">공식 파트너</h2>
-            <p className="text-sm text-[var(--mute)]">한별은 다음 글로벌 브랜드의 공식 파트너입니다.</p>
+            <p className="text-sm text-[var(--mute)]">한별은 다음 브랜드의 서비스센터·공식대리점·공식 취급점입니다.</p>
           </div>
-          <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {partners.map((p) => (
               <div
-                key={p}
-                className="aspect-[3/2] bg-[var(--panel)] border border-[var(--line)] rounded-xl flex items-center justify-center text-[12px] font-extrabold text-[var(--ink)] text-center px-2 leading-tight hover:border-hb-blue/40 transition"
+                key={p.name}
+                className="aspect-[3/2] bg-[var(--panel)] border border-[var(--line)] rounded-xl flex flex-col items-center justify-center text-center px-2 leading-tight hover:border-hb-blue/40 transition"
               >
-                {p}
+                <div className="text-[14px] font-extrabold text-[var(--ink)]">{p.name}</div>
+                <div className="text-[11px] text-[var(--mute)] mt-1">{p.role}</div>
               </div>
             ))}
           </div>
-          <p className="text-[11px] text-[var(--mute)] text-center mt-4">※ 공식 로고는 추후 교체 예정입니다.</p>
         </div>
       </section>
 
