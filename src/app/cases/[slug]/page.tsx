@@ -232,7 +232,7 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
 
           {/* 결과 */}
           <h2 className="text-xl lg:text-2xl font-extrabold text-[var(--ink)] mb-3">결과</h2>
-          <div className="border-l-4 border-hb-blue bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6 mb-9">
+          <div className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6 mb-9">
             <p className="text-[15px] text-[var(--ink)]/90 leading-relaxed font-medium">{c.result}</p>
           </div>
 

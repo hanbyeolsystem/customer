@@ -250,7 +250,7 @@ export default function RentalPricePage() {
           </p>
 
           {/* 전화 확인 안내 */}
-          <div className="mt-7 border-l-4 border-hb-blue bg-[var(--bg)] border border-[var(--line)] rounded-2xl p-6 lg:p-7">
+          <div className="mt-7 bg-[var(--bg)] border border-[var(--line)] rounded-2xl p-6 lg:p-7">
             <h3 className="text-lg lg:text-xl font-black text-[var(--ink)] mb-2">
               정확한 금액은 <span className="text-hb-blue">{site.phone.main}</span>로 전화 확인해 주세요
             </h3>

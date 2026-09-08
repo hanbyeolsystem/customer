@@ -121,7 +121,7 @@ export default function RentalPage() {
         <div className="max-w-5xl mx-auto px-4 lg:px-6">
           <Link
             href="/rental/price"
-            className="block border-l-4 border-hb-blue bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6 lg:p-7 hover:border-hb-blue transition"
+            className="block bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6 lg:p-7 hover:border-hb-blue transition"
           >
             <div className="text-[11px] font-extrabold text-hb-blue tracking-[.2em] mb-2">
               PRICE

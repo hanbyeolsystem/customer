@@ -118,7 +118,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ logNo
             )}
           </div>
 
-          <div className="mt-10 bg-[var(--panel)] border-l-4 border-hb-blue border border-[var(--line)] rounded-2xl p-6">
+          <div className="mt-10 bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6">
             <div className="text-[11px] font-extrabold text-hb-blue tracking-[.18em] mb-2">이어서 보기</div>
             <p className="text-sm text-[var(--ink)]/85 leading-relaxed mb-4">
               이 글과 관련된 비용·구성은 <Link href={p.related.href} className="text-hb-blue font-bold hover:underline">{p.related.label}</Link> 페이지에 표로 정리되어 있습니다.

@@ -122,7 +122,7 @@ export default function NasRepairPage() {
       {/* 이것만은 하지 마세요 */}
       <section className="py-10 lg:py-14 bg-[var(--bg)]">
         <div className="max-w-3xl mx-auto px-4 lg:px-6">
-          <div className="border-l-4 border-red-500 bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6 lg:p-8">
+          <div className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6 lg:p-8">
             <div className="text-[11px] font-extrabold text-red-500 tracking-[.18em] mb-3">
               이것만은 하지 마세요
             </div>

@@ -1,3 +1,4 @@
+// 카드 폭은 max-w-5xl, 왼쪽 굵은 선 없음(2026-09-08 사장님 "카드가 작다, 앞 라인은 투명으로").
 // GEO/AEO: AI 검색(챗GPT·퍼플렉시티·제미나이·구글 AI 개요)이 그대로 인용할 수 있는 즉답 블록.
 //
 // 형식 규칙 (인용률을 좌우하므로 지킬 것):
@@ -17,8 +18,8 @@ export function AnswerBlock({
 }) {
   return (
     <section className="py-10 lg:py-14 bg-[var(--bg)]">
-      <div className="max-w-3xl mx-auto px-4 lg:px-6">
-        <div className="border-l-4 border-hb-blue bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6 lg:p-8">
+      <div className="max-w-5xl mx-auto px-4 lg:px-6">
+        <div className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6 lg:p-10">
           <div className="text-[11px] font-extrabold text-hb-blue tracking-[.18em] mb-3">
             한 문단 요약
           </div>

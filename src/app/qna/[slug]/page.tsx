@@ -108,7 +108,7 @@ export default async function QnaDetailPage({ params }: { params: Promise<{ slug
             className="w-full max-h-[420px] object-cover rounded-2xl border border-[var(--line)] mb-6" loading="eager" decoding="async" />
 
           {/* 즉답 */}
-          <div className="bg-[var(--panel)] border-l-4 border-hb-blue border border-[var(--line)] rounded-2xl p-6 mb-6">
+          <div className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6 mb-6">
             <div className="text-[11px] font-extrabold text-hb-blue tracking-[.18em] mb-2">답변</div>
             <h2 className="text-base font-extrabold text-[var(--ink)] mb-2">{/\?$/.test(f.q) ? f.q : `${f.q}?`}</h2>
             <p className="text-[var(--ink)] leading-relaxed font-medium">{f.a}</p>
