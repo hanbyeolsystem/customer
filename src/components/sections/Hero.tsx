@@ -29,7 +29,7 @@ export function Hero() {
         </h1>
 
         <p className="hb-rise text-[16px] lg:text-[19px] text-white/85 leading-relaxed max-w-xl mb-8 lg:mb-10" style={{ animationDelay: "160ms" }}>
-          대구·경북 170여 개 기업의 데이터를 19년째 {site.name}이 맡고 있습니다.
+          대구·경북 200여 개 기업의 데이터를 19년째 {site.name}이 맡고 있습니다.
           NAS 구축과 백업, 사내 AI 도입, 복합기 임대, 전산 유지관리를 한 회사에서 합니다.
         </p>
 

@@ -41,7 +41,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ logNo
   let imgN = 0;
   // 즉답: 본문 첫 문단들을 그대로 요약으로 쓴다(새로 지어내지 않음). 글 전체가 짧으면 즉답도 짧다.
   const lead = p.blocks.filter((b) => b.t === "p").map((b) => b.text).join(" ").slice(0, 320);
-  const answer = `${lead}${lead.length >= 320 ? "…" : ""} (${p.date.replace(/-/g, ".")} 현장. 대구·경북 고객사 170곳+ 를 관리하는 대구광역시 달서구 한별시스템, ${site.phone.main})`;
+  const answer = `${lead}${lead.length >= 320 ? "…" : ""} (${p.date.replace(/-/g, ".")} 현장. 대구·경북 고객사 200곳+ 를 관리하는 대구광역시 달서구 한별시스템, ${site.phone.main})`;
 
   // BlogPosting.image 는 비어 있으면 안 된다(2017~18 옛 글은 원래 사진이 없다).
   // 본문에 실린 사진 → 목록 썸네일 → 사이트 공용 OG 카드 순으로 채운다.

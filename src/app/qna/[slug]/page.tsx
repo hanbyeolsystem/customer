@@ -117,8 +117,8 @@ export default async function QnaDetailPage({ params }: { params: Promise<{ slug
             <div className="flex flex-wrap gap-2 mt-4">
               {[
                 { label: "방문", value: "대구·경북 당일" },
-                { label: "관리 고객사", value: "170곳+" },
-                { label: "NAS 구축", value: "50건+" },
+                { label: "관리 고객사", value: "200곳+" },
+                { label: "NAS 구축", value: "100건+" },
                 { label: "복사기 설치", value: "300대+" },
               ].map((x) => (
                 <span key={x.label} className="inline-flex items-baseline gap-1 text-[12px] bg-hb-blue-soft text-hb-blue rounded-full px-3 py-1"><span className="opacity-70">{x.label}</span><b>{x.value}</b></span>
