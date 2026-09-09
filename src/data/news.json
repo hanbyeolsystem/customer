@@ -1,5 +1,60 @@
 [
   {
+    "date": "2026-09-09",
+    "topic": "nas",
+    "img": "https://zdnet.co.kr/images/default_img.jpg",
+    "source": "ZDNet Korea",
+    "title": "퀀티넘, 미국 내 포획 이온 양자 컴퓨터 제조 발전 위해 미국 상무부와 1억 달러 규모 CHIPS R&D 지원금 최종 확정",
+    "link": "https://zdnet.co.kr/view/?no=20260908211002",
+    "desc": "[지디넷코리아] 연방정부 지원금으로 내결함성 포획 이온 양자 컴퓨팅 확장에 필요한 핵심 연구개발(R&D)과 미국 내 양자 반도체 제조 역량 지원. 퀀티넘, 차세대 포획 이온 및 제어 전자장치 제작을 위해 글로벌파운드리스(GlobalFoundries)와 협력하고, 신뢰성 높은 레이저와 광학 부품의 개발 및 제조를 위해 모나크 퀀텀(Monarch Quantum)과 협력해 워싱턴, 2026년 9월 8일 /PRNewswire/ -- 선도적인 양자 컴퓨",
+    "comment": "회사 데이터 보관에 관한 소식입니다. 우리 회사 백업 상태가 궁금해지셨다면 무료 점검부터 받아 보세요.",
+    "blogger": "https://hanbyeolsystem.blogspot.com/2026/09/it-1-chips-r.html"
+  },
+  {
+    "date": "2026-09-09",
+    "topic": "windows",
+    "img": "https://mmx.prnasia.com/media/MS1982200/Meritz-PR-Graphic-2.jpg?id=OA2932589&p=medium600",
+    "source": "ZDNet Korea",
+    "title": "메리츠증권, 벤징가와 파트너십 체결로 한국 투자자에게 실시간 미국 시장 인텔리전스 제공",
+    "link": "https://zdnet.co.kr/view/?no=20260908211013",
+    "desc": "[지디넷코리아] Stock News API와 Bulls Say Bears Say API를 통해 메리츠증권의 차세대 AI 투자 플랫폼 MOUM에 실시간 시장 뉴스와 애널리스트 투자 심리 분석 제공 디트로이트 및 한국 서울, 2026년 9월 8일 /PRNewswire/ -- 실시간 금융 뉴스 및 시장 인텔리전스 분야의 선도 기업 벤징가(Benzinga)가 메리츠증권이 자사 투자 플랫폼에 벤징가의 Stock News API와 Bulls Say Bea",
+    "comment": "업무 PC에 영향을 주는 변화는 미리 알아두면 대응이 쉽습니다. 우리 사무실에 해당하는지 궁금하면 전화 주세요.",
+    "blogger": "https://hanbyeolsystem.blogspot.com/2026/09/it_0341172540.html"
+  },
+  {
+    "date": "2026-09-09",
+    "topic": "security",
+    "img": "https://image.zdnet.co.kr/2021/03/08/f1bae94e62ba800ae7dda8e607b6e24a.jpg",
+    "source": "ZDNet Korea",
+    "title": "개인정보 유출 강남언니, 1인당 5만 포인트로 보상",
+    "link": "https://zdnet.co.kr/view/?no=20260908234128",
+    "desc": "[지디넷코리아]22만 명에 가까운 회원 개인정보가 유출된 미용의료 플랫폼 강남언니가 한국 고객을 대상으로 1인당 5만원 상당 포인트를 보상할 것을 약속했다. 또 사고 즉시 접근 경로 차단과 전체 시스템에 대한 전수 검사를 완료했고 보안 조치를 강화했다고 밝혔다.강남언니 운영사 힐링페이퍼는 8일 입장문을 통해 “지난 6일 한국인터넷진흥원(KISA)로의 침해사고 신고에 이어 7일 개인정보유출 사고 신고를 완료했다”며 “정확한 공격자 파악과 재발 방",
+    "comment": "보안 사고는 늘 '우리는 아니겠지' 하는 사무실에서 납니다. 백업과 기본 설정 점검, 미루지 마세요.",
+    "blogger": "https://hanbyeolsystem.blogspot.com/2026/09/it-1-5.html"
+  },
+  {
+    "date": "2026-09-09",
+    "topic": "network",
+    "img": "https://image.zdnet.co.kr/2023/06/09/88bcbd41dd86bf889702ba70b7ccf6e2.jpg",
+    "source": "ZDNet Korea",
+    "title": "\"폴더블 아이폰, 팀 쿡이 밀어붙였다\"…개발 비화 공개",
+    "link": "https://zdnet.co.kr/view/?no=20260909082017",
+    "desc": "[지디넷코리아]올해 애플의 제품 공개 행사에서 가장 많은 관심이 쏠리고 있는 폴더블 아이폰은 팀 쿡이 적극 밀어붙여서 개발이 성사됐다고 블룸버그 통신이 8일(현지시간) 보도했다.보도에 따르면 팀 쿡 애플 전 최고경영자(CEO)는 폴더블 아이폰 개발에 중요한 역할을 한 것으로 알려졌다.2020년 팀 쿡은 아시아 출장을 마치고 돌아온 뒤 폴더블폰에 이례적으로 큰 관심을 보였다. 중국을 비롯한 아시아 지역을 방문하는 동안 삼성전자와 화웨이 등 여러 ",
+    "comment": "사무실 네트워크와 닿아 있는 소식입니다. 인터넷이 느리다면 회선 탓만은 아닐 수 있습니다.",
+    "blogger": "https://hanbyeolsystem.blogspot.com/2026/09/it_072626697.html"
+  },
+  {
+    "date": "2026-09-09",
+    "topic": "ai",
+    "img": "https://image.zdnet.co.kr/2026/09/09/514bca86fb174735f250221840357591.jpg",
+    "source": "ZDNet Korea",
+    "title": "AI 기업 시스트란, 특허 번역 기술 고도화 본격화",
+    "link": "https://zdnet.co.kr/view/?no=20260909085709",
+    "desc": "[지디넷코리아]온프레미스 엔터프라이즈 AI 전문 기업 시스트란(대표 김유석, SYSTRAN)은 특허 번역 분야에서 확보해 온 독자적 성능 경쟁력을 바탕으로, STS(SYSTRAN Translate Server)의 단계적 고도화 방향성을 공개했다고 9일 밝혔다.시스트란은 특허 번역 분야에서 축적한 기술력과 운영 경험을 기반으로, 범용 번역과 차별화된 도메인 특화 성능을 지속적으로 강화해 왔다. 특허 문서는 반복성과 정형성이 높고, 기술 분야별 전",
+    "comment": "AI 소식은 많지만 실무에 쓸 수 있는 것은 일부입니다. 사무실에 적용할 만한 것만 골라 소개해 드립니다.",
+    "blogger": "https://hanbyeolsystem.blogspot.com/2026/09/it-ai_01758313243.html"
+  },
+  {
     "date": "2026-09-08",
     "topic": "security",
     "img": "https://image.zdnet.co.kr/2026/09/07/461d5ae027e058918251232c4bf326da.jpg",
