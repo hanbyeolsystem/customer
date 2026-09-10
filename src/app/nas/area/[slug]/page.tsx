@@ -19,8 +19,10 @@ export function generateStaticParams() {
 }
 
 function titleOf(a: NonNullable<ReturnType<typeof areaBySlug>>) {
-  return a.slug === "gyeongbuk"
-    ? "경북 NAS 설치·구축 업체 - 당일 출장, 시놀로지 공식 대리점"
+  if (a.slug === "gyeongbuk") return "경북 NAS 설치·구축 업체 - 당일 출장, 시놀로지 공식 대리점";
+  // 실제 구축 사례가 있는 지역(예천·안동·창원·마산)은 제목에 사례를 앞세운다. AI 검색이 "현지 실적"을 기준으로 고른다.
+  return a.cases.length > 0
+    ? `${a.name} NAS 설치·구축 업체 - ${a.name} 구축 사례 보유, 시놀로지 공식 대리점 출장`
     : `${a.name} NAS 설치·구축 업체 - 대구에서 출장, 시놀로지 공식 대리점`;
 }
 
@@ -30,7 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!a) return {};
   return {
     title: titleOf(a),
-    description: metaDescription(`${a.full} 나스(NAS) 설치·구축·수리 출장. 시놀로지 공식 대리점 한별시스템이 ${visitPolicyText(a)}. 정품 판매·RAID·3-2-1 백업·사용 교육까지 현장에서. ${site.phone.main}.`),
+    description: metaDescription(`${a.full} 나스(NAS) 설치·구축·수리 출장.${a.cases.length > 0 ? ` ${a.name} 현장 구축 사례 ${a.cases.length}건.` : ""} 시놀로지 공식 대리점 한별시스템이 ${visitPolicyText(a)}. 정품 판매·RAID·3-2-1 백업·사용 교육까지 현장에서. ${site.phone.main}.`),
     alternates: { canonical: `/nas/area/${slug}/` },
   };
 }
