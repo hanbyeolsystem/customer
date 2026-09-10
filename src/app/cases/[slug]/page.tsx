@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/PageHeader";
 import { JsonLd } from "@/components/JsonLd";
 import { caseBySlug, caseStudies } from "@/data/cases";
+import { areaFromText } from "@/data/areas";
 import { businessId, site } from "@/data/site";
 import { FaqSection } from "@/components/FaqSection";
 import { AnswerBlock } from "@/components/AnswerBlock";
@@ -99,6 +100,7 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
 
   const pageUrl = `${site.url}/cases/${c.slug}/`;
   const related = caseStudies.filter((x) => x.category === c.category && x.slug !== c.slug).slice(0, 3);
+  const area = areaFromText(c.region + " " + c.title);
 
   // 사례는 회사가 수행한 작업 기록이므로 CreativeWork 로 두고, 회사는 @id 참조만 한다.
   // 빵부스러기(BreadcrumbList)를 같이 넣어 검색결과에 경로가 노출되게 한다.
@@ -256,6 +258,18 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
       </section>
 
       <FaqSection title="이 현장과 관련해 자주 묻는 질문" items={caseFaq(c)} />
+
+      {/* 이 현장의 지역 출장 안내(예천·안동·창원 등) */}
+      {area && (
+        <section className="py-8">
+          <div className="max-w-3xl mx-auto px-4 lg:px-6">
+            <Link href={`/nas/area/${area.slug}`} className="block rounded-2xl border border-hb-blue/40 bg-hb-blue-soft/40 p-5 hover:border-hb-blue transition">
+              <div className="text-[11px] font-extrabold text-hb-blue tracking-[.16em] mb-1">{area.full} 출장 안내</div>
+              <div className="font-bold text-[var(--ink)]">{area.name} NAS 설치·구축·수리 - 거리, 방문 방식, 맞는 구성, 이 지역 기록 →</div>
+            </Link>
+          </div>
+        </section>
+      )}
 
       {/* 관련 사례 */}
       {related.length > 0 && (

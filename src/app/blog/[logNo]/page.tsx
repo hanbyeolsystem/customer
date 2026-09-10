@@ -7,6 +7,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { AnswerBlock } from "@/components/AnswerBlock";
 import { naverPosts, naverPostByNo, naverCats } from "@/data/naver-posts";
 import { caseBySlug } from "@/data/cases";
+import { areaFromText } from "@/data/areas";
 import { businessId, site } from "@/data/site";
 import { breadcrumbLd, isoDateTime } from "@/lib/schema";
 
@@ -33,6 +34,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ logNo
   if (!p) notFound();
   const cat = naverCats.find((c) => c.id === p.catLabel);
   const relCase = p.caseSlug ? caseBySlug(p.caseSlug) : undefined;
+  // 제목에 지역명(구미·안동·창원…)이 있으면 지역 출장 페이지로 잇는다(지역 검색 → 글 → 지역 페이지)
+  const area = /NAS|나스|서버|복합기|렌탈|임대|컴퓨터/.test(p.title) ? areaFromText(p.title) : undefined;
   // 같은 분류에서 "내 다음 4개" (앞 4개 고정 금지 - 링크가 한쪽에만 몰린다)
   const same = naverPosts.filter((x) => x.catLabel === p.catLabel);
   const i = same.findIndex((x) => x.logNo === p.logNo);
@@ -83,16 +86,23 @@ export default async function BlogPostPage({ params }: { params: Promise<{ logNo
 
       <article className="py-10 lg:py-14 bg-[var(--bg)]">
         <div className="max-w-3xl mx-auto px-4 lg:px-6">
-          {(relCase || p.related) && (
+          {(relCase || p.related || area) && (
             <div className="flex flex-wrap gap-2 mb-8">
+              {area && (
+                <Link href={`/nas/area/${area.slug}`} className="inline-flex items-center gap-2 border border-hb-blue text-hb-blue text-sm font-extrabold px-4 py-2 rounded-full hover:bg-hb-blue hover:text-white transition">
+                  {area.name} NAS 출장 안내 (거리·방문 방식·비용) →
+                </Link>
+              )}
               {relCase && (
                 <Link href={`/cases/${relCase.slug}`} className="inline-flex items-center gap-2 bg-hb-blue text-white text-sm font-extrabold px-4 py-2 rounded-full">
                   이 현장의 구축 사례 보기 →
                 </Link>
               )}
-              <Link href={p.related.href} className="inline-flex items-center gap-2 border border-[var(--line)] bg-[var(--panel)] text-[var(--ink)] text-sm font-bold px-4 py-2 rounded-full hover:border-hb-blue">
-                {p.related.label} →
-              </Link>
+              {p.related && (
+                <Link href={p.related.href} className="inline-flex items-center gap-2 border border-[var(--line)] bg-[var(--panel)] text-[var(--ink)] text-sm font-bold px-4 py-2 rounded-full hover:border-hb-blue">
+                  {p.related.label} →
+                </Link>
+              )}
             </div>
           )}
 

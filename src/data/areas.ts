@@ -288,6 +288,13 @@ export const areas: Area[] = [
 
 export const areaBySlug = (slug: string) => areas.find((a) => a.slug === slug);
 
+/** 글 제목·지역 문자열에 들어 있는 지역명으로 지역 페이지를 찾는다(블로그·사례 → 지역 페이지 내부 링크용). "경북"은 시군이 없을 때만. */
+export function areaFromText(text: string) {
+  const hit = areas.find((a) => a.slug !== "gyeongbuk" && text.includes(a.name));
+  if (hit) return hit;
+  return text.includes("경북") ? areaBySlug("gyeongbuk") : undefined;
+}
+
 /** 페이지·스키마·llms 가 함께 쓰는 문구. 정책을 바꾸면 여기 한 곳만. */
 export function visitPolicyText(a: Area) {
   if (a.slug === "gyeongbuk") return "경북 전역 당일 방문 원칙";
