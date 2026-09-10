@@ -31,8 +31,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 // Q&A 분류 -> 가이드 분류 / 사례 분류 대응표
-const GUIDE_CAT: Record<string, string> = { ai: "ai", nas: "nas", printer: "printer", pc: "office", network: "office", service: "office" };
-const CASE_CAT: Record<string, string> = { ai: "nas", nas: "nas", printer: "printer", pc: "pc", network: "network", service: "pc" };
+const GUIDE_CAT: Record<string, string> = { ai: "ai", nas: "nas", synology: "nas", printer: "printer", pc: "office", network: "office", service: "office" };
+const CASE_CAT: Record<string, string> = { ai: "nas", nas: "nas", synology: "nas", printer: "printer", pc: "pc", network: "network", service: "pc" };
 
 export default async function QnaDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

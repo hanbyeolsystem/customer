@@ -70,6 +70,7 @@ function pool(cat: string): Photo[] {
     cache.office ??= [];
     cache.office.push(...(cache.pc ?? []).filter((p) => !cache!.office!.includes(p)), ...(cache.network ?? []));
     cache.ai = [...(cache.ai ?? []), ...(cache.nas ?? []).filter((p) => !cache!.ai!.includes(p))];
+    cache.synology = cache.nas ?? [];
   }
   return cache[cat] ?? cache.service ?? [];
 }

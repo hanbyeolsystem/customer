@@ -285,6 +285,10 @@ export default function NasPage() {
             ))}
             <Link href="/nas/area" className="px-3.5 py-2 rounded-full bg-hb-blue text-white text-sm font-extrabold hover:bg-hb-azure transition">출장 지역 전체 안내</Link>
           </div>
+          <p className="text-sm text-[var(--mute)] leading-relaxed mt-6">
+            이미 시놀로지를 쓰고 계신가요? 접속 안 됨, 외부 접속, 권한·휴지통·스냅샷, 백업 확인, 용량 정리, 하드 이전 같은 실제 질문 30가지를{" "}
+            <Link href="/qna/cat/synology" className="text-hb-blue font-bold hover:underline">시놀로지 사용법·설정 Q&A</Link>에 정리해 두었습니다.
+          </p>
         </div>
       </section>
 
