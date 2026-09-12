@@ -88,7 +88,7 @@ const serviceCatalog = [
   { id: serviceId("/nas/"), url: `${site.url}/nas/`, name: "기업용 NAS 구축·데이터 백업", alt: ["대구 나스 구축", "대구 NAS 설치", "대구 나스 업체"], desc: "시놀로지 NAS 설치, RAID 설계, 3-2-1 백업 구성, 랜섬웨어 대비, VPN 원격접속. 구축 실적 100건 이상." },
   { id: serviceId("/nas/buy/"), url: `${site.url}/nas/buy/`, name: "시놀로지 NAS 판매·납품", alt: ["대구 나스 판매", "대구 시놀로지 나스 구매"], desc: `시놀로지 공식 대리점 정품 NAS 판매. 1베이 DS124부터 12베이 DS2422+까지 본체 ${won(bodyLow)}부터, 사무실 표준 구성은 하드디스크와 출장 설치·설정교육까지 ${won(BUY_FROM)}부터(VAT 별도). 대구·경북 직접 납품·설치.` },
   { id: serviceId("/rental/"), url: `${site.url}/rental/`, name: "복합기·프린터 렌탈(임대)", desc: "흑백 복사기 월 7만원부터, 컬러 복사기 월 10만원부터(VAT 별도). 월 정액에 토너 등 소모품, 부품 교체, 출장 수리, 분기 정기점검 포함. 설치·운영 300대 이상." },
-  { id: serviceId("/support/"), url: `${site.url}/support/`, name: "기업 전산 유지관리", desc: "컴퓨터·복합기·NAS·네트워크를 한 회사가 통합 관리하는 올인원 전산 유지보수. 관리 고객사 200곳 이상." },
+  { id: serviceId("/support/"), url: `${site.url}/support/`, name: "기업 전산 유지관리", desc: "컴퓨터·복합기·NAS·네트워크를 한 회사가 통합 관리하는 올인원 전산 유지보수. 관리 고객사 500곳 이상." },
   { id: `${site.url}/support/#repair-service`, url: `${site.url}/support/`, name: "컴퓨터 수리·PC 임대", desc: "대구 지역 출장 컴퓨터 수리, 사무실 PC 표준화, 데이터 복구." },
   { id: serviceId("/network/"), url: `${site.url}/network/`, name: "사무실 네트워크·랜공사·데이터 백업 구축", desc: "CAT6 이상 랜 배선 시공, 공유기·스위치 구성, 서버·NAS 설치, 공유 폴더와 권한 설정, 3-2-1 데이터 백업 구축, VPN 원격접속, 인터넷 장애 진단까지 한 회사에서 시공. 대구·경북 중심 50개사 이상 실적." },
   { id: serviceId("/ai/"), url: `${site.url}/ai/`, name: "사내 AI 도입(온프레미스 LLM)·데이터 관리 컨설팅", desc: "회사 자료를 외부로 내보내지 않고 사내 NAS 안에서 AI가 검색·요약하도록 구성한다. 한별시스템이 자사 NAS(Ryzen V1500B·4GB)에서 로컬 LLM 컨테이너를 2026년 8월부터 직접 운영하며 검증한 방식이며, 고객사는 상담·파일럿 단계로 진행한다." },

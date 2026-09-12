@@ -44,7 +44,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ logNo
   let imgN = 0;
   // 즉답: 본문 첫 문단들을 그대로 요약으로 쓴다(새로 지어내지 않음). 글 전체가 짧으면 즉답도 짧다.
   const lead = p.blocks.filter((b) => b.t === "p").map((b) => b.text).join(" ").slice(0, 320);
-  const answer = `${lead}${lead.length >= 320 ? "…" : ""} (${p.date.replace(/-/g, ".")} 현장. 대구·경북 고객사 200곳+ 를 관리하는 대구광역시 달서구 한별시스템, ${site.phone.main})`;
+  const answer = `${lead}${lead.length >= 320 ? "…" : ""} (${p.date.replace(/-/g, ".")} 현장. 대구·경북 고객사 500곳+ 를 관리하는 대구광역시 달서구 한별시스템, ${site.phone.main})`;
 
   // BlogPosting.image 는 비어 있으면 안 된다(2017~18 옛 글은 원래 사진이 없다).
   // 본문에 실린 사진 → 목록 썸네일 → 사이트 공용 OG 카드 순으로 채운다.
@@ -133,7 +133,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ logNo
             <p className="text-sm text-[var(--ink)]/85 leading-relaxed mb-4">
               이 글과 관련된 비용·구성은 <Link href={p.related.href} className="text-hb-blue font-bold hover:underline">{p.related.label}</Link> 페이지에 표로 정리되어 있습니다.
               {relCase ? <> 이 현장은 <Link href={`/cases/${relCase.slug}`} className="text-hb-blue font-bold hover:underline">구축 사례</Link>로도 정리했습니다.</> : null}
-              {" "}대구·경북은 당일 방문하며 방문 견적은 무료입니다.
+              {" "}대구·경북은 당일 출장 가며 방문 견적은 무료입니다.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link href="/support/quote" className="inline-flex items-center justify-center bg-hb-blue hover:bg-hb-azure text-white font-extrabold text-sm px-5 py-2.5 rounded-xl transition">무료 방문 견적 요청</Link>

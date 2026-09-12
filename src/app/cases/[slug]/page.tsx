@@ -71,7 +71,7 @@ function caseFaq(c: CaseStudy) {
   faq.push({
     q: `${c.region}도 방문하시나요?`,
     a: c.region.includes("대구")
-      ? `대구는 당일 방문합니다. ${c.region} 현장도 그렇게 진행했습니다. 방문 견적은 무료이고, 필요 없으면 필요 없다고 말씀드립니다. 문의 ${site.phone.main}.`
+      ? `대구는 당일 출장 갑니다. ${c.region} 현장도 그렇게 진행했습니다. 방문 견적은 무료이고, 필요 없으면 필요 없다고 말씀드립니다. 문의 ${site.phone.main}.`
       : `방문합니다. ${c.region} 현장이 그 사례입니다. 대구·경북은 당일, 그 외 지역은 일정을 미리 조율하며 먼 지역은 방문 횟수를 줄이도록 사전 준비와 원격 지원을 함께 설계합니다. 방문 견적은 무료입니다. 문의 ${site.phone.main}.`,
   });
   return faq;
@@ -296,7 +296,7 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
       <section className="py-12 bg-[var(--bg)]">
         <div className="max-w-3xl mx-auto px-4 lg:px-6 text-center">
           <p className="text-sm text-[var(--mute)] leading-relaxed mb-5">
-            비슷한 구성을 검토 중이시면 현장을 보고 견적을 내 드립니다. 대구·경북은 당일 방문합니다.
+            비슷한 구성을 검토 중이시면 현장을 보고 견적을 내 드립니다. 대구·경북은 당일 출장 갑니다.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href="/support/quote" className="inline-flex items-center justify-center bg-hb-blue hover:bg-hb-azure text-white font-extrabold text-[15px] px-7 py-3.5 rounded-xl transition">

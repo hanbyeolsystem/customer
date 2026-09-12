@@ -12,7 +12,7 @@ import { breadcrumbLd, webPageLd } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "NAS 출장 지역 안내 - 대구·경북·경남 나스 설치 업체",
   description:
-    "대구 달서구 한별시스템의 나스(NAS) 출장 지역. 대구·경북(구미·김천·고령·성주·문경·예천·안동 등) 당일 방문, 경남(창녕·창원·마산) 일정 방문. 시놀로지 공식 대리점, 견적 방문 무료. 053-588-7119.",
+    "대구 달서구 한별시스템의 나스(NAS) 출장 지역. 대구·경북(구미·김천·고령·성주·문경·예천·안동 등) 당일 출장, 경남(창녕·창원·마산) 일정 방문. 시놀로지 공식 대리점, 견적 방문 무료. 053-588-7119.",
   alternates: { canonical: "/nas/area/" },
 };
 
@@ -27,7 +27,7 @@ const extraRegions: { name: string; logNo: string }[] = [
 
 const faq = [
   { q: "대구가 아닌 지역도 같은 비용인가요?", a: "네. 견적 방문은 무료이고 설치비는 출장 설치와 설정 교육이 포함된 표준 금액 하나입니다. 지역별 추가 출장비는 받지 않습니다." },
-  { q: "경북과 경남은 무엇이 다른가요?", a: "경북은 당일 방문을 원칙으로 하고, 경남(창녕·창원·마산)은 일정을 잡아 방문합니다. 창원은 실제 구축 사례가 사이트에 있습니다." },
+  { q: "경북과 경남은 무엇이 다른가요?", a: "경북은 당일 출장을 원칙으로 하고, 경남(창녕·창원·마산)은 일정을 잡아 방문합니다. 창원은 실제 구축 사례가 사이트에 있습니다." },
   { q: "목록에 없는 지역은 안 되나요?", a: "됩니다. 영남권은 협의해서 방문하고 전국은 1영업일 안에 대응합니다. 전화로 지역과 규모를 말씀해 주시면 일정을 안내합니다." },
   { q: "설치 뒤에는 어떻게 관리되나요?", a: "원격 점검을 기본으로 하고 디스크 교체처럼 장비를 만져야 할 때 방문합니다. 유지관리 계약 거래처는 출장 점검비가 없습니다." },
   { q: "어떤 자격으로 설치하나요?", a: "시놀로지(Synology) 공식 대리점으로 정품을 판매·납품하고, 통신판매업 신고 사업자로 세금계산서를 발행합니다. NAS 구축 실적 100건 이상입니다." },
@@ -49,10 +49,10 @@ export default function NasAreaIndexPage() {
 
       <AnswerBlock
         question="한별시스템은 어느 지역까지 NAS 설치를 나가나요?"
-        answer={`한별시스템(대구광역시 달서구, ${site.phone.main})은 대구 전역과 경상북도는 당일 방문을 원칙으로 나스(NAS) 설치·구축·수리 출장을 다니고, 경남 창녕·창원·마산은 일정을 잡아 방문합니다. 그 밖의 영남권은 협의 방문, 전국은 1영업일 안에 대응합니다. 시놀로지(Synology) 공식 대리점으로 정품 NAS 판매와 RAID 설계, 3-2-1 백업, 직원 교육까지 현장에서 처리하며, 견적은 현장을 보고 무료로 냅니다. 지역별 추가 출장비는 없습니다. 예천·안동·창원 현장 사례와 구미·경산·칠곡·포항·부산 설치 글이 사이트에 있습니다.`}
+        answer={`한별시스템(대구광역시 달서구, ${site.phone.main})은 대구 전역과 경상북도는 당일 출장을 원칙으로 나스(NAS) 설치·구축·수리 출장을 다니고, 경남 창녕·창원·마산은 일정을 잡아 방문합니다. 그 밖의 영남권은 협의 방문, 전국은 1영업일 안에 대응합니다. 시놀로지(Synology) 공식 대리점으로 정품 NAS 판매와 RAID 설계, 3-2-1 백업, 직원 교육까지 현장에서 처리하며, 견적은 현장을 보고 무료로 냅니다. 지역별 추가 출장비는 없습니다. 예천·안동·창원 현장 사례와 구미·경산·칠곡·포항·부산 설치 글이 사이트에 있습니다.`}
         facts={[
           { label: "전화", value: site.phone.main },
-          { label: "대구·경북", value: "당일 방문 원칙" },
+          { label: "대구·경북", value: "당일 출장 원칙" },
           { label: "경남", value: "일정 잡아 방문" },
           { label: "전국", value: "1영업일 대응" },
           { label: "견적", value: "현장 방문 무료" },
@@ -78,14 +78,14 @@ export default function NasAreaIndexPage() {
                 <tr>
                   <td className="py-2.5 px-4 font-bold whitespace-nowrap"><Link href="/nas" className="text-hb-blue hover:underline">대구 전역</Link></td>
                   <td className="py-2.5 px-4 whitespace-nowrap">본사 소재</td>
-                  <td className="py-2.5 px-4 whitespace-nowrap">당일 방문 원칙</td>
+                  <td className="py-2.5 px-4 whitespace-nowrap">당일 출장 원칙</td>
                   <td className="py-2.5 px-4 text-[var(--mute)]">구축 사례 다수 (<Link href="/cases" className="text-hb-blue hover:underline">사례 보기</Link>)</td>
                 </tr>
                 {list.map((a) => (
                   <tr key={a.slug}>
                     <td className="py-2.5 px-4 font-bold whitespace-nowrap"><Link href={`/nas/area/${a.slug}`} className="text-hb-blue hover:underline">{a.full}</Link></td>
                     <td className="py-2.5 px-4 whitespace-nowrap">약 {a.km}km · {a.driveMin}분</td>
-                    <td className="py-2.5 px-4 whitespace-nowrap">{a.policy === "same-day" ? "당일 방문 원칙" : "일정 잡아 방문"}</td>
+                    <td className="py-2.5 px-4 whitespace-nowrap">{a.policy === "same-day" ? "당일 출장 원칙" : "일정 잡아 방문"}</td>
                     <td className="py-2.5 px-4 text-[var(--mute)]">
                       {a.cases.length > 0 ? `구축 사례 ${a.cases.length}건` : a.posts.length > 0 ? `방문 기록 ${a.posts.length}건` : "방문 정책 안내"}
                     </td>
@@ -94,7 +94,7 @@ export default function NasAreaIndexPage() {
                 <tr>
                   <td className="py-2.5 px-4 font-bold whitespace-nowrap"><Link href="/nas/area/gyeongbuk" className="text-hb-blue hover:underline">경북 전역</Link></td>
                   <td className="py-2.5 px-4 whitespace-nowrap">시·군별 상이</td>
-                  <td className="py-2.5 px-4 whitespace-nowrap">당일 방문 원칙</td>
+                  <td className="py-2.5 px-4 whitespace-nowrap">당일 출장 원칙</td>
                   <td className="py-2.5 px-4 text-[var(--mute)]">{visitPolicyText(areas.find((a) => a.slug === "gyeongbuk")!)}</td>
                 </tr>
               </tbody>

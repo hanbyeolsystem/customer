@@ -42,7 +42,7 @@ export default function QnaPage() {
       <PageHeader
         badge="Q&A"
         title="궁금한 것부터 해결하세요"
-        description={`사내 AI·나스·백업·복합기 렌탈·컴퓨터·네트워크 - 19년간 고객에게 실제로 받은 질문 ${qna.length}가지에 그대로 답합니다.`}
+        description={`사내 AI·나스·백업·복합기 렌탈·컴퓨터·네트워크 - 18년간 고객에게 실제로 받은 질문 ${qna.length}가지에 그대로 답합니다.`}
       />
 
       <AnswerBlock

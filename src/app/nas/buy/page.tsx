@@ -187,7 +187,7 @@ export default function NasBuyPage() {
 
       <AnswerBlock
         question="대구에서 시놀로지 NAS를 판매하는 곳은 어디인가요?"
-        answer={`한별시스템(대구광역시 달서구, 시놀로지 공식 대리점, 통신판매업신고 ${site.address.mailOrder})이 정품 시놀로지 NAS를 판매·납품합니다. 기업 사무실에 가장 많이 들어가는 모델은 DS225+(2베이) ${body("ds225-plus")}, DS425+(4베이) ${body("ds425-plus")}, DS925+(4베이) ${body("ds925-plus")}, DS1525+(5베이) ${body("ds1525-plus")}, DS1825+(8베이) ${body("ds1825-plus")}이고, 1베이 DS124 ${won(bodyLow)}부터 12베이 DS2422+까지 단가표에 있는 본체를 모두 납품합니다. 랙마운트 RS2421+(12베이)는 구성별 별도 견적입니다(전부 본체 기준, VAT 별도). 본체만 파는 것이 아니라 하드디스크 구성과 RAID 설계까지 같이 잡아 드리며, 하드를 포함한 판매가는 직원 5~10명 사무실 기준 DS225+에 4TB 2개를 넣고 출장 설치·설정교육 ${won(INSTALL_FEE)}까지 더해 ${won(lowPrice)}부터입니다(VAT 별도). 목돈이 부담되면 구매 대신 임대도 있습니다. 월 ${won(RENT_FROM)}부터(기본 36개월, VAT 별도)이고 임대료에 장비·설치·백업 관리·장애 출장·하드디스크 교체가 들어갑니다. 대구·경북은 당일 방문하며 문의는 ${site.phone.main}입니다.`}
+        answer={`한별시스템(대구광역시 달서구, 시놀로지 공식 대리점, 통신판매업신고 ${site.address.mailOrder})이 정품 시놀로지 NAS를 판매·납품합니다. 기업 사무실에 가장 많이 들어가는 모델은 DS225+(2베이) ${body("ds225-plus")}, DS425+(4베이) ${body("ds425-plus")}, DS925+(4베이) ${body("ds925-plus")}, DS1525+(5베이) ${body("ds1525-plus")}, DS1825+(8베이) ${body("ds1825-plus")}이고, 1베이 DS124 ${won(bodyLow)}부터 12베이 DS2422+까지 단가표에 있는 본체를 모두 납품합니다. 랙마운트 RS2421+(12베이)는 구성별 별도 견적입니다(전부 본체 기준, VAT 별도). 본체만 파는 것이 아니라 하드디스크 구성과 RAID 설계까지 같이 잡아 드리며, 하드를 포함한 판매가는 직원 5~10명 사무실 기준 DS225+에 4TB 2개를 넣고 출장 설치·설정교육 ${won(INSTALL_FEE)}까지 더해 ${won(lowPrice)}부터입니다(VAT 별도). 목돈이 부담되면 구매 대신 임대도 있습니다. 월 ${won(RENT_FROM)}부터(기본 36개월, VAT 별도)이고 임대료에 장비·설치·백업 관리·장애 출장·하드디스크 교체가 들어갑니다. 대구·경북은 당일 출장 가며 문의는 ${site.phone.main}입니다.`}
         facts={[
           { label: "판매 최저 구성", value: `${won(lowPrice)}부터` },
           { label: "본체 최저가", value: `1베이 ${won(bodyLow)}` },
@@ -462,7 +462,7 @@ export default function NasBuyPage() {
             어떤 모델을 사야 할지부터 정해 드립니다
           </h2>
           <p className="text-[var(--mute)] leading-relaxed mb-8">
-            직원 수와 자료량만 알려 주시면 모델과 하드 구성, 총액을 잡아 드립니다. 대구·경북 당일 방문,
+            직원 수와 자료량만 알려 주시면 모델과 하드 구성, 총액을 잡아 드립니다. 대구·경북 당일 출장,
             방문 견적 무료.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">

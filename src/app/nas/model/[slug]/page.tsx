@@ -147,7 +147,7 @@ export default async function NasModelPage({ params }: { params: Promise<{ slug:
         question={`시놀로지 ${m.model}를 설치하면 비용이 얼마나 드나요?`}
         answer={
           m.price
-            ? `본체가 ${won(m.price)}(VAT 별도)이고, 여기에 하드디스크 값과 출장 설치·설정교육 ${won(INSTALL_FEE)}이 더해집니다. 가장 많이 나가는 ${m.recommend.cap} ${mainConfig.count}개 구성이면 장비 ${won(mainConfig.gear)}에 설치비를 더해 합계 ${won(mainConfig.net)}(VAT 포함 ${won(mainConfig.vat)})입니다. ${m.model}는 ${m.bayLabel} ${m.form} 제품으로 ${m.fitFor}에 주로 들어갑니다. 초기 목돈이 부담되면 월 ${won(RENT_FROM)}부터(기본 36개월, VAT 별도) 임대도 가능하며 임대료에 장비·설치·백업 관리·장애 출장·하드디스크 교체가 포함됩니다. 대구광역시 달서구 한별시스템은 시놀로지 공식 대리점이며 대구·경북 당일 방문합니다. 문의 ${site.phone.main}.`
+            ? `본체가 ${won(m.price)}(VAT 별도)이고, 여기에 하드디스크 값과 출장 설치·설정교육 ${won(INSTALL_FEE)}이 더해집니다. 가장 많이 나가는 ${m.recommend.cap} ${mainConfig.count}개 구성이면 장비 ${won(mainConfig.gear)}에 설치비를 더해 합계 ${won(mainConfig.net)}(VAT 포함 ${won(mainConfig.vat)})입니다. ${m.model}는 ${m.bayLabel} ${m.form} 제품으로 ${m.fitFor}에 주로 들어갑니다. 초기 목돈이 부담되면 월 ${won(RENT_FROM)}부터(기본 36개월, VAT 별도) 임대도 가능하며 임대료에 장비·설치·백업 관리·장애 출장·하드디스크 교체가 포함됩니다. 대구광역시 달서구 한별시스템은 시놀로지 공식 대리점이며 대구·경북 당일 출장 갑니다. 문의 ${site.phone.main}.`
             : `${m.model}는 ${m.bayLabel} ${m.form} 제품이라 단가표에 고정 금액이 올라 있지 않고 디스크 구성과 랙 환경에 따라 금액이 달라집니다. 출장 설치·설정교육 ${won(INSTALL_FEE)}은 동일하게 적용되며, 정확한 금액은 현장을 보고 산출합니다. ${m.fitFor}에 주로 들어가고, 한별시스템은 성운대학교 서버 구축을 이 모델로 진행했습니다. 대구광역시 달서구 한별시스템, 시놀로지 공식 대리점, 문의 ${site.phone.main}.`
         }
         facts={[
@@ -307,7 +307,7 @@ export default async function NasModelPage({ params }: { params: Promise<{ slug:
         <div className="max-w-3xl mx-auto px-4 lg:px-6 text-center">
           <p className="text-sm text-[var(--mute)] leading-relaxed mb-5">
             {m.model}가 우리 회사에 맞는지 현장을 보고 판단해 드립니다. 맞지 않으면 다른 모델을 권합니다.
-            대구·경북 당일 방문, 방문 견적 무료.
+            대구·경북 당일 출장, 방문 견적 무료.
           </p>
           <div className="flex flex-col sm:flex-row flex-wrap gap-3 justify-center">
             {/* 모델명으로 들어와 "이거 얼마에 파나요"를 묻는 분들의 착지점 (전 모델 공통) */}
