@@ -15,6 +15,9 @@ on:
       fix_images:
         description: "true = 기존 새소식 글의 기본 사진을 원문 사진으로 교체 후 news.json 재구성"
         default: "false"
+      fix_text:
+        description: "true = 기존 글의 꼬리말·이모지·대시를 사람글 규칙으로 고친 뒤 news.json 재구성"
+        default: "false"
   schedule:
     # 매일 아침 07:30 KST (22:30 UTC 전날)
     - cron: "30 22 * * *"
@@ -42,7 +45,10 @@ jobs:
           GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
           BLOGGER_BLOG_ID: ${{ secrets.BLOGGER_BLOG_ID }}
         run: |
-          if [ "${{ github.event.inputs.fix_images || 'false' }}" = "true" ]; then
+          if [ "${{ github.event.inputs.fix_text || 'false' }}" = "true" ]; then
+            node scripts/news-to-blogger.mjs --fix-text
+            node scripts/news-to-blogger.mjs --sync
+          elif [ "${{ github.event.inputs.fix_images || 'false' }}" = "true" ]; then
             node scripts/news-to-blogger.mjs --fix-images
             node scripts/news-to-blogger.mjs --sync
           elif [ "${{ github.event.inputs.sync || 'false' }}" = "true" ]; then

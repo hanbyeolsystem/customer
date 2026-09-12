@@ -41,17 +41,17 @@ const FEEDS = [
 // 우리 고객과 관련 있는 주제만
 const TOPICS = [
   { key: "security", words: ["랜섬웨어", "해킹", "보안", "피싱", "유출", "취약점", "백업"], img: "news-security-01.jpg",
-    comment: "보안 사고는 늘 '우리는 아니겠지' 하는 사무실에서 납니다. 백업과 기본 설정 점검, 미루지 마세요." },
+    comment: "랜섬웨어는 백업이 없는 사무실에서 사고가 됩니다. 사본 3개, 저장매체 2종, 외부 1곳이 잡혀 있는지 오늘 확인하세요. 원격 점검은 무료입니다." },
   { key: "windows", words: ["윈도우", "Windows", "마이크로소프트", "MS", "PC", "인텔", "CPU"], img: "news-windows-01.jpg",
-    comment: "업무 PC에 영향을 주는 변화는 미리 알아두면 대응이 쉽습니다. 우리 사무실에 해당하는지 궁금하면 전화 주세요." },
+    comment: "윈도우 업데이트 하나로 사무실 PC 열 대가 한꺼번에 느려지기도 합니다. 우리 사무실에 해당하는지 모르겠으면 053-588-7119 로 물어보세요." },
   { key: "printer", words: ["프린터", "복합기", "사무기기", "토너"], img: "printer-real-01.jpg",
-    comment: "복합기·프린터 소식입니다. 렌탈 고객은 해당 사항이 있으면 저희가 먼저 챙겨 드립니다." },
+    comment: "복합기 소식입니다. 한별 임대 고객은 토너·부품이 월 요금에 들어 있으니 해당 사항이 있으면 저희가 먼저 챙깁니다." },
   { key: "nas", words: ["NAS", "나스", "스토리지", "시놀로지", "클라우드", "데이터"], img: "nas-real-01.jpg",
-    comment: "회사 데이터 보관에 관한 소식입니다. 우리 회사 백업 상태가 궁금해지셨다면 무료 점검부터 받아 보세요." },
+    comment: "회사 자료가 직원 PC 여러 대에 흩어져 있으면 한 대 고장에 자료가 사라집니다. NAS 한 대에 모으고 밤마다 백업하는 구성, 대구·경북에 100건 넘게 놓았습니다." },
   { key: "ai", words: ["AI", "인공지능", "챗GPT", "생성형"], img: "news-ai-01.jpg",
-    comment: "AI 소식은 많지만 실무에 쓸 수 있는 것은 일부입니다. 사무실에 적용할 만한 것만 골라 소개해 드립니다." },
+    comment: "AI 소식은 많지만 사무실에서 당장 쓸 수 있는 건 일부입니다. 한별은 자사 NAS 에서 로컬 AI 를 2026년 8월부터 직접 돌려 보고 되는 것만 권합니다." },
   { key: "network", words: ["네트워크", "인터넷", "와이파이", "5G", "통신"], img: "network-01.jpg",
-    comment: "사무실 네트워크와 닿아 있는 소식입니다. 인터넷이 느리다면 회선 탓만은 아닐 수 있습니다." },
+    comment: "인터넷이 느리면 회선보다 공유기·배선 문제인 경우가 많습니다. 사무실 랜 공사부터 NAS 까지 한 회사가 봅니다. 053-588-7119." },
 ];
 
 function pick(xml, tag) {
@@ -100,11 +100,11 @@ function buildHtml(item, topic, img = "") {
   return `<div class="separator" style="clear:both;text-align:center;"><img src="${img || `${IMG}/${topic.img}`}" alt="${item.title}" style="max-width:100%;height:auto;border-radius:8px;" /></div>
 <p><b>오늘의 소식 (${kst})</b></p>
 <p>${item.desc ? item.desc.slice(0, 250) + (item.desc.length > 250 ? "…" : "") : item.title}</p>
-<p>👉 원문 보기: <a href="${item.link}" rel="nofollow">${item.source} — ${item.title}</a></p>
-<p><b>한별의 한 줄</b> — ${topic.comment}</p>
+<p>원문: <a href="${item.link}" rel="nofollow">${item.source} · ${item.title}</a></p>
+<p><b>한별의 한 줄</b> · ${topic.comment}</p>
 <hr>
-<p><b>한별시스템</b> — 전산 올인원 관리 · 📞 053-588-7119 · <i>전산은 전화 한 통</i><br>
-🔗 <a href="${SITE}/qna/">전산 궁금증 모음</a> · <a href="${SITE}/community/">커뮤니티에 질문하기</a></p>`;
+<p><b>한별시스템</b> · 대구·경북 컴퓨터·복합기·NAS 전산 관리 · 053-588-7119<br>
+<a href="${SITE}/qna/">전산 궁금증 모음</a> · <a href="${SITE}/community/">커뮤니티에 질문하기</a></p>`;
 }
 
 // ---------- sync 모드: 블로거의 새소식 글에서 news.json 재구성 ----------
@@ -127,11 +127,11 @@ if (process.argv.includes("--sync")) {
     const c = p.content || "";
     const first = (c.match(/<img[^>]+src="([^"]+)"/) || [])[1] || "";
     const img = first.includes("/blog-assets/") ? first.split("/blog-assets/")[1] : (first || "news-tech-01.jpg");
-    const link = (c.match(/원문 보기: <a href="([^"]+)"/) || [])[1] || "";
+    const link = (c.match(/원문(?: 보기)?: <a href="([^"]+)"/) || [])[1] || "";
     const srcTitle = (c.match(/rel="nofollow">([^<]+)<\/a>/) || [])[1] || "";
-    const source = srcTitle.split(" — ")[0] || "";
+    const source = srcTitle.split(/ — | · /)[0] || "";
     const desc = (c.match(/<p>([^<]{30,400})<\/p>/) || [])[1] || "";
-    const comment = (c.match(/한별의 한 줄<\/b> — ([^<]+)</) || [])[1] || "";
+    const comment = (c.match(/한별의 한 줄<\/b> [—·] ([^<]+)</) || [])[1] || "";
     const topic = (p.labels || []).find((l) => l !== "새소식") || "tech";
     news.push({
       date: (p.published || "").slice(0, 10), topic, img, source,
@@ -141,6 +141,50 @@ if (process.argv.includes("--sync")) {
   news.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
   writeFileSync(NEWS_JSON, JSON.stringify(news, null, 2), "utf8");
   console.log(`sync 완료: news.json ${news.length}건`);
+  process.exit(0);
+}
+
+// ---------- fix-text 모드: 기존 글(새소식·IT소식·Q&A·후기)의 꼬리말·이모지·대시를 사람글 규칙(글쓰기규칙/사람글_규칙.md)에 맞춘다 ----------
+if (process.argv.includes("--fix-text")) {
+  const token = await getAccessToken();
+  const blogId = process.env.BLOGGER_BLOG_ID;
+  const items = [];
+  let pageToken = "";
+  do {
+    const url = `https://www.googleapis.com/blogger/v3/blogs/${blogId}/posts?maxResults=50${pageToken ? `&pageToken=${pageToken}` : ""}`;
+    const res = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
+    if (!res.ok) throw new Error(`list HTTP ${res.status}`);
+    const j = await res.json();
+    items.push(...(j.items || []));
+    pageToken = j.nextPageToken || "";
+  } while (pageToken);
+  const RULES = [
+    [/👉 원문 보기: /g, "원문: "],
+    [/(rel="nofollow">[^<]*?) — /g, "$1 · "],
+    [/한별의 한 줄<\/b> — /g, "한별의 한 줄</b> · "],
+    [/<b>한별시스템<\/b> — 전산 올인원 관리 · 📞 053-588-7119 · <i>전산은 전화 한 통<\/i><br>\s*🔗 /g,
+      "<b>한별시스템</b> · 대구·경북 컴퓨터·복합기·NAS 전산 관리 · 053-588-7119<br>\n"],
+    [/💡 한별의 한마디:/g, "<b>한별 생각</b>:"],
+    [/한별시스템 — 대구·경북 NAS·복합기 임대·전산 유지관리 \| 053-588-7119 \| /g, "한별시스템 · 대구·경북 NAS·복합기 임대·전산 유지관리 · 053-588-7119 · "],
+    [/<b>한별시스템<\/b> — 대구·경북 기업 IT 파트너 \(NAS 구축 · 복사기 임대 · 전산 유지관리\)<br>\s*📞 /g,
+      "<b>한별시스템</b> · 대구·경북 NAS 구축 · 복사기 임대 · 전산 유지관리<br>\n"],
+    [/🔗 전체 Q&amp;A 보기:/g, "전체 Q&amp;A 보기:"],
+    [/🔗 전체 Q&A 보기:/g, "전체 Q&A 보기:"],
+    [/<b>한별시스템<\/b> — /g, "<b>한별시스템</b> · "],
+    [/[📞🔗👉💡] ?/g, ""],
+  ];
+  let fixed = 0, skipped = 0;
+  for (const p of items) {
+    const c = p.content || "";
+    let html = c;
+    for (const [re, to] of RULES) html = html.replace(re, to);
+    if (html === c) { skipped++; continue; }
+    if (DRY) { console.log(`[dry] ${p.title}`); fixed++; continue; }
+    await withBackoff(p.title, () => updatePost(token, p.id, { title: p.title, html, labels: p.labels || [] }));
+    fixed++;
+    await sleep(1200);
+  }
+  console.log(`fix-text 완료: ${fixed}건 수정, ${skipped}건 변경 없음`);
   process.exit(0);
 }
 
@@ -158,7 +202,7 @@ if (process.argv.includes("--fix-images")) {
       if (!p.title.startsWith("[IT 새소식] ")) continue;
       const c = p.content || "";
       if (!/<img[^>]+src="[^"]*\/blog-assets\/[^"]*"/.test(c)) continue; // 이미 원문 사진
-      const link = (c.match(/원문 보기: <a href="([^"]+)"/) || [])[1] || "";
+      const link = (c.match(/원문(?: 보기)?: <a href="([^"]+)"/) || [])[1] || "";
       const og = link ? await ogImage(link) : "";
       if (!og) { console.log(`원문 사진 없음: ${p.title}`); continue; }
       const html = c.replace(/(<img[^>]+src=")[^"]*\/blog-assets\/[^"]*(")/, `$1${og}$2`);
