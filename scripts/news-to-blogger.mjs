@@ -172,15 +172,17 @@ if (process.argv.includes("--fix-text")) {
     [/🔗 전체 Q&A 보기:/g, "전체 Q&A 보기:"],
     [/<b>한별시스템<\/b> — /g, "<b>한별시스템</b> · "],
     [/[📞🔗👉💡] ?/g, ""],
+    [/[—–]/g, "-"],   // 본문·제목의 대시 → 하이픈(사이트 규칙과 동일)
   ];
   let fixed = 0, skipped = 0;
   for (const p of items) {
     const c = p.content || "";
     let html = c;
     for (const [re, to] of RULES) html = html.replace(re, to);
-    if (html === c) { skipped++; continue; }
+    const title = p.title.replace(/[—–]/g, "-");
+    if (html === c && title === p.title) { skipped++; continue; }
     if (DRY) { console.log(`[dry] ${p.title}`); fixed++; continue; }
-    await withBackoff(p.title, () => updatePost(token, p.id, { title: p.title, html, labels: p.labels || [] }));
+    await withBackoff(p.title, () => updatePost(token, p.id, { title, html, labels: p.labels || [] }));
     fixed++;
     await sleep(1200);
   }
