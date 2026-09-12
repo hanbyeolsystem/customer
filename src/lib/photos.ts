@@ -41,7 +41,10 @@ const BLOG: Record<string, Photo[]> = {
 
 /** 사례 한 건을 사진 분류로 */
 function caseCat(c: (typeof caseStudies)[number]): PhotoCat[] {
-  const t = `${c.title} ${c.gear.join(" ")} ${c.industry}`;
+  return catsOfText(`${c.title} ${c.gear.join(" ")} ${c.industry}`);
+}
+
+function catsOfText(t: string): PhotoCat[] {
   const cats: PhotoCat[] = [];
   if (/Synology|NAS|나스|데이터|복구/i.test(t)) cats.push("nas", "ai");
   if (/Kyocera|복합기|복사기|프린터|VFM|TASKalfa/i.test(t)) cats.push("printer");
@@ -64,15 +67,35 @@ function pool(cat: string): Photo[] {
           caption: `${c.region} ${c.industry} · ${c.gear[0]} (실제 시공 현장)`,
         };
         for (const k of cats) (cache![k] ??= []).push(p);
+        // 대표 사진(첫 장)만 모은 별도 풀. 상단 헤더처럼 한 장만 크게 걸 때 쓴다.
+        // 분류는 주 장비(gear[0])로만 잡는다. PC 가 주인 사례의 대표 사진이 복사기 메뉴 상단에 걸리던 것을 막는다
+        if (!i) for (const k of catsOfText(c.gear[0])) (cache![`lead:${k}`] ??= []).push(p);
       });
     }
-    for (const [k, list] of Object.entries(BLOG)) (cache[k] ??= []).push(...list);
+    for (const [k, list] of Object.entries(BLOG)) {
+      (cache[k] ??= []).push(...list);
+      (cache[`lead:${k}`] ??= []).push(...list);
+    }
     cache.office ??= [];
     cache.office.push(...(cache.pc ?? []).filter((p) => !cache!.office!.includes(p)), ...(cache.network ?? []));
     cache.ai = [...(cache.ai ?? []), ...(cache.nas ?? []).filter((p) => !cache!.ai!.includes(p))];
     cache.synology = cache.nas ?? [];
+    cache["lead:ai"] = [...(cache["lead:ai"] ?? []), ...(cache["lead:nas"] ?? []).filter((p) => !cache!["lead:ai"]!.includes(p))];
+    cache["lead:synology"] = cache["lead:nas"] ?? [];
+    cache["lead:office"] = [...(cache["lead:pc"] ?? []), ...(cache["lead:network"] ?? [])];
+    // 가이드·Q&A·새소식처럼 품목이 정해지지 않은 메뉴는 lead:service 로 떨어진다.
+    // 그 풀이 네다섯 장뿐이라 메뉴끼리 같은 사진이 걸려 현장 대표 사진을 다 붙인다.
+    cache["lead:service"] = [
+      ...new Set([
+        ...(cache["lead:service"] ?? []),
+        ...(cache["lead:printer"] ?? []),
+        ...(cache["lead:nas"] ?? []),
+        ...(cache["lead:pc"] ?? []),
+        ...(cache["lead:network"] ?? []),
+      ]),
+    ];
   }
-  return cache[cat] ?? cache.service ?? [];
+  return cache[cat] ?? cache[cat.replace(/^lead:/, "")] ?? cache.service ?? [];
 }
 
 function hash(s: string) {
@@ -93,4 +116,30 @@ export function articlePhotos(cat: string, seed: string, n: number, except: stri
     if (!out.includes(p)) out.push(p);
   }
   return out;
+}
+
+/* 페이지 제목·본문에서 사진 분류를 자동으로 고른다 (2026-09-12 "메뉴에 맞는 사진").
+   PageHeader·AnswerBlock 이 이걸 써서 페이지마다 손대지 않고도 내용에 맞는 사진을 붙인다.
+   순서가 곧 우선순위다. AI 페이지가 NAS 를 자주 말하므로 AI 를 먼저 본다. */
+export function topicCat(text: string): PhotoCat {
+  if (/\bAI\b|인공지능|LLM|온프레미스|챗봇/i.test(text)) return "ai";
+  if (/NAS|나스|시놀로지|Synology|백업|데이터|저장|RAID|레이드|하드|복구/i.test(text)) return "nas";
+  if (/복합기|복사기|프린터|토너|잉크|출력|인쇄|드라이버|스캔|임대|렌탈/i.test(text)) return "printer";
+  if (/컴퓨터|조립|모니터|노트북|\bPC\b/i.test(text)) return "pc";
+  if (/네트워크|랜|배선|공유기|인터넷|방화벽|스위치/i.test(text)) return "network";
+  return "service";
+}
+
+/** 분류를 자동으로 고른 사진 한 장. 같은 페이지는 늘 같은 사진이 나온다. */
+export function topicPhoto(text: string, seed: string, lead = false): Photo | null {
+  const cat = topicCat(text);
+  // 분류를 seed 에 섞는다. ai 와 nas 풀은 사례 사진이 거의 같은 순서라 섞지 않으면 두 페이지가 같은 사진을 고를 수 있다.
+  // lead=true 면 사례마다 대표 사진(첫 장)만 본다. 뒤쪽 사진은 주변 모습이 많아 상단 큰 사진에는 안 맞는다.
+  const list = articlePhotos(lead ? `lead:${cat}` : cat, `${cat}/${seed}`, 8);
+  // 상단 헤더는 대표 사진만, 요약 카드는 대표가 아닌 사진만 골라 한 페이지에 같은 사진이 두 번 나오지 않게 한다
+  const leads = lead ? [] : pool(`lead:${cat}`);
+  const rest = list.filter((p) => !leads.includes(p));
+  const from = rest.length ? rest : list;
+  // /blog-assets 의 블로그 카드는 글씨가 박힌 정사각형이라 가로로 자르면 글씨가 잘린다. 현장 사진을 먼저 쓴다
+  return from.find((p) => p.src.startsWith("/cases/")) ?? from[0] ?? null;
 }
