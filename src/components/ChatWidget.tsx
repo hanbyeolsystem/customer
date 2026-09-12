@@ -8,7 +8,7 @@ const STORAGE_KEY = "hb_chat_v1";
 const GREETING: ChatMessage = {
   role: "assistant",
   content:
-    "안녕하세요, 한별시스템 고객센터 상담원 별이예요. 😊\nNAS·복사기 임대, 드라이버, A/S, 견적 등 무엇이든 물어보세요.",
+    "안녕하세요, 한별시스템 고객센터 상담원 별이예요.\nNAS·복사기 임대, 드라이버, A/S, 견적 등 무엇이든 물어보세요.",
 };
 const QUICK = [
   "드라이버 받고 싶어요",

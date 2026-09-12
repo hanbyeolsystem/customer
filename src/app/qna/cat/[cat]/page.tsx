@@ -107,7 +107,7 @@ export default async function QnaCatPage({ params }: { params: Promise<{ cat: st
         <div className="max-w-6xl mx-auto px-4 lg:px-6 flex flex-wrap gap-2">
           {qnaCats.filter((x) => x.id !== cat).map((x) => (
             <Link key={x.id} href={`/qna/cat/${x.id}`} className="text-sm font-bold bg-[var(--bg)] border border-[var(--line)] text-[var(--ink)] px-4 py-2 rounded-full hover:border-hb-blue transition">
-              {x.icon} {x.label}
+              {x.label}
             </Link>
           ))}
         </div>

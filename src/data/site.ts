@@ -6,9 +6,9 @@ export const site = {
   // 포지셔닝(2026-08-26 전환): "NAS 설치 업체"가 아니라 "기업 데이터 관리 + 사내 AI" 회사.
   // 대구에 NAS 설치 업체는 많지만, NAS 위에 사내 전용 AI를 올려 직접 운영해 본 곳은 드물다.
   // 이 문장을 바꾸면 llms.txt(scripts/gen-llms.mjs)와 홈 히어로 문구도 같이 맞출 것.
-  tagline: "AI 시대의 기업 데이터 관리 파트너",
+  tagline: "대구·경북 기업 NAS·백업·복합기 임대, 19년째 당일 방문",
   description:
-    "기업 데이터 관리 전문. 시놀로지 NAS 판매·구축과 3-2-1 백업 컨설팅, 사내 데이터를 밖으로 내보내지 않는 사내 AI 도입까지 설계합니다. 대구·경북 200여 개 기업의 데이터를 19년째 맡고 있는 한별시스템.",
+    "대구·경북 200곳의 회사 자료를 19년째 맡고 있습니다. 시놀로지 NAS 판매·설치와 3-2-1 백업, 회사 자료를 밖으로 내보내지 않는 사내 AI, 복합기 임대까지. 고장은 대구·경북 당일 방문, 053-588-7119.",
   url: "https://xn--bm3bm1i1e348cgwe.kr",
 
   phone: {
@@ -83,7 +83,7 @@ export const businessId = `${site.url}/#business`;
 export const nav = [
   { href: "/", label: "홈" },
   { href: "/ai", label: "사내 AI" },
-  { href: "/nas", label: "NAS 솔루션" },
+  { href: "/nas", label: "NAS 구축" },
   { href: "/rental", label: "복사기 임대" },
   { href: "/shop", label: "임대 쇼핑몰" },
   { href: "/cases", label: "구축사례" },

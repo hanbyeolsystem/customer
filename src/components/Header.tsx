@@ -40,7 +40,7 @@ export function Header() {
     };
     const onInstalled = () => {
       installRef.current = null;
-      showHint("설치 완료! 바탕화면·홈 화면에서 한별시스템 아이콘을 확인하세요 ✅");
+      showHint("설치했습니다. 바탕화면·홈 화면에서 한별시스템 아이콘을 확인하세요.");
     };
     window.addEventListener("beforeinstallprompt", onPrompt);
     window.addEventListener("appinstalled", onInstalled);
@@ -61,7 +61,7 @@ export function Header() {
     const standalone =
       window.matchMedia("(display-mode: standalone)").matches || nav2.standalone === true;
     if (standalone) {
-      showHint("이미 앱으로 설치되어 있어요. 바탕화면·홈 화면 아이콘을 사용하세요 👍");
+      showHint("이미 앱으로 설치되어 있어요. 바탕화면·홈 화면 아이콘을 사용하세요");
       return;
     }
     // 크롬·엣지·안드로이드: 실제 설치 프롬프트
@@ -71,7 +71,7 @@ export function Header() {
       installRef.current = null;
       showHint(
         outcome === "accepted"
-          ? "설치 중이에요. 잠시 후 아이콘이 생깁니다 ✅"
+          ? "설치 중이에요. 잠시 후 아이콘이 생깁니다"
           : "설치를 취소했어요. 언제든 다시 눌러주세요.",
       );
       return;

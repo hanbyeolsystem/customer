@@ -19,23 +19,23 @@ export const metadata: Metadata = {
 const values: { icon: IconName; title: string; desc: string }[] = [
   {
     icon: "server",
-    title: "Synology 공식 파트너",
-    desc: "NAS·백업 전문 대리점으로서 구축 설계부터 사후관리까지 한 손에서 책임집니다.",
+    title: "시놀로지 공식 대리점",
+    desc: "정품 판매, 설치, 분기 점검, 고장 수리까지 한 회사가 합니다. NAS 100건 넘게 놓았습니다.",
   },
   {
     icon: "clipboard",
-    title: "19년 현장 노하우",
-    desc: "대구·경북 200여 고객사와 쌓아온 운영 경험이 그대로 한별의 실력이 됩니다.",
+    title: "2008년부터 19년",
+    desc: "대구·경북 200곳의 컴퓨터·복사기·NAS를 봐 왔습니다. 처음 겪는 고장이 거의 없습니다.",
   },
   {
     icon: "wrench",
-    title: "발 빠른 현장 대응",
-    desc: "문제가 생기면 미루지 않습니다. 신속한 출동과 원격지원으로 업무 공백을 최소화합니다.",
+    title: "대구·경북 당일 방문",
+    desc: "전화를 받으면 원격으로 먼저 봅니다. 원격으로 안 되면 그날 갑니다. 전국은 1영업일.",
   },
   {
     icon: "settings",
-    title: "통합 IT 관리",
-    desc: "PC·서버·네트워크·NAS·복사기까지 - 흩어진 IT를 한 곳에서 관리합니다.",
+    title: "전화는 한 곳",
+    desc: "컴퓨터·복합기·NAS·인터넷 중 어디가 문제인지 몰라도 됩니다. 053-588-7119 한 곳에서 가립니다.",
   },
 ];
 
@@ -94,7 +94,7 @@ const eras: {
   {
     name: "안정기",
     range: "2017 - 2023",
-    headline: "최우수 대리점 연속 입상으로 입지 확립",
+    headline: "우수 대리점 입상이 이어진 시기",
     bar: 82,
     items: [
       { date: "2017.01", text: "고덱스(GoDEX) 라벨프린터 대리점 계약" },
@@ -108,7 +108,7 @@ const eras: {
   {
     name: "도약기",
     range: "2024 - 2026",
-    headline: "NAS·데이터 인프라 전문기업으로 도약",
+    headline: "NAS·데이터 관리로 영역을 넓힌 시기",
     bar: 100,
     highlight: true,
     items: [
@@ -171,18 +171,18 @@ export default function AboutPage() {
             <div className="hb-rise">
               <div className="eyebrow mb-4">WHO WE ARE</div>
               <h2 className="text-2xl lg:text-3xl font-black text-[var(--ink)] leading-tight mb-5">
-                기업의 데이터와 업무환경을
+                회사 자료와 사무기기를
                 <br />
-                <span className="text-hb-blue">통합 관리</span>하는 IT 파트너
+                <span className="text-hb-blue">한 회사</span>가 봅니다
               </h2>
               <div className="space-y-4 text-[var(--mute)] leading-relaxed text-[15px]">
                 <p>
-                  한별시스템은 대구·경북 지역 기업의 IT 인프라를 19년간 함께해온 전문 기업입니다. NAS 구축과 데이터
-                  백업, 복사기 임대, 그리고 상시 IT 유지관리까지 - 기업 운영에 필요한 IT를 한 손에서 책임집니다.
+                  한별시스템은 2008년 대구 성서공단에서 컴퓨터 대리점으로 시작했습니다. 지금은 대구·경북 200곳의
+                  NAS, 백업, 복사기, 전산을 맡고 있습니다. 19년째입니다.
                 </p>
                 <p>
-                  저희는 한 번 맺은 인연을 길게 봅니다. 장비를 파는 데서 끝나지 않고, 고객사의 업무가 멈추지 않도록
-                  곁에서 관리하는 것 - 그것이 한별이 일하는 방식입니다.
+                  장비를 팔고 끝내지 않습니다. 고장 나면 당일 가고, 분기마다 점검하고, 토너가 떨어지기 전에 갖다
+                  놓습니다. 한 번 맡긴 회사가 계속 맡깁니다.
                 </p>
               </div>
             </div>
@@ -214,7 +214,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 lg:px-6">
           <div className="text-center mb-10 lg:mb-14">
             <div className="eyebrow mb-3">WHY HANBYEOL</div>
-            <h2 className="text-2xl lg:text-3xl font-black text-[var(--ink)]">한별을 선택하는 이유</h2>
+            <h2 className="text-2xl lg:text-3xl font-black text-[var(--ink)]">한별이 일하는 방식</h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
             {values.map((v) => (
@@ -245,20 +245,19 @@ export default function AboutPage() {
                 CEO MESSAGE
               </div>
               <h2 className="text-xl lg:text-3xl font-black tracking-tight mb-6 leading-snug">
-                &ldquo;기술보다 먼저, <span className="text-hb-azure">신뢰</span>를 드립니다&rdquo;
+                &ldquo;고장 나면 <span className="text-hb-azure">그날</span> 갑니다. 19년째 그렇게 했습니다.&rdquo;
               </h2>
               <div className="space-y-4 text-white/80 leading-relaxed text-[15px] lg:text-base max-w-3xl">
                 <p>
                   안녕하세요, 한별시스템 대표 <strong className="text-white">{site.address.ceo}</strong>입니다.
                 </p>
                 <p>
-                  저희는 단순한 장비 임대 회사가 아닙니다. 기업의 데이터와 업무환경을 통합 관리하는 IT 파트너로서,
-                  한 번 인연을 맺은 고객사와는 길게 함께합니다.
+                  저희는 장비를 파는 회사가 아니라 고장 났을 때 오는 회사입니다. 2008년 컴퓨터 대리점으로 시작해
+                  복사기, NAS, 사내 AI까지 왔지만 하는 일은 같습니다. 고객 회사의 일이 멈추지 않게 하는 것.
                 </p>
                 <p>
-                  Synology NAS 공식 대리점으로서의 전문성, 19년의 운영 노하우, 그리고 무엇보다 발 빠른 현장 대응 -
-                  그것이 한별이 자랑하는 가치입니다. 앞으로도 고객의 업무가 멈추지 않도록, 보이지 않는 곳에서
-                  든든하게 받치겠습니다.
+                  브라더·교세라 서비스센터이고 시놀로지 공식 대리점입니다. 부품이 빨리 옵니다. 그래서 대구·경북은
+                  당일에 고칩니다. 앞으로도 그렇게 하겠습니다.
                 </p>
               </div>
               <div className="mt-8 pt-6 border-t border-white/10">

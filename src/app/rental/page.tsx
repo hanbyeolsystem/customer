@@ -50,7 +50,7 @@ const rentalFaq = [
   },
   {
     q: "복사기가 고장 나면 얼마나 빨리 오나요?",
-    a: "대구·경북은 당일, 전국은 1영업일 이내에 출동합니다. 카운터 자동 수집과 분기 정기점검으로 문제가 생기기 전에 먼저 정비하는 비포서비스를 운영해, 평균 다운타임을 90% 줄였습니다.",
+    a: "대구·경북은 당일, 전국은 1영업일 이내에 출동합니다. 카운터를 원격으로 자동 수집하고 분기마다 점검해서 고장 나기 전에 먼저 정비합니다.",
   },
   {
     q: "토너가 떨어지면 직접 주문해야 하나요?",
@@ -100,9 +100,9 @@ export default function RentalPage() {
       <JsonLd data={serviceJsonLd} />
       <JsonLd data={pageJsonLd} />
       <PageHeader
-        badge="RENTAL CARE"
-        title="복사기 · 프린터 임대 케어"
-        description="유지보수·토너·정기점검 모두 포함. 비포서비스(BEFORE SERVICE) - 문제가 생기기 전에 한별이 먼저 갑니다."
+        badge="복합기 임대"
+        title="복사기·프린터 임대"
+        description="흑백 월 70,000원, 컬러 월 100,000원부터(VAT 별도). 토너·부품·출장 수리가 월 요금에 들어 있고, 고장 나기 전에 분기마다 먼저 점검합니다."
       />
       <UpdatedAt path="/rental/" note="월 임대료와 포함 범위 기준일입니다. VAT 별도." />
       <AnswerBlock
@@ -134,7 +134,7 @@ export default function RentalPage() {
               (VAT 별도). 데스크탑·모니터 세트와 시놀로지 NAS 임대료까지 표로 정리했습니다.
             </p>
             <span className="inline-block mt-3 font-extrabold text-hb-blue">
-              복합기·프린터 임대료 보기 →
+              복합기·프린터 임대료 보기
             </span>
           </Link>
         </div>
@@ -142,13 +142,12 @@ export default function RentalPage() {
       <section className="py-12 lg:py-16 bg-[var(--bg)]">
         <div className="max-w-5xl mx-auto px-4 lg:px-6 grid sm:grid-cols-2 gap-4 lg:gap-5">
           {[
-            { icon: "📊", title: "카운터 자동 수집", body: "원격에서 출력량을 실시간 파악, 토너·드럼 사전 교체." },
-            { icon: "🛠", title: "유지보수 풀패키지", body: "월 정액에 출장·부품·소모품 모두 포함." },
-            { icon: "🚚", title: "전국 당일 출동",   body: "대구·경북은 당일, 전국은 1영업일 내 대응." },
-            { icon: "📋", title: "분기별 정기점검",  body: "예방정비로 평균 다운타임 90% 감소." },
+            { icon: "", title: "카운터 자동 수집", body: "원격에서 출력량을 실시간 파악, 토너·드럼 사전 교체." },
+            { icon: "", title: "유지보수 풀패키지", body: "월 정액에 출장·부품·소모품 모두 포함." },
+            { icon: "", title: "전국 당일 출동",   body: "대구·경북은 당일, 전국은 1영업일 내 대응." },
+            { icon: "", title: "분기별 정기점검",  body: "예방정비로 평균 다운타임 90% 감소." },
           ].map((c) => (
             <div key={c.title} className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6">
-              <div className="text-3xl mb-2">{c.icon}</div>
               <h3 className="font-extrabold text-[var(--ink)] mb-1.5">{c.title}</h3>
               <p className="text-sm text-[var(--mute)] leading-relaxed">{c.body}</p>
             </div>

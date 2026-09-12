@@ -6,7 +6,7 @@ import Link from "next/link";
 import { qnaImage } from "@/data/qna-images";
 
 type Item = { slug: string; cat: string; q: string; a: string };
-type Cat = { id: string; label: string; icon: string };
+type Cat = { id: string; label: string };
 
 export function QnaBrowser({ items, cats, compact = false }: { items: Item[]; cats: Cat[]; compact?: boolean }) {
   const [query, setQuery] = useState("");
@@ -29,7 +29,7 @@ export function QnaBrowser({ items, cats, compact = false }: { items: Item[]; ca
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="🔍 궁금한 것을 검색해 보세요 - 예: 토너, 랜섬웨어, 와이파이 느림"
+            placeholder="궁금한 것을 검색해 보세요 - 예: 토너, 랜섬웨어, 와이파이 느림"
             className="w-full bg-[var(--panel)] border border-[var(--line)] rounded-2xl px-5 py-3.5 text-[15px] text-[var(--ink)] placeholder:text-[var(--mute)] focus:outline-none focus:border-hb-blue"
           />
           {cats.length > 0 && (
@@ -41,7 +41,7 @@ export function QnaBrowser({ items, cats, compact = false }: { items: Item[]; ca
             {cats.map((c) => (
               <button key={c.id} onClick={() => setCat(c.id)}
                 className={`px-4 py-2 rounded-full text-[13px] font-bold border transition ${cat === c.id ? "bg-hb-blue text-white border-hb-blue" : "bg-[var(--panel)] text-[var(--ink)] border-[var(--line)]"}`}>
-                {c.icon} {c.label} {items.filter((i) => i.cat === c.id).length}
+                {c.label} {items.filter((i) => i.cat === c.id).length}
               </button>
             ))}
           </div>
@@ -57,7 +57,7 @@ export function QnaBrowser({ items, cats, compact = false }: { items: Item[]; ca
         {filtered.length === 0 ? (
           <div className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-10 text-center">
             <p className="text-sm text-[var(--mute)] mb-3">검색 결과가 없습니다. 다른 단어로 찾아보시거나, 커뮤니티에 직접 질문해 주세요.</p>
-            <Link href="/community" className="inline-block bg-hb-blue text-white text-sm font-extrabold px-5 py-2.5 rounded-xl">커뮤니티에 질문하기 →</Link>
+            <Link href="/community" className="inline-block bg-hb-blue text-white text-sm font-extrabold px-5 py-2.5 rounded-xl">커뮤니티에 질문하기</Link>
           </div>
         ) : compact ? (
           <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5">

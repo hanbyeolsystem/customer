@@ -10,7 +10,7 @@ import { AnswerBlock } from "@/components/AnswerBlock";
 export const metadata: Metadata = {
   title: "가이드 - 비교표로 정리한 사무실 IT 판단 기준",
   description:
-    "사내 AI 도입 비용, NAS 구매와 임대 비교, 복합기 렌탈과 구매 3년 총비용, 랜섬웨어 대응 체크리스트까지. 대구 한별시스템이 19년 현장에서 쌓은 판단 기준을 표와 숫자로 정리했습니다.",
+    "사내 AI 도입 비용, NAS 구매와 임대 비교, 복합기 렌탈과 구매 3년 총비용, 랜섬웨어 대응 체크리스트까지. 대구 한별시스템이 19년 현장에서 쓰는 판단 기준을 표와 숫자로 옮겼습니다.",
   alternates: { canonical: "/guide/" },
 };
 
@@ -45,7 +45,7 @@ export default function GuideIndexPage() {
       <PageHeader
         badge="GUIDE · 표로 보는 판단 기준"
         title="가이드"
-        description="장비 자랑이 아니라 판단 기준입니다. 19년 현장에서 실제로 부딪힌 문제를 표와 숫자로 정리했습니다."
+        description="장비 소개가 아니라 판단 기준입니다. 19년 동안 현장에서 부딪힌 문제를 표와 숫자로 옮겼습니다."
       />
       <AnswerBlock
         question="가이드는 무엇을 다루나요?"
@@ -64,7 +64,6 @@ export default function GuideIndexPage() {
                 href={`#${c.id}`}
                 className="inline-flex items-center gap-2 bg-[var(--bg)] border border-[var(--line)] hover:border-hb-blue text-[var(--ink)] text-sm font-bold px-4 py-2 rounded-full transition"
               >
-                <span aria-hidden>{c.icon}</span>
                 {c.label}
                 <span className="text-[11px] font-extrabold text-hb-blue">{n}</span>
               </a>
@@ -80,7 +79,6 @@ export default function GuideIndexPage() {
           <section key={cat.id} id={cat.id} className="py-12 lg:py-16 bg-[var(--bg)] scroll-mt-20">
             <div className="max-w-6xl mx-auto px-4 lg:px-6">
               <h2 className="text-xl lg:text-2xl font-extrabold text-[var(--ink)] mb-6">
-                <span aria-hidden className="mr-2">{cat.icon}</span>
                 {cat.label}
                 <span className="ml-2 text-sm font-bold text-hb-blue">{items.length}편</span>
               </h2>

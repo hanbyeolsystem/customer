@@ -96,14 +96,14 @@ const repairFaq = [
 export default function NasRepairPage() {
   return (
     <>
-      <JsonLd data={breadcrumbLd([{ name: "NAS 솔루션", path: "/nas/" }, { name: "NAS 수리·점검", path: "/nas/repair/" }])} />
+      <JsonLd data={breadcrumbLd([{ name: "NAS 구축", path: "/nas/" }, { name: "NAS 수리·점검", path: "/nas/repair/" }])} />
       <JsonLd data={webPageLd({ path: "/nas/repair/", name: String(metadata.title), description: metadata.description ?? undefined })} />
       <PageHeader
         badge="NAS REPAIR · 대구·경북 현장 출장"
         title="NAS가 고장 났습니다"
         description="시놀로지 NAS 점검, 하드디스크 교체, 재설정. 대구·경북 현장에서 직접 처리합니다."
         back="/nas"
-        backLabel="NAS 솔루션"
+        backLabel="NAS 구축"
       />
 
       <AnswerBlock
@@ -137,7 +137,7 @@ export default function NasRepairPage() {
                 ["전원을 반복해서 껐다 켜지 마세요.", "디스크가 이미 불안정한 상태라면 껐다 켤 때마다 상태가 나빠집니다. 검사 중이었다면 그 검사도 처음부터 다시 돌아갑니다."],
               ].map(([b, t]) => (
                 <li key={b} className="flex items-start gap-2.5">
-                  <span className="text-red-500 font-black mt-0.5">✕</span>
+                  <span className="text-red-500 font-black mt-0.5">-</span>
                   <span>
                     <strong className="text-[var(--ink)]">{b}</strong> {t}
                   </span>
@@ -251,7 +251,7 @@ export default function NasRepairPage() {
               <ul className="space-y-2.5 text-sm text-[var(--ink)]/85 leading-relaxed">
                 {doList.map((t) => (
                   <li key={t} className="flex items-start gap-2">
-                    <span className="text-hb-blue font-bold mt-0.5">✓</span>
+                    <span className="text-hb-blue font-bold mt-0.5">·</span>
                     {t}
                   </li>
                 ))}
@@ -262,7 +262,7 @@ export default function NasRepairPage() {
               <ul className="space-y-2.5 text-sm text-[var(--mute)] leading-relaxed">
                 {dontList.map((t) => (
                   <li key={t} className="flex items-start gap-2">
-                    <span className="font-bold mt-0.5">✕</span>
+                    <span className="font-bold mt-0.5">-</span>
                     {t}
                   </li>
                 ))}

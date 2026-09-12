@@ -105,7 +105,7 @@ export function QuoteForm() {
               disabled={status === "sending"}
               className="w-full bg-gradient-to-r from-hb-primary to-hb-blue hover:opacity-95 disabled:opacity-60 disabled:cursor-not-allowed text-white font-extrabold text-base py-4 rounded-xl shadow-lg transition"
             >
-              {status === "sending" ? "전송 중…" : "📨 상담 신청하기"}
+              {status === "sending" ? "전송 중…" : "상담 신청하기"}
             </button>
             <p className="text-[11px] text-[var(--mute)] text-center leading-relaxed">
               버튼을 누르면 담당자에게 즉시 접수됩니다.<br />

@@ -58,7 +58,6 @@ export default function QnaPage() {
             {counts.map((c) => (
               <Link key={c.id} href={`/qna/cat/${c.id}`} className="bg-[var(--bg)] border border-[var(--line)] rounded-2xl p-5 hover:border-hb-blue transition group">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-2xl" aria-hidden>{c.icon}</span>
                   <span className="text-[11px] font-extrabold text-hb-blue">{c.n}문항</span>
                 </div>
                 <h2 className="font-extrabold text-[var(--ink)] leading-snug mb-2">{c.label}</h2>

@@ -81,7 +81,6 @@ export default function RemoteSupportPage() {
 
           {/* 전화 CTA */}
           <div className="bg-gradient-to-br from-hb-primary to-hb-blue text-white rounded-3xl p-7 lg:p-9 text-center shadow-xl">
-            <div className="text-4xl mb-3">📞</div>
             <h3 className="text-xl lg:text-2xl font-extrabold mb-2">한별시스템 직통</h3>
             <p className="text-sm text-white/80 mb-5">{site.phone.hours}</p>
             <a

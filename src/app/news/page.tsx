@@ -10,7 +10,7 @@ import { AnswerBlock } from "@/components/AnswerBlock";
 export const metadata: Metadata = {
   title: "IT 새소식 - 사무실에 영향 주는 소식만 골라서",
   description:
-    "보안·윈도우·프린터·나스(NAS)·네트워크·AI - 대구 전산 올인원 관리 한별시스템이 사무실 업무와 관련 있는 IT 소식만 골라 매일 아침 전해 드립니다.",
+    "보안·윈도우·프린터·나스(NAS)·네트워크·AI. 대구 한별시스템이 사무실 업무와 관련 있는 IT 소식만 골라 매일 아침 전해 드립니다.",
   alternates: { canonical: "/news/" },
 };
 

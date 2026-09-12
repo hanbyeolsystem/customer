@@ -65,22 +65,22 @@ const steps = [
 
 const whyDealer = [
   {
-    icon: "📦",
+    icon: "",
     title: "정품과 정식 보증",
     body: "시놀로지 공식 대리점을 통한 정품입니다. 병행수입품이나 출처가 불분명한 물건과 달리 제조사 보증과 A/S 경로가 그대로 살아 있습니다.",
   },
   {
-    icon: "🧩",
+    icon: "",
     title: "본체와 하드를 같이 맞춥니다",
     body: "NAS는 본체만 사면 쓸 수 없습니다. 하드디스크 용량과 개수, RAID 방식까지 맞춰야 실사용 용량이 나옵니다. 온라인 최저가로 본체만 사고 하드를 잘못 고르면 다시 사야 합니다.",
   },
   {
-    icon: "🔧",
+    icon: "",
     title: "설치와 데이터 이전까지",
     body: "설치, RAID 설정, 공유 폴더와 권한, 백업 스케줄, 기존 자료 이전까지 현장에서 처리합니다. 상자만 받고 직접 설정하다 막히는 일이 없습니다.",
   },
   {
-    icon: "🚗",
+    icon: "",
     title: "장애가 나면 사람이 옵니다",
     body: "대구·경북은 당일 출장을 원칙으로 합니다. 온라인 구매는 문제가 생겼을 때 택배로 보내고 기다려야 하지만, 지역 대리점은 사람이 현장에 갑니다.",
   },
@@ -173,7 +173,7 @@ const pageJsonLd = webPageLd({
 export default function NasBuyPage() {
   return (
     <>
-      <JsonLd data={breadcrumbLd([{ name: "NAS 솔루션", path: "/nas/" }, { name: "NAS 판매", path: "/nas/buy/" }])} />
+      <JsonLd data={breadcrumbLd([{ name: "NAS 구축", path: "/nas/" }, { name: "NAS 판매", path: "/nas/buy/" }])} />
       <JsonLd data={productLd} />
       <JsonLd data={pageJsonLd} />
       <PageHeader
@@ -181,7 +181,7 @@ export default function NasBuyPage() {
         title="대구 NAS 판매"
         description="시놀로지 정품 NAS를 판매·납품합니다. 하드 구성부터 설치, A/S까지 한 회사에서."
         back="/nas"
-        backLabel="NAS 솔루션"
+        backLabel="NAS 구축"
       />
       <UpdatedAt path="/nas/buy/" note="본체·하드디스크 판매가 기준일입니다. VAT 별도." />
 
@@ -383,7 +383,6 @@ export default function NasBuyPage() {
           <div className="grid sm:grid-cols-2 gap-4 lg:gap-5">
             {whyDealer.map((w) => (
               <div key={w.title} className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6">
-                <div className="text-3xl mb-2">{w.icon}</div>
                 <h3 className="font-extrabold text-[var(--ink)] mb-1.5">{w.title}</h3>
                 <p className="text-sm text-[var(--mute)] leading-relaxed">{w.body}</p>
               </div>
@@ -438,7 +437,7 @@ export default function NasBuyPage() {
           <h2 className="text-lg lg:text-xl font-extrabold text-[var(--ink)] mb-4">함께 보면 좋은 페이지</h2>
           <ul className="grid sm:grid-cols-2 gap-2">
             {[
-              { href: "/nas", label: "NAS 솔루션 - 구축 범위와 백업 설계" },
+              { href: "/nas", label: "NAS 구축 - 구축 범위와 백업 설계" },
               { href: "/nas/price", label: "NAS 구축 비용 - 규모별 견적표" },
               { href: "/nas/repair", label: "NAS 수리·점검 - 고장 났을 때" },
               { href: "/rental/price", label: "임대료 안내 - NAS 월 10만원부터" },

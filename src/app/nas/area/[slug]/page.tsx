@@ -78,7 +78,7 @@ export default async function NasAreaPage({ params }: { params: Promise<{ slug: 
 
   return (
     <>
-      <JsonLd data={breadcrumbLd([{ name: "NAS 솔루션", path: "/nas/" }, { name: "출장 지역", path: "/nas/area/" }, { name: a.name, path }])} />
+      <JsonLd data={breadcrumbLd([{ name: "NAS 구축", path: "/nas/" }, { name: "출장 지역", path: "/nas/area/" }, { name: a.name, path }])} />
       <JsonLd data={webPageLd({ path, name: titleOf(a), mainEntityId: serviceId(path) })} />
       <JsonLd data={service} />
       <PageHeader

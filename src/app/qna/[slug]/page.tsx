@@ -175,7 +175,7 @@ export default async function QnaDetailPage({ params }: { params: Promise<{ slug
               방문 견적 요청 (무료) →
             </Link>
             <a href={site.phone.mainHref} className="inline-flex items-center gap-2 border border-[var(--line)] text-[var(--ink)] font-bold px-5 py-3 rounded-xl hover:bg-[var(--panel)]">
-              📞 {site.phone.main}
+              전화 {site.phone.main}
             </a>
             <Link href="/community" className="inline-flex items-center gap-2 border border-[var(--line)] text-[var(--ink)] font-bold px-5 py-3 rounded-xl hover:bg-[var(--panel)]">
               커뮤니티에 추가 질문

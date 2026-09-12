@@ -37,14 +37,14 @@ export default function NasAreaIndexPage() {
   const list = areas.filter((a) => a.slug !== "gyeongbuk");
   return (
     <>
-      <JsonLd data={breadcrumbLd([{ name: "NAS 솔루션", path: "/nas/" }, { name: "출장 지역", path: "/nas/area/" }])} />
+      <JsonLd data={breadcrumbLd([{ name: "NAS 구축", path: "/nas/" }, { name: "출장 지역", path: "/nas/area/" }])} />
       <JsonLd data={webPageLd({ path: "/nas/area/", name: String(metadata.title), description: metadata.description ?? undefined })} />
       <PageHeader
         badge="NAS · 출장 지역"
         title="대구에서 출발해 경북·경남까지 갑니다"
         description="나스(NAS) 설치·구축·수리 출장 지역과 방문 방식. 시놀로지 공식 대리점 한별시스템."
         back="/nas"
-        backLabel="NAS 솔루션"
+        backLabel="NAS 구축"
       />
 
       <AnswerBlock

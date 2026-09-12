@@ -40,7 +40,7 @@ export function Footer() {
             <h4 className="text-[11px] font-extrabold text-white tracking-[.18em] mb-3">서비스</h4>
             <ul className="space-y-2 text-sm">
               <li><Link href="/ai" className="hover:text-white transition">사내 AI 구축</Link></li>
-              <li><Link href="/nas" className="hover:text-white transition">NAS 솔루션</Link></li>
+              <li><Link href="/nas" className="hover:text-white transition">NAS 구축</Link></li>
               <li><Link href="/rental" className="hover:text-white transition">복사기 임대</Link></li>
               <li><Link href="/network" className="hover:text-white transition">네트워크·랜공사</Link></li>
               <li><Link href="/shop" className="hover:text-white transition">임대 쇼핑몰</Link></li>
@@ -93,7 +93,7 @@ export function Footer() {
               </li>
               <li className="pt-1">
                 <Link href="/contact" className="font-semibold text-hb-blue-light hover:text-white transition">
-                  연락처·찾아오시는 길 →
+                  연락처·찾아오시는 길
                 </Link>
               </li>
             </ul>

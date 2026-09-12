@@ -46,12 +46,12 @@ const diskRows = synologyDisks.map((d) => ({ cap: d.cap, model: d.model, price: 
 
 // 임대 조건 (사장님 확정). 임의 변경 금지.
 const rentalIncluded = [
-  { icon: "🖥", title: "장비", body: "시놀로지 본체와 하드디스크를 한별시스템이 준비해 드립니다. 장비 값을 따로 내지 않습니다." },
-  { icon: "🔧", title: "설치와 초기 설정", body: "현장 설치, 공유 폴더와 계정 구성, 직원 사용 교육까지 임대료에 들어갑니다." },
-  { icon: "🔁", title: "백업 스케줄 관리", body: "백업이 계속 돌고 있는지 저희가 보고 있습니다. 담당자가 따로 챙기지 않아도 됩니다." },
-  { icon: "🚗", title: "장애 시 출장", body: "문제가 생기면 방문합니다. 출장비를 건건이 청구하지 않습니다." },
-  { icon: "💽", title: "하드디스크 교체", body: "쓰다가 하드가 고장 나면 저희가 교체합니다. 디스크 값도 추가로 받지 않습니다." },
-  { icon: "📅", title: "기본 36개월", body: "기본 계약 기간은 36개월(3년)입니다. 구성이 커지면 월 임대료가 올라갑니다." },
+  { icon: "", title: "장비", body: "시놀로지 본체와 하드디스크를 한별시스템이 준비해 드립니다. 장비 값을 따로 내지 않습니다." },
+  { icon: "", title: "설치와 초기 설정", body: "현장 설치, 공유 폴더와 계정 구성, 직원 사용 교육까지 임대료에 들어갑니다." },
+  { icon: "", title: "백업 스케줄 관리", body: "백업이 계속 돌고 있는지 저희가 보고 있습니다. 담당자가 따로 챙기지 않아도 됩니다." },
+  { icon: "", title: "장애 시 출장", body: "문제가 생기면 방문합니다. 출장비를 건건이 청구하지 않습니다." },
+  { icon: "", title: "하드디스크 교체", body: "쓰다가 하드가 고장 나면 저희가 교체합니다. 디스크 값도 추가로 받지 않습니다." },
+  { icon: "", title: "기본 36개월", body: "기본 계약 기간은 36개월(3년)입니다. 구성이 커지면 월 임대료가 올라갑니다." },
 ];
 
 const buyVsRent = [
@@ -89,22 +89,22 @@ const buyVsRent = [
 
 const factors = [
   {
-    icon: "💽",
+    icon: "",
     title: "디스크 용량과 개수",
     body: `전체 비용에서 가장 크게 움직이는 항목입니다. 8TB 하드 1개가 ${won(diskPrice("8TB"))}이라 2개를 더 넣으면 그만큼 합계가 올라갑니다.`,
   },
   {
-    icon: "🗄",
+    icon: "",
     title: "베이(하드 꽂는 칸) 수",
     body: "2베이와 4베이는 본체 가격 차이가 있습니다. 지금 자료가 적어도 몇 년 뒤 증설을 생각하면 베이가 넉넉한 쪽이 결과적으로 저렴할 때가 많습니다.",
   },
   {
-    icon: "🔁",
+    icon: "",
     title: "백업 이중화 범위",
     body: "NAS 한 대만 둘지, 외장 저장장치나 클라우드까지 사본을 둘지에 따라 추가 비용이 붙습니다. 3-2-1 원칙을 지키려면 사본이 하나 더 필요합니다.",
   },
   {
-    icon: "🔌",
+    icon: "",
     title: "현장 조건",
     body: "랜 배선 상태, 설치 위치, 기존 자료 이전량 같은 현장 조건에 따라 작업 범위가 달라집니다. 방문해서 보고 정확히 알려 드립니다.",
   },
@@ -239,7 +239,7 @@ const pageJsonLd = webPageLd({
 export default function NasPricePage() {
   return (
     <>
-      <JsonLd data={breadcrumbLd([{ name: "NAS 솔루션", path: "/nas/" }, { name: "NAS 구축 비용", path: "/nas/price/" }])} />
+      <JsonLd data={breadcrumbLd([{ name: "NAS 구축", path: "/nas/" }, { name: "NAS 구축 비용", path: "/nas/price/" }])} />
       <JsonLd data={priceJsonLd} />
       <JsonLd data={pageJsonLd} />
       <PageHeader
@@ -247,7 +247,7 @@ export default function NasPricePage() {
         title="대구 NAS 구축 비용"
         description="규모별로 실제 금액을 그대로 공개합니다. 시놀로지 권장소비자가 기준, VAT 별도와 포함을 함께 적었습니다."
         back="/nas"
-        backLabel="NAS 솔루션"
+        backLabel="NAS 구축"
       />
       <UpdatedAt path="/nas/price/" note="구축 비용과 임대료 기준일입니다. VAT 별도." />
 
@@ -381,7 +381,6 @@ export default function NasPricePage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5 mb-12">
             {rentalIncluded.map((r) => (
               <div key={r.title} className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6">
-                <div className="text-3xl mb-2">{r.icon}</div>
                 <h4 className="font-extrabold text-[var(--ink)] mb-1.5">{r.title}</h4>
                 <p className="text-sm text-[var(--mute)] leading-relaxed">{r.body}</p>
               </div>
@@ -497,7 +496,6 @@ export default function NasPricePage() {
           <div className="grid sm:grid-cols-2 gap-4 lg:gap-5">
             {factors.map((f) => (
               <div key={f.title} className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6">
-                <div className="text-3xl mb-2">{f.icon}</div>
                 <h3 className="font-extrabold text-[var(--ink)] mb-1.5">{f.title}</h3>
                 <p className="text-sm text-[var(--mute)] leading-relaxed">{f.body}</p>
               </div>

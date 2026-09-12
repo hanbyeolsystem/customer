@@ -213,3 +213,9 @@
 - claude.ai 등 한글 도메인을 못 읽는 AI 도구용. 리포 `hanbyeolsystem/hanbyeolsystem-kr` 의 워크플로가 **이 리포를 그대로 빌드**해 Pages 로 올린다(하루 3번 + 수동). 소스는 여기 하나뿐.
 - 거울은 전 페이지 `noindex, follow` + 사이트맵 없음 + canonical 은 한별시스템.kr 그대로 → 검색 점수는 원본에만. **대표 주소를 바꾸는 게 아니다.** 사이트맵·스키마·서치콘솔은 계속 한별시스템.kr.
 - 빌드가 깨지면 거울도 같이 깨진다. `npm run build` 통과가 곧 거울 배포 조건.
+
+## 사람글 규칙 (2026-09-12 사장님 지시 "AI스러움 제거")
+- 이 사이트의 모든 본문·제목·버튼 문구는 `클로드코드공부/글쓰기규칙/사람글_규칙.md` 를 따른다(금지어·숫자 2개·입니다 3연속 금지·60자 문장·이모지 0·대시 금지).
+- 커밋 전 게이트: `PYTHONUTF8=1 python ../../글쓰기규칙/ai_tell_check.py src --fail 8`. 문항 단위 점검은 `--entries src/data/qna.ts`.
+- 데이터 파일 문체를 고칠 때는 `PYTHONUTF8=1 python ../../글쓰기규칙/fact_guard.py src/data/<파일>` 로 숫자·모델명·구조가 그대로인지 확인한다(HEAD 대비).
+- 블로거 발행 스크립트(news-to-blogger·qna-to-blogger)의 꼬리말도 같은 규칙. 기존 글 일괄 수정은 `news-to-blogger.mjs --fix-text`(Actions news-daily.yml 의 fix_text 입력).

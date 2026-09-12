@@ -122,7 +122,7 @@ export default async function NasModelPage({ params }: { params: Promise<{ slug:
         "@id": `${pageUrl}#breadcrumb`,
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "홈", item: `${site.url}/` },
-          { "@type": "ListItem", position: 2, name: "NAS 솔루션", item: `${site.url}/nas/` },
+          { "@type": "ListItem", position: 2, name: "NAS 구축", item: `${site.url}/nas/` },
           { "@type": "ListItem", position: 3, name: `${m.model} 설치`, item: pageUrl },
         ],
       },
@@ -140,7 +140,7 @@ export default async function NasModelPage({ params }: { params: Promise<{ slug:
         title={`시놀로지 ${m.model} 설치`}
         description={`${m.headline}. ${m.fitFor}에 들어갑니다.`}
         back="/nas"
-        backLabel="NAS 솔루션"
+        backLabel="NAS 구축"
       />
 
       <AnswerBlock

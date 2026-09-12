@@ -60,22 +60,22 @@ const prices = [
 
 const included = [
   {
-    icon: "🖨",
+    icon: "",
     title: "토너 등 소모품",
     body: "토너와 드럼 같은 소모품 값을 따로 받지 않습니다. 카운터를 원격으로 보고 있어 떨어지기 전에 미리 보내 드립니다.",
   },
   {
-    icon: "🔧",
+    icon: "",
     title: "부품 교체",
     body: "쓰다가 닳는 부품은 저희가 교체합니다. 부품값을 건건이 청구하지 않습니다.",
   },
   {
-    icon: "🚗",
+    icon: "",
     title: "출장 수리",
     body: "고장이 나면 방문해서 고칩니다. 출장비를 따로 받지 않습니다. 대구·경북은 당일, 전국은 1영업일 안에 갑니다.",
   },
   {
-    icon: "📋",
+    icon: "",
     title: "분기 정기점검",
     body: "분기마다 정기점검을 돌면서 문제가 생기기 전에 먼저 정비합니다.",
   },
@@ -283,7 +283,6 @@ export default function RentalPricePage() {
           <div className="grid sm:grid-cols-2 gap-4 lg:gap-5">
             {included.map((r) => (
               <div key={r.title} className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6">
-                <div className="text-3xl mb-2">{r.icon}</div>
                 <h3 className="font-extrabold text-[var(--ink)] mb-1.5">{r.title}</h3>
                 <p className="text-sm text-[var(--mute)] leading-relaxed">{r.body}</p>
               </div>
