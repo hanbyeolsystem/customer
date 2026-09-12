@@ -320,7 +320,7 @@ export default function AboutPage() {
                     style={{ height: `${e.bar}%` }}
                   >
                     {e.highlight && (
-                      <span className="absolute -top-5 left-1/2 -translate-x-1/2 text-hb-azure text-base">★</span>
+                      <span aria-hidden className="absolute -top-1.5 left-1/2 -translate-x-1/2 h-2 w-2 rounded-full bg-hb-azure" />
                     )}
                   </div>
                 </div>
