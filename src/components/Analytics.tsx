@@ -4,7 +4,7 @@ import Script from "next/script";
 import { useEffect } from "react";
 
 // 구글 애널리틱스4 측정 ID. 비어 있으면 스크립트를 싣지 않고 이벤트도 보내지 않는다.
-export const GA_ID = "";
+export const GA_ID = "G-C1KNYL5K5R";
 
 declare global {
   interface Window {
