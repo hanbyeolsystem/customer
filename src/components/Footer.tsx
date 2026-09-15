@@ -3,6 +3,8 @@ import Image from "next/image";
 import { site } from "@/data/site";
 import { embedHref } from "@/lib/embed";
 import { Icon } from "@/components/Icon";
+import { BookmarkButton } from "@/components/BookmarkButton";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export function Footer() {
   return (
@@ -120,10 +122,21 @@ export function Footer() {
               <strong className="text-slate-300">{site.name}</strong> · 대표 {site.address.ceo} · {site.address.street}<br />
               사업자등록번호 {site.address.bizNo} · 통신판매업신고 {site.address.mailOrder}
             </div>
-            <div className="flex items-center gap-3 text-slate-500">
+            {/* 헤더에서 뺀 페이지(2026-09-15 메뉴 정리)와 즐겨찾기·다크모드 */}
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-slate-500">
+              <Link href="/about" className="hover:text-slate-300">회사소개</Link>
+              <span className="text-slate-700">·</span>
+              <Link href="/news" className="hover:text-slate-300">새소식</Link>
+              <span className="text-slate-700">·</span>
+              <Link href="/blog" className="hover:text-slate-300">블로그</Link>
+              <span className="text-slate-700">·</span>
+              <Link href="/community" className="hover:text-slate-300">커뮤니티</Link>
+              <span className="text-slate-700">·</span>
               <Link href="/privacy" className="hover:text-slate-300">개인정보처리방침</Link>
               <span className="text-slate-700">·</span>
               <Link href="/terms" className="hover:text-slate-300">이용약관</Link>
+              <BookmarkButton className="inline-flex items-center gap-1.5 h-8 px-2.5 rounded-md border border-white/15 text-slate-400 hover:border-white/40 hover:text-slate-200 transition" />
+              <ThemeToggle />
             </div>
           </div>
           <div className="text-center text-slate-600 mt-4">© 2026 Hanbyeol System. All rights reserved.</div>

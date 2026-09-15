@@ -80,19 +80,38 @@ export const site = {
 // 이 @id 로 참조한다. 그래야 같은 회사가 여러 엔티티로 쪼개지지 않는다.
 export const businessId = `${site.url}/#business`;
 
-export const nav = [
-  { href: "/", label: "홈" },
-  { href: "/ai", label: "사내 AI" },
-  { href: "/nas", label: "NAS 구축" },
-  { href: "/rental", label: "복사기 임대" },
-  { href: "/shop", label: "임대 쇼핑몰" },
+// 헤더 메뉴 4묶음 (2026-09-15 첫 화면 점검: 메뉴 14개에서 4개로). 주소는 그대로이고 묶음만 바꿨다.
+// 여기서 빠진 페이지(회사소개·새소식·블로그·커뮤니티)는 푸터 아래 줄에 링크가 있다.
+export type NavLink = { href: string; label: string; desc?: string };
+export type NavItem = NavLink | { label: string; items: NavLink[] };
+export const nav: NavItem[] = [
+  {
+    label: "서비스",
+    items: [
+      { href: "/nas", label: "NAS 구축·백업", desc: "시놀로지 판매·설치, 3-2-1 백업" },
+      { href: "/ai", label: "사내 AI", desc: "회사 자료로 답하는 AI 도우미" },
+      { href: "/rental", label: "복사기·프린터 임대", desc: "월 정액, 토너·수리 포함" },
+      { href: "/network", label: "전산·네트워크 관리", desc: "PC·공유기·랜 공사·유지관리" },
+      { href: "/shop", label: "임대 쇼핑몰", desc: "임대 장비 둘러보기" },
+    ],
+  },
   { href: "/cases", label: "구축사례" },
-  { href: "/guide", label: "가이드" },
-  { href: "/qna", label: "Q&A" },
-  { href: "/news", label: "새소식" },
-  { href: "/community", label: "커뮤니티" },
-  { href: "/support", label: "고객지원" },
-  { href: "/support/drivers", label: "드라이버" },
-  { href: "/blog", label: "블로그" },
-  { href: "/about", label: "회사소개" },
-] as const;
+  {
+    label: "Q&A·가이드",
+    items: [
+      { href: "/qna", label: "Q&A 전체 문답" },
+      { href: "/guide", label: "가이드·비교표" },
+      { href: "/news", label: "새소식" },
+      { href: "/community", label: "커뮤니티" },
+    ],
+  },
+  {
+    label: "고객지원",
+    items: [
+      { href: "/support/remote", label: "원격지원" },
+      { href: "/support/drivers", label: "드라이버 다운로드" },
+      { href: "/support/as", label: "A/S 접수" },
+      { href: "/support", label: "고객지원 전체" },
+    ],
+  },
+];
