@@ -29,7 +29,7 @@ export default function RemoteSupportPage() {
       <PageHeader
         badge="REMOTE SUPPORT"
         title="원격 지원 즉시 연결"
-        description="한별 전용 Seetrol MY 원격지원. 두 단계면 끝납니다."
+        description="한별 전용 원격지원. 두 단계면 끝납니다."
       />
       <AnswerBlock
         question="원격 지원은 어떻게 받나요?"
@@ -50,7 +50,7 @@ export default function RemoteSupportPage() {
             </span>
             <div className="text-5xl mb-4">⬇</div>
             <h2 className="text-xl lg:text-2xl font-extrabold leading-tight mb-1">
-              Seetrol MY 원격지원
+              원격지원 클릭
             </h2>
             <p className="text-[13px] lg:text-sm text-white/80 mb-6 leading-relaxed">
               한별시스템 전용 · 설치 불필요 · 클릭 즉시 실행
