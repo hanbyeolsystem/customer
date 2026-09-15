@@ -7,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { ChatWidget } from "@/components/ChatWidget";
 import { MobileBar } from "@/components/MobileBar";
 import { Reveal } from "@/components/Reveal";
+import { Analytics } from "@/components/Analytics";
 import { businessId, site } from "@/data/site";
 import { daeguGyeongbukServed, serviceId } from "@/lib/schema";
 import { BUY_FROM, bodyLow, won } from "@/data/synology";
@@ -249,6 +250,7 @@ export default function RootLayout({
           <MobileBar />
           <ChatWidget />
           <Reveal />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
