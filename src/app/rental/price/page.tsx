@@ -8,6 +8,7 @@ import { site } from "@/data/site";
 import { JsonLd } from "@/components/JsonLd";
 import { monthlyOffer, serviceId, serviceLd } from "@/lib/schema";
 import { breadcrumbLd, webPageLd } from "@/lib/schema";
+import { rentalPrices } from "@/data/rental-prices";
 
 export const metadata: Metadata = {
   title: "대구 복합기 임대료 - 월 얼마인지 가격 공개",
@@ -16,47 +17,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/rental/price/" },
 };
 
-// 사장님 확정 월 임대료. 전부 "부터" 가격이며 VAT 별도. 임의 변경 금지.
-// NAS 월 10만원은 /nas/price/ 게시 금액과 반드시 일치시킬 것.
-const prices = [
-  {
-    item: "흑백 레이저 프린터",
-    price: "월 30,000원부터",
-    note: "인쇄만 하는 소량 사무실",
-  },
-  {
-    item: "잉크젯 무한 프린터",
-    price: "월 40,000원부터",
-    note: "컬러 출력이 필요하고 장수가 많지 않은 곳",
-  },
-  {
-    item: "컬러 레이저 프린터",
-    price: "월 50,000원부터",
-    note: "컬러 인쇄가 잦고 속도가 필요한 곳",
-  },
-  {
-    item: "흑백 복사기 (흑백 디지털복합기)",
-    price: "월 70,000원부터",
-    note: "복사·스캔·팩스를 같이 쓰는 일반 사무실",
-  },
-  {
-    item: "컬러 복사기 (컬러 디지털복합기)",
-    price: "월 100,000원부터",
-    note: "컬러 자료와 제안서를 자주 뽑는 곳",
-  },
-  {
-    item: "데스크탑 + 모니터 세트",
-    price: "월 40,000원부터",
-    note: "데스크탑 35,000원 + 모니터 5,000원",
-  },
-  {
-    item: "시놀로지 NAS",
-    price: "월 100,000원부터",
-    note: "기본 계약 36개월, 백업 관리까지 포함",
-    href: "/nas/price/",
-    hrefLabel: "NAS 임대 상세 보기",
-  },
-];
+const prices = rentalPrices;
 
 const included = [
   {
