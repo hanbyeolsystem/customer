@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# 블로거 점검 보고서(워크플로 아티팩트로만)
+scripts/blogger-audit-report.json
+scripts/dryrun-*.html

@@ -15,6 +15,7 @@
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
+import { fetchPostBody, siteFooter } from "./naver-body.mjs";
 
 const BLOG_ID_NAVER = "hanbyeolsystem";
 const RSS_URL = `https://rss.blog.naver.com/${BLOG_ID_NAVER}.xml`;
@@ -52,74 +53,6 @@ async function fetchRss() {
       };
     })
     .filter((p) => p.logNo && p.title);
-}
-
-// ---------- 본문 추출 (SmartEditor ONE 모바일 뷰) ----------
-function balancedDiv(html, startIdx) {
-  // startIdx = "<div" 시작 위치. 여는/닫는 div 를 세어 컨테이너 전체를 반환
-  let depth = 0;
-  const re = /<\/?div\b[^>]*>/g;
-  re.lastIndex = startIdx;
-  let m;
-  while ((m = re.exec(html))) {
-    depth += m[0].startsWith("</") ? -1 : 1;
-    if (depth === 0) return html.slice(startIdx, m.index + m[0].length);
-  }
-  return html.slice(startIdx);
-}
-
-function extractBody(pageHtml) {
-  // SmartEditor ONE → SmartEditor 2(2017~18 글) → 구형 post_ct 순으로 본문 컨테이너를 찾는다
-  let at = pageHtml.search(/<div[^>]*class="[^"]*se-main-container/);
-  if (at < 0) at = pageHtml.search(/<div[^>]*class="[^"]*se_component_wrap/);
-  if (at < 0) at = pageHtml.search(/<div[^>]*(?:id="post_ct"|class="[^"]*post_ct)/);
-  if (at < 0) throw new Error("본문 컨테이너를 찾지 못함");
-  const container = balancedDiv(pageHtml, at);
-
-  // 문단(<p class="se-text-paragraph">)과 이미지(<img class="se-image-resource">)를
-  // 문서 순서대로 수집해 네이버 클래스 없는 깨끗한 HTML 로 재조립
-  const parts = [];
-  const re = /<p[^>]*class="[^"]*(?:se-text-paragraph|se_textarea|se_paragraph)[^"]*"[^>]*>([\s\S]*?)<\/p>|<img\b[^>]*>/g;
-  let m;
-  while ((m = re.exec(container))) {
-    if (m[0].startsWith("<p")) {
-      const text = m[1]
-        .replace(/<br\s*\/?>/gi, "\n")
-        .replace(/<[^>]+>/g, "")
-        .replace(/&nbsp;/g, " ")
-        .trim();
-      if (text) {
-        parts.push(
-          `<p>${text.split("\n").map((l) => l.trim()).filter(Boolean).join("<br />")}</p>`
-        );
-      } else {
-        parts.push("<p><br /></p>"); // 빈 문단 = 줄 간격 유지
-      }
-    } else {
-      if (!/se-image-resource/.test(m[0])) continue; // 스티커/아이콘 등 제외
-      const src =
-        (m[0].match(/data-lazy-src="([^"]+)"/) || m[0].match(/\bsrc="([^"]+)"/) || [])[1];
-      if (!src || !/pstatic\.net/.test(src)) continue;
-      const full = src.replace(/\?type=[^&"]+/, "?type=w966"); // 큰 사이즈로
-      parts.push(
-        `<div class="separator" style="clear:both;text-align:center;margin:14px 0;">` +
-          `<img src="${full}" style="max-width:100%;height:auto;" loading="lazy" /></div>`
-      );
-    }
-  }
-  // 연속 빈 문단 정리
-  const html = parts.join("\n").replace(/(?:<p><br \/><\/p>\n?){3,}/g, "<p><br /></p>\n");
-  const imgCount = (html.match(/<img /g) || []).length;
-  const textLen = html.replace(/<[^>]+>/g, "").length;
-  if (textLen < 100) throw new Error(`extracted text too short (${textLen})`);
-  return { html, imgCount, textLen };
-}
-
-async function fetchPostBody(logNo) {
-  const url = `https://m.blog.naver.com/PostView.naver?blogId=${BLOG_ID_NAVER}&logNo=${logNo}`;
-  const res = await fetch(url, { headers: { "User-Agent": UA } });
-  if (!res.ok) throw new Error(`post HTTP ${res.status}`);
-  return extractBody(await res.text());
 }
 
 // ---------- Blogger API ----------
@@ -199,14 +132,9 @@ if (SEED) {
           continue;
         }
         const pub = p.pubDate ? new Date(p.pubDate) : null;
-        // 글 끝에 사이트의 같은 글(/blog/<logNo>/)로 가는 링크. 블로거 → 한별시스템.kr 유입·백링크(노출 지수 오프사이트 문항).
-        const siteFooter =
-          `<p style="margin-top:18px;padding-top:10px;border-top:1px solid #e2e8f0;font-size:13px;color:#64748b;">` +
-          `이 글은 한별시스템 홈페이지에도 있습니다: <a href="https://xn--bm3bm1i1e348cgwe.kr/blog/${p.logNo}/">한별시스템.kr/blog/${p.logNo}</a>` +
-          ` · 대구광역시 달서구 한별시스템 053-588-7119 · <a href="https://xn--bm3bm1i1e348cgwe.kr/support/quote/">무료 방문 견적</a></p>`;
         const url = await publishToBlogger(token, {
           title: p.title,
-          html: body.html + "\n" + siteFooter,
+          html: body.html + "\n" + siteFooter(p.logNo),
           labels: [p.category.replace(/\(.*?\)/g, "").trim(), "설치후기"].filter(Boolean),
           // 옛 글은 원래 날짜로 발행해 블로그 시간순이 맞게 (오늘 날짜로 수백 건이 몰리지 않게)
           published: pub && !isNaN(pub.getTime()) ? pub.toISOString() : undefined,

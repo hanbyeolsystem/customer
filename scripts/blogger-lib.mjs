@@ -42,12 +42,12 @@ export async function publishPost(token, { title, html, labels }) {
   return j.url;
 }
 
-export async function updatePost(token, postId, { title, html, labels }) {
+export async function updatePost(token, postId, { title, html, labels, published }) {
   const blogId = process.env.BLOGGER_BLOG_ID;
   const res = await fetch(`https://www.googleapis.com/blogger/v3/blogs/${blogId}/posts/${postId}`, {
     method: "PUT",
     headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
-    body: JSON.stringify({ kind: "blogger#post", id: postId, title, content: html, labels }),
+    body: JSON.stringify({ kind: "blogger#post", id: postId, title, content: html, labels, ...(published ? { published } : {}) }), // published 를 안 주면 갱신 시 날짜가 바뀌지 않도록 원래 값을 넘길 수 있다
   });
   const j = await res.json();
   if (!j.id) throw new Error(`update error: ${JSON.stringify(j)}`);
