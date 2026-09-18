@@ -207,8 +207,8 @@ export default function ContactPage() {
                   대가를 주거나 좋은 후기만 골라 받는 것은 금지라 문구도 중립으로 둔다. */}
               <p className="mt-4 text-[13px] text-[var(--mute)] leading-relaxed">
                 작업이 끝난 뒤{" "}
-                <a href={site.social.googleMaps} target="_blank" rel="noopener" className="font-bold text-hb-blue hover:underline">
-                  구글 지도에 후기
+                <a href={site.social.googleReview} target="_blank" rel="noopener" className="font-bold text-hb-blue hover:underline">
+                  구글에 후기
                 </a>
                 를 남겨 주시면 다음 손님이 업체를 고를 때 도움이 됩니다. 좋았던 점이든 아쉬웠던 점이든 그대로 적어 주세요.
               </p>

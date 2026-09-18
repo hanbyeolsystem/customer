@@ -44,7 +44,12 @@ export const site = {
     instagram: "https://instagram.com/sanghwan_hanbyeol",
     instagramBiz: "https://www.instagram.com/hanbyeolsystem",
     threads: "https://www.threads.net/@sanghwan_hanbyeol",
-    googleMaps: "https://maps.google.com/?cid=8994991007847125486",
+    // 구글 비즈니스 프로필. cid 는 2026-09-19 에 바로잡았다(옛 값 8994991007847125486 은
+    // 빈 장소로 열려 푸터·연락처의 "구글 지도" 링크와 스키마 hasMap 이 업체로 가지 않았다).
+    // 확인법: 이 주소를 열면 제목이 "한별시스템" 이어야 한다.
+    googleMaps: "https://maps.google.com/?cid=3373258657163471743",
+    // 후기 남기기(구글 리뷰 작성 화면). 업체가 손님에게 후기를 요청하는 것은 구글이 허용한다.
+    googleReview: "https://search.google.com/local/writereview?placeid=ChIJwwJH6FvlZTURf2u9W-A40C4",
   },
 
   // 지도·플레이스 등재. LocalBusiness.sameAs 로 내보내 "같은 회사"임을 알린다.
