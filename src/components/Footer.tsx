@@ -1,3 +1,8 @@
+"use client";
+
+// 꼬리말은 703개 페이지에서 똑같다. 서버 컴포넌트로 두면 같은 트리가 HTML 과 RSC 페이로드에
+// 두 벌씩(쪽당 16KB) 실려서 클라이언트 컴포넌트로 돌렸다. 화면과 링크는 그대로이고,
+// RSC 에는 참조 한 줄만 남는다. (2026-09-18 HTML 무게 줄이기)
 import Link from "next/link";
 import Image from "next/image";
 import { site } from "@/data/site";
@@ -29,17 +34,17 @@ export function Footer() {
             </p>
             <div className="flex gap-2">
               <Link href={embedHref(site.social.blog, "한별 블로그")} aria-label="한별 블로그"
-                className="w-9 h-9 rounded-lg bg-white/5 hover:bg-hb-blue hover:text-white flex items-center justify-center transition"><Icon name="pen" className="w-[18px] h-[18px]" /></Link>
+                className="hb-soc"><Icon name="pen" className="w-[18px] h-[18px]" /></Link>
               <a href={site.social.instagram} target="_blank" rel="noopener" aria-label="인스타그램"
-                className="w-9 h-9 rounded-lg bg-white/5 hover:bg-hb-blue hover:text-white flex items-center justify-center transition"><Icon name="camera" className="w-[18px] h-[18px]" /></a>
+                className="hb-soc"><Icon name="camera" className="w-[18px] h-[18px]" /></a>
               <a href={site.social.threads} target="_blank" rel="noopener" aria-label="Threads"
-                className="w-9 h-9 rounded-lg bg-white/5 hover:bg-hb-blue hover:text-white flex items-center justify-center transition"><Icon name="at" className="w-[18px] h-[18px]" /></a>
+                className="hb-soc"><Icon name="at" className="w-[18px] h-[18px]" /></a>
             </div>
           </div>
 
           {/* 서비스 */}
           <div>
-            <h4 className="text-[11px] font-extrabold text-white tracking-[.18em] mb-3">서비스</h4>
+            <h4 className="hb-fh">서비스</h4>
             <ul className="space-y-2 text-sm">
               <li><Link href="/ai" className="hover:text-white transition">사내 AI 구축</Link></li>
               <li><Link href="/nas" className="hover:text-white transition">NAS 구축</Link></li>
@@ -56,7 +61,7 @@ export function Footer() {
 
           {/* 고객 지원 */}
           <div>
-            <h4 className="text-[11px] font-extrabold text-white tracking-[.18em] mb-3">고객 지원</h4>
+            <h4 className="hb-fh">고객 지원</h4>
             <ul className="space-y-2 text-sm">
               <li><Link href="/support/remote" className="hover:text-white transition">원격 지원</Link></li>
               <li><Link href="/support/drivers" className="hover:text-white transition">드라이버 다운로드</Link></li>
@@ -72,7 +77,7 @@ export function Footer() {
 
           {/* 연락처 */}
           <div>
-            <h4 className="text-[11px] font-extrabold text-white tracking-[.18em] mb-3">연락처</h4>
+            <h4 className="hb-fh">연락처</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <a href={site.phone.mainHref} className="inline-flex items-center gap-2 hover:text-white transition">

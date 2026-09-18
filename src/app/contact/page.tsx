@@ -6,6 +6,8 @@ import { FaqSection } from "@/components/FaqSection";
 import { Icon, type IconName } from "@/components/Icon";
 import { businessId, site } from "@/data/site";
 import { isoDateTime, pageUpdatedAt } from "@/lib/schema";
+import { JsonLd } from "@/components/JsonLd";
+import { businessDetailLd } from "@/lib/business-ld";
 
 export const metadata: Metadata = {
   title: "연락처·찾아오시는 길 - 대구 달서구 한별시스템 053-588-7119",
@@ -97,6 +99,7 @@ const contactFaq = [
 export default function ContactPage() {
   return (
     <>
+      <JsonLd data={businessDetailLd} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

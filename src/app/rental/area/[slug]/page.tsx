@@ -92,7 +92,7 @@ export default async function RentalAreaPage({ params }: { params: Promise<{ slu
           <div className="eyebrow mb-3">{a.full}</div>
           <h2 className="text-xl lg:text-2xl font-extrabold text-[var(--ink)] mb-4">{a.name} 사무실 복합기, 이렇게 골랐습니다</h2>
           {a.intro.map((p) => (
-            <p key={p.slice(0, 30)} className="text-[15px] text-[var(--ink)]/85 leading-relaxed mb-3">{fill(p)}</p>
+            <p key={p.slice(0, 30)} className="hb-p">{fill(p)}</p>
           ))}
         </div>
       </section>

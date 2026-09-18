@@ -252,7 +252,7 @@ export default function NasPage() {
                   width={s.w}
                   height={s.h}
                   sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
-                  className="w-full h-auto rounded-2xl border border-[var(--line)]"
+                  className="hb-fig"
                 />
                 <figcaption className="text-[13.5px] text-[var(--ink)]/85 leading-relaxed mt-3">
                   {s.caption}{" "}

@@ -97,7 +97,7 @@ export default async function NasAreaPage({ params }: { params: Promise<{ slug: 
           <div className="eyebrow mb-3">{a.full}</div>
           <h2 className="text-xl lg:text-2xl font-extrabold text-[var(--ink)] mb-4">{isProvince ? "경북 출장, 이렇게 움직입니다" : `${a.name} 사무실에 나스가 필요한 이유와 방문 방식`}</h2>
           {a.intro.map((p) => (
-            <p key={p.slice(0, 30)} className="text-[15px] text-[var(--ink)]/85 leading-relaxed mb-3">{p}</p>
+            <p key={p.slice(0, 30)} className="hb-p">{p}</p>
           ))}
           {!isProvince && (
             <p className="text-[14px] text-[var(--mute)] leading-relaxed">
@@ -147,9 +147,9 @@ export default async function NasAreaPage({ params }: { params: Promise<{ slug: 
               <tbody className="divide-y divide-[var(--line)]">
                 {a.fits.map((r) => (
                   <tr key={r[0]}>
-                    <td className="py-2.5 px-4 font-bold text-[var(--ink)] align-top whitespace-nowrap">{r[0]}</td>
+                    <td className="hb-td1">{r[0]}</td>
                     <td className="py-2.5 px-4 text-[var(--ink)] align-top">{r[1]}</td>
-                    <td className="py-2.5 px-4 text-[var(--mute)] leading-relaxed align-top">{r[2]}</td>
+                    <td className="hb-td">{r[2]}</td>
                   </tr>
                 ))}
               </tbody>

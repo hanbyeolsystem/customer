@@ -23,7 +23,7 @@ export function CoreServices() {
               <h3 className="text-[20px] lg:text-[24px] leading-tight text-[var(--ink)] mb-2">
                 <Link href={s.href} className="hover:text-hb-blue transition">{s.title}</Link>
               </h3>
-              <p className="text-[15px] text-[var(--ink)]/85 leading-relaxed mb-3">{s.summary}</p>
+              <p className="hb-p">{s.summary}</p>
               <p className="text-[13px] lg:text-[14px] text-[var(--mute)] leading-relaxed mb-4">
                 {s.items.join(" · ")}
               </p>

@@ -72,7 +72,8 @@ export function Header() {
             alt="한별시스템"
             width={307}
             height={336}
-            priority
+            // 로고는 44px 짜리라 LCP 가 되지 않는다. priority 를 주면 히어로 사진과 미리받기를
+            // 다투고, 지연로딩 비율(노출 지수 기술 항목)만 깎인다. 첫 화면 안이라 어차피 바로 받는다.
             className={`${overHero ? "h-9 lg:h-10" : "h-11 lg:h-12"} w-auto object-contain transition-all`}
           />
         </Link>

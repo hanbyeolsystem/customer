@@ -116,14 +116,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ logNo
                     alt={`${p.title} 현장 사진 ${++imgN}`}
                     width={b.w}
                     height={b.h}
-                    loading={imgN === 1 ? "eager" : "lazy"}
+                    loading="lazy"
                     decoding="async"
                     referrerPolicy="no-referrer"
-                    className="w-full h-auto rounded-2xl border border-[var(--line)]"
+                    className="hb-fig"
                   />
                 </figure>
               ) : (
-                <p key={k} className="text-[15.5px] text-[var(--ink)]/90 leading-[1.85]">{b.text}</p>
+                <p key={k} className="hb-bp">{b.text}</p>
               ),
             )}
           </div>

@@ -6,6 +6,7 @@ import { Icon, type IconName } from "@/components/Icon";
 import { site } from "@/data/site";
 import { coreServices } from "@/data/services";
 import { JsonLd } from "@/components/JsonLd";
+import { businessDetailLd } from "@/lib/business-ld";
 import { breadcrumbLd, webPageLd } from "@/lib/schema";
 import { AnswerBlock } from "@/components/AnswerBlock";
 
@@ -126,6 +127,7 @@ const eras: {
 export default function AboutPage() {
   return (
     <>
+      <JsonLd data={businessDetailLd} />
       <JsonLd data={breadcrumbLd([{ name: "회사 소개", path: "/about/" }])} />
       <JsonLd data={webPageLd({ path: "/about/", name: String(metadata.title), description: metadata.description ?? undefined })} />
       {/* 히어로: 홍보영상 배경 + 스크림 위 텍스트.

@@ -74,10 +74,10 @@ export default function RentalPcPage() {
       <section className="py-10 lg:py-14">
         <div className="max-w-3xl mx-auto px-4 lg:px-6">
           <h2 className="text-xl lg:text-2xl font-extrabold text-[var(--ink)] mb-4">비싼 사양이 아니라 하는 일에 맞춥니다</h2>
-          <p className="text-[15px] text-[var(--ink)]/85 leading-relaxed mb-3">
+          <p className="hb-p">
             사무용 PC는 무조건 성능이 좋아야 한다고 생각해 사는 데 부담을 느끼는 분이 많습니다. 좋은 사양을 싸게 사려고 발품을 팔다 시간만 쓰기도 하고요. 문서 작업이 대부분인 자리에 비싼 사양은 필요 없습니다.
           </p>
-          <p className="text-[15px] text-[var(--ink)]/85 leading-relaxed mb-3">
+          <p className="hb-p">
             그래서 어떤 프로그램을 쓰는지부터 묻죠. 2025년 대구 중구 사무실은 포토샵과 일러스트레이터가 도는 사양으로 조립했습니다. 인원이 늘어 오래 쓰기로 하면서 윈도우까지 설치했고요. 수성구의 한 운동 센터는 본체·모니터·키보드·마우스 기본 구성에 듀얼 모니터와 거치대를 달았습니다.
           </p>
           <p className="text-[15px] text-[var(--ink)]/85 leading-relaxed">
