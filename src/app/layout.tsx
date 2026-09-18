@@ -73,26 +73,22 @@ export const viewport: Viewport = {
   themeColor: "#06354F",
 };
 
-// 첫 화면이 쓰는 글꼴 조각을 미리 받는다(각 6~16KB). 히어로 제목(h1)은 잘난체 조각 91·90·89,
-// 본문·버튼은 Inter 라틴 조각 7 + Noto Sans KR 빈도 높은 한글 조각 120·119·118. 나머지는 브라우저가
-// 화면에 그릴 글자를 보고 알아서 받는다. Pretendard 는 폴백이라 preload 하지 않는다.
-// JSX <link rel="preload"> 로 쓰면 Next 와 React 가 각각 한 번씩 넣어 head 에 두 벌이 생긴다. ReactDOM.preload() 는 한 번만 넣는다.
-// 조각 번호: 잘난체는 pretendard.css 범위 순서, Noto/Inter 는 webfonts.css 순서(fetch-webfonts 를 다시 돌리면 바뀔 수 있음).
-const HERO_FONT_CHUNKS: Array<[string, number]> = [
-  ["/fonts/jalnan/JalnanGothic.subset", 91],
-  ["/fonts/jalnan/JalnanGothic.subset", 90],
-  ["/fonts/jalnan/JalnanGothic.subset", 89],
-  ["/fonts/webfonts/inter-w400-700", 7],
-  ["/fonts/webfonts/notosanskr-w300-700", 120],
-  ["/fonts/webfonts/notosanskr-w300-700", 119],
-  ["/fonts/webfonts/notosanskr-w300-700", 118],
+// 첫 화면이 쓰는 글꼴을 미리 받는다. 2026-09-19 부터는 사이트가 실제 쓰는 글자만 담은
+// 핵심 조각 두 개(본문 Noto 145KB · 제목 잘난체 83KB, scripts/build-core-subset.py)와
+// 라틴 조각 하나면 전 페이지가 덮인다. 예전에는 구글 조각 7개를 미리 받았다.
+// JSX <link rel="preload"> 로 쓰면 Next 와 React 가 각각 한 번씩 넣어 head 에 두 벌이 생긴다.
+// ReactDOM.preload() 는 한 번만 넣는다.
+const HERO_FONTS = [
+  "/fonts/core/notosanskr-core.woff2",
+  "/fonts/core/jalnan-core.woff2",
+  "/fonts/core/inter-core.woff2",
 ];
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  for (const [base, n] of HERO_FONT_CHUNKS) {
-    preload(`${base}.${n}.woff2`, {
+  for (const href of HERO_FONTS) {
+    preload(href, {
       as: "font",
       type: "font/woff2",
       crossOrigin: "anonymous",

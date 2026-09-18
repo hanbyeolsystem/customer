@@ -5,7 +5,6 @@
    세 파일 다 손으로 고치지 말 것. CDN @import 로 되돌리지 말 것(예전 6.7MB 풀 로드 사고). */
 @import "./webfonts.css";
 @import "./jalnan.css";
-@import "./pretendard.css";
 @import "tailwindcss";
 
 /* class 기반 다크모드 (next-themes 호환) */
@@ -44,8 +43,11 @@
 
   /* 글꼴 (2026-09-08 사장님 확정): 본문 = Inter + Noto Sans KR(시놀로지 사이트 글꼴, webfonts.css),
      제목(h1~h3)·상품명·강조 = 여기어때 잘난체 고딕(jalnan.css). 산돌 고딕Neo3·네모니2 는 유료라 못 썼다.
-     세 글꼴에 없는 글자는 Pretendard(self-host) -> 시스템 한글 폰트 순으로 내려간다. 폴백을 지우지 말 것. */
-  --font-sans: 'Inter', 'Noto Sans KR', 'Pretendard Variable', 'Pretendard', system-ui, -apple-system,
+     세 글꼴에 없는 글자는 시스템 한글 폰트로 내려간다. 시스템 폴백을 지우지 말 것.
+     (2026-09-19) 폴백이던 Pretendard 는 뺐다. Noto Sans KR 17,648자 + Inter 1,622자가
+     사이트 글자 1,319자를 전부 덮고, Pretendard 만 가진 글자 13자는 사이트에 하나도 안 쓴다.
+     조각 파일은 안 받으면서 CSS 만 들고 있었다. 되살리려면 node scripts/fetch-pretendard.mjs. */
+  --font-sans: 'Inter', 'Noto Sans KR', system-ui, -apple-system,
     BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Segoe UI', 'Malgun Gothic', sans-serif;
   --font-mono: var(--font-sans);
   --font-display: 'Jalnan Gothic', var(--font-sans);  /* 제목(h1~h3)·상품명 */
