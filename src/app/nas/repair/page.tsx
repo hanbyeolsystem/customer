@@ -77,14 +77,14 @@ const repairFaq = [
   },
   {
     q: "다른 곳에서 산 NAS도 봐주시나요?",
-    a: "봐 드립니다. 한별시스템에서 구매하지 않은 장비도 점검합니다. 시놀로지(Synology) 제품은 공식 대리점으로 다뤄 온 경험이 있어 특히 익숙하고, NAS 구축 50건 이상과 별개로 연간 NAS 수리 20건 이상을 대구·경북 현장에서 처리하고 있습니다. 모델명과 증상을 알려 주시면 방문 전에 준비할 부품을 미리 챙겨 갑니다.",
+    a: "봐 드립니다. 한별시스템에서 구매하지 않은 장비도 점검합니다. 시놀로지(Synology) 제품은 공식 대리점으로 다뤄 온 경험이 있어 특히 익숙하고, NAS 구축 100건 이상과 별개로 연간 NAS 수리 20건 이상을 대구·경북 현장에서 처리하고 있습니다. 모델명과 증상을 알려 주시면 방문 전에 준비할 부품을 미리 챙겨 갑니다.",
   },
   {
     q: "대구 밖 지역도 가시나요?",
     a: "대구·경북이 주 활동 지역이지만 그 밖도 갑니다. 창원 사무실에 시놀로지 NAS를 설치하고 이후 서버 관리까지 맡은 사례가 있습니다. 지역이 멀면 방문 일정만 미리 조율합니다.",
   },
   {
-    q: "당일 방문이 되나요?",
+    q: "당일 출장이 되나요?",
     a: `대구·경북은 당일 출장을 원칙으로 합니다. 다만 접수 시간과 그날 일정에 따라 달라질 수 있으니 ${site.phone.main}(${site.phone.hours})로 전화 주시면 가능한 시간을 바로 확인해 드립니다. 업무가 완전히 멈춘 상황이라면 먼저 말씀해 주세요.`,
   },
   {
@@ -96,14 +96,14 @@ const repairFaq = [
 export default function NasRepairPage() {
   return (
     <>
-      <JsonLd data={breadcrumbLd([{ name: "NAS 솔루션", path: "/nas/" }, { name: "NAS 수리·점검", path: "/nas/repair/" }])} />
+      <JsonLd data={breadcrumbLd([{ name: "NAS 구축", path: "/nas/" }, { name: "NAS 수리·점검", path: "/nas/repair/" }])} />
       <JsonLd data={webPageLd({ path: "/nas/repair/", name: String(metadata.title), description: metadata.description ?? undefined })} />
       <PageHeader
         badge="NAS REPAIR · 대구·경북 현장 출장"
         title="NAS가 고장 났습니다"
         description="시놀로지 NAS 점검, 하드디스크 교체, 재설정. 대구·경북 현장에서 직접 처리합니다."
         back="/nas"
-        backLabel="NAS 솔루션"
+        backLabel="NAS 구축"
       />
 
       <AnswerBlock
@@ -122,7 +122,7 @@ export default function NasRepairPage() {
       {/* 이것만은 하지 마세요 */}
       <section className="py-10 lg:py-14 bg-[var(--bg)]">
         <div className="max-w-3xl mx-auto px-4 lg:px-6">
-          <div className="border-l-4 border-red-500 bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6 lg:p-8">
+          <div className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6 lg:p-8">
             <div className="text-[11px] font-extrabold text-red-500 tracking-[.18em] mb-3">
               이것만은 하지 마세요
             </div>
@@ -137,7 +137,7 @@ export default function NasRepairPage() {
                 ["전원을 반복해서 껐다 켜지 마세요.", "디스크가 이미 불안정한 상태라면 껐다 켤 때마다 상태가 나빠집니다. 검사 중이었다면 그 검사도 처음부터 다시 돌아갑니다."],
               ].map(([b, t]) => (
                 <li key={b} className="flex items-start gap-2.5">
-                  <span className="text-red-500 font-black mt-0.5">✕</span>
+                  <span className="text-red-500 font-black mt-0.5">-</span>
                   <span>
                     <strong className="text-[var(--ink)]">{b}</strong> {t}
                   </span>
@@ -251,7 +251,7 @@ export default function NasRepairPage() {
               <ul className="space-y-2.5 text-sm text-[var(--ink)]/85 leading-relaxed">
                 {doList.map((t) => (
                   <li key={t} className="flex items-start gap-2">
-                    <span className="text-hb-blue font-bold mt-0.5">✓</span>
+                    <span className="text-hb-blue font-bold mt-0.5">·</span>
                     {t}
                   </li>
                 ))}
@@ -262,7 +262,7 @@ export default function NasRepairPage() {
               <ul className="space-y-2.5 text-sm text-[var(--mute)] leading-relaxed">
                 {dontList.map((t) => (
                   <li key={t} className="flex items-start gap-2">
-                    <span className="font-bold mt-0.5">✕</span>
+                    <span className="font-bold mt-0.5">-</span>
                     {t}
                   </li>
                 ))}

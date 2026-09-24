@@ -20,6 +20,9 @@ const extraDeps = {
   "/cases/": ["src/data/cases.ts"],
   "/shop/": ["src/data/products.ts"],
   "/qna/": ["src/data/qna.ts"],
+  "/rental/price/": ["src/data/rental-prices.ts"],
+  "/rental/pc/": ["src/data/rental-prices.ts", "src/data/cases.ts"],
+  "/rental/area/": ["src/app/rental/area/[slug]/page.tsx", "src/data/rental-areas.ts", "src/data/rental-prices.ts"],
 };
 
 // sitemap 의 pages 배열에는 없지만 lastmod 가 필요한 동적 라우트.
@@ -27,6 +30,7 @@ const extraDeps = {
 // (모델별 페이지는 본문이 전부 synology.ts 에서 나온다)
 const dynamicRoutes = {
   "/nas/model/": ["src/app/nas/model/[slug]/page.tsx", "src/data/synology.ts"],
+  "/nas/area/": ["src/app/nas/area/[slug]/page.tsx", "src/app/nas/area/page.tsx", "src/data/areas.ts"],
 };
 
 function git(args) {

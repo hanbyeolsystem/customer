@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/PageHeader";
 import { JsonLd } from "@/components/JsonLd";
 import { caseBySlug, caseStudies } from "@/data/cases";
+import { areaFromText } from "@/data/areas";
 import { businessId, site } from "@/data/site";
 import { FaqSection } from "@/components/FaqSection";
 import { AnswerBlock } from "@/components/AnswerBlock";
@@ -70,7 +71,7 @@ function caseFaq(c: CaseStudy) {
   faq.push({
     q: `${c.region}도 방문하시나요?`,
     a: c.region.includes("대구")
-      ? `대구는 당일 방문합니다. ${c.region} 현장도 그렇게 진행했습니다. 방문 견적은 무료이고, 필요 없으면 필요 없다고 말씀드립니다. 문의 ${site.phone.main}.`
+      ? `대구는 당일 출장 갑니다. ${c.region} 현장도 그렇게 진행했습니다. 방문 견적은 무료이고, 필요 없으면 필요 없다고 말씀드립니다. 문의 ${site.phone.main}.`
       : `방문합니다. ${c.region} 현장이 그 사례입니다. 대구·경북은 당일, 그 외 지역은 일정을 미리 조율하며 먼 지역은 방문 횟수를 줄이도록 사전 준비와 원격 지원을 함께 설계합니다. 방문 견적은 무료입니다. 문의 ${site.phone.main}.`,
   });
   return faq;
@@ -99,6 +100,7 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
 
   const pageUrl = `${site.url}/cases/${c.slug}/`;
   const related = caseStudies.filter((x) => x.category === c.category && x.slug !== c.slug).slice(0, 3);
+  const area = areaFromText(c.region + " " + c.title);
 
   // 사례는 회사가 수행한 작업 기록이므로 CreativeWork 로 두고, 회사는 @id 참조만 한다.
   // 빵부스러기(BreadcrumbList)를 같이 넣어 검색결과에 경로가 노출되게 한다.
@@ -232,7 +234,7 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
 
           {/* 결과 */}
           <h2 className="text-xl lg:text-2xl font-extrabold text-[var(--ink)] mb-3">결과</h2>
-          <div className="border-l-4 border-hb-blue bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6 mb-9">
+          <div className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6 mb-9">
             <p className="text-[15px] text-[var(--ink)]/90 leading-relaxed font-medium">{c.result}</p>
           </div>
 
@@ -256,6 +258,18 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
       </section>
 
       <FaqSection title="이 현장과 관련해 자주 묻는 질문" items={caseFaq(c)} />
+
+      {/* 이 현장의 지역 출장 안내(예천·안동·창원 등) */}
+      {area && (
+        <section className="py-8">
+          <div className="max-w-3xl mx-auto px-4 lg:px-6">
+            <Link href={`/nas/area/${area.slug}`} className="block rounded-2xl border border-hb-blue/40 bg-hb-blue-soft/40 p-5 hover:border-hb-blue transition">
+              <div className="text-[11px] font-extrabold text-hb-blue tracking-[.16em] mb-1">{area.full} 출장 안내</div>
+              <div className="font-bold text-[var(--ink)]">{area.name} NAS 설치·구축·수리 - 거리, 방문 방식, 맞는 구성, 이 지역 기록 →</div>
+            </Link>
+          </div>
+        </section>
+      )}
 
       {/* 관련 사례 */}
       {related.length > 0 && (
@@ -282,7 +296,7 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
       <section className="py-12 bg-[var(--bg)]">
         <div className="max-w-3xl mx-auto px-4 lg:px-6 text-center">
           <p className="text-sm text-[var(--mute)] leading-relaxed mb-5">
-            비슷한 구성을 검토 중이시면 현장을 보고 견적을 내 드립니다. 대구·경북은 당일 방문합니다.
+            비슷한 구성을 검토 중이시면 현장을 보고 견적을 내 드립니다. 대구·경북은 당일 출장 갑니다.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href="/support/quote" className="inline-flex items-center justify-center bg-hb-blue hover:bg-hb-azure text-white font-extrabold text-[15px] px-7 py-3.5 rounded-xl transition">

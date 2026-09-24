@@ -20,7 +20,7 @@ export function Hero() {
 
       <div className="relative flex-1 flex flex-col justify-end max-w-6xl w-full mx-auto px-5 lg:px-8 pt-28 pb-[5.5rem] lg:pb-12">
         <p className="hb-rise text-[12px] lg:text-[13px] font-semibold tracking-[.12em] text-white/70 mb-5 lg:mb-7">
-          기업 데이터 관리 · 사내 AI · 복합기 임대 · 대구
+          대구·경북 기업 전산 18년
         </p>
 
         <h1 className="hb-rise text-[38px] sm:text-[52px] lg:text-[76px] leading-[1.12] tracking-[-0.01em] mb-6 lg:mb-8 max-w-4xl" style={{ animationDelay: "80ms" }}>
@@ -29,24 +29,32 @@ export function Hero() {
         </h1>
 
         <p className="hb-rise text-[16px] lg:text-[19px] text-white/85 leading-relaxed max-w-xl mb-8 lg:mb-10" style={{ animationDelay: "160ms" }}>
-          대구·경북 170여 개 기업의 데이터를 19년째 {site.name}이 맡고 있습니다.
+          대구·경북 500여 개 기업의 데이터를 18년째 {site.name}이 맡고 있습니다.
           NAS 구축과 백업, 사내 AI 도입, 복합기 임대, 전산 유지관리를 한 회사에서 합니다.
         </p>
 
-        <div className="hb-rise flex flex-col sm:flex-row gap-3 mb-12 lg:mb-16" style={{ animationDelay: "240ms" }}>
+        {/* 폰·태블릿은 하단 고정 바(전화·원격지원·견적)가 같은 일을 하므로 PC 에서만 보인다 */}
+        <div className="hb-rise hidden lg:flex items-center gap-3 mb-4" style={{ animationDelay: "240ms" }}>
           <a
             href={site.phone.mainHref}
-            className="inline-flex items-center justify-center h-13 sm:h-12 px-7 rounded-md bg-white text-hb-primary font-bold text-[16px] hover:bg-white/90 transition"
+            className="inline-flex items-center justify-center h-12 px-7 rounded-md bg-white text-hb-primary font-bold text-[16px] hover:bg-white/90 transition"
           >
             전화 {site.phone.main}
           </a>
           <Link
-            href="/support/remote"
-            className="inline-flex items-center justify-center h-13 sm:h-12 px-7 rounded-md border border-white/45 text-white font-semibold text-[16px] hover:bg-white/10 transition"
+            href="/support/quote"
+            className="inline-flex items-center justify-center h-12 px-7 rounded-md border border-white/45 text-white font-semibold text-[16px] hover:bg-white/10 transition"
           >
-            원격지원 시작
+            견적·방문 상담
           </Link>
         </div>
+        <Link
+          href="/support/remote"
+          className="hb-rise hidden lg:inline-block self-start mb-14 text-[14px] text-white/70 underline underline-offset-4 hover:text-white transition"
+          style={{ animationDelay: "280ms" }}
+        >
+          거래처 원격지원 바로가기
+        </Link>
 
         {/* 숫자 넉 줄 - 장식 없는 실측값 */}
         <dl className="hb-rise grid grid-cols-2 lg:grid-cols-4 border-t border-white/25" style={{ animationDelay: "320ms" }}>

@@ -24,6 +24,8 @@ z = zipfile.ZipFile(io.BytesIO(urllib.request.urlopen(ZIP_URL, timeout=60).read(
 ttf = next(n for n in z.namelist() if n.endswith("JalnanGothicTTF.ttf") and not n.startswith("__MACOSX"))
 src = io.BytesIO(z.read(ttf))
 
+# 조각 나누는 기준 범위는 pretendard.css 에서 읽는다. 그 글꼴은 2026-09-19 에 화면에서 뺐지만
+# (globals.css 주석 참고) 92개 범위표는 조각 기준으로 계속 쓰므로 파일은 남겨 둔다.
 ranges = re.findall(r"/\* \[(\d+)\] \*/.*?unicode-range: ([^;]+);", (ROOT / "src/app/pretendard.css").read_text("utf-8"), re.S)
 assert len(ranges) >= 90, f"pretendard.css 조각 수 이상: {len(ranges)}"
 

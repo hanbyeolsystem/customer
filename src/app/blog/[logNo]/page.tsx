@@ -7,6 +7,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { AnswerBlock } from "@/components/AnswerBlock";
 import { naverPosts, naverPostByNo, naverCats } from "@/data/naver-posts";
 import { caseBySlug } from "@/data/cases";
+import { areaFromText } from "@/data/areas";
 import { businessId, site } from "@/data/site";
 import { breadcrumbLd, isoDateTime } from "@/lib/schema";
 
@@ -33,6 +34,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ logNo
   if (!p) notFound();
   const cat = naverCats.find((c) => c.id === p.catLabel);
   const relCase = p.caseSlug ? caseBySlug(p.caseSlug) : undefined;
+  // 제목에 지역명(구미·안동·창원…)이 있으면 지역 출장 페이지로 잇는다(지역 검색 → 글 → 지역 페이지)
+  const area = /NAS|나스|서버|복합기|렌탈|임대|컴퓨터/.test(p.title) ? areaFromText(p.title) : undefined;
   // 같은 분류에서 "내 다음 4개" (앞 4개 고정 금지 - 링크가 한쪽에만 몰린다)
   const same = naverPosts.filter((x) => x.catLabel === p.catLabel);
   const i = same.findIndex((x) => x.logNo === p.logNo);
@@ -41,7 +44,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ logNo
   let imgN = 0;
   // 즉답: 본문 첫 문단들을 그대로 요약으로 쓴다(새로 지어내지 않음). 글 전체가 짧으면 즉답도 짧다.
   const lead = p.blocks.filter((b) => b.t === "p").map((b) => b.text).join(" ").slice(0, 320);
-  const answer = `${lead}${lead.length >= 320 ? "…" : ""} (${p.date.replace(/-/g, ".")} 현장. 대구·경북 고객사 170곳+ 를 관리하는 대구광역시 달서구 한별시스템, ${site.phone.main})`;
+  const answer = `${lead}${lead.length >= 320 ? "…" : ""} (${p.date.replace(/-/g, ".")} 현장. 대구·경북 고객사 500곳+ 를 관리하는 대구광역시 달서구 한별시스템, ${site.phone.main})`;
 
   // BlogPosting.image 는 비어 있으면 안 된다(2017~18 옛 글은 원래 사진이 없다).
   // 본문에 실린 사진 → 목록 썸네일 → 사이트 공용 OG 카드 순으로 채운다.
@@ -83,16 +86,23 @@ export default async function BlogPostPage({ params }: { params: Promise<{ logNo
 
       <article className="py-10 lg:py-14 bg-[var(--bg)]">
         <div className="max-w-3xl mx-auto px-4 lg:px-6">
-          {(relCase || p.related) && (
+          {(relCase || p.related || area) && (
             <div className="flex flex-wrap gap-2 mb-8">
+              {area && (
+                <Link href={`/nas/area/${area.slug}`} className="inline-flex items-center gap-2 border border-hb-blue text-hb-blue text-sm font-extrabold px-4 py-2 rounded-full hover:bg-hb-blue hover:text-white transition">
+                  {area.name} NAS 출장 안내 (거리·방문 방식·비용) →
+                </Link>
+              )}
               {relCase && (
                 <Link href={`/cases/${relCase.slug}`} className="inline-flex items-center gap-2 bg-hb-blue text-white text-sm font-extrabold px-4 py-2 rounded-full">
                   이 현장의 구축 사례 보기 →
                 </Link>
               )}
-              <Link href={p.related.href} className="inline-flex items-center gap-2 border border-[var(--line)] bg-[var(--panel)] text-[var(--ink)] text-sm font-bold px-4 py-2 rounded-full hover:border-hb-blue">
-                {p.related.label} →
-              </Link>
+              {p.related && (
+                <Link href={p.related.href} className="inline-flex items-center gap-2 border border-[var(--line)] bg-[var(--panel)] text-[var(--ink)] text-sm font-bold px-4 py-2 rounded-full hover:border-hb-blue">
+                  {p.related.label} →
+                </Link>
+              )}
             </div>
           )}
 
@@ -106,24 +116,24 @@ export default async function BlogPostPage({ params }: { params: Promise<{ logNo
                     alt={`${p.title} 현장 사진 ${++imgN}`}
                     width={b.w}
                     height={b.h}
-                    loading={imgN === 1 ? "eager" : "lazy"}
+                    loading="lazy"
                     decoding="async"
                     referrerPolicy="no-referrer"
-                    className="w-full h-auto rounded-2xl border border-[var(--line)]"
+                    className="hb-fig"
                   />
                 </figure>
               ) : (
-                <p key={k} className="text-[15.5px] text-[var(--ink)]/90 leading-[1.85]">{b.text}</p>
+                <p key={k} className="hb-bp">{b.text}</p>
               ),
             )}
           </div>
 
-          <div className="mt-10 bg-[var(--panel)] border-l-4 border-hb-blue border border-[var(--line)] rounded-2xl p-6">
+          <div className="mt-10 bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6">
             <div className="text-[11px] font-extrabold text-hb-blue tracking-[.18em] mb-2">이어서 보기</div>
             <p className="text-sm text-[var(--ink)]/85 leading-relaxed mb-4">
               이 글과 관련된 비용·구성은 <Link href={p.related.href} className="text-hb-blue font-bold hover:underline">{p.related.label}</Link> 페이지에 표로 정리되어 있습니다.
               {relCase ? <> 이 현장은 <Link href={`/cases/${relCase.slug}`} className="text-hb-blue font-bold hover:underline">구축 사례</Link>로도 정리했습니다.</> : null}
-              {" "}대구·경북은 당일 방문하며 방문 견적은 무료입니다.
+              {" "}대구·경북은 당일 출장 가며 방문 견적은 무료입니다.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link href="/support/quote" className="inline-flex items-center justify-center bg-hb-blue hover:bg-hb-azure text-white font-extrabold text-sm px-5 py-2.5 rounded-xl transition">무료 방문 견적 요청</Link>

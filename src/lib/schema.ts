@@ -81,7 +81,10 @@ export const daeguDistricts = [
 ] as const;
 export const gyeongbukCities = [
   "구미시", "경산시", "칠곡군", "경주시", "포항시", "안동시", "영천시", "김천시", "상주시", "예천군",
+  "문경시", "성주군", "고령군",
 ] as const;
+// 경남은 일정을 잡아 방문하는 지역. 창원 사례가 있고 창녕·마산은 지역 페이지가 있다.
+export const gyeongnamCities = ["창원시", "창원시 마산합포구", "창원시 마산회원구", "창녕군"] as const;
 
 /** 대구 7구 2군 + 경북 주요 시를 areaServed 배열로. 화면 목록과 같은 출처를 쓴다. */
 export const daeguGyeongbukServed = [
@@ -89,6 +92,8 @@ export const daeguGyeongbukServed = [
   ...daeguDistricts.map((d) => ({ "@type": "AdministrativeArea", name: `대구광역시 ${d}` })),
   { "@type": "AdministrativeArea", name: "경상북도" },
   ...gyeongbukCities.map((c) => ({ "@type": "AdministrativeArea", name: `경상북도 ${c}` })),
+  { "@type": "AdministrativeArea", name: "경상남도" },
+  ...gyeongnamCities.map((c) => ({ "@type": "AdministrativeArea", name: `경상남도 ${c}` })),
 ];
 
 /** 월 정액 "부터" 가격 하나를 Offer 로 만든다. price 는 원 단위 숫자, VAT 별도. */

@@ -102,7 +102,7 @@ export default function TermsPage() {
     <>
       <JsonLd data={breadcrumbLd([{ name: "이용약관", path: "/terms/" }])} />
       <JsonLd data={webPageLd({ path: "/terms/", name: String(metadata.title), description: metadata.description ?? undefined })} />
-      <PageHeader badge={`시행일 ${EFFECTIVE.replace(/-/g, ".")}`} title="이용약관" description="웹사이트와 상담·견적·AS 접수 서비스 이용 조건입니다." />
+      <PageHeader badge={`시행일 ${EFFECTIVE.replace(/-/g, ".")}`} title="이용약관" description="웹사이트와 상담·견적·AS 접수 서비스 이용 조건입니다." photo={null} />
       <section className="py-10 lg:py-14 bg-[var(--bg)]">
         <div className="max-w-3xl mx-auto px-4 lg:px-6">
           {sections.map((s) => (

@@ -33,11 +33,11 @@ const faqs = [
 export default function RaidCalculatorPage() {
   return (
     <>
-      <JsonLd data={breadcrumbLd([{ name: "NAS 솔루션", path: "/nas/" }, { name: "RAID 계산기", path: "/nas/raid-calculator/" }])} />
+      <JsonLd data={breadcrumbLd([{ name: "NAS 구축", path: "/nas/" }, { name: "RAID 계산기", path: "/nas/raid-calculator/" }])} />
       <JsonLd data={webPageLd({ path: "/nas/raid-calculator/", name: String(metadata.title), description: metadata.description ?? undefined })} />
       <PageHeader
         back="/nas"
-        backLabel="NAS 솔루션"
+        backLabel="NAS 구축"
         title="RAID 계산기"
         description="디스크 개수와 용량을 넣으면 RAID 종류별로 실제 쓸 수 있는 용량이 바로 나옵니다. 어떤 구성이 맞을지 고민되면 전화 주세요. 현장을 보고 같이 정합니다."
       />

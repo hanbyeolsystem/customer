@@ -1,3 +1,6 @@
+"use client";
+
+// 폰 하단 고정 바. 꼬리말과 같은 이유로 클라이언트 컴포넌트다(Footer.tsx 주석 참고).
 import Link from "next/link";
 import { site } from "@/data/site";
 import { Icon } from "./Icon";

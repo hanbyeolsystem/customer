@@ -6,40 +6,50 @@ import { Icon, type IconName } from "@/components/Icon";
 import { site } from "@/data/site";
 import { coreServices } from "@/data/services";
 import { JsonLd } from "@/components/JsonLd";
+import { businessDetailLd } from "@/lib/business-ld";
 import { breadcrumbLd, webPageLd } from "@/lib/schema";
 import { AnswerBlock } from "@/components/AnswerBlock";
 
 export const metadata: Metadata = {
   title: "회사 소개 - 대구 달서구 전산 관리 업체",
   description:
-    "한별시스템은 2008년 대구 성서공단에서 출발해 19년째 대구·경북 기업의 전산을 맡아 온 IT 업체입니다. 대구광역시 달서구 문화회관11안길 소재, 관리 고객사 170곳, Synology NAS 공식 대리점.",
+    "한별시스템은 2008년 대구 성서공단에서 출발해 18년째 대구·경북 기업의 전산을 맡아 온 IT 업체입니다. 대구광역시 달서구 문화회관11안길 소재, 관리 고객사 500곳, Synology NAS 공식 대리점.",
   alternates: { canonical: "/about/" },
 };
 
 const values: { icon: IconName; title: string; desc: string }[] = [
   {
     icon: "server",
-    title: "Synology 공식 파트너",
-    desc: "NAS·백업 전문 대리점으로서 구축 설계부터 사후관리까지 한 손에서 책임집니다.",
+    title: "시놀로지 공식 대리점",
+    desc: "정품 판매, 설치, 분기 점검, 고장 수리까지 한 회사가 합니다. NAS 100건 넘게 놓았습니다.",
   },
   {
     icon: "clipboard",
-    title: "19년 현장 노하우",
-    desc: "대구·경북 170여 고객사와 쌓아온 운영 경험이 그대로 한별의 실력이 됩니다.",
+    title: "2008년부터 18년",
+    desc: "대구·경북 500곳의 컴퓨터·복사기·NAS를 봐 왔습니다. 처음 겪는 고장이 거의 없습니다.",
   },
   {
     icon: "wrench",
-    title: "발 빠른 현장 대응",
-    desc: "문제가 생기면 미루지 않습니다. 신속한 출동과 원격지원으로 업무 공백을 최소화합니다.",
+    title: "대구·경북 당일 출장",
+    desc: "전화를 받으면 원격으로 먼저 봅니다. 원격으로 안 되면 그날 갑니다. 전국은 1영업일.",
   },
   {
     icon: "settings",
-    title: "통합 IT 관리",
-    desc: "PC·서버·네트워크·NAS·복사기까지 - 흩어진 IT를 한 곳에서 관리합니다.",
+    title: "전화는 한 곳",
+    desc: "컴퓨터·복합기·NAS·인터넷 중 어디가 문제인지 몰라도 됩니다. 053-588-7119 한 곳에서 가립니다.",
   },
 ];
 
-const partners = ["Synology", "EPSON", "FujiFilm BI", "Kyocera", "HP", "Canon"];
+// 공식 파트너 - 사장님 확정 목록(2026-09-08). 임의 추가 금지
+const partners: { name: string; role: string }[] = [
+  { name: "브라더코리아", role: "서비스센터 · 공식대리점" },
+  { name: "교세라", role: "서비스센터 · 공식대리점" },
+  { name: "시놀로지 NAS", role: "공식대리점" },
+  { name: "고덱스", role: "라벨프린터" },
+  { name: "벤트사이", role: "핸드프린터" },
+  { name: "웰리스", role: "제균기" },
+  { name: "빔프로젝터", role: "판매 · 임대" },
+];
 
 // 회사 연혁 (최신순). highlight = 강조 마일스톤
 // 시대(era)별 연혁 - 성장 스텝 차트 + 표 로 시각화
@@ -85,7 +95,7 @@ const eras: {
   {
     name: "안정기",
     range: "2017 - 2023",
-    headline: "최우수 대리점 연속 입상으로 입지 확립",
+    headline: "우수 대리점 입상이 이어진 시기",
     bar: 82,
     items: [
       { date: "2017.01", text: "고덱스(GoDEX) 라벨프린터 대리점 계약" },
@@ -99,7 +109,7 @@ const eras: {
   {
     name: "도약기",
     range: "2024 - 2026",
-    headline: "NAS·데이터 인프라 전문기업으로 도약",
+    headline: "NAS·데이터 관리로 영역을 넓힌 시기",
     bar: 100,
     highlight: true,
     items: [
@@ -117,6 +127,7 @@ const eras: {
 export default function AboutPage() {
   return (
     <>
+      <JsonLd data={businessDetailLd} />
       <JsonLd data={breadcrumbLd([{ name: "회사 소개", path: "/about/" }])} />
       <JsonLd data={webPageLd({ path: "/about/", name: String(metadata.title), description: metadata.description ?? undefined })} />
       {/* 히어로: 홍보영상 배경 + 스크림 위 텍스트.
@@ -162,18 +173,18 @@ export default function AboutPage() {
             <div className="hb-rise">
               <div className="eyebrow mb-4">WHO WE ARE</div>
               <h2 className="text-2xl lg:text-3xl font-black text-[var(--ink)] leading-tight mb-5">
-                기업의 데이터와 업무환경을
+                회사 자료와 사무기기를
                 <br />
-                <span className="text-hb-blue">통합 관리</span>하는 IT 파트너
+                <span className="text-hb-blue">한 회사</span>가 봅니다
               </h2>
               <div className="space-y-4 text-[var(--mute)] leading-relaxed text-[15px]">
                 <p>
-                  한별시스템은 대구·경북 지역 기업의 IT 인프라를 19년간 함께해온 전문 기업입니다. NAS 구축과 데이터
-                  백업, 복사기 임대, 그리고 상시 IT 유지관리까지 - 기업 운영에 필요한 IT를 한 손에서 책임집니다.
+                  한별시스템은 2008년 대구 성서공단에서 컴퓨터 대리점으로 시작했습니다. 지금은 대구·경북 500곳의
+                  NAS, 백업, 복사기, 전산을 맡고 있습니다. 18년째입니다.
                 </p>
                 <p>
-                  저희는 한 번 맺은 인연을 길게 봅니다. 장비를 파는 데서 끝나지 않고, 고객사의 업무가 멈추지 않도록
-                  곁에서 관리하는 것 - 그것이 한별이 일하는 방식입니다.
+                  장비를 팔고 끝내지 않습니다. 고장 나면 당일 가고, 분기마다 점검하고, 토너가 떨어지기 전에 갖다
+                  놓습니다. 한 번 맡긴 회사가 계속 맡깁니다.
                 </p>
               </div>
             </div>
@@ -205,7 +216,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 lg:px-6">
           <div className="text-center mb-10 lg:mb-14">
             <div className="eyebrow mb-3">WHY HANBYEOL</div>
-            <h2 className="text-2xl lg:text-3xl font-black text-[var(--ink)]">한별을 선택하는 이유</h2>
+            <h2 className="text-2xl lg:text-3xl font-black text-[var(--ink)]">한별이 일하는 방식</h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
             {values.map((v) => (
@@ -236,20 +247,19 @@ export default function AboutPage() {
                 CEO MESSAGE
               </div>
               <h2 className="text-xl lg:text-3xl font-black tracking-tight mb-6 leading-snug">
-                &ldquo;기술보다 먼저, <span className="text-hb-azure">신뢰</span>를 드립니다&rdquo;
+                &ldquo;고장 나면 <span className="text-hb-azure">그날</span> 갑니다. 18년째 그렇게 했습니다.&rdquo;
               </h2>
               <div className="space-y-4 text-white/80 leading-relaxed text-[15px] lg:text-base max-w-3xl">
                 <p>
                   안녕하세요, 한별시스템 대표 <strong className="text-white">{site.address.ceo}</strong>입니다.
                 </p>
                 <p>
-                  저희는 단순한 장비 임대 회사가 아닙니다. 기업의 데이터와 업무환경을 통합 관리하는 IT 파트너로서,
-                  한 번 인연을 맺은 고객사와는 길게 함께합니다.
+                  저희는 장비를 파는 회사가 아니라 고장 났을 때 오는 회사입니다. 2008년 컴퓨터 대리점으로 시작해
+                  복사기, NAS, 사내 AI까지 왔지만 하는 일은 같습니다. 고객 회사의 일이 멈추지 않게 하는 것.
                 </p>
                 <p>
-                  Synology NAS 공식 대리점으로서의 전문성, 19년의 운영 노하우, 그리고 무엇보다 발 빠른 현장 대응 -
-                  그것이 한별이 자랑하는 가치입니다. 앞으로도 고객의 업무가 멈추지 않도록, 보이지 않는 곳에서
-                  든든하게 받치겠습니다.
+                  브라더·교세라 서비스센터이고 시놀로지 공식 대리점입니다. 부품이 빨리 옵니다. 그래서 대구·경북은
+                  당일에 고칩니다. 앞으로도 그렇게 하겠습니다.
                 </p>
               </div>
               <div className="mt-8 pt-6 border-t border-white/10">
@@ -312,7 +322,7 @@ export default function AboutPage() {
                     style={{ height: `${e.bar}%` }}
                   >
                     {e.highlight && (
-                      <span className="absolute -top-5 left-1/2 -translate-x-1/2 text-hb-azure text-base">★</span>
+                      <span aria-hidden className="absolute -top-1.5 left-1/2 -translate-x-1/2 h-2 w-2 rounded-full bg-hb-azure" />
                     )}
                   </div>
                 </div>
@@ -411,27 +421,27 @@ export default function AboutPage() {
           <div className="text-center mb-8">
             <div className="eyebrow mb-3">PARTNERS</div>
             <h2 className="text-2xl lg:text-3xl font-black text-[var(--ink)] mb-2">공식 파트너</h2>
-            <p className="text-sm text-[var(--mute)]">한별은 다음 글로벌 브랜드의 공식 파트너입니다.</p>
+            <p className="text-sm text-[var(--mute)]">한별은 다음 브랜드의 서비스센터·공식대리점·공식 취급점입니다.</p>
           </div>
-          <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {partners.map((p) => (
               <div
-                key={p}
-                className="aspect-[3/2] bg-[var(--panel)] border border-[var(--line)] rounded-xl flex items-center justify-center text-[12px] font-extrabold text-[var(--ink)] text-center px-2 leading-tight hover:border-hb-blue/40 transition"
+                key={p.name}
+                className="aspect-[3/2] bg-[var(--panel)] border border-[var(--line)] rounded-xl flex flex-col items-center justify-center text-center px-2 leading-tight hover:border-hb-blue/40 transition"
               >
-                {p}
+                <div className="text-[14px] font-extrabold text-[var(--ink)]">{p.name}</div>
+                <div className="text-[11px] text-[var(--mute)] mt-1">{p.role}</div>
               </div>
             ))}
           </div>
-          <p className="text-[11px] text-[var(--mute)] text-center mt-4">※ 공식 로고는 추후 교체 예정입니다.</p>
         </div>
       </section>
 
       <CtaBanner />
       <AnswerBlock
         question="한별시스템은 어떤 회사인가요?"
-        answer="2008년 대구 성서공단에서 컴퓨터 대리점으로 시작해 19년째 대구·경북 기업의 전산을 맡고 있는 기업 데이터 관리 회사입니다. 시놀로지 NAS 구축 50건 이상, 복사기·복합기 설치 300대 이상, 관리 고객사 170곳 이상이며 2026년 3월 시놀로지 공식 대리점 계약을 체결했습니다. 컴퓨터, 복합기, NAS, 사무실 네트워크를 한 회사가 관리해 장애가 났을 때 고객이 원인을 구분할 필요가 없고, 자사 NAS에서 로컬 LLM을 직접 운영하며 사내 AI 도입을 상담합니다. 대구광역시 달서구 문화회관11안길 22-7 1층, 대표 김상환, 사업자등록번호 514-22-73057, 대표번호 053-588-7119."
-        facts={[{ label: "창업", value: "2008년" }, { label: "관리 고객사", value: "170곳 이상" }, { label: "NAS 구축", value: "50건 이상" }, { label: "복사기 설치", value: "300대 이상" }]}
+        answer="2008년 대구 성서공단에서 컴퓨터 대리점으로 시작해 18년째 대구·경북 기업의 전산을 맡고 있는 기업 데이터 관리 회사입니다. 시놀로지 NAS 구축 100건 이상, 복사기·복합기 설치 300대 이상, 관리 고객사 500곳 이상이며 2026년 3월 시놀로지 공식 대리점 계약을 체결했습니다. 컴퓨터, 복합기, NAS, 사무실 네트워크를 한 회사가 관리해 장애가 났을 때 고객이 원인을 구분할 필요가 없고, 자사 NAS에서 로컬 LLM을 직접 운영하며 사내 AI 도입을 상담합니다. 대구광역시 달서구 문화회관11안길 22-7 1층, 대표 김상환, 사업자등록번호 514-22-73057, 대표번호 053-588-7119."
+        facts={[{ label: "창업", value: "2008년" }, { label: "관리 고객사", value: "500곳 이상" }, { label: "NAS 구축", value: "100건 이상" }, { label: "복사기 설치", value: "300대 이상" }]}
       />
     </>
   );

@@ -58,7 +58,7 @@ export default function BlogPage() {
           <section key={cat.id} id={encodeURIComponent(cat.id)} className="py-10 lg:py-14 bg-[var(--bg)] scroll-mt-20">
             <div className="max-w-7xl mx-auto px-4 lg:px-6">
               <h2 className="text-xl lg:text-2xl font-extrabold text-[var(--ink)] mb-5">
-                <span aria-hidden className="mr-2">{cat.icon}</span>{cat.label}
+                {cat.label}
                 <span className="ml-2 text-sm font-bold text-hb-blue">{items.length}편</span>
               </h2>
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">

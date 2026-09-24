@@ -1,8 +1,15 @@
+"use client";
+
+// 꼬리말은 703개 페이지에서 똑같다. 서버 컴포넌트로 두면 같은 트리가 HTML 과 RSC 페이로드에
+// 두 벌씩(쪽당 16KB) 실려서 클라이언트 컴포넌트로 돌렸다. 화면과 링크는 그대로이고,
+// RSC 에는 참조 한 줄만 남는다. (2026-09-18 HTML 무게 줄이기)
 import Link from "next/link";
 import Image from "next/image";
 import { site } from "@/data/site";
 import { embedHref } from "@/lib/embed";
 import { Icon } from "@/components/Icon";
+import { BookmarkButton } from "@/components/BookmarkButton";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export function Footer() {
   return (
@@ -27,20 +34,20 @@ export function Footer() {
             </p>
             <div className="flex gap-2">
               <Link href={embedHref(site.social.blog, "한별 블로그")} aria-label="한별 블로그"
-                className="w-9 h-9 rounded-lg bg-white/5 hover:bg-hb-blue hover:text-white flex items-center justify-center transition"><Icon name="pen" className="w-[18px] h-[18px]" /></Link>
+                className="hb-soc"><Icon name="pen" className="w-[18px] h-[18px]" /></Link>
               <a href={site.social.instagram} target="_blank" rel="noopener" aria-label="인스타그램"
-                className="w-9 h-9 rounded-lg bg-white/5 hover:bg-hb-blue hover:text-white flex items-center justify-center transition"><Icon name="camera" className="w-[18px] h-[18px]" /></a>
+                className="hb-soc"><Icon name="camera" className="w-[18px] h-[18px]" /></a>
               <a href={site.social.threads} target="_blank" rel="noopener" aria-label="Threads"
-                className="w-9 h-9 rounded-lg bg-white/5 hover:bg-hb-blue hover:text-white flex items-center justify-center transition"><Icon name="at" className="w-[18px] h-[18px]" /></a>
+                className="hb-soc"><Icon name="at" className="w-[18px] h-[18px]" /></a>
             </div>
           </div>
 
           {/* 서비스 */}
           <div>
-            <h4 className="text-[11px] font-extrabold text-white tracking-[.18em] mb-3">서비스</h4>
+            <h4 className="hb-fh">서비스</h4>
             <ul className="space-y-2 text-sm">
               <li><Link href="/ai" className="hover:text-white transition">사내 AI 구축</Link></li>
-              <li><Link href="/nas" className="hover:text-white transition">NAS 솔루션</Link></li>
+              <li><Link href="/nas" className="hover:text-white transition">NAS 구축</Link></li>
               <li><Link href="/rental" className="hover:text-white transition">복사기 임대</Link></li>
               <li><Link href="/network" className="hover:text-white transition">네트워크·랜공사</Link></li>
               <li><Link href="/shop" className="hover:text-white transition">임대 쇼핑몰</Link></li>
@@ -54,13 +61,14 @@ export function Footer() {
 
           {/* 고객 지원 */}
           <div>
-            <h4 className="text-[11px] font-extrabold text-white tracking-[.18em] mb-3">고객 지원</h4>
+            <h4 className="hb-fh">고객 지원</h4>
             <ul className="space-y-2 text-sm">
               <li><Link href="/support/remote" className="hover:text-white transition">원격 지원</Link></li>
               <li><Link href="/support/drivers" className="hover:text-white transition">드라이버 다운로드</Link></li>
               <li><Link href="/support/as" className="hover:text-white transition">AS 접수</Link></li>
               <li><Link href="/support/quote" className="hover:text-white transition">견적 요청</Link></li>
               <li><Link href="/nas/repair" className="hover:text-white transition">NAS 수리·점검</Link></li>
+              <li><Link href="/nas/area" className="hover:text-white transition">출장 지역(경북·경남)</Link></li>
               <li><Link href="/nas/raid-calculator" className="hover:text-white transition">RAID 계산기</Link></li>
               <li><Link href="/guide" className="hover:text-white transition">가이드·비교표</Link></li>
               <li><Link href="/qna" className="hover:text-white transition">Q&amp;A 전체 문답</Link></li>
@@ -69,7 +77,7 @@ export function Footer() {
 
           {/* 연락처 */}
           <div>
-            <h4 className="text-[11px] font-extrabold text-white tracking-[.18em] mb-3">연락처</h4>
+            <h4 className="hb-fh">연락처</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <a href={site.phone.mainHref} className="inline-flex items-center gap-2 hover:text-white transition">
@@ -92,7 +100,7 @@ export function Footer() {
               </li>
               <li className="pt-1">
                 <Link href="/contact" className="font-semibold text-hb-blue-light hover:text-white transition">
-                  연락처·찾아오시는 길 →
+                  연락처·찾아오시는 길
                 </Link>
               </li>
             </ul>
@@ -119,10 +127,21 @@ export function Footer() {
               <strong className="text-slate-300">{site.name}</strong> · 대표 {site.address.ceo} · {site.address.street}<br />
               사업자등록번호 {site.address.bizNo} · 통신판매업신고 {site.address.mailOrder}
             </div>
-            <div className="flex items-center gap-3 text-slate-500">
+            {/* 헤더에서 뺀 페이지(2026-09-15 메뉴 정리)와 즐겨찾기·다크모드 */}
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-slate-500">
+              <Link href="/about" className="hover:text-slate-300">회사소개</Link>
+              <span className="text-slate-700">·</span>
+              <Link href="/news" className="hover:text-slate-300">새소식</Link>
+              <span className="text-slate-700">·</span>
+              <Link href="/blog" className="hover:text-slate-300">블로그</Link>
+              <span className="text-slate-700">·</span>
+              <Link href="/community" className="hover:text-slate-300">커뮤니티</Link>
+              <span className="text-slate-700">·</span>
               <Link href="/privacy" className="hover:text-slate-300">개인정보처리방침</Link>
               <span className="text-slate-700">·</span>
               <Link href="/terms" className="hover:text-slate-300">이용약관</Link>
+              <BookmarkButton className="inline-flex items-center gap-1.5 h-8 px-2.5 rounded-md border border-white/15 text-slate-400 hover:border-white/40 hover:text-slate-200 transition" />
+              <ThemeToggle />
             </div>
           </div>
           <div className="text-center text-slate-600 mt-4">© 2026 Hanbyeol System. All rights reserved.</div>

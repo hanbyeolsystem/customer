@@ -58,3 +58,13 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      # 배포된 URL 을 IndexNow 로 Bing·네이버에 알린다(실패해도 배포는 성공으로 둔다)
+      - name: Checkout (IndexNow script)
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: scripts/indexnow.mjs
+          sparse-checkout-cone-mode: false
+      - name: IndexNow ping
+        continue-on-error: true
+        run: sleep 60 && node scripts/indexnow.mjs

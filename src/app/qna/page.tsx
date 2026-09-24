@@ -42,7 +42,7 @@ export default function QnaPage() {
       <PageHeader
         badge="Q&A"
         title="궁금한 것부터 해결하세요"
-        description={`사내 AI·나스·백업·복합기 렌탈·컴퓨터·네트워크 - 19년간 고객에게 실제로 받은 질문 ${qna.length}가지에 그대로 답합니다.`}
+        description={`사내 AI·나스·백업·복합기 렌탈·컴퓨터·네트워크 - 18년간 고객에게 실제로 받은 질문 ${qna.length}가지에 그대로 답합니다.`}
       />
 
       <AnswerBlock
@@ -58,7 +58,6 @@ export default function QnaPage() {
             {counts.map((c) => (
               <Link key={c.id} href={`/qna/cat/${c.id}`} className="bg-[var(--bg)] border border-[var(--line)] rounded-2xl p-5 hover:border-hb-blue transition group">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-2xl" aria-hidden>{c.icon}</span>
                   <span className="text-[11px] font-extrabold text-hb-blue">{c.n}문항</span>
                 </div>
                 <h2 className="font-extrabold text-[var(--ink)] leading-snug mb-2">{c.label}</h2>

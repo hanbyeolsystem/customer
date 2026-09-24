@@ -32,7 +32,7 @@ export default function DriversPage() {
       <PageHeader
         badge="DRIVERS"
         title="드라이버 다운로드"
-        description="한별 드라이버 센터이 가장 빠른 방법입니다. 제조사 공식 페이지에서도 받으실 수 있습니다."
+        description="한별 드라이버 센터가 가장 빠릅니다. 제조사 공식 페이지에서도 받으실 수 있습니다."
       />
       <AnswerBlock
         question="프린터 드라이버는 어디서 받나요?"
@@ -72,7 +72,6 @@ export default function DriversPage() {
             href={DDALKKAK_P_DRIVER}
             className="group flex items-center gap-4 bg-[var(--panel)] border-2 border-hb-blue/40 rounded-2xl p-4 lg:p-5 mb-6 hover:border-hb-blue hover:shadow-lg hover:-translate-y-0.5 transition"
           >
-            <div className="text-3xl flex-shrink-0">🖱</div>
             <div className="flex-1 min-w-0">
               <div className="text-[10px] font-extrabold tracking-[.18em] text-hb-blue mb-0.5">
                 추천 · 클릭 한 번 자동 설치
@@ -96,7 +95,6 @@ export default function DriversPage() {
           {/* 1-2) 딸깍설치(거래처 프로필) - 특허 출원 기술 안내 */}
           <div className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-4 lg:p-5 mb-6">
             <div className="flex items-start gap-3">
-              <div className="text-2xl flex-shrink-0">⚡</div>
               <div className="min-w-0">
                 <h3 className="font-extrabold text-[var(--ink)] text-[15px] lg:text-base leading-tight">
                   딸깍설치 (거래처 프로필)
@@ -114,7 +112,7 @@ export default function DriversPage() {
 
           {/* 2) 제조사 공식 사이트 */}
           <div className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-4 mb-5 text-sm text-[var(--mute)] leading-relaxed">
-            💡 한별 드라이버 센터에서 못 찾으셨다면 아래 제조사 공식 페이지에서 모델명으로 검색하세요. 모델명을 모르시면 한별로 연락 주시면 함께 찾아드립니다.
+            한별 드라이버 센터에서 못 찾으셨다면 아래 제조사 공식 페이지에서 모델명으로 검색하세요. 모델명을 모르시면 한별로 연락 주시면 함께 찾아드립니다.
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 lg:gap-4">
             {brands.map((b) => (
@@ -125,7 +123,6 @@ export default function DriversPage() {
                 rel="noopener"
                 className="bg-[var(--bg)] border border-[var(--line)] rounded-2xl p-5 lg:p-6 text-center hover:border-hb-blue hover:shadow-lg hover:-translate-y-0.5 transition"
               >
-                <div className="text-3xl mb-2.5">🖨</div>
                 <div className="font-extrabold text-[var(--ink)] text-base lg:text-lg leading-tight">
                   {b.name}
                 </div>

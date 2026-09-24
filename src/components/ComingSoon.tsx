@@ -11,7 +11,6 @@ export function ComingSoon({
   return (
     <section className="py-20 lg:py-32 bg-[var(--bg)]">
       <div className="max-w-2xl mx-auto px-4 lg:px-6 text-center">
-        <div className="text-6xl mb-5">🚧</div>
         <h2 className="text-2xl lg:text-3xl font-extrabold text-[var(--ink)] mb-3">
           {title}
         </h2>
@@ -23,7 +22,7 @@ export function ComingSoon({
             href={site.phone.mainHref}
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-hb-blue hover:bg-hb-blue-light text-white font-extrabold text-sm px-6 py-3 rounded-xl transition"
           >
-            📞 {site.phone.main}
+            전화 {site.phone.main}
           </a>
           <Link
             href="/"

@@ -23,12 +23,12 @@ export const naverPostByNo = (logNo: string) => naverPosts.find((p) => p.logNo =
 
 // 네이버 분류 이름을 그대로 묶음으로 쓴다(글 수 많은 순). 아이콘은 분류 성격으로 고른다.
 function iconFor(label: string) {
-  if (/NAS|나스/.test(label)) return "🗄";
-  if (/설치사례/.test(label)) return "🔧";
-  if (/복합기|프린터|토너|교세라|브라더|라벨|핸드/.test(label)) return "🖨";
-  if (/컴퓨터|PC|위더스/.test(label)) return "💻";
-  if (/서비스|안내|공지/.test(label)) return "📢";
-  return "📝";
+  if (/NAS|나스/.test(label)) return "";
+  if (/설치사례/.test(label)) return "";
+  if (/복합기|프린터|토너|교세라|브라더|라벨|핸드/.test(label)) return "";
+  if (/컴퓨터|PC|위더스/.test(label)) return "";
+  if (/서비스|안내|공지/.test(label)) return "";
+  return "";
 }
 export const naverCats: { id: string; label: string; icon: string; n: number }[] = (() => {
   const count = new Map<string, number>();

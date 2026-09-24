@@ -108,7 +108,7 @@ export function CommunityBoard({ initialPosts = [] }: { initialPosts?: Post[] })
             onClick={() => setShowForm((v) => !v)}
             className="bg-hb-blue text-white font-extrabold px-5 py-2.5 rounded-xl"
           >
-            {showForm ? "닫기" : "✏️ 질문 남기기"}
+            {showForm ? "닫기" : "질문 남기기"}
           </button>
         </div>
 
@@ -127,7 +127,7 @@ export function CommunityBoard({ initialPosts = [] }: { initialPosts?: Post[] })
         {error && <p className="text-sm text-red-500 py-4 text-center">{error}</p>}
         {!loading && !error && questions.length === 0 && (
           <div className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-8 text-center text-sm text-[var(--mute)]">
-            아직 질문이 없습니다. 첫 질문의 주인공이 되어 주세요!
+            아직 질문이 없습니다. 첫 질문을 남겨 주세요.
           </div>
         )}
 
@@ -152,7 +152,7 @@ export function CommunityBoard({ initialPosts = [] }: { initialPosts?: Post[] })
                       <div key={r.id} className="bg-[var(--bg)] rounded-xl px-4 py-3">
                         <div className="text-[11px] text-[var(--mute)] mb-1">
                           <b className={r.nick === "한별시스템" ? "text-hb-blue" : "text-[var(--ink)]/80"}>
-                            {r.nick === "한별시스템" ? "✓ 한별시스템" : r.nick}
+                            {r.nick}
                           </b>{" "}
                           {fmtDate(r.created_at)}
                         </div>
@@ -174,7 +174,7 @@ export function CommunityBoard({ initialPosts = [] }: { initialPosts?: Post[] })
                   />
                 ) : (
                   <button onClick={() => setReplyTo(q.id)} className="mt-3 text-xs font-bold text-hb-blue">
-                    💬 답변 달기
+                    답변 달기
                   </button>
                 )}
               </div>

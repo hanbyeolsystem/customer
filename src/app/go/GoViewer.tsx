@@ -25,7 +25,6 @@ export function GoViewer() {
   if (!url) {
     return (
       <div className="max-w-xl mx-auto px-4 py-16 text-center">
-        <div className="text-5xl mb-3">⚠️</div>
         <h1 className="text-xl font-extrabold text-[var(--ink)] mb-2">잘못된 접근입니다</h1>
         <p className="text-sm text-[var(--mute)] mb-6">표시할 외부 주소가 지정되지 않았습니다.</p>
         <Link href="/" className="inline-flex items-center gap-1.5 bg-hb-blue text-white font-bold text-sm px-5 py-2.5 rounded-xl">
@@ -54,7 +53,7 @@ export function GoViewer() {
           {title}
         </span>
         <span className="font-mono text-[var(--mute)] truncate flex-1 hidden sm:inline">
-          🔗 {host}
+          {host}
         </span>
         <a
           href={url}
@@ -71,7 +70,6 @@ export function GoViewer() {
         {blocked ? (
           <div className="absolute inset-0 flex items-center justify-center p-6">
             <div className="max-w-md text-center">
-              <div className="text-5xl mb-4">🚫</div>
               <h2 className="text-lg lg:text-xl font-extrabold text-[var(--ink)] mb-2">
                 이 사이트는 임베드 표시가 차단됩니다
               </h2>

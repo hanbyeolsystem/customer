@@ -1,5 +1,857 @@
 [
  {
+  "logNo": "224420922830",
+  "title": "안동 NAS 서버 구축 유지보수 허브 관리 대구 경북 경남 시놀로지 나스 전문 업체 설치 후기",
+  "cat": "nas",
+  "catLabel": "NAS(나스)",
+  "date": "2026-09-23",
+  "href": "https://blog.naver.com/hanbyeolsystem/224420922830",
+  "thumb": "/blog-posts/224420922830/1.webp",
+  "excerpt": "안동 NAS 서버 설치 및 유지보수 관리 전문 업체, 한별시스템입니다. 기존에 이미 서버를 사용하고 계시거나 허브를 통해 서버를 관리하고 계실 때는 나스 같은 서버가 좋다고 해도 이미 있는 서버를 잘 쓰면 되지, 하는 생각을 하시기도 하는데요. 하지만 이미 서버를 관리하고 계신다면 서버",
+  "chars": 1823,
+  "images": 10,
+  "related": {
+   "href": "/nas/repair/",
+   "label": "NAS 수리·복구 점검 안내"
+  },
+  "blocks": [
+   {
+    "t": "img",
+    "src": "/blog-posts/224420922830/1.webp",
+    "w": 900,
+    "h": 736
+   },
+   {
+    "t": "p",
+    "text": "안동 NAS 서버 설치 및 유지보수 관리 전문 업체, 한별시스템입니다."
+   },
+   {
+    "t": "p",
+    "text": "기존에 이미 서버를 사용하고 계시거나 허브를 통해 서버를 관리하고 계실 때는 나스 같은 서버가 좋다고 해도 이미 있는 서버를 잘 쓰면 되지, 하는 생각을 하시기도 하는데요."
+   },
+   {
+    "t": "p",
+    "text": "하지만 이미 서버를 관리하고 계신다면 서버는 한 번 설치하는 것보다는 꾸준히 관리하고 유지보수를 하는 것이 더욱 중요하다는 점도 잘 알고 계실 것 같습니다."
+   },
+   {
+    "t": "p",
+    "text": "그런 의미에서 새로운 나스를 구축해 서버를 더욱 안정감 있게 유지하고 새로운 백업 서버를 만드는 것도 도움이 될 수 있는데요."
+   },
+   {
+    "t": "p",
+    "text": "오늘은 이렇게 나스 서버를 구축하고 새롭게 서버를 관리 및 유지보수하게 된 후기를 말씀드리려고 합니다."
+   },
+   {
+    "t": "p",
+    "text": "안동 NAS 구축, 새로운 서버 관리"
+   },
+   {
+    "t": "img",
+    "src": "/blog-posts/224420922830/2.webp",
+    "w": 900,
+    "h": 534
+   },
+   {
+    "t": "p",
+    "text": "이번에 방문하게 된 곳은 안동에 위치한 한 공장의 사무실이었는데요. 이미 서버를 사용하고 있지만 관리를 담당하는 인원이 없어서 최근에 문제가 생긴 적이 있어서 문의를 주게 되셨다고 말씀하셨습니다."
+   },
+   {
+    "t": "p",
+    "text": "서버는 한 번 만들었으니 이제 괜찮겠지, 하고 생각하기 쉽지만 구축보다 더욱 중요한 것이 바로 유지보수인데요."
+   },
+   {
+    "t": "p",
+    "text": "관리가 제대로 되지 않는다면 열심히 구축해둔 서버가 제대로 돌아가지 않을 수 있기 때문에 업무를 비롯한 다양한 곳에 지장이 생길 수 있기 때문입니다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MjNfNDEg/MDAxNzkwMTMyMDAwODE2.xfn0JOEJEcjKFvH_c_CYNUonYMgP4gV22kAaaIsYCjcg.vrIemi0pAlHpszfRfIz8iH6QrL-yg4SXPsIU0nmC_30g.PNG/3.png?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "공장에서 한 번 문제가 생긴 후로 사무실과 함께 공장 서버의 확인과 관리에도 관심을 가지게 되었다고 말씀해 주셨는데요."
+   },
+   {
+    "t": "p",
+    "text": "기존에 담당하던 담당자가 있었지만 좀 더 전문적인 관리가 필요하다는 생각에 문의를 주시게 되었다고도 말씀해 주셨습니다."
+   },
+   {
+    "t": "p",
+    "text": "서버를 점검해 보니 기존 시스템에는 크게 문제가 없었지만 좀 더 안정적인 운영을 원하신다고 말씀해 주셨기 때문에 안동 NAS 서버를 새로 구축해서 백업을 하기로 했는데요."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MjNfMjQg/MDAxNzkwMTMyMDAwODIw.ws3tKks1gZsCuc6KGBNPW6_n0AhRbQIYosF2mA8om_Ug.xXnogs_Zv_Cn-kaqNKmpNHKITLIpeAiIs-dZdKjWNMkg.PNG/4.png?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "나스는 시놀로지 나스 DS925+ 제품을 사용했습니다. 넉넉하게 하드디스크를 구성할 수 있고 속도를 빠르게 하는 등의 추가적인 슬롯과 메모리 역시 사용이 가능해 어디에서나 편하게 쓸 수 있는데요."
+   },
+   {
+    "t": "p",
+    "text": "8TB의 큰 용량을 가진 하드디스크를 사용해 좀 더 안정감 있게 서버 백업이 가능하도록 하고 서버를 안전하게 관리할 수 있도록 백업을 마쳤습니다."
+   },
+   {
+    "t": "p",
+    "text": "나스 서버로 추가적인 백업을 하면서 서버를 꾸준히 점검하고 관리하며 유지보수도 주기적으로 하겠다는 말씀을 드렸습니다."
+   },
+   {
+    "t": "p",
+    "text": "기존 허브와 서버에는 이상이 없었기 때문에 안정적으로 쓸 수 있도록 꾸준한 관리가 무엇보다 중요한 환경이라 이 점을 상세히 말씀드리니 이제야 안심하겠다며 긍정적인 답변을 주셨습니다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MjNfMjc5/MDAxNzkwMTMyMDAxMjA1.21xtBANbfGNdJSAniKjgVfpFU8o_Xlc1q01bqvpJujUg.2qGVwCcn6HAz58-3chBN5NyojSR4FzDPu2w-ZXXd-Acg.PNG/5.png?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "나스 서버를 설치한 후에 전체적인 점검을 마치고 서버도 한 번 더 내부와 외부의 이상을 점검한 후에 전체적인 안동 NAS 구축을 마치게 되었는데요."
+   },
+   {
+    "t": "p",
+    "text": "사용에 있어서 불편함이 생기지 않게 전문적인 교육 서비스를 통해 1시간 정도 유의할 점을 말씀드렸더니 좀 더 편리하게 쓸 수 있겠다며 만족스럽다는 후기도 남겨주셨습니다."
+   },
+   {
+    "t": "p",
+    "text": "이렇게 서버 관리를 위한 확인과 추가적인 백업을 위한 나스 구축으로 안전하게 서버를 관리할 예정입니다. 꾸준히 방문하면서 내부에 이상은 없는지 같이 확인하며 관리할 예정입니다."
+   },
+   {
+    "t": "p",
+    "text": "이렇게 나스와 서버 관리는 설치만큼이나 중요한데요. 전문적인 지식이 없거나 노하우가 없다면 제대로 된 관리가 어려울 수 있습니다. 이럴 때 도움을 받을 수 있는 곳이 바로 전문 업체라고 할 수 있죠."
+   },
+   {
+    "t": "p",
+    "text": "서버 관리와 유지보수가 필요하다면 지금 전문 업체, 한별시스템에 문의를 남겨 보시고 전문적인 서비스까지 경험해 보세요."
+   },
+   {
+    "t": "p",
+    "text": "한별시스템은 안동 NAS를 비롯한 다양한 나스의 설치 및 구축과 더불어 서버의 유지 보수 및 관리를 위한 여러 서비스를 제공하고 있습니다."
+   },
+   {
+    "t": "p",
+    "text": "한별시스템의 전문적인 서비스로 이제 서버 유지 보수 및 관리까지 편리하게 경험해 보세요. 아래로 편하게 문의 남겨 주세요."
+   },
+   {
+    "t": "img",
+    "src": "https://simg.pstatic.net/static.map/v2/map/staticmap.bin?type=w966",
+    "remote": true
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MjNfMjI2/MDAxNzkwMTQxMjQxNDEy.J0BngVfIN-DP0-3ZubqXffOjzJLCOxomt_4WIo74QHUg.5p9kZdFCBsiSzsIyIYoXAqMFrBnOFvtAcSC7-_tmiNAg.JPEG/KakaoTalk_20260911_165128230_15.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MjNfMjg4/MDAxNzkwMTQxMjQxNDIy.KgErOF-X_2E153CTnU_tVjtdsnB9ZvSO5CFIHbBF-sAg.5SrO7pF2ulsS01zY-F8rYxEpz0F96qmdwl68YffwQ4kg.JPEG/KakaoTalk_20260911_165128230_16.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MjNfMTQ1/MDAxNzkwMTQxMjQxNDMw.ygZYd57ntJWfS8OQLtbSiXYZ11MzA-IzyrG9ou1x5B4g.CaTsNODldbKH_x7gp7D6tV8BI7OZYSCrtYE42ghYpgIg.JPEG/KakaoTalk_20260911_165128230_17.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MjNfMTU1/MDAxNzkwMTQxMjQxMzk2.BZxcoowoEf7SMwfIMzWGgmaH0DhnG7X3BUsB0Dr571Ig.tlH5a93TBJxurG8tVK2kbg2vR_yXX-0i13mlLuVYsWMg.JPEG/KakaoTalk_20260911_165128230_18.jpg?type=w966",
+    "remote": true
+   }
+  ]
+ },
+ {
+  "logNo": "224416042808",
+  "title": "경남 진주 NAS 시놀로지 나스 서버 구축 유지보수 관리 추가 메모리 확장 설치 후기",
+  "cat": "nas",
+  "catLabel": "NAS(나스)",
+  "date": "2026-09-18",
+  "href": "https://blog.naver.com/hanbyeolsystem/224416042808",
+  "thumb": "/blog-posts/224416042808/1.webp",
+  "excerpt": "안녕하세요. 나스 서버 구축 및 유지보수 전문 업체, 한별시스템입니다. 많은 분들이 최근에는 데이터를 관리하고 편하게 사용하기 위해서 서버를 활용하고 계시는데요. 다양한 사람들과 데이터를 주고받고 편리하게 관리하기 위해서는 서버를 사용하는 것도 방법이죠. 이를 위해서 많은 분들이 시놀로",
+  "chars": 2278,
+  "images": 12,
+  "related": {
+   "href": "/nas/repair/",
+   "label": "NAS 수리·복구 점검 안내"
+  },
+  "blocks": [
+   {
+    "t": "img",
+    "src": "/blog-posts/224416042808/1.webp",
+    "w": 900,
+    "h": 736
+   },
+   {
+    "t": "p",
+    "text": "안녕하세요. 나스 서버 구축 및 유지보수 전문 업체, 한별시스템입니다."
+   },
+   {
+    "t": "p",
+    "text": "많은 분들이 최근에는 데이터를 관리하고 편하게 사용하기 위해서 서버를 활용하고 계시는데요. 다양한 사람들과 데이터를 주고받고 편리하게 관리하기 위해서는 서버를 사용하는 것도 방법이죠."
+   },
+   {
+    "t": "p",
+    "text": "이를 위해서 많은 분들이 시놀로지 나스를 사용해 서버를 구축하는 것에 관심을 두고 계시는 일이 많은데요. 하지만 설치와 구축만큼이나 중요한 것이 바로 유지관리입니다."
+   },
+   {
+    "t": "p",
+    "text": "그렇다면 서버를 사용하고 관리하기 위해서는 어떤 점들이 필요할까요? 오늘 진주 NAS 설치 전문 업체, 한별시스템에서 설명드리겠습니다."
+   },
+   {
+    "t": "p",
+    "text": "나스 서버 구축과 유지보수를 위해서는"
+   },
+   {
+    "t": "img",
+    "src": "/blog-posts/224416042808/2.webp",
+    "w": 900,
+    "h": 540
+   },
+   {
+    "t": "p",
+    "text": "이번에 문의를 주셨던 곳은 진주에 위치한 사무실이었는데요. 원래 NAS를 사용하고 계셨지만 용량이 부족해지면서 새로운 나스를 구축하고 싶다는 문의를 주셨습니다."
+   },
+   {
+    "t": "p",
+    "text": "기존에 NAS를 담당하던 사람이 퇴사한 후로 제대로 관리도 되지 않았고 데이터가 지워지는 일도 몇 번 있었다고 말씀해 주셨는데요."
+   },
+   {
+    "t": "p",
+    "text": "이렇게 나스 같은 경우는 한 번 설치했다고 끝이 나지 않기 때문에 지속적인 유지보수와 관리가 정말 중요한 요소입니다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MThfMTAw/MDAxNzg5NzAwNDE4OTA4.UyN9Y2nNc5V-es0X6cXHPLmDtWkuTXNpwBZ3tqpBYpQg.7pNe_E2DM187p4yVAF7I3UhdurZr6IQAecgSZnaAknQg.PNG/3.png?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "제대로 관리가 되지 않는다면 내부의 데이터가 지워지거나 용량이 부족해지더라도 알아채기가 어렵기 때문에 보관하고 있는 소중한 데이터에 문제가 생길 수도 있죠."
+   },
+   {
+    "t": "p",
+    "text": "저장과 공유라는 기본적인 서버 기능을 제대로 사용하기도 어려워지기 때문에 업무에도 지장이 생기게 됩니다. 진주 NAS 설치 문의를 주셨던 곳도 이런 점들에서 불편함을 겪고 있어 문의를 주게 되었다고 말씀해 주셨는데요."
+   },
+   {
+    "t": "p",
+    "text": "용량 확장과 함께 데이터양이 늘어나 속도가 느려지는 것이 불편하다는 말씀을 주셨기 때문에 추가적인 메모리 확장을 통해서 좀 더 빠르게 사용할 수 있도록 추천해 드렸습니다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MThfMjcx/MDAxNzg5NzAwNDE5NTQ1.85lecS6F2PfIdr-KqtcCer_JuEWy-87jsXhZu3_edRog.CaNzq6wZJFwvJJeqJSYVee7oJt9fyeDL7E2ODeO7318g.PNG/4.png?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "기존에 사용하고 계시던 나스 모델은 2베이 제품으로 용량 확장은 가능하지만 추가적인 속도 개선이나 더 큰 용량 증량을 위해서 새로운 나스 모델을 추천해 드려 구축하게 되었습니다."
+   },
+   {
+    "t": "p",
+    "text": "이번에 구축을 도와드린 모델은 시놀로지 나스 DS925+ 제품인데요. 최대로 9개의 하드디스크를 사용할 수 있기 때문에 더 많은 하드디스크를 넣어서 이용할 수 있다는 장점이 있죠."
+   },
+   {
+    "t": "p",
+    "text": "용량 증량도 쉬울뿐더러 추가적인 메모리 슬롯을 제공하기 때문에 속도 개선을 위한 도움도 받을 수 있어 편리하게 쓸 수 있기도 합니다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MThfMTQ1/MDAxNzg5NzAwNDE5NDc2.GmEwlP254MgRBefqGRbw0Xh4FS7dn8uB18jQlhJjCigg.ADVaFbnNPOlD6YJ0FFto1vOh4e79Is-UZQwcf1kufqwg.PNG/5.png?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "기존 용량이 부족했다는 말씀을 주셨기 때문에 그에 맞게 하드디스크는 시놀로지 HAT3320-8T 제품을 사용했습니다."
+   },
+   {
+    "t": "p",
+    "text": "8TB의 용량을 제공하기 때문에 큰 용량으로 서버를 구축할 수 있죠. 총 4개를 사용해 레이드 설정까지 마치면서 안전하게 서버를 사용하실 수 있도록 세팅을 하게 되었는데요."
+   },
+   {
+    "t": "p",
+    "text": "기존에 사용하시던 나스는 점검 결과 큰 문제는 없어 보였기 때문에 NAS to NAS 백업을 통해서 서버를 더욱 안전하게 구축할 수 있게 관리를 도와드렸습니다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MThfMTc2/MDAxNzg5NzAwNDE5MDY5.Yqm1HqVoKf-dSpq0K45C6CGlgBgbriIY_LWpHI8mID4g.2S787HFHKRiBQPq4RSlUaO_hDUxWAQWXPf2Ec3zFZXYg.PNG/6.png?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "하드디스크를 넣고 메모리 확장을 위한 조립을 마친 후의 모습입니다. 이제 이대로 당장 세팅을 하는 것이 아니라 충분한 점검을 거치고 실제로 작동이 무리 없이 되는지를 확인해야 하는데요."
+   },
+   {
+    "t": "p",
+    "text": "현장에서 서버를 조립하지 않고 미리 제품을 확인하고 세팅을 하는 것은, 현장에서 점검했을 때 오류가 발견되면 일정이 지연될 수 있어 당장 업무에 지장이 생길 수 있기 때문입니다."
+   },
+   {
+    "t": "p",
+    "text": "미리 검수를 거치고 문제가 없는지 확인해야 현장에서 바로 설치하고 사용할 수 있기 때문에 한별시스템은 진주 NAS 설치를 비롯한 다양한 곳의 나스 서버 구축과 유지관리에서 여러 번 꼼꼼하게 사전 점검을 마치고 있습니다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MThfMjUw/MDAxNzg5NzAwNDE4NzI1.eHbWS9ZPQd3jBdy2ixL2-whp-8OjcgOGK7OLQd1IBjsg.1zP_iFVjybulArmpr6knj2DmfS1BYFLiwYzgwp2xrAgg.PNG/7.png?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "이렇게 최종적인 세팅을 마치고 사무실에 방문해 설치를 마친 후에는, 꼼꼼하게 한 번 더 점검을 거칩니다. 작동이 잘 되는 것을 확인한 후에야 모든 작업이 끝난다고 할 수 있죠."
+   },
+   {
+    "t": "p",
+    "text": "이후에는 나스 사용이 익숙하지 않은 분들을 위해서 1시간 정도 전문적인 교육 서비스도 제공해 드렸는데요. 나스 사용은 어려워 보이지만 전문가의 눈높이 설명이 있다면 처음이신 분들도 누구나 쉽게 따라 할 수 있죠."
+   },
+   {
+    "t": "p",
+    "text": "한별시스템은 진주 NAS를 비롯한 다양한 곳의 나스 구축 및 유지보수를 담당하고 있는 전문 기업입니다. 특히 다른 곳에서는 제공하지 않는 전문적인 교육 서비스를 통해 누구나 편리하게 쓰실 수 있도록 도움을 드리고 있는데요."
+   },
+   {
+    "t": "p",
+    "text": "교육을 통해 나스 사용법을 알게 된 후 훨씬 편하게 사용할 수 있게 되었다며 담당자분도 만족스럽다는 후기를 남겨주셨습니다."
+   },
+   {
+    "t": "p",
+    "text": "나스 유지보수와 관리 역시도 이렇게 구축만큼이나 중요한데요. 나스 전문 기업, 한별시스템에서 전문적인 서비스를 경험해 보세요."
+   },
+   {
+    "t": "p",
+    "text": "소중한 데이터를 보관하는 서버, 지금부터 안전하게 관리하신다면 훨씬 안전하게 사용하실 수 있습니다. 아래로 편하게 문의 주세요."
+   },
+   {
+    "t": "img",
+    "src": "https://simg.pstatic.net/static.map/v2/map/staticmap.bin?type=w966",
+    "remote": true
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MThfMzUg/MDAxNzg5NzA4NzQ1MzQx.AGhkcBQxS74LTuZ3XteCy6XycpaC2orjNCFwwcs3iQog.N2MTzlzaWGOcOXP1QgpEb2oBxBpyg9JtdS04ECa1k4kg.JPEG/KakaoTalk_20260807_152857287_02.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MThfMzEg/MDAxNzg5NzA4NzQ1NjAy.qySTknQXYp4QDQHUnUbB6e2YKWWo96Azcz4dlqxn4XAg._5A3PXSNVL-SAI4HAEENiYV6SKROd_LqBADY4f2lFNwg.JPEG/KakaoTalk_20260807_152857287_05.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MThfMjUg/MDAxNzg5NzA4NzQ4MTkw.WIHddg2J84O1jtxY2rqM6rpYbatJN4SVjT0VzzLF6oIg.JEI2aZ9aRFIsZZRBBeQZsW6YBoYl2-LGhsiJ1qYqXlQg.JPEG/KakaoTalk_20260807_152857287_12.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MThfMTUy/MDAxNzg5NzA4NzQ2NjQ4.3Fmg1JRy7lojnEiMNwvxW-iGZpLVwV902wIKCnIry-Eg.-g6XPI589ZFY2HAB1DA3nAZNPj8G0AgEoyzR5inQ6egg.JPEG/KakaoTalk_20260807_152857287_13.jpg?type=w966",
+    "remote": true
+   }
+  ]
+ },
+ {
+  "logNo": "224415032347",
+  "title": "대구복사기렌탈 북구 복합기 임대 대여 경북 경남 프린터 설치 후기",
+  "cat": "printer",
+  "catLabel": "디지털복합기",
+  "date": "2026-09-17",
+  "href": "https://blog.naver.com/hanbyeolsystem/224415032347",
+  "thumb": "/blog-posts/224415032347/1.webp",
+  "excerpt": "대구복사기렌탈 전문 업체, 한별시스템 인사드립니다. 회사에 꼭 필요한 사무기기를 고르자면 정말 많을 텐데요. 컴퓨터나 유선 전화 같은 것들을 생각하시는 분들도 많을 것 같습니다. 그중에서도 정말 빠질 수 없는 것을 고르자면 복합기라고 말씀드리고 싶은데요. 그냥 인쇄만 가능하면 되는 거 ",
+  "chars": 2007,
+  "images": 12,
+  "related": {
+   "href": "/rental/price/",
+   "label": "복합기·프린터 월 임대료"
+  },
+  "blocks": [
+   {
+    "t": "img",
+    "src": "/blog-posts/224415032347/1.webp",
+    "w": 900,
+    "h": 736
+   },
+   {
+    "t": "p",
+    "text": "대구복사기렌탈 전문 업체, 한별시스템 인사드립니다."
+   },
+   {
+    "t": "p",
+    "text": "회사에 꼭 필요한 사무기기를 고르자면 정말 많을 텐데요. 컴퓨터나 유선 전화 같은 것들을 생각하시는 분들도 많을 것 같습니다."
+   },
+   {
+    "t": "p",
+    "text": "그중에서도 정말 빠질 수 없는 것을 고르자면 복합기라고 말씀드리고 싶은데요. 그냥 인쇄만 가능하면 되는 거 아닌가? 이렇게 생각하실 수 있겠지만, 사실 업무를 하다 보면 여러 기능이 필요한 때가 정말 자주 오게 되죠."
+   },
+   {
+    "t": "p",
+    "text": "이런 일들을 위해서 필요한 것이 바로 복합기라고 할 수 있습니다. 하지만 복합기를 당장 사기에는 너무 부담스러울 때는 어떻게 해야 할까요?"
+   },
+   {
+    "t": "p",
+    "text": "오늘은 그 해답이 될 수 있는 대구복사기렌탈을 마친 후기에 대해서 한별시스템에서 말씀드리려고 합니다."
+   },
+   {
+    "t": "p",
+    "text": "대구 북구 사무실에 방문한 후기"
+   },
+   {
+    "t": "img",
+    "src": "/blog-posts/224415032347/2.webp",
+    "w": 900,
+    "h": 532
+   },
+   {
+    "t": "p",
+    "text": "이번에 문의를 주신 곳은 사무실을 두 곳에 두고 계신, 대구 북구에 위치한 업체였는데요. 사무실이 두 곳에 나누어져 있어서 두 곳 모두에 복합기를 두고 싶다는 문의를 주셨습니다."
+   },
+   {
+    "t": "p",
+    "text": "두 곳 모두 사람들이 많이 있지는 않아서 지금까지는 소형 복합기를 사용했는데 인쇄를 하는 양이 많다 보니 양이 감당이 되지 않아서 새로 설치를 고려해 보게 되었다고 말씀해 주셨는데요."
+   },
+   {
+    "t": "p",
+    "text": "인쇄를 빠르게 마치기 위해서 대형 복합기를 설치해야겠다고 마음을 바꾸게 되셨고, 금액이 부담되어 렌탈로 결정을 마치고 문의를 주게 되었다고 하셨습니다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MTdfODMg/MDAxNzg5NjE4Nzk2Njg3.3Mpy5jI0QNqecUTsVlin4vy58HDyOOBB01QCnbALfTAg.Aj53T-zXloNW-y7FmY5v5cbcXsdNPFeOtJeLemxv1Ksg.PNG/3.png?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "당장 복합기가 필요하더라도 구매까지는 망설여지는 분들이 많을 텐데요. 한 번에 구매로 해결하기에는 금액도 정말 부담스럽게 느껴질 수 있죠. 이를 위한 해답이 될 수 있는 것이 바로 대구복사기렌탈인데요."
+   },
+   {
+    "t": "p",
+    "text": "렌탈을 하게 된다면 일정 기간 동안 일정 금액을 지불하는 구독 형식으로 사용할 수 있기 때문에 훨씬 금액적인 부담도 줄어들게 됩니다."
+   },
+   {
+    "t": "p",
+    "text": "동시에 고장이 났을 때 AS를 받거나 꾸준한 관리 서비스도 받을 수 있기 때문에 사용하면서도 훨씬 편리하게 관리하면서 사용할 수 있다는 장점도 있죠."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MTdfMTQg/MDAxNzg5NjE4Nzk2Njc2.9sFNWFuBgMccpbtpa4qSM01vSi0O2EyB0_Nt9Leam1og.BEC3gdjUyqYjlIkR20EA9jctw5HPxbHfAGJK9uHPHf0g.PNG/4.png?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "특히 이런 렌탈을 할 때는 사무실의 상황에 잘 맞는 제품을 설치하는 것이 중요하기 때문에 충분한 설치 경험과 노하우를 갖춘 곳을 선택하는 것이 중요한데요."
+   },
+   {
+    "t": "p",
+    "text": "대구복사기렌탈을 위해서는 사무실에 있는 인원이 얼마나 되는지, 실제로 인쇄를 하는 양이 얼마나 되는지, 사무실이 얼마나 넓은지 등을 미리 확인하고 그에 맞는 제품을 선택하는 것이 무엇보다 중요합니다."
+   },
+   {
+    "t": "p",
+    "text": "이번에 문의를 주셨던 곳에서도 단순히 소형 복합기를 설치하고 나니 인쇄를 하는 양에 맞지 않아서 불편함이 생겨서 새로 렌탈을 고려하게 되었다고 말씀해 주셨던 것처럼 이렇게 맞는 제품을 선택하지 않는다면 불편함이 오히려 커질 수 있습니다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MTdfMjM1/MDAxNzg5NjE4Nzk2MjQ2.0GICeyewn_XpDh4SrXphaSMfgwZe5o6i4H20Wrqspkkg.msp3-910bJt3lI8dGCfDnkdG6jXEfZ5-m9gWEquSzZQg.PNG/5.png?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "그래서 사무실의 환경에 맞는 제품으로 추천을 드리게 되었는데요. 새로 렌탈을 위해서 추천해 드린 제품은 교세라 대형 복합기입니다."
+   },
+   {
+    "t": "p",
+    "text": "사람이 많고 인쇄를 하는 양이 많은 만큼 대형 복합기가 무엇보다도 잘 맞는 상황이었기 때문에 그에 맞게 A3 용지까지 사용이 가능한 복합기를 추천해 드렸습니다."
+   },
+   {
+    "t": "p",
+    "text": "사무실 두 곳에 추천드린 복합기는 교세라 TASKalfa 2554ci와 교세라 TASKalfa 2552ci 모델인데요."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MTdfMjMz/MDAxNzg5NjE4Nzk2NjE2.b77Q3CeZLHKikjnaKKUR8__vUtVKcc84UJrBnwweK44g.6y5C6YklMb9ydK8lrPeE8zMnwrPhUZW4_bHInHhiagUg.PNG/6.png?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "교세라 모델의 경우 내구도도 좋고 가성비도 좋기 때문에 어떤 환경에서도 쓰기 좋다는 특징이 있는데요. 금액적인 부담이 적은 편이고 여러 가지 기능을 지원하기 때문에 찾으시는 분들이 많기도 합니다."
+   },
+   {
+    "t": "p",
+    "text": "현장에서 조립을 하고 한 번 더 꼼꼼히 점검을 한 뒤에는 마지막으로 테스트 프린트까지 마치게 되는데요. 인쇄도 문제없이 된다는 점을 확인하면 전체 설치는 끝나게 됩니다."
+   },
+   {
+    "t": "p",
+    "text": "이번에 대구복사기렌탈 문의를 주신 분도 이제 훨씬 더 빠르게 인쇄해 사용할 수 있겠다며 만족스럽다는 후기를 남겨주셨습니다."
+   },
+   {
+    "t": "p",
+    "text": "한별시스템은 사무기기 및 NAS, 서버 관리 등의 다양한 사무기기 전문 업체로 여러 사무기기의 렌탈과 관리, 서버 관리와 나스 설치 등의 다양한 서비스를 전문적으로 제공하고 있습니다."
+   },
+   {
+    "t": "p",
+    "text": "다양한 사무 환경에 맞는 제품을 전문적으로 추천해 설치와 관리까지, 한별시스템의 전문 서비스가 필요하시다면 아래로 편하게 문의 남겨 주세요. 언제나 친절한 서비스와 전문적인 관리로 보답하겠습니다."
+   },
+   {
+    "t": "p",
+    "text": "지금까지 한별시스템이었습니다. 감사합니다."
+   },
+   {
+    "t": "img",
+    "src": "https://simg.pstatic.net/static.map/v2/map/staticmap.bin?type=w966",
+    "remote": true
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MTdfMjY2/MDAxNzg5NjI4OTYzNjU2.AUExPHSbf0AhOA6dY7no1bAvdx5Zcer_fDogzXXGJxIg.6nm3k7DJhqhOvepJPc7YaaBksW1LkQX_bgbyBb96b8og.JPEG/KakaoTalk_20260310_105438846_06.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MTdfMjE3/MDAxNzg5NjI4OTYzNjE2.Vc2wVdTumWR4S2u9f3oso1qKTXyjBzV4ThbX1tHHw_8g.ZDigrsbW4DgyzOpPWcghl82qJpKMZ7YygVMzNyC2g9kg.JPEG/KakaoTalk_20260310_105438846_07.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MTdfMTkz/MDAxNzg5NjI4OTYzNzgx.9Rtw5T3JaPwi83odcD7Su9ZTh1HcLGSmypK6nmG0UFIg.Vf5cMrcgHR2sCCZPzvC_e2eaplD5qcPfCClV9XGJnGMg.JPEG/KakaoTalk_20260807_153653640_13.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MTdfMTA4/MDAxNzg5NjI4OTYzNzQw.lSjiZ3XGMCI-qpd3lX171nFLlhmvr-xu3UYo-bnyAUEg.2G0zWOIEnPjNI4rkvBQd3neKKdI4KpcuiEUS77rTER4g.JPEG/KakaoTalk_20260807_153653640_14.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MTdfNzQg/MDAxNzg5NjI4OTYzNjc5.x2LOjhAuCE853R6DoK3I9zerIuHFlxVge_c9NSygy34g.MGfnRkdSqv6AMHgroKZ8_uYlKJS-zsuSX8lXH6utuvgg.JPEG/KakaoTalk_20260807_153653640_15.jpg?type=w966",
+    "remote": true
+   }
+  ]
+ },
+ {
+  "logNo": "224408381384",
+  "title": "서버 유지보수 업체, 대구 경북 경남 기업 데이터를 전문적으로 지키기 위한 선택 기준 3가지",
+  "cat": "nas",
+  "catLabel": "NAS(나스)",
+  "date": "2026-09-11",
+  "href": "https://blog.naver.com/hanbyeolsystem/224408381384",
+  "thumb": "/blog-posts/224408381384/1.webp",
+  "excerpt": "대구 경북 경남 위주의 서버 유지보수 전문 업체, 한별시스템입니다. 최근 많은 분들이 기업의 홈페이지, 업무 시스템, 고객 정보 등을 서버를 통해서 관리하고 계시는데요. 하지만 이 서버, 정말 안전하게 운영하고 계시나요? 서버에 문제가 생기면 홈페이지가 멈추거나 직원들이 업무를 처리하지",
+  "chars": 2477,
+  "images": 10,
+  "related": {
+   "href": "/nas/repair/",
+   "label": "NAS 수리·복구 점검 안내"
+  },
+  "blocks": [
+   {
+    "t": "img",
+    "src": "/blog-posts/224408381384/1.webp",
+    "w": 900,
+    "h": 550
+   },
+   {
+    "t": "p",
+    "text": "대구 경북 경남 위주의 서버 유지보수 전문 업체, 한별시스템입니다."
+   },
+   {
+    "t": "p",
+    "text": "최근 많은 분들이 기업의 홈페이지, 업무 시스템, 고객 정보 등을 서버를 통해서 관리하고 계시는데요. 하지만 이 서버, 정말 안전하게 운영하고 계시나요?"
+   },
+   {
+    "t": "p",
+    "text": "서버에 문제가 생기면 홈페이지가 멈추거나 직원들이 업무를 처리하지 못 하고, 심한 경우 데이터 유출이나 매출 손실로 이어질 수도 있습니다. 그래서 서버는 한 번 설치했다고 끝나는 것이 아니라 정기적으로 상태를 확인하고 관리하는 것이 중요한데요."
+   },
+   {
+    "t": "p",
+    "text": "오늘 대구 경북 경남 서버 유지보수 업체, 한별시스템에서는 이런 유지보수가 필요한 이유와 함께 업체를 선택할 때 살펴야 하는 기준에 대해 말씀드리도록 하겠습니다."
+   },
+   {
+    "t": "p",
+    "text": "<목차>"
+   },
+   {
+    "t": "p",
+    "text": "1. 서버 유지보수가 왜 필요한 걸까요? 2. 서버 유지보수 업체를 선택할 때 살펴야 하는 점들로는 어떤 것들이 있을까요? 3. 지금 전문 업체를 찾고 있다면?"
+   },
+   {
+    "t": "p",
+    "text": "1. 서버 유지보수가 왜 필요한 걸까요?"
+   },
+   {
+    "t": "img",
+    "src": "/blog-posts/224408381384/2.webp",
+    "w": 900,
+    "h": 610
+   },
+   {
+    "t": "p",
+    "text": "서버도 컴퓨터와 마찬가지로 오래 사용하면 저장 공간이 부족해지거나 성능이 떨어질 수 있습니다. 운영체제나 프로그램에서 새로운 보안 취약점이 발견되기도 하고, 하드웨어 고장으로 갑자기 서버가 멈출 수도 있습니다. 따라서 유지보수를 통해서 꾸준하게 관리를 해야 이런 문제점이 발견되기 전에 미리 예방할 수 있는데요."
+   },
+   {
+    "t": "p",
+    "text": "장애 예방: CPU, 메모리, 디스크 등의 하드웨어 상태를 확인해 이상 징후를 미리 발견합니다. 보안 관리: 운영체제와 프로그램을 업데이트하고 보안 설정을 점검합니다. 데이터 보호: 중요한 자료를 정기적으로 백업하고 필요할 때 복구할 수 있도록 관리합니다. 성능 관리: 불필요한 파일과 로그를 정리하고 서버 자원이 부족하지 않은지 확인합니다. 장비 관리: 물리적인 관리가 필요한 서버라면 디스크, 전원, 온도, 냉각 상태 등도 함께 점검합니다."
+   },
+   {
+    "t": "p",
+    "text": "이때는 위와 같은 5가지 면을 집중적으로 관리해 도움을 받을 수 있습니다. 특히 중요한 것은 문제가 생긴 뒤 해결하는 것보다 미리 발견하는 것입니다. 작은 이상을 초기에 처리하면 갑작스러운 서비스 중단이나 큰 장애로 이어지는 것을 줄일 수 있습니다. 백업도 단순히 데이터를 복사해 두는 것만으로 끝나는 것이 아니라, 실제로 문제가 발생했을 때 정상적으로 복구할 수 있는지 주기적으로 확인해야 하기 때문에 미리 유지보수를 통해 관리하는 것이 중요하죠."
+   },
+   {
+    "t": "p",
+    "text": "2. 서버 유지보수 업체를 선택할 때 살펴야 하는 점들로는 어떤 것들이 있을까요?"
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MTFfMjgy/MDAxNzg5MTAzOTc4MjIy.JjmMeBoy0NdUSybc-6v4Y2UQN7DmZJ_YfvZruGzgAZEg.l31rvNf0HTi8stU_JOgT1q_0PMdEHfpMrFS_I-jojFIg.JPEG/KakaoTalk_20260420_164716189_09.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "업체를 고를 때는 단순히 가격만 비교하지 않는 것이 중요합니다. 실제 장애가 발생했을 때 얼마나 빠르고 정확하게 대응할 수 있는지를 먼저 살펴봐야 합니다. 최근에는 NAS 서버도 많이 사용하시는데요. 이때 원격으로 빠르게 서버를 확인할 수 있는지, 초기 대응까지 얼마나 시간이 걸리는지를 살펴보는 것이 필요하죠. 문제가 생겼을 때는 무엇보다 빠르게 확인해 대처하는 것이 중요하기 때문입니다."
+   },
+   {
+    "t": "p",
+    "text": "또한 현재 사용하는 서버 환경을 제대로 관리할 수 있는지도 중요합니다. 좋은 업체는 단순히 서버가 고장 났을 때 출동하는 곳이 아닙니다. 서버 사용량이 계속 늘어나면 증설 시점을 알려주고, 하드웨어가 오래되지는 않았는지 등을 꾸준히 점검할 수 있는 파트너가 될 수 있어야 하죠. 이를 위해서 많은 설치 경험과 관리 노하우를 갖춘 곳을 선택하는 것이 필요합니다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MTFfMTE5/MDAxNzg5MTAzOTc4NTI1.6_15h43smm8S3I-LKfXEi13oExGBn5Y-7xBPt0KioUwg.HDS8XcDqgbb9nfc6qmNmZjy0di15dS0VzdqCbo_br8Yg.JPEG/KakaoTalk_20260807_152857287_01.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "어떤 서버를 관리할 수 있는지 원격으로 빠르게 문제를 파악할 수 있는지 초기 대응까지 얼마나 시간이 걸리는지 정기 점검에는 어떤 것을 포함해 작업하는지 장애가 발생하면 어떤 점들을 지원하는지 부품을 교체하거나 출장을 하게 될 때 비용이 어느 정도인지"
+   },
+   {
+    "t": "p",
+    "text": "서버 유지보수 업체를 선정할 때는 대표적으로는 위의 6가지를 살펴보는 것이 좋은데요. 비용 역시 단순히 가장 저렴한 업체를 선택하기보다는 서비스 범위와 대응 수준을 함께 비교해야 합니다. 계약 비용은 저렴하지만 장애나 추가 작업마다 별도 비용이 발생한다면 실제 비용이 더 커질 수도 있기 때문입니다."
+   },
+   {
+    "t": "p",
+    "text": "3. 지금 전문 업체를 찾고 있다면?"
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MTFfMjE4/MDAxNzg5MTAzOTc4MTYw.3LPTWUg5B-H9dLi3oAx0S1nUyWmVo6W_AIuv8Wi4XXMg.6MkMGliNGhXDxAwRyOJ2L4NfEM8VmPi0anfpL_TGVCQg.JPEG/KakaoTalk_20260420_164931029_10.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "이렇게 서버는 기업의 홈페이지와 업무 시스템, 데이터를 연결하는 중요한 기반입니다. 따라서 서버 유지보수는 단순히 고장 난 장비를 고치는 일이 아니라 장애를 예방하고 데이터를 보호하면서 업무가 안정적으로 운영되도록 관리하는 과정이라고 할 수 있겠죠. 결국 중요한 것은 문제가 생겼을 때 얼마나 안정적으로 대응할 수 있는지를 확인하는 것이고요."
+   },
+   {
+    "t": "p",
+    "text": "NAS 서버를 비롯한 다양한 서버 유지보수 업체를 알아보고 계신다면 한별시스템으로 편하게 문의 주세요. 한별시스템은 대구, 경북, 경남 지역 위주로 서비스를 제공하고 있는 전문 업체입니다. 다양한 서버의 관리뿐만 아니라 유지보수를 통해서 문제점이 발생하기 전에 미리 차단하기 위한 관리 서비스를 제공하고 있습니다."
+   },
+   {
+    "t": "p",
+    "text": "NAS 설치 시에도 방문해 전문적인 설치 및 교육 서비스를 제공하고 있는데요. 처음 NAS를 사용하시는 분들도 쉽게 이해해 사용할 수 있도록 도와드리고 있습니다. 그 외의 다양한 서버 관리도 같이 도와드리고 있는 만큼 전문 서버 유지보수 업체를 통해 쉽게 데이터를 보호하면서 관리해 보시기 바랍니다."
+   },
+   {
+    "t": "img",
+    "src": "https://simg.pstatic.net/static.map/v2/map/staticmap.bin?type=w966",
+    "remote": true
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MTFfMTk5/MDAxNzg5MTA4MzE3OTUy.knWh45Dq-2oJpoDN1rmWwR-PkcPzo-ihvVBOqtT8ZfEg.p746GCdryg_U1GFrUfqNRoNzd0-P6QA9pWHzcC38cX4g.JPEG/KakaoTalk_20260807_152857287_11.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MTFfMjAy/MDAxNzg5MTA4MzE3OTc4.t0wFgsz5UDyChJabMSnS44fY7y4YZEadmkHil2-RKZQg.LtIBJomDE8E9k3ZYm_L17IImvOg_HtRT4uvj0Jn3Gigg.JPEG/KakaoTalk_20260807_152857287_19.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MTFfMTU4/MDAxNzg5MTA4MzE3NzQ1.pL_Vn0Wd-z6OD3BqMKXoUH_3kRl5kE37MgDDwOEKbNEg.poGfymfTa-fHY1gLNQuwvF50pgmgSh1EPn9P7AF92usg.JPEG/KakaoTalk_20260807_152857287_21.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MTFfMTQ0/MDAxNzg5MTA4MzE3OTA5.7mqLM1Nq61GtA8HCrEEnnMrpf1YcOTg6mIfW-gt0qcAg.NfZi8VbG-DJwGBxQngh7sOY_6TMwvhCLLi2uIlLSFF8g.JPEG/KakaoTalk_20260807_152857287_22.jpg?type=w966",
+    "remote": true
+   }
+  ]
+ },
+ {
+  "logNo": "224407173272",
+  "title": "사무실 랜공사 대구 경북 경남 공장 네트워크 선정리 랜선 업체 선정에서 가격만이 중요하지는 않은 이유",
+  "cat": "etc",
+  "catLabel": "기타 사무기기",
+  "date": "2026-09-10",
+  "href": "https://blog.naver.com/hanbyeolsystem/224407173272",
+  "thumb": "/blog-posts/224407173272/1.webp",
+  "excerpt": "사무실 랜공사 및 네트워크 전문 업체, 한별시스템입니다. 사무실이나 공장 등의 다양한 곳에서 꼭 필요한 것이 있다면 인터넷 연결을 위한 네트워크일 텐데요. 특히나 랜선 등의 연결을 위해서는 초기에 랜공사가 필수적입니다. 어떤 곳을 선택해도 다 비슷하다고 생각하실 수 있지만 사실 제대로 ",
+  "chars": 2166,
+  "images": 12,
+  "related": {
+   "href": "/guide/industry-data-checklist/",
+   "label": "업종별 데이터 관리 체크리스트"
+  },
+  "blocks": [
+   {
+    "t": "img",
+    "src": "/blog-posts/224407173272/1.webp",
+    "w": 900,
+    "h": 736
+   },
+   {
+    "t": "p",
+    "text": "사무실 랜공사 및 네트워크 전문 업체, 한별시스템입니다."
+   },
+   {
+    "t": "p",
+    "text": "사무실이나 공장 등의 다양한 곳에서 꼭 필요한 것이 있다면 인터넷 연결을 위한 네트워크일 텐데요. 특히나 랜선 등의 연결을 위해서는 초기에 랜공사가 필수적입니다."
+   },
+   {
+    "t": "p",
+    "text": "어떤 곳을 선택해도 다 비슷하다고 생각하실 수 있지만 사실 제대로 된 업체를 선택하지 않을 때는 기본적인 케이블의 수조차도 맞지 않아서 어려움을 겪게 되시기도 하는데요."
+   },
+   {
+    "t": "p",
+    "text": "그렇다면 네트워크 공사에서 중요한 점은 무엇일까요? 오늘 한별시스템에서 사무실 랜공사 공장 네트워크 설치 후기와 함께 말씀드리도록 하겠습니다."
+   },
+   {
+    "t": "p",
+    "text": "공장 랜공사 - 네트워크 정리가 중요한 이유"
+   },
+   {
+    "t": "img",
+    "src": "/blog-posts/224407173272/2.webp",
+    "w": 900,
+    "h": 530
+   },
+   {
+    "t": "p",
+    "text": "이번에 문의를 주셔서 방문한 곳은 경북 구미에 있는 한 공장이었는데요. 이곳에서 추가적인 설비가 들어오면서 네트워크 정비와 추가적인 랜선 설치를 위해 문의를 주셨습니다."
+   },
+   {
+    "t": "p",
+    "text": "네트워크 공사가 이미 되어 있는 경우, 많은 분들이 단순히 선만 늘리면 될 거라고 생각하시고는 합니다. 하지만 사실 그렇게 간단한 작업은 아니라고 말씀드리고 싶은데요."
+   },
+   {
+    "t": "p",
+    "text": "작업을 위해서는 기존 네트워크를 한 번 더 확인하며 기존의 문제는 없는지, 그리고 얼마나 선을 추가할 수 있는지, 과부하가 된 곳은 없는지 등을 먼저 점검해야 하기 때문입니다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MTBfMjQz/MDAxNzg5MDE2Mjg4OTA0.L5UPy2NhrO5bF4R9EXk0wUHEbcpDrqFQt-VPJbZvxWEg.MJb0XZZBNG8CTpnwSv4eb5jgQYBKrUMMV4WfSpnzsLog.PNG/3.png?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "기존의 설비와 설치해야 하는 케이블, 허브가 호환이 되는지 살피는 것과 함께 제대로 된 랜공사 설비를 선택했는지 등의 다양한 점들을 살펴보아야 하기 때문에 충분한 노하우와 지식을 갖춘 곳을 선택해야 합니다."
+   },
+   {
+    "t": "p",
+    "text": "이번에 문의를 주신 공장에서도 추가적인 설비를 들이셨기 때문에 기존 네트워크의 정비와 함께 추가적인 사무실 랜공사로 설비를 사용할 수 있도록 작업했는데요."
+   },
+   {
+    "t": "p",
+    "text": "특히나 공장처럼 많은 사람들이 오가고 무거운 중장비가 이동하게 되는 곳에서는 케이블의 보호가 무엇보다 중요합니다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MTBfMzQg/MDAxNzg5MDE2Mjg4ODkw.MQGYF4ANQau1pLhoeTEI1Z5b2pBkvfY3BpqYP75PloEg.AB2tft8rY3k8Afv3mEHKXda6rgK6IWr1Vvn_2m51D2Ug.PNG/4.png?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "그렇기 때문에 설비의 위치와 함께 사람들이 이동하는 동선이나 장비가 이동하는 동선 역시 고려해 작업하는 것이 필요한데요."
+   },
+   {
+    "t": "p",
+    "text": "사무실에서도 케이블을 보호하기 위해서 몰드를 사용하거나 천장으로 포설하는 방법을 사용하기도 하는데요. 이런 점들도 공장에 따라서 달라질 수 있기 때문에 미리 사무실 랜공사 전에 환경을 확인하는 것이 중요합니다."
+   },
+   {
+    "t": "p",
+    "text": "공장은 특히나 중장비가 오갈 수 있는 환경이기 때문에 천장 포설을 활용하는 경우를 자주 볼 수 있습니다. 천장이나 구조물이 무게를 충분히 버틸 수 있는지 등을 꼼꼼하게 미리 살펴야 하기 때문에 역시 노하우를 갖춘 곳을 선택하는 것이 중요한데요."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MTBfMjcx/MDAxNzg5MDE2Mjg5MjQw.EUgWjbxN77F8hG33LI5_EVK3U7VlKJDBAHmDLL3YqIAg.pjZ8zo_4kjt1HsUcBUJNgN8TVDYQBEa-OSfLGIDU5QAg.PNG/5.png?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "이번에 작업한 공장에서도 천장 포설을 활용해 작업하게 되었는데요. 배관을 따라서 천장에 연결해 꼼꼼하게 작업하는 것이 중요합니다."
+   },
+   {
+    "t": "p",
+    "text": "특히나 랜선은 설비가 하나 있다고 해서 반드시 하나가 필요한 것은 아닙니다. 사무실 랜공사를 할 때도 이 부분은 마찬가지이기 때문에 주의해야 하는데요."
+   },
+   {
+    "t": "p",
+    "text": "책상이 하나 있다고 해서 단순히 하나의 PC만이 들어가는 것이 아닐 수 있는 데다가 전화선이나 팩스나 복사기 등 다양한 사무기기를 활용할 수 있기 때문에 단순한 수보다는 환경 자체를 보는 것이 중요합니다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MTBfMjUz/MDAxNzg5MDE2Mjg5MTg0.-MF5TBFQzQVhfyRW99-Qp8zea-LBHIoJkDnngmNNqwYg.JFoO0CzJ-0Yk0q7TxTYKiKM-E6BNwBRbuXtCt3nODDYg.PNG/6.png?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "공장의 네트워크 공사에 있어서도 몇 대의 설비가 들어가는지가 아니라 전체적인 환경을 파악해 설치를 하는 것이 중요합니다."
+   },
+   {
+    "t": "p",
+    "text": "이후에는 꼼꼼하게 점검하고 선정리까지 마치게 되었는데요. 선정리도 간단하게 보이지만 사람들의 동선이나 전체적인 구조물 등을 고려해 진행되어야 하는 만큼 노하우가 무엇보다 중요한 작업입니다."
+   },
+   {
+    "t": "p",
+    "text": "제대로 된 설치 경험이나 노하우 없이 진행하는 곳을 선택한다면 선정리를 하게 되어도 이동하는 중에 거슬리는 등의 문제가 생기거나 심하면 케이블이 파손되는 문제도 생길 수 있습니다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MTBfMjgx/MDAxNzg5MDE2Mjg4NjQ1.GeLQTVJ32NLousONl0Cd_yW0ImJArMoa591dJHvrra8g.ZPbQ5en764HZE2-NuhTcVdR9UYrCxW12Vm1loBxG0YYg.PNG/7.png?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "천장 포설을 할 때도 구조물의 위치나 무게 등을 고려해 진행해야 하는 만큼 선정리에서는 꼼꼼한 작업이 무엇보다 중요하다고 말씀드리고 싶은데요."
+   },
+   {
+    "t": "p",
+    "text": "이렇게 세심한 작업이 끝나고, 설치를 마친 후에는 네트워크 공사는 역시 전문 업체에서 해야 한다며 기분 좋은 후기를 남겨주셨습니다."
+   },
+   {
+    "t": "p",
+    "text": "네트워크 공사는 이렇게 다양한 점을 고려해 진행해야 하는 만큼 전문 업체를 선택하는 것이 무엇보다 중요합니다."
+   },
+   {
+    "t": "p",
+    "text": "한별시스템은 네트워크 및 사무실 랜공사 전문 업체로, 대구 경북 및 경남 등에서 사무기기 렌탈 및 NAS 서버 관리, 유지 보수 등의 다양한 서비스를 지원하고 있습니다."
+   },
+   {
+    "t": "p",
+    "text": "다양한 설치 경험과 노하우로 어느 곳에나 그 환경에 최적화된 친절한 서비스로 보답할 수 있게 최선을 다하겠습니다."
+   },
+   {
+    "t": "p",
+    "text": "아래로 편하게 문의 남겨 주세요. 지금까지 한별시스템이었습니다. 감사합니다."
+   },
+   {
+    "t": "img",
+    "src": "https://simg.pstatic.net/static.map/v2/map/staticmap.bin?type=w966",
+    "remote": true
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MTBfNzIg/MDAxNzg5MDE5MjY3MDY4.VU7li9OB3SnYtU16if4l1z06oU--JkZVu1-WbV3l1oMg.hmQqnkxagpgFcEShsDjJio663hSA6gT91k06JO1HQUMg.JPEG/KakaoTalk_20260807_152630557.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MTBfODcg/MDAxNzg5MDE5MjY3MTEz.b9fltWcgkzprQlRHnFZebjYdrAaR4YIsKj7qAI-388og.nwpiBwLRxchVyWkprN3UfKeCGdnL_uIRKn0jjoCUCCAg.JPEG/KakaoTalk_20260807_152630557_01.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MTBfMjc1/MDAxNzg5MDE5MjY3MDY5.pSx0Y_XemxALjgNeaReYRRrN2V1EQ7k1NRKZI8HL6NMg.E0nKLTxAD6y84XDMDJ5KP4PNgrSvdor1KxpOUJLX_4sg.JPEG/KakaoTalk_20260807_152630557_02.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjA5MTBfMTA2/MDAxNzg5MDE5MjY2OTk1.mhus9VMPjdvOApj-bDBr-yDVlamFO-eAsC3Gc4bd1SAg.L6elLi7h5GWGWGhsgacZm1zM6QsazyuV_yx0AbHh108g.JPEG/KakaoTalk_20260807_152630557_03.jpg?type=w966",
+    "remote": true
+   }
+  ]
+ },
+ {
   "logNo": "224400696243",
   "title": "부산 NAS 시놀로지 나스 대구 경북 경남 서버 구축 유지보수 설치 관리를 위해 살펴야 하는 점",
   "cat": "nas",

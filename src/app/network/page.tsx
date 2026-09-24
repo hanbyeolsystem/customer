@@ -178,7 +178,7 @@ export default function NetworkPage() {
                 key={n}
                 className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl px-5 py-4 text-sm text-[var(--ink)]/85 leading-relaxed flex items-start gap-2.5"
               >
-                <span className="text-hb-blue font-black mt-0.5">✓</span>
+                <span className="text-hb-blue font-black mt-0.5">·</span>
                 <span>{n}</span>
               </li>
             ))}
@@ -186,7 +186,7 @@ export default function NetworkPage() {
           <p className="text-sm text-[var(--mute)] leading-relaxed mt-6">
             자료를 모아 둘 서버와 백업 장비를 어떻게 고를지 궁금하시면{" "}
             <Link href="/nas" className="font-bold text-hb-blue hover:underline">
-              NAS 솔루션 안내
+              NAS 구축 안내
             </Link>
             를 함께 보세요.
           </p>

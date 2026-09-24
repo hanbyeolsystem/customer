@@ -6,6 +6,8 @@ import { FaqSection } from "@/components/FaqSection";
 import { Icon, type IconName } from "@/components/Icon";
 import { businessId, site } from "@/data/site";
 import { isoDateTime, pageUpdatedAt } from "@/lib/schema";
+import { JsonLd } from "@/components/JsonLd";
+import { businessDetailLd } from "@/lib/business-ld";
 
 export const metadata: Metadata = {
   title: "연락처·찾아오시는 길 - 대구 달서구 한별시스템 053-588-7119",
@@ -86,7 +88,7 @@ const contactFaq = [
   },
   {
     q: "대구 외 지역도 출장 가나요?",
-    a: "대구광역시 전역과 경상북도는 당일 방문, 영남권은 협의 방문, 그 외 전국은 1영업일 대응입니다. 본사가 달서구에 있어 달서구·성서공단은 가장 빠르게 움직입니다. 원격으로 해결되는 증상은 방문 없이 그 자리에서 처리합니다.",
+    a: "대구광역시 전역과 경상북도는 당일 출장, 영남권은 협의 방문, 그 외 전국은 1영업일 대응입니다. 본사가 달서구에 있어 달서구·성서공단은 가장 빠르게 움직입니다. 원격으로 해결되는 증상은 방문 없이 그 자리에서 처리합니다.",
   },
   {
     q: "방문하면 주차할 곳이 있나요?",
@@ -97,6 +99,7 @@ const contactFaq = [
 export default function ContactPage() {
   return (
     <>
+      <JsonLd data={businessDetailLd} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -109,7 +112,7 @@ export default function ContactPage() {
 
       <AnswerBlock
         question="대구 한별시스템 연락처와 위치가 어떻게 되나요?"
-        answer="한별시스템은 대구광역시 달서구 문화회관11안길 22-7 1층에 있으며, 대표전화는 053-588-7119(평일 09:00-18:00)입니다. 2008년 대구 성서공단에서 창업해 19년째 대구·경북 기업의 컴퓨터·복합기 임대와 시놀로지 NAS 구축, 사무실 네트워크 공사를 맡고 있는 IT 업체이며, 사업자등록번호는 514-22-73057입니다. 대표 휴대전화는 010-4585-6890, 이메일은 acapaper78@gmail.com이고 대구·경북은 당일 출장합니다."
+        answer="한별시스템은 대구광역시 달서구 문화회관11안길 22-7 1층에 있으며, 대표전화는 053-588-7119(평일 09:00-18:00)입니다. 2008년 대구 성서공단에서 창업해 18년째 대구·경북 기업의 컴퓨터·복합기 임대와 시놀로지 NAS 구축, 사무실 네트워크 공사를 맡고 있는 IT 업체이며, 사업자등록번호는 514-22-73057입니다. 대표 휴대전화는 010-4585-6890, 이메일은 acapaper78@gmail.com이고 대구·경북은 당일 출장합니다."
         facts={[
           { label: "대표전화", value: site.phone.main },
           { label: "위치", value: "대구 달서구" },
@@ -200,6 +203,15 @@ export default function ContactPage() {
                   구글 지도 →
                 </a>
               </div>
+              {/* 후기 부탁 (2026-09-19). 구글은 업체가 손님에게 후기를 요청하는 것을 허용한다.
+                  대가를 주거나 좋은 후기만 골라 받는 것은 금지라 문구도 중립으로 둔다. */}
+              <p className="mt-4 text-[13px] text-[var(--mute)] leading-relaxed">
+                작업이 끝난 뒤{" "}
+                <a href={site.social.googleReview} target="_blank" rel="noopener" className="font-bold text-hb-blue hover:underline">
+                  구글에 후기
+                </a>
+                를 남겨 주시면 다음 손님이 업체를 고를 때 도움이 됩니다. 좋았던 점이든 아쉬웠던 점이든 그대로 적어 주세요.
+              </p>
             </div>
             <div className="bg-[var(--bg)] border border-[var(--line)] rounded-2xl p-6">
               <div className="text-[11px] font-extrabold text-[var(--mute)] tracking-[.14em] mb-3">

@@ -235,7 +235,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
       <section className="py-12 bg-[var(--bg)]">
         <div className="max-w-3xl mx-auto px-4 lg:px-6 text-center">
           <p className="text-sm text-[var(--mute)] leading-relaxed mb-5">
-            글로는 판단이 어려우면 현장을 보고 말씀드립니다. 대구·경북 당일 방문, 방문 견적 무료.
+            글로는 판단이 어려우면 현장을 보고 말씀드립니다. 대구·경북 당일 출장, 방문 견적 무료.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href="/support/quote" className="inline-flex items-center justify-center bg-hb-blue hover:bg-hb-azure text-white font-extrabold text-[15px] px-7 py-3.5 rounded-xl transition">

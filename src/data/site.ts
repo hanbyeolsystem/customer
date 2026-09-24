@@ -6,9 +6,9 @@ export const site = {
   // 포지셔닝(2026-08-26 전환): "NAS 설치 업체"가 아니라 "기업 데이터 관리 + 사내 AI" 회사.
   // 대구에 NAS 설치 업체는 많지만, NAS 위에 사내 전용 AI를 올려 직접 운영해 본 곳은 드물다.
   // 이 문장을 바꾸면 llms.txt(scripts/gen-llms.mjs)와 홈 히어로 문구도 같이 맞출 것.
-  tagline: "AI 시대의 기업 데이터 관리 파트너",
+  tagline: "대구·경북 기업 NAS·백업·복합기 임대, 18년째 당일 출장 가능",
   description:
-    "기업 데이터 관리 전문. 시놀로지 NAS 판매·구축과 3-2-1 백업 컨설팅, 사내 데이터를 밖으로 내보내지 않는 사내 AI 도입까지 설계합니다. 대구·경북 170여 개 기업의 데이터를 19년째 맡고 있는 한별시스템.",
+    "대구·경북 500곳의 회사 자료를 18년째 맡고 있습니다. 시놀로지 NAS 판매·설치와 3-2-1 백업, 회사 자료를 밖으로 내보내지 않는 사내 AI, 복합기 임대까지. 고장은 대구·경북 당일 출장, 053-588-7119.",
   url: "https://xn--bm3bm1i1e348cgwe.kr",
 
   phone: {
@@ -44,7 +44,12 @@ export const site = {
     instagram: "https://instagram.com/sanghwan_hanbyeol",
     instagramBiz: "https://www.instagram.com/hanbyeolsystem",
     threads: "https://www.threads.net/@sanghwan_hanbyeol",
-    googleMaps: "https://maps.google.com/?cid=8994991007847125486",
+    // 구글 비즈니스 프로필. cid 는 2026-09-19 에 바로잡았다(옛 값 8994991007847125486 은
+    // 빈 장소로 열려 푸터·연락처의 "구글 지도" 링크와 스키마 hasMap 이 업체로 가지 않았다).
+    // 확인법: 이 주소를 열면 제목이 "한별시스템" 이어야 한다.
+    googleMaps: "https://maps.google.com/?cid=3373258657163471743",
+    // 후기 남기기(구글 리뷰 작성 화면). 업체가 손님에게 후기를 요청하는 것은 구글이 허용한다.
+    googleReview: "https://search.google.com/local/writereview?placeid=ChIJwwJH6FvlZTURf2u9W-A40C4",
   },
 
   // 지도·플레이스 등재. LocalBusiness.sameAs 로 내보내 "같은 회사"임을 알린다.
@@ -68,10 +73,10 @@ export const site = {
   ],
 
   stats: [
-    { value: "170+", label: "관리 고객사" },
-    { value: "50+",  label: "NAS 구축" },
+    { value: "500+", label: "거래처" },
+    { value: "100+",  label: "NAS 구축" },
     { value: "300+", label: "복사기 설치" },
-    { value: "19+",  label: "운영 연수" },
+    { value: "18+",  label: "운영 연수" },
   ],
 } as const;
 
@@ -80,19 +85,38 @@ export const site = {
 // 이 @id 로 참조한다. 그래야 같은 회사가 여러 엔티티로 쪼개지지 않는다.
 export const businessId = `${site.url}/#business`;
 
-export const nav = [
-  { href: "/", label: "홈" },
-  { href: "/ai", label: "사내 AI" },
-  { href: "/nas", label: "NAS 솔루션" },
-  { href: "/rental", label: "복사기 임대" },
-  { href: "/shop", label: "임대 쇼핑몰" },
+// 헤더 메뉴 4묶음 (2026-09-15 첫 화면 점검: 메뉴 14개에서 4개로). 주소는 그대로이고 묶음만 바꿨다.
+// 여기서 빠진 페이지(회사소개·새소식·블로그·커뮤니티)는 푸터 아래 줄에 링크가 있다.
+export type NavLink = { href: string; label: string; desc?: string };
+export type NavItem = NavLink | { label: string; items: NavLink[] };
+export const nav: NavItem[] = [
+  {
+    label: "서비스",
+    items: [
+      { href: "/nas", label: "NAS 구축·백업", desc: "시놀로지 판매·설치, 3-2-1 백업" },
+      { href: "/ai", label: "사내 AI", desc: "회사 자료로 답하는 AI 도우미" },
+      { href: "/rental", label: "복사기·프린터 임대", desc: "월 정액, 토너·수리 포함" },
+      { href: "/network", label: "전산·네트워크 관리", desc: "PC·공유기·랜 공사·유지관리" },
+      { href: "/shop", label: "임대 쇼핑몰", desc: "임대 장비 둘러보기" },
+    ],
+  },
   { href: "/cases", label: "구축사례" },
-  { href: "/guide", label: "가이드" },
-  { href: "/qna", label: "Q&A" },
-  { href: "/news", label: "새소식" },
-  { href: "/community", label: "커뮤니티" },
-  { href: "/support", label: "고객지원" },
-  { href: "/support/drivers", label: "드라이버" },
-  { href: "/blog", label: "블로그" },
-  { href: "/about", label: "회사소개" },
-] as const;
+  {
+    label: "Q&A·가이드",
+    items: [
+      { href: "/qna", label: "Q&A 전체 문답" },
+      { href: "/guide", label: "가이드·비교표" },
+      { href: "/news", label: "새소식" },
+      { href: "/community", label: "커뮤니티" },
+    ],
+  },
+  {
+    label: "고객지원",
+    items: [
+      { href: "/support/remote", label: "원격지원" },
+      { href: "/support/drivers", label: "드라이버 다운로드" },
+      { href: "/support/as", label: "A/S 접수" },
+      { href: "/support", label: "고객지원 전체" },
+    ],
+  },
+];

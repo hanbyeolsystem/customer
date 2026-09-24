@@ -165,7 +165,7 @@ for (const p of posts) {
   link(p.key, p);
   link(`title:${normTitle(p.title)}`, p);
   if (p.kind === "news") {
-    const src = (p.content.match(/원문 보기: <a href="([^"]+)"/) || [])[1];
+    const src = (p.content.match(/원문(?: 보기)?: <a href="([^"]+)"/) || [])[1]; // main 의 fix-text(사람글 규칙) 이후 "원문: " 형식도 있다
     link(src ? `news:${src}` : null, p);
   }
 }
@@ -212,7 +212,7 @@ for (const p of posts) {
     const expect = p.logNo ? naverImgCount.get(p.logNo) : undefined;
     if (p.logNo && p._imgs.length === 0 && (expect === undefined || expect > 0)) problems.push({ code: "noimg", msg: `사진 0장(네이버 원본 ${expect ?? "?"}장)` });
   }
-  if (p.kind === "news" && !/원문 보기: <a href="https?:\/\//.test(p.content)) problems.push({ code: "newslink", msg: "뉴스 원문 링크 없음" });
+  if (p.kind === "news" && !/원문(?: 보기)?: <a href="https?:\/\//.test(p.content)) problems.push({ code: "newslink", msg: "뉴스 원문 링크 없음" });
   if (!(p.labels || []).length) problems.push({ code: "label", msg: "라벨 없음" });
   if (p._status !== "live") problems.push({ code: "status", msg: `공개 안 됨(${p._status})` });
   if (problems.length) broken.push({ id: p.id, url: p.url, title: p.title, kind: p.kind, logNo: p.logNo || null, status: p._status, published: p.published, labels: p.labels || [], problems, _content: p.content });

@@ -65,22 +65,22 @@ const steps = [
 
 const whyDealer = [
   {
-    icon: "📦",
+    icon: "",
     title: "정품과 정식 보증",
     body: "시놀로지 공식 대리점을 통한 정품입니다. 병행수입품이나 출처가 불분명한 물건과 달리 제조사 보증과 A/S 경로가 그대로 살아 있습니다.",
   },
   {
-    icon: "🧩",
+    icon: "",
     title: "본체와 하드를 같이 맞춥니다",
     body: "NAS는 본체만 사면 쓸 수 없습니다. 하드디스크 용량과 개수, RAID 방식까지 맞춰야 실사용 용량이 나옵니다. 온라인 최저가로 본체만 사고 하드를 잘못 고르면 다시 사야 합니다.",
   },
   {
-    icon: "🔧",
+    icon: "",
     title: "설치와 데이터 이전까지",
     body: "설치, RAID 설정, 공유 폴더와 권한, 백업 스케줄, 기존 자료 이전까지 현장에서 처리합니다. 상자만 받고 직접 설정하다 막히는 일이 없습니다.",
   },
   {
-    icon: "🚗",
+    icon: "",
     title: "장애가 나면 사람이 옵니다",
     body: "대구·경북은 당일 출장을 원칙으로 합니다. 온라인 구매는 문제가 생겼을 때 택배로 보내고 기다려야 하지만, 지역 대리점은 사람이 현장에 갑니다.",
   },
@@ -173,7 +173,7 @@ const pageJsonLd = webPageLd({
 export default function NasBuyPage() {
   return (
     <>
-      <JsonLd data={breadcrumbLd([{ name: "NAS 솔루션", path: "/nas/" }, { name: "NAS 판매", path: "/nas/buy/" }])} />
+      <JsonLd data={breadcrumbLd([{ name: "NAS 구축", path: "/nas/" }, { name: "NAS 판매", path: "/nas/buy/" }])} />
       <JsonLd data={productLd} />
       <JsonLd data={pageJsonLd} />
       <PageHeader
@@ -181,13 +181,13 @@ export default function NasBuyPage() {
         title="대구 NAS 판매"
         description="시놀로지 정품 NAS를 판매·납품합니다. 하드 구성부터 설치, A/S까지 한 회사에서."
         back="/nas"
-        backLabel="NAS 솔루션"
+        backLabel="NAS 구축"
       />
       <UpdatedAt path="/nas/buy/" note="본체·하드디스크 판매가 기준일입니다. VAT 별도." />
 
       <AnswerBlock
         question="대구에서 시놀로지 NAS를 판매하는 곳은 어디인가요?"
-        answer={`한별시스템(대구광역시 달서구, 시놀로지 공식 대리점, 통신판매업신고 ${site.address.mailOrder})이 정품 시놀로지 NAS를 판매·납품합니다. 기업 사무실에 가장 많이 들어가는 모델은 DS225+(2베이) ${body("ds225-plus")}, DS425+(4베이) ${body("ds425-plus")}, DS925+(4베이) ${body("ds925-plus")}, DS1525+(5베이) ${body("ds1525-plus")}, DS1825+(8베이) ${body("ds1825-plus")}이고, 1베이 DS124 ${won(bodyLow)}부터 12베이 DS2422+까지 단가표에 있는 본체를 모두 납품합니다. 랙마운트 RS2421+(12베이)는 구성별 별도 견적입니다(전부 본체 기준, VAT 별도). 본체만 파는 것이 아니라 하드디스크 구성과 RAID 설계까지 같이 잡아 드리며, 하드를 포함한 판매가는 직원 5~10명 사무실 기준 DS225+에 4TB 2개를 넣고 출장 설치·설정교육 ${won(INSTALL_FEE)}까지 더해 ${won(lowPrice)}부터입니다(VAT 별도). 목돈이 부담되면 구매 대신 임대도 있습니다. 월 ${won(RENT_FROM)}부터(기본 36개월, VAT 별도)이고 임대료에 장비·설치·백업 관리·장애 출장·하드디스크 교체가 들어갑니다. 대구·경북은 당일 방문하며 문의는 ${site.phone.main}입니다.`}
+        answer={`한별시스템(대구광역시 달서구, 시놀로지 공식 대리점, 통신판매업신고 ${site.address.mailOrder})이 정품 시놀로지 NAS를 판매·납품합니다. 기업 사무실에 가장 많이 들어가는 모델은 DS225+(2베이) ${body("ds225-plus")}, DS425+(4베이) ${body("ds425-plus")}, DS925+(4베이) ${body("ds925-plus")}, DS1525+(5베이) ${body("ds1525-plus")}, DS1825+(8베이) ${body("ds1825-plus")}이고, 1베이 DS124 ${won(bodyLow)}부터 12베이 DS2422+까지 단가표에 있는 본체를 모두 납품합니다. 랙마운트 RS2421+(12베이)는 구성별 별도 견적입니다(전부 본체 기준, VAT 별도). 본체만 파는 것이 아니라 하드디스크 구성과 RAID 설계까지 같이 잡아 드리며, 하드를 포함한 판매가는 직원 5~10명 사무실 기준 DS225+에 4TB 2개를 넣고 출장 설치·설정교육 ${won(INSTALL_FEE)}까지 더해 ${won(lowPrice)}부터입니다(VAT 별도). 목돈이 부담되면 구매 대신 임대도 있습니다. 월 ${won(RENT_FROM)}부터(기본 36개월, VAT 별도)이고 임대료에 장비·설치·백업 관리·장애 출장·하드디스크 교체가 들어갑니다. 대구·경북은 당일 출장 가며 문의는 ${site.phone.main}입니다.`}
         facts={[
           { label: "판매 최저 구성", value: `${won(lowPrice)}부터` },
           { label: "본체 최저가", value: `1베이 ${won(bodyLow)}` },
@@ -383,7 +383,6 @@ export default function NasBuyPage() {
           <div className="grid sm:grid-cols-2 gap-4 lg:gap-5">
             {whyDealer.map((w) => (
               <div key={w.title} className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6">
-                <div className="text-3xl mb-2">{w.icon}</div>
                 <h3 className="font-extrabold text-[var(--ink)] mb-1.5">{w.title}</h3>
                 <p className="text-sm text-[var(--mute)] leading-relaxed">{w.body}</p>
               </div>
@@ -438,7 +437,7 @@ export default function NasBuyPage() {
           <h2 className="text-lg lg:text-xl font-extrabold text-[var(--ink)] mb-4">함께 보면 좋은 페이지</h2>
           <ul className="grid sm:grid-cols-2 gap-2">
             {[
-              { href: "/nas", label: "NAS 솔루션 - 구축 범위와 백업 설계" },
+              { href: "/nas", label: "NAS 구축 - 구축 범위와 백업 설계" },
               { href: "/nas/price", label: "NAS 구축 비용 - 규모별 견적표" },
               { href: "/nas/repair", label: "NAS 수리·점검 - 고장 났을 때" },
               { href: "/rental/price", label: "임대료 안내 - NAS 월 10만원부터" },
@@ -463,7 +462,7 @@ export default function NasBuyPage() {
             어떤 모델을 사야 할지부터 정해 드립니다
           </h2>
           <p className="text-[var(--mute)] leading-relaxed mb-8">
-            직원 수와 자료량만 알려 주시면 모델과 하드 구성, 총액을 잡아 드립니다. 대구·경북 당일 방문,
+            직원 수와 자료량만 알려 주시면 모델과 하드 구성, 총액을 잡아 드립니다. 대구·경북 당일 출장,
             방문 견적 무료.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">

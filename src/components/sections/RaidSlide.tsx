@@ -12,7 +12,7 @@ export function RaidSlide() {
             no="04"
             kicker="RAID 계산기"
             title={<>디스크를 넣으면<br className="hidden sm:block" /> 쓸 수 있는 용량이 나옵니다</>}
-            lead="용량 칩을 누르면 베이에 들어가고, SHR·RAID 5·RAID 6 별로 실제 사용 가능 용량이 막대로 보입니다. 용량이 다른 디스크를 섞을 때는 SHR 이 가장 적게 버립니다."
+            lead="용량 칩을 누르면 베이에 들어갑니다. SHR·RAID 5·RAID 6 별로 쓸 수 있는 용량이 막대로 보여요. 용량이 다른 디스크를 섞을 때는 SHR 이 가장 적게 버립니다."
             className="mb-0"
           />
           <Link href="/nas/raid-calculator" className="shrink-0 mb-1 text-[14px] font-semibold text-hb-blue underline underline-offset-4 decoration-hb-blue/40 hover:decoration-hb-blue">

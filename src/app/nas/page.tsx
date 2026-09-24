@@ -8,6 +8,7 @@ import { AnswerBlock } from "@/components/AnswerBlock";
 import { JsonLd } from "@/components/JsonLd";
 import { monthlyOffer, serviceId, serviceLd } from "@/lib/schema";
 import { site } from "@/data/site";
+import { areas } from "@/data/areas";
 import { BUY_FROM, nasModels, won } from "@/data/synology";
 import { breadcrumbLd, webPageLd } from "@/lib/schema";
 
@@ -30,13 +31,13 @@ const nasFaq = [
   },
   {
     q: "구축한 뒤 관리는 누가 하나요?",
-    a: "한별시스템이 분기 점검, 시스템(DSM) 보안 패치, 디스크 상태(SMART) 모니터링까지 운영을 맡습니다. 대구·경북 기업 중심으로 50건 이상의 NAS를 구축했고 19년째 기업 IT를 관리하고 있습니다.",
+    a: "한별시스템이 분기 점검, 시스템(DSM) 보안 패치, 디스크 상태(SMART) 모니터링까지 운영을 맡습니다. 대구·경북 기업 중심으로 100건 이상의 NAS를 구축했고 18년째 기업 IT를 관리하고 있습니다.",
   },
 ];
 
 export const metadata: Metadata = {
   title: "대구 NAS 구축 - 기업용 나스·데이터 백업",
-  description: "대구 나스(NAS) 구축 전문. 시놀로지 공식 대리점으로 기업용 NAS 50건 이상 구축. RAID 설계·3-2-1 백업·랜섬웨어 대응·VPN 원격접속까지. 대구·경북 당일 방문, 무료 견적.",
+  description: "대구 나스(NAS) 구축 전문. 시놀로지 공식 대리점으로 기업용 NAS 100건 이상 구축. RAID 설계·3-2-1 백업·랜섬웨어 대응·VPN 원격접속까지. 대구·경북 당일 출장, 무료 견적.",
   alternates: { canonical: "/nas/" },
 };
 
@@ -73,15 +74,15 @@ const nasShots = [
 ];
 
 const offerings = [
-  { icon: "🛒", title: "NAS 판매·납품",   body: "시놀로지 정품 판매. 본체와 하드 구성까지 맞춰 납품합니다." },
-  { icon: "🗄", title: "NAS 구축",        body: "용량 산정·모델 선정·초기 설정·운영자 인계까지 한 번에." },
-  { icon: "💾", title: "데이터 백업",     body: "스케줄·증분·이중 백업·세대 관리·검증까지 자동화." },
-  { icon: "🧩", title: "RAID 설계",       body: "1/5/6/10 - 가용성과 비용의 최적 조합 컨설팅." },
-  { icon: "🔒", title: "VPN 구축",        body: "외부에서 안전한 사내망 접속. 모바일·재택근무 대응." },
-  { icon: "🏠", title: "원격근무 환경",   body: "Drive·Office·Chat·Mail - Synology 협업 스택 셋업." },
-  { icon: "☁",  title: "클라우드 연동",  body: "Hyper Backup으로 외부 클라우드 이중백업." },
-  { icon: "🛡", title: "랜섬웨어 대응",   body: "스냅샷·WORM·격리 백업. 1시간 내 복구 시나리오." },
-  { icon: "🔧", title: "유지관리",        body: "분기 점검·DSM 패치·디스크 SMART 모니터링." },
+  { title: "NAS 판매·납품",   body: "시놀로지 정품. 본체와 하드 구성까지 맞춰 납품합니다." },
+  { title: "NAS 설치",        body: "용량 계산, 모델 선정, 초기 설정, 담당자 교육까지." },
+  { title: "데이터 백업",     body: "밤마다 자동 백업. 사본을 여러 세대 보관하고 복구 시험까지 합니다." },
+  { title: "RAID 설계",       body: "1/5/6/10 중 하드 몇 개가 죽어도 버틸지, 비용은 얼마인지 같이 정합니다." },
+  { title: "VPN 구축",        body: "집·현장에서 사내망에 접속합니다. 휴대폰도 됩니다." },
+  { title: "원격근무 환경",   body: "시놀로지 Drive·Office 로 파일을 같이 씁니다." },
+  { title: "클라우드 연동",   body: "Hyper Backup 으로 외부 클라우드에 사본 하나를 더 둡니다." },
+  { title: "랜섬웨어 대응",   body: "스냅샷·WORM·격리 백업. 1시간 내 복구 시나리오." },
+  { title: "유지관리",        body: "분기 점검, DSM 패치, 하드 SMART 감시." },
 ];
 
 // 서비스 엔티티. @id 가 layout.tsx serviceCatalog 의 id 와 같아야 한 엔티티로 합쳐진다.
@@ -91,7 +92,7 @@ const serviceJsonLd = serviceLd({
   name: "기업용 NAS 구축·데이터 백업",
   serviceType: "NAS 구축 및 데이터 백업 구축",
   description:
-    `시놀로지 NAS 설치, RAID 설계, 3-2-1 백업 구성, 랜섬웨어 대응, VPN 원격접속, DSM 보안 설정과 분기 점검까지. 대구·경북 50개사 이상 구축. 임대는 월 100,000원부터(VAT 별도), 구매는 장비와 출장 설치·설정교육까지 ${won(BUY_FROM)}부터(VAT 별도).`,
+    `시놀로지 NAS 설치, RAID 설계, 3-2-1 백업 구성, 랜섬웨어 대응, VPN 원격접속, DSM 보안 설정과 분기 점검까지. 대구·경북 100건 이상 구축. 임대는 월 100,000원부터(VAT 별도), 구매는 장비와 출장 설치·설정교육까지 ${won(BUY_FROM)}부터(VAT 별도).`,
   offers: [
     monthlyOffer("시놀로지 NAS 임대(기본 36개월)", 100000, "장비·설치·백업 관리·장애 출장·하드디스크 교체 포함"),
   ],
@@ -107,20 +108,20 @@ const pageJsonLd = webPageLd({
 export default function NasPage() {
   return (
     <>
-      <JsonLd data={breadcrumbLd([{ name: "NAS 솔루션", path: "/nas/" }])} />
+      <JsonLd data={breadcrumbLd([{ name: "NAS 구축", path: "/nas/" }])} />
       <JsonLd data={serviceJsonLd} />
       <JsonLd data={pageJsonLd} />
       <PageHeader
-        badge="NAS SOLUTION · SYNOLOGY 공식 대리점"
+        badge="NAS · 시놀로지 공식 대리점"
         title="데이터가 멈추면 업무도 멈춥니다"
-        description="기업 데이터 보호를 위한 통합 NAS 솔루션. 구축부터 운영까지 한별이 끝까지 책임집니다."
+        description="직원 PC에 흩어진 자료를 NAS 한 대에 모으고 밤마다 백업합니다. 대구·경북 100건 넘게 설치했습니다."
       />
       <UpdatedAt path="/nas/" note="구축 범위와 임대료 기준일입니다. 모델별 본체가는 NAS 판매·구매 안내에 있습니다." />
       <AnswerBlock
         question="대구에서 회사 NAS(나스)를 구축하려면 어디에 맡겨야 하나요?"
-        answer="한별시스템은 대구광역시 달서구에 있는 시놀로지(Synology) 공식 대리점으로, 기업용 NAS를 판매·구축합니다(구축 실적 50건 이상). 정품 장비 판매와 납품에 그치지 않고 RAID 설계, 3-2-1 백업 구성, 랜섬웨어 대비 스냅샷, VPN 원격접속 설정, 직원 사용 교육까지 현장에서 진행합니다. 대구·경북은 당일 방문해 현장을 직접 보고 무료로 견적을 냅니다."
+        answer="한별시스템은 대구광역시 달서구에 있는 시놀로지(Synology) 공식 대리점으로, 기업용 나스(NAS, 네트워크 저장장치)를 판매·구축하는 대구 나스 업체입니다(구축 실적 100건 이상). 정품 장비 판매와 납품에 그치지 않고 RAID 설계, 3-2-1 백업 구성, 랜섬웨어 대비 스냅샷, VPN 원격접속 설정, 직원 사용 교육까지 현장에서 진행합니다. 대구·경북은 당일 출장 가서 현장을 직접 보고 무료로 견적을 냅니다."
         facts={[
-          { label: "구축 실적", value: "50건 이상" },
+          { label: "구축 실적", value: "100건 이상" },
           { label: "자격", value: "시놀로지 공식 대리점" },
           { label: "방문 견적", value: "무료" },
           { label: "문의", value: "053-588-7119" },
@@ -132,25 +133,25 @@ export default function NasPage() {
         <div className="max-w-7xl mx-auto px-4 lg:px-6 py-12 lg:py-16 grid lg:grid-cols-2 gap-10 items-center">
           <div>
             <h2 className="text-2xl lg:text-4xl font-extrabold text-[var(--ink)] tracking-tight leading-tight mb-4">
-              왜 한별의 <span className="text-hb-blue">Synology NAS</span> 인가
+              NAS 한 대로 <span className="text-hb-blue">무엇이 달라지나</span>
             </h2>
             <p className="text-[var(--mute)] leading-relaxed mb-5">
-              단순 저장소가 아닙니다. 백업·보안·협업·재해복구까지 한 박스로 - 그리고 한별 엔지니어가 평생 옆에 있습니다.
+              직원 PC 여섯 대에 흩어진 파일이 한곳에 모입니다. 밤마다 백업이 돌고, 랜섬웨어에 걸려도 어제 시점으로 돌아갑니다. 설치한 뒤에도 분기마다 한별이 점검합니다.
             </p>
             <ul className="space-y-2.5 mb-7">
               <li className="flex items-start gap-2.5 text-lg lg:text-2xl font-extrabold text-hb-primary dark:text-white leading-tight">
-                <span className="text-hb-blue font-black mt-0.5 text-xl lg:text-2xl">✓</span>
+                <span className="text-hb-blue font-black mt-0.5 text-xl lg:text-2xl">·</span>
                 <span>
                   Synology <span className="text-hb-blue">공식 대리점 정품</span> + A/S 보장
                 </span>
               </li>
               {[
-                "초기 구축부터 운영 유지관리까지 한 회사에서",
-                "랜섬웨어·디스크 장애 실전 복구 경험",
-                "현장 점검 + 원격 모니터링 병행",
+                "설치부터 고장 수리까지 한 회사에서",
+                "랜섬웨어·하드 고장 복구, 연 20건 이상",
+                "분기 방문 점검 + 원격 감시",
               ].map((t) => (
                 <li key={t} className="flex items-start gap-2 text-sm text-[var(--ink)]/85">
-                  <span className="text-hb-blue font-bold mt-0.5">✓</span>{t}
+                  <span className="text-hb-blue font-bold mt-0.5">·</span>{t}
                 </li>
               ))}
             </ul>
@@ -192,7 +193,7 @@ export default function NasPage() {
                 href="/support/quote"
                 className="inline-flex items-center justify-center gap-2 bg-hb-blue hover:bg-hb-blue-light text-white font-extrabold px-6 py-3.5 rounded-xl shadow-lg shadow-hb-blue/30 transition"
               >
-                NAS 도입 상담 →
+                NAS 도입 상담
               </Link>
               <Link
                 href="/nas/price"
@@ -218,12 +219,11 @@ export default function NasPage() {
       <section id="support" className="py-16 lg:py-20 bg-[var(--bg)]">
         <div className="max-w-7xl mx-auto px-4 lg:px-6">
           <h2 className="text-2xl lg:text-3xl font-extrabold text-[var(--ink)] tracking-tight text-center mb-10">
-            한별의 NAS 풀스택 서비스
+            NAS로 하는 일 아홉 가지
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
             {offerings.map((o) => (
               <div key={o.title} className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-5 lg:p-6 hover:border-hb-blue transition">
-                <div className="text-3xl mb-2">{o.icon}</div>
                 <h3 className="font-extrabold text-[var(--ink)] mb-1.5">{o.title}</h3>
                 <p className="text-[13px] text-[var(--mute)] leading-relaxed">{o.body}</p>
               </div>
@@ -252,17 +252,42 @@ export default function NasPage() {
                   width={s.w}
                   height={s.h}
                   sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
-                  className="w-full h-auto rounded-2xl border border-[var(--line)]"
+                  className="hb-fig"
                 />
                 <figcaption className="text-[13.5px] text-[var(--ink)]/85 leading-relaxed mt-3">
                   {s.caption}{" "}
                   <Link href={`/cases/${s.slug}`} className="font-bold text-hb-blue hover:underline">
-                    이 현장 자세히 보기 →
+                    이 현장 자세히 보기
                   </Link>
                 </figcaption>
               </figure>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* 출장 지역 - 대구 밖 지역 검색("구미 나스", "안동 NAS 업체")이 여기서 지역 페이지로 이어진다 */}
+      <section id="area" className="py-14 lg:py-20 bg-[var(--bg)]">
+        <div className="max-w-5xl mx-auto px-4 lg:px-6">
+          <div className="text-[11px] font-extrabold text-hb-blue tracking-[.2em] mb-2">AREA</div>
+          <h2 className="text-2xl lg:text-3xl font-extrabold text-[var(--ink)] tracking-tight mb-3">
+            대구에서 출발해 경북·경남까지 직접 갑니다
+          </h2>
+          <p className="text-sm text-[var(--mute)] leading-relaxed mb-6 max-w-3xl">
+            대구 전역과 경북은 당일 출장 원칙, 경남 창녕·창원·마산은 일정을 잡아 방문합니다. 지역별 거리와 방문 방식, 그 지역 현장 기록은 아래 페이지에 있습니다.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {areas.map((a) => (
+              <Link key={a.slug} href={`/nas/area/${a.slug}`} className="px-3.5 py-2 rounded-full border border-[var(--line)] bg-[var(--panel)] text-sm font-bold text-[var(--ink)] hover:border-hb-blue hover:text-hb-blue transition">
+                {a.name} NAS {a.cases.length > 0 ? "· 사례" : ""}
+              </Link>
+            ))}
+            <Link href="/nas/area" className="px-3.5 py-2 rounded-full bg-hb-blue text-white text-sm font-extrabold hover:bg-hb-azure transition">출장 지역 전체 안내</Link>
+          </div>
+          <p className="text-sm text-[var(--mute)] leading-relaxed mt-6">
+            이미 시놀로지를 쓰고 계신가요? 접속 안 됨, 외부 접속, 권한·휴지통·스냅샷, 백업 확인, 용량 정리, 하드 이전 같은 실제 질문 30가지를{" "}
+            <Link href="/qna/cat/synology" className="text-hb-blue font-bold hover:underline">시놀로지 사용법·설정 Q&A</Link>에 정리해 두었습니다.
+          </p>
         </div>
       </section>
 
@@ -278,7 +303,7 @@ export default function NasPage() {
             한별은 NAS + 외장 + 클라우드 3중 백업을 표준으로 구축합니다.
           </p>
           <Link href="/support/quote" className="inline-flex items-center gap-2 bg-hb-primary hover:bg-hb-blue text-white font-bold px-6 py-3 rounded-xl transition">
-            백업 컨설팅 받기 →
+            백업 상담하기
           </Link>
         </div>
       </section>
@@ -309,7 +334,7 @@ export default function NasPage() {
                 </div>
                 <p className="text-[13px] text-[var(--mute)] leading-relaxed mb-3">{m.fitFor}</p>
                 <span className="inline-flex items-center gap-1 text-[12px] font-bold text-hb-blue group-hover:gap-2 transition-all">
-                  구성별 견적 보기 →
+                  구성별 견적 보기
                 </span>
               </Link>
             ))}

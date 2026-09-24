@@ -5,7 +5,6 @@
    세 파일 다 손으로 고치지 말 것. CDN @import 로 되돌리지 말 것(예전 6.7MB 풀 로드 사고). */
 @import "./webfonts.css";
 @import "./jalnan.css";
-@import "./pretendard.css";
 @import "tailwindcss";
 
 /* class 기반 다크모드 (next-themes 호환) */
@@ -44,8 +43,11 @@
 
   /* 글꼴 (2026-09-08 사장님 확정): 본문 = Inter + Noto Sans KR(시놀로지 사이트 글꼴, webfonts.css),
      제목(h1~h3)·상품명·강조 = 여기어때 잘난체 고딕(jalnan.css). 산돌 고딕Neo3·네모니2 는 유료라 못 썼다.
-     세 글꼴에 없는 글자는 Pretendard(self-host) -> 시스템 한글 폰트 순으로 내려간다. 폴백을 지우지 말 것. */
-  --font-sans: 'Inter', 'Noto Sans KR', 'Pretendard Variable', 'Pretendard', system-ui, -apple-system,
+     세 글꼴에 없는 글자는 시스템 한글 폰트로 내려간다. 시스템 폴백을 지우지 말 것.
+     (2026-09-19) 폴백이던 Pretendard 는 뺐다. Noto Sans KR 17,648자 + Inter 1,622자가
+     사이트 글자 1,319자를 전부 덮고, Pretendard 만 가진 글자 13자는 사이트에 하나도 안 쓴다.
+     조각 파일은 안 받으면서 CSS 만 들고 있었다. 되살리려면 node scripts/fetch-pretendard.mjs. */
+  --font-sans: 'Inter', 'Noto Sans KR', system-ui, -apple-system,
     BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Segoe UI', 'Malgun Gothic', sans-serif;
   --font-mono: var(--font-sans);
   --font-display: 'Jalnan Gothic', var(--font-sans);  /* 제목(h1~h3)·상품명 */
@@ -133,6 +135,13 @@ body {
 .hb-grid-lines { gap: 1px; background: var(--line); }
 .hb-grid-lines > * { background: var(--bg); }
 
+/* 상단 헤더·요약 사진 등장 (2026-09-12). Reveal 과 같은 이유로 prefers-reduced-motion 은 보지 않는다 */
+@keyframes hb-photo-in {
+  from { opacity: 0; transform: scale(1.06); }
+  to   { opacity: 1; transform: none; }
+}
+.hb-photo-in { animation: hb-photo-in 1.1s cubic-bezier(.2,.7,.2,1) both; }
+
 /* 페이지 로드 리빌(절제) */
 @keyframes hb-rise {
   from { opacity: 0; transform: translateY(14px); }
@@ -167,3 +176,24 @@ body {
 }
 .swiper-button-next::after, .swiper-button-prev::after { font-size: 18px !important; }
 @media (max-width: 639px) { .swiper-button-next, .swiper-button-prev { display: none; } } /* 폰은 손가락으로 넘긴다 */
+
+/* 되풀이되는 유틸 묶음을 짧은 클래스 하나로 묶는다 (2026-09-18, HTML 무게 줄이기).
+   같은 문자열이 703개 페이지의 HTML 과 RSC 페이로드에 두 벌씩 실려 쪽당 17KB를 먹었다.
+   @apply 라 만들어지는 CSS 선언은 전과 똑같다. 화면은 바뀌지 않는다.
+   새로 쓸 때는 여기 있는 이름을 먼저 찾아볼 것.
+   주의: components 레이어라 유틸리티 클래스가 항상 이긴다(의도한 순서다). 그래서 hover 색처럼
+   같은 요소의 text-*·bg-* 를 덮어써야 하는 것은 여기 묶지 않는다. 묶었다가 파란 바탕에 파란
+   글씨가 됐다(hb-fl, 2026-09-18 코덱스 지적으로 되돌림). */
+@layer components {
+  .hb-p      { @apply text-[15px] text-[var(--ink)]/85 leading-relaxed mb-3; }          /* 본문 문단 */
+  .hb-bp     { @apply text-[15.5px] text-[var(--ink)]/90 leading-[1.85]; }              /* 블로그 본문 문단 */
+  .hb-td     { @apply py-2.5 px-4 text-[var(--mute)] leading-relaxed align-top; }       /* 표 칸 */
+  .hb-td1    { @apply py-2.5 px-4 font-bold text-[var(--ink)] align-top whitespace-nowrap; } /* 표 첫 칸 */
+  .hb-fig    { @apply w-full h-auto rounded-2xl border border-[var(--line)]; }          /* 본문 사진 */
+  .hb-card   { @apply bg-[var(--panel)] border border-[var(--line)] rounded-xl px-4 py-3 hover:border-hb-blue transition; }
+  .hb-qlink  { @apply block bg-[var(--panel)] border border-[var(--line)] rounded-xl px-4 py-3 text-sm font-bold text-[var(--ink)] hover:border-hb-blue transition; }
+  .hb-tag    { @apply inline-flex items-baseline gap-1 text-[12px] bg-hb-blue-soft text-hb-blue rounded-full px-3 py-1; }
+  .hb-kicker { @apply text-[10px] font-extrabold text-hb-blue tracking-[.15em] mb-1; }  /* 카드 위 작은 라벨 */
+  .hb-fh     { @apply text-[11px] font-extrabold text-white tracking-[.18em] mb-3; }    /* 꼬리말 제목 */
+  .hb-soc    { @apply w-9 h-9 rounded-lg bg-white/5 hover:bg-hb-blue hover:text-white flex items-center justify-center transition; }
+}

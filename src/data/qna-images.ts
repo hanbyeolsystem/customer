@@ -4,6 +4,7 @@ const POOL: Record<string, string[]> = {
   // 그래픽 배너(nas-01·security-01·network-01)는 실사가 아니라 뺐다(2026-09-08)
   ai: ["nas-real-02.webp", "nas-real-01.webp", "nas-real-03.webp"],
   nas: ["nas-real-01.webp", "nas-real-02.webp", "nas-real-03.webp"],
+  synology: ["nas-real-02.webp", "nas-real-03.webp", "nas-real-01.webp"],
   printer: ["printer-real-01.webp", "printer-real-02.webp", "printer-real-03.webp", "printer-service-01.webp"],
   pc: ["pc-build-04.webp", "pc-done-01.webp", "pc-cpu-01.webp", "pc-done-02.webp", "pc-parts-01.webp", "pc-done-03.webp"],
   network: ["office-monitor-01.webp", "pc-done-01.webp"],

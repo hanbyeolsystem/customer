@@ -6,6 +6,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { JsonLd } from "@/components/JsonLd";
 import { qna, qnaBySlug, qnaCats, qnaModified, qnaPublished } from "@/data/qna";
 import { qnaDeep } from "@/data/qna-deep";
+import { qnaDeep2 } from "@/data/qna-deep-2";
 import { qnaImage } from "@/data/qna-images";
 import { articlePhotos } from "@/lib/photos";
 import { Figure } from "@/components/Figure";
@@ -30,8 +31,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 // Q&A 분류 -> 가이드 분류 / 사례 분류 대응표
-const GUIDE_CAT: Record<string, string> = { ai: "ai", nas: "nas", printer: "printer", pc: "office", network: "office", service: "office" };
-const CASE_CAT: Record<string, string> = { ai: "nas", nas: "nas", printer: "printer", pc: "pc", network: "network", service: "pc" };
+const GUIDE_CAT: Record<string, string> = { ai: "ai", nas: "nas", synology: "nas", printer: "printer", pc: "office", network: "office", service: "office" };
+const CASE_CAT: Record<string, string> = { ai: "nas", nas: "nas", synology: "nas", printer: "printer", pc: "pc", network: "network", service: "pc" };
 
 export default async function QnaDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -54,10 +55,14 @@ export default async function QnaDetailPage({ params }: { params: Promise<{ slug
   const catCases = caseStudies.filter((c) => c.category === CASE_CAT[f.cat]);
   const relCases = catCases.length ? Array.from({ length: Math.min(2, catCases.length) }, (_, i) => catCases[(idx + i) % catCases.length]) : [];
 
-  const deep = qnaDeep[f.slug];
+  // 심화 1부 + 2부(2026-09-07 확장). 같은 제목이 겹치면 1부 것만 둔다.
+  const deep = [...(qnaDeep[f.slug] ?? []), ...(qnaDeep2[f.slug] ?? [])].filter((d, i, a) => a.findIndex((x) => x.h === d.h) === i);
   // 본문 중간 실사 사진(2026-09-08): 답변 뒤 1장 + 심화 섹션 2개마다 1장(최대 3장). 상단 대표 사진과는 겹치지 않게.
   const photos = articlePhotos(f.cat, f.slug, Math.min(3, 1 + Math.floor((deep?.length ?? 0) / 2)), [qnaImage(f.cat, f.slug)]);
-  const fullAnswer = [f.a, f.more, ...(deep?.map((d) => d.body.join(" ")) ?? [])].filter(Boolean).join(" ");
+  // acceptedAnswer 에는 즉답과 "더 자세히"까지만 넣는다. 심화 설명까지 전부 넣으면 답 하나가
+  // 3.5KB 가 되어 같은 글이 HTML 과 RSC 페이로드에 두 벌씩 실리고(쪽당 7KB), 검색·AI 가 인용할
+  // 대목도 흐려진다. 심화 설명은 본문에 그대로 있다. (2026-09-18)
+  const fullAnswer = [f.a, f.more].filter(Boolean).join(" ");
 
   const pageUrl = `${site.url}/qna/${f.slug}/`;
   const org = { "@id": businessId };
@@ -105,25 +110,25 @@ export default async function QnaDetailPage({ params }: { params: Promise<{ slug
         <div className="max-w-4xl mx-auto px-4 lg:px-6">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={qnaImage(f.cat, f.slug)} alt={f.q}
-            className="w-full max-h-[420px] object-cover rounded-2xl border border-[var(--line)] mb-6" loading="eager" decoding="async" />
+            className="w-full max-h-[420px] object-cover rounded-2xl border border-[var(--line)] mb-6" loading="lazy" decoding="async" />
 
           {/* 즉답 */}
-          <div className="bg-[var(--panel)] border-l-4 border-hb-blue border border-[var(--line)] rounded-2xl p-6 mb-6">
+          <div className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6 mb-6">
             <div className="text-[11px] font-extrabold text-hb-blue tracking-[.18em] mb-2">답변</div>
             <h2 className="text-base font-extrabold text-[var(--ink)] mb-2">{/\?$/.test(f.q) ? f.q : `${f.q}?`}</h2>
             <p className="text-[var(--ink)] leading-relaxed font-medium">{f.a}</p>
             <div className="flex flex-wrap gap-2 mt-4">
               {[
-                { label: "방문", value: "대구·경북 당일" },
-                { label: "관리 고객사", value: "170곳+" },
-                { label: "NAS 구축", value: "50건+" },
+                { label: "출장", value: "대구·경북 당일 가능" },
+                { label: "관리 고객사", value: "500곳+" },
+                { label: "NAS 구축", value: "100건+" },
                 { label: "복사기 설치", value: "300대+" },
               ].map((x) => (
-                <span key={x.label} className="inline-flex items-baseline gap-1 text-[12px] bg-hb-blue-soft text-hb-blue rounded-full px-3 py-1"><span className="opacity-70">{x.label}</span><b>{x.value}</b></span>
+                <span key={x.label} className="hb-tag"><span className="opacity-70">{x.label}</span><b>{x.value}</b></span>
               ))}
             </div>
           </div>
-          {photos[0] && <Figure photo={photos[0]} priority className="my-6" />}
+          {photos[0] && <Figure photo={photos[0]} className="my-6" />}
           {f.more && (
             <div data-reveal className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6 mb-6">
               <div className="text-[11px] font-extrabold text-[var(--mute)] tracking-[.18em] mb-2">더 자세히</div>
@@ -139,7 +144,7 @@ export default async function QnaDetailPage({ params }: { params: Promise<{ slug
                   {i % 2 === 1 && photos[(i + 1) / 2] && <Figure photo={photos[(i + 1) / 2]} className="mt-0 mb-8" />}
                   <h2 className="text-lg lg:text-xl font-extrabold text-[var(--ink)] mb-3">{d.h}</h2>
                   {d.body.map((para) => (
-                    <p key={para.slice(0, 40)} className="text-[15px] text-[var(--ink)]/85 leading-relaxed mb-3">{para}</p>
+                    <p key={para.slice(0, 40)} className="hb-p">{para}</p>
                   ))}
                   {d.table && (
                     <div className="overflow-x-auto rounded-2xl border border-[var(--line)] bg-[var(--panel)] mt-3">
@@ -155,7 +160,7 @@ export default async function QnaDetailPage({ params }: { params: Promise<{ slug
                           {d.table.rows.map((row) => (
                             <tr key={row[0]}>
                               {row.map((cell, i) => (
-                                <td key={`${row[0]}-${i}`} className={i === 0 ? "py-2.5 px-4 font-bold text-[var(--ink)] align-top whitespace-nowrap" : "py-2.5 px-4 text-[var(--mute)] leading-relaxed align-top"}>{cell}</td>
+                                <td key={`${row[0]}-${i}`} className={i === 0 ? "hb-td1" : "hb-td"}>{cell}</td>
                               ))}
                             </tr>
                           ))}
@@ -173,7 +178,7 @@ export default async function QnaDetailPage({ params }: { params: Promise<{ slug
               방문 견적 요청 (무료) →
             </Link>
             <a href={site.phone.mainHref} className="inline-flex items-center gap-2 border border-[var(--line)] text-[var(--ink)] font-bold px-5 py-3 rounded-xl hover:bg-[var(--panel)]">
-              📞 {site.phone.main}
+              전화 {site.phone.main}
             </a>
             <Link href="/community" className="inline-flex items-center gap-2 border border-[var(--line)] text-[var(--ink)] font-bold px-5 py-3 rounded-xl hover:bg-[var(--panel)]">
               커뮤니티에 추가 질문
@@ -186,14 +191,14 @@ export default async function QnaDetailPage({ params }: { params: Promise<{ slug
               <h2 className="text-base font-extrabold text-[var(--ink)] mb-3">표와 현장으로 더 보기</h2>
               <div className="grid sm:grid-cols-2 gap-3">
                 {relGuides.map((g) => (
-                  <Link key={g.slug} href={`/guide/${g.slug}`} className="bg-[var(--panel)] border border-[var(--line)] rounded-xl px-4 py-3 hover:border-hb-blue transition">
-                    <div className="text-[10px] font-extrabold text-hb-blue tracking-[.15em] mb-1">가이드</div>
+                  <Link key={g.slug} href={`/guide/${g.slug}`} className="hb-card">
+                    <div className="hb-kicker">가이드</div>
                     <div className="text-sm font-bold text-[var(--ink)] leading-snug">{g.title}</div>
                   </Link>
                 ))}
                 {relCases.map((c) => (
-                  <Link key={c.slug} href={`/cases/${c.slug}`} className="bg-[var(--panel)] border border-[var(--line)] rounded-xl px-4 py-3 hover:border-hb-blue transition">
-                    <div className="text-[10px] font-extrabold text-hb-blue tracking-[.15em] mb-1">구축 사례 · {c.region}</div>
+                  <Link key={c.slug} href={`/cases/${c.slug}`} className="hb-card">
+                    <div className="hb-kicker">구축 사례 · {c.region}</div>
                     <div className="text-sm font-bold text-[var(--ink)] leading-snug">{c.title}</div>
                   </Link>
                 ))}
@@ -206,7 +211,7 @@ export default async function QnaDetailPage({ params }: { params: Promise<{ slug
               <h2 className="text-base font-extrabold text-[var(--ink)] mb-3">함께 보는 질문</h2>
               <div className="space-y-2">
                 {related.map((r) => (
-                  <Link key={r.slug} href={`/qna/${r.slug}`} className="block bg-[var(--panel)] border border-[var(--line)] rounded-xl px-4 py-3 text-sm font-bold text-[var(--ink)] hover:border-hb-blue transition">
+                  <Link key={r.slug} href={`/qna/${r.slug}`} className="hb-qlink">
                     {r.q}
                   </Link>
                 ))}

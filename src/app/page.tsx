@@ -8,6 +8,7 @@ import { RentalShop } from "@/components/sections/RentalShop";
 import { BlogFeed } from "@/components/sections/BlogFeed";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/JsonLd";
+import { businessDetailLd } from "@/lib/business-ld";
 import { webPageLd } from "@/lib/schema";
 import { businessId } from "@/data/site";
 
@@ -16,13 +17,14 @@ import { businessId } from "@/data/site";
 export const metadata: Metadata = {
   title: { absolute: "한별시스템 - 대구 기업 데이터 관리·NAS 구축·사내 AI 도입" },
   description:
-    "대구 한별시스템. 19년째 대구·경북 기업의 데이터를 맡습니다. 시놀로지 NAS 구축, 3-2-1 백업, 사내 AI 도입, 복합기 렌탈, 전산 유지관리를 한 회사에서. 관리 고객사 170곳, 무료 방문 견적 053-588-7119.",
+    "대구 한별시스템. 18년째 대구·경북 기업의 데이터를 맡습니다. 시놀로지 NAS 구축, 3-2-1 백업, 사내 AI 도입, 복합기 렌탈, 전산 유지관리를 한 회사에서. 관리 고객사 500곳, 무료 방문 견적 053-588-7119.",
   alternates: { canonical: "/" },
 };
 
 export default function Home() {
   return (
     <>
+      <JsonLd data={businessDetailLd} />
       <JsonLd data={webPageLd({ path: "/", name: "한별시스템 - 대구 기업 데이터 관리·NAS 구축·사내 AI 도입", mainEntityId: businessId })} />
       {/* 홈 = 번호 붙은 섹션 8장. 순서가 곧 번호(SlideHead no)다. 바꾸면 번호도 같이. 스냅·고정 높이 없음(2026-09-08). */}
       <Hero />

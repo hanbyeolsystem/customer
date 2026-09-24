@@ -8,6 +8,7 @@ import { site } from "@/data/site";
 import { JsonLd } from "@/components/JsonLd";
 import { monthlyOffer, serviceId, serviceLd } from "@/lib/schema";
 import { breadcrumbLd, webPageLd } from "@/lib/schema";
+import { rentalPrices } from "@/data/rental-prices";
 
 export const metadata: Metadata = {
   title: "대구 복합기 임대료 - 월 얼마인지 가격 공개",
@@ -16,66 +17,26 @@ export const metadata: Metadata = {
   alternates: { canonical: "/rental/price/" },
 };
 
-// 사장님 확정 월 임대료. 전부 "부터" 가격이며 VAT 별도. 임의 변경 금지.
-// NAS 월 10만원은 /nas/price/ 게시 금액과 반드시 일치시킬 것.
-const prices = [
-  {
-    item: "흑백 레이저 프린터",
-    price: "월 30,000원부터",
-    note: "인쇄만 하는 소량 사무실",
-  },
-  {
-    item: "잉크젯 무한 프린터",
-    price: "월 40,000원부터",
-    note: "컬러 출력이 필요하고 장수가 많지 않은 곳",
-  },
-  {
-    item: "컬러 레이저 프린터",
-    price: "월 50,000원부터",
-    note: "컬러 인쇄가 잦고 속도가 필요한 곳",
-  },
-  {
-    item: "흑백 복사기 (흑백 디지털복합기)",
-    price: "월 70,000원부터",
-    note: "복사·스캔·팩스를 같이 쓰는 일반 사무실",
-  },
-  {
-    item: "컬러 복사기 (컬러 디지털복합기)",
-    price: "월 100,000원부터",
-    note: "컬러 자료와 제안서를 자주 뽑는 곳",
-  },
-  {
-    item: "데스크탑 + 모니터 세트",
-    price: "월 40,000원부터",
-    note: "데스크탑 35,000원 + 모니터 5,000원",
-  },
-  {
-    item: "시놀로지 NAS",
-    price: "월 100,000원부터",
-    note: "기본 계약 36개월, 백업 관리까지 포함",
-    href: "/nas/price/",
-    hrefLabel: "NAS 임대 상세 보기",
-  },
-];
+const prices = rentalPrices;
 
 const included = [
   {
-    icon: "🖨",
+    icon: "",
     title: "토너 등 소모품",
     body: "토너와 드럼 같은 소모품 값을 따로 받지 않습니다. 카운터를 원격으로 보고 있어 떨어지기 전에 미리 보내 드립니다.",
   },
   {
-    icon: "🔧",
+    icon: "",
     title: "부품 교체",
     body: "쓰다가 닳는 부품은 저희가 교체합니다. 부품값을 건건이 청구하지 않습니다.",
   },
   {
-    icon: "🚗",
+    icon: "",
     title: "출장 수리",
     body: "고장이 나면 방문해서 고칩니다. 출장비를 따로 받지 않습니다. 대구·경북은 당일, 전국은 1영업일 안에 갑니다.",
   },
   {
-    icon: "📋",
+    icon: "",
     title: "분기 정기점검",
     body: "분기마다 정기점검을 돌면서 문제가 생기기 전에 먼저 정비합니다.",
   },
@@ -250,7 +211,7 @@ export default function RentalPricePage() {
           </p>
 
           {/* 전화 확인 안내 */}
-          <div className="mt-7 border-l-4 border-hb-blue bg-[var(--bg)] border border-[var(--line)] rounded-2xl p-6 lg:p-7">
+          <div className="mt-7 bg-[var(--bg)] border border-[var(--line)] rounded-2xl p-6 lg:p-7">
             <h3 className="text-lg lg:text-xl font-black text-[var(--ink)] mb-2">
               정확한 금액은 <span className="text-hb-blue">{site.phone.main}</span>로 전화 확인해 주세요
             </h3>
@@ -283,7 +244,6 @@ export default function RentalPricePage() {
           <div className="grid sm:grid-cols-2 gap-4 lg:gap-5">
             {included.map((r) => (
               <div key={r.title} className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-6">
-                <div className="text-3xl mb-2">{r.icon}</div>
                 <h3 className="font-extrabold text-[var(--ink)] mb-1.5">{r.title}</h3>
                 <p className="text-sm text-[var(--mute)] leading-relaxed">{r.body}</p>
               </div>

@@ -8,7 +8,7 @@ import { AnswerBlock } from "@/components/AnswerBlock";
 
 export const metadata: Metadata = {
   title: "원격 지원 - 방문 없이 바로 해결",
-  description: "Seetrol MY 원격지원 (한별 전용). 다운로드 후 화면에 보이는 숫자를 053-588-7119 로 알려주시면 즉시 원격 접속합니다. 원격으로 안 되는 증상은 대구·경북 당일 방문으로 이어집니다.",
+  description: "Seetrol MY 원격지원 (한별 전용). 다운로드 후 화면에 보이는 숫자를 053-588-7119 로 알려주시면 즉시 원격 접속합니다. 원격으로 안 되는 증상은 대구·경북 당일 출장으로 이어집니다.",
   alternates: { canonical: "/support/remote/" },
 };
 
@@ -29,12 +29,12 @@ export default function RemoteSupportPage() {
       <PageHeader
         badge="REMOTE SUPPORT"
         title="원격 지원 즉시 연결"
-        description="한별 전용 Seetrol MY 원격지원. 두 단계면 끝납니다."
+        description="한별 전용 원격지원. 두 단계면 끝납니다."
       />
       <AnswerBlock
         question="원격 지원은 어떻게 받나요?"
-        answer="한별 전용 원격 프로그램을 내려받아 실행하고 화면에 보이는 숫자를 053-588-7119로 알려 주시면 즉시 접속합니다. 설정 문제, 프로그램 오류, 인쇄 문제 상당수가 원격으로 해결되며 이용자의 동의 하에 요청한 문제 해결 범위로만 작업합니다. 원격으로 안 되는 증상은 대구·경북 당일 방문으로 이어집니다. 관리 고객사 170곳 이상을 원격 우선, 필요 시 방문 방식으로 유지관리하고 있습니다."
-        facts={[{ label: "접속", value: "숫자 전달 즉시" }, { label: "범위", value: "요청한 문제만" }, { label: "안 되면", value: "당일 방문" }, { label: "전화", value: "053-588-7119" }]}
+        answer="한별 전용 원격 프로그램을 내려받아 실행하고 화면에 보이는 숫자를 053-588-7119로 알려 주시면 즉시 접속합니다. 설정 문제, 프로그램 오류, 인쇄 문제 상당수가 원격으로 해결되며 이용자의 동의 하에 요청한 문제 해결 범위로만 작업합니다. 원격으로 안 되는 증상은 대구·경북 당일 출장으로 이어집니다. 관리 고객사 500곳 이상을 원격 우선, 필요 시 방문 방식으로 유지관리하고 있습니다."
+        facts={[{ label: "접속", value: "숫자 전달 즉시" }, { label: "범위", value: "요청한 문제만" }, { label: "안 되면", value: "당일 출장" }, { label: "전화", value: "053-588-7119" }]}
       />
 
       <section className="py-12 lg:py-16 bg-[var(--bg)]">
@@ -50,7 +50,7 @@ export default function RemoteSupportPage() {
             </span>
             <div className="text-5xl mb-4">⬇</div>
             <h2 className="text-xl lg:text-2xl font-extrabold leading-tight mb-1">
-              Seetrol MY 원격지원
+              원격지원 클릭
             </h2>
             <p className="text-[13px] lg:text-sm text-white/80 mb-6 leading-relaxed">
               한별시스템 전용 · 설치 불필요 · 클릭 즉시 실행
@@ -81,7 +81,6 @@ export default function RemoteSupportPage() {
 
           {/* 전화 CTA */}
           <div className="bg-gradient-to-br from-hb-primary to-hb-blue text-white rounded-3xl p-7 lg:p-9 text-center shadow-xl">
-            <div className="text-4xl mb-3">📞</div>
             <h3 className="text-xl lg:text-2xl font-extrabold mb-2">한별시스템 직통</h3>
             <p className="text-sm text-white/80 mb-5">{site.phone.hours}</p>
             <a
