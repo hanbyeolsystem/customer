@@ -50,6 +50,9 @@ export const site = {
     googleMaps: "https://maps.google.com/?cid=3373258657163471743",
     // 후기 남기기(구글 리뷰 작성 화면). 업체가 손님에게 후기를 요청하는 것은 구글이 허용한다.
     googleReview: "https://search.google.com/local/writereview?placeid=ChIJwwJH6FvlZTURf2u9W-A40C4",
+    // 네이버 스마트스토어(2026-09-26 시놀로지 22종 등록). 첫 화면 왼쪽 위 "알림받기"로 소식 구독.
+    // 푸터와 /nas/buy/ 안내 칸이 이 값을 쓴다.
+    smartstore: "https://smartstore.naver.com/hanbyeolsystem",
   },
 
   // 지도·플레이스 등재. LocalBusiness.sameAs 로 내보내 "같은 회사"임을 알린다.

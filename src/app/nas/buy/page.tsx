@@ -349,6 +349,34 @@ export default function NasBuyPage() {
               무료 방문 견적 요청 →
             </Link>
           </div>
+
+          {/* 네이버 스마트스토어 안내(2026-09-26). 스토어 가격 표기와 이 페이지(VAT 별도)가 부딪히지 않게 금액은 적지 않는다. */}
+          <div className="mt-10 rounded-md border border-[var(--line)] bg-[var(--panel)] p-5 lg:p-6">
+            <h3 className="text-lg font-extrabold text-[var(--ink)] mb-2">네이버 스마트스토어에서도 삽니다</h3>
+            <p className="text-sm text-[var(--mute)] leading-relaxed mb-4">
+              시놀로지 NAS 본체와 하드, 세트, 비스테이션(BeeStation)까지 22종을 스토어에 올려 두었습니다.
+              방문 설치 및 교육도 옵션으로 붙일 수 있어요. 스토어 첫 화면 왼쪽 위 알림받기를 누르면
+              새 상품과 혜택 소식이 갑니다.
+            </p>
+            <div className="flex flex-wrap gap-2.5">
+              <a
+                href={site.social.smartstore}
+                target="_blank"
+                rel="noopener"
+                className="inline-flex items-center justify-center h-11 px-5 rounded-md bg-[var(--ink)] text-[var(--bg)] font-bold text-[14px] hover:bg-hb-blue transition"
+              >
+                스마트스토어 알림받기
+              </a>
+              <a
+                href={site.social.smartstore}
+                target="_blank"
+                rel="noopener"
+                className="inline-flex items-center justify-center h-11 px-5 rounded-md border border-[var(--line)] text-[var(--ink)] font-semibold text-[14px] hover:border-[var(--ink)] transition"
+              >
+                스토어에서 22종 보기
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 

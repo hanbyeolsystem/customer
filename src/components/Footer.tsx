@@ -40,6 +40,10 @@ export function Footer() {
               <a href={site.social.threads} target="_blank" rel="noopener" aria-label="Threads"
                 className="hb-soc"><Icon name="at" className="w-[18px] h-[18px]" /></a>
             </div>
+            <a href={site.social.smartstore} target="_blank" rel="noopener"
+              className="mt-3 inline-flex items-center h-9 px-3 rounded-md border border-white/15 text-[13px] font-semibold text-slate-300 hover:border-white/40 hover:text-white transition">
+              스마트스토어 알림받기
+            </a>
           </div>
 
           {/* 서비스 */}
