@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { site } from "@/data/site";
 
-export function CtaBanner() {
+export function CtaBanner({
+  title = <>우리 사무실 백업, <span className="text-hb-blue-light">진짜</span> 돌고 있나요?</>,
+  lead = "방문해서 보고 견적을 냅니다. 대구·경북은 당일, 비용은 없습니다.",
+}: { title?: React.ReactNode; lead?: string } = {}) {
   return (
     <section className="py-16 lg:py-20 bg-[var(--bg)]">
       <div className="max-w-7xl mx-auto px-4 lg:px-6">
@@ -11,10 +14,10 @@ export function CtaBanner() {
               무료 상담 · 1영업일 안에 회신
             </div>
             <h2 className="text-[28px] lg:text-[44px] tracking-[-0.01em] mb-3 leading-tight">
-              우리 사무실 백업, <span className="text-hb-blue-light">진짜</span> 돌고 있나요?
+              {title}
             </h2>
             <p className="text-sm lg:text-lg text-white/75 mb-9 max-w-2xl mx-auto leading-relaxed">
-              방문해서 보고 견적을 냅니다. 대구·경북은 당일, 비용은 없습니다.
+              {lead}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md sm:max-w-none mx-auto">
               <a

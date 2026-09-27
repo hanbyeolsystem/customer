@@ -8,6 +8,7 @@ import { areas } from "@/data/areas";
 import { rentalAreas } from "@/data/rental-areas";
 import { qna, qnaCats, qnaModified } from "@/data/qna";
 import { site } from "@/data/site";
+import { shorts } from "@/lib/shorts";
 
 export const dynamic = "force-static";
 
@@ -90,6 +91,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
+    // 쇼츠 영상 글 - 글이 있을 때만 목록·상세를 넣는다(빈 목록은 noindex). lastmod = 글 날짜
+    ...(shorts.length
+      ? [
+          { url: `${site.url}/shorts/`, lastModified: new Date(`${shorts[0].date}T00:00:00+09:00`), changeFrequency: "weekly" as const, priority: 0.6 },
+          ...shorts.map((s) => ({
+            url: `${site.url}/shorts/${s.slug}/`,
+            lastModified: new Date(`${s.date}T00:00:00+09:00`),
+            changeFrequency: "monthly" as const,
+            priority: 0.6,
+          })),
+        ]
+      : []),
     ...qna.map((f) => ({
       url: `${site.url}/qna/${f.slug}/`,
       lastModified: new Date(qnaModified),

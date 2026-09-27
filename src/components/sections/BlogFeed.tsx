@@ -4,6 +4,7 @@ import { embedHref } from "@/lib/embed";
 import { naverPosts } from "@/data/naver-posts";
 import { site } from "@/data/site";
 import { SlideHead } from "./SlideHead";
+import { LatestShorts } from "./LatestShorts";
 
 /* 08 소식·연락. 왼쪽은 최근 글 다섯 줄, 오른쪽은 전화·주소·지도. 모바일은 연락처를 먼저 보여 준다.
    글은 사이트 안으로 가져온 글(/blog/<번호>/)을 먼저 쓰고, 없을 때만 블로거 RSS 로 대체한다. */
@@ -91,6 +92,8 @@ export async function BlogFeed() {
             </p>
           </div>
         </div>
+
+        <LatestShorts />
       </div>
     </section>
   );
