@@ -3,6 +3,7 @@
 //  - slug 는 빌드 출력 폴더 이름이 된다. 소문자·숫자·하이픈만 통과(../ 같은 경로 탈출 차단).
 //  - date 가 YYYY-MM-DD 가 아니면 사이트맵 lastmod 가 깨지므로 그 글은 뺀다. 제목이 없어도 뺀다.
 //  - 링크는 http(s) 만, 썸네일은 /shorts/<소문자>.jpg 만, 유튜브 ID 는 6~20자 영숫자·_- 만.
+//  - images(단계 카드 1080x1350)도 같은 경로 규칙, 최대 10장. alt 는 80자에서 자르고 없으면 제목+번호.
 // 화면은 React 텍스트 노드로만 그린다(dangerouslySetInnerHTML 금지).
 
 import raw from "@/data/shorts.json";
@@ -10,6 +11,8 @@ import { dedash } from "@/lib/utils";
 
 export const shortTopics = ["nas", "network", "pc", "copier", "printer", "general"] as const;
 export type ShortTopic = (typeof shortTopics)[number];
+
+export type ShortImage = { src: string; alt: string };
 
 export type Short = {
   slug: string;
@@ -20,6 +23,7 @@ export type Short = {
   youtubeId: string;
   youtubeUrl: string;
   thumb: string;
+  images: ShortImage[];
   steps: { title: string; body: string }[];
   cautions: string[];
   keywords: string[];
@@ -64,6 +68,11 @@ function clean(e: unknown): Short | null {
     youtubeId,
     youtubeUrl: httpUrl(r.youtubeUrl) || (youtubeId ? `https://www.youtube.com/shorts/${youtubeId}` : ""),
     thumb: match(r.thumb, /^\/shorts\/[a-z0-9-]+\.jpg$/),
+    images: (Array.isArray(r.images) ? r.images : [])
+      .map((m) => ({ src: match((m as Record<string, unknown>)?.src, /^\/shorts\/[a-z0-9-]+\.jpg$/), alt: [...text((m as Record<string, unknown>)?.alt)].slice(0, 80).join("").trim() }))
+      .filter((m) => m.src)
+      .slice(0, 10)
+      .map((m, i) => ({ src: m.src, alt: m.alt || `${title} ${i + 1}` })),
     steps: (Array.isArray(r.steps) ? r.steps : [])
       .map((s) => ({ title: text((s as Record<string, unknown>)?.title), body: text((s as Record<string, unknown>)?.body) }))
       .filter((s) => s.title || s.body),

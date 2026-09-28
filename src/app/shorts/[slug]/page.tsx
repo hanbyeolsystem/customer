@@ -4,11 +4,22 @@ import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/PageHeader";
 import { JsonLd } from "@/components/JsonLd";
 import { CtaBanner } from "@/components/sections/CtaBanner";
-import { shortBySlug, shortEmbedUrl, shortFallbackThumb, shorts } from "@/lib/shorts";
+import { shortBySlug, shortEmbedUrl, shortFallbackThumb, shorts, type ShortImage } from "@/lib/shorts";
 import { breadcrumbLd, isoDateTime } from "@/lib/schema";
 import { embedHref } from "@/lib/embed";
 import { metaDescription } from "@/lib/utils";
 import { businessId, site } from "@/data/site";
+
+/** 단계 카드(1080x1350 세로). 크기를 박아 두어 늦게 떠도 글이 밀리지 않는다. */
+function StepImage({ img }: { img: ShortImage }) {
+  return (
+    <figure data-reveal className="my-6 mx-auto max-w-[480px]">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={img.src} alt={img.alt} width={1080} height={1350} loading="lazy" decoding="async" className="w-full h-auto rounded-md border border-[var(--line)] bg-[var(--panel)]" />
+      <figcaption className="mt-2 text-center text-[13px] text-[var(--mute)]">{img.alt}</figcaption>
+    </figure>
+  );
+}
 
 // output: "export" 는 generateStaticParams 가 빈 배열이면 빌드를 멈춘다(Next 오류 E87).
 // 글이 없을 때는 자리표시 slug 하나를 내보내고 그 페이지는 notFound() 로 404 가 된다(링크·사이트맵 없음).
@@ -72,7 +83,7 @@ export default async function ShortPage({ params }: { params: Promise<{ slug: st
       "@id": `${pageUrl}#howto`,
       name: s.title,
       ...(s.summary ? { description: s.summary } : {}),
-      image: thumbUrl,
+      image: s.images.length ? s.images.map((m) => `${site.url}${m.src}`) : thumbUrl,
       inLanguage: "ko-KR",
       ...(s.youtubeId ? { video: { "@id": `${pageUrl}#video` } } : {}),
       step: s.steps.map((st, i) => ({
@@ -84,6 +95,14 @@ export default async function ShortPage({ params }: { params: Promise<{ slug: st
       })),
     });
   }
+
+  // 사진 배치: 첫 장은 요약 바로 뒤, 나머지는 단계 사이 빈칸(단계 수 - 1)에 한 장씩 고르게,
+  // 빈칸보다 많으면 남은 것은 단계 목록 뒤(주의할 점 앞)에 둔다. 키는 "몇 번 단계 뒤"(1부터).
+  const [leadImage, ...restImages] = s.images;
+  const gaps = Math.min(restImages.length, Math.max(s.steps.length - 1, 0));
+  const afterStep = new Map<number, ShortImage>();
+  for (let k = 0; k < gaps; k++) afterStep.set(Math.round(((k + 1) * s.steps.length) / (gaps + 1)), restImages[k]);
+  const tailImages = restImages.slice(gaps);
 
   const links = [
     s.guideUrl && { label: "자료 페이지", href: embedHref(s.guideUrl, s.title) },
@@ -127,6 +146,7 @@ export default async function ShortPage({ params }: { params: Promise<{ slug: st
             <div className="min-w-0">
               <time dateTime={s.date} className="text-[13px] text-[var(--mute)] tabular-nums">{s.date.replace(/-/g, ".")} 올림</time>
               {s.summary && <p className="mt-3 text-[16px] text-[var(--ink)]/90 leading-relaxed">{s.summary}</p>}
+              {leadImage && <StepImage img={leadImage} />}
 
               {s.steps.length > 0 && (
                 <section className="mt-8">
@@ -135,15 +155,20 @@ export default async function ShortPage({ params }: { params: Promise<{ slug: st
                     {s.steps.map((st, i) => (
                       <li key={i} id={`step-${i + 1}`} className="flex gap-4 py-4 border-b border-[var(--line)]">
                         <span className="shrink-0 font-display text-[20px] leading-none text-hb-blue w-6 pt-0.5">{i + 1}</span>
-                        <div className="min-w-0">
+                        <div className="min-w-0 flex-1">
                           {st.title && <h3 className="font-sans text-[16px] font-bold text-[var(--ink)] leading-snug">{st.title}</h3>}
                           {st.body && <p className="mt-1 text-[15px] text-[var(--mute)] leading-relaxed">{st.body}</p>}
+                          {afterStep.has(i + 1) && <StepImage img={afterStep.get(i + 1)!} />}
                         </div>
                       </li>
                     ))}
                   </ol>
                 </section>
               )}
+
+              {tailImages.map((m, i) => (
+                <StepImage key={i} img={m} />
+              ))}
 
               {s.cautions.length > 0 && (
                 <section className="mt-8 bg-[var(--panel)] border border-[var(--line)] rounded-md p-5">
