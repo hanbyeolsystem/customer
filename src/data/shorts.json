@@ -5,8 +5,8 @@
     "title": "당기지 말고 열기, 복합기 종이걸림 순서",
     "memoryHook": "당기지 말고 열기",
     "summary": "복합기에 종이가 걸리면 그냥 당겨도 될까요. 그러면 안에서 찢어져 조각이 남고 다음에 또 걸려요. 전원 끄기, 덮개 열기, 결 따라 당기기, 급지대 가이드 맞추기까지 순서를 정리했어요. 댓글에 키워드 달고 자료 받아 가세요.",
-    "youtubeId": "",
-    "youtubeUrl": "",
+    "youtubeId": "WzHGdjy95zk",
+    "youtubeUrl": "https://www.youtube.com/shorts/WzHGdjy95zk",
     "thumb": "/shorts/20260928-copier-16c952.jpg",
     "steps": [
       {
@@ -58,6 +58,32 @@
     "topic": "copier",
     "guideUrl": "https://882.kr/guide/20260928-16c952a8ae.html",
     "blogUrl": "",
-    "seconds": 48.7
+    "seconds": 48.7,
+    "images": [
+      {
+        "src": "/shorts/20260928-copier-16c952-1.jpg",
+        "alt": "당기지 말고 열기 · 종이걸림 순서 4단계"
+      },
+      {
+        "src": "/shorts/20260928-copier-16c952-2.jpg",
+        "alt": "1 먼저 할 일 전원부터 끈다"
+      },
+      {
+        "src": "/shorts/20260928-copier-16c952-3.jpg",
+        "alt": "2 결 따라 천천히 당김"
+      },
+      {
+        "src": "/shorts/20260928-copier-16c952-4.jpg",
+        "alt": "3 급지대 가이드 맞춤"
+      },
+      {
+        "src": "/shorts/20260928-copier-16c952-5.jpg",
+        "alt": "4 조각 확인 덮개 안쪽"
+      },
+      {
+        "src": "/shorts/20260928-copier-16c952-6.jpg",
+        "alt": "5 종이 보관 습기 피하기"
+      }
+    ]
   }
 ]
