@@ -226,3 +226,11 @@
 - 헤더에서 뺀 회사소개·새소식·블로그·커뮤니티와 즐겨찾기(`BookmarkButton`, 서비스워커 등록 포함)·다크모드는 **푸터 아래 줄**에 있다.
 - 첫 화면(Hero): 작은 제목 "대구·경북 기업 전산 18년", 버튼은 전화 + 견적·방문 상담, 원격지원은 버튼 아래 작은 링크. **폰·태블릿(lg 미만)은 본문 버튼을 숨기고 하단 고정 바(MobileBar)가 전화·원격지원·견적을 맡는다.** 본문 버튼을 다시 폰에 보이게 하면 같은 버튼이 두 벌이 된다.
 - 근거 보고서: `고객용사이트/첫화면점검-2026-09-15/첫화면_메뉴_점검.md`
+
+## 웹 푸시 알림 (2026-09-29, 외부 유료 서비스 없음)
+- 손님: 홈 6초 뒤 `components/PushOptIn.tsx` 카드 → [알림 받기]에서만 브라우저 권한 창 → `lib/push.ts` 가 `public/sw.js` 등록·구독 → 함수 `/subscribe`. [괜찮아요]는 14일 숨김. 아이폰은 홈 화면에 추가한 앱에서만 뜬다.
+- 서버: Supabase 함수 `web-push`(jrzesjgyrvgvwazfajec, `--no-verify-jwt`, `npm:web-push`). 소스 `supabase/functions/web-push/index.ts`, 표 `supabase/migrations/20260929_webpush.sql`(RLS 정책 없음 = 함수만).
+  `/key` 공개키 · `/subscribe` 공개(endpoint UNIQUE, 푸시 서비스 호스트만 허용) · `/stats`·`/send` 는 종합관리툴 관리자 토큰만. 404·410 구독은 발송 때 자동 삭제.
+- VAPID 키: `supabase/functions/web-push/.env`(git 제외, 여기가 유일한 사본) → `npx -y supabase@latest secrets set --env-file supabase/functions/web-push/.env --project-ref jrzesjgyrvgvwazfajec`. **키를 바꾸면 기존 구독자 전원이 다시 허용해야 한다.**
+- 발송 화면: 종합관리툴 > 광고자동화 아래 **웹푸시 알림**(`한별시스템\임대관리\web-push\index.html`).
+- `sw.js` 의 fetch 통과 핸들러는 PWA 설치 조건용이라 지우지 말 것.

@@ -6,6 +6,7 @@ import { RaidSlide } from "@/components/sections/RaidSlide";
 import { CaseStudies } from "@/components/sections/CaseStudies";
 import { RentalShop } from "@/components/sections/RentalShop";
 import { BlogFeed } from "@/components/sections/BlogFeed";
+import { PushOptIn } from "@/components/PushOptIn";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/JsonLd";
 import { businessDetailLd } from "@/lib/business-ld";
@@ -35,6 +36,7 @@ export default function Home() {
       <RentalShop />
       <QuickService />
       <BlogFeed />
+      <PushOptIn />
     </>
   );
 }
