@@ -160,7 +160,13 @@
   사이트맵에서 lastmod 를 생략한다(틀린 날짜보다 없는 편이 낫다).
 - 회사 `@id`(businessId)를 참조할 땐 **`{ "@id": businessId }` 만** 쓴다. `"@type": "Organization"` 을
   같이 붙이면 LocalBusiness 노드와 타입이 겹쳐 엔티티가 흐려진다.
-- 자사 운영 사이트(882.kr·hbsys.kr·에러코드)는 `site.owned` 에 모아 두고 `sameAs` 로 내보낸다. 새 사이트가 생기면 여기 추가.
+- 자사 운영 사이트(hbsys.kr·에러코드)는 `site.owned` 에 모아 두고 `sameAs` 로 내보낸다. 새 사이트가 생기면 여기 추가.
+  **882.kr 은 넣지 않는다**(2026-10-05 사장님 "882.KR 은 필요 없다, 무조건 한별시스템.KR"). 손님에게 보이는 곳 어디에도 882.kr 을 쓰지 말 것.
+  드라이버 안내는 전부 "한별시스템.kr 고객지원 → 드라이버(/support/drivers/)" 로 통일. 빌드 뒤 `grep -rl "882\.kr" out` 이 0건이어야 한다.
+- **딸깍P드라이버 설치 파일은 이 리포가 직접 내려준다**: `public/download/ddalkkakp-driver.exe`(2026-10-05 기준 v1.6.13, 60,438,976바이트, 서명 HANBYEOLSYSTEM)
+  와 그림 설명서 `public/download/ddalkkakp-driver-manual.pdf`. **딸깍P드라이버 새 버전이 나오면 이 파일도 바꿔야 한다**(원본 `\\192.168.0.249\web\files\딸깍P드라이버.exe`, 버전은 같은 폴더 `.ver`).
+  작업 폴더가 Synology Drive 동기화 루트라 큰 파일은 %TEMP% 로 먼저 복사해 SHA256·`Get-AuthenticodeSignature` 확인 후 옮길 것.
+  쇼츠 자료 페이지(옛 882.kr/guide/)는 `public/shorts/guide/` 에 둔다.
 - **지도·플레이스 등재는 `site.listings`**(`src/data/site.ts`). 네이버 플레이스 1866521598 · 카카오맵 1828766417 은
   2026-09-01 실측으로 확인한 ID 다. `sameAs`(layout.tsx) 와 화면(푸터 "지도에서 보기", /contact/ 길찾기 버튼)이
   같은 값을 쓴다. **ID 를 추측해서 넣지 말 것** - 실제로 열어 업체명이 한별시스템인지 확인한 주소만 넣는다.
