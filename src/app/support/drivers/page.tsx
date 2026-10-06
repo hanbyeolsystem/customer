@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
+import { embedHref } from "@/lib/embed";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbLd, webPageLd } from "@/lib/schema";
 import { AnswerBlock } from "@/components/AnswerBlock";
@@ -10,8 +12,10 @@ export const metadata: Metadata = {
   alternates: { canonical: "/support/drivers/" },
 };
 
-// 딸깍P드라이버 설치기·설명서는 이 사이트에서 직접 내려준다(public/download/). 새 버전이 나오면 파일을 바꿀 것.
-const DDALKKAK_P_DRIVER = "/download/ddalkkakp-driver.exe";
+// 2026-10-06 사장님 지시로 882.kr 연결 복구(10-05 에 지웠던 것). 설치기는 882 가 항상 최신판을 내려준다.
+const HANBYEOL_DRIVE = "https://882.kr/?embed=1"; // 새 882 (2026-08-17 재구축): embed=1 → 882 자체 상단바 숨김(홈페이지 헤더 안 이중 표시 방지)
+// 딸깍P드라이버 설치기 직접 다운로드 (882 파일배포, 한글 파일명 percent-encoding 고정값)
+const DDALKKAK_P_DRIVER = "https://882.kr/?code=%EB%94%B8%EA%B9%8DP%EB%93%9C%EB%9D%BC%EC%9D%B4%EB%B2%84.exe";
 const DDALKKAK_P_MANUAL = "/download/ddalkkakp-driver-manual.pdf";
 
 const brands = [
@@ -39,10 +43,35 @@ export default function DriversPage() {
       />
       <section className="py-12 lg:py-16 bg-[var(--bg)]">
         <div className="max-w-5xl mx-auto px-4 lg:px-6">
-          {/* 1) 딸깍P드라이버 - 설치기 직접 다운로드 */}
+          {/* 1) 한별 드라이버 센터 - 메인 다운로드 채널 */}
+          <Link
+            href={embedHref(HANBYEOL_DRIVE, "한별 드라이버 센터")}
+            className="group relative overflow-hidden block bg-gradient-to-br from-hb-primary via-hb-blue to-hb-blue-light text-white rounded-2xl p-5 lg:p-6 shadow-xl hover:shadow-[0_16px_40px_-12px_rgba(37,99,235,0.55)] hover:-translate-y-0.5 transition mb-6"
+          >
+            <div className="absolute -top-16 -right-16 w-48 h-48 bg-white/10 rounded-full blur-3xl" />
+            <div className="relative flex items-center gap-4">
+              <div className="text-3xl lg:text-4xl flex-shrink-0">⬇</div>
+              <div className="flex-1 min-w-0">
+                <div className="text-[10px] font-extrabold tracking-[.18em] text-white/80 mb-0.5">
+                  한별 추천
+                </div>
+                <h2 className="text-lg lg:text-xl font-black leading-tight">
+                  한별 드라이버 센터
+                </h2>
+                <p className="text-[12px] lg:text-sm text-white/80 mt-0.5">
+                  882.kr - 딸깍P드라이버·브랜드별 드라이버·딸깍설치
+                </p>
+              </div>
+              <div className="hidden sm:inline-flex items-center gap-1 bg-white text-hb-primary font-extrabold text-sm px-4 py-2 rounded-lg shadow group-hover:bg-amber-50 transition flex-shrink-0">
+                한별 드라이버 센터 바로가기 →
+              </div>
+              <div className="sm:hidden text-2xl flex-shrink-0 group-hover:translate-x-1 transition">→</div>
+            </div>
+          </Link>
+
+          {/* 1-1) 딸깍P드라이버 - 설치기 직접 다운로드 */}
           <a
             href={DDALKKAK_P_DRIVER}
-            download="딸깍P드라이버_설치.exe"
             className="group flex items-center gap-4 bg-[var(--panel)] border-2 border-hb-blue/40 rounded-2xl p-4 lg:p-5 mb-3 hover:border-hb-blue hover:shadow-lg hover:-translate-y-0.5 transition"
           >
             <div className="flex-1 min-w-0">
