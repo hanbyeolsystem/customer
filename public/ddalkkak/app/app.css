@@ -106,7 +106,9 @@ select { width: auto; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .boot { min-height: 100vh; display: grid; place-items: center; }
 .toast { position: fixed; left: 50%; bottom: 96px; transform: translateX(-50%); background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 12px; font-size: 14px; z-index: 60; max-width: calc(100% - 32px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25); }
-.scroll { overflow-x: auto; }
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.scroll .tbl { min-width: 600px; }
+.tbl th { white-space: nowrap; }
 
 /* ── [시작] 키: 복사기 녹색 시작 버튼 ── */
 .startkey { display: block; width: 100%; border: 0; padding: 0 0 6px; background: none; cursor: pointer; border-radius: 18px; }
