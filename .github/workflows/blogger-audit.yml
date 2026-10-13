@@ -1,0 +1,75 @@
+name: Blogger audit (점검·중복 삭제·깨진 글 복구)
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "report = 점검만 | fix = 중복 삭제 + 깨진 설치후기 글 본문 갱신 + 상태파일 정리"
+        default: "report"
+      check_images:
+        description: "true = 사진 링크 생존 확인 (느림, 수천 개)"
+        default: "true"
+  # 수동 실행 권한이 없는 도구(Claude 세션 등)용: 커밋 메시지에 [blogger-audit] 또는 [blogger-audit fix] 를 넣어 push 하면 돈다
+  push:
+    branches: ["**"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: blogger-crosspost
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[blogger-audit')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Audit Blogger
+        env:
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
+          BLOGGER_BLOG_ID: ${{ secrets.BLOGGER_BLOG_ID }}
+          HEAD_MSG: ${{ github.event.head_commit.message }}
+        run: |
+          if [ -z "$GOOGLE_REFRESH_TOKEN" ]; then
+            echo "::error::Blogger secrets 미설정"
+            exit 1
+          fi
+          MODE="${{ github.event.inputs.mode || 'report' }}"
+          HEAD_SUBJECT="$(printf '%s' "$HEAD_MSG" | head -n 1)"   # 커밋 제목 줄만 본다(본문 설명에 적힌 표식으로 오작동하지 않게)
+          case "$HEAD_SUBJECT" in *"[blogger-audit fix]"*) MODE=fix ;; esac
+          echo "MODE=$MODE" >> "$GITHUB_ENV"
+          ARGS=""
+          [ "$MODE" = "fix" ] && ARGS="$ARGS --fix"
+          [ "${{ github.event.inputs.check_images }}" = "false" ] && ARGS="$ARGS --no-img"
+          echo "mode=$MODE args=$ARGS"
+          node scripts/blogger-audit.mjs $ARGS
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: blogger-audit-report
+          path: scripts/blogger-audit-report.json
+
+      - name: Commit state file (fix 모드)
+        if: env.MODE == 'fix'
+        run: |
+          if git diff --quiet scripts/blogger-state.json 2>/dev/null; then
+            echo "state 변경 없음"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/blogger-state.json
+          git commit -m "chore: blogger 점검 후 state 정리 [skip ci]"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push
