@@ -233,6 +233,14 @@ select { width: auto; }
 .codebox { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 8px 0; }
 .code { font-family: var(--mono); font-size: 24px; background: var(--lcd); color: var(--lcd-ink); padding: 4px 12px; border-radius: 8px; box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2); }
 
+/* ── 이용권 입금 안내 ── */
+.pay { border: 2px solid #f1d9a6; background: #fffbf2; }
+.pay-h { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.pay-amt { font-family: var(--mono); font-size: 36px; line-height: 1.1; margin-top: 8px; }
+.pay-dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; margin: 12px 0 4px; font-size: 15px; }
+.pay-dl dt { color: var(--mute); font-size: 13.5px; padding-top: 1px; }
+.pay-dl dd { margin: 0; word-break: keep-all; }
+
 /* ── 창 ── */
 .sheet { position: fixed; inset: 0; z-index: 50; background: rgba(15, 25, 20, 0.5); display: flex; align-items: flex-end; justify-content: center; }
 .panel { background: var(--paper); width: 100%; max-width: 560px; max-height: 92vh; overflow: auto; border-radius: 18px 18px 0 0; padding: 16px 16px calc(16px + env(safe-area-inset-bottom)); }
