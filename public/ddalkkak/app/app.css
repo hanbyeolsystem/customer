@@ -218,6 +218,7 @@ select { width: auto; }
 .acct-h { display: flex; align-items: center; justify-content: space-between; }
 .acct-form { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
 .more summary { cursor: pointer; font-weight: 600; color: var(--brand); padding: 8px 0; }
+.caption-box { white-space: pre-wrap; word-break: break-all; font-family: var(--body); font-size: 13.5px; background: #f4f6f5; border-radius: 10px; padding: 10px 12px; margin: 4px 0 8px; max-height: 320px; overflow: auto; }
 .colorrow { display: flex; gap: 8px; align-items: center; }
 .colorrow input[type="color"] { width: 48px; height: 40px; padding: 2px; }
 .swatch { width: 32px; height: 32px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px var(--line); cursor: pointer; }
@@ -240,6 +241,9 @@ select { width: auto; }
 .pay-dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; margin: 12px 0 4px; font-size: 15px; }
 .pay-dl dt { color: var(--mute); font-size: 13.5px; padding-top: 1px; }
 .pay-dl dd { margin: 0; word-break: keep-all; }
+.pay-check { width: 100%; margin-top: 10px; }
+.plan-opts { display: grid; gap: 8px; margin: 10px 0; }
+.plan-opts button { text-align: left; }
 
 /* ── 창 ── */
 .sheet { position: fixed; inset: 0; z-index: 50; background: rgba(15, 25, 20, 0.5); display: flex; align-items: flex-end; justify-content: center; }
@@ -320,6 +324,10 @@ select { width: auto; }
 .music-t small { font-size: 12px; color: var(--mute); }
 .music-play { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: var(--paper); cursor: pointer; font-size: 13px; flex: none; }
 .music-play.on { background: var(--key); color: #fff; border-color: var(--key); }
+.music-sec { font-size: 12.5px; font-weight: 700; color: var(--ink2); margin: 10px 6px 2px; }
+.music-del { border: 0; background: none; color: #9a2b1d; font-size: 12.5px; cursor: pointer; padding: 6px; }
+.music-mine { padding: 4px 6px 8px; }
+.music-mine p { margin: 6px 0 0; color: #74500c; background: #fdf3df; border-radius: 8px; padding: 8px 10px; }
 .live-screen.zoom { overflow-x: auto; }
 .live-screen.zoom img { width: 230%; max-width: none; }
 .live-zoom { margin: 0 12px; align-self: flex-start; }
