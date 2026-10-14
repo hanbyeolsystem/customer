@@ -108,15 +108,15 @@ footer{font-size:13.5px;color:var(--mute);padding:24px 0 40px;border-top:1px sol
 <div class="wrap">
 <header>
   <a class="brand" href="./">딸깍<b>블로그</b></a>
-  <nav class="nav"><a class="btn" href="app/">로그인</a><a class="btn go" href="app/?join=1"><span data-p="trial.days">10</span>일 무료</a></nav>
+  <nav class="nav"><a class="btn" href="app/">로그인</a><a class="btn go" href="app/?join=1"><span data-free><span data-p="trial.days">10</span>일</span> 무료</a></nav>
 </header>
 
 <div class="hero">
   <div>
     <h1>현장 사진 고르고 <span class="k">딸깍.</span><br>네이버 블로그에<br>올라갑니다.</h1>
     <p class="lead">현장은 매일 다니는데 블로그는 한 달째 그대로라면, 오늘 찍은 사진 3장이면 됩니다. 사진을 보고 제목·본문·태그를 쓰고 내 블로그에 올리기까지 약 1분.</p>
-    <div class="cta"><a class="btn go" href="app/?join=1"><span data-p="trial.days">10</span>일 무료로 써 보기</a><a class="btn" href="#how">어떻게 되나 보기</a></div>
-    <p class="note">카드 등록 없이 가입하면 바로 하루 <span data-p="trial.daily">1</span>편씩 쓸 수 있습니다.</p>
+    <div class="cta"><a class="btn go" href="app/?join=1"><span data-free><span data-p="trial.days">10</span>일</span> 무료로 써 보기</a><a class="btn" href="#how">어떻게 되나 보기</a></div>
+    <p class="note" id="heroNote">카드 등록 없이 가입하면 바로 하루 <span data-p="trial.daily">1</span>편씩 쓸 수 있습니다.</p>
   </div>
   <div class="board" aria-label="딸깍블로그 조작판 그림">
     <div class="board-top"><span><i class="led"></i>준비 완료</span><span>DDALKKAK B-1</span></div>
@@ -193,7 +193,7 @@ footer{font-size:13.5px;color:var(--mute);padding:24px 0 40px;border-top:1px sol
 <div class="wrap last">
   <h2>오늘 찍은 현장 사진 3장으로<br>첫 글을 써 보세요.</h2>
   <p class="sub" style="margin:0 auto">가입은 1분, 첫 글도 1분 안팎입니다. 순서는 <a href="ddalkkak-manual.pdf">사용 설명서(PDF)</a> 에 그림과 함께 있고, 막히면 053-588-7119 로 전화 주세요.</p>
-  <div class="cta"><a class="btn go" href="app/?join=1"><span data-p="trial.days">10</span>일 무료로 시작</a><a class="btn" href="app/">로그인</a></div>
+  <div class="cta"><a class="btn go" href="app/?join=1"><span data-free><span data-p="trial.days">10</span>일</span> 무료로 시작</a><a class="btn" href="app/">로그인</a></div>
 </div>
 
 <footer><div class="wrap">딸깍블로그 · 한별시스템 · 대구 달서구 문화회관11안길 22-7 · 053-588-7119 · <a href="../">한별시스템.kr</a></div></footer>
@@ -207,6 +207,14 @@ footer{font-size:13.5px;color:var(--mute);padding:24px 0 40px;border-top:1px sol
       var k = el.getAttribute('data-p').split('.'), v = j.plans && j.plans[k[0]] && j.plans[k[0]][k[1]];
       if (v !== undefined && v !== null) el.textContent = k[1] === 'price' ? Number(v).toLocaleString('ko-KR') : v;
     });
+    // 가입 행사(예: 10월 17일까지 가입하면 프로 15일)
+    var p = j.promo;
+    if (p) {
+      var pl = j.plans[p.plan] || {};
+      document.querySelectorAll('[data-free]').forEach(function(el){ el.textContent = p.name + ' ' + p.days + '일'; });
+      var md = (+p.until.slice(5, 7)) + '월 ' + (+p.until.slice(8)) + '일';
+      document.getElementById('heroNote').textContent = md + '까지 가입하면 ' + p.name + ' 이용권 ' + p.days + '일(하루 글 ' + pl.daily + '편)을 무료로 씁니다. 카드 등록 없음.';
+    }
   }).catch(function(){});
 })();
 // 처음 한 번: 시작 키가 눌리고 카운터가 하나 올라간다
