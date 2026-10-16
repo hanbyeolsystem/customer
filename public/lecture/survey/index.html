@@ -95,12 +95,21 @@ body.sent .done{display:block}
       </div>
     </fieldset>
 
+    <fieldset>
+      <legend><span class="q">질문 2</span>세 단어 중 우리 회사에 지금 가장 급한 것은?<span>하나만 고르세요. 내일은 그 단어의 도구 하나만 해 봅니다.</span></legend>
+      <div class="list">
+        <label class="opt"><input type="radio" name="word" value="줄이고 (시간을 번다)"><span><b>줄이고</b>&nbsp;· 시간을 번다</span></label>
+        <label class="opt"><input type="radio" name="word" value="늘리고 (돈을 번다)"><span><b>늘리고</b>&nbsp;· 돈을 번다</span></label>
+        <label class="opt"><input type="radio" name="word" value="알리고 (이름을 번다)"><span><b>알리고</b>&nbsp;· 이름을 번다</span></label>
+      </div>
+    </fieldset>
+
     <fieldset id="parts">
-      <legend><span class="q">질문 2</span>파트별로 도움이 됐나요?</legend>
+      <legend><span class="q">질문 3</span>파트별로 도움이 됐나요?</legend>
     </fieldset>
 
     <fieldset>
-      <legend><span class="q">질문 3</span>더 알아보고 싶은 것<span>여러 개 골라도 됩니다. 고른 것은 연락드려 안내합니다.</span></legend>
+      <legend><span class="q">질문 4</span>더 알아보고 싶은 것<span>여러 개 골라도 됩니다. 고른 것은 연락드려 안내합니다.</span></legend>
       <div class="list">
         <label class="opt"><input type="checkbox" name="interest" value="종합관리툴 30분 원격 시연"><span>종합관리툴 30분 원격 시연</span></label>
         <label class="opt"><input type="checkbox" name="interest" value="딸깍P드라이버 설치 도움"><span>딸깍P드라이버 설치 도움</span></label>
@@ -111,7 +120,7 @@ body.sent .done{display:block}
     </fieldset>
 
     <fieldset>
-      <legend><span class="q">질문 4</span>NAS를 제안할 거래처가 떠오르나요?</legend>
+      <legend><span class="q">질문 5</span>NAS를 제안할 거래처가 떠오르나요?</legend>
       <div class="list">
         <label class="opt"><input type="radio" name="nas" value="이번 달 제안할 곳이 있다"><span>이번 달 제안할 곳이 있다</span></label>
         <label class="opt"><input type="radio" name="nas" value="신호는 봤다, 더 배우고 싶다"><span>신호는 봤다, 더 배우고 싶다</span></label>
@@ -120,7 +129,7 @@ body.sent .done{display:block}
     </fieldset>
 
     <fieldset>
-      <legend><span class="q">질문 5</span>하고 싶은 말</legend>
+      <legend><span class="q">질문 6</span>하고 싶은 말</legend>
       <div class="grid2" style="grid-template-columns:1fr">
         <label class="f">다음에 더 듣고 싶은 내용<textarea name="want" maxlength="1000" placeholder="예: NAS 견적 내는 법, 관리툴 청구 화면"></textarea></label>
         <label class="f">아쉬웠던 점이나 자유롭게<textarea name="comment" maxlength="1000"></textarea></label>
@@ -136,7 +145,7 @@ body.sent .done{display:block}
       </div>
       <div class="consent">
         <b>개인정보 수집·이용 안내</b><br>
-        받는 것: 업체명, 이름, 휴대폰 · 쓰는 곳: 질문 3에서 고른 내용의 상담 연락 · 보관: 상담이 끝나면 1년 안에 지우고, 요청하시면 바로 지웁니다. 동의하지 않으셔도 설문은 보낼 수 있습니다(연락처 칸은 비워 주세요).
+        받는 것: 업체명, 이름, 휴대폰 · 쓰는 곳: 질문 4에서 고른 내용의 상담 연락 · 보관: 상담이 끝나면 1년 안에 지우고, 요청하시면 바로 지웁니다. 동의하지 않으셔도 설문은 보낼 수 있습니다(연락처 칸은 비워 주세요).
         <label><input type="checkbox" name="consent" id="consent">위 내용에 동의하고 연락처를 남깁니다</label>
       </div>
     </fieldset>
@@ -204,10 +213,11 @@ body.sent .done{display:block}
     var parts = {}, partLines = [];
     PARTS.forEach(function(p, i){ var v = val('p' + i); if (v) { parts[p] = v; partLines.push(p + ': ' + v); } });
     var interest = [].slice.call(f.querySelectorAll('[name=interest]:checked')).map(function(e){ return e.value; });
-    var rec = { e: EVENT, o: +overall, p: parts, i: interest, n: val('nas'), c: !!(consent && (company || name || phone)) };
+    var rec = { e: EVENT, o: +overall, w: val('word'), p: parts, i: interest, n: val('nas'), c: !!(consent && (company || name || phone)) };
     var fields = [
       { label: '행사', value: EVENT },
       { label: '전체 만족도', value: overall + ' / 5' },
+      { label: '가장 급한 단어', value: val('word') },
       { label: '파트별 도움', value: partLines.join('\n') },
       { label: '더 알아보고 싶은 것', value: interest.join('\n') },
       { label: 'NAS 제안할 거래처', value: val('nas') },
