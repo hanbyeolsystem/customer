@@ -528,7 +528,7 @@ body.scroll .notes{display:none}
   var slides = [].slice.call(document.querySelectorAll('.slide')), N = slides.length, cur = -1,
       stage = document.getElementById('stage'), beam = document.getElementById('beam'), prog = document.getElementById('prog'),
       pg = document.getElementById('pg'), hudN = document.getElementById('hudN'),
-      notes = document.getElementById('notes'), notesBtn = document.getElementById('notesBtn'), scroll = false, timer;
+      notes = document.getElementById('notes'), notesBtn = document.getElementById('notesBtn'), scroll = false, vis = -1, timer;
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   // 장 안의 .a 에 차례 번호
   slides.forEach(function(s){ s.querySelectorAll('.a').forEach(function(e, i){ if (!e.style.getPropertyValue('--i')) e.style.setProperty('--i', i); }); });
@@ -538,7 +538,9 @@ body.scroll .notes{display:none}
     var was = scroll; scroll = innerWidth < 760;
     document.body.classList.toggle('scroll', scroll);
     if (!scroll) { var v = document.getElementById('view'); stage.style.setProperty('--s', Math.min((v.clientWidth - 24) / 1600, (v.clientHeight - 24) / 900)); }
-    if (scroll && !was) watch();
+    // 세로 보기 ↔ 무대 보기로 바뀔 때 읽던 장을 그대로 이어 간다
+    if (!scroll && was && vis >= 0 && vis !== cur) show(vis);
+    if (scroll && !was) { watch(); if (cur > 0) slides[cur].scrollIntoView(); }
   }
 
   function count(s){
@@ -568,9 +570,9 @@ body.scroll .notes{display:none}
   var io;
   function watch(){
     if (io) return;
-    io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) { var s = e.target;
+    io = new IntersectionObserver(function(es){ if (!scroll) return; es.forEach(function(e){ if (e.isIntersecting) { var s = e.target;
       if (!s.classList.contains('seen')) { s.classList.add('seen'); count(s); }
-      pg.textContent = pad(slides.indexOf(s) + 1) + '/' + N; } }); }, { threshold: .3 });
+      vis = slides.indexOf(s); pg.textContent = pad(vis + 1) + '/' + N; } }); }, { threshold: .3 });
     slides.forEach(function(s){ io.observe(s); });
   }
 
@@ -594,6 +596,8 @@ body.scroll .notes{display:none}
     if (k === 'n' || k === 'N' || k === 'ㅜ') { toggleNotes(); return; }
     if (k === 'f' || k === 'F' || k === 'ㄹ') { fullscreen(); return; }
     if (scroll) return;
+    // 단추·링크를 고른 채 누른 Enter·스페이스는 그 단추가 받는다
+    if ((k === ' ' || k === 'Enter') && e.target.closest && e.target.closest('a,button,input,textarea,select,[contenteditable]')) return;
     if (k === 'ArrowRight' || k === 'PageDown' || k === ' ' || k === 'Enter') { e.preventDefault(); show(cur + 1); }
     else if (k === 'ArrowLeft' || k === 'PageUp' || k === 'Backspace') { e.preventDefault(); show(cur - 1); }
     else if (k === 'Home') show(0); else if (k === 'End') show(N - 1);

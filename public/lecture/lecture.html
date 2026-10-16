@@ -343,6 +343,7 @@ body.scroll .notes{display:none}
 .tbl.sm{font-size:20px}
 .tbl.sm td{padding:11px 14px}
 .split{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.split.w2grid{grid-template-columns:1.05fr .95fr}
 
 /* 목차 */
 .toc{position:fixed;right:16px;bottom:76px;width:min(440px,calc(100% - 32px));padding:14px;border-radius:16px;background:rgba(6,16,14,.96);border:1px solid var(--line2);z-index:21;box-shadow:0 20px 60px rgba(0,0,0,.6)}
@@ -872,7 +873,7 @@ body.scroll .cover .trans{font-size:15px}
 <section class="slide" id="w2" data-tag="드라이버 센터 화면">
   <span class="eyebrow a">이렇게 생겼습니다</span>
   <h2 class="a">우리 상호가 박힌 드라이버 센터</h2>
-  <div class="split" style="grid-template-columns:1.05fr .95fr">
+  <div class="split w2grid">
     <div class="browser a" role="img" aria-label="업체 이름이 들어간 드라이버 센터 화면 예시">
       <div class="bt"><i></i><i></i><i></i><span>drivers.우리회사.co.kr</span></div>
       <div class="hd"><b>○○상사 드라이버 센터<small>평일 09:00~18:00 · 000-000-0000</small></b><span><em>딸깍P드라이버 받기</em> <em>관리툴</em></span></div>
@@ -1244,7 +1245,7 @@ body.scroll .cover .trans{font-size:15px}
       stage = document.getElementById('stage'), beam = document.getElementById('beam'), prog = document.getElementById('prog'),
       pg = document.getElementById('pg'), hudN = document.getElementById('hudN'), hudPart = document.getElementById('hudPart'),
       notes = document.getElementById('notes'), notesBtn = document.getElementById('notesBtn'),
-      toc = document.getElementById('toc'), tocBtn = document.getElementById('tocBtn'), scroll = false, timer;
+      toc = document.getElementById('toc'), tocBtn = document.getElementById('tocBtn'), scroll = false, vis = -1, timer;
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   slides.forEach(function(s){ s.querySelectorAll('.a').forEach(function(e, i){ if (!e.style.getPropertyValue('--i')) e.style.setProperty('--i', i); }); });
   function pad(n){ return String(n).padStart(2, '0'); }
@@ -1266,7 +1267,9 @@ body.scroll .cover .trans{font-size:15px}
     var was = scroll; scroll = innerWidth < 760;
     document.body.classList.toggle('scroll', scroll);
     if (!scroll) { var v = document.getElementById('view'); stage.style.setProperty('--s', Math.min((v.clientWidth - 24) / 1600, (v.clientHeight - 24) / 900)); }
-    if (scroll && !was) watch();
+    // 세로 보기 ↔ 무대 보기로 바뀔 때 읽던 장을 그대로 이어 간다
+    if (!scroll && was && vis >= 0 && vis !== cur) show(vis);
+    if (scroll && !was) { watch(); if (cur > 0) slides[cur].scrollIntoView(); }
   }
 
   function count(s){
@@ -1302,9 +1305,9 @@ body.scroll .cover .trans{font-size:15px}
   var io;
   function watch(){
     if (io) return;
-    io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) { var s = e.target;
+    io = new IntersectionObserver(function(es){ if (!scroll) return; es.forEach(function(e){ if (e.isIntersecting) { var s = e.target;
       if (!s.classList.contains('seen')) { s.classList.add('seen'); count(s); }
-      mark(slides.indexOf(s)); } }); }, { threshold: .3 });
+      vis = slides.indexOf(s); mark(vis); } }); }, { threshold: .3 });
     slides.forEach(function(s){ io.observe(s); });
   }
 
