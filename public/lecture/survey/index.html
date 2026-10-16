@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>딜러 세미나 설문</title>
+<meta name="description" content="한별시스템 딜러 세미나 설문. 3분이면 끝납니다.">
+<meta name="theme-color" content="#0a1714">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{--ink:#0d1a17;--ink2:#3a4a45;--mute:#6b7c76;--line:#d3ddd9;--bg:#f3f7f5;--card:#fff;--night:#0a1714;--scan:#74f2c6;--deep:#0b8a60;--tint:#e6f8f1;--warn:#fdf0dc;--risk:#c0562c;
+  --sans:"Pretendard Variable",Pretendard,"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;color-scheme:light}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--sans);word-break:keep-all;overflow-wrap:anywhere;-webkit-font-smoothing:antialiased}
+.top{background:radial-gradient(120% 140% at 90% 0%,#134a3c,transparent 60%),var(--night);color:#eef8f3;padding:28px 16px 26px;position:relative}
+.top::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,transparent,var(--scan) 30%,#eafff7 50%,var(--scan) 70%,transparent)}
+.wrap{max-width:640px;margin:0 auto}
+.top small{font-size:13px;color:var(--scan);letter-spacing:.02em}
+.top h1{margin:6px 0 8px;font-size:30px;line-height:1.15;font-weight:900;letter-spacing:-.04em}
+.top p{margin:0;color:#b9cfc8;font-size:15px}
+main{padding:16px 16px 40px}
+form{display:grid;gap:14px}
+fieldset{margin:0;border:1px solid var(--line);border-radius:16px;background:var(--card);padding:18px 16px 16px;min-width:0}
+legend{padding:0;font-weight:800;font-size:18px;letter-spacing:-.02em;float:left;width:100%;margin-bottom:12px}
+legend span{display:block;font-weight:500;font-size:13.5px;color:var(--mute);letter-spacing:0;margin-top:2px}
+legend+*{clear:both}
+.q{font-size:13px;color:var(--deep);font-weight:700;display:block;margin-bottom:2px}
+.scale{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.opt span{display:flex;align-items:center;justify-content:center;min-height:48px;padding:10px 14px;border-radius:12px;border:1.5px solid var(--line);background:#fff;font-weight:700;font-size:15.5px;text-align:center;line-height:1.3;transition:background .15s,border-color .15s}
+.scale .opt span{flex-direction:column;font-size:22px;font-weight:800;padding:8px 4px}
+.scale .opt span small{font-size:11.5px;font-weight:600;color:var(--mute)}
+.opt input:checked+span{background:var(--tint);border-color:var(--deep);color:#064d36}
+.opt input:focus-visible+span{outline:3px solid var(--scan);outline-offset:2px}
+.list{display:grid;gap:8px}
+.list .opt span{justify-content:flex-start;text-align:left;padding-left:46px}
+.list .opt span::before{content:"";position:absolute;left:16px;width:20px;height:20px;border-radius:6px;border:1.5px solid #9fb3ac;background:#fff}
+.list .opt input[type=radio]+span::before{border-radius:50%}
+.list .opt input:checked+span::before{background:var(--deep);border-color:var(--deep);box-shadow:inset 0 0 0 3px #fff}
+.part{display:grid;gap:6px;padding:12px 0;border-top:1px solid #e7eeeb}
+.part:first-of-type{border-top:0;padding-top:0}
+.part b{font-size:15.5px}
+.part .chips .opt{flex:1}
+.part .chips .opt span{min-height:42px;font-size:14px;padding:8px 6px}
+label.f{display:grid;gap:6px;font-weight:700;font-size:15px}
+input[type=text],input[type=tel],textarea{width:100%;font:inherit;font-size:16px;padding:12px 14px;border-radius:12px;border:1.5px solid var(--line);background:#fff;color:var(--ink)}
+input[type=text]:focus,input[type=tel]:focus,textarea:focus{outline:none;border-color:var(--deep);box-shadow:0 0 0 3px rgba(116,242,198,.45)}
+textarea{min-height:88px;resize:vertical}
+.grid2{display:grid;gap:12px}
+.consent{margin-top:12px;padding:12px 14px;border-radius:12px;background:var(--bg);font-size:13.5px;color:var(--ink2)}
+.consent label{display:flex;gap:10px;align-items:flex-start;font-weight:700;font-size:15px;color:var(--ink);margin-top:8px;cursor:pointer}
+.consent input{width:22px;height:22px;flex:none;margin:1px 0 0;accent-color:var(--deep)}
+.err{color:var(--risk);font-weight:700;font-size:14px;min-height:0}
+.send{width:100%;min-height:58px;border:0;border-radius:16px;cursor:pointer;font:inherit;font-size:20px;font-weight:900;letter-spacing:-.02em;color:#03140d;background:linear-gradient(180deg,#b7ffe5,var(--scan) 45%,#1fc48d);box-shadow:0 12px 30px -12px rgba(11,138,96,.8)}
+.send:disabled{opacity:.6;cursor:wait}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.done{display:none;border:1px solid var(--line);border-radius:16px;background:var(--card);padding:22px 18px}
+.done h2{margin:0 0 6px;font-size:24px;letter-spacing:-.03em}
+.done p{margin:0 0 14px;color:var(--ink2)}
+.links{display:grid;gap:8px}
+.links a{display:flex;justify-content:space-between;align-items:center;min-height:50px;padding:12px 16px;border-radius:12px;border:1px solid var(--line);color:var(--ink);text-decoration:none;font-weight:700;background:#fff}
+.links a span{color:var(--deep)}
+.again{display:none;padding:12px 14px;border-radius:12px;background:var(--warn);font-size:14.5px}
+.again button{border:0;background:none;color:var(--deep);font:inherit;font-weight:800;text-decoration:underline;cursor:pointer;padding:0}
+.foot{text-align:center;color:var(--mute);font-size:13.5px;margin-top:22px}
+.foot a{color:var(--ink2)}
+body.sent form,body.sent .again{display:none}
+body.sent .done{display:block}
+@media (min-width:560px){.grid2{grid-template-columns:1fr 1fr}.grid2 label:first-child{grid-column:1/-1}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <small>한별시스템 딜러 세미나 · 설문</small>
+  <h1>오늘 어떠셨나요? 3분이면 끝납니다.</h1>
+  <p>첫 질문만 꼭 골라 주세요. 나머지는 원하는 것만. 이름과 연락처는 상담을 원할 때만 적으시면 됩니다.</p>
+</div></header>
+
+<main><div class="wrap">
+  <p class="again" id="again">이 휴대폰에서 이미 설문을 보내셨습니다. 고마워요. <button type="button" id="againBtn">한 번 더 보내기</button></p>
+
+  <form id="f" novalidate>
+    <fieldset>
+      <legend><span class="q">질문 1 · 꼭</span>오늘 강의 전체는 어땠나요?<span>1 별로 · 3 보통 · 5 아주 좋음</span></legend>
+      <div class="scale" role="radiogroup" aria-label="전체 만족도">
+        <label class="opt"><input type="radio" name="overall" value="1"><span>1<small>별로</small></span></label>
+        <label class="opt"><input type="radio" name="overall" value="2"><span>2<small>&nbsp;</small></span></label>
+        <label class="opt"><input type="radio" name="overall" value="3"><span>3<small>보통</small></span></label>
+        <label class="opt"><input type="radio" name="overall" value="4"><span>4<small>&nbsp;</small></span></label>
+        <label class="opt"><input type="radio" name="overall" value="5"><span>5<small>아주 좋음</small></span></label>
+      </div>
+    </fieldset>
+
+    <fieldset id="parts">
+      <legend><span class="q">질문 2</span>파트별로 도움이 됐나요?</legend>
+    </fieldset>
+
+    <fieldset>
+      <legend><span class="q">질문 3</span>더 알아보고 싶은 것<span>여러 개 골라도 됩니다. 고른 것은 연락드려 안내합니다.</span></legend>
+      <div class="list">
+        <label class="opt"><input type="checkbox" name="interest" value="종합관리툴 30분 원격 시연"><span>종합관리툴 30분 원격 시연</span></label>
+        <label class="opt"><input type="checkbox" name="interest" value="딸깍P드라이버 설치 도움"><span>딸깍P드라이버 설치 도움</span></label>
+        <label class="opt"><input type="checkbox" name="interest" value="NAS 판매 공급 조건·견적 양식"><span>NAS 판매 공급 조건·견적 양식</span></label>
+        <label class="opt"><input type="checkbox" name="interest" value="드라이버 센터·홈페이지 상담"><span>드라이버 센터·홈페이지 상담</span></label>
+        <label class="opt"><input type="checkbox" name="interest" value="딸깍블로그 가입·이용권"><span>딸깍블로그 가입·이용권</span></label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend><span class="q">질문 4</span>NAS를 제안할 거래처가 떠오르나요?</legend>
+      <div class="list">
+        <label class="opt"><input type="radio" name="nas" value="이번 달 제안할 곳이 있다"><span>이번 달 제안할 곳이 있다</span></label>
+        <label class="opt"><input type="radio" name="nas" value="신호는 봤다, 더 배우고 싶다"><span>신호는 봤다, 더 배우고 싶다</span></label>
+        <label class="opt"><input type="radio" name="nas" value="아직 없다"><span>아직 없다</span></label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend><span class="q">질문 5</span>하고 싶은 말</legend>
+      <div class="grid2" style="grid-template-columns:1fr">
+        <label class="f">다음에 더 듣고 싶은 내용<textarea name="want" maxlength="1000" placeholder="예: NAS 견적 내는 법, 관리툴 청구 화면"></textarea></label>
+        <label class="f">아쉬웠던 점이나 자유롭게<textarea name="comment" maxlength="1000"></textarea></label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend><span class="q">선택</span>상담 연락을 원하시면<span>비워 두셔도 설문은 보내집니다.</span></legend>
+      <div class="grid2">
+        <label class="f">업체명<input type="text" name="company" maxlength="60" autocomplete="organization"></label>
+        <label class="f">이름<input type="text" name="name" maxlength="30" autocomplete="name"></label>
+        <label class="f">휴대폰<input type="tel" name="phone" maxlength="20" inputmode="tel" autocomplete="tel" placeholder="010-0000-0000"></label>
+      </div>
+      <div class="consent">
+        <b>개인정보 수집·이용 안내</b><br>
+        받는 것: 업체명, 이름, 휴대폰 · 쓰는 곳: 질문 3에서 고른 내용의 상담 연락 · 보관: 상담이 끝나면 1년 안에 지우고, 요청하시면 바로 지웁니다. 동의하지 않으셔도 설문은 보낼 수 있습니다(연락처 칸은 비워 주세요).
+        <label><input type="checkbox" name="consent" id="consent">위 내용에 동의하고 연락처를 남깁니다</label>
+      </div>
+    </fieldset>
+
+    <div class="hp" aria-hidden="true"><label>홈페이지<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+    <p class="err" id="err" role="alert"></p>
+    <button class="send" id="send" type="submit">설문 보내기</button>
+  </form>
+
+  <section class="done" id="done" aria-live="polite">
+    <h2>고맙습니다. 잘 받았습니다.</h2>
+    <p id="doneMsg">보내 주신 내용은 한별시스템 김상환 대표가 직접 읽습니다.</p>
+    <div class="links">
+      <a href="../lecture.html">오늘 강의 다시 보기 <span>보기</span></a>
+      <a href="../#handouts">나눔자료 PDF 5종 <span>받기</span></a>
+      <a href="/support/drivers/">딸깍P드라이버 받기 <span>무료</span></a>
+      <a href="/ddalkkak/">딸깍블로그 <span>가입</span></a>
+    </div>
+  </section>
+
+  <p class="foot">한별시스템 · <a href="tel:053-588-7119">053-588-7119</a> · <a href="tel:010-4585-6890">010-4585-6890</a></p>
+</div></main>
+
+<script>
+(function(){
+  // 응답은 홈페이지 상담폼과 같은 알림 함수로 슬랙에 바로 올라간다 (DB 변경 없음)
+  var ENDPOINT = 'https://jrzesjgyrvgvwazfajec.supabase.co/functions/v1/contact-to-slack';
+  var EVENT = (new URLSearchParams(location.search).get('e') || '2026-10 딜러 세미나').slice(0, 60);
+  var PARTS = ['종합관리툴', '딸깍P드라이버', '시놀로지 NAS', '홈페이지·드라이버 센터', '딸깍블로그'];
+  var LEVELS = ['도움 됨', '보통', '잘 모르겠음'];
+  var KEY = 'hb-survey:' + EVENT;
+  var f = document.getElementById('f'), err = document.getElementById('err'), send = document.getElementById('send');
+
+  var box = document.getElementById('parts');
+  PARTS.forEach(function(p, i){
+    var d = document.createElement('div'); d.className = 'part';
+    var b = document.createElement('b'); b.textContent = '0' + (i + 1) + ' ' + p; d.appendChild(b);
+    var c = document.createElement('div'); c.className = 'chips'; c.setAttribute('role', 'radiogroup'); c.setAttribute('aria-label', p);
+    LEVELS.forEach(function(l){
+      var lab = document.createElement('label'); lab.className = 'opt';
+      var inp = document.createElement('input'); inp.type = 'radio'; inp.name = 'p' + i; inp.value = l;
+      var sp = document.createElement('span'); sp.textContent = l;
+      lab.appendChild(inp); lab.appendChild(sp); c.appendChild(lab);
+    });
+    d.appendChild(c); box.appendChild(d);
+  });
+
+  function seen(){ try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  if (seen()) document.getElementById('again').style.display = 'block';
+  document.getElementById('againBtn').onclick = function(){ document.getElementById('again').style.display = 'none'; };
+
+  function val(n){ var e = f.querySelector('[name="' + n + '"]:checked'); return e ? e.value : ''; }
+  function txt(n){ return (f.elements[n].value || '').trim(); }
+
+  f.addEventListener('submit', function(ev){
+    ev.preventDefault(); err.textContent = '';
+    var overall = val('overall');
+    if (!overall) { err.textContent = '질문 1(전체 만족도)을 골라 주세요.'; f.querySelector('[name=overall]').focus(); return; }
+    var company = txt('company'), name = txt('name'), phone = txt('phone'), consent = f.elements.consent.checked;
+    if ((company || name || phone) && !consent) { err.textContent = '연락처를 남기시려면 개인정보 안내에 동의해 주세요. 원하지 않으면 연락처 칸을 비워 주세요.'; f.elements.consent.focus(); return; }
+    if (phone && !/^[0-9\-\s+()]{9,20}$/.test(phone)) { err.textContent = '휴대폰 번호를 숫자로 적어 주세요.'; f.elements.phone.focus(); return; }
+    var done = function(){ try { localStorage.setItem(KEY, new Date().toISOString()); } catch (e) {} document.body.classList.add('sent'); scrollTo(0, 0); };
+    if (txt('website')) { done(); return; }   // 자동 입력 봇
+
+    var parts = {}, partLines = [];
+    PARTS.forEach(function(p, i){ var v = val('p' + i); if (v) { parts[p] = v; partLines.push(p + ': ' + v); } });
+    var interest = [].slice.call(f.querySelectorAll('[name=interest]:checked')).map(function(e){ return e.value; });
+    var rec = { e: EVENT, o: +overall, p: parts, i: interest, n: val('nas'), c: !!(consent && (company || name || phone)) };
+    var fields = [
+      { label: '행사', value: EVENT },
+      { label: '전체 만족도', value: overall + ' / 5' },
+      { label: '파트별 도움', value: partLines.join('\n') },
+      { label: '더 알아보고 싶은 것', value: interest.join('\n') },
+      { label: 'NAS 제안할 거래처', value: val('nas') },
+      { label: '더 듣고 싶은 내용', value: txt('want') },
+      { label: '하고 싶은 말', value: txt('comment') }
+    ];
+    if (consent && (company || name || phone)) fields.push(
+      { label: '업체명', value: company }, { label: '이름', value: name }, { label: '휴대폰', value: phone },
+      { label: '개인정보 동의', value: '동의함 (상담 연락용, 상담 후 1년 안 삭제)' });
+    fields.push({ label: '기록', value: JSON.stringify(rec) });
+
+    send.disabled = true; send.textContent = '보내는 중…';
+    fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ type: '강의 설문', fields: fields }) })
+      .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(d){ if (!r.ok || !d.ok) throw new Error('send'); }); })
+      .then(function(){
+        if (interest.length && !(consent && (company || name || phone))) document.getElementById('doneMsg').textContent = '연락처 없이 받았습니다. 상담을 원하시면 053-588-7119 로 전화 주세요.';
+        done();
+      })
+      .catch(function(){ err.textContent = '보내지 못했습니다. 인터넷 연결을 확인하고 한 번 더 눌러 주세요. 계속 안 되면 053-588-7119.'; })
+      .then(function(){ send.disabled = false; send.textContent = '설문 보내기'; });
+  });
+})();
+</script>
+</body>
+</html>
