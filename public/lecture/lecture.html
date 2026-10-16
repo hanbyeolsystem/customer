@@ -1231,8 +1231,8 @@ body.scroll .cover .trans{font-size:15px}
   <span class="sp"></span>
   <button class="tb" id="tocBtn" aria-pressed="false" title="목차 (M)">목차</button>
   <button class="tb" id="notesBtn" aria-pressed="false" title="강사 메모 (N)">강사 메모</button>
-  <a class="tb hide-s" href="./#handouts" target="_blank" rel="noopener">나눔자료</a>
-  <a class="tb" href="./survey/" target="_blank" rel="noopener">설문</a>
+  <a class="tb hide-s" href="https://xn--bm3bm1i1e348cgwe.kr/lecture/#handouts" target="_blank" rel="noopener">나눔자료</a>
+  <a class="tb" href="https://xn--bm3bm1i1e348cgwe.kr/lecture/survey/" target="_blank" rel="noopener">설문</a>
   <button class="tb hide-s" id="fsBtn" title="전체 화면 (F)">전체 화면</button>
   <button class="tb hide-s" id="prev" aria-label="이전 장">←</button>
   <button class="tb go hide-s" id="next" aria-label="다음 장">→</button>
@@ -1336,6 +1336,8 @@ body.scroll .cover .trans{font-size:15px}
     if (k === 'Escape') { toggleToc(false); return; }
     if (/^[0-9]$/.test(k) && parts[+k]) { go(parts[+k].at); return; }
     if (scroll) return;
+    // 단추·링크를 고른 채 누른 Enter·스페이스는 그 단추가 받는다
+    if ((k === ' ' || k === 'Enter') && e.target.closest && e.target.closest('a,button,input,textarea,select,[contenteditable]')) return;
     if (k === 'ArrowRight' || k === 'PageDown' || k === ' ' || k === 'Enter') { e.preventDefault(); show(cur + 1); }
     else if (k === 'ArrowLeft' || k === 'PageUp' || k === 'Backspace') { e.preventDefault(); show(cur - 1); }
     else if (k === 'Home') show(0); else if (k === 'End') show(N - 1);
