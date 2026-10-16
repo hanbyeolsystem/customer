@@ -539,7 +539,7 @@ body.scroll .notes{display:none}
     document.body.classList.toggle('scroll', scroll);
     if (!scroll) { var v = document.getElementById('view'); stage.style.setProperty('--s', Math.min((v.clientWidth - 24) / 1600, (v.clientHeight - 24) / 900)); }
     // 세로 보기 ↔ 무대 보기로 바뀔 때 읽던 장을 그대로 이어 간다
-    if (!scroll && was && vis >= 0 && vis !== cur) show(vis);
+    if (!scroll && was) { if (io) { io.disconnect(); io = null; } if (vis >= 0 && vis !== cur) show(vis); } // 무대로 가면 세로 보기 감시를 끊고, 돌아오면 새로 건다
     if (scroll && !was) { watch(); if (cur > 0) slides[cur].scrollIntoView(); }
   }
 
