@@ -1,5 +1,180 @@
 [
  {
+  "logNo": "224445390755",
+  "title": "대구 시놀로지 NAS DS225+ 설치, 사무실 백업용으로 세팅하고 왔어요",
+  "cat": "etc",
+  "catLabel": "한별시스템",
+  "date": "2026-10-18",
+  "href": "https://blog.naver.com/hanbyeolsystem/224445390755",
+  "thumb": "/blog-posts/224445390755/1.webp",
+  "excerpt": "안녕하세요!! 올인원시스템을 추구하는 한별시스템입니다. 오늘은 대구 사무실에 시놀로지 NAS DS225+(2베이 NAS 장비)를 백업용으로 설치하러 다녀왔어요. 평소 PC나 업무 자료를 어딘가에 따로 저장해 두고 싶다고 생각하시는 사무실에 딱 맞는 작업이었어요. 일단 현장 보니까요 시놀",
+  "chars": 1911,
+  "images": 7,
+  "related": {
+   "href": "/nas/model/ds225-plus/",
+   "label": "DS225+ 설치 비용·구성"
+  },
+  "blocks": [
+   {
+    "t": "img",
+    "src": "/blog-posts/224445390755/1.webp",
+    "w": 900,
+    "h": 879
+   },
+   {
+    "t": "p",
+    "text": "안녕하세요!! 올인원시스템을 추구하는 한별시스템입니다."
+   },
+   {
+    "t": "p",
+    "text": "오늘은 대구 사무실에 시놀로지 NAS DS225+(2베이 NAS 장비)를 백업용으로 설치하러 다녀왔어요. 평소 PC나 업무 자료를 어딘가에 따로 저장해 두고 싶다고 생각하시는 사무실에 딱 맞는 작업이었어요."
+   },
+   {
+    "t": "p",
+    "text": "일단 현장 보니까요"
+   },
+   {
+    "t": "img",
+    "src": "/blog-posts/224445390755/2.webp",
+    "w": 900,
+    "h": 604
+   },
+   {
+    "t": "p",
+    "text": "시놀로지 DS225+가 책상 위에 올라가 있는 모습이에요. 본체 옆으로 랜선 여러 가닥이 연결돼 있고, 아래에는 작은 스위치 허브도 함께 놓여 있어요."
+   },
+   {
+    "t": "p",
+    "text": "전면 표시등이 켜진 걸 보니 전원은 정상적으로 들어온 상태더라고요."
+   },
+   {
+    "t": "p",
+    "text": "표시등 색깔도 한번 봐두시면 좋아요. 시놀로지 NAS는 정상 상태면 파란불, 문제가 생기면 주황색이나 빨간불이 들어오거든요."
+   },
+   {
+    "t": "p",
+    "text": "설치 직후에 파란불이 안정적으로 켜져 있으면 일단 정상이라고 보시면 돼요."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjEwMThfNzMg/MDAxNzkyMjkzNDM5ODUz.iWZ8vB81feSiTxS_cXnoIjANRlGGDEkHKH4izf4w6eYg.5E36dtCghtKi7cEgSLJ-JZxBWNesLGfwzJf64CyAYskg.JPEG/x02.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "같은 자리를 옆에서 찍은 사진이에요. DS225+ 본체 옆면 라벨이 보이고, 뒤쪽으로 전원 어댑터랑 랜선이 정리돼 있어요."
+   },
+   {
+    "t": "p",
+    "text": "스위치 허브 위에 NAS가 올라간 형태라서 공간을 위로 쌓아 쓰고 있는 구성이에요."
+   },
+   {
+    "t": "p",
+    "text": "이렇게 쌓아두실 때는 NAS 본체 밑이나 옆에 공기가 통할 틈이 있는지 확인해 두시면 좋아요. NAS는 하드디스크가 계속 돌아가다 보니 열이 조금씩 나거든요."
+   },
+   {
+    "t": "p",
+    "text": "통풍이 너무 막히면 장기적으로 하드에 부담이 될 수 있어요."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjEwMThfMTQg/MDAxNzkyMjkzNDQyOTcy.YWB6iHbf3QT0lYYvsrqR8WVBU-CcKBwMqo1dfSDYKkMg.iF7BqFBeLgFxuCLe9HKpQGNFoBTo56p9DlwNGW8LEs4g.JPEG/x03.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "NAS가 필요한 이유는요"
+   },
+   {
+    "t": "p",
+    "text": "NAS(네트워크 연결 저장장치)는 사무실 안에 두는 개인 저장 서버예요. 클라우드처럼 인터넷 저장소를 쓰는 게 아니라, 직접 장비를 사무실에 두고 파일을 모아두는 방식이거든요."
+   },
+   {
+    "t": "p",
+    "text": "중요한 자료는 외부 서버보다 직접 관리하는 게 훨씬 안전해요. 특히 업무 문서가 많은 사무실에서는 백업용으로 NAS 하나 두는 게 나중에 많이 도움이 돼요."
+   },
+   {
+    "t": "p",
+    "text": "백업은 원본 파일이 있는 PC와 NAS, 이렇게 두 군데에 나눠 저장해 두는 게 기본이에요. 한쪽에 문제가 생겨도 다른 쪽에서 꺼낼 수 있어야 백업 역할을 제대로 하거든요."
+   },
+   {
+    "t": "p",
+    "text": "시놀로지 NAS는 자동 백업 일정을 설정해 둘 수 있어서, 한번 설정해 두면 따로 신경 안 써도 돼요."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjEwMThfMjIy/MDAxNzkyMjkzNDQ2ODE4.a2U-emnE61PYKQ6DXBDD8OQilj1PBsAFXzx27a1kfq8g.-hDL8Tv-SsbyqJHMPhbHEtgGpEH5FSKHfwtnDSMEMEgg.JPEG/x04.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "설치 후 전체적인 모습을 조금 더 넓게 찍은 사진이에요. 창가 책상 한쪽 코너에 자리를 잡았어요. NAS 본체랑 스위치 허브가 위아래로 모여 있어서 공간을 크게 차지하지 않아요."
+   },
+   {
+    "t": "p",
+    "text": "랜선도 한쪽으로 모아서 정리해뒀어요."
+   },
+   {
+    "t": "p",
+    "text": "NAS는 와이파이가 아니라 랜선으로 연결하는 장비라서, 스위치 허브 가까이에 두는 게 선 정리하기도 편하고 연결도 안정적이에요."
+   },
+   {
+    "t": "p",
+    "text": "무선으로 연결하면 파일 전송 속도가 들쭉날쭉해질 수 있거든요."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjEwMThfMjc3/MDAxNzkyMjkzNDUwMzA4.34OisAPXphqJpmfnNrqL4QtCjC2UsZwmU-Ww1P89UhAg.YLRAbvWKblUbumBdzmRqZbEI6AOk2mcs8hK5ELerhrsg.JPEG/x05.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "이렇게 마무리했어요"
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjEwMThfNTAg/MDAxNzkyMjkzNDU0NDEy.CdT3IAywgbHSo4PAPk3_lKvGmBfsSB9Y3NJf5ixR8dYg.hSryXHlO8XUPYOXSrlapgCzicmy8UVqPzbk3bx1bs0cg.JPEG/x06.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "설치 완료된 자리를 전체적으로 찍었어요. 책상 구석 창가 공간에 NAS와 허브가 자리 잡았고, 주변 선도 최대한 모아두었어요."
+   },
+   {
+    "t": "p",
+    "text": "이 정도 크기면 책상 한 자리를 많이 차지하지 않아서 좋더라고요 😊"
+   },
+   {
+    "t": "p",
+    "text": "다만 NAS는 24시간 켜두는 장비다 보니, 먼지가 쌓이기 쉬운 자리는 피하는 게 좋아요. 가끔 본체 팬 주변 먼지를 털어주시면 오래 쓰는 데 도움이 돼요."
+   },
+   {
+    "t": "p",
+    "text": "시놀로지 DS225+는 하드디스크 2개를 넣을 수 있는 2베이 제품이에요. 사무실 백업 목적으로는 딱 맞는 크기고, 설치하고 나면 사무실 네트워크 안에서 파일 저장 공간으로 바로 쓸 수 있어요."
+   },
+   {
+    "t": "p",
+    "text": "자주 물어보시는 것"
+   },
+   {
+    "t": "p",
+    "text": "Q. NAS와 외장하드, 뭐가 다른가요? A. NAS는 네트워크에 연결해서 여러 컴퓨터가 동시에 쓸 수 있어요. 외장하드는 한 컴퓨터에만 꽂아서 쓰는 방식이라, 사무실처럼 여러 명이 파일을 함께 써야 할 때는 NAS 쪽이 더 편해요."
+   },
+   {
+    "t": "p",
+    "text": "Q. 시놀로지 DS225+는 하드디스크가 기본으로 들어 있나요? A. 본체만 들어 있고, 하드디스크는 별도로 맞춰 넣어야 해요. 용량이나 용도에 맞는 하드를 따로 골라서 장착하는 방식이에요."
+   },
+   {
+    "t": "p",
+    "text": "NAS 본체와 하드디스크는 따로 준비해야 해요."
+   },
+   {
+    "t": "p",
+    "text": "혹시 사무실 자료 백업 때문에 고민 중이신 분이라면, 이런 NAS 설치가 도움이 될 수 있어요. 궁금한 거 있으시면 편하게 연락 주세요! ***** 053-588-7119 한별시스템"
+   }
+  ]
+ },
+ {
   "logNo": "224440678226",
   "title": "대구 현장사무실에 교세라 복합기 설치하고 왔어요",
   "cat": "etc",
