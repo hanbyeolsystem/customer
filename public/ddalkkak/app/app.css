@@ -40,6 +40,7 @@ input, textarea, select, button { font: inherit; color: inherit; }
 .ok { color: var(--key-lo); }
 .link { color: var(--brand); font-weight: 600; text-decoration: none; }
 .link:hover { text-decoration: underline; }
+button.link { background: none; border: 0; padding: 4px 0; cursor: pointer; font: inherit; }
 
 /* ── 뼈대: 폰은 아래 탭, 넓은 화면은 왼쪽 메뉴 ── */
 .shell { min-height: 100vh; }
@@ -324,6 +325,8 @@ select { width: auto; }
 .live-ctl, .live-done { margin: 0 12px; display: flex; flex-direction: column; gap: 8px; }
 .logo-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .logo-prev { max-height: 56px; max-width: 200px; background: #fff; border: 1px solid #dfe8e3; border-radius: 8px; padding: 6px; }
+.title-mine { margin-top: 10px; }
+.title-mine input { flex: 1; min-width: 0; font-size: 16px; }
 .stuck-help { margin: 10px 0; padding: 12px 14px; background: #fff8ec; border: 1.5px solid #f0d9a8; border-radius: 12px; font-size: 14px; }
 .stuck-help ol { margin: 6px 0 10px; padding-left: 20px; }
 .stuck-help li { margin: 4px 0; }
