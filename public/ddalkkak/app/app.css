@@ -324,6 +324,9 @@ select { width: auto; }
 .live-ctl, .live-done { margin: 0 12px; display: flex; flex-direction: column; gap: 8px; }
 .logo-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .logo-prev { max-height: 56px; max-width: 200px; background: #fff; border: 1px solid #dfe8e3; border-radius: 8px; padding: 6px; }
+.stuck-help { margin: 10px 0; padding: 12px 14px; background: #fff8ec; border: 1.5px solid #f0d9a8; border-radius: 12px; font-size: 14px; }
+.stuck-help ol { margin: 6px 0 10px; padding-left: 20px; }
+.stuck-help li { margin: 4px 0; }
 .login-help { display: flex; flex-direction: column; gap: 8px; margin: 10px 12px; padding: 12px 14px; background: #eef7f2; border: 1.5px solid #bfe0cf; border-radius: 12px; }
 .login-help input { font-size: 16px; }
 .login-help p { margin: 0; }
