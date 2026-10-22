@@ -262,7 +262,7 @@ select { width: auto; }
 
 /* ── 창 ── */
 .sheet { position: fixed; inset: 0; z-index: 50; background: rgba(15, 25, 20, 0.5); display: flex; align-items: flex-end; justify-content: center; }
-.panel { background: var(--paper); width: 100%; max-width: 560px; max-height: 92vh; overflow: auto; border-radius: 18px 18px 0 0; padding: 16px 16px calc(16px + env(safe-area-inset-bottom)); }
+.panel { background: var(--paper); color: var(--ink); width: 100%; max-width: 560px; max-height: 92vh; overflow: auto; border-radius: 18px 18px 0 0; padding: 16px 16px calc(16px + env(safe-area-inset-bottom)); }
 .panel-wide { max-width: 900px; }
 .panel-head { display: flex; justify-content: space-between; align-items: center; }
 .x { border: 0; background: none; font-size: 20px; cursor: pointer; padding: 6px 10px; }
