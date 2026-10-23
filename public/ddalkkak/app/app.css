@@ -255,6 +255,12 @@ select { width: auto; }
 .safe-post p { margin: 4px 0 10px; }
 .auto-h { font-size: 15px; margin: 6px 0 4px; }
 .consent-row { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; margin: 12px 0; }
+.mosaic-box { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin: 10px 0; }
+.mosaic-box > p { margin: 4px 0 8px; }
+.mosaic-row { display: flex; gap: 10px; align-items: center; margin: 8px 0; font-size: 14px; cursor: pointer; }
+.mosaic-row input { width: 22px; height: 22px; flex: none; margin: 0; accent-color: var(--brand); }
+.mosaic-row img { width: 64px; height: 48px; object-fit: cover; border-radius: 6px; flex: none; }
+.warn-text { color: #74500c; font-weight: 600; }
 .consent-row input { width: auto; margin-top: 3px; }
 .promo-note { background: #fff4d6; border: 1px solid #f1d9a6; color: #5f4206; border-radius: 10px; padding: 10px 12px; }
 .plan-opts { display: grid; gap: 8px; margin: 10px 0; }
