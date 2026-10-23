@@ -364,3 +364,9 @@ select { width: auto; }
 /* 썸네일 글꼴 묶음 */
 .fonts .pick { margin: 4px 0 8px; }
 .fonts .pick .pick-l { font-size: 12px; font-weight: 600; color: var(--mute); margin-bottom: 4px; }
+/* 글쓰기 화면: 이번 글만 글 스타일·사진 편집 (접었다 폈다) */
+.perpost { margin: 14px 0; border: 1px solid var(--line); border-radius: var(--r); background: var(--paper); }
+.perpost > summary { padding: 13px 16px; cursor: pointer; display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: baseline; }
+.perpost[open] > summary { border-bottom: 1px solid var(--line); }
+.perpost > .card { border: 0; border-radius: 0; }
+.perpost > .link { margin: 0 16px 14px; }
