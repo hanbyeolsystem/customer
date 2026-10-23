@@ -360,3 +360,7 @@ select { width: auto; }
 .live-screen.zoom { overflow-x: auto; }
 .live-screen.zoom img { width: 230%; max-width: none; }
 .live-zoom { margin: 0 12px; align-self: flex-start; }
+
+/* 썸네일 글꼴 묶음 */
+.fonts .pick { margin: 4px 0 8px; }
+.fonts .pick .pick-l { font-size: 12px; font-weight: 600; color: var(--mute); margin-bottom: 4px; }
