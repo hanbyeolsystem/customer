@@ -1,5 +1,202 @@
 [
  {
+  "logNo": "224452454095",
+  "title": "대구 현풍 NAS 교체, 접근 안 되던 기존 NAS 자료 백업하고 DS225+로 바꿨어요",
+  "cat": "etc",
+  "catLabel": "한별시스템",
+  "date": "2026-10-24",
+  "href": "https://blog.naver.com/hanbyeolsystem/224452454095",
+  "thumb": "/blog-posts/224452454095/1.webp",
+  "excerpt": "안녕하세요!! 올인원시스템을 추구하는 한별시스템입니다. 공장 사무실에서 쓰던 NAS(네트워크에 연결해 쓰는 공용 저장장치)에 갑자기 접근이 안 돼서 당황하신 적 있으신가요? 오늘은 대구 현풍 공단 제조업체에서 이런 일로 부르셔서, 저희가 NAS 교체를 하고 왔어요. 먼저 현장 이야기부터",
+  "chars": 2056,
+  "images": 9,
+  "related": {
+   "href": "/nas/model/ds225-plus/",
+   "label": "DS225+ 설치 비용·구성"
+  },
+  "blocks": [
+   {
+    "t": "img",
+    "src": "/blog-posts/224452454095/1.webp",
+    "w": 900,
+    "h": 454
+   },
+   {
+    "t": "p",
+    "text": "안녕하세요!! 올인원시스템을 추구하는 한별시스템입니다."
+   },
+   {
+    "t": "p",
+    "text": "공장 사무실에서 쓰던 NAS(네트워크에 연결해 쓰는 공용 저장장치)에 갑자기 접근이 안 돼서 당황하신 적 있으신가요? 오늘은 대구 현풍 공단 제조업체에서 이런 일로 부르셔서, 저희가 NAS 교체를 하고 왔어요."
+   },
+   {
+    "t": "p",
+    "text": "먼저 현장 이야기부터 해 볼게요. 대구 현풍 공단에 있는 업체였고요."
+   },
+   {
+    "t": "img",
+    "src": "/blog-posts/224452454095/2.webp",
+    "w": 900,
+    "h": 574
+   },
+   {
+    "t": "p",
+    "text": "공단 안쪽에 있는 업체 건물로 찾아간 장면이에요."
+   },
+   {
+    "t": "p",
+    "text": "이 업체는 예전부터 쓰던 NAS 한 대에 자료를 모아 두고 계셨어요. 그런데 어느 날부터 데이터에 접근이 잘 안 된다고 하시더라고요. 자료가 사무실 일을 하는 데 꼭 필요하니 얼마나 답답하셨을까 싶었어요."
+   },
+   {
+    "t": "p",
+    "text": "NAS는 여러 사람이 한 곳에 자료를 같이 쓰다 보니, 안 열리기 시작하면 사무실 일이 한꺼번에 멈추는 느낌이 들어요. 그래서 이런 연락을 받으면 저희도 마음이 급해지더라고요."
+   },
+   {
+    "t": "p",
+    "text": "현장에 가서 어떤 상태인지 직접 눈으로 보는 게 가장 먼저라고 생각했어요."
+   },
+   {
+    "t": "p",
+    "text": "일단 화면부터 봤어요"
+   },
+   {
+    "t": "p",
+    "text": "직원 컴퓨터를 켜 보니 네트워크 오류 창이 떠 있었어요."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjEwMjRfMjQ2/MDAxNzkyODM4ODQ1MDgw.MZoyiuxBoCiMToy7uJuHL-a8qhiXf2e3SWmuw4hewEsg.OUa4_oUdpYcdXjMrXOSvqtvMpufL4VUPkx91hg4gyJgg.JPEG/x02.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "저장장치 이름 쪽에 접근할 수 없다는 안내가 나오는 화면이에요. 창에는 이름이 정확한지 확인하고, 네트워크 문제인지 진단해 보라는 말이 같이 적혀 있었어요."
+   },
+   {
+    "t": "p",
+    "text": "이런 창은 장비 자체가 고장 났을 때도 뜨고, 컴퓨터와 장비 사이 연결이 잠깐 끊겼을 때도 비슷하게 떠요. 그래서 화면만 보고 원인을 단정하기는 어렵더라고요."
+   },
+   {
+    "t": "p",
+    "text": "오류 문구를 사진으로 남겨 두시면 나중에 확인할 때 도움이 많이 돼요."
+   },
+   {
+    "t": "p",
+    "text": "NAS가 안 열릴 때는 이런 순서로 확인해 보시면 좋아요."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjEwMjRfMjkx/MDAxNzkyODM4ODQ4ODI5.IB06TDtA07ClsOxwGfosQ2EV3V4uKwgNlj-cUkfqXs0g.DItms6ydchsbuD-DjisM7OP58UnJt3GAPpIpj2G5KAIg.JPEG/x03.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "기존 장비는 어떻게 열었을까요?"
+   },
+   {
+    "t": "p",
+    "text": "저희는 데이터를 옮기는 게 먼저라고 안내해 드렸어요. 새 장비부터 들이밀기보다 기존 자료를 지키는 게 순서거든요."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjEwMjRfNzYg/MDAxNzkyODM4ODUyNzU3.u5nuv6vxYGcDTN2j9HKUFqkg0yzcaWyuQrmKf9Yjpewg.WmFgCKwhMFPdzKTP4t7YlVJr0cO25DL0rqiVnC9xxQAg.JPEG/x04.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "기존에 쓰던 하얀색 NAS의 덮개를 열어 본 장면이에요. 윗부분 덮개를 분리해서 안쪽 상태를 살펴보고 있어요."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjEwMjRfMTIz/MDAxNzkyODM4ODU1OTQ5.X00EeI1KYnKER-Hus0sKb7lheprCd6MfhTClptEEDQUg.tltvgbtrq0d0XJDGGoim7ej3IHevQ5irOPntzcfmTjcg.JPEG/x05.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "이 장비는 오래 쓴 티가 나는 모습이었어요. 그래서 기존 자료를 먼저 백업하는 쪽으로 손님께 말씀드렸어요. 자료 백업이 먼저, 교체는 그다음 이 순서만 지켜도 마음이 훨씬 편해지세요."
+   },
+   {
+    "t": "p",
+    "text": "오래 쓴 저장장치는 겉으로는 멀쩡해 보여도 안쪽 상태가 어떤지 알기 어려워요. 그래서 이상 신호가 느껴지면 장비를 자꾸 껐다 켜기보다 자료부터 옮겨 두시는 게 좋아요."
+   },
+   {
+    "t": "p",
+    "text": "무리하게 계속 쓰면 그만큼 자료가 위험해질 수 있거든요."
+   },
+   {
+    "t": "p",
+    "text": "NAS를 고를 때 보는 기준"
+   },
+   {
+    "t": "p",
+    "text": "처음 NAS를 고르시는 분들께는 보통 세 가지를 말씀드려요. 하나는 지금 자료 양이 얼마나 되는지예요. 다른 하나는 앞으로 늘어날 자료까지 담을 수 있는지예요. 마지막은 장비를 오래 쓸 때 관리하기 쉬운지예요."
+   },
+   {
+    "t": "p",
+    "text": "이 현장은 새 장비로 시놀로지 DS225+를 골랐어요. 하드디스크 두 개를 넣어 쓰는 2베이 제품이에요."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjEwMjRfNTgg/MDAxNzkyODM4ODU5NDgw.vNUzf1vI1dR5r1ecasCKtYhtoZ99_345eTEYwoxYsRgg.1TRq6k-h21JIAcneVdRdRfMQH5kuT5jIjOAJxdjpJSYg.JPEG/x06.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "새로 교체한 시놀로지 DS225+를 책상 위에 놓은 장면이에요. 검은색 본체 위에 저희 한별시스템 스티커도 붙여 두었어요."
+   },
+   {
+    "t": "p",
+    "text": "새 장비를 놓을 때는 통풍이 잘 되는 자리인지도 같이 살펴보시면 좋아요. 벽에 바짝 붙이거나 물건을 위에 쌓아 두면 열이 잘 빠지지 않을 수 있어요."
+   },
+   {
+    "t": "p",
+    "text": "책상 위처럼 눈에 보이는 곳에 두면 평소에 상태를 확인하기도 편해요."
+   },
+   {
+    "t": "p",
+    "text": "이렇게 마무리했어요"
+   },
+   {
+    "t": "p",
+    "text": "새 NAS로 바꾼 뒤에는 안에 있는 데이터를 어떻게 백업하는지 손님께 방법을 알려 드렸어요. 기계만 바꿔 드리고 가면 나중에 같은 일이 또 생길 수 있거든요. 직접 하실 수 있게 설명해 드리는 것까지가 이번 작업이었어요."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjEwMjRfMTM0/MDAxNzkyODM4ODYzNDIy.qTTKguswoAPwfDXLZWqcWJD8MAB4XMWPgSwWQEIV0fIg.tJKn2dt4cx1_WFmu7C5Y6ebsi2XlgH1Tnkevlo_C8Usg.JPEG/x07.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "다음 순서로 작업했어요."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjEwMjRfMjg0/MDAxNzkyODM4ODY3MTQ2.qP_Jz-SMnOIP1gvExzHZubiWuNg6mRDwmJNcfzCimvIg.oWn07yTBlz9Nr_6UO7E7DxZJO7gERBx_DkuPO5N_-LUg.JPEG/x08.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "주의하실 점도 하나 있어요. NAS 한 대에만 자료를 두면 그 장비가 고장 났을 때 같이 잃을 수 있어요. 그래서 중요한 자료는 다른 곳에도 한 벌 더 담아 두시길 권해 드려요. 이렇게 해 두시면 마음이 한결 가벼워요 😊"
+   },
+   {
+    "t": "p",
+    "text": "자주 물어보시는 것"
+   },
+   {
+    "t": "p",
+    "text": "Q. NAS에 접근이 안 되면 바로 새로 사야 하나요? A. 바로 바꾸지 않아도 되는 경우가 있어요. 먼저 네트워크 연결과 장비 이름이 맞는지 확인하고, 자료를 백업해 두는 게 순서예요."
+   },
+   {
+    "t": "p",
+    "text": "Q. NAS를 교체할 때 기존 자료는 어떻게 하나요? A. 기존 장비에서 자료를 먼저 옮겨 두고 교체해요. 새 장비로 옮긴 뒤에도 따로 한 벌 더 보관해 두시면 좋아요."
+   },
+   {
+    "t": "p",
+    "text": "궁금한 거 있으시면 편하게 연락 주세요! ***** 053-588-7119 한별시스템"
+   }
+  ]
+ },
+ {
   "logNo": "224451138762",
   "title": "대구 NAS 교체 전에 보는 기준, 제조업체 사무실 DS225+ 작업 기록",
   "cat": "etc",
