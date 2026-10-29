@@ -9,8 +9,8 @@ interface BeforeInstallPromptEvent extends Event {
   userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
 }
 
-// 바탕화면/홈 화면 바로가기 추가. 헤더에서 푸터로 옮겼다(2026-09-15 첫 화면 점검).
-export function BookmarkButton({ className = "" }: { className?: string }) {
+// 바탕화면/홈 화면 바로가기 추가. 푸터 + 헤더 고객지원 옆(2026-10-30 사장님 요청). below = 안내를 버튼 아래로(헤더용)
+export function BookmarkButton({ className = "", label = "즐겨찾기", below = false }: { className?: string; label?: string; below?: boolean }) {
   const [hint, setHint] = useState<string | null>(null);
   const installRef = useRef<BeforeInstallPromptEvent | null>(null);
 
@@ -68,12 +68,12 @@ export function BookmarkButton({ className = "" }: { className?: string }) {
     <span className="relative inline-block">
       <button type="button" onClick={addBookmark} aria-label="즐겨찾기 추가" className={className}>
         <Icon name="star" className="w-4 h-4" strokeWidth={1.8} />
-        <span>즐겨찾기</span>
+        <span>{label}</span>
       </button>
       {hint && (
         <span
           role="status"
-          className="absolute left-0 bottom-9 z-50 w-72 rounded-xl border border-[var(--line)] bg-[var(--bg)] shadow-xl px-4 py-3 text-[13px] font-semibold leading-relaxed text-[var(--ink)]"
+          className={`absolute ${below ? "right-0 top-full mt-2" : "left-0 bottom-9"} z-50 w-72 rounded-xl border border-[var(--line)] bg-[var(--bg)] shadow-xl px-4 py-3 text-[13px] font-semibold leading-relaxed text-[var(--ink)] whitespace-normal`}
         >
           {hint}
         </span>

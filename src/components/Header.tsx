@@ -6,9 +6,10 @@ import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { site, nav, type NavItem, type NavLink } from "@/data/site";
 import { Icon } from "./Icon";
+import { BookmarkButton } from "./BookmarkButton";
 
 // 헤더 = 로고 · 메뉴 4묶음 · 전화 · 견적 문의 (2026-09-15 첫 화면 점검에서 누를 것 18개를 8개로 줄였다)
-// 즐겨찾기·다크모드는 푸터로 옮겼다. 메뉴 데이터는 site.ts 의 nav 한 곳.
+// 다크모드는 푸터. 즐겨찾기 추가는 고객지원 옆(10-30 사장님 요청) + 푸터. 메뉴 데이터는 site.ts 의 nav 한 곳.
 const isGroup = (n: NavItem): n is { label: string; items: NavLink[] } => "items" in n;
 
 function Chevron({ up }: { up: boolean }) {
@@ -111,6 +112,7 @@ export function Header() {
               </Link>
             ),
           )}
+          <BookmarkButton label="즐겨찾기 추가" below className="inline-flex items-center gap-1.5 px-3 py-2 rounded-md hover:opacity-70 transition" />
         </nav>
 
         {/* 우측: 전화 · 견적 문의 (폰·태블릿은 하단 고정 바가 같은 일을 하므로 메뉴 버튼만) */}
