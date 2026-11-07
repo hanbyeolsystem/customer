@@ -1,5 +1,124 @@
 [
  {
+  "logNo": "224468308803",
+  "title": "대구나스수리 문의 늘어, 대구 학원 시놀로지나스 설치 4TB 2개 장착",
+  "cat": "etc",
+  "catLabel": "한별시스템",
+  "date": "2026-11-07",
+  "href": "https://blog.naver.com/hanbyeolsystem/224468308803",
+  "thumb": "/blog-posts/224468308803/1.webp",
+  "excerpt": "한별시스템은 최근 대구의 한 학원에서 시놀로지나스 설치 작업을 진행했다. 학원 영어 선생님들의 수업 자료를 한곳에 모으기 위한 작업으로, 시놀로지나스 925 neo+ 모델에 4TB 저장장치 2개를 넣어 연결했다. 현장 상황 학원에서는 최근 데이터의 중요성이 커지면서 자료 보관 방식을 다",
+  "chars": 1251,
+  "images": 7,
+  "related": {
+   "href": "/nas/repair/",
+   "label": "NAS 수리·복구 점검 안내"
+  },
+  "blocks": [
+   {
+    "t": "img",
+    "src": "/blog-posts/224468308803/1.webp",
+    "w": 900,
+    "h": 445
+   },
+   {
+    "t": "p",
+    "text": "한별시스템은 최근 대구의 한 학원에서 시놀로지나스 설치 작업을 진행했다. 학원 영어 선생님들의 수업 자료를 한곳에 모으기 위한 작업으로, 시놀로지나스 925 neo+ 모델에 4TB 저장장치 2개를 넣어 연결했다."
+   },
+   {
+    "t": "p",
+    "text": "현장 상황"
+   },
+   {
+    "t": "p",
+    "text": "학원에서는 최근 데이터의 중요성이 커지면서 자료 보관 방식을 다시 살펴보고 있었다. 영어 선생님들이 각자 쓰던 수업 자료가 흩어져 있어 한곳에 모아 둘 저장 공간이 필요했다."
+   },
+   {
+    "t": "img",
+    "src": "/blog-posts/224468308803/2.webp",
+    "w": 900,
+    "h": 571
+   },
+   {
+    "t": "p",
+    "text": "사진은 설치를 마친 NAS(네트워크에 연결해 여럿이 함께 쓰는 저장장치)를 수납장 위에 올려 둔 모습이다. 교재와 서류철이 꽂힌 책꽂이 바로 옆 자리로, 선생님들이 오가며 쓰기 편한 위치다."
+   },
+   {
+    "t": "p",
+    "text": "NAS는 열이 나는 장비라 주변에 여유 공간을 두는 것이 좋다. 통풍구가 막히면 내부 온도가 올라 저장장치 수명에 영향을 줄 수 있어, 위에 물건을 쌓아 두지 않는 편이 낫다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMDdfMjU4/MDAxNzk0MDMxMzAxOTg4.4iY5AySJJSYO0Cxs1rbl_IOmLXmyJC3-x1g8FqNf8aMg.pS2Y5y15TVjjOjy22ZjzJHIXv_8kZ58u1d7NE3XO7IQg.JPEG/x02.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "작업 내용"
+   },
+   {
+    "t": "p",
+    "text": "이번에 설치한 장비는 시놀로지나스 925 neo+ 모델이다. 내부 저장 칸이 네 개인 제품으로, 이번에는 4TB 저장장치 2개를 장착했다. 나머지 칸은 비어 있어 이후 자료가 늘어나면 저장장치를 더 넣을 수 있다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMDdfMjAg/MDAxNzk0MDMxMzA1Nzgz.GhqicLziYqah5wz6EZsZKLV9Jk1CGlusimFRfKNXJTUg.W564cQoIe9ALcHm3oms990XdAAQE3_pTpeF3DlYQO-wg.JPEG/x03.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMDdfMjc2/MDAxNzk0MDMxMzA3NzQz.PXOfNSHYRTYR0FmE2TZ-hzYV95tnUCdl7dyHZaATl_sg.338vU-OXZMKS49fxDbWUwquOGSd_CzrxbfgvFoXSDDUg.JPEG/x04.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "두 번째 사진은 같은 장비를 조금 가까이에서 본 장면으로, 앞면의 저장 칸이 닫힌 상태다. 위쪽에는 열쇠가 꽂혀 있어 설치 후 저장 칸을 잠가 둘 수 있는 구조임을 확인했다."
+   },
+   {
+    "t": "p",
+    "text": "저장 칸을 잠가 두면 저장장치가 실수로 빠지는 일을 막을 수 있다. 열쇠는 NAS에 그대로 꽂아 두지 말고 관리자가 따로 보관해 두는 것이 좋다."
+   },
+   {
+    "t": "p",
+    "text": "자료를 한곳에 모아 두면 선생님마다 파일을 따로 주고받을 필요가 줄어든다. 한 사람의 컴퓨터에 문제가 생겨도 자료가 NAS에 남아 있어 수업 준비에 영향을 덜 받는다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMDdfMjM5/MDAxNzk0MDMxMzExNjUx.nwLPTQ3Sm8EGTN1Vai-fJcIZ2ka1aIyELrK4WBN_VlUg.xhRXX-mrKrpq7YuNZfiGQZJ7ke0TmDkfvrahs7GaXMkg.JPEG/x05.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "세 번째 사진은 설치 자리를 넓게 찍은 모습이다. 수납장 위에 놓인 NAS가 책상과 의자 가까이에 있어 사무 공간 안에서 바로 쓸 수 있다."
+   },
+   {
+    "t": "p",
+    "text": "자주 물어보시는 것"
+   },
+   {
+    "t": "p",
+    "text": "Q. 학원에도 NAS가 필요할까요? A. 수업 자료가 여러 사람에게 흩어져 있다면 도움이 된다. 한곳에 모아 두면 자료를 찾는 시간이 줄고 보관 상태도 관리하기 쉽다."
+   },
+   {
+    "t": "p",
+    "text": "Q. NAS에 저장장치를 2개 넣는 이유는 무엇인가요? A. 용량을 넉넉히 쓰거나 자료를 나눠 보관하기 위해서다. 설정 방식에 따라 한 개가 고장 나도 자료를 지키는 구성이 가능하니 사용 목적에 맞게 정하면 된다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMDdfOCAg/MDAxNzk0MDMxMzE0NzQw.7dwBIJbZrk1zgeF0wexWNG8Fuy8APYBZzvTThk_vWL4g.Z2C23OCP6k6N3E24AVdh7boQlE779vyMWQn7HoEt_Dsg.JPEG/x06.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "이번 설치는 자료 보관 방식을 정리하려는 학원이나 소규모 사무실에 참고가 될 만하다. 자료는 한곳에 모아 두는 것이 기본이다."
+   },
+   {
+    "t": "p",
+    "text": "궁금한 거 있으시면 편하게 연락 주세요! ***** 053-588-7119 한별시스템"
+   }
+  ]
+ },
+ {
   "logNo": "224467762190",
   "title": "대구 동구 사무실 PC 설치하고 복합기 임대까지 마친 오픈 현장",
   "cat": "etc",
