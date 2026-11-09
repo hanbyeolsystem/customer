@@ -3,11 +3,9 @@
 // 커뮤니티 게시판 - Supabase(asms-pacai) community_posts 테이블 사용.
 // 회원가입 없이 닉네임으로 질문/답변. anon 키는 공개용 키(RLS로 보호됨).
 
+import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
-
-const SB_URL = "https://jrzesjgyrvgvwazfajec.supabase.co";
-const SB_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpyemVzamd5cnZndndhemZhamVjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc3MjgwMTksImV4cCI6MjA5MzMwNDAxOX0.6FAb0CUMuYVqsvWmUR8Bbvmph4MJjlQqSDi_Mkza1c0";
+import { CATS, SB_KEY, SB_URL, type Post } from "@/lib/community";
 
 const HEADERS = {
   apikey: SB_KEY,
@@ -15,22 +13,8 @@ const HEADERS = {
   "Content-Type": "application/json",
 };
 
-export type Post = {
-  id: number;
-  parent_id: number | null;
-  nick: string;
-  title: string | null;
-  content: string;
-  category: string;
-  created_at: string;
-};
-
-const CATS: Record<string, string> = {
-  nas: "NAS·백업",
-  printer: "복사기·프린터",
-  pc: "컴퓨터",
-  etc: "기타",
-};
+// 목록에서는 긴 글을 앞부분만 보이고 글 상세(/community/<id>/)로 보낸다. 같은 본문이 두 주소에 통째로 실리지 않게.
+const CLIP = 300;
 
 function fmtDate(s: string) {
   const d = new Date(s);
@@ -94,6 +78,8 @@ export function CommunityBoard({ initialPosts = [] }: { initialPosts?: Post[] })
   }
 
   const questions = posts.filter((p) => p.parent_id === null);
+  // 빌드 때 있던 글만 상세 페이지가 있다(그 뒤에 올라온 글은 다음 재빌드까지 404)
+  const built = new Set(initialPosts.map((p) => p.id));
   const repliesOf = (id: number) =>
     posts.filter((p) => p.parent_id === id).sort((a, b) => a.created_at.localeCompare(b.created_at));
 
@@ -102,7 +88,7 @@ export function CommunityBoard({ initialPosts = [] }: { initialPosts?: Post[] })
       <div className="max-w-3xl mx-auto px-4 lg:px-6">
         <div className="flex items-center justify-between mb-5 gap-3 flex-wrap">
           <p className="text-sm text-[var(--mute)]">
-            총 <b className="text-[var(--ink)]">{questions.length}</b>개의 질문
+            총 <b className="text-[var(--ink)]">{questions.length}</b>개의 글
           </p>
           <button
             onClick={() => setShowForm((v) => !v)}
@@ -134,6 +120,8 @@ export function CommunityBoard({ initialPosts = [] }: { initialPosts?: Post[] })
         <div className="space-y-4">
           {questions.map((q) => {
             const replies = repliesOf(q.id);
+            const page = built.has(q.id) ? `/community/${q.id}/` : null;
+            const clipped = page !== null && q.content.length > CLIP;
             return (
               <div key={q.id} className="bg-[var(--panel)] border border-[var(--line)] rounded-2xl p-5">
                 <div className="flex items-center gap-2 text-[11px] text-[var(--mute)] mb-2">
@@ -143,8 +131,17 @@ export function CommunityBoard({ initialPosts = [] }: { initialPosts?: Post[] })
                   <b className="text-[var(--ink)]/80">{q.nick}</b>
                   <span>{fmtDate(q.created_at)}</span>
                 </div>
-                {q.title && <h3 className="font-extrabold text-[var(--ink)] mb-1">{q.title}</h3>}
-                <p className="text-sm text-[var(--ink)]/85 leading-relaxed whitespace-pre-wrap">{q.content}</p>
+                {q.title && (
+                  <h3 className="font-extrabold text-[var(--ink)] mb-1">
+                    {page ? <Link href={page} className="hover:text-hb-blue">{q.title}</Link> : q.title}
+                  </h3>
+                )}
+                <p className="text-sm text-[var(--ink)]/85 leading-relaxed whitespace-pre-wrap">
+                  {clipped ? `${q.content.slice(0, CLIP)}…` : q.content}
+                </p>
+                {clipped && page && (
+                  <Link href={page} className="inline-block mt-2 text-xs font-bold text-hb-blue">전체 글 보기</Link>
+                )}
 
                 {replies.length > 0 && (
                   <div className="mt-4 space-y-2.5 border-t border-dashed border-[var(--line)] pt-3.5">

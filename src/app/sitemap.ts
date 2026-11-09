@@ -9,6 +9,7 @@ import { rentalAreas } from "@/data/rental-areas";
 import { qna, qnaCats, qnaModified } from "@/data/qna";
 import { site } from "@/data/site";
 import { shorts } from "@/lib/shorts";
+import { getCommunityPosts } from "@/lib/community";
 
 export const dynamic = "force-static";
 
@@ -28,7 +29,15 @@ const pages = [
 // 구글이 lastmod 자체를 무시한다. 날짜를 모르면 넣지 않는 편이 낫다.
 const lm: Record<string, string> = lastmod;
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  // 커뮤니티 글 상세 - lastmod 는 그 글이나 답글 중 가장 최근 시각
+  const cposts = await getCommunityPosts();
+  const community = cposts
+    .filter((p) => p.parent_id === null)
+    .map((p) => ({
+      id: p.id,
+      last: cposts.filter((r) => r.id === p.id || r.parent_id === p.id).map((r) => r.created_at).sort().at(-1)!,
+    }));
   return [
     ...pages.map((p) => ({
       url: `${site.url}${p}`,
@@ -103,6 +112,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
           })),
         ]
       : []),
+    ...community.map((c) => ({
+      url: `${site.url}/community/${c.id}/`,
+      lastModified: new Date(c.last),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
     ...qna.map((f) => ({
       url: `${site.url}/qna/${f.slug}/`,
       lastModified: new Date(qnaModified),
