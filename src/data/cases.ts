@@ -7,6 +7,8 @@
 //     나머지는 "대구 북구 사무실"처럼 지역+업종까지만 적는다.
 //  4. 새 사례 추가는 `node scripts/gen-case-draft.mjs` 로 블로그 새 후기 초안을 뽑아서 손질한다.
 
+import extra from "./cases-extra.json";
+
 export type CaseStudy = {
   slug: string;
   industry: string; // 업종 배지
@@ -33,7 +35,7 @@ export const caseCats = [
   { id: "etc", label: "기타" },
 ] as const;
 
-export const caseStudies: CaseStudy[] = [
+const manualCases: CaseStudy[] = [
   // ───────────────────────── NAS · 서버 구축 ─────────────────────────
   {
     slug: "daegu-junggu-nas-to-nas",
@@ -700,5 +702,9 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
 ];
+
+// 블로그 설치 후기를 매일 루틴이 DB(site_cases)에 넣은 사례. 빌드 전에 scripts/gen-cases-extra.mjs 가 받아 둔다.
+// 최신 현장이 홈(앞 9건)에 먼저 보이도록 맨 앞에 둔다.
+export const caseStudies: CaseStudy[] = [...(extra as CaseStudy[]), ...manualCases];
 
 export const caseBySlug = (slug: string) => caseStudies.find((c) => c.slug === slug);
