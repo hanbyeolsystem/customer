@@ -14,10 +14,10 @@ const OUT = "src/data/lastmod.json";
 
 // 라우트별로 날짜를 좌우하는 추가 파일 (페이지 본문이 데이터 파일에 있는 경우)
 const extraDeps = {
-  "/": ["src/data/site.ts", "src/data/services.ts", "src/data/cases.ts"],
+  "/": ["src/data/site.ts", "src/data/services.ts", "src/data/cases.ts", "src/data/cases-extra.json"],
   "/blog/": ["src/data/posts.ts", "src/data/naver-posts.json"],
   "/news/": ["src/data/news.json"],
-  "/cases/": ["src/data/cases.ts"],
+  "/cases/": ["src/data/cases.ts", "src/data/cases-extra.json"],
   "/shop/": ["src/data/products.ts"],
   "/qna/": ["src/data/qna.ts"],
   "/rental/price/": ["src/data/rental-prices.ts"],
