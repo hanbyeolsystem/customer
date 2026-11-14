@@ -99,8 +99,10 @@ writeFileSync(OUT, JSON.stringify(map, null, 2) + "\n", "utf8");
 console.log("✓", OUT, `${Object.keys(map).length} routes`);
 
 // Q&A 문항별 날짜(2026-11-14). 예전엔 모든 문항이 같은 게시일·수정일(qna.ts 의 qnaPublished/qnaModified)을 썼다.
-// 게시일 = 그 slug 가 qna.ts 에 처음 들어간 커밋. 수정일 = 그 문항 줄(qna.ts)과 심화 본문(qna-deep*.ts) 중
-// 가장 최근에 바뀐 줄의 커밋(git blame). 얕은 클론이면 빈 객체 -> 페이지가 qnaPublished/qnaModified 로 돌아간다.
+// 게시일 = 그 slug 가 qna.ts 에 처음 들어간 커밋.
+// 수정일 = 커밋마다 그 시점 파일에서 문항 덩어리(qna.ts 문항·qna-deep*.ts 심화 본문)를 통째로 비교해 내용이 달라진
+//          마지막 커밋. git blame(남은 줄 기준)으로 재면 문장을 지우기만 한 수정을 놓친다(Codex 지적).
+//          커밋 안 된 변경이 있으면 지금 시각.
 // 분류 화면은 문항이 빠지거나 옮겨져도 바뀐 것이므로, 분류별로 문항 추가·삭제·이동이 있었던 마지막 커밋도 cats 에 둔다.
 // 얕은 클론이거나 git 이 실패하면 이미 있는 qna-dates.json 을 그대로 둔다(덮어쓰면 날짜가 공통값으로 되돌아간다).
 const QNA_OUT = "src/data/qna-dates.json";
@@ -109,39 +111,39 @@ const qnaCatChanged = {};
 let qnaOk = false;
 if (!shallow) {
   try {
-    const lineTimes = (f) => {
-      const t = [];
-      let cur = 0;
-      for (const l of git(["blame", "--line-porcelain", "--", f]).split("\n")) {
-        if (l.startsWith("committer-time ")) cur = Number(l.slice(15));
-        else if (l.startsWith("\t")) t.push(cur);
-      }
-      return t;
-    };
-    // slug 별 줄 번호. 다음 키·구분 주석·배열 끝에서 끊는다.
-    const ranges = (f, keyRe) => {
+    // slug 별 덩어리 글. 다음 키·구분 주석·배열 끝에서 끊는다.
+    const blocks = (text, keyRe) => {
       const r = {};
       let cur = null;
-      readFileSync(f, "utf8").split(/\r?\n/).forEach((l, i) => {
+      for (const l of text.split(/\r?\n/)) {
         const m = l.match(keyRe);
-        if (m) (r[(cur = m[1])] ??= []).push(i);
+        if (m) r[(cur = m[1])] = (r[m[1]] ?? "") + l + "\n";
         else if (/^\s*\/\/ ──|^(\];|\};)/.test(l)) cur = null;
-        else if (cur) r[cur].push(i);
-      });
+        else if (cur) r[cur] += l + "\n";
+      }
       return r;
     };
     const sources = [
-      ["src/data/qna.ts", /\{ slug: "([^"]+)",/],
+      ["src/data/qna.ts", /\bslug: "([^"]+)"/],
       ["src/data/qna-deep.ts", /^ {2}"?([a-z0-9-]+)"?: \[\s*$/],
       ["src/data/qna-deep-2.ts", /^ {2}"?([a-z0-9-]+)"?: \[\s*$/],
     ];
     const newest = {};
+    const bump = (slug, iso) => { if (!newest[slug] || newest[slug] < iso) newest[slug] = iso; };
     for (const [f, re] of sources) {
-      const times = lineTimes(f);
-      for (const [slug, lines] of Object.entries(ranges(f, re))) {
-        const t = Math.max(...lines.map((i) => times[i] ?? 0));
-        newest[slug] = Math.max(newest[slug] ?? 0, t);
+      let prev = {};
+      for (const row of git(["log", "--reverse", "--format=%H %cI", "--", f]).split("\n").filter(Boolean)) {
+        const [h, when] = row.split(" ");
+        const iso = new Date(when).toISOString();
+        let text = "";
+        try { text = git(["show", `${h}:${f}`]); } catch { /* 이 커밋에서 파일이 지워짐 */ }
+        const cur = blocks(text, re);
+        for (const slug of new Set([...Object.keys(prev), ...Object.keys(cur)])) if (prev[slug] !== cur[slug]) bump(slug, iso);
+        prev = cur;
       }
+      const wt = blocks(readFileSync(f, "utf8"), re);
+      const now = new Date().toISOString();
+      for (const slug of new Set([...Object.keys(prev), ...Object.keys(wt)])) if (prev[slug] !== wt[slug]) bump(slug, now);
     }
     // 게시일: qna.ts 이력을 오래된 순으로 훑어 slug 줄이 처음 추가된 커밋.
     // 첫 커밋(d5f9244)은 "{" 와 "slug:" 가 다른 줄이라 "{ slug:" 로만 찾으면 초기 문항을 놓친다.
@@ -157,8 +159,8 @@ if (!shallow) {
         if (c) qnaCatChanged[c[1]] = new Date(d).toISOString();
       }
     }
-    for (const slug of Object.keys(ranges(...sources[0]))) {
-      const m = newest[slug] ? new Date(newest[slug] * 1000).toISOString() : null;
+    for (const slug of Object.keys(blocks(readFileSync(sources[0][0], "utf8"), sources[0][1]))) {
+      const m = newest[slug] ?? null;
       const p = first[slug] ? new Date(first[slug]).toISOString() : m; // 둘 다 UTC ISO 로 맞춰야 크기 비교가 된다
       if (p && m) qnaDates[slug] = { p, m: m < p ? p : m };
     }
