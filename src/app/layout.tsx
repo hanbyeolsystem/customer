@@ -97,6 +97,8 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning className="h-full">
       <body className="min-h-full flex flex-col antialiased pb-14 lg:pb-0">
+        {/* React 19 가 head 로 올린다. metadata.alternates 는 페이지 canonical 이 덮어써서 못 쓴다 */}
+        <link rel="alternate" type="application/rss+xml" title="한별시스템" href="/rss.xml" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(siteGraph) }}
