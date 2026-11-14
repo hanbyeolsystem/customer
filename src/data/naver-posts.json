@@ -1,5 +1,163 @@
 [
  {
+  "logNo": "224476262326",
+  "title": "성서공단 제조공장 신규 사무실, 공유기 허브 연결로 네트워크 구축",
+  "cat": "case",
+  "catLabel": "설치사례",
+  "date": "2026-11-13",
+  "href": "https://blog.naver.com/hanbyeolsystem/224476262326",
+  "thumb": "/blog-posts/224476262326/1.webp",
+  "excerpt": "한별시스템은 최근 성서공단 제조공장의 신규 사무실에서 공유기와 허브를 연결하는 성서공단 사무실 네트워크 설치 작업을 진행했다. 새 사무실에서 컴퓨터와 복합기를 쓰려면 먼저 네트워크 길이 열려야 하는데, 이번 작업은 그 첫 단계였다. 현장 상황 작업 전 통신함을 열어 내부 상태를 확인하는",
+  "chars": 1405,
+  "images": 10,
+  "related": {
+   "href": "/guide/industry-data-checklist/",
+   "label": "업종별 데이터 관리 체크리스트"
+  },
+  "blocks": [
+   {
+    "t": "img",
+    "src": "/blog-posts/224476262326/1.webp",
+    "w": 900,
+    "h": 900
+   },
+   {
+    "t": "p",
+    "text": "한별시스템은 최근 성서공단 제조공장의 신규 사무실에서 공유기와 허브를 연결하는 성서공단 사무실 네트워크 설치 작업을 진행했다. 새 사무실에서 컴퓨터와 복합기를 쓰려면 먼저 네트워크 길이 열려야 하는데, 이번 작업은 그 첫 단계였다."
+   },
+   {
+    "t": "p",
+    "text": "현장 상황"
+   },
+   {
+    "t": "img",
+    "src": "/blog-posts/224476262326/2.webp",
+    "w": 900,
+    "h": 572
+   },
+   {
+    "t": "p",
+    "text": "작업 전 통신함을 열어 내부 상태를 확인하는 장면이다. 벽 안쪽 통신함에 공유기와 허브 등 장비가 모여 있었고, 어디에 무엇이 놓였는지부터 살폈다."
+   },
+   {
+    "t": "p",
+    "text": "통신함은 건물의 인터넷이 들어와 사무실 각 자리로 나뉘는 곳이다. 신규 사무실은 이 자리가 제대로 정리돼야 이후 자리별 연결이 순탄하다."
+   },
+   {
+    "t": "p",
+    "text": "통신함은 평소 열어 볼 일이 많지 않아 내부 상태를 놓치기 쉽다. 장비가 좁은 공간에 모이는 만큼 열이 차지 않도록 주변을 비워 두는 편이 좋다."
+   },
+   {
+    "t": "p",
+    "text": "나중에 문제가 생겼을 때 어느 장비가 어디에 이어졌는지 바로 확인할 수 있게 정리해 두면 점검도 수월하다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMTNfMTY0/MDAxNzk0NTI2MjU0Mjk0.Ezv12y4JPDamMQcn2iC0VvN5aA5Dj5oUknEpJaTOPTog.vhwsbTUr1UGBQaYdK0Xdw8hFmpF8taly29ca2x1FY4Ug.JPEG/x02.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "통신함 아래쪽에 공유기와 허브가 놓인 모습이다. 장비를 어느 자리에 두고 어떻게 연결할지 가늠하며 현장을 파악했다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMTNfMTYw/MDAxNzk0NTI2MjU3NTk3.UEfcj7D7-GRV1lowXdxDO6d53Si4UXVkJMb48oPfYmAg.uYv9b-AMUuHMUUipiUAvJZxuw3gI57jj3MEKnotE3RUg.JPEG/x03.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "작업 내용"
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMTNfMTAg/MDAxNzk0NTI2MjYwODc5.9pZaXFM5l3bxscSXSoWOM9w-hsmpdt7DPhmHqZFPLRkg.5HNbjvThqV3viBtQgjaXBeo-qTyYhtR7MiMVmV9D3fEg.JPEG/x04.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "작업자가 바닥에 앉아 연결에 쓸 끝부분을 직접 손질하는 장면이다. 장갑을 끼고 끝 마감을 하나씩 다듬었고, 주변에는 작업 공구를 펼쳐 두었다."
+   },
+   {
+    "t": "p",
+    "text": "현장에서 길이에 맞춰 손질하면 필요한 자리에 알맞게 쓸 수 있다. 이 과정은 손이 많이 가지만 연결 상태를 좌우하는 부분이다."
+   },
+   {
+    "t": "p",
+    "text": "끝 마감이 고르지 않으면 연결이 헐거워져 접속이 끊겼다 이어지는 증상으로 나타나기도 한다. 설치 당시에는 문제없어 보여도 시간이 지나 원인을 찾기 어려워지는 경우가 있다."
+   },
+   {
+    "t": "p",
+    "text": "그래서 작업 중에 하나씩 확인하며 마무리하는 것이 중요하다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMTNfNTMg/MDAxNzk0NTI2MjY0ODA1.WuG_B2muN17SvijqSrW9pHHvGVDeZsBg96RFeajVx-4g.NQA3On7l86pwmVonH5kIaYfZQ4djwMi4aHfydh0DFX4g.JPEG/x05.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "작업자가 통신함 앞에서 장비 쪽 연결 작업을 이어 가는 장면이다. 공유기와 허브 연결을 하나씩 맞춰 나갔다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMTNfMjA0/MDAxNzk0NTI2MjY4Nzk1.bJ9wkVuqV-xeRoPqUXd11-h8FkXtgHBg05WbPrtVT2cg.sZCBoTcLjYpWvGV9iFw-uMldxhpqNgc7Zxtg6vkS6aAg.JPEG/x06.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "통신함 안쪽 단자함에서 연결을 하나씩 끼워 넣는 장면이다. 공구를 이용해 단자에 눌러 고정하는 방식으로 작업했고, 허브와 이어지는 자리를 맞췄다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMTNfMTAg/MDAxNzk0NTI2MjcyMjgz.u2kHT1JunQDuW8xomJ4Ns9iYgDfUQtHIe6xqjZ5sSSsg.C5v2WKpOMszUX5ugiY8wWnx_dSTYm9CkZM0RQAdkZp0g.JPEG/x07.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "단자에 연결을 고정할 때는 끝까지 눌러 끼워졌는지 확인해야 한다. 덜 눌린 상태로 두면 당장은 연결돼도 나중에 접촉이 불안정해질 수 있다."
+   },
+   {
+    "t": "p",
+    "text": "설치를 마친 뒤에는 각 자리에서 연결이 정상인지 점검해 두는 것이 좋다."
+   },
+   {
+    "t": "p",
+    "text": "통신함 정리가 네트워크의 시작이다"
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMTNfMTE1/MDAxNzk0NTI2Mjc1Njk4.P04zzmQN0ZNyS_DoqCR6_o771PB3kBZA7zGTPRmRmKQg.UNwXCc7MIFvlKoYCGobdxFeZavdp7jnUZ0gBt28ayU0g.JPEG/x08.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMTNfMTc1/MDAxNzk0NTI2Mjc4MDA2.NeOW4aL_yDaL5riUlg6Pgasnr7fOYIb4ERxGN2o6IY0g.bzJXMn3lsdgm6lyEs853DwWdUBRkVbnuL2-_orYWJUkg.JPEG/x09.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "자주 묻는 질문"
+   },
+   {
+    "t": "p",
+    "text": "처음 사무실을 열 때 네트워크는 언제 작업할까요? Q. 신규 사무실 네트워크는 언제 작업하나요? A. 책상과 장비를 들이기 전에 하는 편이 좋다. 자리가 정해진 뒤에 연결 위치를 맞추면 되고, 통신함 작업을 먼저 마치면 이후 설치가 수월하다."
+   },
+   {
+    "t": "p",
+    "text": "Q. 공유기와 허브는 어떻게 다른가요? A. 공유기는 인터넷을 나눠 주고, 허브는 연결 수를 늘려 준다. 자리가 많은 사무실은 허브를 함께 두면 각 자리에 연결하기 편하다."
+   },
+   {
+    "t": "p",
+    "text": "이번 작업은 제조공장 신규 사무실처럼 처음 네트워크를 갖추는 곳에 참고가 된다."
+   },
+   {
+    "t": "p",
+    "text": "궁금한 거 있으시면 편하게 연락 주세요! ***** 053-588-7119 한별시스템"
+   }
+  ]
+ },
+ {
   "logNo": "224473117802",
   "title": "대구 컴퓨터 렌탈, 사무실 PC 임대 전 확인해야 할 5가지",
   "cat": "pc",
