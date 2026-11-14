@@ -111,18 +111,25 @@ const qnaCatChanged = {};
 let qnaOk = false;
 if (!shallow) {
   try {
-    // slug 별 덩어리 글. 다음 키·구분 주석·배열 끝에서 끊는다.
+    // slug 별 덩어리 글. 다음 키·구분 주석·배열 끝에서 끊는다. 맨 앞에 속한 배열 이름(@qna, @qnaArea)을 붙여
+    // 배열 사이 이동(목록에서 빠짐)도 내용 변경으로 잡는다.
     const blocks = (text, keyRe) => {
       const r = {};
       let cur = null;
+      let arr = "";
       for (const l of text.split(/\r?\n/)) {
+        const a = l.match(/^export const (\w+)/);
+        if (a) arr = a[1];
         const m = l.match(keyRe);
-        if (m) r[(cur = m[1])] = (r[m[1]] ?? "") + l + "\n";
+        if (m) r[(cur = m[1])] = (r[m[1]] ?? `@${arr}\n`) + l + "\n";
         else if (/^\s*\/\/ ──|^(\];|\};)/.test(l)) cur = null;
         else if (cur) r[cur] += l + "\n";
       }
       return r;
     };
+    // 분류 구성 변경일은 늘 최댓값만 남긴다(커밋 이력·작업 트리 어느 쪽이 먼저 와도)
+    const setCat = (cat, iso) => { if (!qnaCatChanged[cat] || qnaCatChanged[cat] < iso) qnaCatChanged[cat] = iso; };
+    const listedCat = (block) => (block?.startsWith("@qna\n") ? block.match(/\bcat: "([a-z]+)"/)?.[1] : undefined);
     const sources = [
       ["src/data/qna.ts", /\bslug: "([^"]+)"/],
       ["src/data/qna-deep.ts", /^ {2}"?([a-z0-9-]+)"?: \[\s*$/],
@@ -135,15 +142,21 @@ if (!shallow) {
       for (const row of git(["log", "--reverse", "--format=%H %cI", "--", f]).split("\n").filter(Boolean)) {
         const [h, when] = row.split(" ");
         const iso = new Date(when).toISOString();
-        let text = "";
-        try { text = git(["show", `${h}:${f}`]); } catch { /* 이 커밋에서 파일이 지워짐 */ }
-        const cur = blocks(text, re);
+        // 그 커밋 트리에 파일이 정말 없을 때만 빈 파일로 본다. 그 밖의 git 실패는 바깥 catch 로 보내
+        // 기존 qna-dates.json 을 지킨다(빈 파일로 보면 전 문항이 "지금 수정됨"이 된다)
+        const exists = git(["ls-tree", "--name-only", h, "--", f]) !== "";
+        const cur = blocks(exists ? git(["show", `${h}:${f}`]) : "", re);
         for (const slug of new Set([...Object.keys(prev), ...Object.keys(cur)])) if (prev[slug] !== cur[slug]) bump(slug, iso);
         prev = cur;
       }
       const wt = blocks(readFileSync(f, "utf8"), re);
       const now = new Date().toISOString();
-      for (const slug of new Set([...Object.keys(prev), ...Object.keys(wt)])) if (prev[slug] !== wt[slug]) bump(slug, now);
+      for (const slug of new Set([...Object.keys(prev), ...Object.keys(wt)])) {
+        if (prev[slug] === wt[slug]) continue;
+        bump(slug, now);
+        // 커밋 안 된 문항 추가·삭제·분류 이동: 떠난 분류와 들어간 분류 모두 지금 바뀐 것
+        if (f === sources[0][0]) for (const c of [listedCat(prev[slug]), listedCat(wt[slug])]) if (c) setCat(c, now);
+      }
     }
     // 게시일: qna.ts 이력을 오래된 순으로 훑어 slug 줄이 처음 추가된 커밋.
     // 첫 커밋(d5f9244)은 "{" 와 "slug:" 가 다른 줄이라 "{ slug:" 로만 찾으면 초기 문항을 놓친다.
@@ -156,7 +169,7 @@ if (!shallow) {
         if (!m) continue;
         if (l[0] === "+" && !first[m[1]]) first[m[1]] = d;
         const c = l.match(/\bcat: "([a-z]+)"/); // 같은 줄에 분류가 있을 때만(현재 형식)
-        if (c) qnaCatChanged[c[1]] = new Date(d).toISOString();
+        if (c) setCat(c[1], new Date(d).toISOString());
       }
     }
     for (const slug of Object.keys(blocks(readFileSync(sources[0][0], "utf8"), sources[0][1]))) {
