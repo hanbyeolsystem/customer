@@ -6,7 +6,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { AnswerBlock } from "@/components/AnswerBlock";
 import { QnaBrowser } from "@/components/QnaBrowser";
 import { JsonLd } from "@/components/JsonLd";
-import { qna, qnaCats, qnaDateRange } from "@/data/qna";
+import { qna, qnaCats, qnaCatDates } from "@/data/qna";
 import { site } from "@/data/site";
 import { breadcrumbLd, isoDateTime } from "@/lib/schema";
 
@@ -80,7 +80,7 @@ export default async function QnaCatPage({ params }: { params: Promise<{ cat: st
   if (!c || !intro) notFound();
   const items = qna.filter((q) => q.cat === cat);
   const pageUrl = `${site.url}/qna/cat/${cat}/`;
-  const range = qnaDateRange(items.map((f) => f.slug));
+  const range = qnaCatDates(cat);
 
   const faqLd = {
     "@context": "https://schema.org",

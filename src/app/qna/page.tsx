@@ -4,7 +4,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { AnswerBlock } from "@/components/AnswerBlock";
 import { QnaBrowser } from "@/components/QnaBrowser";
 import { JsonLd } from "@/components/JsonLd";
-import { qna, qnaCats, qnaDateRange } from "@/data/qna";
+import { qna, qnaCats, qnaCatDates } from "@/data/qna";
 import { site } from "@/data/site";
 import { breadcrumbLd, isoDateTime } from "@/lib/schema";
 
@@ -25,7 +25,7 @@ const jsonLd = {
   url: `${site.url}/qna/`,
   name: `한별시스템 Q&A ${qna.length}문답`,
   inLanguage: "ko-KR",
-  dateModified: isoDateTime(qnaDateRange(qna.map((f) => f.slug)).modified),
+  dateModified: isoDateTime(qnaCatDates().modified),
   hasPart: counts.map((c) => ({
     "@type": "CollectionPage",
     name: c.label,

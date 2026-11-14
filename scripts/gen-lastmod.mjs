@@ -101,8 +101,12 @@ console.log("✓", OUT, `${Object.keys(map).length} routes`);
 // Q&A 문항별 날짜(2026-11-14). 예전엔 모든 문항이 같은 게시일·수정일(qna.ts 의 qnaPublished/qnaModified)을 썼다.
 // 게시일 = 그 slug 가 qna.ts 에 처음 들어간 커밋. 수정일 = 그 문항 줄(qna.ts)과 심화 본문(qna-deep*.ts) 중
 // 가장 최근에 바뀐 줄의 커밋(git blame). 얕은 클론이면 빈 객체 -> 페이지가 qnaPublished/qnaModified 로 돌아간다.
+// 분류 화면은 문항이 빠지거나 옮겨져도 바뀐 것이므로, 분류별로 문항 추가·삭제·이동이 있었던 마지막 커밋도 cats 에 둔다.
+// 얕은 클론이거나 git 이 실패하면 이미 있는 qna-dates.json 을 그대로 둔다(덮어쓰면 날짜가 공통값으로 되돌아간다).
 const QNA_OUT = "src/data/qna-dates.json";
 const qnaDates = {};
+const qnaCatChanged = {};
+let qnaOk = false;
 if (!shallow) {
   try {
     const lineTimes = (f) => {
@@ -139,14 +143,18 @@ if (!shallow) {
         newest[slug] = Math.max(newest[slug] ?? 0, t);
       }
     }
-    // 게시일: qna.ts 이력을 오래된 순으로 훑어 slug 줄이 처음 추가된 커밋
+    // 게시일: qna.ts 이력을 오래된 순으로 훑어 slug 줄이 처음 추가된 커밋.
+    // 첫 커밋(d5f9244)은 "{" 와 "slug:" 가 다른 줄이라 "{ slug:" 로만 찾으면 초기 문항을 놓친다.
     const first = {};
     let d = null;
     for (const l of git(["log", "--reverse", "--format=@@C %cI", "-p", "--unified=0", "--", "src/data/qna.ts"]).split("\n")) {
       if (l.startsWith("@@C ")) d = l.slice(4);
-      else if (l.startsWith("+")) {
-        const m = l.match(/\{ slug: "([^"]+)",/);
-        if (m && !first[m[1]]) first[m[1]] = d;
+      else if (/^[+-]/.test(l) && !/^(\+\+\+|---) /.test(l)) {
+        const m = l.match(/\bslug: "([^"]+)"/);
+        if (!m) continue;
+        if (l[0] === "+" && !first[m[1]]) first[m[1]] = d;
+        const c = l.match(/\bcat: "([a-z]+)"/); // 같은 줄에 분류가 있을 때만(현재 형식)
+        if (c) qnaCatChanged[c[1]] = new Date(d).toISOString();
       }
     }
     for (const slug of Object.keys(ranges(...sources[0]))) {
@@ -154,9 +162,14 @@ if (!shallow) {
       const p = first[slug] ? new Date(first[slug]).toISOString() : m; // 둘 다 UTC ISO 로 맞춰야 크기 비교가 된다
       if (p && m) qnaDates[slug] = { p, m: m < p ? p : m };
     }
+    qnaOk = Object.keys(qnaDates).length > 0;
   } catch (e) {
-    console.warn("! Q&A 날짜를 못 뽑음 - 공통 날짜로 돌아간다:", e.message);
+    console.warn("! Q&A 날짜를 못 뽑음:", e.message);
   }
 }
-writeFileSync(QNA_OUT, JSON.stringify(qnaDates, null, 2) + "\n", "utf8");
-console.log("✓", QNA_OUT, `${Object.keys(qnaDates).length} 문항`);
+if (qnaOk) {
+  writeFileSync(QNA_OUT, JSON.stringify({ items: qnaDates, cats: qnaCatChanged }, null, 2) + "\n", "utf8");
+  console.log("✓", QNA_OUT, `${Object.keys(qnaDates).length} 문항`);
+} else {
+  console.warn("! Q&A 날짜 갱신 안 함 - 기존", QNA_OUT, "유지");
+}

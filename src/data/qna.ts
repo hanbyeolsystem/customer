@@ -9,17 +9,19 @@ import qnaDatesJson from "./qna-dates.json";
 export const qnaPublished = "2026-08-22";
 export const qnaModified = "2026-10-05";
 
-const qnaDates = qnaDatesJson as Record<string, { p: string; m: string }>;
+const qnaDates = qnaDatesJson as { items?: Record<string, { p: string; m: string }>; cats?: Record<string, string> };
 export const qnaDate = (slug: string) => ({
-  published: qnaDates[slug]?.p ?? qnaPublished,
-  modified: qnaDates[slug]?.m ?? qnaModified,
+  published: qnaDates.items?.[slug]?.p ?? qnaPublished,
+  modified: qnaDates.items?.[slug]?.m ?? qnaModified,
 });
-// 여러 문항을 묶은 화면(분류 목록·허브)의 날짜: 가장 이른 게시일, 가장 늦은 수정일
-export const qnaDateRange = (slugs: string[]) => {
-  const d = slugs.map(qnaDate);
+// 분류 목록(cat)·허브(cat 없음) 화면의 날짜: 가장 이른 게시일, 그리고 문항 수정일과 분류 구성 변경일
+// (문항 추가·삭제·이동) 중 가장 늦은 것. 문항을 빼기만 해도 화면이 바뀌기 때문이다.
+export const qnaCatDates = (cat?: string) => {
+  const list = qna.filter((f) => !cat || f.cat === cat).map((f) => qnaDate(f.slug));
+  const changed = cat ? qnaDates.cats?.[cat] : Object.values(qnaDates.cats ?? {}).sort().at(-1);
   return {
-    published: d.map((x) => x.published).sort()[0] ?? qnaPublished,
-    modified: d.map((x) => x.modified).sort().at(-1) ?? qnaModified,
+    published: list.map((x) => x.published).sort()[0] ?? qnaPublished,
+    modified: [...list.map((x) => x.modified), changed ?? ""].sort().at(-1) || qnaModified,
   };
 };
 

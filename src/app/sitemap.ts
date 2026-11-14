@@ -6,7 +6,7 @@ import { naverPosts, indexedBlogPosts } from "@/data/naver-posts";
 import { nasModels } from "@/data/synology";
 import { areas } from "@/data/areas";
 import { rentalAreas } from "@/data/rental-areas";
-import { qna, qnaCats, qnaDate, qnaDateRange } from "@/data/qna";
+import { qna, qnaCats, qnaDate, qnaCatDates } from "@/data/qna";
 import { site } from "@/data/site";
 import { shorts } from "@/lib/shorts";
 import { getCommunityPosts } from "@/lib/community";
@@ -73,7 +73,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Q&A 분류별 목록(FAQPage 스키마는 여기에)
     ...qnaCats.map((c) => ({
       url: `${site.url}/qna/cat/${c.id}/`,
-      lastModified: new Date(qnaDateRange(qna.filter((f) => f.cat === c.id).map((f) => f.slug)).modified),
+      lastModified: new Date(qnaCatDates(c.id).modified),
       changeFrequency: "weekly" as const,
       priority: 0.8,
     })),
