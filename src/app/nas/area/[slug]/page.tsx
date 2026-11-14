@@ -8,6 +8,8 @@ import { JsonLd } from "@/components/JsonLd";
 import { areas, areaBySlug, visitPolicyText } from "@/data/areas";
 import { caseBySlug } from "@/data/cases";
 import { naverPostByNo } from "@/data/naver-posts";
+import { qnaArea } from "@/data/qna";
+import { qnaDeep2 } from "@/data/qna-deep-2";
 import { site } from "@/data/site";
 import { standardQuotes, won, INSTALL_FEE } from "@/data/synology";
 import { breadcrumbLd, serviceId, serviceLd, webPageLd } from "@/lib/schema";
@@ -46,6 +48,11 @@ export default async function NasAreaPage({ params }: { params: Promise<{ slug: 
   const pageUrl = `${site.url}${path}`;
   const cases = a.cases.map(caseBySlug).filter((c): c is NonNullable<typeof c> => !!c);
   const posts = a.posts.map(naverPostByNo).filter((p): p is NonNullable<typeof p> => !!p);
+  // 예전 /qna/area-<지역>/ 문항을 이 페이지로 합쳤다(2026-11-14). 질문은 자주 묻는 질문 첫 항목,
+  // 심화 본문은 아래 "상담에서 자주 나오는 이야기"로. 이 페이지의 방문 순서·지역 안내와 겹치는 절은 뺀다.
+  const merged = qnaArea.find((q) => q.slug === `area-${a.slug}`);
+  const notes = (qnaDeep2[`area-${a.slug}`] ?? []).filter((d) => !/방문은 어떤 순서|어느 지역 페이지/.test(d.h));
+  const faq = merged ? [{ q: merged.q, a: merged.a }, ...a.faq] : a.faq;
   const nearby = a.nearby.map(areaBySlug).filter((x): x is NonNullable<typeof x> => !!x);
   const policy = visitPolicyText(a);
   const isProvince = a.slug === "gyeongbuk";
@@ -184,6 +191,22 @@ export default async function NasAreaPage({ params }: { params: Promise<{ slug: 
         </div>
       </section>
 
+      {notes.length > 0 && (
+        <section className="py-10 lg:py-14">
+          <div className="max-w-3xl mx-auto px-4 lg:px-6">
+            <h2 className="text-xl lg:text-2xl font-extrabold text-[var(--ink)] mb-5">{a.name} 상담에서 자주 나오는 이야기</h2>
+            {notes.map((n) => (
+              <div key={n.h} className="mb-6">
+                <h3 className="text-base font-extrabold text-[var(--ink)] mb-2">{n.h}</h3>
+                {n.body.map((p) => (
+                  <p key={p.slice(0, 30)} className="hb-p">{p}</p>
+                ))}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* 이 지역 기록 */}
       {(cases.length > 0 || posts.length > 0 || a.history) && (
         <section className="py-10 lg:py-14 bg-[var(--bg)]">
@@ -217,7 +240,7 @@ export default async function NasAreaPage({ params }: { params: Promise<{ slug: 
         </section>
       )}
 
-      <FaqSection title={`${a.name} NAS 출장, 자주 묻는 질문`} items={a.faq} />
+      <FaqSection title={`${a.name} NAS 출장, 자주 묻는 질문`} items={faq} />
 
       {/* 인접 지역 + 연락 */}
       <section className="py-10 lg:py-14">

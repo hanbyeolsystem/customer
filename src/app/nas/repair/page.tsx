@@ -60,7 +60,7 @@ const dontList = [
 const relatedQna = [
   { slug: "nas-hdd", label: "NAS에 아무 하드디스크나 껴도 되나요?" },
   { slug: "nas-ransomware-response", label: "랜섬웨어에 걸린 것 같은데 지금 당장 뭘 해야 하나요?" },
-  { slug: "nas-ransomware", label: "랜섬웨어에 걸리면 NAS 자료도 날아가나요?" },
+  { slug: "nas-ransomware-nas-too", label: "랜섬웨어에 걸리면 NAS 자료도 같이 암호화되나요?" },
   { slug: "nas-file-restore", label: "직원이 실수로 파일을 지웠는데 복구할 수 있나요?" },
   { slug: "nas-backup-needed", label: "NAS만 있으면 백업은 끝난 건가요?" },
   { slug: "net-nas-notfound", label: "나스(NAS)가 갑자기 네트워크에서 안 보여요." },

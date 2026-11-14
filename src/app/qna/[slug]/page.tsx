@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/PageHeader";
 import { JsonLd } from "@/components/JsonLd";
-import { qna, qnaBySlug, qnaCats, qnaModified, qnaPublished } from "@/data/qna";
+import { qna, qnaBySlug, qnaCats, qnaDate, qnaRedirects } from "@/data/qna";
 import { qnaDeep } from "@/data/qna-deep";
 import { qnaDeep2 } from "@/data/qna-deep-2";
 import { qnaImage } from "@/data/qna-images";
@@ -16,11 +16,14 @@ import { businessId, site } from "@/data/site";
 import { breadcrumbLd, isoDateTime } from "@/lib/schema";
 
 export function generateStaticParams() {
-  return qna.map((f) => ({ slug: f.slug }));
+  // 합친 문항의 옛 주소도 만든다(즉시 이동 페이지). 안 만들면 이미 색인·링크된 주소가 404 가 된다
+  return [...qna.map((f) => f.slug), ...Object.keys(qnaRedirects)].map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
+  const to = qnaRedirects[slug];
+  if (to) return { title: "옮긴 질문", alternates: { canonical: to } };
   const f = qnaBySlug(slug);
   if (!f) return {};
   return {
@@ -36,6 +39,18 @@ const CASE_CAT: Record<string, string> = { ai: "nas", nas: "nas", synology: "nas
 
 export default async function QnaDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  const to = qnaRedirects[slug];
+  if (to) {
+    // 정적 사이트라 서버 301 대신 지연 0초 meta refresh(구글은 영구 이동으로 처리) + canonical
+    return (
+      <section className="py-16">
+        <meta httpEquiv="refresh" content={`0; url=${to}`} />
+        <div className="max-w-xl mx-auto px-4 text-center text-[var(--ink)]">
+          이 질문은 <Link href={to} className="text-hb-blue underline">{to}</Link> 로 옮겼습니다.
+        </div>
+      </section>
+    );
+  }
   const f = qnaBySlug(slug);
   if (!f) notFound();
   const cat = qnaCats.find((c) => c.id === f.cat);
@@ -59,41 +74,26 @@ export default async function QnaDetailPage({ params }: { params: Promise<{ slug
   const deep = [...(qnaDeep[f.slug] ?? []), ...(qnaDeep2[f.slug] ?? [])].filter((d, i, a) => a.findIndex((x) => x.h === d.h) === i);
   // 본문 중간 실사 사진(2026-09-08): 답변 뒤 1장 + 심화 섹션 2개마다 1장(최대 3장). 상단 대표 사진과는 겹치지 않게.
   const photos = articlePhotos(f.cat, f.slug, Math.min(3, 1 + Math.floor((deep?.length ?? 0) / 2)), [qnaImage(f.cat, f.slug)]);
-  // acceptedAnswer 에는 즉답과 "더 자세히"까지만 넣는다. 심화 설명까지 전부 넣으면 답 하나가
-  // 3.5KB 가 되어 같은 글이 HTML 과 RSC 페이로드에 두 벌씩 실리고(쪽당 7KB), 검색·AI 가 인용할
-  // 대목도 흐려진다. 심화 설명은 본문에 그대로 있다. (2026-09-18)
-  const fullAnswer = [f.a, f.more].filter(Boolean).join(" ");
-
+  // 구조화 데이터 = Article(2026-11-14). 예전엔 QAPage 였는데, QAPage 는 방문자가 답을 올릴 수 있는
+  // 게시판용이라 회사가 쓴 문답에는 구글 요건이 맞지 않는다. FAQPage 는 분류 목록(/qna/cat/)에만 둔다.
+  // description 에는 즉답과 "더 자세히"까지만 넣는다(심화 설명까지 넣으면 쪽당 7KB, 2026-09-18).
   const pageUrl = `${site.url}/qna/${f.slug}/`;
   const org = { "@id": businessId };
+  const d = qnaDate(f.slug);
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "QAPage",
-    "@id": pageUrl,
+    "@type": "Article",
+    "@id": `${pageUrl}#article`,
     url: pageUrl,
+    mainEntityOfPage: pageUrl,
     inLanguage: "ko-KR",
-    mainEntity: {
-      "@type": "Question",
-      "@id": `${pageUrl}#question`,
-      name: f.q,
-      text: f.q,
-      answerCount: 1,
-      upvoteCount: 0,
-      datePublished: isoDateTime(qnaPublished),
-      dateModified: isoDateTime(qnaModified),
-      author: org,
-      url: pageUrl,
-      acceptedAnswer: {
-        "@type": "Answer",
-        "@id": `${pageUrl}#answer`,
-        text: fullAnswer,
-        upvoteCount: 0,
-        datePublished: isoDateTime(qnaPublished),
-        dateModified: isoDateTime(qnaModified),
-        url: pageUrl,
-        author: org,
-      },
-    },
+    headline: f.q,
+    description: [f.a, f.more].filter(Boolean).join(" "),
+    image: `${site.url}${qnaImage(f.cat, f.slug)}`,
+    datePublished: isoDateTime(d.published),
+    dateModified: isoDateTime(d.modified),
+    author: org,
+    publisher: org,
   };
   const crumbs = breadcrumbLd([
     { name: "Q&A", path: "/qna/" },

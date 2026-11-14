@@ -8,7 +8,7 @@
 // 이때 sitemap 은 lastmod 를 아예 빼는데, 틀린 날짜를 넣는 것보다 낫다.
 // (CI 에서 날짜가 나오게 하려면 actions/checkout 의 fetch-depth: 0 이 필요하다)
 import { execFileSync } from "node:child_process";
-import { writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 
 const OUT = "src/data/lastmod.json";
 
@@ -34,7 +34,8 @@ const dynamicRoutes = {
 };
 
 function git(args) {
-  return execFileSync("git", args, { encoding: "utf8" }).trim();
+  // blame·log -p 출력이 기본 한도(1MB)를 넘는다(qna-deep-2.ts 1만5천 줄)
+  return execFileSync("git", args, { encoding: "utf8", maxBuffer: 256 * 1024 * 1024 }).trim();
 }
 
 function routeToPage(route) {
@@ -96,3 +97,66 @@ if (!shallow && routes.length) {
 
 writeFileSync(OUT, JSON.stringify(map, null, 2) + "\n", "utf8");
 console.log("✓", OUT, `${Object.keys(map).length} routes`);
+
+// Q&A 문항별 날짜(2026-11-14). 예전엔 모든 문항이 같은 게시일·수정일(qna.ts 의 qnaPublished/qnaModified)을 썼다.
+// 게시일 = 그 slug 가 qna.ts 에 처음 들어간 커밋. 수정일 = 그 문항 줄(qna.ts)과 심화 본문(qna-deep*.ts) 중
+// 가장 최근에 바뀐 줄의 커밋(git blame). 얕은 클론이면 빈 객체 -> 페이지가 qnaPublished/qnaModified 로 돌아간다.
+const QNA_OUT = "src/data/qna-dates.json";
+const qnaDates = {};
+if (!shallow) {
+  try {
+    const lineTimes = (f) => {
+      const t = [];
+      let cur = 0;
+      for (const l of git(["blame", "--line-porcelain", "--", f]).split("\n")) {
+        if (l.startsWith("committer-time ")) cur = Number(l.slice(15));
+        else if (l.startsWith("\t")) t.push(cur);
+      }
+      return t;
+    };
+    // slug 별 줄 번호. 다음 키·구분 주석·배열 끝에서 끊는다.
+    const ranges = (f, keyRe) => {
+      const r = {};
+      let cur = null;
+      readFileSync(f, "utf8").split(/\r?\n/).forEach((l, i) => {
+        const m = l.match(keyRe);
+        if (m) (r[(cur = m[1])] ??= []).push(i);
+        else if (/^\s*\/\/ ──|^(\];|\};)/.test(l)) cur = null;
+        else if (cur) r[cur].push(i);
+      });
+      return r;
+    };
+    const sources = [
+      ["src/data/qna.ts", /\{ slug: "([^"]+)",/],
+      ["src/data/qna-deep.ts", /^ {2}"?([a-z0-9-]+)"?: \[\s*$/],
+      ["src/data/qna-deep-2.ts", /^ {2}"?([a-z0-9-]+)"?: \[\s*$/],
+    ];
+    const newest = {};
+    for (const [f, re] of sources) {
+      const times = lineTimes(f);
+      for (const [slug, lines] of Object.entries(ranges(f, re))) {
+        const t = Math.max(...lines.map((i) => times[i] ?? 0));
+        newest[slug] = Math.max(newest[slug] ?? 0, t);
+      }
+    }
+    // 게시일: qna.ts 이력을 오래된 순으로 훑어 slug 줄이 처음 추가된 커밋
+    const first = {};
+    let d = null;
+    for (const l of git(["log", "--reverse", "--format=@@C %cI", "-p", "--unified=0", "--", "src/data/qna.ts"]).split("\n")) {
+      if (l.startsWith("@@C ")) d = l.slice(4);
+      else if (l.startsWith("+")) {
+        const m = l.match(/\{ slug: "([^"]+)",/);
+        if (m && !first[m[1]]) first[m[1]] = d;
+      }
+    }
+    for (const slug of Object.keys(ranges(...sources[0]))) {
+      const m = newest[slug] ? new Date(newest[slug] * 1000).toISOString() : null;
+      const p = first[slug] ? new Date(first[slug]).toISOString() : m; // 둘 다 UTC ISO 로 맞춰야 크기 비교가 된다
+      if (p && m) qnaDates[slug] = { p, m: m < p ? p : m };
+    }
+  } catch (e) {
+    console.warn("! Q&A 날짜를 못 뽑음 - 공통 날짜로 돌아간다:", e.message);
+  }
+}
+writeFileSync(QNA_OUT, JSON.stringify(qnaDates, null, 2) + "\n", "utf8");
+console.log("✓", QNA_OUT, `${Object.keys(qnaDates).length} 문항`);

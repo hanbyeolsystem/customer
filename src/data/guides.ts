@@ -611,7 +611,7 @@ export const guides: Guide[] = [
       },
     ],
     related: {
-      qna: ["nas-capacity-formula", "nas-expand-how", "nas-hdd-brand"],
+      qna: ["nas-capacity-formula", "nas-expand", "nas-hdd"],
       pages: [{ href: "/nas/price", label: "NAS 구축 비용" }],
     },
   },

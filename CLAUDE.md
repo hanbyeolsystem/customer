@@ -42,7 +42,7 @@
 - `/nas/model/[slug]/` 6종 — 모델명 검색을 받는 착지 페이지. 구성별 견적을 `synology.ts` 에서 자동 계산
 - `/cases/[slug]/` 20건 — "지역+장비+업종" 롱테일. 새 사례는 `node scripts/gen-case-draft.mjs` 로 초안 생성
 - `/guide/[slug]/` 30편 — 비교표 중심. AI 검색이 표와 숫자를 그대로 인용한다
-- `/qna/[slug]/` 256건 — 질문 단위 색인
+- `/qna/[slug]/` 285건 — 질문 단위 색인(2026-11-14 지역 11·중복 3 통합 뒤)
 - `/qna/cat/[cat]/` 6종 — 분류별 목록. **FAQPage 스키마는 여기에만**(/qna/ 는 CollectionPage). 예전엔 /qna/ 한 장이 587KB 였다
 - 새 콘텐츠를 넣으면 `src/app/sitemap.ts` 에도 추가할 것(자동 아님)
 
@@ -131,9 +131,15 @@
 - 스키마의 날짜(datePublished/dateModified/dateCreated)는 **반드시 `isoDateTime()`(`src/lib/schema.ts`)** 으로 감싼다.
   날짜만("2026-08-22") 넣으면 Search Console 이 "datetime 시간대 누락/값 오류"(Q&A 8건, 2026-08-29) 를 보낸다. 데이터 파일의 값은 날짜만 두고 페이지에서 변환.
 - Product(/nas/model/*, /nas/buy/) 의 `review`·`aggregateRating` 누락 경고는 **실제 후기가 생기기 전엔 채우지 말 것**(지어낸 평점은 정책 위반). 권장 항목이라 노출엔 영향 없음.
-- Q&A 구조화 데이터(QAPage/FAQPage)는 `datePublished`·`dateModified`·`author`·`upvoteCount`·`url`
-  누락 시 경고가 뜬다. 날짜는 `src/data/qna.ts` 의 `qnaPublished`/`qnaModified` 상수를 쓰며,
-  **Q&A 본문을 고치면 `qnaModified` 도 함께 갱신**할 것.
+- **Q&A 구조화 데이터(2026-11-14 변경)**: 문항 상세 `/qna/[slug]/` 는 `Article`, 분류 목록 `/qna/cat/` 만 `FAQPage`.
+  QAPage 는 방문자가 답을 올리는 게시판용이라 쓰지 않는다(구글 요건 불일치, Codex 검토).
+- **Q&A 날짜는 문항별·자동**: `scripts/gen-lastmod.mjs`(prebuild)가 git 이력에서 게시일(slug 가 처음 들어간 커밋)과
+  수정일(qna.ts 문항 줄·qna-deep*.ts 심화 본문 중 마지막 변경)을 뽑아 `src/data/qna-dates.json` 에 쓴다. 손으로 날짜를 고치지 말 것.
+  `qnaPublished`/`qnaModified` 상수는 얕은 클론일 때만 쓰는 대체값이다.
+- **Q&A 통합(2026-11-14)**: 같은 뜻의 문항은 하나로 합치고 옛 주소는 `qnaRedirects`(qna.ts)에 적는다. 옛 `/qna/<slug>/` 는
+  지연 0초 meta refresh + canonical 이동 페이지로 남는다(정적 사이트라 서버 301 불가). 지역 문항 11개(`qnaArea`)는
+  `/nas/area/<지역>/` 페이지가 자주 묻는 질문 첫 항목과 "상담에서 자주 나오는 이야기"(qna-deep-2 의 `area-*`)로 보여 준다.
+  새 문항을 넣기 전에 비슷한 질문이 이미 있는지 찾을 것(중복 3쌍이 있었다: 용량 늘리기·랜섬웨어·하드 고르기).
 
 ## GEO/AEO (AI 검색 인용 최적화) — 2026-08-24 적용
 - `public/robots.txt` 는 AI 크롤러 30종을 명시 허용. **차단 추가 금지**(GEO 목적이 인용 유도).
@@ -205,6 +211,9 @@
 **영상이 없는 상태로 /video/ 같은 빈 페이지를 미리 만들지 말 것**(빈 페이지는 색인에 해가 된다).
 
 ## 네이버 블로그 이관 (2026-08-27) — /blog/<logNo>/ 286편
+- **⭐2026-11-14 부터 사본은 기본 검색 제외**: `/blog/<logNo>/` 는 `noindex,follow` + 사이트맵 제외. 구글이 사본 161쪽을 "크롤링됨-색인 안 됨"으로 두고
+  네이버는 홈까지 미색인이었다. 예외는 `src/data/naver-posts.ts` 의 `indexedBlogPosts`(서치콘솔 3개월 클릭 1회 이상 25편). 새로 가져오는 글은 자동 제외.
+  robots.txt 로 /blog/ 를 막지 말 것(noindex 를 못 읽는다). /blog/ 목록 페이지는 색인 유지.
 네이버 블로그 글 전체(2017~)를 본문·사진째 사이트에 둔다. 링크만 두면 검색어가 네이버로 가고, 사이트에 두면 한별시스템.kr 로 들어온다.
 - `scripts/naver-list.mjs` 가 모바일 목록 API(`/api/blogs/hanbyeolsystem/post-list`)로 전체 글을 열거한다(RSS 는 최신 50편뿐).
 - `scripts/naver-import.mjs` 가 글을 받아 `src/data/naver-posts.json` 을 만든다. **손으로 고치지 말 것.** 워크플로 `naver-import.yml` 이 하루 3번 새 글만 추가.
