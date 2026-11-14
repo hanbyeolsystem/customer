@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/PageHeader";
 import { JsonLd } from "@/components/JsonLd";
 import { AnswerBlock } from "@/components/AnswerBlock";
-import { naverPosts, naverPostByNo, naverCats } from "@/data/naver-posts";
+import { naverPosts, naverPostByNo, naverCats, indexedBlogPosts } from "@/data/naver-posts";
 import { caseBySlug } from "@/data/cases";
 import { areaFromText } from "@/data/areas";
 import { businessId, site } from "@/data/site";
@@ -25,6 +25,8 @@ export async function generateMetadata({ params }: { params: Promise<{ logNo: st
     description: metaDescription(`${p.title} - ${p.excerpt}`, "한별시스템 현장 블로그, 대구·경북 NAS·복합기·전산 설치 기록."),
     alternates: { canonical: `/blog/${logNo}/` },
     openGraph: p.thumb ? { images: [{ url: p.thumb }] } : undefined,
+    // 네이버 원문 사본은 검색 제외. robots.txt 로 막지 않는다(막으면 이 noindex 를 못 읽는다)
+    ...(indexedBlogPosts.has(logNo) ? {} : { robots: { index: false, follow: true } }),
   };
 }
 

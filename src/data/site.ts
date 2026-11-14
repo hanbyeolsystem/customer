@@ -9,6 +9,14 @@ export const site = {
   tagline: "대구·경북 기업 NAS·백업·복합기 임대, 18년째 당일 출장 가능",
   description:
     "대구·경북 500곳의 회사 자료를 18년째 맡고 있습니다. 시놀로지 NAS 판매·설치와 3-2-1 백업, 회사 자료를 밖으로 내보내지 않는 사내 AI, 복합기 임대까지. 고장은 대구·경북 당일 출장, 053-588-7119.",
+  // 네이버 서치어드바이저 기준(2026-11-14 URL 검사 경고): og:title 40자, description·og:description 80자 이내.
+  // 홈 description 과 전 페이지 기본 og/트위터 카드가 이 둘을 쓴다.
+  ogTitle: "한별시스템 - 대구 기업 NAS·백업·복합기 렌탈",
+  shortDescription:
+    "대구 한별시스템. 기업 NAS 구축·백업, 사내 AI, 복합기 렌탈, 전산 유지관리를 18년째 한 회사에서 맡습니다. 053-588-7119",
+  // 카카오톡·페이스북·구글/AI 카드 미리보기 이미지. public/og.jpg 는
+  // scripts/gen-og.mjs 로 만들어 커밋해 둔 실물 사진 카드(1200x630).
+  ogImage: { url: "/og.jpg", width: 1200, height: 630, alt: "한별시스템 - 대구 NAS 구축·복합기 렌탈·기업 전산 유지관리 053-588-7119" },
   url: "https://xn--bm3bm1i1e348cgwe.kr",
 
   phone: {
@@ -41,6 +49,8 @@ export const site = {
 
   social: {
     blog: "https://hanbyeolsystem.blogspot.com/",
+    // 네이버에서 "한별시스템" 검색 시 우리 것 중 가장 위에 나오는 자산(구독 580·글 320, 2026-11-14)
+    naverBlog: "https://blog.naver.com/hanbyeolsystem",
     instagram: "https://instagram.com/sanghwan_hanbyeol",
     instagramBiz: "https://www.instagram.com/hanbyeolsystem",
     threads: "https://www.threads.net/@sanghwan_hanbyeol",

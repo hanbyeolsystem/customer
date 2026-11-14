@@ -31,27 +31,18 @@ export const metadata: Metadata = {
     "사무실 인터넷", "랜공사", "대구 랜공사", "네트워크 공사", "사무실 와이파이",
     "경북 전산 유지관리", "영남 사무기기", "기업 IT 유지관리", "랜섬웨어 백업", "Synology", "한별시스템",
   ],
+  // 제목·설명·주소는 기본값에 두지 않는다. 두면 하위 페이지 전부가 홈 제목과 홈 주소를
+  // og 로 내보낸다(2026-11-14 확인, 392쪽). 없으면 각 페이지의 title·description 을 쓴다.
+  // 홈의 og 제목·설명·주소는 app/page.tsx 에서 준다.
   openGraph: {
     type: "website",
     locale: "ko_KR",
     siteName: site.name,
-    title: `${site.name} - ${site.tagline}`,
-    description: site.description,
-    url: site.url,
-    // 카카오톡·페이스북·구글/AI 카드 미리보기 이미지. public/og.jpg 는
-    // scripts/gen-og.mjs 로 만들어 커밋해 둔 실물 사진 카드(1200x630).
-    images: [{
-      url: "/og.jpg",
-      width: 1200,
-      height: 630,
-      alt: "한별시스템 - 대구 NAS 구축·복합기 렌탈·기업 전산 유지관리 053-588-7119",
-    }],
+    images: [site.ogImage],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} - ${site.tagline}`,
-    description: site.description,
-    images: ["/og.jpg"],
+    images: [site.ogImage.url],
   },
   robots: { index: true, follow: true },
   verification: {

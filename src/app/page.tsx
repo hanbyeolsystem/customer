@@ -11,15 +11,23 @@ import type { Metadata } from "next";
 import { JsonLd } from "@/components/JsonLd";
 import { businessDetailLd } from "@/lib/business-ld";
 import { webPageLd } from "@/lib/schema";
-import { businessId } from "@/data/site";
+import { businessId, site } from "@/data/site";
 
 // 홈 타이틀에 지역을 넣는다. "한별시스템" 단독 검색은 동명의 서울 에어커튼 업체가 상위를
 // 차지하고 있어, 지역+서비스 조합("대구 나스", "대구 복합기 렌탈")이 실제 유입 경로다.
 export const metadata: Metadata = {
   title: { absolute: "한별시스템 - 대구 기업 데이터 관리·NAS 구축·사내 AI 도입" },
-  description:
-    "대구 한별시스템. 18년째 대구·경북 기업의 데이터를 맡습니다. 시놀로지 NAS 구축, 3-2-1 백업, 사내 AI 도입, 복합기 렌탈, 전산 유지관리를 한 회사에서. 관리 고객사 500곳, 무료 방문 견적 053-588-7119.",
+  description: site.shortDescription,
   alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "ko_KR",
+    siteName: site.name,
+    title: site.ogTitle,
+    description: site.shortDescription,
+    url: "/",
+    images: [site.ogImage],
+  },
 };
 
 export default function Home() {

@@ -66,6 +66,8 @@ export const siteGraph = {
       "@id": WEBSITE_ID,
       url: site.url,
       name: site.name,
+      // 구글 검색결과 사이트 이름 후보. 동명 업체가 많아 지역·도메인 표기를 같이 준다
+      alternateName: ["대구 한별시스템", site.nameEn, "한별시스템.kr"],
       description: site.description,
       inLanguage: "ko-KR",
       publisher: { "@id": BUSINESS_ID },
@@ -97,6 +99,8 @@ export const businessDetailLd = {
     },
   ],
   sameAs: [
+    site.social.naverBlog,
+    site.social.smartstore,
     site.social.blog,
     site.social.instagramBiz,
     site.social.instagram,

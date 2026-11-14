@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import lastmod from "@/data/lastmod.json";
 import { caseStudies } from "@/data/cases";
 import { guides } from "@/data/guides";
-import { naverPosts } from "@/data/naver-posts";
+import { naverPosts, indexedBlogPosts } from "@/data/naver-posts";
 import { nasModels } from "@/data/synology";
 import { areas } from "@/data/areas";
 import { rentalAreas } from "@/data/rental-areas";
@@ -63,8 +63,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),
-    // 네이버 블로그에서 가져온 글 - 글 날짜를 lastmod 로
-    ...naverPosts.map((b) => ({
+    // 네이버 블로그에서 가져온 글 - 사본이라 검색 제외(noindex)이고, 예외로 색인하는 글만 넣는다
+    ...naverPosts.filter((b) => indexedBlogPosts.has(b.logNo)).map((b) => ({
       url: `${site.url}/blog/${b.logNo}/`,
       lastModified: new Date(`${b.date}T00:00:00+09:00`),
       changeFrequency: "monthly" as const,

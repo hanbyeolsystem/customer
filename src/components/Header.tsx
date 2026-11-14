@@ -93,18 +93,17 @@ export function Header() {
                   {n.label}
                   <Chevron up={drop === n.label} />
                 </button>
-                {drop === n.label && (
-                  <div className="absolute left-0 top-full pt-2">
-                    <div className="min-w-[260px] rounded-md border border-[var(--line)] bg-[var(--bg)] text-[var(--ink)] p-1.5">
-                      {n.items.map((it) => (
-                        <Link key={it.href} href={it.href} onClick={close} className="block rounded-md px-3 py-2.5 hover:bg-[var(--panel)] transition">
-                          <span className="block text-[14px] font-semibold">{it.label}</span>
-                          {it.desc && <span className="block text-[12px] font-normal text-[var(--mute)] mt-0.5">{it.desc}</span>}
-                        </Link>
-                      ))}
-                    </div>
+                {/* 닫혀 있어도 링크는 HTML 에 둔다(검색 로봇은 메뉴를 펼치지 않는다). 화면에서만 숨김 */}
+                <div className={`absolute left-0 top-full pt-2 ${drop === n.label ? "" : "hidden"}`}>
+                  <div className="min-w-[260px] rounded-md border border-[var(--line)] bg-[var(--bg)] text-[var(--ink)] p-1.5">
+                    {n.items.map((it) => (
+                      <Link key={it.href} href={it.href} onClick={close} className="block rounded-md px-3 py-2.5 hover:bg-[var(--panel)] transition">
+                        <span className="block text-[14px] font-semibold">{it.label}</span>
+                        {it.desc && <span className="block text-[12px] font-normal text-[var(--mute)] mt-0.5">{it.desc}</span>}
+                      </Link>
+                    ))}
                   </div>
-                )}
+                </div>
               </div>
             ) : (
               <Link key={n.href} href={n.href} onClick={close} className="px-3 py-2 rounded-md hover:opacity-70 transition">
