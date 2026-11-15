@@ -109,6 +109,8 @@ export const nav: NavItem[] = [
       { href: "/ai", label: "사내 AI", desc: "회사 자료로 답하는 AI 도우미" },
       { href: "/rental", label: "복사기·프린터 임대", desc: "월 정액, 토너·수리 포함" },
       { href: "/network", label: "전산·네트워크 관리", desc: "PC·공유기·랜 공사·유지관리" },
+      { href: "/support/pc-repair", label: "컴퓨터 출장 수리", desc: "달서구·성서공단, 대구·경북 당일" },
+      { href: "/support/printer-repair", label: "프린터·복합기 수리", desc: "브라더·교세라 서비스센터" },
       { href: "/shop", label: "임대 쇼핑몰", desc: "임대 장비 둘러보기" },
     ],
   },

@@ -137,6 +137,13 @@ export default function RentalPage() {
               복합기·프린터 임대료 보기
             </span>
           </Link>
+          <p className="text-sm text-[var(--mute)] leading-relaxed mt-3">
+            복사·스캔 없이 인쇄만 하신다면{" "}
+            <Link href="/rental/printer" className="font-bold text-hb-blue hover:underline">
+              프린터 임대(월 3만원부터)
+            </Link>
+            가 따로 있습니다.
+          </p>
         </div>
       </section>
       <section className="py-12 lg:py-16 bg-[var(--bg)]">

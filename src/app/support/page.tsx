@@ -82,6 +82,18 @@ export default function SupportHub() {
               </Link>
             ))}
           </div>
+          <div className="grid sm:grid-cols-3 gap-3 mt-6">
+            {[
+              { href: "/support/pc-repair", label: "컴퓨터 출장 수리", desc: "달서구·성서공단, 대구·경북 당일" },
+              { href: "/support/printer-repair", label: "프린터·복합기 수리", desc: "브라더·교세라 서비스센터" },
+              { href: "/support/brother", label: "브라더 서비스센터", desc: "2011년부터, 달서구 매장" },
+            ].map((l) => (
+              <Link key={l.href} href={l.href} className="block bg-[var(--panel)] border border-[var(--line)] rounded-2xl px-5 py-4 hover:border-hb-blue transition">
+                <div className="font-extrabold text-[var(--ink)]">{l.label}</div>
+                <div className="text-[13px] text-[var(--mute)] mt-0.5">{l.desc}</div>
+              </Link>
+            ))}
+          </div>
           <p className="text-sm text-[var(--mute)] leading-relaxed mt-6 text-center">
             사무실 랜 배선 공사나 데이터 백업 구축이 필요하시면{" "}
             <Link href="/network" className="font-bold text-hb-blue hover:underline">

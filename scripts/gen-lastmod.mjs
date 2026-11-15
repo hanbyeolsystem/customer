@@ -22,6 +22,10 @@ const extraDeps = {
   "/qna/": ["src/data/qna.ts"],
   "/rental/price/": ["src/data/rental-prices.ts"],
   "/rental/pc/": ["src/data/rental-prices.ts", "src/data/cases.ts"],
+  "/rental/printer/": ["src/data/rental-prices.ts"],
+  "/support/pc-repair/": ["src/data/rental-prices.ts"],
+  "/support/printer-repair/": ["src/data/rental-prices.ts"],
+  "/support/brother/": ["src/data/rental-prices.ts"],
   "/rental/area/": ["src/app/rental/area/[slug]/page.tsx", "src/data/rental-areas.ts", "src/data/rental-prices.ts"],
 };
 

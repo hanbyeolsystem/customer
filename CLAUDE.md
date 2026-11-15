@@ -45,6 +45,11 @@
 - `/qna/[slug]/` 285건 — 질문 단위 색인(2026-11-14 지역 11·중복 3 통합 뒤)
 - `/qna/cat/[cat]/` 6종 — 분류별 목록. **FAQPage 스키마는 여기에만**(/qna/ 는 CollectionPage). 예전엔 /qna/ 한 장이 587KB 였다
 - 새 콘텐츠를 넣으면 `src/app/sitemap.ts` 에도 추가할 것(자동 아님)
+- **컴퓨터·프린터 착지 페이지 4개(2026-11-15)**: `/support/pc-repair/`(대구 컴퓨터 수리) · `/support/printer-repair/`(프린터·복합기 수리, 모델별 실제 수리 기록 표) ·
+  `/support/brother/`(대구 브라더 서비스센터) · `/rental/printer/`(프린터 임대). 비로그인 챗GPT·제미나이·구글 AI 모드 90회 시험에서
+  "대구 프린터 임대", "달서구 컴퓨터 수리"가 세 곳 모두 0이었던 빈칸을 메운 것. 사실은 about 확정 파트너·rental-prices.ts·블로그 수리 글만 썼다.
+  수리 단가·다른 제조사 지원·보증 수리 방식·위더스컴퓨터 서비스센터는 근거가 없어 쓰지 않는다. 서비스 @id 는 business-ld.ts serviceCatalog 와 같다.
+  재시험: `한별시스템\검색키워드분석\data\2026-11-14\ai_probe.js` + `run_round.sh`(질문 목록 `data\2026-11-15_AI노출\questions.txt`).
 
 ## 노출 지수 100점 작업 (2026-08-27) — 규칙으로 굳은 것
 - **관련글은 순환 배정**(Q&A `sameCat[(idx+1+i) % n]`, 가이드도 동일). `.slice(0, N)` 으로 앞 N개만 고르면 그 N개만 링크를 받고
