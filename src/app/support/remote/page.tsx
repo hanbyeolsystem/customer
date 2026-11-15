@@ -8,7 +8,7 @@ import { AnswerBlock } from "@/components/AnswerBlock";
 
 export const metadata: Metadata = {
   title: "원격 지원 - 방문 없이 바로 해결",
-  description: "Seetrol MY 원격지원 (한별 전용). 다운로드 후 화면에 보이는 숫자를 053-588-7119 로 알려주시면 즉시 원격 접속합니다. 원격으로 안 되는 증상은 대구·경북 당일 출장으로 이어집니다.",
+  description: "Seetrol MY 원격지원(한별 전용). 받은 뒤 화면의 숫자를 053-588-7119로 알려 주시면 바로 접속합니다.",
   alternates: { canonical: "/support/remote/" },
 };
 

@@ -12,7 +12,7 @@ import { breadcrumbLd, webPageLd } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "대구 사무실 네트워크 공사·데이터 백업 구축",
   description:
-    "대구 사무실 랜 배선 공사부터 서버·NAS 설치, 공유 폴더 설정, 데이터 백업 구축까지 한별시스템이 한 회사에서 처리합니다. 50개사 이상 시공, 대구·경북 당일 출장, 053-588-7119.",
+    "대구 사무실 랜 배선부터 서버·NAS 설치, 공유 폴더 설정, 백업 구축까지 한 회사가 맡습니다. 50개사 이상 시공, 경북까지 당일 출장.",
   alternates: { canonical: "/network/" },
 };
 

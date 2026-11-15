@@ -20,7 +20,7 @@ const ERRORCODE = site.owned.find((u) => u.includes("errorcode"));
 
 export const metadata: Metadata = {
   title: "대구 프린터 수리 - 브라더·교세라 서비스센터, 복합기 출장 수리",
-  description: `대구 달서구 프린터·복합기 수리. 브라더·교세라 서비스센터. 잉크흡수제, 헤드 막힘, 토너 인식, 출력물 줄. 매장 방문 또는 대구·경북 당일 출장. ${site.phone.main}`,
+  description: `대구 달서구 프린터·복합기 수리, 브라더·교세라 서비스센터. 잉크흡수제·헤드 막힘·토너 인식·출력물 줄, 경북까지 당일 출장.`,
   alternates: { canonical: PATH },
 };
 

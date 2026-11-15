@@ -10,7 +10,7 @@ import { breadcrumbLd, webPageLd } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "대구 NAS 수리 - 시놀로지 점검·하드 교체 문의",
   description:
-    "대구 NAS 수리·점검. 전원 불량, 접속 불가, 디스크 경고, 랜섬웨어 의심 등 증상별 대응. 유지관리·임대 고객 출장 점검 무료, 신규 고객 30만원부터(VAT 별도). 053-588-7119.",
+    "대구 NAS 수리, 전원 불량·접속 불가·디스크 경고·랜섬웨어 의심까지. 유지관리·임대 고객 출장 점검 무료, 신규 30만원부터(VAT 별도).",
   alternates: { canonical: "/nas/repair/" },
 };
 

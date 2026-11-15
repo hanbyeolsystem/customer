@@ -12,7 +12,7 @@ import { breadcrumbLd, webPageLd } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "NAS 출장 지역 안내 - 대구·경북·경남 나스 설치 업체",
   description:
-    "대구 달서구 한별시스템의 나스(NAS) 출장 지역. 대구·경북(구미·김천·고령·성주·문경·예천·안동 등) 당일 출장, 경남(창녕·창원·마산) 일정 방문. 시놀로지 공식 대리점, 견적 방문 무료. 053-588-7119.",
+    "대구 달서구 한별시스템의 나스(NAS) 출장 지역. 경북(구미·김천·고령·성주·문경·예천·안동) 당일, 경남(창녕·창원·마산) 일정 방문.",
   alternates: { canonical: "/nas/area/" },
 };
 

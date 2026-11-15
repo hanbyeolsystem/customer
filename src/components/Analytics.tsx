@@ -65,7 +65,10 @@ export function Analytics() {
   if (!GA_ID) return null;
   return (
     <>
-      <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
+      {/* gtag.js(약 180KB)는 페이지 로드가 끝난 뒤 받는다(2026-11-15, 모바일 LCP). afterInteractive 면 첫 화면
+          사진·글꼴과 같이 받아 모바일 실험실 LCP 를 1초 가까이 늦췄다. 아래 초기화는 바로 돌려 dataLayer 에
+          쌓아 두므로, 스크립트가 늦게 와도 그 사이 클릭 이벤트는 빠지지 않는다. */}
+      <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="lazyOnload" />
       <Script id="ga4-init" strategy="afterInteractive">
         {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`}
       </Script>

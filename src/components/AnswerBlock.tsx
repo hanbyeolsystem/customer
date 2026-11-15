@@ -10,7 +10,7 @@
 //
 // 사진은 질문·답변 글에서 분류를 자동으로 골라 붙고(photos.ts topicPhoto), 스크롤로 들어오면 나타난다.
 
-import { topicPhoto } from "@/lib/photos";
+import { photoSrcSet, topicPhoto } from "@/lib/photos";
 
 export function AnswerBlock({
   question,
@@ -44,6 +44,8 @@ export function AnswerBlock({
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={photo.src}
+                  srcSet={photoSrcSet(photo.src)}
+                  sizes="(min-width: 1024px) 400px, 100vw"
                   alt={photo.alt}
                   loading="lazy"
                   decoding="async"

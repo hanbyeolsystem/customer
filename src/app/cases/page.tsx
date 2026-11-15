@@ -11,7 +11,7 @@ import { breadcrumbLd, isoDateTime, webPageLd } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "구축 사례 - 대구·경북 NAS·복합기·랜공사 실제 시공 기록",
   description:
-    "한별시스템이 실제로 시공한 현장 기록. 시놀로지 DS925+·DS1825+·RS2421+ 서버 구축, 교세라 복합기 설치, 사무실 랜공사까지 업종·지역·장비별로 정리했습니다. 모든 사례에 원문 후기 링크가 붙어 있습니다.",
+    "한별시스템이 실제로 시공한 현장 기록입니다. 시놀로지 서버 구축, 교세라 복합기 설치, 랜공사까지 사례마다 원문 후기 링크를 붙였습니다.",
   alternates: { canonical: "/cases/" },
 };
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { metaDescription } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -87,7 +88,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!c) return {};
   return {
     title: `${c.title} - 구축 사례`,
-    description: `${c.summary} ${c.region} ${c.industry}, 투입 장비 ${c.gear.join(", ")}. 한별시스템 실제 시공 기록.`.slice(0, 300),
+    description: metaDescription([c.summary, `${c.title.replace(/\s*-\s*/g, ", ")}.`], `${c.region} ${c.industry}, 한별시스템 실제 시공 기록.`),
     alternates: { canonical: `/cases/${slug}/` },
     openGraph: { images: [{ url: c.images[0] }] },
   };

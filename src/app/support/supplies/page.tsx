@@ -10,7 +10,7 @@ import { site } from "@/data/site";
 export const metadata: Metadata = {
   title: "토너·소모품 주문 - 기종만 알려 주시면 맞는 제품으로",
   description:
-    "복합기·프린터 토너, 드럼, 잉크 주문 안내. 임대 고객은 카운터 자동 수집으로 토너가 떨어지기 전에 미리 배송되어 주문할 일이 없고, 구매 장비는 기종만 알려 주시면 맞는 제품을 찾아 드립니다. 대구·경북 당일 배송, 053-588-7119.",
+    "복합기·프린터 토너, 드럼, 잉크 주문 안내. 임대 고객은 카운터 자동 수집으로 떨어지기 전에 미리 배송됩니다.",
   alternates: { canonical: "/support/supplies/" },
 };
 

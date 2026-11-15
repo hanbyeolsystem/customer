@@ -37,7 +37,7 @@ const nasFaq = [
 
 export const metadata: Metadata = {
   title: "대구 NAS 구축 - 기업용 나스·데이터 백업",
-  description: "대구 나스(NAS) 구축 전문. 시놀로지 공식 대리점으로 기업용 NAS 100건 이상 구축. RAID 설계·3-2-1 백업·랜섬웨어 대응·VPN 원격접속까지. 대구·경북 당일 출장, 무료 견적.",
+  description: "대구 나스(NAS) 구축 전문, 시놀로지 공식 대리점입니다. 기업 100건 이상, RAID·3-2-1 백업·랜섬웨어 대응, 경북까지 당일 출장.",
   alternates: { canonical: "/nas/" },
 };
 

@@ -10,7 +10,7 @@ import { businessId, site } from "@/data/site";
 export const metadata: Metadata = {
   title: `현장 블로그 - 대구·경북 NAS·복합기 설치 이야기 ${naverPosts.length}편`,
   description:
-    "포항·군위·칠곡·경산·안동·창원 NAS 설치, DS925+·DS1825+·RS2421+ 구축, 교세라 복합기 설치까지 한별시스템이 실제로 다녀온 현장 이야기를 사진과 함께 전문 수록했습니다.",
+    "포항·군위·칠곡·경산·안동·창원 NAS 설치부터 교세라 복합기까지, 한별시스템이 다녀온 현장 이야기를 사진과 함께 실었습니다.",
   alternates: { canonical: "/blog/" },
 };
 

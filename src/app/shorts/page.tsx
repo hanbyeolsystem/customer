@@ -11,7 +11,7 @@ import { site } from "@/data/site";
 export const metadata: Metadata = {
   title: "영상 가이드 - 프린터·NAS·PC 문제를 짧은 영상으로",
   description:
-    "프린터 드라이버, NAS 접속, 복사기 오류처럼 사무실에서 자주 막히는 일을 짧은 영상과 단계별 글로 정리했습니다. 대구 한별시스템 18년 현장 기준. 문의 053-588-7119.",
+    "프린터 드라이버, NAS 접속, 복사기 오류처럼 사무실에서 자주 막히는 일을 짧은 영상과 단계별 글로 정리했습니다.",
   alternates: { canonical: "/shorts/" },
   ...(shorts.length ? {} : { robots: { index: false, follow: true } }),
 };

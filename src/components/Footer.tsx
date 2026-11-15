@@ -4,7 +4,6 @@
 // 두 벌씩(쪽당 16KB) 실려서 클라이언트 컴포넌트로 돌렸다. 화면과 링크는 그대로이고,
 // RSC 에는 참조 한 줄만 남는다. (2026-09-18 HTML 무게 줄이기)
 import Link from "next/link";
-import Image from "next/image";
 import { site } from "@/data/site";
 import { embedHref } from "@/lib/embed";
 import { Icon } from "@/components/Icon";
@@ -20,11 +19,16 @@ export function Footer() {
           <div className="col-span-2 lg:col-span-1">
             <div className="flex items-center gap-3 mb-4">
               <div className="bg-white rounded-xl p-1.5">
-                <Image
-                  src="/brand/logo.webp"
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/brand/logo-160.webp"
+                  srcSet="/brand/logo-96.webp 88w, /brand/logo-160.webp 146w"
+                  sizes="51px"
                   alt="한별시스템"
-                  width={307}
-                  height={336}
+                  width={146}
+                  height={160}
+                  loading="lazy"
+                  decoding="async"
                   className="h-14 w-auto object-contain"
                 />
               </div>

@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!a) return {};
   return {
     title: titleOf(a),
-    description: metaDescription(`${a.full} 나스(NAS) 설치·구축·수리 출장.${a.cases.length > 0 ? ` ${a.name} 현장 구축 사례 ${a.cases.length}건.` : ""} 시놀로지 공식 대리점 한별시스템이 ${visitPolicyText(a)}. 정품 판매·RAID·3-2-1 백업·사용 교육까지 현장에서. ${site.phone.main}.`),
+    description: metaDescription(`${a.slug === "gyeongbuk" ? "경상북도" : a.full.length > 12 ? `${a.province} ${a.name}` : a.full} 나스(NAS) 설치·구축·수리. 시놀로지 공식 대리점 한별시스템이 ${visitPolicyText(a)}.`),
     alternates: { canonical: `/nas/area/${slug}/` },
   };
 }

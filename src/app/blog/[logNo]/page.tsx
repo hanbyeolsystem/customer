@@ -22,9 +22,14 @@ export async function generateMetadata({ params }: { params: Promise<{ logNo: st
   if (!p) return {};
   return {
     title: p.title,
-    description: metaDescription(`${p.title} - ${p.excerpt}`, "한별시스템 현장 블로그, 대구·경북 NAS·복합기·전산 설치 기록."),
+    // 제목 한 문장 + 본문 첫 문장. 인사말·날씨 안부·해시태그는 설명이 아니라서 뺀다
+    description: metaDescription(
+      `${p.title.replace(/\s*-\s*/g, ", ").replace(/([^.?!])$/, "$1.")} ${p.excerpt.replace(/#\S+/g, "").split(/(?<=[.?!])\s+/).filter((s) => !/안녕|한별시스템입니다|날씨|건강|감기|추워|따뜻|많은 분들/.test(s)).join(" ")}`,
+      `${p.date.slice(0, 4)}년 한별시스템 현장 기록.`,
+    ),
     alternates: { canonical: `/blog/${logNo}/` },
-    openGraph: p.thumb ? { images: [{ url: p.thumb }] } : undefined,
+    // openGraph: undefined 를 넣으면 레이아웃 og(설명·이미지)까지 지워진다. 사진 있을 때만 키를 둔다
+    ...(p.thumb ? { openGraph: { images: [{ url: p.thumb }] } } : {}),
     // 네이버 원문 사본은 검색 제외. robots.txt 로 막지 않는다(막으면 이 noindex 를 못 읽는다)
     ...(indexedBlogPosts.has(logNo) ? {} : { robots: { index: false, follow: true } }),
   };

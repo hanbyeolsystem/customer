@@ -11,7 +11,7 @@ import { site } from "@/data/site";
 export const metadata: Metadata = {
   title: "RAID 계산기 - 시놀로지 NAS SHR·RAID 5·RAID 6 실제 사용 용량 계산",
   description:
-    "디스크 개수와 용량을 넣으면 SHR, SHR-2, RAID 0/1/5/6/10, JBOD 별 실제 사용 가능 용량을 바로 계산합니다. 용량이 다른 디스크를 섞을 때 얼마나 버려지는지도 함께 표시. 대구 한별시스템.",
+    "디스크 개수와 크기를 넣으면 SHR·RAID 0/1/5/6/10·JBOD별 실제 사용 용량을 계산합니다. 섞어 쓸 때 버려지는 공간도 표시.",
   alternates: { canonical: "/nas/raid-calculator/" },
 };
 

@@ -40,7 +40,8 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     title: titleOf(d.q),
     description: metaDescription(d.q.content, "한별시스템 커뮤니티. 대구·경북 NAS·복합기·컴퓨터 질문과 현장 글."),
     alternates: { canonical: `/community/${id}/` },
-    openGraph: src?.thumb ? { images: [{ url: src.thumb }] } : undefined,
+    // openGraph: undefined 는 레이아웃 og(설명·이미지)까지 지운다. 사진 있을 때만 키를 둔다
+    ...(src?.thumb ? { openGraph: { images: [{ url: src.thumb }] } } : {}),
   };
 }
 

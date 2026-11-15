@@ -13,7 +13,7 @@ const COLOR = rentalPrice("컬러 복사기 (컬러 디지털복합기)");
 
 export const metadata: Metadata = {
   title: "대구 복사기 임대 지역 안내 - 달서구·수성구·북구·동구 설치 기록",
-  description: `대구 복사기 임대·복합기 렌탈 지역 안내. 달서구·수성구·북구·동구 실제 설치 기록. 흑백 ${MONO.price}, 컬러 ${COLOR.price}(VAT 별도). 대구 전역·경북 당일 출장 가능. ${site.phone.main}.`,
+  description: `대구 복사기 임대·복합기 렌탈 지역 안내. 달서구·수성구·북구·동구 설치 기록, 흑백 ${MONO.price}(VAT 별도).`,
   alternates: { canonical: "/rental/area/" },
 };
 

@@ -6,6 +6,11 @@ import { caseStudies } from "@/data/cases";
    같은 글은 늘 같은 사진이 나오도록 slug 해시로 고르고, 한 글 안에서는 겹치지 않게 뽑는다. */
 
 export type Photo = { src: string; alt: string; caption: string };
+
+// 폰용 768px 사본(scripts/make-small-photos.mjs, prebuild 에서 없는 것만 만든다)을 srcset 에 넣는다.
+// shortcut: 원본 폭은 900~1200px 이라 1200w 로 적는다(정확한 폭이 아니어도 고르는 순서는 같다).
+export const photoSrcSet = (src: string) =>
+  /^\/(cases|blog-assets)\/[^/]+\.webp$/.test(src) ? `${src.replace(/\.webp$/, "-768.webp")} 768w, ${src} 1200w` : undefined;
 export type PhotoCat = "ai" | "nas" | "printer" | "pc" | "network" | "service" | "office";
 
 const BLOG: Record<string, Photo[]> = {

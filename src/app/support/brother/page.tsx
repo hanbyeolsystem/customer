@@ -18,7 +18,7 @@ const INKJET = rentalPrice("잉크젯 무한 프린터");
 
 export const metadata: Metadata = {
   title: "대구 브라더 프린터 서비스센터 - 달서구 한별시스템",
-  description: `대구 달서구 브라더 프린터 서비스센터. 2011년부터 브라더 수리, 2014년 브라더코리아 프리미엄 센터. 흡수제·헤드·토너 초기화. ${site.phone.hours}. ${site.phone.main}`,
+  description: `대구 달서구 브라더 프린터 서비스센터입니다. 2011년부터 수리, 2014년 브라더코리아 프리미엄 센터, 흡수제·헤드·토너 초기화.`,
   alternates: { canonical: PATH },
 };
 

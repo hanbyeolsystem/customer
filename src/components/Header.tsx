@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { site, nav, type NavItem, type NavLink } from "@/data/site";
@@ -68,11 +67,17 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 lg:px-6 h-16 lg:h-[68px] flex items-center justify-between gap-4">
         {/* 로고 */}
         <Link href="/" onClick={close} className={`flex items-center gap-2 shrink-0 rounded-md ${overHero ? "bg-white/95 px-1.5 py-1" : ""}`} aria-label="한별시스템 홈">
-          <Image
-            src="/brand/logo.webp"
+          {/* 화면 높이 36~48px 라 원본(307x336, 17KB) 대신 작은 사본(scripts/make-small-photos.mjs) */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/brand/logo-160.webp"
+            srcSet="/brand/logo-96.webp 88w, /brand/logo-160.webp 146w"
+            sizes="44px"
             alt="한별시스템"
-            width={307}
-            height={336}
+            width={146}
+            height={160}
+            loading="lazy"
+            decoding="async"
             // 로고는 44px 짜리라 LCP 가 되지 않는다. priority 를 주면 히어로 사진과 미리받기를
             // 다투고, 지연로딩 비율(노출 지수 기술 항목)만 깎인다. 첫 화면 안이라 어차피 바로 받는다.
             className={`${overHero ? "h-9 lg:h-10" : "h-11 lg:h-12"} w-auto object-contain transition-all`}

@@ -7,7 +7,7 @@ import { site } from "@/data/site";
 export const metadata: Metadata = {
   title: "이용약관",
   description:
-    "한별시스템 웹사이트와 상담·견적·AS 접수 서비스 이용에 관한 약관입니다. 서비스 범위, 견적과 계약, 임대 서비스의 기본 조건, 책임과 면책을 안내합니다.",
+    "한별시스템 웹사이트와 상담·견적·AS 접수 이용 약관입니다. 서비스 범위, 계약, 임대 기본 조건, 책임과 면책을 안내합니다.",
   alternates: { canonical: "/terms/" },
 };
 

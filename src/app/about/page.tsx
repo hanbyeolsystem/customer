@@ -13,7 +13,7 @@ import { AnswerBlock } from "@/components/AnswerBlock";
 export const metadata: Metadata = {
   title: "회사 소개 - 대구 달서구 전산 관리 업체",
   description:
-    "한별시스템은 2008년 대구 성서공단에서 출발해 18년째 대구·경북 기업의 전산을 맡아 온 IT 업체입니다. 대구광역시 달서구 문화회관11안길 소재, 관리 고객사 500곳, Synology NAS 공식 대리점.",
+    "한별시스템은 2008년 대구 성서공단에서 출발해 18년째 경북까지 기업 전산을 맡고 있습니다. 관리 고객사 500곳, 시놀로지 공식 대리점.",
   alternates: { canonical: "/about/" },
 };
 

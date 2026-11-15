@@ -64,7 +64,7 @@ const rentalFaq = [
 
 export const metadata: Metadata = {
   title: "대구 복사기 임대·복합기 렌탈 - 흑백 월 7만원부터",
-  description: "대구 복합기 렌탈·프린터 렌탈. 흑백 복사기 월 7만원부터, 컬러 복사기 월 10만원부터(VAT 별도). 토너 교체·부품·출장수리 포함 월 정액. 카운터 자동 수집·사전 정비·대구 당일 출동.",
+  description: "대구 복합기·프린터 렌탈, 흑백 복사기 월 7만원·컬러 월 10만원부터(VAT 별도). 토너·부품·출장수리 포함 월 정액입니다.",
   alternates: { canonical: "/rental/" },
 };
 

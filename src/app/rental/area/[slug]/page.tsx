@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!a) return {};
   return {
     title: titleOf(a),
-    description: metaDescription(`${a.full} 복사기 임대·복합기 렌탈. 흑백 ${MONO.price}, 컬러 ${COLOR.price}(VAT 별도), 토너·부품·출장 수리 포함. ${a.history} 대구 전역 당일 출장 가능. ${site.phone.main}.`),
+    description: metaDescription(`${a.full} 복사기 임대·복합기 렌탈, 흑백 ${MONO.price}·컬러 ${COLOR.price}(VAT 별도). 토너·부품·출장 수리 포함.`),
     alternates: { canonical: `/rental/area/${slug}/` },
   };
 }

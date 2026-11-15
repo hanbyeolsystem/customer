@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { metaDescription } from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -34,7 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     : "구성별 별도 견적.";
   return {
     title: `시놀로지 ${m.model} 설치 - 대구 NAS 구축 비용과 구성`,
-    description: `시놀로지 ${m.model}(${m.bayLabel}) 설치. ${priceLine} 대구·경북 시놀로지 공식 대리점 한별시스템이 설치·RAID·1시간 교육까지. 임대 월 ${won(RENT_FROM)}부터. ${site.phone.main}`,
+    description: metaDescription(`시놀로지 ${m.model}(${m.bayLabel}) 대구·경북 설치. ${priceLine} 공식 대리점 한별시스템이 RAID·1시간 교육까지.`),
     alternates: { canonical: `/nas/model/${slug}/` },
   };
 }

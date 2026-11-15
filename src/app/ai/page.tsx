@@ -12,7 +12,7 @@ import { breadcrumbLd, webPageLd } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "사내 AI 구축 - 회사 자료를 밖으로 내보내지 않는 NAS AI",
   description:
-    "회사 자료를 외부 AI 서비스에 올리지 않고 사내 NAS 안에서 AI가 검색·요약하게 만듭니다. 한별시스템이 자사 NAS에서 로컬 LLM을 2026년 8월부터 직접 운영하며 검증한 구성입니다. 대구·경북 기업 데이터 관리 전문, 무료 방문 상담 053-588-7119.",
+    "회사 자료를 외부 AI에 올리지 않고 사내 NAS에서 검색·요약하게 만듭니다. 한별시스템이 2026년 8월부터 자사 장비로 직접 운영 중입니다.",
   alternates: { canonical: "/ai/" },
 };
 

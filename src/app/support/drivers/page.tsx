@@ -8,7 +8,7 @@ import { AnswerBlock } from "@/components/AnswerBlock";
 
 export const metadata: Metadata = {
   title: "프린터 드라이버 다운로드",
-  description: "복합기·프린터 드라이버를 기종만 고르면 자동으로 설치해 주는 딸깍P드라이버를 이 페이지에서 무료로 받을 수 있습니다. 딸깍설치 기술은 특허 출원중이며, 제조사 공식 지원 페이지 링크도 함께 정리했습니다.",
+  description: "기종만 고르면 복합기·프린터 드라이버를 자동으로 설치해 주는 딸깍P드라이버를 무료로 받습니다. 딸깍설치 기술은 특허 출원중입니다.",
   alternates: { canonical: "/support/drivers/" },
 };
 

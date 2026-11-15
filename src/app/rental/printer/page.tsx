@@ -24,7 +24,7 @@ const POSTS = ["223015794181", "224337412783"];
 
 export const metadata: Metadata = {
   title: "대구 프린터 임대 - 흑백 레이저 월 3만원부터",
-  description: `대구 프린터 임대·렌탈. 흑백 레이저 월 3만원, 잉크젯 무한 월 4만원, 컬러 레이저 월 5만원부터(VAT 별도). 소모품·부품·출장 수리 포함. ${site.phone.main}`,
+  description: `대구 프린터 임대, 흑백 레이저 월 3만원·잉크젯 무한 4만원·컬러 5만원부터(VAT 별도). 소모품·부품·출장 수리 포함.`,
   alternates: { canonical: PATH },
 };
 

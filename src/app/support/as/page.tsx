@@ -9,7 +9,7 @@ import { AnswerBlock } from "@/components/AnswerBlock";
 // 똑같아지고, Search Console 이 "중복 페이지"로 색인을 거른다.
 export const metadata: Metadata = {
   title: "AS 접수",
-  description: "복합기·프린터·컴퓨터·NAS 고장 접수. 제품과 증상을 남기시면 한별 엔지니어가 1영업일 내 회신드립니다. 대구·경북 당일 출장.",
+  description: "복합기·프린터·컴퓨터·NAS 고장 접수. 제품과 증상을 남기시면 1영업일 내 회신드리고, 대구·경북은 당일 출장합니다.",
   alternates: { canonical: "/support/as/" },
 };
 

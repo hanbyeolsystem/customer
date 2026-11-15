@@ -19,7 +19,7 @@ const POSTS = ["224022745105", "223866251624", "223810375737"];
 
 export const metadata: Metadata = {
   title: "대구 컴퓨터 렌탈 - 사무용 PC·모니터 월 4만원부터",
-  description: `대구 사무용 컴퓨터 렌탈. 데스크탑+모니터 세트 ${SET.price}(VAT 별도). 업무에 맞춘 조립형 PC, 설치·초기 세팅 방문, 고장 수리 포함. 사무실만 렌탈. ${site.phone.main}.`,
+  description: `대구 사무용 컴퓨터 렌탈, 데스크탑+모니터 세트 ${SET.price}(VAT 별도). 설치·초기 세팅 방문과 고장 수리를 포함합니다.`,
   alternates: { canonical: "/rental/pc/" },
 };
 

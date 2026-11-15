@@ -10,7 +10,7 @@ import { breadcrumbLd, isoDateTime } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: `Q&A - 사내 AI·나스·복합기 렌탈·컴퓨터 수리 ${qna.length}문답`,
-  description: `사내 AI를 회사 안에서 돌릴 수 있나요? DS925+ 설치하면 얼마인가요? 랜섬웨어에 걸리면 NAS 자료도 암호화되나요? 대구 한별시스템이 실제 고객 질문 ${qna.length}가지에 즉답합니다.`,
+  description: `사내 AI·NAS·복합기·컴퓨터·네트워크까지 실제 고객 질문 ${qna.length}가지에 대구 한별시스템이 즉답합니다.`,
   alternates: { canonical: "/qna/" },
 };
 

@@ -1,4 +1,4 @@
-import type { Photo } from "@/lib/photos";
+import { photoSrcSet, type Photo } from "@/lib/photos";
 
 /* 본문 중간 실사 사진 한 장 + 캡션. 스크롤로 들어오면 나타난다(data-reveal, Reveal.tsx). */
 export function Figure({ photo, priority = false, className = "my-8" }: { photo: Photo; priority?: boolean; className?: string }) {
@@ -7,6 +7,8 @@ export function Figure({ photo, priority = false, className = "my-8" }: { photo:
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={photo.src}
+        srcSet={photoSrcSet(photo.src)}
+        sizes="(min-width: 896px) 896px, 100vw"
         alt={photo.alt}
         loading={priority ? "eager" : "lazy"}
         decoding="async"

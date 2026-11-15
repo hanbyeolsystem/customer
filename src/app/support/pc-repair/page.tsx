@@ -20,7 +20,7 @@ const POSTS = ["222205471118", "224467762190"];
 
 export const metadata: Metadata = {
   title: "대구 컴퓨터 수리 - 달서구·성서공단 사무실 출장 수리",
-  description: `대구 달서구·성서공단 사무실 컴퓨터 출장 수리. 부팅 불량, 느려짐, 블루스크린. 대구·경북 당일 출장 가능, 관리 거래처는 출장비 없음. ${site.phone.main}`,
+  description: `달서구·성서공단 사무실 컴퓨터 출장 수리, 부팅 불량·느려짐·블루스크린. 대구·경북 당일 가능하고 관리 거래처는 출장비가 없습니다.`,
   alternates: { canonical: PATH },
 };
 

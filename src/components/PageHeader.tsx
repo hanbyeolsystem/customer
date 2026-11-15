@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { topicPhoto, type Photo } from "@/lib/photos";
+import { photoSrcSet, topicPhoto, type Photo } from "@/lib/photos";
 
 /* 페이지 상단 머리글. 배경에 그 페이지 내용에 맞는 실사 사진이 깔린다(2026-09-12 사장님 "메뉴에 맞춰 사진").
    사진은 제목·badge 글에서 분류를 자동으로 뽑으므로 페이지마다 따로 지정할 필요가 없다.
@@ -28,6 +28,8 @@ export function PageHeader({
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={bg.src}
+            srcSet={photoSrcSet(bg.src)}
+            sizes="100vw"
             alt={bg.alt}
             loading="eager"
             decoding="async"

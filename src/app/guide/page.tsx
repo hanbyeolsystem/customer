@@ -10,7 +10,7 @@ import { AnswerBlock } from "@/components/AnswerBlock";
 export const metadata: Metadata = {
   title: "가이드 - 비교표로 정리한 사무실 IT 판단 기준",
   description:
-    "사내 AI 도입 비용, NAS 구매와 임대 비교, 복합기 렌탈과 구매 3년 총비용, 랜섬웨어 대응 체크리스트까지. 대구 한별시스템이 18년 현장에서 쓰는 판단 기준을 표와 숫자로 옮겼습니다.",
+    "사내 AI 도입 비용, NAS 구매·임대 비교, 복합기 렌탈 3년 총비용, 랜섬웨어 대응까지. 18년 현장 판단 기준을 표와 숫자로 담았습니다.",
   alternates: { canonical: "/guide/" },
 };
 

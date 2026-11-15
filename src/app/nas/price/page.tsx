@@ -22,7 +22,7 @@ import { breadcrumbLd, webPageLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "대구 NAS 구축 비용 - 규모별 견적 가이드",
-  description: `대구 중소기업 NAS 구축 비용 규모별 공개. DS225+ 4TB 2개 구성이 출장 설치·설정교육 포함 ${won(BUY_FROM)}부터(VAT 별도), 임대는 월 10만원부터. 정확한 금액은 현장 확인 후 안내. 053-588-7119.`,
+  description: `대구 NAS 구축 비용 공개. DS225+ 4TB 2개 구성 출장 설치 포함 ${won(BUY_FROM)}부터(VAT 별도), 임대는 월 10만원부터.`,
   alternates: { canonical: "/nas/price/" },
 };
 

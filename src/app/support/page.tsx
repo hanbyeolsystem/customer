@@ -12,7 +12,7 @@ import { breadcrumbLd } from "@/lib/schema";
 export const metadata = {
   title: "고객 지원 - 대구 컴퓨터 수리·프린터 출장 수리·전산 유지보수",
   description:
-    "대구 달서구 한별시스템 고객지원. 원격지원, 프린터 드라이버 다운로드, AS 접수, 무료 방문 견적. 컴퓨터 수리·복합기 출장 수리·기업 전산 유지보수를 한 곳에서 처리합니다.",
+    "대구 달서구 한별시스템 고객지원. 원격지원, 프린터 드라이버, AS 접수, 무료 방문 견적, 컴퓨터·복합기 출장 수리를 한 곳에서.",
   alternates: { canonical: "/support/" },
 };
 

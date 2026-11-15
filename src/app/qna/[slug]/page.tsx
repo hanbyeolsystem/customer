@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { metaDescription } from "@/lib/utils";
+import { metaDescription, descFits } from "@/lib/utils";
+import { qnaDesc } from "@/data/qna-desc";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/PageHeader";
@@ -8,7 +9,7 @@ import { qna, qnaBySlug, qnaCats, qnaDate, qnaRedirects } from "@/data/qna";
 import { qnaDeep } from "@/data/qna-deep";
 import { qnaDeep2 } from "@/data/qna-deep-2";
 import { qnaImage } from "@/data/qna-images";
-import { articlePhotos } from "@/lib/photos";
+import { articlePhotos, photoSrcSet } from "@/lib/photos";
 import { Figure } from "@/components/Figure";
 import { guides } from "@/data/guides";
 import { caseStudies } from "@/data/cases";
@@ -26,9 +27,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (to) return { title: "옮긴 질문", alternates: { canonical: to } };
   const f = qnaBySlug(slug);
   if (!f) return {};
+  // 즉답 앞 1~2문장. 너무 짧으면(예: "됩니다.") 질문을 앞에 붙이고, 손질본이 있으면 그것을 쓴다(qna-desc.ts)
+  const a = metaDescription(f.a);
+  const qa = `${f.q} ${a}`;
+  const oneSentence = (t: string) => !/[.?!]\s/.test(t);
   return {
     title: f.q,
-    description: metaDescription(f.a),
+    description: qnaDesc[slug] ?? (a.length < 40 && oneSentence(a) && oneSentence(f.q) && descFits(qa) ? qa : a),
     alternates: { canonical: `/qna/${slug}/` },
   };
 }
@@ -80,6 +85,8 @@ export default async function QnaDetailPage({ params }: { params: Promise<{ slug
   const pageUrl = `${site.url}/qna/${f.slug}/`;
   const org = { "@id": businessId };
   const d = qnaDate(f.slug);
+  // 화면 날짜는 한국 날짜(YYYY-MM-DD). qna-dates.json 값은 UTC 시각이라 그대로 자르면 하루 밀릴 수 있다
+  const modifiedKst = new Date(new Date(d.modified).getTime() + 9 * 3600_000).toISOString().slice(0, 10);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -109,7 +116,7 @@ export default async function QnaDetailPage({ params }: { params: Promise<{ slug
       <section className="py-10 lg:py-14 bg-[var(--bg)]">
         <div className="max-w-4xl mx-auto px-4 lg:px-6">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={qnaImage(f.cat, f.slug)} alt={f.q}
+          <img src={qnaImage(f.cat, f.slug)} srcSet={photoSrcSet(qnaImage(f.cat, f.slug))} sizes="(min-width: 896px) 896px, 100vw" alt={f.q}
             className="w-full max-h-[420px] object-cover rounded-2xl border border-[var(--line)] mb-6" loading="lazy" decoding="async" />
 
           {/* 즉답 */}
@@ -117,6 +124,9 @@ export default async function QnaDetailPage({ params }: { params: Promise<{ slug
             <div className="text-[11px] font-extrabold text-hb-blue tracking-[.18em] mb-2">답변</div>
             <h2 className="text-base font-extrabold text-[var(--ink)] mb-2">{/\?$/.test(f.q) ? f.q : `${f.q}?`}</h2>
             <p className="text-[var(--ink)] leading-relaxed font-medium">{f.a}</p>
+            <p className="mt-3 text-[12px] text-[var(--mute)]">
+              최종 업데이트: <time dateTime={modifiedKst} className="font-bold text-[var(--ink)]/80">{modifiedKst}</time>
+            </p>
             <div className="flex flex-wrap gap-2 mt-4">
               {[
                 { label: "출장", value: "대구·경북 당일 가능" },
