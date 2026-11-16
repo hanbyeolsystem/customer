@@ -1,5 +1,173 @@
 [
  {
+  "logNo": "224479010793",
+  "title": "아이피타임에서 시놀로지나스로 대구 중구 사무실 교체작업",
+  "cat": "etc",
+  "catLabel": "한별시스템",
+  "date": "2026-11-16",
+  "href": "https://blog.naver.com/hanbyeolsystem/224479010793",
+  "thumb": "/blog-posts/224479010793/1.webp",
+  "excerpt": "안녕하세요!! 올인원시스템을 추구하는 한별시스템입니다. 오래된 NAS(네트워크에 연결해 쓰는 공용 저장장치)를 바꿔야 하나 고민하는 사무실이 계실 겁니다. 저희 한별시스템이 대구 중구 사무실에서 아이피타임 NAS를 시놀로지 NAS로 바꿔 설치한 과정을 순서대로 적어 봅니다. 현장은 이랬",
+  "chars": 1966,
+  "images": 8,
+  "related": {
+   "href": "/nas/",
+   "label": "기업용 NAS 구축 안내"
+  },
+  "blocks": [
+   {
+    "t": "img",
+    "src": "/blog-posts/224479010793/1.webp",
+    "w": 900,
+    "h": 426
+   },
+   {
+    "t": "p",
+    "text": "안녕하세요!! 올인원시스템을 추구하는 한별시스템입니다."
+   },
+   {
+    "t": "p",
+    "text": "오래된 NAS(네트워크에 연결해 쓰는 공용 저장장치)를 바꿔야 하나 고민하는 사무실이 계실 겁니다. 저희 한별시스템이 대구 중구 사무실에서 아이피타임 NAS를 시놀로지 NAS로 바꿔 설치한 과정을 순서대로 적어 봅니다."
+   },
+   {
+    "t": "p",
+    "text": "현장은 이랬습니다"
+   },
+   {
+    "t": "p",
+    "text": "중구의 한 사무실에서 오래 쓰던 아이피타임 NAS를 새 장비로 바꾸고 싶다는 요청을 주셨습니다. 책상 위에는 사무실 전화기와 작은 리모컨이 놓여 있었고, 그 옆 자리에 NAS가 자리 잡고 있었습니다. 저희는 먼저 기존 장비가 어떤 상태로 놓여 있는지부터 살폈습니다."
+   },
+   {
+    "t": "p",
+    "text": "NAS는 보통 한 번 설치하면 몇 년씩 켜 둔 채로 쓰기 때문에, 평소에는 장비 상태를 따로 들여다볼 일이 많지 않습니다."
+   },
+   {
+    "t": "p",
+    "text": "그래서 교체를 계기로 놓인 자리와 주변 환경을 함께 살펴보는 것이 좋습니다. 통풍이 막힌 자리나 먼지가 쌓인 자리는 장비 수명에 영향을 줍니다."
+   },
+   {
+    "t": "img",
+    "src": "/blog-posts/224479010793/2.webp",
+    "w": 900,
+    "h": 572
+   },
+   {
+    "t": "p",
+    "text": "흰색 기존 NAS가 책상 위에서 시놀로지 NAS와 나란히 놓인 장면입니다. 새 장비를 들고 가서 같은 자리에서 바꿀 준비를 하는 단계였습니다."
+   },
+   {
+    "t": "p",
+    "text": "두 장비를 나란히 두면 어느 쪽이 기존 장비인지 헷갈리지 않아 작업 중 실수를 줄일 수 있습니다. 자료를 옮기는 동안에는 기존 장비를 끄거나 치우지 않고 그대로 두는 것이 안전합니다."
+   },
+   {
+    "t": "p",
+    "text": "옮긴 자료가 새 장비에서 제대로 열리는지 확인한 뒤에 정리하시면 됩니다."
+   },
+   {
+    "t": "p",
+    "text": "오래된 장비는 오래 켜져 있던 만큼 위쪽 통풍구에 먼지가 쌓이기 쉽습니다. 그래서 교체 전에 어떤 장비를 어디로 옮길지 먼저 정하고 시작했습니다. 작업 순서는 아래 그림처럼 잡았습니다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMTZfNDQg/MDAxNzk0ODAyMTg2MDUw.aqth-GREdB7HyAPGnXDcWxWu4Ji2jJ7ljAdiTJsrGLAg.2Zjhmz_AZm8o0jAdfNXaCz3gn3R10sZRRZeb-8eNBZMg.JPEG/x02.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "새 NAS를 놓았습니다"
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMTZfMzQg/MDAxNzk0ODAyMTg5MzMx.kPMIKbR1bA5uYrsJHBrRgoGKuOhrtZXtFnJR7X0mFNIg.JJLn6IO55i4KAjxRSsQXDkRnOTSaSxOWZhe2abyCNA0g.JPEG/x03.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "책상 위에 시놀로지 NAS를 올려 둔 장면입니다. 앞쪽에 하드디스크를 꽂는 칸이 네 개 있는 4베이 모델 형태였습니다. 바닥에는 칸을 잠그는 작은 열쇠가 따로 놓여 있었습니다."
+   },
+   {
+    "t": "p",
+    "text": "하드디스크 칸에는 열쇠로 잠그는 잠금장치가 있습니다. 설치할 때는 칸을 열어 디스크를 넣고 다시 잠그는 순서로 진행합니다."
+   },
+   {
+    "t": "p",
+    "text": "잠금용 열쇠는 작아서 분실하기 쉬우니 정해진 자리에 보관해 두시면 좋습니다. 나중에 디스크에 문제가 생겨 칸을 열어야 할 때 열쇠가 없으면 교체가 늦어질 수 있습니다."
+   },
+   {
+    "t": "p",
+    "text": "열쇠 보관 위치는 담당자끼리 공유해 두시길 권해 드립니다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMTZfNDMg/MDAxNzk0ODAyMTkzMTc5.l6nKIKBPeCUq8gAlBO04Jh0n5DRWRJDql-dHkifq-hEg.qLvMFE9h7TBEBeL6vS-h0JLsQsEbqlTrrFI0dtbYhcgg.JPEG/x04.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMTZfMjA4/MDAxNzk0ODAyMTk1NDQ1.mBgDHkKtEPIPYOg3httYZ6UNfxzXQB3xtTxmA-imAtgg.Z-QgwYLdpordqvWmJW9AbTOuY_szPaGPQEuKiG-9C4wg.JPEG/x05.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "자리를 조금 정돈해 NAS를 책상 위 중앙에 반듯하게 놓은 모습입니다. 열쇠는 윗면에 올려 두어 잃어버리지 않게 했습니다. 앞면의 파란 불빛이 들어와 장비가 켜진 것도 확인했습니다."
+   },
+   {
+    "t": "p",
+    "text": "새 장비의 전원이 들어온 뒤에는 앞면 표시등으로 각 칸의 상태를 볼 수 있습니다. 저희는 칸마다 불이 정상으로 들어오는지 눈으로 확인하며 마무리했습니다."
+   },
+   {
+    "t": "p",
+    "text": "표시등은 평소 상태를 알아 두어야 이상을 빨리 알아챌 수 있습니다. 정상일 때 어떤 색으로 켜지는지 기억해 두시고, 색이 바뀌거나 깜박임이 달라지면 점검을 받아 보시는 편이 좋습니다."
+   },
+   {
+    "t": "p",
+    "text": "이상 신호를 며칠 두고 보다가 디스크 문제로 이어지는 경우도 있습니다."
+   },
+   {
+    "t": "p",
+    "text": "처음 바꿀 때 뭘 신경 써야 할까요?"
+   },
+   {
+    "t": "p",
+    "text": "기존 NAS 안의 자료가 가장 중요합니다. 자료 옮기기가 먼저, 교체는 그다음이라고 생각하시면 편합니다. 이번 작업에서 자료를 어떻게 옮겼는지는 사진에 담기지 않아 따로 적지 않았습니다."
+   },
+   {
+    "t": "p",
+    "text": "자료를 옮기기 전에는 어떤 폴더가 꼭 필요한지 먼저 정리해 두시면 시간이 줄어듭니다. 쓰지 않는 오래된 자료까지 모두 옮기면 새 장비의 공간만 차지하게 됩니다."
+   },
+   {
+    "t": "p",
+    "text": "중요한 자료는 새 NAS 외에 다른 저장 장소에도 한 부 더 보관해 두시는 것이 좋습니다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMTZfMjE4/MDAxNzk0ODAyMTk5MzY2.qboGe76ZscIpzRvQ6fs9PInp1DnEzGfva7EzdQNOA6Eg.e39zsndnsjAcb4RZY2Vcj2Pqd7oLxOfMge_ukKfJ4v4g.JPEG/x06.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "자주 물어보시는 것"
+   },
+   {
+    "t": "p",
+    "text": "Q. NAS를 바꾸면 기존 자료는 어떻게 되나요? A. 옮기지 않으면 새 NAS에는 들어 있지 않습니다. 교체 전에 기존 NAS의 자료를 다른 곳에 한 번 복사해 두시면 안전합니다."
+   },
+   {
+    "t": "p",
+    "text": "Q. 오래된 NAS는 언제 바꾸는 게 좋을까요? A. 접속이 자주 끊기거나 소리가 커지면 점검할 때입니다. 하드디스크는 오래 쓸수록 고장 가능성이 높아지니 여유 있을 때 바꾸시는 편이 좋습니다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMTZfMTEy/MDAxNzk0ODAyMjA0ODA0.dHuhcQkeS5-RTEYpv0-kUuq7YNgBOQSB0k-V4wJ_JBkg.-7d5QBnI0SJZG7FrUBP0OiGQvisFg5Dy4nH1pjZtVrsg.JPEG/x07.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "궁금한 거 있으시면 편하게 연락 주세요! ***** 053-588-7119 한별시스템"
+   }
+  ]
+ },
+ {
   "logNo": "224476262326",
   "title": "성서공단 제조공장 신규 사무실, 공유기 허브 연결로 네트워크 구축",
   "cat": "case",
