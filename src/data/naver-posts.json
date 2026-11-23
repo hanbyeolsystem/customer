@@ -1,5 +1,333 @@
 [
  {
+  "logNo": "224488902070",
+  "title": "동대구 NAS 설치, 925neo+와 DS225+ 그리고 UPS까지 해 드렸어요",
+  "cat": "etc",
+  "catLabel": "한별시스템",
+  "date": "2026-11-23",
+  "href": "https://blog.naver.com/hanbyeolsystem/224488902070",
+  "thumb": "/blog-posts/224488902070/1.webp",
+  "excerpt": "안녕하세요!! 올인원시스템을 추구하는 한별시스템입니다. 동대구 근처 사무실에서 NAS(네트워크에 연결해 쓰는 공용 저장장치)를 새로 들이려는데 뭘 봐야 할지 막막하신 분들이 계실 거예요. 저희 한별시스템이 이번에 동대구 사무실에 NAS 925neo+와 DS225+, 그리고 UPS 설치까",
+  "chars": 1794,
+  "images": 9,
+  "related": {
+   "href": "/nas/model/ds225-plus/",
+   "label": "DS225+ 설치 비용·구성"
+  },
+  "blocks": [
+   {
+    "t": "img",
+    "src": "/blog-posts/224488902070/1.webp",
+    "w": 900,
+    "h": 900
+   },
+   {
+    "t": "p",
+    "text": "안녕하세요!! 올인원시스템을 추구하는 한별시스템입니다."
+   },
+   {
+    "t": "p",
+    "text": "동대구 근처 사무실에서 NAS(네트워크에 연결해 쓰는 공용 저장장치)를 새로 들이려는데 뭘 봐야 할지 막막하신 분들이 계실 거예요. 저희 한별시스템이 이번에 동대구 사무실에 NAS 925neo+와 DS225+, 그리고 UPS 설치까지 마치고 왔어요."
+   },
+   {
+    "t": "p",
+    "text": "왜 NAS와 UPS를 같이 봤을까요"
+   },
+   {
+    "t": "p",
+    "text": "사무실 자료는 한 번 날아가면 되돌리기 어렵습니다. NAS를 두면 직원들이 같은 자료를 함께 쓰고 백업도 한곳에 모을 수 있어요. 그런데 이번 손님은 갑자기 전기가 끊길 때 생기는 문제를 걱정하셨어요. 그래서 NAS와 함께 UPS(정전이 되어도 잠깐 전기를 이어 주는 보조 전원 장치)까지 의뢰하셨습니다."
+   },
+   {
+    "t": "p",
+    "text": "사무실에는 NAS 925neo+와 UPS를 두고, 집에는 DS225+를 두기로 했어요. 사무실 자료를 집에 있는 NAS로 원격 백업받아서 따로 관리하시려는 계획이셨어요. 자료를 두 곳에 나눠 두면 한쪽에 문제가 생겨도 다른 쪽이 남습니다."
+   },
+   {
+    "t": "img",
+    "src": "/blog-posts/224488902070/2.webp",
+    "w": 900,
+    "h": 576
+   },
+   {
+    "t": "p",
+    "text": "먼저 사무실에서 쓸 NAS를 책상 위에 꺼내 놓고 상태를 살폈어요. 디스크를 꽂는 칸이 네 개인 모델이라, 설치 전에 겉모습과 구성품부터 하나씩 확인했습니다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMjNfMTA3/MDAxNzk1NDMzODY4NjE3.PoSzrDY2qv83zH2xwVMvJ7ifHMu0wfuTxD5zI58xmNMg.JOLQKFi7XHvGc55GtBuBvXMQYzpBb5QFh8qor9aQky4g.JPEG/x02.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "고를 때 보는 기준은 이렇습니다"
+   },
+   {
+    "t": "p",
+    "text": "첫 번째는 디스크를 몇 개 꽂을 수 있는가예요. 자료가 많이 늘어날 사무실이면 칸이 넉넉한 모델이 편하고, 집에서 백업만 받는다면 작은 모델로도 충분합니다. 두 번째는 NAS를 어디에 둘 것인가입니다. 통풍이 되고 콘센트와 가까우며 사람 손이 덜 닿는 자리가 좋아요. 세 번째는 전기가 끊겼을 때 대비가 되어 있는가예요. NAS는 UPS와 함께 둘 때 자료가 더 안전합니다."
+   },
+   {
+    "t": "p",
+    "text": "이 현장에서는 이렇게 했어요"
+   },
+   {
+    "t": "p",
+    "text": "사무실 안쪽 낮은 칸에 NAS와 UPS를 나란히 놓기로 했어요. 손님이 평소 자주 지나다니지 않는 자리라 실수로 건드릴 일이 적었습니다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMjNfMjcg/MDAxNzk1NDMzODczMzc5.kGivwQplnPtRu2Z1sR195bg09YPKHJjIaMR6V7-_aY8g.GYcdq5CYglP9seTJ3iaiZod42d8Sz0SxNUJ62YV9LEgg.JPEG/x03.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "사진은 NAS를 자리에 놓고 UPS 옆에 맞춰 둔 모습이에요. UPS와 NAS를 가까이 두면 한 번에 살펴보기 편합니다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMjNfMjc2/MDAxNzk1NDMzODc2OTEy.wEeVWN7lC7jB9XcUZopeBucy_EdAwTdIsngs7h0Bdhwg.iDBGhObMlggAG11afOCUxrf9uJROPEttNxQSHNPqOScg.JPEG/x04.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMjNfMjA3/MDAxNzk1NDMzODc5MTQw.BqYSqlzfrxmFtWyt9Po4kQae9zz1v2fEumTxJFqrcDcg.PwATxSVoEW5aReoPb_96UTUhlYOquWjDyD70cbGGimUg.JPEG/x05.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "이쪽은 UPS를 자리에 놓고 전원을 넣어 화면에 불이 들어온 모습이에요. 화면에 숫자가 표시되는 걸 보고 전기가 정상으로 들어오고 있는지 확인했습니다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMjNfMjkz/MDAxNzk1NDMzODgyOTcx.pYMamhv0qZX0e5hF3o8g1Xo8z2eSQ3u4FNLNn_twas0g.PaI5TSQmLS-lnPrXws8F2sM1aCDudCQqA3ZPTKEdxgYg.JPEG/x06.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "사진은 같은 사무실의 다른 칸에서 NAS와 UPS를 자리 잡은 모습이에요. 바닥에서 살짝 띄운 칸에 놓아서 먼지나 물이 닿을 일을 줄였어요."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMjNfMzUg/MDAxNzk1NDMzODg2Mzc5.NsfIIoBqjfeHsgE8NUwC8Nmwbf-QUyB7PdncC9UKC1cg.6UvxYO8wB54OU5YJLA61gaRPOtk65GIsldLRQbNkUuEg.JPEG/x07.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "작업은 순서대로 진행했어요. 자리를 정하고, NAS를 놓고, UPS를 맞추고, 전원을 넣어 켜지는지 보는 차례였습니다. 집에 둘 DS225+는 원격 백업을 받으실 장비라서 따로 준비해 두었어요."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMjNfMjA3/MDAxNzk1NDMzODkwMTI2.c6yuloafIXBazq1Ns2mYX0hMMhccVUoGnnUtLNiCN3Qg.JLiVBpeNoZqtCifg3KqyziqD0w-no-TTS0M1oHZl-fEg.JPEG/x08.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "설치할 때 이것만은 기억하세요"
+   },
+   {
+    "t": "p",
+    "text": "디스크를 넣은 뒤에는 NAS를 옮기지 않는 편이 좋아요. UPS는 NAS 쪽 전원을 먼저 받게 맞춰 두세요. 설치가 끝나면 정해진 시간에 백업이 돌아가는지 한 번 확인해 보세요. 백업은 한 곳에만 두지 마세요."
+   },
+   {
+    "t": "p",
+    "text": "자주 물어보시는 것"
+   },
+   {
+    "t": "p",
+    "text": "Q. NAS에 UPS가 꼭 필요한가요? A. 꼭은 아니지만 함께 두시길 권해요. 갑자기 전기가 끊기면 저장 중이던 자료가 손상될 수 있는데, UPS가 있으면 그 전에 NAS를 정상 종료할 시간을 벌 수 있습니다."
+   },
+   {
+    "t": "p",
+    "text": "Q. 집에 있는 NAS로 사무실 자료를 백업받을 수 있나요? A. 네, 원격 백업으로 가능합니다. 두 곳의 NAS가 인터넷으로 서로 통신하도록 설정해 두면 되고, 정해진 시간에 자동으로 받게 해 두시면 편해요."
+   },
+   {
+    "t": "p",
+    "text": "이렇게 마무리했어요"
+   },
+   {
+    "t": "p",
+    "text": "동대구 NAS 설치는 장비만 놓는다고 끝나지 않더라고요. 자리, 전기 대비, 백업 위치까지 같이 보셔야 오래 씁니다. 사무실과 집을 나눠 두신 이번 손님 방식이 참 꼼꼼하다고 느꼈어요 😊"
+   },
+   {
+    "t": "p",
+    "text": "궁금한 거 있으시면 편하게 연락 주세요! ***** 053-588-7119 한별시스템"
+   }
+  ]
+ },
+ {
+  "logNo": "224488885701",
+  "title": "엡손 579R 유지보수통 교체, 북구 보험회사 사무실 현장",
+  "cat": "etc",
+  "catLabel": "한별시스템",
+  "date": "2026-11-23",
+  "href": "https://blog.naver.com/hanbyeolsystem/224488885701",
+  "thumb": "/blog-posts/224488885701/1.webp",
+  "excerpt": "안녕하세요!! 올인원시스템을 추구하는 한별시스템입니다. 북구 보험회사 사무실에서 엡손 복합기가 멈춰 곤란하셨던 분들이 찾아보실 만한 글입니다. 저희 한별시스템이 엡손 579R의 유지보수통을 교체하고 테스트까지 마치고 왔습니다. 먼저 어떤 상황이었는지 말씀드릴게요 북구에 있는 보험회사 사",
+  "chars": 2059,
+  "images": 7,
+  "related": {
+   "href": "/",
+   "label": "한별시스템 홈페이지"
+  },
+  "blocks": [
+   {
+    "t": "img",
+    "src": "/blog-posts/224488885701/1.webp",
+    "w": 900,
+    "h": 785
+   },
+   {
+    "t": "p",
+    "text": "안녕하세요!! 올인원시스템을 추구하는 한별시스템입니다."
+   },
+   {
+    "t": "p",
+    "text": "북구 보험회사 사무실에서 엡손 복합기가 멈춰 곤란하셨던 분들이 찾아보실 만한 글입니다. 저희 한별시스템이 엡손 579R의 유지보수통을 교체하고 테스트까지 마치고 왔습니다."
+   },
+   {
+    "t": "p",
+    "text": "먼저 어떤 상황이었는지 말씀드릴게요"
+   },
+   {
+    "t": "p",
+    "text": "북구에 있는 보험회사 사무실에서 연락을 주셨습니다. 사무실에서 매일 쓰는 복합기라서 멈추면 업무가 바로 불편해지는 곳입니다. 사장님 메모에 적힌 대로 장비는 엡손 579R이었습니다. 저희는 이 장비의 유지보수통 교체가 필요한 상황이라고 보고 방문했습니다."
+   },
+   {
+    "t": "img",
+    "src": "/blog-posts/224488885701/2.webp",
+    "w": 900,
+    "h": 571
+   },
+   {
+    "t": "p",
+    "text": "현장에 도착해서 복합기의 상태를 앞쪽에서 먼저 살펴보는 장면입니다. 작업 전에 장비가 놓인 자리와 조작부를 확인했습니다."
+   },
+   {
+    "t": "p",
+    "text": "수리 전에 장비 주변을 먼저 보는 이유는 설치 환경이 출력 상태에 영향을 줄 수 있기 때문입니다. 놓인 자리가 좁거나 앞쪽이 막혀 있으면 작업 중에도 용지 받침대나 덮개를 열기 불편합니다."
+   },
+   {
+    "t": "p",
+    "text": "그래서 장비 상태와 함께 주변 공간도 같이 살펴봅니다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMjNfOSAg/MDAxNzk1NDMyOTI4Nzg4.xCH2GlGpV-5mysUbOyDn666EWxvHu8vlaFTaZY15c-4g.fikqDsww-04pHCAYhpMFX4bqNcJnAxI_-zhABUGV7Nkg.JPEG/x02.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "같은 장비를 정면에서 다시 확인했습니다. 작업할 자리를 정하고 앞쪽 공간이 막히지 않았는지도 함께 봤습니다."
+   },
+   {
+    "t": "p",
+    "text": "정면에서 보면 장비가 한쪽으로 기울어 있지는 않은지, 조작부 화면이 잘 보이는지도 확인하기 쉽습니다. 사무실에서는 복합기를 벽이나 책상 가까이에 두는 경우가 많아서 이런 확인이 필요합니다."
+   },
+   {
+    "t": "p",
+    "text": "작은 부분이지만 교체 작업을 안전하게 진행하는 데 도움이 됩니다."
+   },
+   {
+    "t": "p",
+    "text": "유지보수통이 뭐고 왜 바꾸나요?"
+   },
+   {
+    "t": "p",
+    "text": "유지보수통은 잉크젯 복합기에서 헤드를 청소할 때 나오는 폐잉크를 모아 두는 통입니다. 쉽게 말해 프린터 안의 폐잉크 받이입니다. 이 통이 가득 차면 장비가 안전을 위해 출력을 멈출 수 있습니다. 그래서 통을 새것으로 바꿔 주면 다시 출력할 수 있는 상태가 됩니다."
+   },
+   {
+    "t": "p",
+    "text": "유지보수통은 겉으로 잘 드러나지 않는 부품이라 평소에는 신경 쓰기 어렵습니다. 보통 출력이 멈추거나 조작부에 알림이 뜬 뒤에야 확인하게 됩니다."
+   },
+   {
+    "t": "p",
+    "text": "알림이 보이면 그때 바로 점검을 받아 두시는 편이 업무에 지장을 줄이는 방법입니다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMjNfMTcg/MDAxNzk1NDMyOTMzOTYy.GqTesgp9bJUZrnSYOp5Yfyp8grsYBQOOwHKkah3eLiUg.O2aqFshDCfH0kliinuKKyMv9celmeBqn7KGRafTQqTYg.JPEG/x03.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "이렇게 작업했습니다"
+   },
+   {
+    "t": "p",
+    "text": "저희는 장비 상태를 먼저 확인한 뒤 유지보수통을 교체했습니다. 교체가 끝난 뒤에는 장비가 정상으로 동작하는지 테스트를 진행했습니다. 교체 후 테스트까지 해야 끝입니다"
+   },
+   {
+    "t": "p",
+    "text": "테스트는 단순히 전원이 들어오는지만 보는 일이 아닙니다. 교체한 부품이 제대로 인식되었는지, 이전에 뜨던 알림이 사라졌는지를 함께 확인해야 합니다."
+   },
+   {
+    "t": "p",
+    "text": "이 과정을 거쳐야 작업을 마친 뒤에도 안심하고 장비를 쓰실 수 있습니다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMjNfMTE3/MDAxNzk1NDMyOTM4NTYz.BppPMo4gpNuB1P6g-_JQCYwUfF_mK_VhYv0Z4ZW5Cr0g.XLo4Q7Kf_ZmirPe6TvhorM49fjeoZPn1wTh5iir33XMg.JPEG/x04.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "교체와 테스트를 마친 뒤 옆쪽에서 장비를 다시 살펴본 장면입니다. 출력 용지가 나오는 받침대와 조작부가 정상 위치에 있는지 확인했습니다."
+   },
+   {
+    "t": "p",
+    "text": "작업 중에는 덮개를 열고 닫는 일이 있어서 마무리할 때 원래 상태로 돌아왔는지 꼭 봅니다. 덮개가 덜 닫혀 있으면 장비가 오류를 띄울 수 있기 때문입니다."
+   },
+   {
+    "t": "p",
+    "text": "옆쪽에서 보면 덮개와 받침대의 맞물림이 한눈에 확인됩니다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMjNfMjgw/MDAxNzk1NDMyOTQyNTk2.KzLrdT8uDHPxlkvhtXoLlDlrQ4Fhreblv_qfbZHu7iwg.IlQXzNC6VncR1Fb7kxQdwJiML1ilG6ZEI_DDkYNTreUg.JPEG/x05.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "솔직하게 정리해 드릴게요"
+   },
+   {
+    "t": "p",
+    "text": "이번 작업은 부품 하나를 바꾸는 단순한 일처럼 보일 수 있습니다. 하지만 교체한 뒤 실제로 동작하는지 확인하지 않으면 다시 호출하실 수 있습니다. 그래서 저희는 교체와 테스트를 한 묶음으로 봅니다."
+   },
+   {
+    "t": "p",
+    "text": "손님이 직접 해 보실 수 있는 관리 요령도 적어 둘게요. 복합기 주변에 박스나 물건이 가까이 쌓이면 용지 받침대가 걸릴 수 있습니다. 출력물이 나오는 앞쪽은 늘 비워 두시는 편이 좋습니다. 조작부 화면에 알림이 뜨면 그 문구를 사진으로 남겨 두세요. 상담하실 때 상태를 설명하기 훨씬 쉬워집니다."
+   },
+   {
+    "t": "p",
+    "text": "이런 분께 맞아요"
+   },
+   {
+    "t": "p",
+    "text": "출력하다가 갑자기 멈추고 알림이 뜨는 사무실이면 점검해 보실 만합니다. 잉크젯 복합기를 오래 쓰셨는데 유지보수통을 한 번도 확인하지 않으셨다면 더 그렇습니다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMjNfMjUx/MDAxNzk1NDMyOTQ2MjI2.Wd9iLUSID-XK6_hpmCjIOGv6IXNPo6h3zAg33hQOWyUg.7v9xwcB-kDFsKwVBvnGRCLTseBjgpAFWmpVG9T3ckBgg.JPEG/x06.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "자주 물어보시는 것"
+   },
+   {
+    "t": "p",
+    "text": "Q. 유지보수통이 가득 차면 어떻게 되나요? A. 복합기가 출력을 멈출 수 있습니다. 폐잉크가 넘치는 것을 막으려는 기능이라서, 새 통으로 교체해야 다시 쓸 수 있습니다."
+   },
+   {
+    "t": "p",
+    "text": "Q. 유지보수통은 직접 바꿔도 되나요? A. 장비에 따라 가능한 경우도 있습니다. 다만 교체 후 알림이 사라졌는지 확인이 필요해서, 어렵다면 업체에 맡기시는 편이 좋습니다."
+   },
+   {
+    "t": "p",
+    "text": "궁금한 거 있으시면 편하게 연락 주세요! ***** 053-588-7119 한별시스템"
+   }
+  ]
+ },
+ {
   "logNo": "224483726974",
   "title": "시놀로지 NAS, 회사 데이터 지키는 5가지 점검법",
   "cat": "nas",
