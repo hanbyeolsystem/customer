@@ -378,3 +378,12 @@ select { width: auto; }
 .perpost[open] > summary { border-bottom: 1px solid var(--line); }
 .perpost > .card { border: 0; border-radius: 0; }
 .perpost > .link { margin: 0 16px 14px; }
+
+/* 사진 순서·자리 옮기기 */
+.thumb .mv { position: absolute; bottom: 4px; width: 30px; height: 30px; border: 0; border-radius: 8px; background: rgba(0, 0, 0, 0.62); color: #fff; font-size: 13px; cursor: pointer; }
+.thumb .mv.l { left: 4px; }
+.thumb .mv.r { right: 4px; }
+.thumb .mv:disabled { opacity: 0.25; cursor: default; }
+.pmove { display: flex; gap: 8px; justify-content: center; margin: -4px 0 12px; }
+.pmove button { border: 1px solid var(--line); background: var(--paper); border-radius: 9px; padding: 6px 14px; min-height: 36px; font-size: 13px; cursor: pointer; }
+.pmove button:disabled { opacity: 0.35; cursor: default; }
