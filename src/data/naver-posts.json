@@ -1,5 +1,173 @@
 [
  {
+  "logNo": "224492789126",
+  "title": "시놀로지 DS225+ 설치, 경주 사무실 바닥 속에 안 보이게 숨겨 두고 왔어요",
+  "cat": "etc",
+  "catLabel": "한별시스템",
+  "date": "2026-11-26",
+  "href": "https://blog.naver.com/hanbyeolsystem/224492789126",
+  "thumb": "/blog-posts/224492789126/1.webp",
+  "excerpt": "안녕하세요!! 올인원시스템을 추구하는 한별시스템입니다. 경주 사무실에서 NAS(네트워크에 연결해 쓰는 공용 저장장치)를 들이고 싶은데, 책상 위에 두기는 부담스러우셨던 분들께 도움이 될 글이에요. 저희 한별시스템이 경주 사무실에 다녀와서 시놀로지 225+를 눈에 안 보이게 설치한 과정을",
+  "chars": 1843,
+  "images": 8,
+  "related": {
+   "href": "/nas/model/ds225-plus/",
+   "label": "DS225+ 설치 비용·구성"
+  },
+  "blocks": [
+   {
+    "t": "img",
+    "src": "/blog-posts/224492789126/1.webp",
+    "w": 900,
+    "h": 900
+   },
+   {
+    "t": "p",
+    "text": "안녕하세요!! 올인원시스템을 추구하는 한별시스템입니다."
+   },
+   {
+    "t": "p",
+    "text": "경주 사무실에서 NAS(네트워크에 연결해 쓰는 공용 저장장치)를 들이고 싶은데, 책상 위에 두기는 부담스러우셨던 분들께 도움이 될 글이에요. 저희 한별시스템이 경주 사무실에 다녀와서 시놀로지 225+를 눈에 안 보이게 설치한 과정을 순서대로 적어 봅니다."
+   },
+   {
+    "t": "p",
+    "text": "처음 현장에 도착했을 때"
+   },
+   {
+    "t": "p",
+    "text": "이번 손님은 장비가 사무실에 드러나는 걸 원치 않으셨어요. 사무 공간은 깔끔해야 하고, 저장장치는 조용히 제 역할만 해 주길 바라셨죠. 그래서 저희가 먼저 본 곳은 바닥이었습니다."
+   },
+   {
+    "t": "p",
+    "text": "NAS를 책상 위나 바닥에 그냥 두면 사무실이 어수선해 보이고, 지나다니다 부딪히거나 음료를 쏟을 위험도 생깁니다. 자료가 들어 있는 장비라서 눈에 덜 띄고 손이 덜 닿는 자리에 두는 것만으로도 관리가 훨씬 편해져요."
+   },
+   {
+    "t": "img",
+    "src": "/blog-posts/224492789126/2.webp",
+    "w": 900,
+    "h": 572
+   },
+   {
+    "t": "p",
+    "text": "경주에 있는 사무실 입구 모습이에요. 이곳에서 작업을 시작했습니다."
+   },
+   {
+    "t": "p",
+    "text": "작업 전에 입구부터 안쪽 동선까지 한 번 살펴보는 일이 중요해요. 장비를 옮기는 길에 걸리는 곳이 없는지 먼저 봐 두면 작업 중 사무실 업무에도 방해가 적습니다."
+   },
+   {
+    "t": "p",
+    "text": "일단 바닥을 열어보니까요"
+   },
+   {
+    "t": "p",
+    "text": "이 사무실은 바닥 타일을 들어 올리면 아래에 빈 공간이 있는 구조였어요. 이런 바닥을 이중 바닥(타일 아래에 빈 공간을 둔 바닥)이라고 부르는데, 장비를 숨기기에 좋은 자리가 됩니다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMjZfMjc5/MDAxNzk1NjU5MDU3ODY5.Bcg8CCgrUh1YGAjSi8plMgJSKFtkW-7lcG7Ed007i_Ig.4V0broTNMbRPtWETe91MaeW8hBLFghV0FREHryC2cPsg.JPEG/x02.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMjZfMTk1/MDAxNzk1NjU5MDg5ODYx.3k8EXb3c19ueG-SxANyrERujtQaoChZennQCDFnNd7cg.uTgXpW9v_2-rr3DMUBST9TnIGAFi2sSR2tIK4wdAJPQg.JPEG/x03.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "타일 한 장을 열어서 아래 공간을 확인하는 장면이에요. 안쪽에 이미 네트워크 장비들이 모여 있어서, 그 옆에 NAS가 들어갈 자리를 살폈습니다."
+   },
+   {
+    "t": "p",
+    "text": "바닥을 열었다고 아무 데나 넣을 수는 없어요. 다른 장비와 너무 붙어 있으면 열이 갇힐 수 있어서 주변에 여유가 있는지 같이 봐야 합니다."
+   },
+   {
+    "t": "p",
+    "text": "나중에 점검하거나 꺼낼 때 손이 들어갈 만큼의 공간이 남아 있는지도 확인해 두시면 좋아요."
+   },
+   {
+    "t": "p",
+    "text": "자리를 확인하고 나서 NAS를 바닥 아래로 내려 놓았어요. 위에서 보면 타일만 보이니까 사무실 분위기는 그대로입니다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMjZfMjAg/MDAxNzk1NjU5MTIzNjU3.b6IHHHqfv7xG_2bc_KlAYOEqg7XYDjMwwYx9qtDdwa0g.F58kDUl8NTPWWY8UQpBHLQ4aw9fbGS_TH-iwCoEai94g.JPEG/x04.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMjZfNjMg/MDAxNzk1NjU5MTU1NDcw.0niLvKtna2l2W13AnWvNT0Lk320KklpRqi9heWpQHL8g.gYY4gfltlWtqSpxw0vXgpNprA8jITk0aYHO77CGtbl4g.JPEG/x05.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "바닥 아래에서 NAS를 놓은 모습을 가까이서 찍었어요. 벽처럼 세워진 틀 옆에 단단히 세워 두었고, 위에서 타일을 덮으면 눈에 띄지 않아요."
+   },
+   {
+    "t": "p",
+    "text": "NAS는 안에 저장 디스크가 들어 있어서 흔들림과 충격에 약한 편이에요. 그래서 세워 두는 자리가 평평한지, 건드렸을 때 기울지 않는지를 꼼꼼히 보는 게 좋습니다."
+   },
+   {
+    "t": "p",
+    "text": "이 부분만 잘 잡아 두어도 오래 안정적으로 쓰실 수 있어요."
+   },
+   {
+    "t": "p",
+    "text": "눈에 안 보여도 자리는 단단하게"
+   },
+   {
+    "t": "p",
+    "text": "숨겨서 설치할 때는 장비가 쓰러지거나 밀리지 않게 두는 게 가장 중요해요. 바닥 아래는 먼지가 쌓이기 쉬우니 자리를 정할 때 이 점도 함께 봤습니다."
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMjZfMzgg/MDAxNzk1NjU5MTg5MjU3.4MiHORxU5Jl3MPu5Ni1WfevxVkAuIEXSwsIOGBtFyWMg.Z-1WdlcxXTC8IJeaXxllZXGWebNagwOiuBt5zVl6Zzkg.JPEG/x06.jpg?type=w966",
+    "remote": true
+   },
+   {
+    "t": "p",
+    "text": "이렇게 마무리했어요"
+   },
+   {
+    "t": "p",
+    "text": "정리하면 이번 작업은 경주 사무실에 시놀로지 225+를 설치하고, 바닥 아래 공간에 숨겨서 자리를 잡은 일이었어요. 사무실에서는 장비가 보이지 않아 깔끔하고, 필요한 자료는 네트워크로 꺼내 쓰시면 됩니다."
+   },
+   {
+    "t": "p",
+    "text": "이런 분께 맞아요"
+   },
+   {
+    "t": "p",
+    "text": "손님이 오가는 사무실이라 장비를 드러내고 싶지 않은 곳에 잘 맞는 방법이에요. 자료 저장장치는 필요한데 책상 위 공간이 부족한 사무실에도 어울립니다. 다만 바닥 구조가 사무실마다 달라서, 먼저 현장을 보고 가능한지 판단해야 해요."
+   },
+   {
+    "t": "p",
+    "text": "우리 사무실 바닥에도 가능한지 궁금하시다면 부담 없이 문의 주세요. 바닥 상태와 놓을 자리를 함께 보고, 맞는 방법인지 먼저 말씀드리겠습니다."
+   },
+   {
+    "t": "p",
+    "text": "자주 물어보시는 것"
+   },
+   {
+    "t": "p",
+    "text": "Q. NAS를 눈에 안 보이게 설치해도 괜찮나요? A. 통풍과 안정적인 자리만 확보되면 가능합니다. 열이 빠질 공간이 있는지, 물이나 먼지가 닿지 않는지 설치 전에 꼭 확인하는 게 좋아요."
+   },
+   {
+    "t": "p",
+    "text": "Q. NAS 설치는 어디에 하는 게 좋을까요? A. 단단하고 평평한 자리가 좋습니다. 콘센트와 가까우면서 사람 손이 자주 닿지 않는 곳을 고르면 오래 쓰기 편해요 😊"
+   },
+   {
+    "t": "p",
+    "text": "궁금한 거 있으시면 편하게 연락 주세요! ***** 053-588-7119 한별시스템"
+   },
+   {
+    "t": "img",
+    "src": "https://mblogthumb-phinf.pstatic.net/MjAyNjExMjZfMzEg/MDAxNzk1NjU5MjIzMDI2.6MSjqwEv5-da0AV41f61cY_jPz6P6tFnZMdfKzrwkB8g.1tgOltzKW2I8XP_lej4Sjg-_XA5US4xt50tFaOBbjAAg.JPEG/foot.jpg?type=w966",
+    "remote": true
+   }
+  ]
+ },
+ {
   "logNo": "224490121949",
   "title": "나스 설치, 쓰던 NAS를 새 NAS로 교체할 때 알아둘 6단계 대구 한별시스템",
   "cat": "etc",
